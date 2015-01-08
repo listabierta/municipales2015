@@ -1,3 +1,8 @@
+# Ignore Eclipse IDE files
+.buildpath
+.project
+.settings
+
 UPGRADE*
 
 # Cache and logs (Symfony2)
