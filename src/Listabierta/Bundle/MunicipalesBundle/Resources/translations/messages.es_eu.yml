@@ -14,4 +14,10 @@ home:
     step_9: Presentación de las listas electas
     
     start_here: Comienza aquí
-    
+
+header:
+    languages:
+        es_eu: Euskera
+        es_ca: Català
+        es_gl: Galego
+        es_es: Español   
