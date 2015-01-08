@@ -1,4 +1,6 @@
 services:
-#    municipales.example:
-#        class: Listabierta\Bundle\MunicipalesBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    municipales.locale_listener:
+        class: Listabierta\Bundle\MunicipalesBundle\EventListener\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+            - { name: kernel.event_subscriber }
