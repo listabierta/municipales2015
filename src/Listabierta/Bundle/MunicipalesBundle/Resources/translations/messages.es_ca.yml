@@ -1,0 +1,17 @@
+home:
+    html_title: Municipales 2015 - Home
+    h1_title: Municipales 2015
+    steps: Pasos para dar de alta una candidatura ciudadana
+    
+    step_1: Regístrate y registra el municipio de la candidatura
+    step_2: Establece las condiciones de la candidatura ciudadana
+    step_3: Establece los plazos de votación
+    step_4: Reserva una dirección de internet
+    step_5: Alta de candidatos y candidatas
+    step_6: Validación de candidatos y candidatas
+    step_7: Votaciones
+    step_8: Verificación del voto y resultados
+    step_9: Presentación de las listas electas
+    
+    start_here: Comienza aquí
+    
