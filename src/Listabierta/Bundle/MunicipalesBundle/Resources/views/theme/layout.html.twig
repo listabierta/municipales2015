@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+            <link rel="stylesheet" href="{{ asset('bundles/municipales/css/styles.css') }}" />
+            
+            <title>{% block title %}{% endblock %}</title>
+        {% endblock %}
+    </head>
+    <body>
+	    <div id="header">
+
+	      <div id="logo">
+	      
+	      	<div id="menubar" class="language-switcher">
+	    		<ul id="menu" class="lang-menu">
+	    		  <li{% if app.request.locale == 'es_eu' %} class="selected"{% endif %}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es_eu'})) }}"><img class="flag" src="{{ asset('bundles/municipales/images/es_eu.png') }}" title="{{ 'header.languages.es_eu'|trans }}" alt="{{ 'header.languages.es_eu'|trans }}" />{{ 'header.languages.es_eu'|trans }}</a></li>
+				  <li{% if app.request.locale == 'es_ca' %} class="selected"{% endif %}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es_ca'})) }}"><img class="flag" src="{{ asset('bundles/municipales/images/es_ca.png') }}" title="{{ 'header.languages.es_ca'|trans }}" alt="{{ 'header.languages.es_ca'|trans }}" />{{ 'header.languages.es_ca'|trans }}</a></li>
+				  <li{% if app.request.locale == 'es_gl' %} class="selected"{% endif %}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es_gl'})) }}"><img class="flag" src="{{ asset('bundles/municipales/images/es_gl.png') }}" title="{{ 'header.languages.es_gl'|trans }}" alt="{{ 'header.languages.es_gl'|trans }}" />{{ 'header.languages.es_gl'|trans }}</a></li>
+				  <li{% if app.request.locale == 'es_es' %} class="selected"{% endif %}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es_es'})) }}"><img class="flag" src="{{ asset('bundles/municipales/images/es_es.png') }}" title="{{ 'header.languages.es_es'|trans }}" alt="{{ 'header.languages.es_es'|trans }}" />{{ 'header.languages.es_es'|trans }}</a></li>
+				</ul>
+    	    </div>
+	      
+	        <div id="logo_text">
+	          <h1><a href="#"><span>Lista Abierta</span></a></h1>
+	          <h2>Abre las organizaciones a los ciudadanía.</h2>
+	        </div>
+	        
+	      </div>
+
+	    </div>
+	    <div id="site_content">
+        	<div id="content">{% block content %}{% endblock %}</div>
+        </div>
+        <div id="footer">
+            {% block footer %}
+                &copy; Copyright {{ 'now'|date('Y') }} by <a href="http://listabierta.org" title="ListAbierta">ListAbierta</a>.
+            {% endblock %}
+        </div>
+    </body>
+</html>
