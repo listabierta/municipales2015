@@ -1,1 +1,32 @@
-Municipales 2015
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}{{ 'home.html_title'|trans }}{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+
+    </style>
+{% endblock %}
+{% block content %}
+    <h1>{{ 'home.h1_title'|trans }}</h1>
+    
+    <p class="important">
+    	{{ 'home.steps'|trans }}: 
+    </p>
+    
+    <p class="important">
+        <ol>
+		  <li>{{ 'home.step_1'|trans }}</li>
+		  <li>{{ 'home.step_2'|trans }}</li>
+		  <li>{{ 'home.step_3'|trans }}</li>
+		  <li>{{ 'home.step_4'|trans }}</li>
+		  <li>{{ 'home.step_5'|trans }}</li>
+		  <li>{{ 'home.step_6'|trans }}</li>
+		  <li>{{ 'home.step_7'|trans }}</li>
+		  <li>{{ 'home.step_8'|trans }}</li>
+		  <li>{{ 'home.step_9'|trans }}</li>
+		</ol>
+    </p>
+    
+    <div><a href="{{ path('municipales_register_admin') }}" title="{{ 'home.start_here'|trans }}">{{ 'home.start_here'|trans }}</a></div>
+{% endblock %}
