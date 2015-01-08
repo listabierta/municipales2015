@@ -21,3 +21,7 @@ header:
         es_ca: Català
         es_gl: Galego
         es_es: Español
+        
+candidacy:
+    html_title: Municipales 2015 - Alta de candidatura ciudadana
+    h1_title: Regístrate y registra el municipio de la candidatura
