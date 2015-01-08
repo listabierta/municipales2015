@@ -1,3 +1,11 @@
 municipales_homepage:
     path:     /
     defaults: { _controller: MunicipalesBundle:Default:index }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+
+municipales_candidacy_step1:
+    path:     /alta-candidatura
+    defaults: { _controller: MunicipalesBundle:Candidacy:step1 }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
