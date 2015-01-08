@@ -1,7 +1,3 @@
 municipales:
     resource: "@MunicipalesBundle/Resources/config/routing.yml"
     prefix:   /
-
-app:
-    resource: @AppBundle/Controller/
-    type:     annotation
