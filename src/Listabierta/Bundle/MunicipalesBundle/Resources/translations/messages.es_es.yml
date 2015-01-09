@@ -41,3 +41,28 @@ candidacy:
         h1_title: Establece las condiciones de la candidatura ciudadana
         
         program: El programa de la candidatura
+        
+    step3:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Establece los plazos de presentación de candidaturas
+        
+    step4:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Reserva una dirección de internet
+
+    step5:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Alta de candidatos y candidatas
+
+    step6:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Validación de candidatos y candidatas  
+
+    step7:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Inicio y fin de las Votaciones
+        
+              
+    
+    
+  
