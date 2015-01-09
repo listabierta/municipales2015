@@ -11,7 +11,7 @@ class SMSInboundController extends Controller
 	public function indexAction(Request $request = NULL)
 	{
 		$query = $request->query;
-		$msisdn = $query->msisdn;
+		//$msisdn = $query->msisdn;
 
 		return new Response('OK', 200);
 	}
@@ -19,7 +19,7 @@ class SMSInboundController extends Controller
 	public function callbackAction(Request $request = NULL)
 	{
 		$query = $request->query;
-		$msisdn = $query->msisdn;
+		//$msisdn = $query->msisdn;
 
 		return new Response('OK', 200);
 	}
