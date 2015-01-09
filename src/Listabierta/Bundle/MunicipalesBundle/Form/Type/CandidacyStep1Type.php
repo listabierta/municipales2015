@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Listabierta\Bundle\MunicipalesBundle\Validator\Constraints\DNI;
 
 class CandidacyStep1Type extends AbstractType
 {
@@ -37,6 +38,7 @@ class CandidacyStep1Type extends AbstractType
         	    		'required' => true, 
         				'constraints' => array(
         					new Assert\NotBlank(),
+        					new DNI(),
         				)))
         	    ->add('email', 'email', array(
         	    		'required' => true, 
