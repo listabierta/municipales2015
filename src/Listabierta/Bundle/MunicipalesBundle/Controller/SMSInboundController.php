@@ -13,6 +13,21 @@ class SMSInboundController extends Controller
 		$query = $request->query;
 		//$msisdn = $query->msisdn;
 
+		$phone = 1234;
+		
+		$message = \Swift_Message::newInstance()
+		->setSubject('Telefono movil ' . $phone . ' verificado correctamenet')
+		->setFrom('verificaciones@municipales2015.listabierta.org')
+		->setTo($this->container->getParameter('admin_email'))
+		->setBody(
+				$this->renderView(
+						'MunicipalesBundle:Mail:sms_inbound_verification.html.twig',
+						array('phone' => $phone)
+				)
+		)
+		;
+		$this->get('mailer')->send($message);
+		
 		return new Response('OK', 200);
 	}
 	
