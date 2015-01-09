@@ -21,3 +21,4 @@ parameters:
     
     # Use here a sms inbound number like 55544433322
     sms_inbound_number: ~
+    admin_email: ~
