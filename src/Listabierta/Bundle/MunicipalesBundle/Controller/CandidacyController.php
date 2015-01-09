@@ -10,12 +10,12 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep2Type;
 
 class CandidacyController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction(Request $request = NULL)
     {
-        $this->step1Action();
+        $this->step1Action($request);
     }
     
-    public function step1Action(Request $request)
+    public function step1Action(Request $request = NULL)
     {
     	$form = $this->createForm(new CandidacyStep1Type(), NULL, array(
     			'action' => $this->generateUrl('municipales_candidacy_step1'),
