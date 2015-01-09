@@ -25,3 +25,17 @@ header:
 candidacy:
     html_title: Municipales 2015 - Alta de candidatura ciudadana
     h1_title: Regístrate y registra el municipio de la candidatura
+    
+    step1:
+        name: Nombre 
+        lastname: Apellidos
+        dni: DNI
+        email: Email
+        province: Provincia del municipio
+        town: Nombre del municipio
+        phone: Número de móvil
+        continue: Continuar
+        
+    step2:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Establece las condiciones de la candidatura ciudadana    
