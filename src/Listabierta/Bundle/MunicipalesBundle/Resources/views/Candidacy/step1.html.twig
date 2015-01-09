@@ -11,7 +11,7 @@
 			<p>{{ form_errors(form) }}<p>
 			
 			{% if errors is defined and not errors is empty %}
-				<div style="background-color:gold;color:black">{{ dump(errors) }}</div>
+				<div style="background-color:gold;color:black">{{ errors }}</div>
 			{% endif %}
 
 			<p>
