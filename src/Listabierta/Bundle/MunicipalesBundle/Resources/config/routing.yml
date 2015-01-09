@@ -51,3 +51,8 @@ town_candidacy_vote_step1:
     defaults: { _controller: MunicipalesBundle:Town:vote1 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
+     
+# http://municipales2015.listabierta.org./sms/inbound   
+municipales_sms_inbound_callback:
+    path:     /sms/inbound
+    defaults: { _controller: MunicipalesBundle:SMSInbound:index }
