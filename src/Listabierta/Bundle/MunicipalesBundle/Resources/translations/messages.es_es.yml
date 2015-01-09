@@ -62,7 +62,28 @@ candidacy:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Inicio y fin de las Votaciones
         
-              
+    step8:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Verificación del voto y resultados
+
+    step9:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Presentación de las listas electas       
+ 
+town:
+    html_title: Municipales 2015 - Alta de candidatura ciudadana
+    h1_title: Regístrate y registra el municipio de la candidatura
+    
+    step1:
+        name: Nombre 
+        lastname: Apellidos
+        dni: DNI
+        email: Email
+        province: Provincia del municipio
+        town: Nombre del municipio
+        phone: Número de móvil
+        continue: Continuar
+               
     
     
   
