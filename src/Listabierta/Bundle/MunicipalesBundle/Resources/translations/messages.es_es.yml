@@ -38,4 +38,6 @@ candidacy:
         
     step2:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Establece las condiciones de la candidatura ciudadana    
+        h1_title: Establece las condiciones de la candidatura ciudadana
+        
+        program: El programa de la candidatura
