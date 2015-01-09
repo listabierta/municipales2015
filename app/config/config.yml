@@ -29,6 +29,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        sms_inbound_number: "%sms_inbound_number%"
 
 # Assetic Configuration
 assetic:
