@@ -1,0 +1,18 @@
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}{{ 'candidacy.step7.html_title'|trans }}{% endblock %}
+{% block content %}
+    <h1>{{ 'candidacy.step7.h1_title'|trans }}</h1>
+    
+    <p class="important">
+		Introduce el número de días naturales que permanecerá activa la votación de candidatos desde el inicio de la votación ______ (se recomiendan al menos 14 días, no debería ser inferior a una semana).
+		
+		Haz clic en el siguiente botón para iniciar la votación (...) ATENCIÓN !!
+		Una vez iniciada la votación ya NO SE PODRÁN AÑADIR más candidatos o candidatas. Se proporcionará un enlace en el que ya se pueden registrar los votantes y emitir el voto.
+		
+		(Solo se activa si el plazo de presentación de candidaturas ha finalizado)
+		
+		Este es el enlace a la votación que puedes hacer público: Http://municipales2015.listabierta.org/elmunicipioregistrado/vota
+	</p>
+	
+{% endblock %}
