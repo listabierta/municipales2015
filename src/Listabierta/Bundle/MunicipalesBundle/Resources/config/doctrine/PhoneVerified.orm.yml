@@ -1,0 +1,17 @@
+Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified:
+    type: entity
+    table: null
+    repositoryClass: Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerifiedRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        phone:
+            type: string
+            length: 255
+        timestamp:
+            type: time
+    lifecycleCallbacks: {  }
