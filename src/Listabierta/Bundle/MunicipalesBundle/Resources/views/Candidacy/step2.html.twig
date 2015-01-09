@@ -6,18 +6,27 @@
     
     <p class="important">
 	Sube en formato PDF  las condiciones que regulan la candidatura ciudadana:
-		(Estas condiciones deberán ser aceptadas por cada uno de los candidatos o candidatas)
+	(Estas condiciones deberán ser aceptadas por cada uno de los candidatos o candidatas)
+	</p>
 	
-	El programa de la candidatura        ejemplo
+	<p>
+		<span>{{ form_label(form.program, 'candidacy.step2.program'|trans) }}</span>
+		<span>{{ form_errors(form.program) }}</span>
+		{{ form_widget(form.program) }}
+		ejemplo
+	</p>
+	        
 	
-	Condiciones legales y veracidad de la información aportada de  candidatos y candidatas      ejemplo
+	<p>
+		Condiciones legales y veracidad de la información aportada de  candidatos y candidatas      ejemplo
+	</p>
 	
-	El mandato revocatorio del candidato        ejemplo
+	<p>El mandato revocatorio del candidato        ejemplo</p>
 	
-	El mandato participativo del candidato       ejemplo
+	<p>El mandato participativo del candidato       ejemplo</p>
 	
-	Las condiciones para poder participar como votante (censo y aceptación del sistema de votación)
-	
-	Las limitaciones técnicas y legales del sistema de voto.         ejemplo
-    </p>
+	<p>Las condiciones para poder participar como votante (censo y aceptación del sistema de votación)</p>
+			
+	<p>Las limitaciones técnicas y legales del sistema de voto.         ejemplo</p>
+
 {% endblock %}
