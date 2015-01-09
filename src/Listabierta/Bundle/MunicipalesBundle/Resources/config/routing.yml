@@ -9,3 +9,9 @@ municipales_candidacy_step1:
     defaults: { _controller: MunicipalesBundle:Candidacy:step1 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
+        
+municipales_candidacy_step2:
+    path:     /alta-candidatura-paso-2
+    defaults: { _controller: MunicipalesBundle:Candidacy:step2 }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
