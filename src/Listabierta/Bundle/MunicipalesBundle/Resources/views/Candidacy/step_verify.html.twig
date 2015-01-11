@@ -1,0 +1,30 @@
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}{{ 'candidacy.step_verify.html_title'|trans }}{% endblock %}
+{% block content %}
+    <h1>{{ 'candidacy.step_verify.h1_title'|trans }}</h1>
+    
+    <p class="important">
+    	<div>
+			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			
+			<p>{{ form_errors(form) }}<p>
+			
+			{% if errors is defined and not errors is empty %}
+				<div style="background-color:gold;color:black">{{ errors }}</div>
+			{% endif %}
+
+			<div class="phone_verify">
+				{{ 'candidacy.verify_msg'|trans({'%sms_inbound_number%': sms_inbound_number}) }}
+			</div>
+			
+			<p>
+			    {{ form_widget(form.continue, { 'label': 'candidacy.step_verify.continue'|trans }) }}
+			</p>
+			
+			{{ form_rest(form) }}
+			
+			{{ form_end(form) }}
+		</div>
+    </p>
+{% endblock %}
