@@ -1,6 +1,6 @@
 Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified:
     type: entity
-    table: null
+    table: phone_verified
     repositoryClass: Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerifiedRepository
     id:
         id:
@@ -10,6 +10,9 @@ Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified:
                 strategy: AUTO
     fields:
         phone:
+            type: string
+            length: 255
+        email:
             type: string
             length: 255
         timestamp:
