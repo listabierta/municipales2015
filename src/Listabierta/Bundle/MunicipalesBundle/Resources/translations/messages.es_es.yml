@@ -36,6 +36,11 @@ candidacy:
         town: Nombre del municipio
         phone: Número de móvil
         continue: Continuar
+   
+    step_verify:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Verifica tu número de móvil
+        continue: Continuar
         
     step2:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
