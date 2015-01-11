@@ -92,13 +92,11 @@ class CandidacyController extends Controller
     			$entity_manager->persist($admin_candidacy);
     			$entity_manager->flush();
     			
-    			$old_date = new \DateTime(date('c', '-568080000'));
-    			
     			// Store email and phone in database as pending PhoneVerified without timestamp
     			$phone_verified = new PhoneVerified();
     			$phone_verified->setPhone($phone);
     			$phone_verified->setEmail($email);
-    			$phone_verified->setTimestamp($old_date);
+    			$phone_verified->setTimestamp(0);
 
     			$entity_manager->persist($phone_verified);
     			$entity_manager->flush();
@@ -178,8 +176,7 @@ class CandidacyController extends Controller
     			
     			$phone_status = $phone_verified_repository->findOneBy(array('phone' => $phone, 'email' => $email));
     			
-    			$old_date = new \DateTime(date('c', '-568080000'));
-    			if(empty($phone_status) || $phone_status->getTimestamp()->format('U') < $old_date->format('U'))
+    			if(empty($phone_status) || $phone_status->getTimestamp() == 0)
     			{
 	    			$form->addError(new FormError('El número de móvil aún no ha sido verificado'));
 	    			$ok = FALSE;
