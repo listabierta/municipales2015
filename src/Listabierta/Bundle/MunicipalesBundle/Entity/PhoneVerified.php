@@ -6,6 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * PhoneVerified
+ * 
+ * @ORM\Entity
+ * @ORM\Table(name="phone_verified")
  */
 class PhoneVerified
 {
@@ -18,6 +21,11 @@ class PhoneVerified
      * @var string
      */
     private $phone;
+    
+    /**
+     * @var string
+     */
+    private $email;
 
     /**
      * @var \DateTime
@@ -56,6 +64,29 @@ class PhoneVerified
     public function getPhone()
     {
         return $this->phone;
+    }
+    
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return PhoneVerified
+     */
+    public function setEmail($email)
+    {
+    	$this->email = $email;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+    	return $this->email;
     }
 
     /**
