@@ -23,7 +23,7 @@ class SMSInboundController extends Controller
 		 
 		$phone_verified = $phone_verified_repository->findOneBy(array('phone' => $phone, 'email' => $email));
 		
-		if(!empty($phone_verified) && $phone_verified->getTimestamp()->getTimestamp() <= 0)
+		if(!empty($phone_verified) && $phone_verified->format('U') < new \DateTime(date('c', '-568080000')->format('U')))
 		{
 			$phone_verified->setTimestamp(new \DateTime());
 			

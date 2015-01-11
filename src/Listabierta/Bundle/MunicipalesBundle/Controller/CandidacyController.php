@@ -96,7 +96,7 @@ class CandidacyController extends Controller
     			$phone_verified = new PhoneVerified();
     			$phone_verified->setPhone($phone);
     			$phone_verified->setEmail($email);
-    			$phone_verified->setTimestamp(new \DateTime('1899-12-31 00:00:00'));
+    			$phone_verified->setTimestamp(new \DateTime(date('c', '-568080000')->format('U')));
 
     			$entity_manager->persist($phone_verified);
     			$entity_manager->flush();
@@ -176,9 +176,7 @@ class CandidacyController extends Controller
     			
     			$phone_status = $phone_verified_repository->findOneBy(array('phone' => $phone, 'email' => $email));
     			
-    			var_dump($phone_status->getTimestamp()->getTimestamp());
-    			
-    			if(empty($phone_status) || $phone_status->getTimestamp()->getTimestamp() <= 0)
+    			if(empty($phone_status) || $phone_status->format('U') < new \DateTime(date('c', '-568080000')->format('U')))
     			{
 	    			$form->addError(new FormError('El número de móvil aún no ha sido verificado'));
 	    			$ok = FALSE;
