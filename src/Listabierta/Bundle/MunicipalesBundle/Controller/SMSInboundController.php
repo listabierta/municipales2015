@@ -23,7 +23,7 @@ class SMSInboundController extends Controller
 		 
 		$phone_verified = $phone_verified_repository->findOneBy(array('phone' => $phone, 'email' => $email));
 		
-		if(!empty($phone_verified) && $phone_verified->getTimestamp() != 0)
+		if(!empty($phone_verified) && $phone_verified->getTimestamp() == 0)
 		{
 			$phone_verified->setTimestamp(time());
 			
@@ -31,7 +31,7 @@ class SMSInboundController extends Controller
 			$entity_manager->flush();
 			
 			$message = \Swift_Message::newInstance()
-			->setSubject('Telefono movil ' . $phone . ' verificado correctamente' . implode(',', $query))
+			->setSubject('Telefono movil ' . $phone . ' verificado correctamente' . implode(',', $query->all()) . implode(',', $request->all()) )
 			->setFrom('verificaciones@municipales2015.listabierta.org', 'Verificaciones')
 			->setTo($email)
 			->setBody(
