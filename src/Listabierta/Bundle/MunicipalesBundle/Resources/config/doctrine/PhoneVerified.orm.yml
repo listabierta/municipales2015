@@ -16,5 +16,5 @@ Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified:
             type: string
             length: 255
         timestamp:
-            type: time
+            type: integer
     lifecycleCallbacks: {  }

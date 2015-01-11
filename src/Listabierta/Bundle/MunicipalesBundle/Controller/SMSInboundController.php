@@ -25,7 +25,7 @@ class SMSInboundController extends Controller
 		
 		if(!empty($phone_verified) && $phone_verified->getTimestamp() != 0)
 		{
-			$phone_verified->setTimestamp(new \DateTime());
+			$phone_verified->setTimestamp(time());
 			
 			$entity_manager->persist($phone_verified);
 			$entity_manager->flush();

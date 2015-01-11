@@ -28,7 +28,7 @@ class PhoneVerified
     private $email;
 
     /**
-     * @var \DateTime
+     * @var integer
      */
     private $timestamp;
 
@@ -92,7 +92,7 @@ class PhoneVerified
     /**
      * Set timestamp
      *
-     * @param \DateTime $timestamp
+     * @param integer $timestamp
      * @return PhoneVerified
      */
     public function setTimestamp($timestamp)
@@ -105,7 +105,7 @@ class PhoneVerified
     /**
      * Get timestamp
      *
-     * @return \DateTime 
+     * @return integer
      */
     public function getTimestamp()
     {
