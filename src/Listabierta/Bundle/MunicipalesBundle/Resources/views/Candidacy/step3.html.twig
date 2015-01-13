@@ -4,8 +4,39 @@
 {% block content %}
     <h1>{{ 'candidacy.step3.h1_title'|trans }}</h1>
     
+    {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			
+	<p>{{ form_errors(form) }}<p>
+			
+	{% if errors is defined and not errors is empty %}
+		<div style="background-color:gold;color:black">{{ errors }}</div>
+	{% endif %}
+	
     <p class="important">
-		Plazo de presentación de candidaturas (mínimo una semana, se recomiendan 15 días) DE _(fecha)   HASTA__(fecha)
+		{{ 'candidacy.step3.explanation_date'|trans }}:
 	</p>
+	
+	<p>
+		<span>{{ form_label(form.from, 'candidacy.step3.from_label'|trans) }}</span>
+		<span>{{ form_errors(form.from) }}</span>
+		{{ form_widget(form.from) }}
+	</p> 
+	
+	<p>
+		<span>{{ form_label(form.to, 'candidacy.step3.to_label'|trans) }}</span>
+		<span>{{ form_errors(form.to) }}</span>
+		{{ form_widget(form.to) }}
+	</p> 
+		
+	<p>
+	</p>
+			
+	<p>
+		{{ form_widget(form.continue, { 'label': 'candidacy.step3.continue'|trans }) }}
+	</p>
+			
+	{{ form_rest(form) }}
+			
+	{{ form_end(form) }}
 	
 {% endblock %}
