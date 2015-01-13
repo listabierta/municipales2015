@@ -8,25 +8,58 @@
 	Sube en formato PDF  las condiciones que regulan la candidatura ciudadana:
 	(Estas condiciones deberán ser aceptadas por cada uno de los candidatos o candidatas)
 	</p>
-	
+
+	{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			
+	<p>{{ form_errors(form) }}<p>
+			
+	{% if errors is defined and not errors is empty %}
+		<div style="background-color:gold;color:black">{{ errors }}</div>
+	{% endif %}
 	<p>
-		<span>{{ form_label(form.program, 'candidacy.step2.program'|trans) }}</span>
+		<span>{{ form_label(form.program, 'candidacy.step2.program'|trans) }} <a href="#">Ejemplo</a></span>
 		<span>{{ form_errors(form.program) }}</span>
 		{{ form_widget(form.program) }}
-		ejemplo
 	</p>
-	        
+	  
+	<p>
+		<span>{{ form_label(form.legal_conditions, 'candidacy.step2.legal_conditions'|trans) }} <a href="#">Ejemplo</a></span>
+		<span>{{ form_errors(form.legal_conditions) }}</span>
+		{{ form_widget(form.legal_conditions) }}
+	</p>      
 	
 	<p>
-		Condiciones legales y veracidad de la información aportada de  candidatos y candidatas      ejemplo
-	</p>
-	
-	<p>El mandato revocatorio del candidato        ejemplo</p>
-	
-	<p>El mandato participativo del candidato       ejemplo</p>
-	
-	<p>Las condiciones para poder participar como votante (censo y aceptación del sistema de votación)</p>
-			
-	<p>Las limitaciones técnicas y legales del sistema de voto.         ejemplo</p>
+		<span>{{ form_label(form.recall_term, 'candidacy.step2.recall_term'|trans) }} <a href="#">Ejemplo</a></span>
+		<span>{{ form_errors(form.recall_term) }}</span>
+		{{ form_widget(form.recall_term) }}
+	</p> 
 
+	<p>
+		<span>{{ form_label(form.participatory_term, 'candidacy.step2.participatory_term'|trans) }} <a href="#">Ejemplo</a></span>
+		<span>{{ form_errors(form.participatory_term) }}</span>
+		{{ form_widget(form.participatory_term) }}
+	</p> 
+	
+	<p>
+		<span>{{ form_label(form.voter_conditions, 'candidacy.step2.voter_conditions'|trans) }} <a href="#">Ejemplo</a></span>
+		<span>{{ form_errors(form.voter_conditions) }}</span>
+		{{ form_widget(form.voter_conditions) }}
+	</p> 
+
+	<p>
+		<span>{{ form_label(form.technical_constrains, 'candidacy.step2.technical_constrains'|trans) }} <a href="#">Ejemplo</a></span>
+		<span>{{ form_errors(form.technical_constrains) }}</span>
+		{{ form_widget(form.technical_constrains) }}
+	</p> 
+
+	<p>
+	</p>
+			
+	<p>
+		{{ form_widget(form.continue, { 'label': 'candidacy.step2.continue'|trans }) }}
+	</p>
+			
+	{{ form_rest(form) }}
+			
+	{{ form_end(form) }}
 {% endblock %}
