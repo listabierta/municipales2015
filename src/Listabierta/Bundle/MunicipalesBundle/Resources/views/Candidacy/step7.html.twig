@@ -10,9 +10,18 @@
 		Haz clic en el siguiente botón para iniciar la votación (...) ATENCIÓN !!
 		Una vez iniciada la votación ya NO SE PODRÁN AÑADIR más candidatos o candidatas. Se proporcionará un enlace en el que ya se pueden registrar los votantes y emitir el voto.
 		
+		{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+		<p>
+			{{ form_widget(form.start_candidacy, { 'label': 'candidacy.step7.continue'|trans }) }}
+		</p>
+				
+		{{ form_rest(form) }}
+				
+		{{ form_end(form) }}
+	
 		(Solo se activa si el plazo de presentación de candidaturas ha finalizado)
 		
 		Este es el enlace a la votación que puedes hacer público: Http://municipales2015.listabierta.org/elmunicipioregistrado/vota
 	</p>
-	
+
 {% endblock %}
