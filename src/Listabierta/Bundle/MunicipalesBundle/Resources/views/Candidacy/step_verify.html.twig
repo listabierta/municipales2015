@@ -8,11 +8,7 @@
     	<div>
 			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
 			
-			<p>{{ form_errors(form) }}<p>
-			
-			{% if errors is defined and not errors is empty %}
-				<div style="background-color:gold;color:black">{{ errors }}</div>
-			{% endif %}
+			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 
 			<div class="phone_verify">
 				{{ 'candidacy.verify_msg'|trans({'%sms_inbound_number%': sms_inbound_number}) }}

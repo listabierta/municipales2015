@@ -8,12 +8,8 @@
     	<div>
 			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
 			
-			<p>{{ form_errors(form) }}<p>
+			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 			
-			{% if errors is defined and not errors is empty %}
-				<div style="background-color:gold;color:black">{{ errors }}</div>
-			{% endif %}
-
 			<p>
 				<span>{{ form_label(form.name, 'candidacy.step1.name'|trans) }}</span>
 				<span>{{ form_errors(form.name) }}</span>
