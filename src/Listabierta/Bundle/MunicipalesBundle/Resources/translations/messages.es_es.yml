@@ -47,23 +47,35 @@ candidacy:
         h1_title: Establece las condiciones de la candidatura ciudadana
         
         program: El programa de la candidatura
-        
+        legal_conditions: Condiciones legales y veracidad de la información aportada de  candidatos y candidatas
+        recall_term: El mandato revocatorio del candidato
+        participatory_term: El mandato participativo del candidato
+        voter_conditions: Las condiciones para poder participar como votante (censo y aceptación del sistema de votación)
+        technical_constrains: Las limitaciones técnicas y legales del sistema de voto.
+        continue: Continuar
+                      
     step3:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Establece los plazos de presentación de candidaturas
-        
+        continue: Continuar
+        explanation_date: Plazo de presentación de candidaturas (mínimo una semana, se recomiendan 15 días) 
+              
     step4:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Reserva una dirección de internet
-
+        continue: Continuar
+        
     step5:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Alta de candidatos y candidatas
-
+        continue: Continuar
+        explanation_link: Proporciona este enlace público a los candidatos y candidatas para que se den de alta rellenando el formulario que les aparecerá
+        
     step6:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Validación de candidatos y candidatas  
-
+        continue: Continuar
+        
     step7:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Inicio y fin de las Votaciones
@@ -71,11 +83,14 @@ candidacy:
     step8:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Verificación del voto y resultados
-
+        continue: Continuar
+        explanation: Explicación del sellado de tiempo de Tractis y su verificación externa
+        
     step9:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Presentación de las listas electas       
- 
+        continue: Continuar
+         
 town:
     html_title: Municipales 2015 - Alta de candidatura ciudadana
     h1_title: Regístrate y registra el municipio de la candidatura
