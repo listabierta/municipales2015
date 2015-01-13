@@ -4,10 +4,30 @@
 {% block content %}
     <h1>{{ 'candidacy.step4.h1_title'|trans }}</h1>
     
+    {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			
+	<p>{{ form_errors(form) }}<p>
+			
+	{% if errors is defined and not errors is empty %}
+		<div style="background-color:gold;color:black">{{ errors }}</div>
+	{% endif %}
+	
     <p class="important">
-		Input Http://municipales2015.listabierta.org/_________
-		
-		Continuar
+   		<p>
+				<span>http://municipales2015.listabierta.org/{{ form_widget(form.name) }}</span>
+				<span>{{ form_errors(form.name) }}</span>
+		</p>
 	</p>
+	
+	<p>
+	</p>
+			
+	<p>
+		{{ form_widget(form.continue, { 'label': 'candidacy.step4.continue'|trans }) }}
+	</p>
+			
+	{{ form_rest(form) }}
+			
+	{{ form_end(form) }}
 	
 {% endblock %}
