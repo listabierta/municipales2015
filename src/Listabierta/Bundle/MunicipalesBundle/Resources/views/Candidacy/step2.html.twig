@@ -11,46 +11,67 @@
 
 	{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
 			
-	<p>{{ form_errors(form) }}<p>
-			
-	{% if errors is defined and not errors is empty %}
-		<div style="background-color:gold;color:black">{{ errors }}</div>
-	{% endif %}
-	<p>
-		<span>{{ form_label(form.program, 'candidacy.step2.program'|trans) }} <a href="#">Ejemplo</a></span>
-		<span>{{ form_errors(form.program) }}</span>
-		{{ form_widget(form.program) }}
-	</p>
+	<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
+	
+	<div>
+		<p>
+			{{ form_label(form.program, 'candidacy.step2.program'|trans) }} <a 
+			href="{{ asset('bundles/municipales/pdf/program_example.pdf') }}" 
+			title="{{ 'candidacy.step2.program'|trans }}">Ejemplo</a>
+			<span>{{ form_errors(form.program) }}</span>
+			{{ form_widget(form.program) }}
+		</p>
+	</div>
 	  
-	<p>
-		<span>{{ form_label(form.legal_conditions, 'candidacy.step2.legal_conditions'|trans) }} <a href="#">Ejemplo</a></span>
-		<span>{{ form_errors(form.legal_conditions) }}</span>
-		{{ form_widget(form.legal_conditions) }}
-	</p>      
+	<div>
+		<p>
+			{{ form_label(form.legal_conditions, 'candidacy.step2.legal_conditions'|trans) }} <a 
+			href="{{ asset('bundles/municipales/pdf/legal_conditions_example.pdf') }}" 
+			title="{{ 'candidacy.step2.legal_conditions'|trans }}">Ejemplo</a>
+			<span>{{ form_errors(form.legal_conditions) }}</span>
+			{{ form_widget(form.legal_conditions) }}
+		</p>  
+	</div>    
 	
-	<p>
-		<span>{{ form_label(form.recall_term, 'candidacy.step2.recall_term'|trans) }} <a href="#">Ejemplo</a></span>
-		<span>{{ form_errors(form.recall_term) }}</span>
-		{{ form_widget(form.recall_term) }}
-	</p> 
+	<div>
+		<p>
+			{{ form_label(form.recall_term, 'candidacy.step2.recall_term'|trans) }} <a 
+			href="{{ asset('bundles/municipales/pdf/recall_term_example.pdf') }}" 
+			title="{{ 'candidacy.step2.recall_term'|trans }}">Ejemplo</a>
+			<span>{{ form_errors(form.recall_term) }}</span>
+			{{ form_widget(form.recall_term) }}
+		</p> 
+	</div>
 
-	<p>
-		<span>{{ form_label(form.participatory_term, 'candidacy.step2.participatory_term'|trans) }} <a href="#">Ejemplo</a></span>
-		<span>{{ form_errors(form.participatory_term) }}</span>
-		{{ form_widget(form.participatory_term) }}
-	</p> 
+	<div>
+		<p>
+			{{ form_label(form.participatory_term, 'candidacy.step2.participatory_term'|trans) }} <a 
+			href="{{ asset('bundles/municipales/pdf/participatory_term_example.pdf') }}" 
+			title="{{ 'candidacy.step2.participatory_term'|trans }}">Ejemplo</a>
+			<span>{{ form_errors(form.participatory_term) }}</span>
+			{{ form_widget(form.participatory_term) }}
+		</p> 
+	</div>
 	
-	<p>
-		<span>{{ form_label(form.voter_conditions, 'candidacy.step2.voter_conditions'|trans) }} <a href="#">Ejemplo</a></span>
-		<span>{{ form_errors(form.voter_conditions) }}</span>
-		{{ form_widget(form.voter_conditions) }}
-	</p> 
+	<div>
+		<p>
+			{{ form_label(form.voter_conditions, 'candidacy.step2.voter_conditions'|trans) }} <a 
+			href="{{ asset('bundles/municipales/pdf/voter_conditions_example.pdf') }}" 
+			title="{{ 'candidacy.step2.voter_conditions'|trans }}">Ejemplo</a>
+			<span>{{ form_errors(form.voter_conditions) }}</span>
+			{{ form_widget(form.voter_conditions) }}
+		</p> 
+	</div>
 
-	<p>
-		<span>{{ form_label(form.technical_constrains, 'candidacy.step2.technical_constrains'|trans) }} <a href="#">Ejemplo</a></span>
-		<span>{{ form_errors(form.technical_constrains) }}</span>
-		{{ form_widget(form.technical_constrains) }}
-	</p> 
+	<div>
+		<p>
+			{{ form_label(form.technical_constrains, 'candidacy.step2.technical_constrains'|trans) }} <a 
+			href="{{ asset('bundles/municipales/pdf/technical_constrains_example.pdf') }}" 
+			title="{{ 'candidacy.step2.technical_constrains'|trans }}">Ejemplo</a>
+			<span>{{ form_errors(form.technical_constrains) }}</span>
+			{{ form_widget(form.technical_constrains) }}
+		</p> 
+	</div>
 
 	<p>
 	</p>
