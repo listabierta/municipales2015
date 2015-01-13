@@ -4,12 +4,29 @@
 {% block content %}
     <h1>{{ 'candidacy.step5.h1_title'|trans }}</h1>
     
+    {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			
+	<p>{{ form_errors(form) }}<p>
+			
+	{% if errors is defined and not errors is empty %}
+		<div style="background-color:gold;color:black">{{ errors }}</div>
+	{% endif %}
+	
     <p class="important">
-		Proporciona este enlace público a los candidatos y candidatas para que se den de alta rellenando el formulario que les aparecerá:
+		{{ 'candidacy.step5.explanation_link'|trans }}:
     
-    	Http://municipales2015.listabierta.org/elmunicipioregistrado/altacandidaturas
-		
-		Continuar
+    	http://municipales2015.listabierta.org/elmunicipioregistrado/altacandidaturas
 	</p>
+	
+	<p>
+	</p>
+			
+	<p>
+		{{ form_widget(form.continue, { 'label': 'candidacy.step5.continue'|trans }) }}
+	</p>
+			
+	{{ form_rest(form) }}
+			
+	{{ form_end(form) }}
 	
 {% endblock %}
