@@ -130,7 +130,6 @@ class CandidacyController extends Controller
     	
     	return $this->render('MunicipalesBundle:Candidacy:step1.html.twig', array(
     			'form' => $form->createView(),
-    			'errors' => $form->getErrors(),
     	));
     }
     
