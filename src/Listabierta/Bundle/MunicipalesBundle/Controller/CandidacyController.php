@@ -8,6 +8,8 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep1Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStepVerifyType;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep2Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep3Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep4Type;
+
 
 use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
 use Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy;
@@ -390,6 +392,59 @@ class CandidacyController extends Controller
     	}
     	 
     	return $this->render('MunicipalesBundle:Candidacy:step2.html.twig', array(
+    			'form' => $form->createView(),
+    	));
+    }
+    
+    /**
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function step3Action(Request $request = NULL)
+    {
+    	$session = $this->getRequest()->getSession();
+    
+    	$form = $this->createForm(new CandidacyStep2Type(), NULL, array(
+    			'action' => $this->generateUrl('municipales_candidacy_step3'),
+    			'method' => 'POST',
+    		)
+    	);
+    
+    	$form->handleRequest($request);
+    
+    	$ok = TRUE;
+    	if ($form->isValid())
+    	{
+    		$from_data    = $form['from']->getData();
+    		$to_data      = $form['to']->getData();
+    		
+    		// @todo validate timestamps here
+    		// @todo store time data
+
+    		if($ok)
+    		{
+    			$session->set('from', $from_data);
+    			$session->set('to', $to_data);
+    
+    			$warnings = array();
+    
+    			$form2 = $this->createForm(new CandidacyStep4Type(), NULL, array(
+    					'action' => $this->generateUrl('municipales_candidacy_step4'),
+    					'method' => 'POST',
+    			));
+    
+    			$form2->handleRequest($request);
+    
+    			return $this->render('MunicipalesBundle:Candidacy:step4.html.twig', array(
+    					'warnings' => $warnings,
+    					'form' => $form2->createView()
+    			)
+    			);
+    		}
+    	}
+    
+    	return $this->render('MunicipalesBundle:Candidacy:step3.html.twig', array(
     			'form' => $form->createView(),
     	));
     }
