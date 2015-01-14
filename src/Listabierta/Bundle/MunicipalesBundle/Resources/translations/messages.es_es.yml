@@ -59,6 +59,8 @@ candidacy:
         h1_title: Establece los plazos de presentación de candidaturas
         continue: Continuar
         explanation_date: Plazo de presentación de candidaturas (mínimo una semana, se recomiendan 15 días) 
+        from_label: DE
+        to_label: HASTA  
               
     step4:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
