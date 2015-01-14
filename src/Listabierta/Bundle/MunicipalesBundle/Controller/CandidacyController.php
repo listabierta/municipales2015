@@ -9,6 +9,7 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStepVerifyType;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep2Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep3Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep4Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep5Type;
 
 
 use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
@@ -405,7 +406,7 @@ class CandidacyController extends Controller
     {
     	$session = $this->getRequest()->getSession();
     
-    	$form = $this->createForm(new CandidacyStep2Type(), NULL, array(
+    	$form = $this->createForm(new CandidacyStep3Type(), NULL, array(
     			'action' => $this->generateUrl('municipales_candidacy_step3'),
     			'method' => 'POST',
     		)
@@ -445,6 +446,57 @@ class CandidacyController extends Controller
     	}
     
     	return $this->render('MunicipalesBundle:Candidacy:step3.html.twig', array(
+    			'form' => $form->createView(),
+    	));
+    }
+    
+    /**
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function step4Action(Request $request = NULL)
+    {
+    	$session = $this->getRequest()->getSession();
+    
+    	$form = $this->createForm(new CandidacyStep4Type(), NULL, array(
+    			'action' => $this->generateUrl('municipales_candidacy_step4'),
+    			'method' => 'POST',
+    	)
+    	);
+    
+    	$form->handleRequest($request);
+    
+    	$ok = TRUE;
+    	if ($form->isValid())
+    	{
+    		$address_data    = $form['address']->getData();
+    		
+    		// @todo validate address here
+    		// @todo store time data
+    
+    		if($ok)
+    		{
+    			$session->set('address', $address_data);
+    
+    			$warnings = array();
+    
+    			$form2 = $this->createForm(new CandidacyStep5Type(), NULL, array(
+    					'action' => $this->generateUrl('municipales_candidacy_step5'),
+    					'method' => 'POST',
+    			));
+    
+    			$form2->handleRequest($request);
+    
+    			return $this->render('MunicipalesBundle:Candidacy:step5.html.twig', array(
+    					'warnings' => $warnings,
+    					'form' => $form2->createView()
+    			)
+    			);
+    		}
+    	}
+    
+    	return $this->render('MunicipalesBundle:Candidacy:step4.html.twig', array(
     			'form' => $form->createView(),
     	));
     }
