@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep1Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStepVerifyType;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep2Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep3Type;
+
 use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
 use Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy;
 
@@ -195,7 +197,6 @@ class CandidacyController extends Controller
     
     			return $this->render('MunicipalesBundle:Candidacy:step2.html.twig', array(
     					'warnings' => $warnings,
-    					'errors' => $form->getErrors(),
     					'form' => $form2->createView()
     			)
     			);
@@ -220,7 +221,7 @@ class CandidacyController extends Controller
     	$form = $this->createForm(new CandidacyStep2Type(), NULL, array(
     			'action' => $this->generateUrl('municipales_candidacy_step2'),
     			'method' => 'POST',
-    	)
+    		)
     	);
     	 
     	$form->handleRequest($request);
@@ -229,14 +230,149 @@ class CandidacyController extends Controller
     	if ($form->isValid())
     	{
     		$program    = $form['program']->getData();
+    		$legal_conditions    = $form['legal_conditions']->getData();
+    		$recall_term   = $form['recall_term']->getData();
+    		$participatory_term    = $form['participatory_term']->getData();
+    		$voter_conditions    = $form['voter_conditions']->getData();
+    		$technical_constrains    = $form['technical_constrains']->getData();
+    		
+    		if($program->isValid())
+    		{
+    			$program_data = $program->getData();
+    		
+    			if($program_data->getClientMimeType() !== ' application/pdf')
+    			{
+    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $program_data->getClientMimeType()));
+    				$ok = FALSE;
+    			}
+    		
+    			if($ok)
+    			{
+    				$program_data->move('docs/municipio/adminid', $program_data->getClientOriginalName());
+    			}
+    		}
+    		else
+    		{
+    			$form->addError(new FormError('program pdf is not valid: ' . $program_data->getErrorMessage()));
+    			$ok = FALSE;
+    		}
+    		
+    		if($legal_conditions->isValid())
+    		{
+    			$legal_conditions_data = $legal_conditions->getData();
+    		
+    			if($legal_conditions_data->getClientMimeType() !== ' application/pdf')
+    			{
+    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $legal_conditions_data->getClientMimeType()));
+    				$ok = FALSE;
+    			}
+    		
+    			if($ok)
+    			{
+    				$legal_conditions_data->move('docs/municipio/adminid', $legal_conditions_data->getClientOriginalName());
+    			}
+    		}
+    		else
+    		{
+    			$form->addError(new FormError('legal conditions pdf is not valid: ' . $legal_conditions_data->getErrorMessage()));
+    			$ok = FALSE;
+    		}
+    		
+    		if($recall_term->isValid())
+    		{
+    			$recall_term_data = $recall_term->getData();
+    		
+    			if($recall_term_data->getClientMimeType() !== ' application/pdf')
+    			{
+    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $recall_term_data->getClientMimeType()));
+    				$ok = FALSE;
+    			}
+    		
+    			if($ok)
+    			{
+    				$recall_term_data->move('docs/municipio/adminid', $recall_term_data->getClientOriginalName());
+    			}
+    		}
+    		else
+    		{
+    			$form->addError(new FormError('recall term pdf is not valid: ' . $recall_term_data->getErrorMessage()));
+    			$ok = FALSE;
+    		}
+
+    		if($participatory_term->isValid())
+    		{
+    			$participatory_term_data = $participatory_term->getData();
+    		
+    			if($participatory_term_data->getClientMimeType() !== ' application/pdf')
+    			{
+    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $participatory_term_data->getClientMimeType()));
+    				$ok = FALSE;
+    			}
+    		
+    			if($ok)
+    			{
+    				$participatory_term_data->move('docs/municipio/adminid', $participatory_term_data->getClientOriginalName());
+    			}
+    		}
+    		else
+    		{
+    			$form->addError(new FormError('participatory term pdf is not valid: ' . $participatory_term_data->getErrorMessage()));
+    			$ok = FALSE;
+    		}
+
+    		if($voter_conditions->isValid())
+    		{
+    			$voter_conditions_data = $voter_conditions->getData();
+    		
+    			if($voter_conditions_data->getClientMimeType() !== ' application/pdf')
+    			{
+    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $voter_conditions_data->getClientMimeType()));
+    				$ok = FALSE;
+    			}
+    		
+    			if($ok)
+    			{
+    				$voter_conditions_data->move('docs/municipio/adminid', $voter_conditions_data->getClientOriginalName());
+    			}
+    		}
+    		else
+    		{
+    			$form->addError(new FormError('voter conditions pdf is not valid: ' . $voter_conditions_data->getErrorMessage()));
+    			$ok = FALSE;
+    		}
+
+    		if($technical_constrains->isValid())
+    		{
+    			$technical_constrains_data = $technical_constrains->getData();
+    		
+    			if($technical_constrains_data->getClientMimeType() !== ' application/pdf')
+    			{
+    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $technical_constrains_data->getClientMimeType()));
+    				$ok = FALSE;
+    			}
+    		
+    			if($ok)
+    			{
+    				$technical_constrains_data->move('docs/municipio/adminid', $technical_constrains_data->getClientOriginalName());
+    			}
+    		}
+    		else
+    		{
+    			$form->addError(new FormError('voter conditions pdf is not valid: ' . $technical_constrains_data->getErrorMessage()));
+    			$ok = FALSE;
+    		}
     		
     		if($ok)
     		{
-    			$session->set('program', $program);
+    			$session->set('program', $program_data->getClientOriginalName());
+    			$session->set('legal_conditions', $legal_conditions_data->getClientOriginalName());
+    			$session->set('recall_term', $recall_term_data->getClientOriginalName());
+    			$session->set('participatory_term', $participatory_term_data->getClientOriginalName());
+    			$session->set('voter_conditions', $voter_conditions_data->getClientOriginalName());
+    			$session->set('technical_constrains', $technical_constrains_data->getClientOriginalName());
 
-    	   
     			$warnings = array();
-				/*
+				
     			$form2 = $this->createForm(new CandidacyStep3Type(), NULL, array(
     			'action' => $this->generateUrl('municipales_candidacy_step3'),
     			'method' => 'POST',
@@ -248,14 +384,13 @@ class CandidacyController extends Controller
     					'warnings' => $warnings,
     					'errors' => $form->getErrors(),
     					'form' => $form2->createView()
-    			)
-    			);*/
+    				)
+    			);
     		}
     	}
     	 
-    	return $this->render('MunicipalesBundle:Candidacy:step1.html.twig', array(
+    	return $this->render('MunicipalesBundle:Candidacy:step2.html.twig', array(
     			'form' => $form->createView(),
-    			'errors' => $form->getErrors(),
     	));
     }
 }
