@@ -4,6 +4,12 @@ municipales_homepage:
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
 
+municipales_candidacy_step_conditions:
+    path:     /condiciones-alta-candidatura
+    defaults: { _controller: MunicipalesBundle:Candidacy:stepConditions }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+        
 municipales_candidacy_step1:
     path:     /alta-candidatura
     defaults: { _controller: MunicipalesBundle:Candidacy:step1 }
