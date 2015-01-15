@@ -33,6 +33,20 @@ candidacy:
     h1_title: Regístrate y registra el municipio de la candidatura
     verify_msg: Envía SMS al número %sms_inbound_number% con la palabra VERIFICA
     
+    step_conditions:
+      html_title: Municipales 2015 - Condiciones de alta de candidatura ciudadana
+      h1_title: Regístrate y registra el municipio de la candidatura
+    
+      p1_title: Al iniciar el registro aceptas las siguientes condiciones
+      p1_content: Que formas parte un colectivo (partido político, coalición de partidos o agrupación de electores) que desea presentarse a los comicios municipales que se celebrarán el 24 de mayo de 2.015 y que para ello tienen la intención de registrarse en plazo y forma en la correspondiente junta electoral provincial.
+      p2_content: Que has sido designado por dicho colectivo para efectuar el alta del municipio en la presente herramienta de voto de listas abiertas, no existiendo conflicto interno en cuanto a su uso.
+      p3_content: Que dicho colectivo comprende y acepta las limitaciones del uso de la herramienta en cuanto al sistema de voto y su verificación.
+      p4_content: Que dicho colectivo comprende y acepta que el proceso de verificación y aceptación de las candidaturas lo efectúa el administrador o administradora de la votación.
+      p5_content: Que mediante el acto de registro estás dando tu consentimiento expreso al tratamiento de los datos personales que aportas, según lo dispuesto en el artículo 6 de la LOPD y que podrás ejercer tus derechos en los términos dispuestos por el artículo 5 de la LOPD.
+      p6_content: Que la información que aportas durante el registro es cierta, tanto los datos personales como las condiciones de la votación, de la candidatura y su programa. Ten en cuenta que no podrás modificarla más adelante, ya que los datos de registro se utilizan para identificarte como usuario único.
+      accept: ACEPTAS ESTAS CONDICIONES
+      continue: Continuar
+      
     step1:
         name: Nombre 
         lastname: Apellidos
