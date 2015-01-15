@@ -1,0 +1,48 @@
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}{{ 'candidacy.step4.html_title'|trans }}{% endblock %}
+{% block content %}
+    <h1>{{ 'candidacy.step_conditions.h1_title'|trans }}</h1>
+    
+    {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			
+	<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
+	
+	<p class="important">{{ 'candidacy.step_conditions.p1_title'|trans }}:</p>
+				
+	<div style="text-align:justify">
+		<ul>
+			<li>- {{ 'candidacy.step_conditions.p1_content'|trans }}</li>
+		
+			<li>- {{ 'candidacy.step_conditions.p2_content'|trans }}</li>
+		
+			<li>- {{ 'candidacy.step_conditions.p3_content'|trans }}</li>
+		
+			<li>- {{ 'candidacy.step_conditions.p4_content'|trans }}</li>
+			
+			<li>- {{ 'candidacy.step_conditions.p4_content'|trans }}</li>
+		
+			<li>- {{ 'candidacy.step_conditions.p5_content'|trans }}</li>
+			
+			<li>- {{ 'candidacy.step_conditions.p6_content'|trans }}</li>
+		</ul>
+	</div>
+	
+    <div class="important" style="text-align:center">
+    	<div>{{ 'candidacy.step_conditions.accept'|trans }}</div>
+    	<div style="clear:both;text-align:center;margin: 0 auto;margin-top:20px">
+			{{ form_widget(form.conditions) }}
+			{{ form_errors(form.conditions) }}
+		</div>
+		<div style="clear:both;margin-top:20px">
+			<p style="text-align:center">
+				{{ form_widget(form.continue, { 'label': 'candidacy.step_conditions.continue'|trans }) }}
+			</p>
+		</div>
+	</div>
+			
+	{{ form_rest(form) }}
+			
+	{{ form_end(form) }}
+	
+{% endblock %}
