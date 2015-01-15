@@ -10,23 +10,47 @@
 {% block content %}
     <h1>{{ 'home.h1_title'|trans }}</h1>
     
-    <p class="important">
-    	{{ 'home.steps'|trans }}: 
-    </p>
+    <div style="text-align:justify">
+    	<p class="important">{{ 'home.intro_p1'|trans }}</p>
+    	
+    	<p class="important">{{ 'home.intro_p2'|trans }}</p>
+    	
+		<p class="important">{{ 'home.intro_p3'|trans }}</p>
+    </div>
     
-    <p class="important">
-        <ol>
-		  <li>{{ 'home.step_1'|trans }}</li>
-		  <li>{{ 'home.step_2'|trans }}</li>
-		  <li>{{ 'home.step_3'|trans }}</li>
-		  <li>{{ 'home.step_4'|trans }}</li>
-		  <li>{{ 'home.step_5'|trans }}</li>
-		  <li>{{ 'home.step_6'|trans }}</li>
-		  <li>{{ 'home.step_7'|trans }}</li>
-		  <li>{{ 'home.step_8'|trans }}</li>
-		  <li>{{ 'home.step_9'|trans }}</li>
-		</ol>
-    </p>
+    <div>
+    	<div style="float:left">
+    		<p class="important"><h3>{{ 'home.intro_p4'|trans }}</h3></p>
+    		
+    		<p class="important" style="font-weight:bold">{{ 'home.intro_p5'|trans }}</p>
+    		
+    		<div class="video"><iframe width="560" height="315" src="//www.youtube.com/embed/v-ysTeRE9lc" frameborder="0" allowfullscreen=""></iframe></div>
+    		
+    	</div>
+    	
+    	<div style="margin-left: 590px;position: relative;">
+		    <p class="important">
+		    	<span style="color: #009FBC;text-transform: uppercase;font: normal 87% arial;">{{ 'home.steps'|trans }}:</span> 
+		    </p>
+		    
+		    <p class="important">
+		        <ol>
+				  <li>{{ 'home.step_1'|trans }}</li>
+				  <li>{{ 'home.step_2'|trans }}</li>
+				  <li>{{ 'home.step_3'|trans }}</li>
+				  <li>{{ 'home.step_4'|trans }}</li>
+				  <li>{{ 'home.step_5'|trans }}</li>
+				  <li>{{ 'home.step_6'|trans }}</li>
+				  <li>{{ 'home.step_7'|trans }}</li>
+				  <li>{{ 'home.step_8'|trans }}</li>
+				  <li>{{ 'home.step_9'|trans }}</li>
+				</ol>
+		    </p>
+	    </div>
+    </div>
     
-    <div><a href="{{ path('municipales_candidacy_step1') }}" title="{{ 'home.start_here'|trans }}">{{ 'home.start_here'|trans }}</a></div>
+    <div style="text-align:center;padding:20px"><a style="border: 1px solid black;
+padding: 15px;
+color: white !important;
+background: black;"href="{{ path('municipales_candidacy_step1') }}" title="{{ 'home.start_here'|trans }}">{{ 'home.start_here'|trans }}</a></div>
 {% endblock %}
