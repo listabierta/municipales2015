@@ -148,7 +148,7 @@ ul#menu li
   padding: 0 0 0 9px;
   list-style: none;
   margin: 1px 2px 0 0;
-  background: #5A5A5A url(tab.png) no-repeat 0 0;}
+  background: #5A5A5A;}
 
 ul#menu li a
 { font: normal 100% 'trebuchet ms', sans-serif;
@@ -159,7 +159,7 @@ ul#menu li a
   text-align: center;
   color: #FFF;
   text-decoration: none;
-  background: #5A5A5A url(tab.png) no-repeat 100% 0;} 
+  background: #5A5A5A} 
 
 ul#menu li.selected a
 { height: 20px;
@@ -167,10 +167,10 @@ ul#menu li.selected a
 
 ul#menu li.selected
 { margin: 1px 2px 0 0;
-  background: #00C6F0 url(tab_selected.png) no-repeat 0 0;}
+  background: #00C6F0}
 
 ul#menu li.selected a, ul#menu li.selected a:hover
-{ background: #00C6F0 url(tab_selected.png) no-repeat 100% 0;
+{ background: #00C6F0;
   color: #FFF;}
 
 ul#menu li a:hover
@@ -224,7 +224,6 @@ ul#menu li a:hover
 
 #content ul li, .sidebar ul li
 { list-style-type: none;
-  background: url(bullet.png) no-repeat;
   margin: 0 0 0 0; 
   padding: 0 0 4px 25px;
   line-height: 1.5em;}
@@ -236,7 +235,7 @@ ul#menu li a:hover
   height: 80px;
   padding: 28px 0 5px 0;
   text-align: center; 
-  background: #3B3939 url(footer.png) repeat-x;
+  background: #3B3939;
   color: #A8AA94;}
 
 #footer p
