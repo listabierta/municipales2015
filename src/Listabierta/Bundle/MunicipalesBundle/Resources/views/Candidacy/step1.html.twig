@@ -1,6 +1,17 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
 {% block title %}{{ 'candidacy.html_title'|trans }}{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <script>
+			$(document).ready(function()
+			{
+				$(".explanation_dni").colorbox({inline:true, width:"15%"});
+			});
+	</script>
+{% endblock %}
+
 {% block content %}
     <h1>{{ 'candidacy.h1_title'|trans }}</h1>
     
@@ -50,6 +61,16 @@
 			    <span>{{ form_label(form.phone, 'candidacy.step1.phone'|trans) }}</span>
 			    <span>{{ form_errors(form.phone) }}</span>
 			    {{ form_widget(form.phone) }}
+			    <a class='explanation_dni' href="#explanation_dni_content"><img style="width:16px;height:16px" src="{{ asset('bundles/municipales/images/question.png') }}"
+			     alt="{{ 'candidacy.step1.explanation'|trans }}"
+			     title="{{ 'candidacy.step1.explanation'|trans }}"/></a>
+			    
+			    <!-- This contains the hidden content for inline calls -->
+				<div style='display:none'>
+					<div id='explanation_dni_content' style='width:200px;padding:10px; background:#fff;'>
+						{{ 'candidacy.step1.explanation_dni'|trans }}
+					</div>
+				</div>
 			</p>
 			
 			<p>
