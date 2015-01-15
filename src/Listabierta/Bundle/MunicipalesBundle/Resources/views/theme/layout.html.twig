@@ -3,7 +3,10 @@
     <head>
         {% block head %}
             <link rel="stylesheet" href="{{ asset('bundles/municipales/css/styles.css') }}" />
-            
+            <link rel="stylesheet" href="{{ asset('bundles/municipales/css/colorbox.css') }}" />
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script src="{{ asset('bundles/municipales/js/jquery.colorbox-min.js') }}" /></script>
+
             <title>{% block title %}{% endblock %}</title>
         {% endblock %}
     </head>
