@@ -56,7 +56,9 @@ candidacy:
         town: Nombre del municipio
         phone: Número de móvil
         continue: Continuar
-   
+        explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
+        explanation: Explicación
+
     step_verify:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Verifica tu número de móvil
