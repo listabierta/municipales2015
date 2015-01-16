@@ -6,22 +6,20 @@
     
     {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
 			
-	<p>{{ form_errors(form) }}<p>
-			
-	{% if errors is defined and not errors is empty %}
-		<div style="background-color:gold;color:black">{{ errors }}</div>
-	{% endif %}
+	<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 	
     <p class="important">
 		{{ 'candidacy.step5.explanation_link'|trans }}:
+    </p>
     
-    	http://municipales2015.listabierta.org/elmunicipioregistrado/altacandidaturas
-	</p>
+    <div style="text-align:center">
+    	<h3><a href="http://municipales2015.listabierta.org/{{ address_slug }}/altacandidaturas" title="Alta candidaturas {{ address_slug }}">http://municipales2015.listabierta.org/{{ address_slug }}/altacandidaturas</a></h3>
+	</div>
 	
 	<p>
 	</p>
 			
-	<p>
+	<p style="text-align:center">
 		{{ form_widget(form.continue, { 'label': 'candidacy.step5.continue'|trans }) }}
 	</p>
 			
