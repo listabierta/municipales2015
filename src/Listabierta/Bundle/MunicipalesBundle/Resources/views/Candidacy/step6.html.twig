@@ -5,21 +5,36 @@
     <h1>{{ 'candidacy.step6.h1_title'|trans }}</h1>
     
     <p class="important">
+    {% if candidates|length > 0 %}
+    
 		Tabla validacion
 		
-		 Alicia
-Se incluyen solo los campos de texto libre
- 
-OK (desplegable)
-Juan
- 
-Motivo de invalidación (Se le envía un correo automáticamente explicando este motivo al candidato o candidata)
- 
-NO OK
-Marcos
-
-Pendiente
+		Alicia
+		Se incluyen solo los campos de texto libre
+		 
+		OK (desplegable)
+		Juan
+		 
+		Motivo de invalidación (Se le envía un correo automáticamente explicando este motivo al candidato o candidata)
+		 
+		NO OK
+		Marcos
 		
+		Pendiente
+	{% else %}
+		{{ 'candidacy.step6.no_candidates'|trans }}
+	{% endif %}
 	</p>
+	
+	
+	{{ form_start(form_step7, { 'attr': {'class': 'form_settings'}}) }}
+			
+	<p style="text-align:center">
+		{{ form_widget(form_step7.start_candidacy, { 'label': 'candidacy.step6.continue'|trans }) }}
+	</p>
+			
+	{{ form_rest(form_step7) }}
+			
+	{{ form_end(form_step7) }}
 	
 {% endblock %}
