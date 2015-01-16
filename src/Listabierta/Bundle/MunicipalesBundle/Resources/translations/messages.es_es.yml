@@ -31,7 +31,7 @@ header:
 candidacy:
     html_title: Municipales 2015 - Alta de candidatura ciudadana
     h1_title: Regístrate y registra el municipio de la candidatura
-    verify_msg: Envía SMS al número %sms_inbound_number% con la palabra VERIFICA
+    verify_msg: Confirma el registro y las condiciones enviando un SMS con la palabra ACEPTO al móvil nº %sms_inbound_number% que proporcionaste en el paso anterior, después haz clic en CONTINUAR
     
     step_conditions:
       html_title: Municipales 2015 - Condiciones de alta de candidatura ciudadana
@@ -63,6 +63,7 @@ candidacy:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Verifica tu número de móvil
         continue: Continuar
+        previous: Anterior
         
     step2:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
