@@ -163,6 +163,7 @@ class CandidacyController extends Controller
     			$entity_manager->persist($phone_verified);
     			$entity_manager->flush();
 
+    			$session->set('admin_id', $admin_candidacy->getId());
 	    		$session->set('name', $name);
 	    		$session->set('lastname', $lastname);
 	    		$session->set('dni', $dni);
@@ -287,18 +288,25 @@ class CandidacyController extends Controller
     	$ok = TRUE;
     	if ($form->isValid())
     	{
-    		$program    = $form['program']->getData();
-    		$legal_conditions    = $form['legal_conditions']->getData();
-    		$recall_term   = $form['recall_term']->getData();
-    		$participatory_term    = $form['participatory_term']->getData();
-    		$voter_conditions    = $form['voter_conditions']->getData();
-    		$technical_constrains    = $form['technical_constrains']->getData();
+    		$program              = $form['program'];
+    		$legal_conditions     = $form['legal_conditions'];
+    		$recall_term          = $form['recall_term'];
+    		$participatory_term   = $form['participatory_term'];
+    		$voter_conditions     = $form['voter_conditions'];
+    		$technical_constrains = $form['technical_constrains'];
+    		
+    		$admin_id = $session->get('admin_id', array());;
+    		$town = $session->get('town', array());;
+    		
+    		$town_slug = $this->get('slugify')->slugify($town);
+    		
+    		$documents_path = 'docs/' . $town_slug . '/' . $admin_id;
     		
     		if($program->isValid())
     		{
     			$program_data = $program->getData();
     		
-    			if($program_data->getClientMimeType() !== ' application/pdf')
+    			if($program_data->getClientMimeType() !== 'application/pdf')
     			{
     				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $program_data->getClientMimeType()));
     				$ok = FALSE;
@@ -306,7 +314,7 @@ class CandidacyController extends Controller
     		
     			if($ok)
     			{
-    				$program_data->move('docs/municipio/adminid', $program_data->getClientOriginalName());
+    				$program_data->move($documents_path, 'program.pdf');
     			}
     		}
     		else
@@ -319,7 +327,7 @@ class CandidacyController extends Controller
     		{
     			$legal_conditions_data = $legal_conditions->getData();
     		
-    			if($legal_conditions_data->getClientMimeType() !== ' application/pdf')
+    			if($legal_conditions_data->getClientMimeType() !== 'application/pdf')
     			{
     				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $legal_conditions_data->getClientMimeType()));
     				$ok = FALSE;
@@ -327,7 +335,7 @@ class CandidacyController extends Controller
     		
     			if($ok)
     			{
-    				$legal_conditions_data->move('docs/municipio/adminid', $legal_conditions_data->getClientOriginalName());
+    				$legal_conditions_data->move($documents_path, 'legal_conditions.pdf');
     			}
     		}
     		else
@@ -340,7 +348,7 @@ class CandidacyController extends Controller
     		{
     			$recall_term_data = $recall_term->getData();
     		
-    			if($recall_term_data->getClientMimeType() !== ' application/pdf')
+    			if($recall_term_data->getClientMimeType() !== 'application/pdf')
     			{
     				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $recall_term_data->getClientMimeType()));
     				$ok = FALSE;
@@ -348,7 +356,7 @@ class CandidacyController extends Controller
     		
     			if($ok)
     			{
-    				$recall_term_data->move('docs/municipio/adminid', $recall_term_data->getClientOriginalName());
+    				$recall_term_data->move($documents_path, 'recall_term.pdf');
     			}
     		}
     		else
@@ -361,7 +369,7 @@ class CandidacyController extends Controller
     		{
     			$participatory_term_data = $participatory_term->getData();
     		
-    			if($participatory_term_data->getClientMimeType() !== ' application/pdf')
+    			if($participatory_term_data->getClientMimeType() !== 'application/pdf')
     			{
     				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $participatory_term_data->getClientMimeType()));
     				$ok = FALSE;
@@ -369,7 +377,7 @@ class CandidacyController extends Controller
     		
     			if($ok)
     			{
-    				$participatory_term_data->move('docs/municipio/adminid', $participatory_term_data->getClientOriginalName());
+    				$participatory_term_data->move($documents_path, 'participatory_term.pdf');
     			}
     		}
     		else
@@ -382,7 +390,7 @@ class CandidacyController extends Controller
     		{
     			$voter_conditions_data = $voter_conditions->getData();
     		
-    			if($voter_conditions_data->getClientMimeType() !== ' application/pdf')
+    			if($voter_conditions_data->getClientMimeType() !== 'application/pdf')
     			{
     				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $voter_conditions_data->getClientMimeType()));
     				$ok = FALSE;
@@ -390,7 +398,7 @@ class CandidacyController extends Controller
     		
     			if($ok)
     			{
-    				$voter_conditions_data->move('docs/municipio/adminid', $voter_conditions_data->getClientOriginalName());
+    				$voter_conditions_data->move($documents_path, 'voter_conditions.pdf');
     			}
     		}
     		else
@@ -403,7 +411,7 @@ class CandidacyController extends Controller
     		{
     			$technical_constrains_data = $technical_constrains->getData();
     		
-    			if($technical_constrains_data->getClientMimeType() !== ' application/pdf')
+    			if($technical_constrains_data->getClientMimeType() !== 'application/pdf')
     			{
     				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $technical_constrains_data->getClientMimeType()));
     				$ok = FALSE;
@@ -411,12 +419,12 @@ class CandidacyController extends Controller
     		
     			if($ok)
     			{
-    				$technical_constrains_data->move('docs/municipio/adminid', $technical_constrains_data->getClientOriginalName());
+    				$technical_constrains_data->move($documents_path, 'technical_constrains.pdf');
     			}
     		}
     		else
     		{
-    			$form->addError(new FormError('voter conditions pdf is not valid: ' . $technical_constrains_data->getErrorMessage()));
+    			$form->addError(new FormError('technical constrainss pdf is not valid: ' . $technical_constrains_data->getErrorMessage()));
     			$ok = FALSE;
     		}
     		
