@@ -13,10 +13,11 @@ class CandidacyStep3Type extends AbstractType
     {
         $builder->add('from', 'date', array(
         					'required' => true, 
-        					'format' => 'dd-MM-yyyy',
+        					'format' => 'yyyy-MM-dd',
+        					'data' => new \Datetime('NOW'),
         					'placeholder' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
         					'widget' => 'single_text',
-        					'input' => 'timestamp',
+        					'input' => 'datetime',
         					'html5' => TRUE,
         					'constraints' => array(
         						new Assert\NotBlank(),
@@ -25,10 +26,11 @@ class CandidacyStep3Type extends AbstractType
         			)
         		->add('to', 'date', array(
         					'required' => true,
-        					'format' => 'dd-MM-yyyy',
+        					'data' => new \Datetime('+7 days'),
+        					'format' => 'yyyy-MM-dd',
         					'placeholder' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
         					'widget' => 'single_text',
-        					'input' => 'timestamp',
+        					'input' => 'datetime',
         					'html5' => TRUE,
         					'constraints' => array(
         							new Assert\NotBlank(),
