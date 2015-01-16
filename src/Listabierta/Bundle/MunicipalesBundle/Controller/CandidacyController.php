@@ -440,8 +440,8 @@ class CandidacyController extends Controller
     			$warnings = array();
 				
     			$form2 = $this->createForm(new CandidacyStep3Type(), NULL, array(
-    			'action' => $this->generateUrl('municipales_candidacy_step3'),
-    			'method' => 'POST',
+	    			'action' => $this->generateUrl('municipales_candidacy_step3'),
+	    			'method' => 'POST',
     			));
     	   
     			$form2->handleRequest($request);
@@ -476,7 +476,7 @@ class CandidacyController extends Controller
     	);
     
     	$form->handleRequest($request);
-    
+
     	$ok = TRUE;
     	if ($form->isValid())
     	{
@@ -507,9 +507,7 @@ class CandidacyController extends Controller
     		{
     			$session->set('from', $from_data->getTimestamp());
     			$session->set('to', $to_data->getTimestamp());
-    
-    			$warnings = array();
-    
+
     			$form2 = $this->createForm(new CandidacyStep4Type(), NULL, array(
     					'action' => $this->generateUrl('municipales_candidacy_step4'),
     					'method' => 'POST',
@@ -517,10 +515,14 @@ class CandidacyController extends Controller
     
     			$form2->handleRequest($request);
     
+    			$town = $session->get('town', array());;
+    			
+    			$default_address_slug = $this->get('slugify')->slugify($town);
+    			
     			return $this->render('MunicipalesBundle:Candidacy:step4.html.twig', array(
-    					'warnings' => $warnings,
+    					'default_address_slug' => $default_address_slug,
     					'form' => $form2->createView()
-    			)
+    				)
     			);
     		}
     	}
@@ -542,25 +544,26 @@ class CandidacyController extends Controller
     	$form = $this->createForm(new CandidacyStep4Type(), NULL, array(
     			'action' => $this->generateUrl('municipales_candidacy_step4'),
     			'method' => 'POST',
-    	)
+    		)
     	);
-    
+
+    	$town = $session->get('town', array());;
+    	 
+    	$default_address_slug = $this->get('slugify')->slugify($town);
+    	
     	$form->handleRequest($request);
     
     	$ok = TRUE;
     	if ($form->isValid())
     	{
-    		$address_data    = $form['address']->getData();
+    		$address_data = $form['address']->getData();
     		
-    		// @todo validate address here
-    		// @todo store time data
-    
+    		$address_slug = $this->get('slugify')->slugify($address_data);
+    		
     		if($ok)
     		{
-    			$session->set('address', $address_data);
-    
-    			$warnings = array();
-    
+    			$session->set('address', $address_slug);
+
     			$form2 = $this->createForm(new CandidacyStep5Type(), NULL, array(
     					'action' => $this->generateUrl('municipales_candidacy_step5'),
     					'method' => 'POST',
@@ -569,15 +572,16 @@ class CandidacyController extends Controller
     			$form2->handleRequest($request);
     
     			return $this->render('MunicipalesBundle:Candidacy:step5.html.twig', array(
-    					'warnings' => $warnings,
-    					'form' => $form2->createView()
-    			)
+    					'form' => $form2->createView(),
+    					'address_slug' => $address_slug,
+    				)
     			);
     		}
     	}
     
     	return $this->render('MunicipalesBundle:Candidacy:step4.html.twig', array(
     			'form' => $form->createView(),
+    			'default_address_slug' => $default_address_slug,
     	));
     }
 }
