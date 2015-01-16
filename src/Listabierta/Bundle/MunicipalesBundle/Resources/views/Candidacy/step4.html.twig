@@ -6,17 +6,11 @@
     
     {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
 			
-	<p>{{ form_errors(form) }}<p>
-			
-	{% if errors is defined and not errors is empty %}
-		<div style="background-color:gold;color:black">{{ errors }}</div>
-	{% endif %}
+	<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 	
     <p class="important">
-   		<p>
-				<span>http://municipales2015.listabierta.org/{{ form_widget(form.name) }}</span>
-				<span>{{ form_errors(form.name) }}</span>
-		</p>
+		<h3><p style="margin-right:5px;display:inline">http://municipales2015.listabierta.org/</p>{{ form_widget(form.address, { 'value' : default_address_slug }) }}</h3>
+		<span>{{ form_errors(form.address) }}</span>
 	</p>
 	
 	<p>
