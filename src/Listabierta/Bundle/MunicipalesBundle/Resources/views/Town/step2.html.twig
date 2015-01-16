@@ -5,30 +5,31 @@
     <h1>{{ 'town.step2.h1_title'|trans }}</h1>
     
     <p class="important">
-¿Que nivel académico prefieres que tenga el candidato o candidata?	(elige de una a tres opciones)
+    	{{ 'town.step2.academic_level'|trans }}
+	</p>
+	<p>
+		Me resulta indiferente su nivel académico  (no aparece el resto de opciones)
+		1.  Sin estudios
+		2.  Estudios primarios o equivalentes
+		3.  Enseñanza general secundaria, 1er ciclo
+		4.  Enseñanza Profesional de 2º grado, 2º ciclo
+		5.  Enseñanza general secundaria, 2º ciclo
+		6.  Enseñanzas profesionales superiores
+		7.  Estudios universitarios o equivalentes
+		8.	Máster universitario o doctorado
+	</p>
 
+	<p class="important">{{ 'town.step2.languages'|trans }}</p>
 
-Me resulta indiferente su nivel académico  (no aparece el resto de opciones)
-1.  Sin estudios
-2.  Estudios primarios o equivalentes
-3.  Enseñanza general secundaria, 1er ciclo
-4.  Enseñanza Profesional de 2º grado, 2º ciclo
-5.  Enseñanza general secundaria, 2º ciclo
-6.  Enseñanzas profesionales superiores
-7.  Estudios universitarios o equivalentes
-8.	Máster universitario o doctorado
-
-¿Es buenos que hable alguno de estos idiomas? (elige de una a tres opciones)
-
-No considero necesario que hable idiomas (no aparece el resto de opciones)
-Inglés 
-Francés 
-Alemán
-Italiano
-Chino
-Árabe
-Otro
-    
+	<p>
+		No considero necesario que hable idiomas (no aparece el resto de opciones)
+		Inglés 
+		Francés 
+		Alemán
+		Italiano
+		Chino
+		Árabe
+		Otro
 	</p>
 	
 {% endblock %}
