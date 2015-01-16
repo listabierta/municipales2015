@@ -5,23 +5,48 @@
     <h1>{{ 'candidacy.step7.h1_title'|trans }}</h1>
     
     <p class="important">
-		Introduce el número de días naturales que permanecerá activa la votación de candidatos desde el inicio de la votación ______ (se recomiendan al menos 14 días, no debería ser inferior a una semana).
-		
-		Haz clic en el siguiente botón para iniciar la votación (...) ATENCIÓN !!
-		Una vez iniciada la votación ya NO SE PODRÁN AÑADIR más candidatos o candidatas. Se proporcionará un enlace en el que ya se pueden registrar los votantes y emitir el voto.
-		
-		{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+    {% if candidacy_finished %}
 		<p>
-			{{ form_widget(form.start_candidacy, { 'label': 'candidacy.step7.continue'|trans }) }}
+			{{ 'candidacy.step7.explanation'|trans }}
 		</p>
+		
+		<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
+		
+		{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}		
+		<div>
+			<p>
+				<span>{{ form_label(form.total_days, 'candidacy.step7.days'|trans) }}:</span>
+				{{ form_widget(form.total_days, { 'value' : 7 }) }}
+			</p>
+		</div>
+		
+		<p>
+			{{ 'candidacy.step7.init_vote_explanation'|trans }}
+		</p>
+		
+		<p>
+			{{ 'candidacy.step7.warning_explanation'|trans }}
+		</p>
+
+		
+			<div style="text-align:center">
+				<p>
+					{{ form_widget(form.start_candidacy, { 'label': 'candidacy.step7.start_candidacy'|trans }) }}
+				</p>
+			</div>
 				
-		{{ form_rest(form) }}
+			{{ form_rest(form) }}
 				
 		{{ form_end(form) }}
-	
-		(Solo se activa si el plazo de presentación de candidaturas ha finalizado)
+
+		<p style="text-align:center">{{ 'candidacy.step7.public_link'|trans }}:</p>
 		
-		Este es el enlace a la votación que puedes hacer público: Http://municipales2015.listabierta.org/elmunicipioregistrado/vota
+		<div style="text-align:center">
+			<h3><a href="http://municipales2015.listabierta.org/{{ app.session.get('town')|slugify }}/vota" title="Votar en {{ app.session.get('town') }}">http://municipales2015.listabierta.org/{{ app.session.get('town')|slugify }}/vota</a></h3>
+		</div>
+	{% else %}
+		<p>{{ 'candidacy.step7.no_finished_candidacy'|trans }}</p>
+	{% endif %}
 	</p>
 
 {% endblock %}
