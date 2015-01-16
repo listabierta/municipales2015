@@ -29,37 +29,37 @@ municipales_candidacy_step2:
         _locale: es_es|es_eu|es_gl|es_gl
         
 municipales_candidacy_step3:
-    path:     /alta-candidatura-paso3
+    path:     /alta-candidatura-paso-3
     defaults: { _controller: MunicipalesBundle:Candidacy:step3 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
 municipales_candidacy_step4:
-    path:     /alta-candidatura-paso4
+    path:     /alta-candidatura-paso-4
     defaults: { _controller: MunicipalesBundle:Candidacy:step4 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
 municipales_candidacy_step5:
-    path:     /alta-candidatura-paso5
+    path:     /alta-candidatura-paso-5
     defaults: { _controller: MunicipalesBundle:Candidacy:step5 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
 municipales_candidacy_step6:
-    path:     /alta-candidatura-paso6
+    path:     /alta-candidatura-paso-6
     defaults: { _controller: MunicipalesBundle:Candidacy:step6 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
 municipales_candidacy_step7:
-    path:     /alta-candidatura-paso7
+    path:     /alta-candidatura-paso-7
     defaults: { _controller: MunicipalesBundle:Candidacy:step7 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
 
 municipales_candidacy_step8:
-    path:     /alta-candidatura-paso8
+    path:     /alta-candidatura-paso-8
     defaults: { _controller: MunicipalesBundle:Candidacy:step8 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl 
