@@ -483,13 +483,30 @@ class CandidacyController extends Controller
     		$from_data    = $form['from']->getData();
     		$to_data      = $form['to']->getData();
     		
-    		// @todo validate timestamps here
-    		// @todo store time data
+    		$now = new \Datetime('NOW');
+    		
+    		$current_interval = $from_data->diff($now);
+    		$current_days = intval($current_interval->format('%a'));
+    		
+    		if($current_days > 0)
+    		{
+    			$form->addError(new FormError('No pueden usarse una fecha pasada como fecha inicial'));
+    			$ok = FALSE;
+    		}
+    		
+    		$interval = $from_data->diff($to_data);
+    		$total_days = intval($interval->format('%a'));
+    		
+    		if($total_days < 7)
+    		{
+    			$form->addError(new FormError('El número mínimo de dias entre la fecha inicial y final es 7'));
+    			$ok = FALSE;
+    		}
 
     		if($ok)
     		{
-    			$session->set('from', $from_data);
-    			$session->set('to', $to_data);
+    			$session->set('from', $from_data->getTimestamp());
+    			$session->set('to', $to_data->getTimestamp());
     
     			$warnings = array();
     
