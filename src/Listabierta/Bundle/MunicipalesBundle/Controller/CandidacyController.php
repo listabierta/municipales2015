@@ -11,7 +11,8 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep2Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep3Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep4Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep5Type;
-
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep6Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep7Type;
 
 use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
 use Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy;
@@ -583,5 +584,137 @@ class CandidacyController extends Controller
     			'form' => $form->createView(),
     			'default_address_slug' => $default_address_slug,
     	));
+    }
+    
+    /**
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function step5Action(Request $request = NULL)
+    {
+    	$session = $this->getRequest()->getSession();
+    
+    	$address_slug = $session->get('address', array());;
+    	
+    	$form = $this->createForm(new CandidacyStep5Type(), NULL, array(
+    			'action' => $this->generateUrl('municipales_candidacy_step6'),
+    			'method' => 'POST',
+    		)
+    	);
+
+    	$form->handleRequest($request);
+    
+    	$ok = TRUE;
+    	if ($form->isValid())
+    	{
+    		if($ok)
+    		{
+    			$this->step6Action($request);
+    		}
+    	}
+    
+    	return $this->render('MunicipalesBundle:Candidacy:step5.html.twig', array(
+    			'form' => $form->createView(),
+    			'address_slug' => $address_slug,
+    	));
+    }
+    
+    /**
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function step6Action(Request $request = NULL)
+    {
+    	// @todo fetch all Candidate for this town and admin_id
+    	$candidates = array();
+    	
+    	$form_step7 = $this->createForm(new CandidacyStep7Type(), NULL, array(
+    			'action' => $this->generateUrl('municipales_candidacy_step7'),
+    			'method' => 'POST',
+    	));
+    	 
+    	$form_step7->handleRequest($request);
+    	
+    	$form = $this->createForm(new CandidacyStep6Type(), NULL, array(
+    			'action' => $this->generateUrl('municipales_candidacy_step6'),
+    			'method' => 'POST',
+    	));
+    	
+    	$form->handleRequest($request);
+    	
+    	$ok = TRUE;
+    	if ($form->isValid())
+    	{
+    		if($ok)
+    		{
+    			//$this->step6Action($request);
+    		}
+    	}
+    	
+    	return $this->render('MunicipalesBundle:Candidacy:step6.html.twig', array(
+    			'form' => $form->createView(),
+    			'form_step7' => $form_step7->createView(),
+    			'candidates' => $candidates,
+    		)
+    	);
+    }
+    
+    /**
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function step7Action(Request $request = NULL)
+    {
+    	$session = $this->getRequest()->getSession();
+    	
+    	$candidacy_to_date = $session->get('to', array());
+    	
+    	$candidacy_finished = $candidacy_to_date <= time();
+    	
+    	$candidacy_finished = TRUE;
+    	
+    	$form = $this->createForm(new CandidacyStep7Type(), NULL, array(
+    			'action' => $this->generateUrl('municipales_candidacy_step7'),
+    			'method' => 'POST',
+    	));
+    	 
+    	$form->handleRequest($request);
+    	 
+    	$ok = TRUE;
+    	if ($form->isValid())
+    	{
+    		$total_days = intval($form['total_days']->getData());
+
+    		if($total_days < 7)
+    		{
+    			$form->addError(new FormError('El número mínimo de dias es 7'));
+    			$ok = FALSE;
+    		}
+    		
+    		if($ok)
+    		{
+    			$session->set('total_days', $total_days);
+    			return $this->redirect($this->generateUrl('municipales_candidacy_step8'), 301);
+    		}
+    	}
+    	 
+    	return $this->render('MunicipalesBundle:Candidacy:step7.html.twig', array(
+    			'form' => $form->createView(),
+    			'candidacy_finished' => $candidacy_finished,
+    		)
+    	);
+    }
+    
+    /**
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function step8Action(Request $request = NULL)
+    {
+    	return $this->render('MunicipalesBundle:Candidacy:step8.html.twig', array('bla' => 'ble'));
     }
 }
