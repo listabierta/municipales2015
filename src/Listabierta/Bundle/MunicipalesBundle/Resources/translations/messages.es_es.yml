@@ -137,7 +137,11 @@ town:
         town: Nombre del municipio
         phone: Número de móvil
         continue: Continuar
- 
+
+    step2:
+        academic_level: ¿Que nivel académico prefieres que tenga el candidato o candidata?  (elige de una a tres opciones)
+        languages: ¿Es bueno que hable alguno de estos idiomas? (elige de una a tres opciones)
+        
 candidate:
     step1:
         name: Nombre 
