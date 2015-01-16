@@ -1,0 +1,75 @@
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}{{ 'candidacy.html_title'|trans }}{% endblock %}
+{% block content %}
+    <h1>{{ 'candidacy.h1_title'|trans }}</h1>
+    
+    <p class="important">
+    	<div>
+			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			
+			<p>{{ form_errors(form) }}<p>
+			
+			{% if errors is defined and not errors is empty %}
+				<div style="background-color:gold;color:black">{{ errors }}</div>
+			{% endif %}
+
+			Bienvenido o bienvenida a la votación de la candidatura ciudadana de <b>{{ town|capitalize }}</b>. 
+			Como primer paso has de registrarte como votante.
+			
+			<p>
+				<span>{{ form_label(form.name, 'candidacy.step1.name'|trans) }}</span>
+				<span>{{ form_errors(form.name) }}</span>
+				{{ form_widget(form.name) }}
+			</p>
+			
+			<p>
+			    <span>{{ form_label(form.lastname, 'candidacy.step1.lastname'|trans) }}</span>
+			    <span>{{ form_errors(form.lastname) }}</span>
+			    {{ form_widget(form.lastname) }}
+			</p>
+			
+			<p>
+			    <span>{{ form_label(form.dni, 'candidacy.step1.dni'|trans) }}</span>
+			    <span>{{ form_errors(form.dni) }}</span>
+			    {{ form_widget(form.dni) }}
+			</p>
+			
+			<p>
+			    <span>{{ form_label(form.email, 'candidacy.step1.email'|trans) }}</span>
+			    <span>{{ form_errors(form.email) }}</span>
+			    {{ form_widget(form.email) }}
+			</p>
+			
+			<p>
+			    <span>{{ form_label(form.province, 'candidacy.step1.province'|trans) }}</span>
+			    <span>{{ form_errors(form.province) }}</span>
+			    {{ form_widget(form.province) }}
+			</p>
+			
+			<p>
+			    <span>{{ form_label(form.town, 'candidacy.step1.town'|trans) }}</span>
+			    <span>{{ form_errors(form.town) }}</span>
+			    {{ form_widget(form.town) }}
+			</p>
+			
+			<p>
+			    <span>{{ form_label(form.phone, 'candidacy.step1.phone'|trans) }}</span>
+			    <span>{{ form_errors(form.phone) }}</span>
+			    {{ form_widget(form.phone) }}
+			</p>
+			
+			<div class="phone_verify">
+				{{ 'candidacy.verify_msg'|trans({'%sms_inbound_number%': sms_inbound_number}) }}
+			</div>
+			
+			<p>
+			    {{ form_widget(form.continue, { 'label': 'candidacy.step1.continue'|trans }) }}
+			</p>
+			
+			{{ form_rest(form) }}
+			
+			{{ form_end(form) }}
+		</div>
+    </p>
+{% endblock %}
