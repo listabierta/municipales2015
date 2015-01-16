@@ -9,6 +9,8 @@ use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
 
 class SMSInboundController extends Controller
 {
+	const KEYWORD_INBOUND = 'ACEPTO';
+	
 	public function indexAction(Request $request = NULL)
 	{
 		$query = $request->query;
@@ -32,7 +34,7 @@ class SMSInboundController extends Controller
 		
 		if(!empty($phone_verified) && $phone_verified->getTimestamp() == 0)
 		{
-			if($keyword == 'VERIFICA')
+			if($keyword == self::KEYWORD_INBOUND)
 			{
 				$email = $phone_verified->getEmail();
 				$phone_verified->setTimestamp(time());
@@ -90,7 +92,7 @@ class SMSInboundController extends Controller
 		
 		if(!empty($phone_verified) && $phone_verified->getTimestamp() == 0)
 		{
-			if($keyword == 'VERIFICA')
+			if($keyword == self::KEYWORD_INBOUND)
 			{
 				$email = $phone_verified->getEmail();
 				$phone_verified->setTimestamp(time());
