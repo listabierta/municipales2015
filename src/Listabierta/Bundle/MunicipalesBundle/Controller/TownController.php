@@ -34,4 +34,12 @@ class TownController extends Controller
 				'errors' => $form->getErrors()
 		));
 	}
+	
+	public function resultsAction($town = NULL, Request $request = NULL)
+	{
+		return $this->render('MunicipalesBundle:Town:step_results.html.twig', array(
+				'town' => $town,
+		));
+	}	
+	
 }
