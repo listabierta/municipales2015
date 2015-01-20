@@ -72,7 +72,7 @@ town_results:
         _locale: es_es|es_eu|es_gl|es_gl
         
 candidate_step1:
-    path:     /{town}/altacandidaturas
+    path:     /{address}/altacandidaturas
     defaults: { _controller: MunicipalesBundle:Candidate:step1 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl

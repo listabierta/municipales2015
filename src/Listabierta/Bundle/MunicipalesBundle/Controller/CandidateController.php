@@ -13,10 +13,10 @@ class CandidateController extends Controller
 		$this->step1Action($request);
 	}
 	
-	public function step1Action($town = NULL, Request $request = NULL)
+	public function step1Action($address = NULL, Request $request = NULL)
 	{
 		$form = $this->createForm(new TownStep1Type(), NULL, array(
-				'action' => $this->generateUrl('candidate_step1'),
+				'action' => $this->generateUrl('candidate_step1', array('address' => $address)),
 				'method' => 'POST',
 		)
 		);
@@ -29,7 +29,7 @@ class CandidateController extends Controller
 		}
 
 		return $this->render('MunicipalesBundle:Candidate:step1.html.twig', array(
-				'town' => $town, 
+				'address' => $address, 
 				'form' => $form->createView(),
 				'errors' => $form->getErrors()
 		));
