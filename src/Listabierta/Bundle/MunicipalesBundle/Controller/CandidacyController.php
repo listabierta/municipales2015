@@ -303,6 +303,8 @@ class CandidacyController extends Controller
     		
     		$documents_path = 'docs/' . $town_slug . '/' . $admin_id;
     		
+    		// getMaxFilesize()
+    		
     		if($program->isValid())
     		{
     			$program_data = $program->getData();
@@ -564,6 +566,24 @@ class CandidacyController extends Controller
     		if($ok)
     		{
     			$session->set('address', $address_slug);
+    			
+    			$admin_id = $session->get('admin_id');
+    			
+    			$entity_manager = $this->getDoctrine()->getManager();
+
+    			$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    				
+    			$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    			
+    			if(empty($admin_candidacy))
+    			{
+    				throw $this->createNotFoundException('No existe la candidatura de administrador para guardar la dirección ' . $address_slug);
+    			}
+    			
+    			$admin_candidacy->setAddress($address_slug);
+    			
+    			$entity_manager->persist($admin_candidacy);
+    			$entity_manager->flush();
 
     			$form2 = $this->createForm(new CandidacyStep5Type(), NULL, array(
     					'action' => $this->generateUrl('municipales_candidacy_step5'),
