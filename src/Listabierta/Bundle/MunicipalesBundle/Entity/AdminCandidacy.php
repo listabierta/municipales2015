@@ -52,7 +52,21 @@ class AdminCandidacy
      */
     private $phone;
 
-
+    /**
+     * @var string
+     */
+    private $address;
+    
+    /**
+     * @var string
+     */
+    private $to;
+    
+    /**
+     * @var string
+     */
+    private $from;
+    
     /**
      * Get id
      *
@@ -245,5 +259,51 @@ class AdminCandidacy
     public function getAddress()
     {
     	return $this->address;
+    }
+
+    /**
+     * Set to
+     *
+     * @param \DateTime $to
+     * @return AdminCandidacy
+     */
+    public function setTo($to)
+    {
+        $this->to = $to;
+
+        return $this;
+    }
+
+    /**
+     * Get to
+     *
+     * @return \DateTime 
+     */
+    public function getTo()
+    {
+        return $this->to;
+    }
+
+    /**
+     * Set from
+     *
+     * @param \DateTime $from
+     * @return AdminCandidacy
+     */
+    public function setFrom($from)
+    {
+        $this->from = $from;
+
+        return $this;
+    }
+
+    /**
+     * Get from
+     *
+     * @return \DateTime 
+     */
+    public function getFrom()
+    {
+        return $this->from;
     }
 }
