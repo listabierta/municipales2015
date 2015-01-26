@@ -16,6 +16,7 @@ class CandidacyStep2Type extends AbstractType
         					'data_class' => NULL,
         					'constraints' => array(
         						new Assert\NotBlank(),
+        						new Assert\File(array('maxSize' =>'1024k')),
         					)
         				)
         			)
@@ -23,7 +24,8 @@ class CandidacyStep2Type extends AbstractType
         					'required' => true,
         					'data_class' => NULL,
         					'constraints' => array(
-        							new Assert\NotBlank(),
+        						new Assert\NotBlank(),
+        						new Assert\File(array('maxSize' =>'1024k')),
         					)
         				)
         			)
@@ -31,7 +33,8 @@ class CandidacyStep2Type extends AbstractType
         					'required' => true,
         					'data_class' => NULL,
         					'constraints' => array(
-        							new Assert\NotBlank(),
+        						new Assert\NotBlank(),
+        						new Assert\File(array('maxSize' =>'1024k')),
         					)
         				)
         			)
@@ -39,7 +42,8 @@ class CandidacyStep2Type extends AbstractType
         					'required' => true,
         					'data_class' => NULL,
         					'constraints' => array(
-        							new Assert\NotBlank(),
+        						new Assert\NotBlank(),
+        						new Assert\File(array('maxSize' =>'1024k')),
         					)
         				)
         			)
@@ -47,7 +51,8 @@ class CandidacyStep2Type extends AbstractType
         					'required' => true,
         					'data_class' => NULL,
         					'constraints' => array(
-        							new Assert\NotBlank(),
+        						new Assert\NotBlank(),
+        						new Assert\File(array('maxSize' =>'1024k')),
         					)
         				)
         			)
@@ -55,7 +60,8 @@ class CandidacyStep2Type extends AbstractType
         					'required' => true,
         				    'data_class' => NULL,
         					'constraints' => array(
-        							new Assert\NotBlank(),
+        						new Assert\NotBlank(),
+        						new Assert\File(array('maxSize' =>'1024k')),
         					)
         				)
         			)
