@@ -30,4 +30,9 @@ Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy:
         phone:
             type: string
             length: '20'
+        address:
+            type: string
+            length: '255'   
+            nullable: TRUE
+            
     lifecycleCallbacks: {  }
