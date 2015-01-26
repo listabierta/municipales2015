@@ -34,5 +34,11 @@ Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy:
             type: string
             length: '255'   
             nullable: TRUE
+        to:
+            type: datetime
+            nullable: TRUE
+        from:
+            type: datetime
+            nullable: TRUE
             
     lifecycleCallbacks: {  }
