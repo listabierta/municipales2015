@@ -1,3 +1,6 @@
+#Ignore uploaded files
+web/docs/
+
 # Ignore Eclipse IDE files
 .buildpath
 .project
