@@ -1,0 +1,27 @@
+Listabierta\Bundle\MunicipalesBundle\Entity\Candidate:
+    type: entity
+    table: null
+    repositoryClass: Listabierta\Bundle\MunicipalesBundle\Entity\CandidateRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        lastname:
+            type: string
+            length: 255
+        dni:
+            type: string
+            length: '20'
+        email:
+            type: string
+            length: 255
+        phone:
+            type: string
+            length: '20'
+    lifecycleCallbacks: {  }
