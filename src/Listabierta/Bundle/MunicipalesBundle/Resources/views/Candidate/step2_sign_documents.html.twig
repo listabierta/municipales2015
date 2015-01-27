@@ -1,0 +1,50 @@
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}{{ 'candidate.html_title'|trans }}{% endblock %}
+{% block content %}
+    <h1>{{ 'candidate.h1_title'|trans }}</h1>
+    
+    <p class="important">
+    	<div>
+			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			
+			<p>{{ form_errors(form) }}<p>
+			
+			{% if errors is defined and not errors is empty %}
+				<div style="background-color:gold;color:black">{{ errors }}</div>
+			{% endif %}
+
+			<p>
+				Antes de subir tu perfil, debes descargarte, firmar (digital o manualmente) y volver a enviar los documentos 
+				siguientes para confirmar tu aceptación de las condiciones de la candidatura ciudadana
+			</p>
+			
+			<p>
+				Aceptación del programa de la candidatura     
+			</p>
+			<p>
+				Cumplimiento de las condiciones legales y veracidad de la información aportada
+			</p>
+			<p>	
+				Aceptación del mandato revocatorio del candidato     
+			</p>
+			<p>	
+				Aceptación del mandato participativo del candidato 
+			</p>
+			<p>	
+				Aceptación del censo disponible y del sistema de votación
+			</p>
+			<p>	
+				Aceptación de las limitaciones técnicas y legales del sistema de voto.  
+			</p>
+			
+			<p>
+			    {{ form_widget(form.continue, { 'label': 'candidate.step2.continue'|trans }) }}
+			</p>
+			
+			{{ form_rest(form) }}
+			
+			{{ form_end(form) }}
+		</div>
+    </p>
+{% endblock %}
