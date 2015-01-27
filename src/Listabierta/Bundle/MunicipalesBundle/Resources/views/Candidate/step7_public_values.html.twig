@@ -1,0 +1,50 @@
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}{{ 'candidate.html_title'|trans }}{% endblock %}
+{% block content %}
+    <h1>{{ 'candidate.h1_title'|trans }}</h1>
+    
+    <p class="important">
+    	<div>
+			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			
+			<p>{{ form_errors(form) }}</p>
+			
+			<p>
+				¿Qué valores morales consideras de mayor importancia para el desempeño de la función pública? (elige hasta tres)
+
+				HONESTIDAD
+				TRANSPARENCIA
+				RESPETO
+				RESPONSABILIDAD
+				COMPROMISO
+				INTEGRIDAD
+				IGUALDAD
+				TOLERANCIA
+				COOPERACIÓN
+				SOLIDARIDAD
+				JUSTICIA
+				HUMILDAD
+			
+			</p>
+			
+			<p>
+				Describe tu experiencia relacionada con (Introducir los campos seleccionados en “¿Has tenido alguna experiencia relacionada con el desempeño  municipal? (campos seleccionados 1, 2 y 3)”
+
+				Dejar en uno o dividir en tres
+			</p>
+			
+			<p>
+				Aporta alguna información adicional que consideres de importancia para tu candidatura (texto largo)
+			</p>
+			
+			<p>
+			    {{ form_widget(form.continue, { 'label': 'candidate.step4.continue'|trans }) }}
+			</p>
+			
+			{{ form_rest(form) }}
+			
+			{{ form_end(form) }}
+		</div>
+    </p>
+{% endblock %}
