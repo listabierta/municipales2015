@@ -510,6 +510,25 @@ class CandidacyController extends Controller
     		{
     			$session->set('from', $from_data->getTimestamp());
     			$session->set('to', $to_data->getTimestamp());
+    			
+    			$admin_id = $session->get('admin_id');
+    			 
+    			$entity_manager = $this->getDoctrine()->getManager();
+    			
+    			$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    			
+    			$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    			 
+    			if(empty($admin_candidacy))
+    			{
+    				throw $this->createNotFoundException('No existe la candidatura de administrador para guardar la dirección ' . $address_slug);
+    			}
+    			 
+    			$admin_candidacy->setFrom($from_data);
+    			$admin_candidacy->setTo($to_data);
+    			 
+    			$entity_manager->persist($admin_candidacy);
+    			$entity_manager->flush();
 
     			$form2 = $this->createForm(new CandidacyStep4Type(), NULL, array(
     					'action' => $this->generateUrl('municipales_candidacy_step4'),
