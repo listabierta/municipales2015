@@ -1,0 +1,47 @@
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}{{ 'candidate.html_title'|trans }}{% endblock %}
+{% block content %}
+    <h1>{{ 'candidate.h1_title'|trans }}</h1>
+    
+    <p class="important">
+    	<div>
+			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			
+			<p>{{ form_errors(form) }}</p>
+			
+			<p>
+				¿Cuál es tu nivel académico?	(desplegable)
+
+				1.  Sin estudios
+				2.  Estudios primarios o equivalentes
+				3.  Enseñanza general secundaria, 1er ciclo
+				4.  Enseñanza Profesional de 2º grado, 2º ciclo
+				5.  Enseñanza general secundaria, 2º ciclo
+				6.  Enseñanzas profesionales superiores
+				7.  Estudios universitarios o equivalentes
+				8.	Máster universitario o doctorado
+			
+			</p>
+			
+			<p>
+			¿Eres capáz de mantener una conversación telefónica en alguno de estos idiomas? (puedes seleccionar ninguno o varios)
+				Inglés 
+				Francés 
+				Alemán
+				Italiano
+				Chino
+				Árabe
+				Otro
+			</p>
+			
+			<p>
+			    {{ form_widget(form.continue, { 'label': 'candidate.step3.continue'|trans }) }}
+			</p>
+			
+			{{ form_rest(form) }}
+			
+			{{ form_end(form) }}
+		</div>
+    </p>
+{% endblock %}
