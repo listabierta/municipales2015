@@ -49,7 +49,7 @@ class CandidateController extends Controller
 			$email    = $form['email']->getData();
 			$phone    = $form['phone']->getData();
 			
-			/*
+			
 			$entity_manager = $this->getDoctrine()->getManager();
 			 
 			// Store info in database AdminCandidacy
@@ -78,7 +78,7 @@ class CandidateController extends Controller
 			$session->set('candidate_dni', $dni);
 			$session->set('candidate_email', $email);
 			$session->set('candidate_phone', $phone);
-			*/
+			
 			$form2 = $this->createForm(new CandidateStepVerifyType(), NULL, array(
 					'action' => $this->generateUrl('candidate_step_verify', array('address' => $address)),
 					'method' => 'POST',
