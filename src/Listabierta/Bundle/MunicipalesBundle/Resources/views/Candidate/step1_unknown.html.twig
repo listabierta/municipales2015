@@ -1,0 +1,12 @@
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}{{ 'candidate.html_title'|trans }}{% endblock %}
+{% block content %}
+    <h1>{{ 'candidate.h1_title'|trans }}</h1>
+    
+    <p class="important">
+    	<div>
+			{{ error }}
+		</div>
+    </p>
+{% endblock %}
