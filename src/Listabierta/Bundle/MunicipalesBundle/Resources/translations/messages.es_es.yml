@@ -143,7 +143,7 @@ town:
         languages: ¿Es bueno que hable alguno de estos idiomas? (elige de una a tres opciones)
         
 candidate:
-    html_title: Municipales 2015 - Alta de candidato ciudadana
+    html_title: Municipales 2015 - Alta de candidato
     h1_title: Regístrate como candidato
 
     step1:
@@ -155,5 +155,13 @@ candidate:
         email: Email
         phone: Número de móvil
         continue: Continuar
-               
+
+    verify_msg: Confirma el registro de candidato enviando un SMS con la palabra ACEPTO al móvil nº %sms_inbound_number% que proporcionaste en el paso anterior, después haz clic en CONTINUAR
+    
+    step_verify:
+        html_title: Municipales 2015 - Alta de candidato
+        h1_title: Verifica tu número de móvil
+        continue: Continuar
+        previous: Anterior
+                       
     
