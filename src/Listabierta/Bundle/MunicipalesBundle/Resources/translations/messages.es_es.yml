@@ -70,7 +70,7 @@ candidacy:
         h1_title: Establece las condiciones de la candidatura ciudadana
         
         program: El programa de la candidatura
-        legal_conditions: Condiciones legales y veracidad de la información aportada de  candidatos y candidatas
+        legal_conditions: Condiciones legales y veracidad de la información aportada de candidatos y candidatas
         recall_term: El mandato revocatorio del candidato
         participatory_term: El mandato participativo del candidato
         voter_conditions: Las condiciones para poder participar como votante (censo y aceptación del sistema de votación)
@@ -147,17 +147,13 @@ candidate:
     h1_title: Regístrate como candidato
 
     step1:
+        p1: "Bienvenido o bienvenida a el alta de candidatos para la candidatura ciudadana <b>%address%</b> al municipio de <b>%town%</b>.<br/>Por favor rellena tu candidatura con exactitud, si te equivocas o quieres modificarla más adelante tendrás que rellenar de nuevo el cuestionario."
+        p2: El plazo de presentación de candidaturas establecido es desde %fromdate% hasta %todate%
         name: Nombre 
         lastname: Apellidos
         dni: DNI
         email: Email
-        province: Provincia del municipio
-        town: Nombre del municipio
         phone: Número de móvil
         continue: Continuar
-        explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
-        explanation: Explicación
                
     
-    
-  
