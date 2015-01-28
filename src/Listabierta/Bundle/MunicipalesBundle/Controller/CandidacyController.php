@@ -246,8 +246,6 @@ class CandidacyController extends Controller
     			
     		if($ok)
     		{
-    			$warnings = array();
-    			
     			$form2 = $this->createForm(new CandidacyStep2Type(), NULL, array(
 	    			'action' => $this->generateUrl('municipales_candidacy_step2'),
 	    			'method' => 'POST',
@@ -256,9 +254,8 @@ class CandidacyController extends Controller
     			$form2->handleRequest($request);
     
     			return $this->render('MunicipalesBundle:Candidacy:step2.html.twig', array(
-    					'warnings' => $warnings,
     					'form' => $form2->createView()
-    			)
+    				)
     			);
     		}
     	}
