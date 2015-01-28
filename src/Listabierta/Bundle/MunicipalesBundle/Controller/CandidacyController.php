@@ -524,8 +524,8 @@ class CandidacyController extends Controller
     				throw $this->createNotFoundException('No existe la candidatura de administrador para guardar la dirección ' . $address_slug);
     			}
     			 
-    			$admin_candidacy->setFrom($from_data);
-    			$admin_candidacy->setTo($to_data);
+    			$admin_candidacy->setFromdate($from_data);
+    			$admin_candidacy->setTodate($to_data);
     			 
     			$entity_manager->persist($admin_candidacy);
     			$entity_manager->flush();
