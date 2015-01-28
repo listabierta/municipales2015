@@ -272,7 +272,14 @@ class CandidateController extends Controller
 		
 		$documents_path = 'docs/' . $town_slug . '/' . $admin_id;
 		
-		$candidate_id = $session->get('candidate_id', array());
+		$candidate_id = $session->get('candidate_id', NULL);
+		
+		if(empty($candidate_id))
+		{
+			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+					'error' => 'Sesión expirada. No existe el identificador de candidato para cargar la dirección ' . $address_slug,
+			));
+		}
 	
 		$form = $this->createForm(new CandidateStep2Type(), NULL, array(
 				'action' => $this->generateUrl('candidate_step2', array('address' => $address_slug)),
