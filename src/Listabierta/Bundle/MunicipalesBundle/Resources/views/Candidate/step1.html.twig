@@ -8,19 +8,15 @@
     	<div>
 			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
 			
-			<p>{{ form_errors(form) }}<p>
+			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 			
-			{% if errors is defined and not errors is empty %}
-				<div style="background-color:gold;color:black">{{ errors }}</div>
-			{% endif %}
-
 			<p>
 				Bienvenido o bienvenida a el alta de candidatos para la candidatura ciudadana <b>{{ address|capitalize }}</b> al municipio de <b>{{ town|capitalize }}</b>. 
 				Por favor rellena tu candidatura con exactitud, si te equivocas o quieres modificarla más adelante tendrás que rellenar de nuevo el cuestionario.
 			</p>
 			
 			<p>
-				El plazo de presentación de candidaturas establecido es desde {{ to }} hasta {{ from }}
+				El plazo de presentación de candidaturas establecido es desde {{ fromdate|date('d-m-Y') }} hasta {{ todate|date('d-m-Y') }}
 			</p>
 			
 			<p>
