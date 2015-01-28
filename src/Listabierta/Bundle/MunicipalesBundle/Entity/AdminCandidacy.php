@@ -306,4 +306,60 @@ class AdminCandidacy
     {
         return $this->from;
     }
+    /**
+     * @var \DateTime
+     */
+    private $todate;
+
+    /**
+     * @var \DateTime
+     */
+    private $fromdate;
+
+
+    /**
+     * Set todate
+     *
+     * @param \DateTime $todate
+     * @return AdminCandidacy
+     */
+    public function setTodate($todate)
+    {
+        $this->todate = $todate;
+
+        return $this;
+    }
+
+    /**
+     * Get todate
+     *
+     * @return \DateTime 
+     */
+    public function getTodate()
+    {
+        return $this->todate;
+    }
+
+    /**
+     * Set fromdate
+     *
+     * @param \DateTime $fromdate
+     * @return AdminCandidacy
+     */
+    public function setFromdate($fromdate)
+    {
+        $this->fromdate = $fromdate;
+
+        return $this;
+    }
+
+    /**
+     * Get fromdate
+     *
+     * @return \DateTime 
+     */
+    public function getFromdate()
+    {
+        return $this->fromdate;
+    }
 }
