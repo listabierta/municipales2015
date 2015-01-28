@@ -293,7 +293,7 @@ class CandidacyController extends Controller
     		$voter_conditions     = $form['voter_conditions'];
     		$technical_constrains = $form['technical_constrains'];
     		
-    		$admin_id = $session->get('admin_id', array());;
+    		$admin_id = $session->get('admin_id', NULL);;
     		$town = $session->get('town', array());;
     		
     		$town_slug = $this->get('slugify')->slugify($town);
