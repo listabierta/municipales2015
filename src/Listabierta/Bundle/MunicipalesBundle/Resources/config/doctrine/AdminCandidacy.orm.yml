@@ -34,10 +34,10 @@ Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy:
             type: string
             length: '255'   
             nullable: TRUE
-        to:
+        todate:
             type: datetime
             nullable: TRUE
-        from:
+        fromdate:
             type: datetime
             nullable: TRUE
             
