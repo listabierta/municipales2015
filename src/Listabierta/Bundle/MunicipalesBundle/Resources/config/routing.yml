@@ -88,7 +88,13 @@ candidate_step2:
     defaults: { _controller: MunicipalesBundle:Candidate:step2 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl          
-              
+
+candidate_step3:
+    path:     /{address}/alta-candidaturas-paso-3
+    defaults: { _controller: MunicipalesBundle:Candidate:step3 }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl  
+        
 town_candidacy_vote_step1:
     path:     /{town}/vota
     defaults: { _controller: MunicipalesBundle:Town:vote1 }
