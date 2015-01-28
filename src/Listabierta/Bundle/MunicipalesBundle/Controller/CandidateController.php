@@ -246,7 +246,7 @@ class CandidateController extends Controller
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
-	public function step2Action(Request $request = NULL)
+	public function step2Action(Request $request = NULL, $address = NULL)
 	{
 		$session = $this->getRequest()->getSession();
 
@@ -274,7 +274,7 @@ class CandidateController extends Controller
 		
 		$candidate_id = $session->get('candidate_id', array());
 	
-		$form = $this->createForm(new CandidacyStep2Type(), NULL, array(
+		$form = $this->createForm(new CandidateStep2Type(), NULL, array(
 				'action' => $this->generateUrl('candidate_step2', array('address' => $address_slug)),
 				'method' => 'POST',
 			)
@@ -438,7 +438,7 @@ class CandidateController extends Controller
 	
 				$form2->handleRequest($request);
 	
-				return $this->render('MunicipalesBundle:Candidacy:step3_academic_level.html.twig', array(
+				return $this->render('MunicipalesBundle:Candidate:step3_academic_level.html.twig', array(
 						'errors' => $form->getErrors(),
 						'form' => $form2->createView(),
 						'address' => $address_slug,
@@ -447,7 +447,7 @@ class CandidateController extends Controller
 			}
 		}
 	
-		return $this->render('MunicipalesBundle:Candidacy:step2_sign_documents.html.twig', array(
+		return $this->render('MunicipalesBundle:Candidate:step2_sign_documents.html.twig', array(
 				'form' => $form->createView(),
 				'address' => $address_slug,
 				'documents_path' => $documents_path,
