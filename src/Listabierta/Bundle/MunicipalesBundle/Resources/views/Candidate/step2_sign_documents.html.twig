@@ -8,34 +8,35 @@
     	<div>
 			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
 			
-			<p>{{ form_errors(form) }}<p>
-			
-			{% if errors is defined and not errors is empty %}
-				<div style="background-color:gold;color:black">{{ errors }}</div>
-			{% endif %}
+			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 
 			<p>
-				Antes de subir tu perfil, debes descargarte, firmar (digital o manualmente) y volver a enviar los documentos 
-				siguientes para confirmar tu aceptación de las condiciones de la candidatura ciudadana
+				{{ 'candidate.step2.p1'|trans }}
 			</p>
 			
 			<p>
-				Aceptación del programa de la candidatura     
+				{{ 'candidate.step2.program'|trans }} <a href="/web/{{ documents_path }}/program_example.pdf" title="{{ 'candidate.step2.program'|trans }}">Descargar</a>
+				{{ form_widget(form.program) }}
 			</p>
 			<p>
-				Cumplimiento de las condiciones legales y veracidad de la información aportada
+				{{ 'candidate.step2.legal_conditions'|trans }} <a href="/web/{{ documents_path }}/legal_conditions.pdf" title="{{ 'candidate.step2.legal_conditions'|trans }}">Descargar</a>
+				{{ form_widget(form.legal_conditions) }}
 			</p>
 			<p>	
-				Aceptación del mandato revocatorio del candidato     
+				{{ 'candidate.step2.recall_term'|trans }} <a href="/web/{{ documents_path }}/recall_term.pdf" title="{{ 'candidate.step2.recall_term'|trans }}">Descargar</a>
+				{{ form_widget(form.recall_term) }}
 			</p>
 			<p>	
-				Aceptación del mandato participativo del candidato 
+				{{ 'candidate.step2.participatory_term'|trans }} <a href="/web/{{ documents_path }}/participatory_term.pdf" title="{{ 'candidate.step2.participatory_term'|trans }}">Descargar</a>
+				{{ form_widget(form.participatory_term) }}
 			</p>
 			<p>	
-				Aceptación del censo disponible y del sistema de votación
+				{{ 'candidate.step2.voter_conditions'|trans }} <a href="/web/{{ documents_path }}/voter_conditions.pdf" title="{{ 'candidate.step2.voter_conditions'|trans }}">Descargar</a> 
+				{{ form_widget(form.voter_conditions) }}
 			</p>
 			<p>	
-				Aceptación de las limitaciones técnicas y legales del sistema de voto.  
+				{{ 'candidate.step2.technical_constrains'|trans }} <a href="/web/{{ documents_path }}/technical_constrains.pdf" title="{{ 'candidate.step2.technical_constrains'|trans }}">Descargar</a>
+				{{ form_widget(form.technical_constrains) }}
 			</p>
 			
 			<p>
