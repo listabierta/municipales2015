@@ -179,5 +179,11 @@ candidate:
         continue: Continuar     
         
     step3:      
+        academic_level_title: ¿Cuál es tu nivel académico?
+        languages_title: ¿Eres capáz de mantener una conversación telefónica en alguno de estos idiomas? (puedes seleccionar ninguno o varios)
         continue: Continuar  
     
+    step4:      
+        job_experience_title: ¿Cuál es el campo de tu experiencia laboral? (Seleccione hasta tres opciones)
+        continue: Continuar  
+       
