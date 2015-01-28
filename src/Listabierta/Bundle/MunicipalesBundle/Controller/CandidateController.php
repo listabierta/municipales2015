@@ -217,9 +217,17 @@ class CandidateController extends Controller
 	
 				$form2->handleRequest($request);
 	
+				$admin_id = $admin_candidacy->getId();
+				$town = $admin_candidacy->getTown();
+				
+				$town_slug = $this->get('slugify')->slugify($town);
+				
+				$documents_path = 'docs/' . $town_slug . '/' . $admin_id;
+				
 				return $this->render('MunicipalesBundle:Candidate:step2_sign_documents.html.twig', array(
 						'form' => $form2->createView(),
 						'address' => $address_slug,
+						'documents_path' => $documents_path,
 					)
 				);
 			}
