@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStep1Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStepVerifyType;
+use Listabierta\Bundle\MunicipalesBundle\Entity\Candidate;
+use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
 
 class CandidateController extends Controller
 {
@@ -16,6 +18,8 @@ class CandidateController extends Controller
 	
 	public function step1Action($address = NULL, Request $request = NULL)
 	{
+		$session = $this->getRequest()->getSession();
+		
 		$entity_manager = $this->getDoctrine()->getManager();
 		
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
@@ -31,8 +35,40 @@ class CandidateController extends Controller
 			));		
 		}
 		
-		// @todo check date range (to, from)
+		$candidacy_from = $admin_candidacy->getFromdate();
+		$candidacy_to = $admin_candidacy->getTodate();
 		
+		if(empty($candidacy_from))
+		{
+			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+					'error' => 'No existe fecha de candidatura de inicio para ' . $address_slug,
+			));
+		}
+		
+		if(empty($candidacy_to))
+		{
+			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+					'error' => 'No existe fecha de candidatura de inicio para ' . $address_slug,
+			));
+		}
+		
+		$now = new \Datetime('NOW');
+		//$now->add(\DateInterval::createFromDateString('+7 days')); // Debugging
+
+		if($now->getTimestamp() - $candidacy_from->getTimestamp() < 0)
+		{
+			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+					'error' => 'La candidatura aún no esta abierta para ' . $address_slug . ', la fecha de apertura es ' . $candidacy_from->format('d-m-Y'),
+			));
+		}
+		
+		if($now->getTimestamp() - $candidacy_to->getTimestamp() > 0)
+		{
+			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+					'error' => 'La candidatura esta cerrada para ' . $address_slug . ', la fecha de finalización fue ' . $candidacy_to->format('d-m-Y'),
+			));
+		}
+
 		$form = $this->createForm(new CandidateStep1Type(), NULL, array(
 				'action' => $this->generateUrl('candidate_step1', array('address' => $address)),
 				'method' => 'POST',
@@ -96,8 +132,8 @@ class CandidateController extends Controller
 		return $this->render('MunicipalesBundle:Candidate:step1.html.twig', array(
 				'address' => $address, 
 				'town' => $admin_candidacy->getTown(),
-				'to' => $admin_candidacy->getTo(),
-				'from' => $admin_candidacy->getFrom(),
+				'todate' => $candidacy_to,
+				'fromdate' => $candidacy_from,
 				'form' => $form->createView(),
 				'errors' => $form->getErrors()
 		));
