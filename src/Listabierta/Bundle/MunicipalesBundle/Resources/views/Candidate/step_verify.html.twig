@@ -1,0 +1,45 @@
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}{{ 'candidate.step_verify.html_title'|trans }}{% endblock %}
+{% block content %}
+    <h1>{{ 'candidate.step_verify.h1_title'|trans }}</h1>
+    
+    <p class="important">
+    	<div>
+			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			
+			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
+
+			<div class="phone_verify">
+				{{ 'candidate.verify_msg'|trans({'%sms_inbound_number%': sms_inbound_number}) }}
+			</div>
+			
+			<div style="clear:both">
+				<div style="float:left;margin-top:10px;"><a style="font: 100% arial;
+border: 0;
+width: 99px;
+margin: 0 0 0 212px;
+height: 33px;
+cursor: pointer;
+text-decoration:none !important;
+background: #3B3B3B;
+padding:10px;margin-left:0px;
+color: #FFF;" 
+					class="submit"
+					href="{{ path('candidate_step1', {'address' : address }) }}" 
+					title="{{ 'candidate.step_verify.previous'|trans }}">{{ 'candidate.step_verify.previous'|trans }}</a>
+				</div>
+					
+				<div style="float:right">
+					<p>
+				    	{{ form_widget(form.continue, { 'label': 'candidate.step_verify.continue'|trans }) }}
+					</p>	
+				</div>	
+			</div>
+			
+			{{ form_rest(form) }}
+			
+			{{ form_end(form) }}
+		</div>
+    </p>
+{% endblock %}
