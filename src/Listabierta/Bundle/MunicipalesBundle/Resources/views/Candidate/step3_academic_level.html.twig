@@ -2,16 +2,13 @@
 
 {% block title %}{{ 'candidate.html_title'|trans }}{% endblock %}
 
-{% block form_widget_simple %}
+{% form_theme form _self %}
+
+{% block checkbox_widget %}
 {% spaceless %}
-    {% set type = type|default('text') %}
-    {% if errors|length > 0 %}
-        {{dump(form.vars.attr)}}
-    {% endif %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' your-css-class')|trim}) %}
-    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+<input type="checkbox" style="width:25px" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
 {% endspaceless %}
-{% endblock form_widget_simple %}
+{% endblock checkbox_widget %}
 
 {% block content %}
     <h1>{{ 'candidate.h1_title'|trans }}</h1>
@@ -26,10 +23,18 @@
 				¿Cuál es tu nivel académico? <br />
 				{{ form_widget(form.academic_level) }}
 			</p>
-			
+			<br/><br/>
 			<p>
 				¿Eres capáz de mantener una conversación telefónica en alguno de estos idiomas? (puedes seleccionar ninguno o varios) <br />
-				{{ form_widget_simple(form.languages, { 'label': 'candidate.step3.languages'|trans }) }}
+				
+				<table>
+				{% for child in form.languages %}
+					<tr>
+				        <td>{{ form_widget(child) }}</td> 
+				        <td style="padding:5px">{{ form_label(child) }}</td>       
+				    </tr>
+				{% endfor %}
+				</table>
 			</p>
 			
 			<p>
