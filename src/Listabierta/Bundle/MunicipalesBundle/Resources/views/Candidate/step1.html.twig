@@ -11,46 +11,45 @@
 			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 			
 			<p>
-				Bienvenido o bienvenida a el alta de candidatos para la candidatura ciudadana <b>{{ address|capitalize }}</b> al municipio de <b>{{ town|capitalize }}</b>. 
-				Por favor rellena tu candidatura con exactitud, si te equivocas o quieres modificarla más adelante tendrás que rellenar de nuevo el cuestionario.
+				{{ 'candidate.step1.p1'|trans({'%address%': address|capitalize, '%town%': town|capitalize})|raw }}
 			</p>
 			
 			<p>
-				El plazo de presentación de candidaturas establecido es desde {{ fromdate|date('d-m-Y') }} hasta {{ todate|date('d-m-Y') }}
+				{{ 'candidate.step1.p2'|trans({'%fromdate%': fromdate|date('d-m-Y'), '%todate%': todate|date('d-m-Y')}) }}
 			</p>
 			
 			<p>
-				<span>{{ form_label(form.name, 'candidacy.step1.name'|trans) }}</span>
+				<span>{{ form_label(form.name, 'candidate.step1.name'|trans) }}</span>
 				<span>{{ form_errors(form.name) }}</span>
 				{{ form_widget(form.name) }}
 			</p>
 			
 			<p>
-			    <span>{{ form_label(form.lastname, 'candidacy.step1.lastname'|trans) }}</span>
+			    <span>{{ form_label(form.lastname, 'candidate.step1.lastname'|trans) }}</span>
 			    <span>{{ form_errors(form.lastname) }}</span>
 			    {{ form_widget(form.lastname) }}
 			</p>
 			
 			<p>
-			    <span>{{ form_label(form.dni, 'candidacy.step1.dni'|trans) }}</span>
+			    <span>{{ form_label(form.dni, 'candidate.step1.dni'|trans) }}</span>
 			    <span>{{ form_errors(form.dni) }}</span>
 			    {{ form_widget(form.dni) }}
 			</p>
 			
 			<p>
-			    <span>{{ form_label(form.email, 'candidacy.step1.email'|trans) }}</span>
+			    <span>{{ form_label(form.email, 'candidate.step1.email'|trans) }}</span>
 			    <span>{{ form_errors(form.email) }}</span>
 			    {{ form_widget(form.email) }}
 			</p>
 
 			<p>
-			    <span>{{ form_label(form.phone, 'candidacy.step1.phone'|trans) }}</span>
+			    <span>{{ form_label(form.phone, 'candidate.step1.phone'|trans) }}</span>
 			    <span>{{ form_errors(form.phone) }}</span>
 			    {{ form_widget(form.phone) }}
 			</p>
 			
 			<p>
-			    {{ form_widget(form.continue, { 'label': 'candidacy.step1.continue'|trans }) }}
+			    {{ form_widget(form.continue, { 'label': 'candidate.step1.continue'|trans }) }}
 			</p>
 			
 			{{ form_rest(form) }}
