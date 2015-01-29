@@ -220,4 +220,200 @@ class Candidate
     {
         return $this->languages;
     }
+    /**
+     * @var array
+     */
+    private $job_experience;
+
+    /**
+     * @var array
+     */
+    private $town_activities;
+
+    /**
+     * @var array
+     */
+    private $govern_priorities;
+
+    /**
+     * @var array
+     */
+    private $public_values;
+
+    /**
+     * @var string
+     */
+    private $motivation_text;
+
+    /**
+     * @var array
+     */
+    private $town_activities_explanation;
+
+    /**
+     * @var string
+     */
+    private $additional_info;
+
+
+    /**
+     * Set job_experience
+     *
+     * @param array $jobExperience
+     * @return Candidate
+     */
+    public function setJobExperience($jobExperience)
+    {
+        $this->job_experience = $jobExperience;
+
+        return $this;
+    }
+
+    /**
+     * Get job_experience
+     *
+     * @return array 
+     */
+    public function getJobExperience()
+    {
+        return $this->job_experience;
+    }
+
+    /**
+     * Set town_activities
+     *
+     * @param array $townActivities
+     * @return Candidate
+     */
+    public function setTownActivities($townActivities)
+    {
+        $this->town_activities = $townActivities;
+
+        return $this;
+    }
+
+    /**
+     * Get town_activities
+     *
+     * @return array 
+     */
+    public function getTownActivities()
+    {
+        return $this->town_activities;
+    }
+
+    /**
+     * Set govern_priorities
+     *
+     * @param array $governPriorities
+     * @return Candidate
+     */
+    public function setGovernPriorities($governPriorities)
+    {
+        $this->govern_priorities = $governPriorities;
+
+        return $this;
+    }
+
+    /**
+     * Get govern_priorities
+     *
+     * @return array 
+     */
+    public function getGovernPriorities()
+    {
+        return $this->govern_priorities;
+    }
+
+    /**
+     * Set public_values
+     *
+     * @param array $publicValues
+     * @return Candidate
+     */
+    public function setPublicValues($publicValues)
+    {
+        $this->public_values = $publicValues;
+
+        return $this;
+    }
+
+    /**
+     * Get public_values
+     *
+     * @return array 
+     */
+    public function getPublicValues()
+    {
+        return $this->public_values;
+    }
+
+    /**
+     * Set motivation_text
+     *
+     * @param string $motivationText
+     * @return Candidate
+     */
+    public function setMotivationText($motivationText)
+    {
+        $this->motivation_text = $motivationText;
+
+        return $this;
+    }
+
+    /**
+     * Get motivation_text
+     *
+     * @return string 
+     */
+    public function getMotivationText()
+    {
+        return $this->motivation_text;
+    }
+
+    /**
+     * Set town_activities_explanation
+     *
+     * @param array $townActivitiesExplanation
+     * @return Candidate
+     */
+    public function setTownActivitiesExplanation($townActivitiesExplanation)
+    {
+        $this->town_activities_explanation = $townActivitiesExplanation;
+
+        return $this;
+    }
+
+    /**
+     * Get town_activities_explanation
+     *
+     * @return array 
+     */
+    public function getTownActivitiesExplanation()
+    {
+        return $this->town_activities_explanation;
+    }
+
+    /**
+     * Set additional_info
+     *
+     * @param string $additionalInfo
+     * @return Candidate
+     */
+    public function setAdditionalInfo($additionalInfo)
+    {
+        $this->additional_info = $additionalInfo;
+
+        return $this;
+    }
+
+    /**
+     * Get additional_info
+     *
+     * @return string 
+     */
+    public function getAdditionalInfo()
+    {
+        return $this->additional_info;
+    }
 }
