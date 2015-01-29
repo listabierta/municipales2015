@@ -164,4 +164,60 @@ class Candidate
     {
         return $this->phone;
     }
+    /**
+     * @var integer
+     */
+    private $academic_level;
+
+    /**
+     * @var array
+     */
+    private $languages;
+
+
+    /**
+     * Set academic_level
+     *
+     * @param integer $academicLevel
+     * @return Candidate
+     */
+    public function setAcademicLevel($academicLevel)
+    {
+        $this->academic_level = $academicLevel;
+
+        return $this;
+    }
+
+    /**
+     * Get academic_level
+     *
+     * @return integer 
+     */
+    public function getAcademicLevel()
+    {
+        return $this->academic_level;
+    }
+
+    /**
+     * Set languages
+     *
+     * @param array $languages
+     * @return Candidate
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+
+        return $this;
+    }
+
+    /**
+     * Get languages
+     *
+     * @return array 
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
 }
