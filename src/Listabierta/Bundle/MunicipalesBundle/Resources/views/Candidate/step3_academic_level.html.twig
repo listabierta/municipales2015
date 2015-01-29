@@ -20,12 +20,13 @@
 			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 			
 			<p>
-				¿Cuál es tu nivel académico? <br />
+				{{ 'candidate.step3.academic_level_title'|trans }} <br />
 				{{ form_widget(form.academic_level) }}
 			</p>
 			<br/><br/>
 			<p>
-				¿Eres capáz de mantener una conversación telefónica en alguno de estos idiomas? (puedes seleccionar ninguno o varios) <br />
+				{{ 'candidate.step3.languages_title'|trans }}
+				<br />
 				
 				<table>
 				{% for child in form.languages %}
