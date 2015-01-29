@@ -478,7 +478,7 @@ class CandidateController extends Controller
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 
 		$admin_candidacy = $admin_candidacy_repository->findOneBy(array('address' => $address_slug));
-		
+
 		if(empty($admin_candidacy))
 		{
 			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
@@ -495,17 +495,18 @@ class CandidateController extends Controller
 			));
 		}
 		
-		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
 		
 		$candidate = $candidate_repository->findOneById($candidate_id);
 		
 		if(empty($candidate))
 		{
 			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
-					'error' => 'No existe la candidatura de administrador para cargar la dirección ' . $address_slug,
+					'error' => 'No existe el candidato de administrador para cargar la dirección ' . $address_slug,
 			));
 		}
-		$form = $this->createForm(new CandidacyStep3Type(), NULL, array(
+		
+		$form = $this->createForm(new CandidateStep3Type(), NULL, array(
 				'action' => $this->generateUrl('candidate_step3', array('address' => $address_slug)),
 				'method' => 'POST',
 			)
@@ -523,14 +524,15 @@ class CandidateController extends Controller
 			{
 				$session->set('candidate_academic_level', $academic_level);
 				$session->set('candidate_languages', $languages);
-				exit();
-				
-				//$candidate->setAcademicLevel();
-				//$candidate->setLanguages();
-				 
 
+				$candidate->setAcademicLevel($academic_level);
+				$candidate->setLanguages($languages);
+				 
+				$entity_manager->persist($candidate);
+				$entity_manager->flush();
+				
 				$form2 = $this->createForm(new CandidateStep4Type(), NULL, array(
-						'action' => $this->generateUrl('candidacy_step4'),
+						'action' => $this->generateUrl('candidate_step4', array('address' => $address_slug)),
 						'method' => 'POST',
 				));
 	
