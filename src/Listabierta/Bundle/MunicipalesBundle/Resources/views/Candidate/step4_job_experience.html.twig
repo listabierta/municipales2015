@@ -10,12 +10,35 @@
 {% endspaceless %}
 {% endblock checkbox_widget %}
 
+{% block head %}
+    {{ parent() }}
+    <script>
+    $(document).ready(function() 
+    {
+		$(document).on('submit','#candidate_step4', function(event)
+	    {
+		    if($("#candidate_step4 .countable[type='checkbox']:checked").length > 3)
+		    {
+		    	alert('Solo pueden seleccionarse hasta maximo 3 opciones');
+	    		// $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
+	    		event.preventDefault();
+		    }
+		    else
+		    {
+		    	return;
+		    }
+	    });
+    });
+    
+	</script>
+{% endblock %}
+
 {% block content %}
     <h1>{{ 'candidate.h1_title'|trans }}</h1>
     
     <p class="important">
     	<div>
-			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			{{ form_start(form, { 'attr': {'class': 'form_settings', 'id': 'candidate_step4'}}) }}
 			
 			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 			
@@ -25,7 +48,7 @@
 				<table>
 				{% for child in form.job_experience %}
 					<tr>
-				        <td>{{ form_widget(child) }}</td> 
+				        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td> 
 				        <td style="padding:5px">{{ form_label(child) }}</td>       
 				    </tr>
 				{% endfor %}
