@@ -1,6 +1,15 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
 {% block title %}{{ 'candidate.html_title'|trans }}{% endblock %}
+
+{% form_theme form _self %}
+
+{% block checkbox_widget %}
+{% spaceless %}
+<input type="checkbox" style="width:25px" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+{% endspaceless %}
+{% endblock checkbox_widget %}
+
 {% block content %}
     <h1>{{ 'candidate.h1_title'|trans }}</h1>
     
@@ -11,24 +20,16 @@
 			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 			
 			<p>
-				¿Cuál es el campo de tu experiencia laboral?	(Seleccione hasta tres opciones)	
+				{{ 'candidate.step4.job_experience_title'|trans }}
 
-		·         Actividades físicas o deportivas
-		·         Administración o gestión
-		·         Agraria o pesquera
-		·         Arte o artesanía
-		·         Comercio y marketing
-		·         Edificación, obra civil
-		·         Energía o agua
-		·         Mecánica, electricidad o electrónica
-		·         Hostelería y turismo
-		·         Informática o comunicaciones
-		·         Industria
-		·         Sanidad
-		·         Medio Ambiente
-		·         Educación o servicios a la comunidad
-		·         Transporte
-		·         Finanzas
+				<table>
+				{% for child in form.job_experience %}
+					<tr>
+				        <td>{{ form_widget(child) }}</td> 
+				        <td style="padding:5px">{{ form_label(child) }}</td>       
+				    </tr>
+				{% endfor %}
+				</table>
 			</p>
 			
 			<p>
