@@ -33,6 +33,14 @@ class CandidateStep4Type extends AbstractType
 			     				'15' => 'Transporte',
 			     				'16' => 'Finanzas',
 			     		),
+			     		'data_class' => NULL,
+			     		'constraints' => array(
+			     				new Assert\Count(array(
+						            'max'        => 3,
+						            'minMessage' => 'You must specify at least one email',
+						            'maxMessage' => 'Sólo puedes seleccionar hasta {{ limit }} opciones como máximo',
+						        ))
+			     		)
 			     ))
 	            ->add('continue', 'submit', array('attr' => array('class' => 'submit')));     
     }
