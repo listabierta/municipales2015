@@ -202,3 +202,6 @@ candidate:
         additional_info_title: Aporta alguna información adicional que consideres de importancia para tu candidatura
         profile_image_title: Adjunta foto
         continue: Continuar
+        
+    final_step:
+        end: "¡Candidatura completada!"
