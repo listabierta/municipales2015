@@ -9,6 +9,8 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStepVerifyType;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStep2Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStep3Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStep4Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStep5Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStep6Type;
 
 use Listabierta\Bundle\MunicipalesBundle\Entity\Candidate;
 use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
@@ -641,6 +643,100 @@ class CandidateController extends Controller
 		}
 	
 		return $this->render('MunicipalesBundle:Candidate:step4_job_experience.html.twig', array(
+				'form' => $form->createView(),
+				'errors' => $form->getErrors(),
+				'address' => $address_slug,
+		));
+	}
+	
+	/**
+	 *
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function step5Action(Request $request = NULL, $address = NULL)
+	{
+		$session = $this->getRequest()->getSession();
+	
+		$address_slug = $this->get('slugify')->slugify($address);
+	
+		$entity_manager = $this->getDoctrine()->getManager();
+	
+		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+	
+		$admin_candidacy = $admin_candidacy_repository->findOneBy(array('address' => $address_slug));
+	
+		if(empty($admin_candidacy))
+		{
+			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+					'error' => 'No existe la candidatura de administrador para cargar la dirección ' . $address_slug,
+			));
+		}
+	
+		$candidate_id = $session->get('candidate_id', NULL);
+	
+		if(empty($candidate_id))
+		{
+			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+					'error' => 'Sesión expirada. No existe el identificador de candidato para cargar la dirección ' . $address_slug,
+			));
+		}
+	
+		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
+	
+		$candidate = $candidate_repository->findOneById($candidate_id);
+	
+		if(empty($candidate))
+		{
+			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+					'error' => 'No existe el candidato de administrador para cargar la dirección ' . $address_slug,
+			));
+		}
+	
+		$form = $this->createForm(new CandidateStep5Type(), NULL, array(
+				'action' => $this->generateUrl('candidate_step5', array('address' => $address_slug)),
+				'method' => 'POST',
+		)
+		);
+	
+		$form->handleRequest($request);
+	
+		$ok = TRUE;
+		if ($form->isValid())
+		{
+			$town_activities = $form['town_activities']->getData();
+	
+			if(count($town_activities) > 3)
+			{
+				$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
+				$ok = FALSE;
+			}
+				
+			if($ok)
+			{
+				$session->set('candidate_town_activities', $town_activities);
+	
+				$candidate->setTownActivities($town_activities);
+	
+				$entity_manager->persist($candidate);
+				$entity_manager->flush();
+	
+				$form2 = $this->createForm(new CandidateStep6Type(), NULL, array(
+						'action' => $this->generateUrl('candidate_step6', array('address' => $address_slug)),
+						'method' => 'POST',
+				));
+	
+				$form2->handleRequest($request);
+	
+				return $this->render('MunicipalesBundle:Candidate:step6_govern_priorities.html.twig', array(
+						'address' => $address_slug,
+						'form' => $form2->createView()
+				)
+				);
+			}
+		}
+	
+		return $this->render('MunicipalesBundle:Candidate:step5_town_activities.html.twig', array(
 				'form' => $form->createView(),
 				'errors' => $form->getErrors(),
 				'address' => $address_slug,
