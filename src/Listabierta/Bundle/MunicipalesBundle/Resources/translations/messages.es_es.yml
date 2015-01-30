@@ -194,3 +194,11 @@ candidate:
     step6:      
         govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones)
         continue: Continuar
+        
+    step7:      
+        public_values_title: ¿Qué valores morales consideras de mayor importancia para el desempeño de la función pública? (elige hasta tres)
+        motivation_text_title: Describe tu motivación para presentarte
+        town_activities_explanation_title: Describe tu experiencia relacionada con (Introducir los campos seleccionados en “¿Has tenido alguna experiencia relacionada con el desempeño  municipal? Campos seleccionados
+        additional_info_title: Aporta alguna información adicional que consideres de importancia para tu candidatura
+        profile_image_title: Adjunta foto
+        continue: Continuar
