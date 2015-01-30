@@ -837,4 +837,126 @@ class CandidateController extends Controller
 				'address' => $address_slug,
 		));
 	}
+	
+	/**
+	 *
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function step7Action(Request $request = NULL, $address = NULL)
+	{
+		$session = $this->getRequest()->getSession();
+	
+		$address_slug = $this->get('slugify')->slugify($address);
+	
+		$entity_manager = $this->getDoctrine()->getManager();
+	
+		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+	
+		$admin_candidacy = $admin_candidacy_repository->findOneBy(array('address' => $address_slug));
+	
+		if(empty($admin_candidacy))
+		{
+			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+					'error' => 'No existe la candidatura de administrador para cargar la dirección ' . $address_slug,
+			));
+		}
+	
+		$candidate_id = $session->get('candidate_id', NULL);
+	
+		if(empty($candidate_id))
+		{
+			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+					'error' => 'Sesión expirada. No existe el identificador de candidato para cargar la dirección ' . $address_slug,
+			));
+		}
+	
+		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
+	
+		$candidate = $candidate_repository->findOneById($candidate_id);
+	
+		if(empty($candidate))
+		{
+			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+					'error' => 'No existe el candidato de administrador para cargar la dirección ' . $address_slug,
+			));
+		}
+	
+		$form = $this->createForm(new CandidateStep7Type(), NULL, array(
+				'action' => $this->generateUrl('candidate_step7', array('address' => $address_slug)),
+				'method' => 'POST',
+		)
+		);
+	
+		$form->handleRequest($request);
+	
+		$ok = TRUE;
+		if ($form->isValid())
+		{
+			$public_values = $form['public_values']->getData();
+			$motivation_text = $form['motivation_text']->getData();
+			$town_activities_explanation = $form['town_activities_explanation']->getData();
+			$additional_info = $form['additional_info']->getData();
+	
+			$profile_image = $form['profile_image']->getData();
+			
+			if(count($public_values) > 3)
+			{
+				$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
+				$ok = FALSE;
+			}
+			
+			$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/' . $candidate_id . '/photo';
+			
+			if($profile_image->isValid())
+			{
+				$profile_image_data = $profile_image->getData();
+			
+				if($profile_image_data->getClientMimeType() !== 'image/jpg' || $profile_image_data->getClientMimeType() !== 'image/png')
+				{
+					$form->addError(new FormError('MIMEType is not jpg or png, found: ' . $program_data->getClientMimeType()));
+					$ok = FALSE;
+				}
+			
+				if($ok)
+				{
+					$profile_image_data->move($documents_path, 'photo.jpg');
+				}
+			}
+			else
+			{
+				$form->addError(new FormError('profile image is not valid: ' . $profile_image_data->getErrorMessage()));
+				$ok = FALSE;
+			}
+	
+			if($ok)
+			{
+				$session->set('candidate_public_values', $public_values);
+				$session->set('candidate_motivation_text', $motivation_text);
+				$session->set('candidate_town_activities_explanation', $town_activities_explanation);
+				$session->set('candidate_additional_info', $additional_info);
+				
+				$session->set('candidate_profile_image', $profile_image);
+	
+				$candidate->setPublicValues($public_values);
+				$candidate->setMotivationText($public_values);
+				$candidate->setTownActivitiesExplanation($public_values);
+				$candidate->setAdditionalInfo($public_values);
+	
+				$entity_manager->persist($candidate);
+				$entity_manager->flush();
+	
+				return $this->render('MunicipalesBundle:Candidate:final_step.html.twig', array(
+						'address' => $address_slug,
+					)
+				);
+			}
+		}
+	
+		return $this->render('MunicipalesBundle:Candidate:step7_public_values.html.twig', array(
+				'form' => $form->createView(),
+				'errors' => $form->getErrors(),
+				'address' => $address_slug,
+		));
+	}
 }
