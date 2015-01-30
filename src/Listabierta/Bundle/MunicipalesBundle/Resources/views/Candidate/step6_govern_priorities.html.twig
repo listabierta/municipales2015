@@ -1,36 +1,54 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
 {% block title %}{{ 'candidate.html_title'|trans }}{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <script>
+    $(document).ready(function() 
+    {
+		$(document).on('submit','#candidate_step6', function(event)
+	    {
+		    if($("#candidate_step6 .countable[type='checkbox']:checked").length > 3)
+		    {
+		    	alert('Solo pueden seleccionarse hasta maximo 3 opciones');
+	    		// $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
+	    		event.preventDefault();
+		    }
+		    else
+		    {
+		    	return;
+		    }
+	    });
+    });
+    
+	</script>
+{% endblock %}
+
 {% block content %}
     <h1>{{ 'candidate.h1_title'|trans }}</h1>
     
     <p class="important">
     	<div>
-			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			{{ form_start(form, { 'attr': {'class': 'form_settings', 'id': 'candidate_step6'}}) }}
 			
 			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 			
 			<p>
-				¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones)
+				{{ 'candidate.step6.govern_priorities_title'|trans }}
 
-				Mejorar las funciones de gobierno del municipio
-				Mejorar la seguridad ciudadana
-				Luchar contra la pobreza y la exclusión social
-				Mejorar la atención sanitaria
-				Mejorar la gestión educativa y cultural
-				Atender a los problemas de vivienda, urbanismo e infraestructuras
-				Mejorar la sostenibilidad del municipio
-				Invertir en fomento del empleo
-				Aumentar la participación ciudadana en la gestión municipal
-				Mejorar los servicios de transporte
-				Invertir en actividades industriales, agrícolas o comerciales
-				Invertir en Investigación
-				Gestionar mejor la deuda y las operaciones financieras
-			
+				<table>
+				{% for child in form.govern_priorities %}
+					<tr>
+				        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td> 
+				        <td style="padding:5px">{{ form_label(child) }}</td>       
+				    </tr>
+				{% endfor %}
+				</table>
 			</p>
 			
 			<p>
-			    {{ form_widget(form.continue, { 'label': 'candidate.step4.continue'|trans }) }}
+			    {{ form_widget(form.continue, { 'label': 'candidate.step6.continue'|trans }) }}
 			</p>
 			
 			{{ form_rest(form) }}
