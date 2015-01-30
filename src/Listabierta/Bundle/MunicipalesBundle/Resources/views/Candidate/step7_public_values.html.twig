@@ -1,45 +1,83 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
 {% block title %}{{ 'candidate.html_title'|trans }}{% endblock %}
+
+{% form_theme form _self %}
+
+{% block checkbox_widget %}
+{% spaceless %}
+<input type="checkbox" style="width:25px" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+{% endspaceless %}
+{% endblock checkbox_widget %}
+
+{% block head %}
+    {{ parent() }}
+    <script>
+    $(document).ready(function() 
+    {
+		$(document).on('submit','#candidate_step7', function(event)
+	    {
+		    if($("#candidate_step7 .countable[type='checkbox']:checked").length > 3)
+		    {
+		    	alert('Solo pueden seleccionarse hasta maximo 3 opciones');
+	    		// $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
+	    		event.preventDefault();
+		    }
+		    else
+		    {
+		    	return;
+		    }
+	    });
+    });
+    
+	</script>
+{% endblock %}
+
 {% block content %}
     <h1>{{ 'candidate.h1_title'|trans }}</h1>
     
     <p class="important">
     	<div>
-			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+			{{ form_start(form, { 'attr': {'class': 'form_settings', 'id': 'candidate_step7'}}) }}
 			
 			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 			
 			<p>
-				¿Qué valores morales consideras de mayor importancia para el desempeño de la función pública? (elige hasta tres)
+				{{ 'candidate.step7.public_values_title'|trans }}
 
-				HONESTIDAD
-				TRANSPARENCIA
-				RESPETO
-				RESPONSABILIDAD
-				COMPROMISO
-				INTEGRIDAD
-				IGUALDAD
-				TOLERANCIA
-				COOPERACIÓN
-				SOLIDARIDAD
-				JUSTICIA
-				HUMILDAD
-			
+				<table>
+				{% for child in form.public_values %}
+					<tr>
+				        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td> 
+				        <td style="padding:5px">{{ form_label(child) }}</td>       
+				    </tr>
+				{% endfor %}
+				</table>
 			</p>
 			
 			<p>
-				Describe tu experiencia relacionada con (Introducir los campos seleccionados en “¿Has tenido alguna experiencia relacionada con el desempeño  municipal? (campos seleccionados 1, 2 y 3)”
-
-				Dejar en uno o dividir en tres
+				{{ 'candidate.step7.motivation_text_title'|trans }}<br />
+				{{ form_widget(form.motivation_text) }}
 			</p>
 			
 			<p>
-				Aporta alguna información adicional que consideres de importancia para tu candidatura (texto largo)
+				{{ 'candidate.step7.town_activities_explanation_title'|trans }}:<br />
+					1, 2 y 3
+				{{ form_widget(form.town_activities_explanation) }}
 			</p>
 			
 			<p>
-			    {{ form_widget(form.continue, { 'label': 'candidate.step4.continue'|trans }) }}
+				{{ 'candidate.step7.additional_info_title'|trans }}<br />
+				{{ form_widget(form.additional_info) }}
+			</p>
+			
+			<p>
+				{{ 'candidate.step7.profile_image_title'|trans }}<br />
+				{{ form_widget(form.profile_image) }}
+			</p>
+			
+			<p>
+			    {{ form_widget(form.continue, { 'label': 'candidate.step7.continue'|trans }) }}
 			</p>
 			
 			{{ form_rest(form) }}
