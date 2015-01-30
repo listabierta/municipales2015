@@ -188,6 +188,9 @@ candidate:
         continue: Continuar  
         
     step5:      
-        job_experience_title: ¿Cuál es el campo de tu experiencia laboral? (Seleccione hasta tres opciones)
+        town_activities_title: ¿Has tenido alguna experiencia relacionada con el desempeño municipal?  (Seleccione hasta tres opciones siempre que tu actividad incluya la coordinación o gestión de un grupo superior a las 10 personas, posteriormente tendrás que explicarlo)
         continue: Continuar
        
+    step6:      
+        govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones)
+        continue: Continuar
