@@ -663,8 +663,23 @@ class CandidacyController extends Controller
      */
     public function step6Action(Request $request = NULL)
     {
-    	// @todo fetch all Candidate for this town and admin_id
+    	// Fetch all Candidate for this town and admin_id
     	$candidates = array();
+    	
+    	$session = $this->getRequest()->getSession();
+    	$admin_id = $session->get('admin_id');
+    	
+    	if(empty($admin_id))
+    	{
+    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada',
+    		));
+    	}
+    	
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
+    	
+    	$candidates = $candidate_repository->findAll(array('admin_id' => $admin_id));
     	
     	$form_step7 = $this->createForm(new CandidacyStep7Type(), NULL, array(
     			'action' => $this->generateUrl('municipales_candidacy_step7'),
