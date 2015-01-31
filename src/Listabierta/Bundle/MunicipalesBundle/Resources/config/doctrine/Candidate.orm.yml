@@ -24,7 +24,11 @@ Listabierta\Bundle\MunicipalesBundle\Entity\Candidate:
         phone:
             type: string
             length: '20'
-            
+ 
+        admin_id:
+            type: integer
+            nullable: TRUE
+                       
         academic_level:
             type: integer
             nullable: TRUE

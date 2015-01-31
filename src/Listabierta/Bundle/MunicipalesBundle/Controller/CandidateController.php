@@ -104,6 +104,7 @@ class CandidateController extends Controller
 			$candidate->setDni($dni);
 			$candidate->setEmail($email);
 			$candidate->setPhone($phone);
+			$candidate->setAdminId($admin_candidacy->getId());
 			 
 			$entity_manager->persist($candidate);
 			$entity_manager->flush();
