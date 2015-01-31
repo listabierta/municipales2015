@@ -2,14 +2,6 @@
 
 {% block title %}{{ 'candidate.html_title'|trans }}{% endblock %}
 
-{% form_theme form _self %}
-
-{% block checkbox_widget %}
-{% spaceless %}
-<input type="checkbox" style="width:25px" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-{% endspaceless %}
-{% endblock checkbox_widget %}
-
 {% block content %}
     <h1>{{ 'candidate.h1_title'|trans }}</h1>
     
