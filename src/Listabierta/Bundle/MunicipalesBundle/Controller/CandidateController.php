@@ -899,7 +899,7 @@ class CandidateController extends Controller
 			$town_activities_explanation = $form['town_activities_explanation']->getData();
 			$additional_info = $form['additional_info']->getData();
 	
-			$profile_image = $form['profile_image']->getData();
+			$profile_image = $form['profile_image'];
 			
 			if(count($public_values) > 3)
 			{
@@ -907,15 +907,20 @@ class CandidateController extends Controller
 				$ok = FALSE;
 			}
 			
+			$admin_id = $admin_candidacy->getId();
+			$town = $admin_candidacy->getTown();
+			
+			$town_slug = $this->get('slugify')->slugify($town);
+			
 			$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/' . $candidate_id . '/photo';
 			
 			if($profile_image->isValid())
 			{
 				$profile_image_data = $profile_image->getData();
 			
-				if($profile_image_data->getClientMimeType() !== 'image/jpg' || $profile_image_data->getClientMimeType() !== 'image/png')
+				if($profile_image_data->getClientMimeType() !== 'image/jpg' && $profile_image_data->getClientMimeType() !== 'image/jpeg' && $profile_image_data->getClientMimeType() !== 'image/png')
 				{
-					$form->addError(new FormError('MIMEType is not jpg or png, found: ' . $program_data->getClientMimeType()));
+					$form->addError(new FormError('MIMEType is not jpg or png, found: ' . $profile_image_data->getClientMimeType()));
 					$ok = FALSE;
 				}
 			
@@ -935,17 +940,18 @@ class CandidateController extends Controller
 				$session->set('candidate_public_values', $public_values);
 				$session->set('candidate_motivation_text', $motivation_text);
 				$session->set('candidate_town_activities_explanation', $town_activities_explanation);
-				$session->set('candidate_additional_info', $additional_info);
+				$session->set('candidate_additional_info', $documents_path);
 				
-				$session->set('candidate_profile_image', $profile_image);
+				$session->set('candidate_profile_image', $documents_path);
 	
 				$candidate->setPublicValues($public_values);
-				$candidate->setMotivationText($public_values);
-				$candidate->setTownActivitiesExplanation($public_values);
-				$candidate->setAdditionalInfo($public_values);
+				$candidate->setMotivationText($motivation_text);
+				$candidate->setTownActivitiesExplanation($town_activities_explanation);
+				$candidate->setAdditionalInfo($additional_info);
 	
 				$entity_manager->persist($candidate);
 				$entity_manager->flush();
+				
 	
 				return $this->render('MunicipalesBundle:Candidate:final_step.html.twig', array(
 						'address' => $address_slug,
