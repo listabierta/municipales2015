@@ -4,10 +4,12 @@ namespace Listabierta\Bundle\MunicipalesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+
 /**
  * Candidate
  */
-class Candidate
+class Candidate implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
@@ -255,6 +257,10 @@ class Candidate
      */
     private $additional_info;
 
+    /**
+     * @var boolean
+     */
+    private $isActive;
 
     /**
      * Set job_experience
@@ -444,4 +450,99 @@ class Candidate
     {
         return $this->admin_id;
     }
+    
+
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+    	return $this->username;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+    	return null;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getPassword()
+    {
+    	return $this->password;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+    	return array('ROLE_USER');
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
+    
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+    	return serialize(array(
+    			$this->id,
+    			$this->username,
+    			$this->password,
+    	));
+    }
+    
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+    	list (
+    			$this->id,
+    			$this->username,
+    			$this->password,
+    	) = unserialize($serialized);
+    }
+    
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+    	return $this->isActive;
+    }
+    
+    public function isAccountNonExpired()
+    {
+    	return true;
+    }
+    
+    public function isAccountNonLocked()
+    {
+    	return true;
+    }
+    
+    public function isCredentialsNonExpired()
+    {
+    	return true;
+    }
+    
+    public function isEnabled()
+    {
+    	return $this->isActive;
+    }
+    
 }
