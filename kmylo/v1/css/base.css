@@ -1,0 +1,114 @@
+/* estilos sitio*/
+
+body
+{
+    background: url("../img/bg-01.jpg") no-repeat fixed center 0 #CECECE;
+    padding: 0;
+    color: #666;
+    color: #525252;
+    font-family: "Open Sans",sans-serif;
+    font-family: "Oswald",sans-serif;
+    font-weight: 300;
+    font-family:  georgia, serif;
+}
+.wrapper
+{
+    position: relative;
+
+}
+h2/*, h3, h4*/
+{
+ font-family: "Oswald",sans-serif;}
+.inverse
+{
+    color:#fff;
+}
+.featurette2.well.inverse
+{
+    background-color:#6d6d6d;
+    border-radius: 0px;
+    border: none;
+}
+.headline h2/*, .headline h3, .headline h4*/ {
+    border-bottom: 2px solid #e25311;
+   /* display: inline-block;*/
+    margin: 0 0 -2px;
+    padding-bottom: 6px;
+    text-transform: uppercase;
+    /*font-weight: 300;*/
+    color: #525252;
+}
+.featurette-heading-small {
+    font-size: 20px;
+    line-height: 28px;
+}
+/*nav*/
+.navbar-inverse2 .container {
+    background-color: #000;
+    border-color: #080808;
+}
+
+/*jumbotron*/
+.section-1 .container {
+    position: relative;
+}
+.txt-container {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.33);
+    border: 1px solid #fff;
+    color: #fff;
+    font-family: georgia;
+    font-style: italic;
+    letter-spacing: -2px;
+    font-size: 40px;
+    left: 50%;
+    margin-left: -25%;
+    margin-top: -80px;
+    padding: 0.3em;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 52%;
+}
+/*end jumbotron*/
+p
+{
+font-family:  georgia, serif;
+}
+
+.section-1 {
+    margin-top: 132px;
+}
+
+section .container
+{
+     background: none repeat scroll 0 0 #fff;
+}
+
+.section-1 .container {
+    padding: 0;
+    border-top: 1px solid #929292;
+    border-bottom: 3px solid #929292;
+}
+
+.section-2 .container {
+    background: none repeat scroll 0 0 #fff;
+     padding-top: 20px;
+}
+
+.min-featurette-divider
+{
+    border:none;
+}
+/*footer*/
+
+.footer-wrapper .footer {
+    background: none repeat scroll 0 0 #272727;
+    padding: 40px 0;
+}
+.footer-social a:hover, .footer-social a:focus {
+    color: #555;
+}
+.footer-social a {
+    color: #555;
+    font-size: 39px;
+}
