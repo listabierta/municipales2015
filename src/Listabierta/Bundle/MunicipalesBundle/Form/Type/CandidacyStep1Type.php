@@ -40,6 +40,28 @@ class CandidacyStep1Type extends AbstractType
         					new Assert\NotBlank(),
         					new DNI(),
         				)))
+        		->add('username', 'text', array(
+        				'required' => true,
+        				'constraints' => array(
+        						new Assert\NotBlank(),
+        						new Assert\Length(array(
+        								'min'        => 2,
+        								'max'        => 255,
+        								'minMessage' => 'Your username must be at least {{ limit }} characters long',
+        								'maxMessage' => 'Your username cannot be longer than {{ limit }} characters long',
+        						))
+        				)))
+        		->add('password', 'password', array(
+        				'required' => true,
+        				'constraints' => array(
+        						new Assert\NotBlank(),
+        						new Assert\Length(array(
+        								'min'        => 8,
+        								'max'        => 255,
+        								'minMessage' => 'Your password must be at least {{ limit }} characters long',
+        								'maxMessage' => 'Your password cannot be longer than {{ limit }} characters long',
+        						))
+        				)))
         	    ->add('email', 'email', array(
         	    		'required' => true, 
         				'constraints' => array(
