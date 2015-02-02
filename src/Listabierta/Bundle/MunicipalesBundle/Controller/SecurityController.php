@@ -25,7 +25,7 @@ class SecurityController extends Controller
         }
  
         return $this->render(
-            'MunicipalesBundle::Security:login.html.twig',
+            'MunicipalesBundle:Security:login.html.twig',
             array(
                 // last username entered by the user
                 'last_username' => $session->get(SecurityContext::LAST_USERNAME),
