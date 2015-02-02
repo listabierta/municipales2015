@@ -4,13 +4,15 @@ namespace Listabierta\Bundle\MunicipalesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * AdminCandidacy
  * 
  * @ORM\Entity
  * @ORM\Table(name="admin_candidacy")
  */
-class AdminCandidacy
+class AdminCandidacy implements UserInterface, \Serializable
 {
     /**
      * @var integer
@@ -66,6 +68,11 @@ class AdminCandidacy
      * @var string
      */
     private $from;
+    
+    public function __construct()
+    {
+    	$this->isActive = TRUE;
+    }
     
     /**
      * Get id
@@ -361,5 +368,132 @@ class AdminCandidacy
     public function getFromdate()
     {
         return $this->fromdate;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+    	return $this->username;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+    	return null;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getPassword()
+    {
+    	return $this->password;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+    	return array('ROLE_USER');
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
+    
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+    	return serialize(array(
+    			$this->id,
+    			$this->username,
+    			$this->password,
+    	));
+    }
+    
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+    	list (
+    			$this->id,
+    			$this->username,
+    			$this->password,
+    	) = unserialize($serialized);
+    }
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $password;
+
+    /**
+     * @var boolean
+     */
+    private $isActive;
+
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return AdminCandidacy
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return AdminCandidacy
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return AdminCandidacy
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 }
