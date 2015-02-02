@@ -6,21 +6,26 @@
     
     <p class="important">
     {% if candidates|length > 0 %}
-    
-		Tabla validacion
-		
-		Alicia
-		Se incluyen solo los campos de texto libre
-		 
-		OK (desplegable)
-		Juan
-		 
-		Motivo de invalidación (Se le envía un correo automáticamente explicando este motivo al candidato o candidata)
-		 
-		NO OK
-		Marcos
-		
-		Pendiente
+    	<table>
+		{% for candidate in candidates %}
+			<tr>
+				<td>{{ candidate.name }} {{ candidate.lastname }}</td> 
+				<td>{{ candidate.dni }}</td> 
+				<td>{{ candidate.email }}</td> 
+				<td>{{ candidate.phone }}</td> 
+				<td>{{ candidate.academic_level }}</td> 
+				<td>{{ dump(candidate.job_experience) }}</td> 
+				<td>{{ dump(candidate.town_activities) }}</td> 
+				<td>{{ dump(candidate.govern_priorities) }}</td> 
+				<td>{{ dump(candidate.public_values) }}</td> 
+				<td>{{ candidate.motivation_text }}</td> 
+				<td>{{ candidate.town_activities_explanation }}</td> 
+				<td>{{ candidate.additional_info }}</td> 
+				<td style="padding:5px">PHOTO</td>       
+				<td style="padding:5px">ESTADO</td>   
+			</tr>
+		{% endfor %}
+		</table>
 	{% else %}
 		{{ 'candidacy.step6.no_candidates'|trans }}
 	{% endif %}
