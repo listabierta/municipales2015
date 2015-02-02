@@ -140,3 +140,6 @@ login:
     defaults:  { _controller: MunicipalesBundle:Security:login }
 login_check:
     pattern:   /login_check
+    
+admin_logout:
+    pattern:   /logout
