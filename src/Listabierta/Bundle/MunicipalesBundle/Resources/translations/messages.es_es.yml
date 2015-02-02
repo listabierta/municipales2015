@@ -51,6 +51,8 @@ candidacy:
         name: Nombre 
         lastname: Apellidos
         dni: DNI
+        username: Usuario
+        password: Contraseña
         email: Email
         province: Provincia del municipio
         town: Nombre del municipio
