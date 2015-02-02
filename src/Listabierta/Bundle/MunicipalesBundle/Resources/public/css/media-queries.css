@@ -1,0 +1,84 @@
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	
+	.testimonials-icon-container { font-size: 280px; }
+	
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	
+	.section-description p { padding: 0; }
+	
+	.testimonials-icon-container, .counter-icon-container { font-size: 200px; }
+
+}
+
+@media (max-width: 767px) {
+	
+	.navbar>.container .navbar-brand { margin-left: 15px; }
+	.navbar-collapse { border: 0; }
+	.navbar-toggle { margin-top: 16px; }
+	.navbar-toggle .icon-bar { background: #fff; }
+	ul.navbar-nav li a { padding-top: 13px; padding-bottom: 13px; }
+	
+	.section-description p { padding: 0; }
+	
+	.divider-1 span { width: 200px; }
+	
+	.page-title-text { width: 100%; padding-left: 15px; padding-right: 15px; }
+	
+	.subscribe form input.subscribe-email, .subscribe form button { width: 95%; }
+	.subscribe form input.subscribe-email { margin-left: auto; margin-right: auto; }
+	
+	.counter-icon-container { display: none; }
+	
+	.counter-box { padding-bottom: 10px; }
+	
+	.testimonials { text-align: center; }
+	.testimonial-single-image { margin-left: 5px; margin-right: 5px; }
+	.testimonials-icon-container { display: none; }
+	
+	.about-box-left { width: 30%; }
+	
+	.about-box-1 .about-box-left { float: left; }
+	.about-box-1 .about-box-right { float: right; padding-left: 5%; padding-right: 0; text-align: left; }
+	.about-box-2 .about-box-left { float: right; }
+	.about-box-2 .about-box-right { float: left; padding-left: 0; padding-right: 5%; text-align: right; }
+	.about-box-3 .about-box-left { float: left; }
+	.about-box-3 .about-box-right { float: right; padding-left: 5%; padding-right: 0; text-align: left; }
+	.about-box-4 .about-box-left { float: right; }
+	.about-box-4 .about-box-right { float: left; padding-left: 0; padding-right: 5%; text-align: right; }
+	
+	.about-box-1 .about-social a,
+	.about-box-3 .about-social a { margin: 0 10px 0 0; }
+	.about-box-2 .about-social a,
+	.about-box-4 .about-social a { margin: 0 0 0 10px; }
+	
+	footer, .footer-copyright { text-align: center; }
+	.footer-copyright { padding-bottom: 15px; }
+
+}
+
+@media (max-width: 415px) {
+	
+	h1, h2 { font-size: 32px; }
+
+}
+
+
+/* Retina-ize images/icons */
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) {
+	
+	/* logo */
+    .navbar-brand {
+    	background-image: url(../img/logo@2x.png) !important; background-repeat: no-repeat !important; background-size: 113px 45px !important;
+    }
+	
+}
