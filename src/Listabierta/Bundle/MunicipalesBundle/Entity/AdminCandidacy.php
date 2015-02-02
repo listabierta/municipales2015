@@ -4,7 +4,8 @@ namespace Listabierta\Bundle\MunicipalesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * AdminCandidacy
@@ -12,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity
  * @ORM\Table(name="admin_candidacy")
  */
-class AdminCandidacy implements UserInterface, \Serializable
+class AdminCandidacy implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
@@ -72,6 +73,7 @@ class AdminCandidacy implements UserInterface, \Serializable
     public function __construct()
     {
     	$this->isActive = TRUE;
+    	$this->roles = new ArrayCollection();
     }
     
     /**
@@ -399,7 +401,7 @@ class AdminCandidacy implements UserInterface, \Serializable
      */
     public function getRoles()
     {
-    	return array('ROLE_USER');
+    	return array('ROLE_USER', 'ROLE_ADMIN');
     }
     
     /**
@@ -495,5 +497,25 @@ class AdminCandidacy implements UserInterface, \Serializable
     public function getIsActive()
     {
         return $this->isActive;
+    }
+    
+    public function isAccountNonExpired()
+    {
+    	return true;
+    }
+    
+    public function isAccountNonLocked()
+    {
+    	return true;
+    }
+    
+    public function isCredentialsNonExpired()
+    {
+    	return true;
+    }
+    
+    public function isEnabled()
+    {
+    	return $this->isActive;
     }
 }
