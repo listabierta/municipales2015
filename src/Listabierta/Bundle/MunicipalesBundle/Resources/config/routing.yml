@@ -134,3 +134,9 @@ municipales_sms_inbound_callback:
 municipales_sms_callback:
     path:     /sms/callback
     defaults: { _controller: MunicipalesBundle:SMSInbound:callback }
+    
+login:
+    pattern:   /login
+    defaults:  { _controller: MunicipalesBundle:Security:login }
+login_check:
+    pattern:   /login_check
