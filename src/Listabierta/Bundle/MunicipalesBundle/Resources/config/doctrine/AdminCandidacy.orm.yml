@@ -21,6 +21,20 @@ Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy:
         email:
             type: string
             length: 255
+            unique: TRUE
+        
+        username:
+            type: string
+            length: 25
+            unique: TRUE
+            
+        password:
+            type: string
+            length: 255
+           
+        isActive:
+            type: boolean
+                
         province:
             type: string
             length: 255
