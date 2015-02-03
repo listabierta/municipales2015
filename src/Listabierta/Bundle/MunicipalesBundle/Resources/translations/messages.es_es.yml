@@ -207,3 +207,9 @@ candidate:
         
     final_step:
         end: "¡Candidatura completada!"
+        
+login:
+    html_title: Login
+    username: Usuario
+    password: Contraseña
+    access: Acceder
