@@ -14,6 +14,9 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep5Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep6Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep7Type;
 
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStep3Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStep4Type;
+
 use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
 use Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy;
 
@@ -114,6 +117,8 @@ class CandidacyController extends Controller
     		$name     = $form['name']->getData();
     		$lastname = $form['lastname']->getData();
     		$dni      = $form['dni']->getData();
+    		$username = $form['username']->getData();
+    		$password = $form['password']->getData();
     		$email    = $form['email']->getData();
     		$province = $form['province']->getData();
     		$town     = $form['town']->getData();
@@ -147,6 +152,13 @@ class CandidacyController extends Controller
     			$admin_candidacy->setName($name);
     			$admin_candidacy->setLastname($lastname);
     			$admin_candidacy->setDni($dni);
+    			$admin_candidacy->setUsername($username);
+    			
+    			$factory = $this->get('security.encoder_factory');
+    			$encoder = $factory->getEncoder($admin_candidacy);
+    			$encodedPassword = $encoder->encodePassword($password, $admin_candidacy->getSalt());
+
+    			$admin_candidacy->setPassword($encodedPassword);
     			$admin_candidacy->setEmail($email);
     			$admin_candidacy->setProvince($province);
     			$admin_candidacy->setTown($town);
@@ -663,11 +675,29 @@ class CandidacyController extends Controller
      */
     public function step6Action(Request $request = NULL)
     {
+    	$admin_id = NULL;
+    	$session = $this->getRequest()->getSession();
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	
+    	$securityContext = $this->container->get('security.context');
+
+    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) 
+    	{
+    		$current_user = $securityContext->getToken()->getUser();
+    		
+    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
+    		{
+    			
+    			$admin_id = $current_user->getId();
+    		}
+    	}
+    	else
+    	{
+    		$admin_id = $session->get('admin_id');
+    	}
+    	
     	// Fetch all Candidate for this town and admin_id
     	$candidates = array();
-    	
-    	$session = $this->getRequest()->getSession();
-    	$admin_id = $session->get('admin_id');
     	
     	if(empty($admin_id))
     	{
@@ -676,7 +706,16 @@ class CandidacyController extends Controller
     		));
     	}
     	
-    	$entity_manager = $this->getDoctrine()->getManager();
+    	$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    	$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    	
+    	if(empty($admin_candidacy))
+    	{
+    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada',
+    		));
+    	}
+    	
     	$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
     	
     	$candidates = $candidate_repository->findAll(array('admin_id' => $admin_id));
@@ -704,10 +743,21 @@ class CandidacyController extends Controller
     		}
     	}
     	
+    	$town = $admin_candidacy->getTown();
+    		
+    	$town_slug = $this->get('slugify')->slugify($town);
+    	
+    	$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
+    	
+    	
+    	$form_step3 = $this->createForm(new CandidateStep3Type(), NULL, array());
+    	$form_step4 = $this->createForm(new CandidateStep4Type(), NULL, array());
+    	
     	return $this->render('MunicipalesBundle:Candidacy:step6.html.twig', array(
     			'form' => $form->createView(),
     			'form_step7' => $form_step7->createView(),
     			'candidates' => $candidates,
+    			'documents_path' => $documents_path,
     		)
     	);
     }
