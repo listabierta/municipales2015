@@ -7,20 +7,68 @@
     <p class="important">
     {% if candidates|length > 0 %}
     	<table>
+    		<tr>
+    			<td>Nombre y Apellidos</td>
+    			<td>DNI</td>
+    			<td>Email</td>
+    			<td>Telefono</td>
+    			<td>Nivel académico</td>
+    			<td>Idiomas</td>
+    			<td>Experiencia laboral</td>
+    			<td>Actividades municipales</td>
+    			<td>Prioridades gobierno</td>
+    			<td>Valores públicos</td>
+    			<td>Texto motivacional</td>
+    			<td>Explicación actividades municipales</td>
+    			<td>Información adicional</td>
+    			<td>Foto</td>
+    			<td>Acción</td>
+    		</tr>
 		{% for candidate in candidates %}
 			<tr>
 				<td>{{ candidate.name }} {{ candidate.lastname }}</td> 
 				<td>{{ candidate.dni }}</td> 
 				<td>{{ candidate.email }}</td> 
 				<td>{{ candidate.phone }}</td> 
-				<td>{{ candidate.academic_level }}</td> 
-				<td>{{ dump(candidate.job_experience) }}</td> 
-				<td>{{ dump(candidate.town_activities) }}</td> 
-				<td>{{ dump(candidate.govern_priorities) }}</td> 
-				<td>{{ dump(candidate.public_values) }}</td> 
-				<td>{{ candidate.motivation_text }}</td> 
-				<td>{{ candidate.town_activities_explanation }}</td> 
-				<td>{{ candidate.additional_info }}</td> 
+				
+				<td>
+					{% if candidate.academicLevel is defined %}
+						{% for academic_choice in form_step3.academic_level.vars.choices %}
+							{% if candidate.academicLevel == academic_choice.value %}
+								{{ academic_choice.label }}
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				</td> 
+				<td>
+					{% if candidate.languages is defined %}
+
+					{% for languages_candidate in candidate.languages %}
+						{% for languages_candidate_choice in form_step3.languages.vars.choices %}
+							{% if languages_candidate == languages_candidate_choice.value %}
+								{{ languages_candidate_choice.label }}
+							{% endif %}
+						{% endfor %}
+					{% endfor %}
+				{% endif %}
+				</td> 
+				<td>
+					{% if candidate.jobExperience is defined %}
+						{% for level in candidate.jobExperience %}
+							{% for job_experience_choice in form_step4.job_experience.vars.choices %}
+								{% if level == job_experience_choice.value %}
+									{{ job_experience_choice.label }}
+								{% endif %}
+							{% endfor %}
+						{% endfor %}
+					{% endif %}
+				</td> 
+				<td>{% if candidate.townActivities is defined %}{{ dump(candidate.townActivities) }}{% endif %}</td> 
+				<td>{% if candidate.governPriorities is defined %}{{ dump(candidate.governPriorities) }}{% endif %}</td> 
+				<td>{% if candidate.publicValues is defined %}{{ dump(candidate.publicValues) }}{% endif %}</td> 
+				<td>{% if candidate.motivationText is defined %}{{ candidate.motivationText }}{% endif %}</td> 
+				<td>{% if candidate.townActivitiesExplanation is defined %}{{ candidate.townActivitiesExplanation }}{% endif %}</td> 
+				<td>{% if candidate.additionalInfo is defined %}{{ candidate.additionalInfo }}{% endif %}</td> 
 				<td style="padding:5px">PHOTO</td>       
 				<td style="padding:5px">ESTADO</td>   
 			</tr>
