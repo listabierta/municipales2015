@@ -9,15 +9,6 @@
     	<table>
     		<tr>
     			<td>Nombre y Apellidos</td>
-    			<td>DNI</td>
-    			<td>Email</td>
-    			<td>Telefono</td>
-    			<td>Nivel académico</td>
-    			<td>Idiomas</td>
-    			<td>Experiencia laboral</td>
-    			<td>Actividades municipales</td>
-    			<td>Prioridades gobierno</td>
-    			<td>Valores públicos</td>
     			<td>Texto motivacional</td>
     			<td>Explicación actividades municipales</td>
     			<td>Información adicional</td>
@@ -27,50 +18,14 @@
 		{% for candidate in candidates %}
 			<tr>
 				<td>{{ candidate.name }} {{ candidate.lastname }}</td> 
-				<td>{{ candidate.dni }}</td> 
-				<td>{{ candidate.email }}</td> 
-				<td>{{ candidate.phone }}</td> 
-				
-				<td>
-					{% if candidate.academicLevel is defined %}
-						{% for academic_choice in form_step3.academic_level.vars.choices %}
-							{% if candidate.academicLevel == academic_choice.value %}
-								{{ academic_choice.label }}
-							{% endif %}
-						{% endfor %}
-					{% endif %}
-				</td> 
-				<td>
-					{% if candidate.languages is defined %}
-
-					{% for languages_candidate in candidate.languages %}
-						{% for languages_candidate_choice in form_step3.languages.vars.choices %}
-							{% if languages_candidate == languages_candidate_choice.value %}
-								{{ languages_candidate_choice.label }}
-							{% endif %}
-						{% endfor %}
-					{% endfor %}
-				{% endif %}
-				</td> 
-				<td>
-					{% if candidate.jobExperience is defined %}
-						{% for level in candidate.jobExperience %}
-							{% for job_experience_choice in form_step4.job_experience.vars.choices %}
-								{% if level == job_experience_choice.value %}
-									{{ job_experience_choice.label }}
-								{% endif %}
-							{% endfor %}
-						{% endfor %}
-					{% endif %}
-				</td> 
-				<td>{% if candidate.townActivities is defined %}{{ dump(candidate.townActivities) }}{% endif %}</td> 
-				<td>{% if candidate.governPriorities is defined %}{{ dump(candidate.governPriorities) }}{% endif %}</td> 
-				<td>{% if candidate.publicValues is defined %}{{ dump(candidate.publicValues) }}{% endif %}</td> 
 				<td>{% if candidate.motivationText is defined %}{{ candidate.motivationText }}{% endif %}</td> 
 				<td>{% if candidate.townActivitiesExplanation is defined %}{{ candidate.townActivitiesExplanation }}{% endif %}</td> 
 				<td>{% if candidate.additionalInfo is defined %}{{ candidate.additionalInfo }}{% endif %}</td> 
-				<td style="padding:5px">PHOTO</td>       
-				<td style="padding:5px">ESTADO</td>   
+				<td style="padding:5px"><img style="width:45px;height:45px" src="{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" /></td>       
+				<td style="padding:5px">
+					<a href="/candidate/accept/{{ candidate.id }}" title="Aceptar candidato {{ candidate.name }} {{ candidate.lastname }}">Aceptar</a>
+					<a href="/candidate/reject/{{ candidate.id }}" title="Rechazar candidato {{ candidate.name }} {{ candidate.lastname }}">Rechazar</a>
+				</td>   
 			</tr>
 		{% endfor %}
 		</table>
