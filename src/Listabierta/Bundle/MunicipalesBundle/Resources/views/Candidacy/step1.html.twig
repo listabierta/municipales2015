@@ -40,6 +40,18 @@
 			</p>
 			
 			<p>
+			    <span>{{ form_label(form.username, 'candidacy.step1.username'|trans) }}</span>
+			    <span>{{ form_errors(form.username) }}</span>
+			    {{ form_widget(form.username) }}
+			</p>
+			
+			<p>
+			    <span>{{ form_label(form.password, 'candidacy.step1.password'|trans) }}</span>
+			    <span>{{ form_errors(form.password) }}</span>
+			    {{ form_widget(form.password) }}
+			</p>
+			
+			<p>
 			    <span>{{ form_label(form.email, 'candidacy.step1.email'|trans) }}</span>
 			    <span>{{ form_errors(form.email) }}</span>
 			    {{ form_widget(form.email) }}
