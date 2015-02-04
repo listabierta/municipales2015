@@ -103,6 +103,14 @@ class CandidacyController extends Controller
     {
     	$session = $this->getRequest()->getSession();
     	
+    	$conditions = $session->get('conditions');
+    	
+    	// Check conditions in step 1 for avoid bad usage
+    	if(empty($conditions) || $conditions!= 'yes')
+    	{
+    		return $this->redirect($this->generateUrl('municipales_candidacy_step_conditions'), 301);
+    	}
+    	
     	$form = $this->createForm(new CandidacyStep1Type(), NULL, array(
     			'action' => $this->generateUrl('municipales_candidacy_step1'),
 			    'method' => 'POST',
