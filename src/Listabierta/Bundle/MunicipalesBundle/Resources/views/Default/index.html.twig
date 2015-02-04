@@ -8,49 +8,120 @@
     </style>
 {% endblock %}
 {% block content %}
-    <h1>{{ 'home.h1_title'|trans }}</h1>
-    
-    <div style="text-align:justify">
-    	<p class="important">{{ 'home.intro_p1'|trans }}</p>
-    	
-    	<p class="important">{{ 'home.intro_p2'|trans }}</p>
-    	
-		<p class="important">{{ 'home.intro_p3'|trans }}</p>
+
+<section class="section-1 destacado">
+    <div class="container">
+        <img class="img-responsive" src="{{ asset('bundles/municipales/img/destacado-01.jpg') }}" alt="{{ 'home.open_council'|trans }}">
+        <div class="txt-container"> 
+        	<span>{{ 'home.featured'|trans }}</span>
+        </div>
     </div>
-    
-    <div>
-    	<div style="float:left">
-    		<p class="important"><h3>{{ 'home.intro_p4'|trans }}</h3></p>
-    		
-    		<p class="important" style="font-weight:bold">{{ 'home.intro_p5'|trans }}</p>
-    		
-    		<div class="video"><iframe width="560" height="315" src="//www.youtube.com/embed/v-ysTeRE9lc" frameborder="0" allowfullscreen=""></iframe></div>
-    		
-    	</div>
-    	
-    	<div style="margin-left: 590px;position: relative;">
-		    <p class="important">
-		    	<span style="color: #009FBC;text-transform: uppercase;font: normal 87% arial;">{{ 'home.steps'|trans }}:</span> 
-		    </p>
-		    
-		    <p class="important">
-		        <ol>
-				  <li>{{ 'home.step_1'|trans }}</li>
-				  <li>{{ 'home.step_2'|trans }}</li>
-				  <li>{{ 'home.step_3'|trans }}</li>
-				  <li>{{ 'home.step_4'|trans }}</li>
-				  <li>{{ 'home.step_5'|trans }}</li>
-				  <li>{{ 'home.step_6'|trans }}</li>
-				  <li>{{ 'home.step_7'|trans }}</li>
-				  <li>{{ 'home.step_8'|trans }}</li>
-				  <li>{{ 'home.step_9'|trans }}</li>
-				</ol>
-		    </p>
-	    </div>
+</section>
+
+<section class="section-2">
+    <div class="container marketing">
+      <div class="headline"> <h2>{{ 'home.h1_title'|trans }}</h2></div>
+        <h3 class="featurette-headin"> <i>{{ 'home.who_h3'|trans }}</i>
+        </h3>
+        <p class="featurette-heading-small">
+          <b>Listabierta.org</b>
+            <span class="text-mutedo">
+                {{ 'home.intro_p1'|trans }}
+            </span>
+        </p>
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider2">
+<div class="row featurette3">
+      <div class="col-md-6">
+        
+        <p class="lead2">{{ 'home.intro_p2'|trans }}</p>
+      </div>
+      <div class="col-md-6">
+        <p class="lead2">{{ 'home.intro_p3'|trans }}</p></div>
     </div>
-    
-    <div style="text-align:center;padding:20px"><a style="border: 1px solid black;
-padding: 15px;
-color: white !important;
-background: black;"href="{{ path('municipales_candidacy_step_conditions') }}" title="{{ 'home.start_here'|trans }}">{{ 'home.start_here'|trans }}</a></div>
+    <hr class="featurette-divider2">
+ <!--    division -->
+ <div class="row featurette2">
+      <div class="col-md-6">
+        
+        <div class="headline"> <h2>Tutorial</h2></div><h3 class="featurette-headin"> <i>{{ 'home.who_h3'|trans }}</i>
+        </h3><p class="lead2">-{{ 'home.intro_p4'|trans }}</p>
+            <div class="embed-responsive embed-responsive-16by9">
+            <iframe  class="embed-responsive-item" src="https://www.youtube.com/embed/v-ysTeRE9lc"></iframe>
+            </div>
+      </div>
+          <hr class="featurette-divider2 visible-xs-block">
+      <div class="col-md-6">
+        
+        <div class="headline"> <h2>{{ 'home.steps_h2'|trans }}</h2></div>
+        <h3 class="featurette-headin"> <i>{{ 'home.steps'|trans }}:</i>
+        </h3>
+    <ul class="steps2">
+                      <li class="active" data-step="1">
+                        <span class="step">1</span>
+                        <span class="title">{{ 'home.step_1'|trans }}</span>
+                      </li>
+
+                      <li data-step="2">
+                        <span class="step">2</span>
+                        <span class="title">{{ 'home.step_2'|trans }}</span>
+                      </li>
+
+                      <li data-step="3">
+                        <span class="step">3</span>
+                        <span class="title">{{ 'home.step_3'|trans }}</span>
+                      </li>
+
+                      <li data-step="4">
+                        <span class="step">4</span>
+                        <span class="title">{{ 'home.step_4'|trans }}</span>
+                      </li>
+
+                        <li data-step="5">
+                        <span class="step">5</span>
+                        <span class="title">{{ 'home.step_5'|trans }}</span>
+                      </li>
+
+                        <li data-step="6">
+                        <span class="step">6</span>
+                        <span class="title">{{ 'home.step_6'|trans }}</span>
+                      </li>
+
+                        <li data-step="7">
+                        <span class="step">7</span>
+                        <span class="title">{{ 'home.step_7'|trans }}</span>
+                      </li>
+
+                        <li data-step="8">
+                        <span class="step">8</span>
+                        <span class="title">{{ 'home.step_8'|trans }}</span>
+                      </li>
+
+                        <li data-step="9">
+                        <span class="step">9</span>
+                        <span class="title">{{ 'home.step_9'|trans }}</span>
+                      </li>
+
+                    </ul>
+      </div>
+    </div>
+    <hr class="featurette-divider2">
+ <!--    division -->
+ <div class="row featurette2 well inverse">
+
+      <div class="col-md-6">
+      <h3 class="featurette-headin"> <i>{{ 'home.welcome'|trans }}</i>
+        </h3>
+      </div>
+      <div class="col-md-4 pull-right">
+        <button href="{{ path('municipales_candidacy_step_conditions') }}" class="btn btn-primary2" type="button">{{ 'home.start_here'|trans }}</button></div>
+    </div>
+
+    <!-- /END THE FEATURETTES -->
+
+  </div>
+  </section>
 {% endblock %}
+
