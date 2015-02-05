@@ -26,7 +26,6 @@
 			<link href="http://fonts.googleapis.com/css?family=Oswald:700,300,400" rel="stylesheet">
 			 
 			<link href="{{ asset('bundles/municipales/css/font-awesome.min.css') }}" rel="stylesheet">
-			<link href="{{ asset('bundles/municipales/elegant-font/code/style.css') }}" rel="stylesheet">
 			<link href="{{ asset('bundles/municipales/css/animate.css') }}" rel="stylesheet">
 			<link href="{{ asset('bundles/municipales/css/form-elements.css') }}" rel="stylesheet">
 			<link href="{{ asset('bundles/municipales/css/style.css') }}" rel="stylesheet">
@@ -46,7 +45,7 @@
             <title>{% block title %}{% endblock %}</title>
         {% endblock %}
     </head>
-    <body>
+    <body class="{% block bodyclass %}{% endblock %}">
     
     	<div class="wrapper">
   			<div class="navbar-wrapper2">
@@ -71,6 +70,11 @@
 
           					<div class="bfh-selectbox bfh-languages pull-right" data-language="es_ES" data-available="gl_ES,ca_ES,eu_ES,es_ES" data-flags="true" data-blank="false"></div>
 
+          					<div class="col-sm-2 header-social pull-right">
+		                        <a href="#"><i class="fa fa-facebook-square"></i></a>
+		                        <a href="#"><i class="fa fa-twitter-square"></i></a>
+		                        <a href="#"><i class="fa fa-google-plus-square"></i></a>
+		                    </div>
 					          {#
 					          	<div id="menubar" class="language-switcher">
 						    		<ul id="menu" class="lang-menu">
@@ -81,51 +85,7 @@
 									</ul>
 					    	    </div>
 					    	   #} 
-					    	   
-					    	  
-          
-					          {# <div class="hidden">
-					          		<div class="navbar-collapse collapse " id="navbar">
-					                      <ul class="nav navbar-nav pull-right">
-					                        <li class="active">
-					                          <a href="#">Home</a>
-					                        </li>
-					                        <li>
-					                          <a href="#about">About</a>
-					                        </li>
-					                        <li>
-					                          <a href="#contact">Contact</a>
-					                        </li>
-					                        <li class="dropdown">
-					                          <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">
-					                            Dropdown
-					                            <span class="caret"></span>
-					                          </a>
-					                          <ul role="menu" class="dropdown-menu">
-					                            <li>
-					                              <a href="#">Action</a>
-					                            </li>
-					                            <li>
-					                              <a href="#">Another action</a>
-					                            </li>
-					                            <li>
-					                              <a href="#">Something else here</a>
-					                            </li>
-					                            <li class="divider"></li>
-					                            <li class="dropdown-header">Nav header</li>
-					                            <li>
-					                              <a href="#">Separated link</a>
-					                            </li>
-					                            <li>
-					                              <a href="#">One more separated link</a>
-					                            </li>
-					                          </ul>
-					                        </li>
-					                      </ul>
-					                 </div>
-					              </div>
-					
-							         #}
+
 			         </div>
 			      </nav>
 		
@@ -163,12 +123,6 @@
 		<script src="{{ asset('bundles/municipales/js/ie10-viewport-bug-workaround.js') }}"></script>
 		<!-- Bootstrap Form Helpers -->
 		<script src="{{ asset('bundles/municipales/js/bootstrap-formhelpers.min.js') }}"></script>
-
-		<script>
-		  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-		    $($(e.target).attr('href')).find('.bfh-slider').val($($(e.target).attr('href')).find('.bfh-slider').val());
-		  });
-		</script>
 	 </div> <!-- div final -->
     </body>
 </html>
