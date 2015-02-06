@@ -6,14 +6,22 @@ body
     padding: 0;
     color: #666;
     color: #525252;
-    font-family: "Open Sans",sans-serif;
-    font-family: "Oswald",sans-serif;
-    font-weight: 300;
-    font-family:  georgia, serif;
+    /*font-family: "Open Sans",sans-serif;*/
+   /* font-family: "Oswald",sans-serif;*/
+    /*font-weight: 300;*/
+   /* font-family:  georgia, serif;*/
 }
 .wrapper
 {
-    position: relative;
+     padding-top: 64px;
+}
+.hidde-xs {
+    height: 45px;
+}
+.navbar-header h1,
+.navbar-header h2
+{
+    margin:10px 5px;
 
 }
 h2/*, h3, h4*/
@@ -28,6 +36,7 @@ h2/*, h3, h4*/
     background-color:#6d6d6d;
     border-radius: 0px;
     border: none;
+
 }
 .headline h2/*, .headline h3, .headline h4*/ {
     border-bottom: 2px solid #e25311;
@@ -44,14 +53,16 @@ h2/*, h3, h4*/
 }
 /*nav*/
 .navbar-inverse2 .container {
-    background-color: #000;
-    border-color: #080808;
+    background-color: #fff;
+    border-bottom: 2px solid #000;
+    border-color: #eee;
+}
+.navbar .header-social .fa {
+    color: #8a8a8a;
+    font-size: 31px;
 }
 
-/*jumbotron*/
-.section-1 .container {
-    position: relative;
-}
+
 .txt-container {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 0.33);
     border: 1px solid #fff;
@@ -59,7 +70,7 @@ h2/*, h3, h4*/
     font-family: georgia;
     font-style: italic;
     letter-spacing: -2px;
-    font-size: 40px;
+    font-size: 35px;
     left: 50%;
     margin-left: -25%;
     margin-top: -80px;
@@ -72,13 +83,20 @@ h2/*, h3, h4*/
 /*end jumbotron*/
 p
 {
+/*font-family:  georgia, serif;*/
+}
+.featurette-heading-small
+{
 font-family:  georgia, serif;
 }
 
 .section-1 {
-    margin-top: 132px;
+   /* margin-top: 132px;*/
 }
-
+/*jumbotron*/
+.section-1 .container {
+    position: relative;
+}
 section .container
 {
      background: none repeat scroll 0 0 #fff;
@@ -100,7 +118,11 @@ section .container
     border:none;
 }
 /*footer*/
-
+.footer-wrapper {
+   /* bottom: 0;
+    position: absolute;
+    width: 100%;*/
+}
 .footer-wrapper .footer {
     background: none repeat scroll 0 0 #272727;
     padding: 40px 0;
@@ -111,4 +133,66 @@ section .container
 .footer-social a {
     color: #555;
     font-size: 39px;
+}
+
+/*steps2*/
+
+.steps2{
+    list-style:none;
+    display:table;
+    width:100%;
+    padding:0;
+    margin:0;
+    position:relative
+}
+
+.steps2 li{
+    /*display:table-cell;
+    text-align:center;
+    width:1%*/
+    margin:10px 0;
+}
+
+.steps2 li .step{
+    border:5px solid #ced1d6;
+    color:#546474;
+    font-size:15px;
+    border-radius:100%;
+    background-color:#FFF;
+    position:relative;
+    z-index:2;
+    display:inline-block;
+    width:40px;
+    height:40px;
+    line-height:30px;
+    text-align:center
+}
+
+
+.layout-home .steps2 li .step {
+    background-color: #e25311;
+    border: 5px solid #dee1e6;
+    color: #fff;
+
+}
+.layout-home .steps2 .title {
+    border-bottom: 1px solid;
+    padding-bottom: 8px;
+}
+
+/*btns*/
+
+
+.btn,.btn-default,.btn:focus,.btn-default:focus{
+    background-color:#f26321!important;
+    border-color:#e25311;
+}
+
+.btn:hover,.btn-default:hover,.btn:active,.btn-default:active,.open .btn.dropdown-toggle,.open .btn-default.dropdown-toggle{
+    background-color:#B94B18!important;
+    border-color:#ad3f0d;
+}
+
+.btn-lg {
+    border-width: 1px;
 }

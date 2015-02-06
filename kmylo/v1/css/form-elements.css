@@ -9,6 +9,7 @@ textarea.form-control {
     border: 1px solid #666;
     font-family: 'Open Sans', sans-serif;
     font-size: 22px;
+     font-size: 13px;
     font-weight: 300;
     color: #fff;
     -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
@@ -19,7 +20,7 @@ textarea.form-control {
 input[type="text"]:focus, 
 textarea:focus, 
 textarea.form-control:focus {
-	outline: 0;
+    outline: 0;
     border: 1px solid #e89a3e;
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
@@ -30,18 +31,18 @@ input[type="text"]::-webkit-input-placeholder, textarea::-webkit-input-placehold
 
 
 button.btn {
-	height: 52px;
+    height: 52px;
     margin: 0;
     padding: 0 20px;
     vertical-align: middle;
-    background: #e89a3e;
+    /*background: #e89a3e;*/
     border: 0;
-    border-bottom: 5px solid #cc7a19;
+    /*border-bottom: 5px solid #cc7a19;*/
     font-family: 'Open Sans', sans-serif;
     font-size: 22px;
     font-weight: 300;
     color: #fff;
-    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    /*-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;*/
     text-shadow: none;
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
     -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
@@ -54,22 +55,26 @@ button.btn:hover {
 }
 
 button.btn:active {
-	outline: 0;
+    outline: 0;
     opacity: 0.6;
     color: #fff;
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
 
 button.btn:focus {
-	outline: 0;
-	opacity: 0.6;
-	background: #e89a3e;
-	color: #fff;
+    outline: 0;
+    opacity: 0.6;
+    background: #e89a3e;
+    color: #fff;
 }
 
 .btn:focus, .btn:active:focus, .btn.active:focus {
-	outline: 0;
-	opacity: 0.6;
-	background: #e89a3e;
-	color: #fff;
+    outline: 0;
+    opacity: 0.6;
+    background: #e89a3e;
+    color: #fff;
 }
+
+.form-control
+{ 
+height: 40px;}
