@@ -142,6 +142,7 @@ town:
     h1_title: Regístrate y registra el municipio de la candidatura
     
     step1:
+        header: Registrate como votante
         name: Nombre 
         lastname: Apellidos
         dni: DNI
