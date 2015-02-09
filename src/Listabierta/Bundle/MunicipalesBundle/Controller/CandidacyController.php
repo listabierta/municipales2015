@@ -134,7 +134,15 @@ class CandidacyController extends Controller
 
     		$entity_manager = $this->getDoctrine()->getManager();
     		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+
+    		$admin_username = $admin_candidacy_repository->findOneBy(array('username' => $username));
     		 
+    		if(!empty($admin_username))
+    		{
+    			$form->addError(new FormError('Ya existe un usuario registrado con el nombre de usuario ' . $username));
+    			$ok = FALSE;
+    		}
+    		
     		$admin_email = $admin_candidacy_repository->findOneBy(array('email' => $email));
     		 
     		if(!empty($admin_email))
