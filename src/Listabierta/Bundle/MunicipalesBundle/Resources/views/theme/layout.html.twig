@@ -39,9 +39,7 @@
 		    
             <link rel="stylesheet" href="{{ asset('bundles/municipales/css/styles.css') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/municipales/css/colorbox.css') }}" />
-            {# <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> #}
-            <script src="{{ asset('bundles/municipales/js/jquery.colorbox-min.js') }}" /></script>
-
+            
             <title>{% block title %}{% endblock %}</title>
         {% endblock %}
     </head>
@@ -67,8 +65,8 @@
 					              </a>
 					            </h1>
           					</div>
-
-          					<div class="bfh-selectbox bfh-languages pull-right" data-language="es_ES" data-available="gl_ES,ca_ES,eu_ES,es_ES" data-flags="true" data-blank="false"></div>
+							
+          					<div class="bfh-selectbox bfh-languages pull-right" data-language="{{ app.request.locale|default('es_ES') }}" data-available="gl_ES,ca_ES,eu_ES,es_ES" data-flags="true" data-blank="false"></div>
 
           					<div class="col-sm-2 header-social pull-right">
 		                        <a href="#"><i class="fa fa-facebook-square"></i></a>
@@ -123,6 +121,19 @@
 		<script src="{{ asset('bundles/municipales/js/ie10-viewport-bug-workaround.js') }}"></script>
 		<!-- Bootstrap Form Helpers -->
 		<script src="{{ asset('bundles/municipales/js/bootstrap-formhelpers.min.js') }}"></script>
+		
+		<script src="{{ asset('bundles/municipales/js/jquery.colorbox-min.js') }}" /></script>
+		<script>
+		$( document ).ready(function() 
+		{
+			$('.bfh-selectbox-options li a').click(function() {
+				  //console.log($(this).data('option')); 
+				  var path = '{{ path(app.request.get('_route'), app.request.get('_route_params', [])) }}';
+				  //console.log(path)
+				  window.location.href=path + '?_locale=' + $(this).data('option')
+			});
+		});
+		</script>							
 	 </div> <!-- div final -->
     </body>
 </html>
