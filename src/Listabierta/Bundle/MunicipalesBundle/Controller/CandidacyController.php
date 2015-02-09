@@ -267,7 +267,7 @@ class CandidacyController extends Controller
     			
     			if(empty($phone_status) || $phone_status->getTimestamp() == 0)
     			{
-	    			$form->addError(new FormError('El número de móvil aún no ha sido verificado'));
+	    			$form->addError(new FormError('El número de móvil <b>' . $phone . '</b> aún no ha sido verificado'));
 	    			$ok = FALSE;
     			}
     		}
