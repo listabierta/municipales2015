@@ -2,44 +2,98 @@
 
 {% block title %}{{ 'candidacy.step_verify.html_title'|trans }}{% endblock %}
 {% block content %}
-    <h1>{{ 'candidacy.step_verify.h1_title'|trans }}</h1>
-    
-    <p class="important">
-    	<div>
-			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
-			
-			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 
-			<div class="phone_verify">
-				{{ 'candidacy.verify_msg'|trans({'%sms_inbound_number%': sms_inbound_number}) }}
-			</div>
-			
-			<div style="clear:both">
-				<div style="float:left;margin-top:10px;"><a style="font: 100% arial;
-border: 0;
-width: 99px;
-margin: 0 0 0 212px;
-height: 33px;
-cursor: pointer;
-text-decoration:none !important;
-background: #3B3B3B;
-padding:10px;margin-left:0px;
-color: #FFF;" 
+
+    <section class="section-2">
+      <div class="container marketing">
+        <div class="headline">
+          <h2>{{ 'home.h1_title'|trans }}</h2>
+        </div>
+
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider2">
+        <!--    division -->
+        <div class="row featurette2">
+          <div class="widget-box">
+            
+
+            <div class="widget-body">
+              <div class="widget-main">
+              
+              	{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+              	
+                <div id="fuelux-wizard-container">
+                  {{ steps_widget(2) }}
+
+                  <div class="step-content pos-rel">
+                  
+                  {#}
+                  		<div class="alert alert-success">
+                          <button data-dismiss="alert" class="close" type="button">
+                            <i class="mine-icon fa fa-times"></i>
+                          </button> <strong><i class="mine-icon fa fa-check"></i>
+                            Well done!</strong> 
+                          You successfully read this important alert message.
+                          <br>
+                          </div>
+                          #}
+                          
+                    <div data-step="1" class="step-pane active row">
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'candidacy.step_verify.h1_title'|trans }}</h2><div class="col-sm-offset-3 col-md-6 well">
+
+			          <p class="lead2">{{ 'candidacy.step2.p1'|trans|raw }}</p>
+			          
+			          
+			          
+			          
+			          
+			          <p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
+						
+					  <p class="lead2 phone_verify">
+	
+						{{ 'candidacy.verify_msg'|trans({'%sms_inbound_number%': sms_inbound_number}) }}
+					 </p>
+			          
+			        </div>
+        
+
+                      
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+                <div class="wizard-actions">
+                
+                <div style="float:left;margin-top:10px;"><a style="
 					class="submit"
 					href="{{ path('municipales_candidacy_step1') }}" 
 					title="{{ 'candidacy.step_verify.previous'|trans }}">{{ 'candidacy.step_verify.previous'|trans }}</a>
 				</div>
-					
-				<div style="float:right">
-					<p>
-				    	{{ form_widget(form.continue, { 'label': 'candidacy.step_verify.continue'|trans }) }}
-					</p>	
-				</div>	
-			</div>
+				
+				
+                  <button class="btn btn-prev">
+                    <i class="mine-icon fa fa-arrow-left"></i>
+                    Anterior
+                  </button>
+
+                  {{ form_widget(form.continue, { 'label': 'candidacy.step_verify.continue'|trans }) }}
+                  <button class="btn btn-success btn-next" data-last="Finish">
+                    Siguiente
+                    <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+                  </button>
+                </div>
+              </div>
+              
+              {{ form_rest(form) }}
 			
-			{{ form_rest(form) }}
-			
-			{{ form_end(form) }}
-		</div>
-    </p>
+			  {{ form_end(form) }}
+              <!-- /.widget-main --> </div>
+            <!-- /.widget-body --> </div>
+        </div>
+
+        <!--    division -->
+
+        <!-- /END THE FEATURETTES --> </div>
 {% endblock %}
