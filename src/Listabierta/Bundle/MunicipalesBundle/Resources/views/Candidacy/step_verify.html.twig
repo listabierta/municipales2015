@@ -17,6 +17,9 @@
 
         <hr class="featurette-divider2">
         <!--    division -->
+        
+        {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+        
         <div class="row featurette2">
           <div class="widget-box">
             
@@ -24,7 +27,7 @@
             <div class="widget-body">
               <div class="widget-main">
               
-              	{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+              	
               	
                 <div id="fuelux-wizard-container">
                   {{ steps_widget(2) }}
@@ -68,13 +71,15 @@
                 </div>
               </div>
               
-              {{ form_rest(form) }}
-			
-			  {{ form_end(form) }}
+              
               <!-- /.widget-main --> </div>
             <!-- /.widget-body --> </div>
         </div>
 
+        {{ form_rest(form) }}
+			
+			  {{ form_end(form) }}
+			  
         <!--    division -->
 
         <!-- /END THE FEATURETTES --> </div>

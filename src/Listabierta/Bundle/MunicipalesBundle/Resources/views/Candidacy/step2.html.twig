@@ -19,10 +19,14 @@
         <!-- START THE FEATURETTES -->
 
         <hr class="featurette-divider2">
+        
+        {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+        
         <!--    division -->
         <div class="row featurette2">
           <div class="widget-box">
             
+            	
 
             <div class="widget-body">
               <div class="widget-main">
@@ -41,115 +45,86 @@
                   {% endif %}
                           
                     <div data-step="1" class="step-pane active row">
-                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'h1_title'|trans|raw }}</h2><div class="col-sm-offset-3 col-md-6 well">
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'candidacy.step2.h1_title'|trans|raw }}</h2><div class="col-sm-offset-3 col-md-6 well">
 
 			          <p class="lead2">{{ 'candidacy.step2.p1'|trans|raw }}</p>
 			        </div>
         
 
-
-                      
-
-                      
-                    </div>
-                  </div>
-                </div>
-
-                <hr>
-                <div class="wizard-actions">
-                  <button class="btn btn-prev">
-                    <i class="mine-icon fa fa-arrow-left"></i>
-                    Anterior
-                  </button>
-
-                  <button class="btn btn-success btn-next" data-last="Finish">
-                    Siguiente
-                    <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-                  </button>
-                </div>
-              </div>
-              <!-- /.widget-main --> </div>
-            <!-- /.widget-body --> </div>
-        </div>
-
-        <!--    division -->
-
-        <!-- /END THE FEATURETTES --> </div>
-
-	
-
-	{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
-			
-	<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
-	
-	<div>
-		<p>
+	<div class="form-group">
 			{{ form_label(form.program, 'candidacy.step2.program'|trans) }} <a 
 			href="{{ asset('bundles/municipales/pdf/program_example.pdf') }}" 
 			title="{{ 'candidacy.step2.program'|trans }}">Ejemplo</a>
 			<span>{{ form_errors(form.program) }}</span>
 			{{ form_widget(form.program) }}
-		</p>
 	</div>
 	  
-	<div>
-		<p>
+	<div class="form-group">
 			{{ form_label(form.legal_conditions, 'candidacy.step2.legal_conditions'|trans) }} <a 
 			href="{{ asset('bundles/municipales/pdf/legal_conditions_example.pdf') }}" 
 			title="{{ 'candidacy.step2.legal_conditions'|trans }}">Ejemplo</a>
 			<span>{{ form_errors(form.legal_conditions) }}</span>
 			{{ form_widget(form.legal_conditions) }}
-		</p>  
 	</div>    
 	
-	<div>
-		<p>
+	<div class="form-group">
 			{{ form_label(form.recall_term, 'candidacy.step2.recall_term'|trans) }} <a 
 			href="{{ asset('bundles/municipales/pdf/recall_term_example.pdf') }}" 
 			title="{{ 'candidacy.step2.recall_term'|trans }}">Ejemplo</a>
 			<span>{{ form_errors(form.recall_term) }}</span>
 			{{ form_widget(form.recall_term) }}
-		</p> 
 	</div>
 
-	<div>
-		<p>
+	<div class="form-group">
 			{{ form_label(form.participatory_term, 'candidacy.step2.participatory_term'|trans) }} <a 
 			href="{{ asset('bundles/municipales/pdf/participatory_term_example.pdf') }}" 
 			title="{{ 'candidacy.step2.participatory_term'|trans }}">Ejemplo</a>
 			<span>{{ form_errors(form.participatory_term) }}</span>
 			{{ form_widget(form.participatory_term) }}
-		</p> 
 	</div>
 	
-	<div>
-		<p>
+	<div class="form-group">
 			{{ form_label(form.voter_conditions, 'candidacy.step2.voter_conditions'|trans) }} <a 
 			href="{{ asset('bundles/municipales/pdf/voter_conditions_example.pdf') }}" 
 			title="{{ 'candidacy.step2.voter_conditions'|trans }}">Ejemplo</a>
 			<span>{{ form_errors(form.voter_conditions) }}</span>
 			{{ form_widget(form.voter_conditions) }}
-		</p> 
 	</div>
 
-	<div>
-		<p>
+	<div class="form-group">
 			{{ form_label(form.technical_constrains, 'candidacy.step2.technical_constrains'|trans) }} <a 
 			href="{{ asset('bundles/municipales/pdf/technical_constrains_example.pdf') }}" 
 			title="{{ 'candidacy.step2.technical_constrains'|trans }}">Ejemplo</a>
 			<span>{{ form_errors(form.technical_constrains) }}</span>
 			{{ form_widget(form.technical_constrains) }}
-		</p> 
 	</div>
+					</div>
+                  </div>
+                </div>
+                
+<hr>
+                <div class="wizard-actions">
+                  <button class="btn btn-prev" onclick="parent.location='{{ path('municipales_candidacy_step_verify') }}'">
+                    <i class="mine-icon fa fa-arrow-left"></i>
+                    {{ 'candidacy.step2.previous'|trans }}
+                  </button>
+                  
+					{{ form_widget(form.continue, { 'label': 'candidacy.step2.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
+                  
+                </div>
 
-	<p>
-	</p>
-			
-	<p>
-		{{ form_widget(form.continue, { 'label': 'candidacy.step2.continue'|trans }) }}
-	</p>
-			
-	{{ form_rest(form) }}
+              </div>
+              <!-- /.widget-main --> </div>
+            <!-- /.widget-body --> </div>
+        </div>
+
+        {{ form_rest(form) }}
 			
 	{{ form_end(form) }}
+	
+        <!--    division -->
+
+        <!-- /END THE FEATURETTES --> </div>
+
+	
 {% endblock %}
