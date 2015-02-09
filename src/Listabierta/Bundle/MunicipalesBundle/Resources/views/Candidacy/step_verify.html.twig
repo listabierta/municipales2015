@@ -30,12 +30,14 @@
 
                   <div class="step-content pos-rel">
                   
+				  {% if not form.vars.valid %}
                   <div class="alert alert-danger">
                           <button data-dismiss="alert" class="close" type="button">
                             <i class="mine-icon fa fa-times"></i>
                           </button>
                           {{ form_errors(form) }}
                   </div>
+                  {% endif %}
                           
                     <div data-step="1" class="step-pane active row">
                       <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'candidacy.step_verify.h1_title'|trans }}</h2><div class="col-sm-offset-3 col-md-6 well">

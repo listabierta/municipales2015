@@ -29,16 +29,14 @@
 
                   <div class="step-content pos-rel">
                   
-                  {#}
-                  		<div class="alert alert-success">
+				  {% if not form.vars.valid %}
+                  <div class="alert alert-danger">
                           <button data-dismiss="alert" class="close" type="button">
                             <i class="mine-icon fa fa-times"></i>
-                          </button> <strong><i class="mine-icon fa fa-check"></i>
-                            Well done!</strong> 
-                          You successfully read this important alert message.
-                          <br>
-                          </div>
-                          #}
+                          </button>
+                          {{ form_errors(form) }}
+                  </div>
+                  {% endif %}
                           
                     <div data-step="1" class="step-pane active row">
                       <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'h1_title'|trans|raw }}</h2><div class="col-sm-offset-3 col-md-6 well">

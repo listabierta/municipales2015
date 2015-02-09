@@ -33,7 +33,14 @@
     
     {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
 			
-	<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
+	{% if not form.vars.valid %}
+                  <div class="alert alert-danger">
+                          <button data-dismiss="alert" class="close" type="button">
+                            <i class="mine-icon fa fa-times"></i>
+                          </button>
+                          {{ form_errors(form) }}
+                  </div>
+                  {% endif %}
 	
 	<p class="important">{{ 'candidacy.step_conditions.p1_title'|trans }}:</p>
 				
