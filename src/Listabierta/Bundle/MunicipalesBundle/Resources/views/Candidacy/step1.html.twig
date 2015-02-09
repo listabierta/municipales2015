@@ -21,6 +21,10 @@
 <section class="section-2">
       <div class="container marketing">
         
+        <div class="headline">
+          <h2>{{ 'home.step_h2'|trans }} 1</h2>
+        </div><h3 class="featurette-headin"> <i>{{ 'home.step_1'|trans }}</i>
+        </h3>
 
         <!-- START THE FEATURETTES -->
 
@@ -34,6 +38,8 @@
               <div class="widget-main">
                 <div id="fuelux-wizard-container">
                   {{ steps_widget(1) }}
+                  
+                  <hr>
 
                   {{ form_start(form, { 'attr': {'class': 'form_settings form-horizontal col-xs-12'}}) }}
                   
