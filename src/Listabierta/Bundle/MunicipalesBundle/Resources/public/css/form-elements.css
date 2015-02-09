@@ -20,7 +20,7 @@ textarea.form-control {
 input[type="text"]:focus, 
 textarea:focus, 
 textarea.form-control:focus {
-	outline: 0;
+    outline: 0;
     border: 1px solid #e89a3e;
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
@@ -31,7 +31,7 @@ input[type="text"]::-webkit-input-placeholder, textarea::-webkit-input-placehold
 
 
 button.btn {
-	height: 52px;
+    height: 52px;
     margin: 0;
     padding: 0 20px;
     vertical-align: middle;
@@ -55,24 +55,24 @@ button.btn:hover {
 }
 
 button.btn:active {
-	outline: 0;
+    outline: 0;
     opacity: 0.6;
     color: #fff;
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
 
 button.btn:focus {
-	outline: 0;
-	opacity: 0.6;
-	background: #e89a3e;
-	color: #fff;
+    outline: 0;
+    opacity: 0.6;
+    background: #e89a3e;
+    color: #fff;
 }
 
 .btn:focus, .btn:active:focus, .btn.active:focus {
-	outline: 0;
-	opacity: 0.6;
-	background: #e89a3e;
-	color: #fff;
+    outline: 0;
+    opacity: 0.6;
+    background: #e89a3e;
+    color: #fff;
 }
 
 .form-control
