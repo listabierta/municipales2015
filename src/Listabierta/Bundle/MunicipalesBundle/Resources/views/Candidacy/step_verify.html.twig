@@ -30,35 +30,22 @@
 
                   <div class="step-content pos-rel">
                   
-                  {#}
-                  		<div class="alert alert-success">
+                  <div class="alert alert-danger">
                           <button data-dismiss="alert" class="close" type="button">
                             <i class="mine-icon fa fa-times"></i>
-                          </button> <strong><i class="mine-icon fa fa-check"></i>
-                            Well done!</strong> 
-                          You successfully read this important alert message.
-                          <br>
-                          </div>
-                          #}
+                          </button>
+                          {{ form_errors(form) }}
+                  </div>
                           
                     <div data-step="1" class="step-pane active row">
                       <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'candidacy.step_verify.h1_title'|trans }}</h2><div class="col-sm-offset-3 col-md-6 well">
 
-			          <p class="lead2">{{ 'candidacy.step2.p1'|trans|raw }}</p>
-			          
-			          
-			          
-			          
-			          
-			          <p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
-						
 					  <p class="lead2 phone_verify">
 	
 						{{ 'candidacy.verify_msg'|trans({'%sms_inbound_number%': sms_inbound_number}) }}
 					 </p>
 			          
 			        </div>
-        
 
                       
                     </div>
@@ -67,24 +54,14 @@
 
                 <hr>
                 <div class="wizard-actions">
-                
-                <div style="float:left;margin-top:10px;"><a style="
-					class="submit"
-					href="{{ path('municipales_candidacy_step1') }}" 
-					title="{{ 'candidacy.step_verify.previous'|trans }}">{{ 'candidacy.step_verify.previous'|trans }}</a>
-				</div>
-				
-				
-                  <button class="btn btn-prev">
-                    <i class="mine-icon fa fa-arrow-left"></i>
-                    Anterior
-                  </button>
 
-                  {{ form_widget(form.continue, { 'label': 'candidacy.step_verify.continue'|trans }) }}
-                  <button class="btn btn-success btn-next" data-last="Finish">
-                    Siguiente
-                    <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+				  <button class="btn btn-prev" onclick="parent.location='{{ path('municipales_candidacy_step1') }}'">
+                    <i class="mine-icon fa fa-arrow-left"></i>
+                    {{ 'candidacy.step_verify.previous'|trans }}
                   </button>
+                  
+                  {{ form_widget(form.continue, { 'label': 'candidacy.step_verify.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
+
                 </div>
               </div>
               
