@@ -50,7 +50,7 @@ candidacy:
       p5_content: Que mediante el acto de registro estás dando tu consentimiento expreso al tratamiento de los datos personales que aportas, según lo dispuesto en el artículo 6 de la LOPD y que podrás ejercer tus derechos en los términos dispuestos por el artículo 5 de la LOPD.
       p6_content: Que la información que aportas durante el registro es cierta, tanto los datos personales como las condiciones de la votación, de la candidatura y su programa. Ten en cuenta que no podrás modificarla más adelante, ya que los datos de registro se utilizan para identificarte como usuario único.
       accept: ACEPTAS ESTAS CONDICIONES
-      continue: Continuar
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
       
     step1:
         name: Nombre 
@@ -62,7 +62,8 @@ candidacy:
         province: Provincia del municipio
         town: Nombre del municipio
         phone: Número de móvil
-        continue: Continuar
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
         explanation: Explicación
 
