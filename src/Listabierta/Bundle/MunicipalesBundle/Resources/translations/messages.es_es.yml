@@ -70,7 +70,7 @@ candidacy:
     step_verify:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Verifica tu número de móvil
-        continue: Continuar
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
         
     step2:
@@ -85,12 +85,13 @@ candidacy:
         participatory_term: El mandato participativo del candidato
         voter_conditions: Las condiciones para poder participar como votante (censo y aceptación del sistema de votación)
         technical_constrains: Las limitaciones técnicas y legales del sistema de voto.
-        continue: Continuar
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
                       
     step3:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Establece los plazos de presentación de candidaturas
-        continue: Continuar
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         explanation_date: Plazo de presentación de candidaturas (mínimo una semana, se recomiendan 15 días) 
         from_label: DE
         to_label: HASTA  
@@ -98,18 +99,20 @@ candidacy:
     step4:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Reserva una dirección de internet
-        continue: Continuar
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
         
     step5:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Alta de candidatos y candidatas
-        continue: Continuar
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
         explanation_link: Proporciona este enlace público a los candidatos y candidatas para que se den de alta rellenando el formulario que les aparecerá
         
     step6:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Validación de candidatos y candidatas  
-        continue: Continuar
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         no_candidates: En estos momentos no existe ningun candidato inscrito para validar
         
     step7:
@@ -126,7 +129,7 @@ candidacy:
     step8:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Verificación del voto y resultados
-        continue: Continuar
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         explanation: Explicación del sellado de tiempo de Tractis y su verificación externa
         
     step9:
