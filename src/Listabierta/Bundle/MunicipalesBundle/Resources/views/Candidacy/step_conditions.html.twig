@@ -1,7 +1,34 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
 {% block title %}{{ 'candidacy.step4.html_title'|trans }}{% endblock %}
+
+{% form_theme form 'MunicipalesBundle:theme:forms.html.twig' %}
+
+{% from 'MunicipalesBundle:macros:steps.html.twig' import steps_widget %}
+
 {% block content %}
+
+
+<section class="section-2">
+      <div class="container marketing">
+        
+
+        <!-- START THE FEATURETTES -->
+
+        
+        <!--    division -->
+        <div class="row featurette2">
+          <div class="widget-box">
+            
+
+            <div class="widget-body">
+              <div class="widget-main">
+                <div id="fuelux-wizard-container">
+                  
+					{{ steps_widget(1) }}
+
+
+
     <h1>{{ 'candidacy.step_conditions.h1_title'|trans }}</h1>
     
     {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
@@ -36,7 +63,7 @@
 		</div>
 		<div style="clear:both;margin-top:20px">
 			<p style="text-align:center">
-				{{ form_widget(form.continue, { 'label': 'candidacy.step_conditions.continue'|trans }) }}
+				{{ form_widget(form.continue, { 'label': 'candidacy.step_conditions.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
 			</p>
 		</div>
 	</div>
@@ -44,5 +71,14 @@
 	{{ form_rest(form) }}
 			
 	{{ form_end(form) }}
+	
+	        <!-- /.widget-main --> </div>
+            <!-- /.widget-body --> </div>
+        </div>
+
+        <!--    division -->
+
+        <!-- /END THE FEATURETTES --> </div>
+    </section>
 	
 {% endblock %}
