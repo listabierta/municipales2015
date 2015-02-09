@@ -24,7 +24,7 @@ class SMSInboundController extends Controller
 		$message_timestamp = $query->get('message-timestamp', NULL);
 
 		// Remove prefix (34) (spain)
-		$phone = strlen($msisdn) > 9 ? substr($msisdn, 2, strlen($msisdn)) : $msisdn;
+		$phone = strlen($msisdn) > 9 && substr($msisdn, 0, 2) == '34' ? substr($msisdn, 2, strlen($msisdn)) : $msisdn;
 
 		// Look the phone and mail to verify
 		$entity_manager = $this->getDoctrine()->getManager();
@@ -82,7 +82,7 @@ class SMSInboundController extends Controller
 		$message_timestamp = $query->get('message-timestamp', NULL);
 
 		// Remove prefix (34) (spain)
-		$phone = strlen($msisdn) > 9 ? substr($msisdn, 2, strlen($msisdn)) : $msisdn;
+		$phone = strlen($msisdn) > 9 && substr($msisdn, 0, 2) == '34' ? substr($msisdn, 2, strlen($msisdn)) : $msisdn;
 
 		// Look the phone and mail to verify
 		$entity_manager = $this->getDoctrine()->getManager();
