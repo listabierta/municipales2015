@@ -101,7 +101,7 @@ class CandidacyStep1Type extends AbstractType
         						'maxMessage' => 'Your phone cannot be longer than {{ limit }} characters long',
         						))
         				)))
-	            ->add('continue', 'submit', array('attr' => array('class' => 'submit')));
+	            ->add('continue', 'submit');
     }
 	
     public function setDefaultOptions(OptionsResolverInterface $resolver)
