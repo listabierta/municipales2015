@@ -22,6 +22,10 @@ framework:
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
+        
+        # Retain cookie for CSRF while session is open. See http://blog.arithm.com/2014/05/01/know-your-csrf-timeouts/
+        # http://symfony.com/doc/current/reference/configuration/framework.html#reference-framework-form
+        cookie_lifetime: 0
     fragments:       ~
     http_method_override: true
 
