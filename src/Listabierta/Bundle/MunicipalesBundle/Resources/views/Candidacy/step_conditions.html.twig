@@ -12,10 +12,15 @@
 <section class="section-2">
       <div class="container marketing">
         
-
+        <div class="headline">
+          <h2>{{ 'home.step_h2'|trans }} 1</h2>
+        </div><h3 class="featurette-headin"> <i>{{ 'candidacy.step_conditions.h1_title'|trans }}</i>
+        </h3>
+        
         <!-- START THE FEATURETTES -->
 
-        
+            {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+
         <!--    division -->
         <div class="row featurette2">
           <div class="widget-box">
@@ -27,65 +32,88 @@
                   
 					{{ steps_widget(1) }}
 
-
-
-    <h1>{{ 'candidacy.step_conditions.h1_title'|trans }}</h1>
-    
-    {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
-			
-	{% if not form.vars.valid %}
-                  <div class="alert alert-danger">
-                          <button data-dismiss="alert" class="close" type="button">
-                            <i class="mine-icon fa fa-times"></i>
-                          </button>
-                          {{ form_errors(form) }}
-                  </div>
-                  {% endif %}
-	
-	<p class="important">{{ 'candidacy.step_conditions.p1_title'|trans }}:</p>
-				
-	<div style="text-align:justify">
-		<ul>
-			<li>- {{ 'candidacy.step_conditions.p1_content'|trans }}</li>
-		
-			<li>- {{ 'candidacy.step_conditions.p2_content'|trans }}</li>
-		
-			<li>- {{ 'candidacy.step_conditions.p3_content'|trans }}</li>
-		
-			<li>- {{ 'candidacy.step_conditions.p4_content'|trans }}</li>
-			
-			<li>- {{ 'candidacy.step_conditions.p4_content'|trans }}</li>
-		
-			<li>- {{ 'candidacy.step_conditions.p5_content'|trans }}</li>
-			
-			<li>- {{ 'candidacy.step_conditions.p6_content'|trans }}</li>
-		</ul>
-	</div>
-	
-    <div class="important" style="text-align:center">
-    	<div>{{ 'candidacy.step_conditions.accept'|trans }}</div>
-    	<div style="clear:both;text-align:center;margin: 0 auto;margin-top:20px">
-			{{ form_widget(form.conditions) }}
-			{{ form_errors(form.conditions) }}
-		</div>
-		<div style="clear:both;margin-top:20px">
-			<p style="text-align:center">
-				{{ form_widget(form.continue, { 'label': 'candidacy.step_conditions.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
-			</p>
-		</div>
-	</div>
-			
-	{{ form_rest(form) }}
-			
-	{{ form_end(form) }}
-	
 	        <!-- /.widget-main --> </div>
             <!-- /.widget-body --> </div>
-        </div>
-
+            
+                   
+                  </div>
+              </div>
         <!--    division -->
+			
 
-        <!-- /END THE FEATURETTES --> </div>
-    </section>
+        <!-- /END THE FEATURETTES --> </div>           
+            
+            <div class="row">
+
+  				<div class="col-xs-9 col-xs-offset-2">                  
+
+            		<div class="center-block">
+            		 	{% if not form.vars.valid and form.vars.errors|length > 0 %}
+					                  <div class="alert alert-danger">
+					                          <button data-dismiss="alert" class="close" type="button">
+					                            <i class="mine-icon fa fa-times"></i>
+					                          </button>
+					                          {{ form_errors(form) }}
+					                  </div>
+					    {% endif %}
+    
+                    	<h3 class="header smaller lighter blue col-xs-10">{{ 'candidacy.step_conditions.p1_title'|trans }}:</h3>
+                  
+              			<div class="">
+                  
+							<ul class="list-unstyled sans col-sm-10">
+								<li>- {{ 'candidacy.step_conditions.p1_content'|trans }}</li>
+							
+								<li>- {{ 'candidacy.step_conditions.p2_content'|trans }}</li>
+							
+								<li>- {{ 'candidacy.step_conditions.p3_content'|trans }}</li>
+							
+								<li>- {{ 'candidacy.step_conditions.p4_content'|trans }}</li>
+								
+								<li>- {{ 'candidacy.step_conditions.p4_content'|trans }}</li>
+							
+								<li>- {{ 'candidacy.step_conditions.p5_content'|trans }}</li>
+								
+								<li>- {{ 'candidacy.step_conditions.p6_content'|trans }}</li>
+							</ul>
+						</div>
+                    </div>
+                    
+                    <div class="clearfix"></div>
+
+                    <div class="widget-box">
+
+                        <div class="widget-body">
+                          <div class="widget-main text-center">
+	                          <div>{{ 'candidacy.step_conditions.accept'|trans }}</div>
+	                          <hr class="featurette-divider2">
+	                          
+						      <div class="control-group" style="clear:both;text-align:center;margin: 0 auto;margin-top:20px">
+									{{ form_widget(form.conditions) }}
+									{{ form_errors(form.conditions) }}
+							  </div>
+
+			
+						  </div>
+                        </div>
+                        
+                    	<div class=" form-actions">
+		                    <div class="text-center">
+		                      {{ form_widget(form.continue, { 'label': 'candidacy.step_conditions.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
+		
+		                      &nbsp; &nbsp; &nbsp;
+		                      
+		                    </div>
+                  		</div>
+                    </div>
+                 </div>
+              </div>  
+
+            
+            	{{ form_rest(form) }}
+			
+	{{ form_end(form) }}
+
+</section>
 	
 {% endblock %}
