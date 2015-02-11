@@ -594,7 +594,15 @@ class CandidacyController extends Controller
     		)
     	);
 
-    	$town = $session->get('town', array());;
+    	//$town = $session->get('town', NULL);
+    	$town = 'manzanares';
+    	
+    	if(empty($town))
+    	{
+    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada para obtener la ciudad',
+    		));
+    	}
     	 
     	$default_address_slug = $this->get('slugify')->slugify($town);
     	
@@ -605,10 +613,16 @@ class CandidacyController extends Controller
     	{
     		$address_data = $form['address']->getData();
     		
-    		$address_slug = $this->get('slugify')->slugify($address_data);
-    		
+    		if(empty($address_data))
+    		{
+    			$form->addError(new FormError('La dirección no puede ser vacía'));
+    			$ok = FALSE;
+    		}
+
     		if($ok)
     		{
+    			$address_slug = $this->get('slugify')->slugify($address_data);
+    			
     			$session->set('address', $address_slug);
     			
     			$admin_id = $session->get('admin_id');
@@ -647,6 +661,7 @@ class CandidacyController extends Controller
     	return $this->render('MunicipalesBundle:Candidacy:step4.html.twig', array(
     			'form' => $form->createView(),
     			'default_address_slug' => $default_address_slug,
+    			'address_slug' => $default_address_slug,
     	));
     }
     
