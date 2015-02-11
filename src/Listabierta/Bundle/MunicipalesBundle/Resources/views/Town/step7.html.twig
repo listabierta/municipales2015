@@ -1,6 +1,10 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
 {% block title %}{{ 'town.step7.html_title'|trans }}{% endblock %}
+
+{% from 'MunicipalesBundle:macros:steps.html.twig' import steps_town_widget %}
+{% form_theme form 'MunicipalesBundle:theme:forms.html.twig' %}
+
 {% block content %}
     <h1>{{ 'town.step7.h1_title'|trans }}</h1>
     
