@@ -1,6 +1,6 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
-{% block title %}{{ 'candidacy.html_title'|trans }}{% endblock %}
+{% block title %}{{ 'town.html_title'|trans }}{% endblock %}
 
 {% block appjsinline %}
     <script>
@@ -43,70 +43,76 @@
                   {{ form_start(form, { 'attr': {'class': 'form_settings form-horizontal col-xs-12'}}) }}
                   
                   <div class="step-content pos-rel">
-                                    {% if not form.vars.valid and form.vars.errors|length > 0 %}
-                  <div class="alert alert-danger">
-                          <button data-dismiss="alert" class="close" type="button">
-                            <i class="mine-icon fa fa-times"></i>
-                          </button>
-                          {{ form_errors(form) }}
-                  </div>
-                  {% endif %}
+	                  {% if not form.vars.valid and form.vars.errors|length > 0 %}
+	                  <div class="alert alert-danger">
+	                          <button data-dismiss="alert" class="close" type="button">
+	                            <i class="mine-icon fa fa-times"></i>
+	                          </button>
+	                          {{ form_errors(form) }}
+	                  </div>
+	                  {% endif %}
                       
                   <div data-step="1" class="step-pane active row">
-                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'candidacy.h1_title'|trans }}</h2><div class="col-xs-12 col-sm-offset-0"><div class="hr hr-dotted"></div></div>
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'town.h1_title'|trans }}</h2>
                       
-                      Bienvenido o bienvenida a la votación de la candidatura ciudadana de <b>{{ town|capitalize }}</b>. 
-					  Como primer paso has de registrarte como votante.
+                      <div class="col-xs-12 col-sm-offset-0"><div class="hr hr-dotted"></div></div>
+                      
+                      <div class="col-xs-12 col-sm-offset-1">   
+                      	  <div class="justify-block">
+		                      Bienvenido o bienvenida a la votación de la candidatura ciudadana de <b>{{ town|capitalize }}</b>. 
+							  Como primer paso has de registrarte como votante.<br/><br/>
+						  </div>
+					  </div>
                       
                       <div class="form-group{% if form.name.vars.errors|length > 0 %} has-error{% endif %}">
-						  {{ form_label(form.name, 'candidacy.step1.name'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+						  {{ form_label(form.name, 'town.step1.name'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
 						  {{ form_widget(form.name) }}
 						  {% if form.name.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.name) }}</div>{% endif %}
 					  </div>
 
 					  <div class="form-group{% if form.lastname.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.lastname, 'candidacy.step1.lastname'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+			    		  {{ form_label(form.lastname, 'town.step1.lastname'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 			    	      {{ form_widget(form.lastname) }}
 			    	      {% if form.lastname.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.lastname) }}</div>{% endif %}
 					  </div>
 			
 					  <div class="form-group{% if form.dni.vars.errors|length > 0 %} has-error{% endif %}">
-			    	  	  {{ form_label(form.dni, 'candidacy.step1.dni'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+			    	  	  {{ form_label(form.dni, 'town.step1.dni'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 			    		  {{ form_widget(form.dni) }}
 			    	  	  {% if form.dni.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.dni) }}{% endif %}
 					  </div>
 			
 					  <div class="form-group{% if form.username.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.username, 'candidacy.step1.username'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+			    		  {{ form_label(form.username, 'town.step1.username'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 			    		  {{ form_widget(form.username) }}
 			    		  {% if form.username.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.username) }}</div>{% endif %}
 			    		  
 					  </div>
 			
 					  <div class="form-group{% if form.password.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.password, 'candidacy.step1.password'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+			    		  {{ form_label(form.password, 'town.step1.password'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 			    		  {{ form_widget(form.password) }}
 			    		  {% if form.password.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.password) }}</div>{% endif %}
 					  </div>
 			
 					  <div class="form-group{% if form.email.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.email, 'candidacy.step1.email'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+			    		  {{ form_label(form.email, 'town.step1.email'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 			    		  {{ form_widget(form.email) }}
 			    		  {% if form.email.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.email) }}</div>{% endif %}
 					  </div>
 
 					  <div class="form-group{% if form.phone.vars.errors|length > 0 %} has-error{% endif %}">
-					      {{ form_label(form.phone, 'candidacy.step1.phone'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+					      {{ form_label(form.phone, 'town.step1.phone'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 					      {{ form_widget(form.phone) }}
 					      {% if form.phone.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.phone) }}</div>{% endif %}
 					      <a class='explanation_dni' href="#explanation_dni_content"><img style="margin-left:15px;width:16px;height:16px" src="{{ asset('bundles/municipales/images/question.png') }}"
-					       alt="{{ 'candidacy.step1.explanation'|trans }}"
-					       title="{{ 'candidacy.step1.explanation'|trans }}"/></a>
+					       alt="{{ 'town.step1.explanation'|trans }}"
+					       title="{{ 'town.step1.explanation'|trans }}"/></a>
 					    
 					      <!-- This contains the hidden content for inline calls -->
 						  <div style='display:none'>
 							  <div id='explanation_dni_content' style='width:200px;padding:10px; background:#fff;'>
-								  {{ 'candidacy.step1.explanation_dni'|trans }}
+								  {{ 'town.step1.explanation_dni'|trans }}
 							  </div>
 						  </div>
 					  </div>
@@ -118,13 +124,7 @@
 
                 <hr>
                 <div class="wizard-actions">
-                  <button class="btn btn-prev" onclick="parent.location='{{ path('municipales_candidacy_step_conditions') }}'">
-                    <i class="mine-icon fa fa-arrow-left"></i>
-                    {{ 'candidacy.step1.previous'|trans }}
-                  </button>
-                  
-                  {{ form_widget(form.continue, { 'label': 'candidacy.step1.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
-                  
+                  {{ form_widget(form.continue, { 'label': 'town.step1.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
                 </div>
               </div>
               
