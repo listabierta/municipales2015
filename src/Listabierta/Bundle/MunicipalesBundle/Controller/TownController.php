@@ -4,6 +4,7 @@ namespace Listabierta\Bundle\MunicipalesBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Listabierta\Bundle\MunicipalesBundle\Entity\Voter;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep1Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep2Type;
 
@@ -39,6 +40,7 @@ class TownController extends Controller
 		 
 		$form->handleRequest($request);
 		
+		$ok = TRUE;
 		if ($form->isValid())
 		{
 			$name     = $form['name']->getData();
