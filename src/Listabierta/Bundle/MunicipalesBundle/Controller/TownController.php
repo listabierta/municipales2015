@@ -4,9 +4,15 @@ namespace Listabierta\Bundle\MunicipalesBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+
 use Listabierta\Bundle\MunicipalesBundle\Entity\Voter;
+use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
+
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep1Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep2Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStepVerifyType;
+
+use Symfony\Component\Form\FormError;
 
 class TownController extends Controller
 {
@@ -15,20 +21,31 @@ class TownController extends Controller
 		$this->step1Action($request);
 	}
 	
-	public function vote1Action($address = NULL, Request $request = NULL)
+	private function verifyAdminAddress($address)
 	{
 		$entity_manager = $this->getDoctrine()->getManager();
 		
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 		
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
-		 
+			
 		if(empty($admin_candidacy) || empty($address))
 		{
 			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
 					'error' => 'No existe la candidatura de administrador para cargar la dirección <b>' . $address . '</b>',
 			));
 		}
+	}
+	
+	public function vote1Action($address = NULL, Request $request = NULL)
+	{
+		$session = $this->getRequest()->getSession();
+		$entity_manager = $this->getDoctrine()->getManager();
+		
+		$this->verifyAdminAddress($address);
+		
+		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
 		
 		$town = $admin_candidacy->getTown();
 		
@@ -114,16 +131,18 @@ class TownController extends Controller
 				$session->set('voter_lastname', $lastname);
 				$session->set('voter_dni', $dni);
 				$session->set('voter_phone', $phone);
+				$session->set('voter_email', $email);
 
-				$form2 = $this->createForm(new CandidacyStepVerifyType(), NULL, array(
-						'action' => $this->generateUrl('municipales_candidacy_step_verify'),
+				$form2 = $this->createForm(new TownStepVerifyType(), NULL, array(
+						'action' => $this->generateUrl('town_candidacy_step_verify', array('address' => $address)),
 						'method' => 'POST',
 				));
 				 
 				$form2->handleRequest($request);
 				 
-				return $this->render('MunicipalesBundle:Candidacy:step_verify.html.twig', array(
-						'form' => $form2->createView()
+				return $this->render('MunicipalesBundle:Town:step_verify.html.twig', array(
+						'form' => $form2->createView(),
+						'address' => $address,
 					)
 				);
 			}
@@ -136,12 +155,93 @@ class TownController extends Controller
 		));
 	}
 
-	public function vote2Action($town = NULL, Request $request = NULL)
+	/**
+	 *
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function voteVerifyAction(Request $request = NULL, $address = NULL)
 	{
-		$form = $this->createForm(new TownStep1Type(), NULL, array(
-				'action' => $this->generateUrl('municipales_candidacy_step1'),
+		$this->verifyAdminAddress($address);
+		
+		$session = $this->getRequest()->getSession();
+	
+		$entity_manager = $this->getDoctrine()->getManager();
+		
+		$form = $this->createForm(new TownStepVerifyType(), NULL, array(
+				'action' => $this->generateUrl('town_candidacy_step_verify', array('address' => $address)),
 				'method' => 'POST',
 		)
+		);
+		
+		$form->handleRequest($request);
+		
+		$ok = TRUE;
+		if ($form->isValid())
+		{
+			$phone = $session->get('voter_phone', NULL);
+		
+			if(empty($phone))
+			{
+				$form->addError(new FormError('El número de móvil no esta presente. ¿Sesión caducada?'));
+				$ok = FALSE;
+			}
+		
+			$email = $session->get('voter_email', NULL);
+			if(empty($email))
+			{
+				$form->addError(new FormError('El email no esta presente. ¿Sesión caducada?'));
+				$ok = FALSE;
+			}
+		
+			if($ok)
+			{
+				$entity_manager = $this->getDoctrine()->getManager();
+				$phone_verified_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified');
+					
+				$phone_status = $phone_verified_repository->findOneBy(array('phone' => $phone, 'email' => $email));
+					
+				if(empty($phone_status) || $phone_status->getTimestamp() == 0)
+				{
+					$form->addError(new FormError('El número de móvil <b>' . $phone . '</b> aún no ha sido verificado'));
+					$ok = FALSE;
+				}
+			}
+		
+			if($ok)
+			{
+				$form2 = $this->createForm(new TownStep2Type(), NULL, array(
+						'action' => $this->generateUrl('town_candidacy_vote_step2', array('address' => $address)),
+						'method' => 'POST',
+				));
+		
+				$form2->handleRequest($request);
+		
+				return $this->render('MunicipalesBundle:Town:step2.html.twig', array(
+						'form' => $form2->createView(),
+						'address' => $address_slug,
+						'documents_path' => $documents_path,
+					)
+				);
+			}
+		}
+		
+		return $this->render('MunicipalesBundle:Town:step_verify.html.twig', array(
+				'form' => $form->createView(),
+				'errors' => $form->getErrors(),
+				'address' => $address,
+		));
+	}
+	
+		
+	public function vote2Action($address = NULL, Request $request = NULL)
+	{
+		$this->verifyAdminAddress($address);
+		
+		$form = $this->createForm(new TownStep1Type(), NULL, array(
+				'action' => $this->generateUrl('town_candidacy_vote_step2', array('address' => $address)),
+				'method' => 'POST',
+			)
 		);
 			
 		$form->handleRequest($request);
@@ -151,7 +251,7 @@ class TownController extends Controller
 	
 		}
 	
-		return $this->render('MunicipalesBundle:Town:step1.html.twig', array(
+		return $this->render('MunicipalesBundle:Town:step2.html.twig', array(
 				'town' => $town,
 				'form' => $form->createView(),
 				'errors' => $form->getErrors()
