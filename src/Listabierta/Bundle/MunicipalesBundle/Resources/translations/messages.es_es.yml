@@ -88,6 +88,7 @@ candidacy:
         technical_constrains: Las limitaciones técnicas y legales del sistema de voto.
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
+        example: Ejemplo
                       
     step3:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
