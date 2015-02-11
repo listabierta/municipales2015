@@ -1,0 +1,35 @@
+Listabierta\Bundle\MunicipalesBundle\Entity\Voter:
+    type: entity
+    table: null
+    repositoryClass: Listabierta\Bundle\MunicipalesBundle\Entity\VoterRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        lastname:
+            type: string
+            length: 255
+        dni:
+            type: string
+            length: '15'
+        email:
+            type: string
+            length: 255
+        username:
+            type: string
+            length: '25'
+        password:
+            type: string
+            length: 255
+        isActive:
+            type: boolean
+        phone:
+            type: string
+            length: '20'
+    lifecycleCallbacks: {  }
