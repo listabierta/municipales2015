@@ -139,8 +139,8 @@ candidacy:
         continue: Iniciar votación
          
 town:
-    html_title: Municipales 2015 - Alta de candidatura ciudadana
-    h1_title: Regístrate y registra el municipio de la candidatura
+    html_title: Municipales 2015 - Vota en la candidatura ciudadana
+    h1_title: Registrate como votante
     
     step1:
         header: Registrate como votante
@@ -151,9 +151,13 @@ town:
         province: Provincia del municipio
         town: Nombre del municipio
         phone: Número de móvil
-        continue: Continuar
-
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
+        explanation: Explicación
+        
     step2:
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana
+        h1_title: Registrate como votante
         academic_level: ¿Que nivel académico prefieres que tenga el candidato o candidata?  (elige de una a tres opciones)
         languages: ¿Es bueno que hable alguno de estos idiomas? (elige de una a tres opciones)
         
