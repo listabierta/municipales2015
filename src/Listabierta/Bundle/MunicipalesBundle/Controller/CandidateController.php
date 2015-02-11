@@ -185,7 +185,7 @@ class CandidateController extends Controller
 		$ok = TRUE;
 		if ($form->isValid())
 		{
-			$phone = $session->get('candidate_phone', array());
+			$phone = $session->get('candidate_phone', NULL);
 	
 			if(empty($phone))
 			{
@@ -193,7 +193,7 @@ class CandidateController extends Controller
 				$ok = FALSE;
 			}
 	
-			$email = $session->get('candidate_email', array());
+			$email = $session->get('candidate_email', NULL);
 			if(empty($email))
 			{
 				$form->addError(new FormError('El email no esta presente. ¿Sesión caducada?'));
@@ -209,7 +209,7 @@ class CandidateController extends Controller
 				 
 				if(empty($phone_status) || $phone_status->getTimestamp() == 0)
 				{
-					$form->addError(new FormError('El número de móvil aún no ha sido verificado'));
+					$form->addError(new FormError('El número de móvil <b>' . $phone . '</b> aún no ha sido verificado'));
 					$ok = FALSE;
 				}
 			}
