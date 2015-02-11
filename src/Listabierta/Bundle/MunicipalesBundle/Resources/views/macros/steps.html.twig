@@ -1,47 +1,47 @@
 {% macro steps_widget(step_enabled) %}
 <div>
 	<ul class="steps">
-	  <li data-step="1"{% if step_enabled == 1 %} class="active"{% endif %}>
+	  <li data-step="1"{% if step_enabled == 1 %} class="active"{% elseif step_enabled > 1 %} class="complete"{% endif %}>
 		<span class="step">1</span>
 		<span class="title">{{ 'home.step_1'|trans }}</span>
 	  </li>
 
-	  <li data-step="2"{% if step_enabled == 2 %} class="active"{% endif %}>
+	  <li data-step="2"{% if step_enabled == 2 %} class="active"{% elseif step_enabled > 2 %} class="complete"{% endif %}>
 		<span class="step">2</span>
 		<span class="title">{{ 'home.step_2'|trans }}</span>
 	  </li>
 
-	  <li data-step="3"{% if step_enabled == 3 %} class="active"{% endif %}>
+	  <li data-step="3"{% if step_enabled == 3 %} class="active"{% elseif step_enabled > 3 %} class="complete"{% endif %}>
 		<span class="step">3</span>
 		<span class="title">{{ 'home.step_3'|trans }}</span>
 	  </li>
 
-	  <li data-step="4"{% if step_enabled == 4 %} class="active"{% endif %}>
+	  <li data-step="4"{% if step_enabled == 4 %} class="active"{% elseif step_enabled > 4 %} class="complete"{% endif %}>
 		<span class="step">4</span>
 		<span class="title">{{ 'home.step_4'|trans }}</span>
 	  </li>
 
-		<li data-step="5"{% if step_enabled == 5 %} class="active"{% endif %}>
+		<li data-step="5"{% if step_enabled == 5 %} class="active"{% elseif step_enabled > 5 %} class="complete"{% endif %}>
 		<span class="step">5</span>
 		<span class="title">{{ 'home.step_5'|trans }}</span>
 	  </li>
 
-		<li data-step="6"{% if step_enabled == 6 %} class="active"{% endif %}>
+		<li data-step="6"{% if step_enabled == 6 %} class="active"{% elseif step_enabled > 6 %} class="complete"{% endif %}>
 		<span class="step">6</span>
 		<span class="title">{{ 'home.step_6'|trans }}</span>
 	  </li>
 
-		<li data-step="7"{% if step_enabled == 7 %} class="active"{% endif %}>
+		<li data-step="7"{% if step_enabled == 7 %} class="active"{% elseif step_enabled > 7 %} class="complete"{% endif %}>
 		<span class="step">7</span>
 		<span class="title">{{ 'home.step_7'|trans }}</span>
 	  </li>
 
-		<li data-step="8"{% if step_enabled == 8 %} class="active"{% endif %}>
+		<li data-step="8"{% if step_enabled == 8 %} class="active"{% elseif step_enabled > 8 %} class="complete"{% endif %}>
 		<span class="step">8</span>
 		<span class="title">{{ 'home.step_8'|trans }}</span>
 	  </li>
 
-		<li data-step="9"{% if step_enabled == 9 %} class="active"{% endif %}>
+		<li data-step="9"{% if step_enabled == 9 %} class="active"{% elseif step_enabled > 9 %} class="complete"{% endif %}>
 		<span class="step">9</span>
 		<span class="title">{{ 'home.step_9'|trans }}</span>
 	  </li>
@@ -53,47 +53,47 @@
 {% macro steps_town_widget(step_enabled) %}
 <div>
 	<ul class="steps">
-	  <li data-step="1"{% if step_enabled == 1 %} class="active"{% endif %}>
+	  <li data-step="1"{% if step_enabled == 1 %} class="active"{% elseif step_enabled > 1 %} class="complete"{% endif %}>
 		<span class="step">1</span>
 		<span class="title">{{ 'town.step1.header'|trans }}</span>
 	  </li>
 
-	  <li data-step="2"{% if step_enabled == 2 %} class="active"{% endif %}>
+	  <li data-step="2"{% if step_enabled == 2 %} class="active"{% elseif step_enabled > 2 %} class="complete"{% endif %}>
 		<span class="step">2</span>
 		<span class="title">{{ 'town.step2.header'|trans }}</span>
 	  </li>
 
-	  <li data-step="3"{% if step_enabled == 3 %} class="active"{% endif %}>
+	  <li data-step="3"{% if step_enabled == 3 %} class="active"{% elseif step_enabled > 3 %} class="complete"{% endif %}>
 		<span class="step">3</span>
 		<span class="title">{{ 'town.step3.header'|trans }}</span>
 	  </li>
 
-	  <li data-step="4"{% if step_enabled == 4 %} class="active"{% endif %}>
+	  <li data-step="4"{% if step_enabled == 4 %} class="active"{% elseif step_enabled > 4 %} class="complete"{% endif %}>
 		<span class="step">4</span>
 		<span class="title">{{ 'town.step4.header'|trans }}</span>
 	  </li>
 
-		<li data-step="5"{% if step_enabled == 5 %} class="active"{% endif %}>
+		<li data-step="5"{% if step_enabled == 5 %} class="active"{% elseif step_enabled > 5 %} class="complete"{% endif %}>
 		<span class="step">5</span>
 		<span class="title">{{ 'town.step5.header'|trans }}</span>
 	  </li>
 
-		<li data-step="6"{% if step_enabled == 6 %} class="active"{% endif %}>
+		<li data-step="6"{% if step_enabled == 6 %} class="active"{% elseif step_enabled > 6 %} class="complete"{% endif %}>
 		<span class="step">6</span>
 		<span class="title">{{ 'town.step6.header'|trans }}</span>
 	  </li>
 
-		<li data-step="7"{% if step_enabled == 7 %} class="active"{% endif %}>
+		<li data-step="7"{% if step_enabled == 7 %} class="active"{% elseif step_enabled > 7 %} class="complete"{% endif %}>
 		<span class="step">7</span>
 		<span class="title">{{ 'town.step7.header'|trans }}</span>
 	  </li>
 
-		<li data-step="8"{% if step_enabled == 8 %} class="active"{% endif %}>
+		<li data-step="8"{% if step_enabled == 8 %} class="active"{% elseif step_enabled > 8 %} class="complete"{% endif %}>
 		<span class="step">8</span>
 		<span class="title">{{ 'town.step8.header'|trans }}</span>
 	  </li>
 
-		<li data-step="9"{% if step_enabled == 9 %} class="active"{% endif %}>
+		<li data-step="9"{% if step_enabled == 9 %} class="active"{% elseif step_enabled > 9 %} class="complete"{% endif %}>
 		<span class="step">9</span>
 		<span class="title">{{ 'town.step9.header'|trans }}</span>
 	  </li>
