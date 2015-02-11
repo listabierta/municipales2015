@@ -76,7 +76,56 @@ town_candidacy_vote_step1:
     defaults: { _controller: MunicipalesBundle:Town:vote1 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
-                
+ 
+town_candidacy_step_verify:
+    path:     /{address}/vota-verificacion
+    defaults: { _controller: MunicipalesBundle:Town:voteVerify }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+
+town_candidacy_vote_step2:
+    path:     /{address}/vota-paso-2
+    defaults: { _controller: MunicipalesBundle:Town:vote2 }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+
+town_candidacy_vote_step3:
+    path:     /{address}/vota-paso-3
+    defaults: { _controller: MunicipalesBundle:Town:vote3 }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+
+town_candidacy_vote_step4:
+    path:     /{address}/vota-paso-4
+    defaults: { _controller: MunicipalesBundle:Town:vote4 }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+
+town_candidacy_vote_step5:
+    path:     /{address}/vota-paso-5
+    defaults: { _controller: MunicipalesBundle:Town:vote5 }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+
+town_candidacy_vote_step6:
+    path:     /{address}/vota-paso-6
+    defaults: { _controller: MunicipalesBundle:Town:vote6 }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+
+town_candidacy_vote_step7:
+    path:     /{address}/vota-paso-7
+    defaults: { _controller: MunicipalesBundle:Town:vote7 }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+
+town_candidacy_vote_step8:
+    path:     /{address}/vota-paso-8
+    defaults: { _controller: MunicipalesBundle:Town:vote8 }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+        
+# Candidate                                               
 candidate_step1:
     path:     /{address}/altacandidaturas
     defaults: { _controller: MunicipalesBundle:Candidate:step1 }
