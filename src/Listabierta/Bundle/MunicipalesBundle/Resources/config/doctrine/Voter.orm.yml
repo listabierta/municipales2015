@@ -1,6 +1,6 @@
 Listabierta\Bundle\MunicipalesBundle\Entity\Voter:
     type: entity
-    table: null
+    table: voter
     repositoryClass: Listabierta\Bundle\MunicipalesBundle\Entity\VoterRepository
     id:
         id:
