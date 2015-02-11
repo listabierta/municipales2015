@@ -4,10 +4,13 @@ namespace Listabierta\Bundle\MunicipalesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Voter
  */
-class Voter
+class Voter implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
@@ -54,7 +57,12 @@ class Voter
      */
     private $phone;
 
-
+    public function __construct()
+    {
+    	$this->isActive = TRUE;
+    	$this->roles = new ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -192,7 +200,15 @@ class Voter
 
         return $this;
     }
-
+    
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+    	return null;
+    }
+    
     /**
      * Get password
      *
@@ -226,6 +242,46 @@ class Voter
         return $this->isActive;
     }
 
+
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+    	return array('ROLE_USER', 'ROLE_ADMIN');
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
+    
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+    	return serialize(array(
+    			$this->id,
+    			$this->username,
+    			$this->password,
+    	));
+    }
+    
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+    	list (
+    			$this->id,
+    			$this->username,
+    			$this->password,
+    	) = unserialize($serialized);
+    }
+    
     /**
      * Set phone
      *
@@ -247,5 +303,123 @@ class Voter
     public function getPhone()
     {
         return $this->phone;
+    }
+    
+    public function isAccountNonExpired()
+    {
+    	return true;
+    }
+    
+    public function isAccountNonLocked()
+    {
+    	return true;
+    }
+    
+    public function isCredentialsNonExpired()
+    {
+    	return true;
+    }
+    
+    public function isEnabled()
+    {
+    	return $this->isActive;
+    }
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
+     *
+     */
+    private $roles;
+    
+    /**
+     * Add roles
+     *
+     * @param  $roles
+     * @return User
+     */
+    public function addRole( $roles)
+    {
+    	$this->roles[] = $roles;
+    
+    	return $this;
+    }
+    
+    /**
+     * Check if a user is normal/regular user (has role user)
+     *
+     * @return boolean
+     */
+    public function isNormalUser()
+    {
+    	return $this->hasRole('ROLE_USER');
+    }
+    
+    /**
+     * Check if a user is admin (has role admin)
+     *
+     * @return boolean
+     */
+    public function isAdmin()
+    {
+    	return $this->hasRole('ROLE_ADMIN');
+    }
+    
+    /**
+     * Check if a user is super admin (has role super admin)
+     *
+     * @return boolean
+     */
+    public function isSuperAdmin()
+    {
+    	return $this->hasRole('ROLE_SUPER_ADMIN');
+    }
+    
+    /**
+     * Check if a user has a role
+     *
+     * @param string $role_name
+     * @return boolean
+     */
+    public function hasRole($role_name = NULL)
+    {
+    	$roles = $this->getRoles();
+    
+    	foreach($roles as $rol)
+    	{
+    		if($rol->getName() === $role_name)
+    		{
+    			return TRUE;
+    		}
+    	}
+    
+    	return FALSE;
+    }
+    
+    /**
+     * Get all roles names as array
+     *
+     * @return array
+     */
+    public function getRolesNames()
+    {
+    	$roles = $this->getRoles();
+    
+    	$names = array();
+    	foreach($roles as $rol)
+    	{
+    		$names[] = $rol->getName();
+    	}
+    
+    	return $names;
+    }
+    
+    /**
+     * Remove roles
+     *
+     * @param  $roles
+     */
+    public function removeRole( $roles)
+    {
+    	$this->roles->removeElement($roles);
     }
 }
