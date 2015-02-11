@@ -6,8 +6,8 @@
 {% from 'MunicipalesBundle:macros:steps.html.twig' import steps_widget %}
 
 {% block content %}
- <section class="section-2">
-      <div class="container marketing">
+<section class="section-2">
+	<div class="container marketing">
 
         <div class="headline">
           <h2>{{ 'home.step_h2'|trans }} 5</h2>
@@ -38,7 +38,7 @@
                 	<div class="step-content pos-rel container-fluid">
                   
 	                  <div class="row">
-				        	<h2 class="col-md-8 col-sm-offset-2 text-center">Enlace de Alta</h2>
+				        	<h2 class="col-md-8 col-sm-offset-2 text-center">{{ 'candidacy.step5.register_link'|trans }}</h2>
 				      </div>
 			            
 					  {% if not form.vars.valid %}
@@ -116,5 +116,7 @@
 			  
         <!--    division -->
 
-        <!-- /END THE FEATURETTES --> </div>
+        <!-- /END THE FEATURETTES --> 
+        </div>
+</section>
 {% endblock %}
