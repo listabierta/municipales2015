@@ -2,8 +2,14 @@
 
 {% block title %}{{ 'candidate.html_title'|trans }}{% endblock %}
 {% block content %}
-    <h1>{{ 'candidate.h1_title'|trans }}</h1>
-    
-    <p><div style="background-color:gold;color:black">{{ error }}</div><p>
-			
+<section class="section-2">
+	<div class="container marketing">
+		<div class="alert alert-danger">
+			<button data-dismiss="alert" class="close" type="button">
+		    	<i class="mine-icon fa fa-times"></i>
+		    </button>
+		    {{ error|raw }}
+		</div>
+	</div>
+</section>
 {% endblock %}
