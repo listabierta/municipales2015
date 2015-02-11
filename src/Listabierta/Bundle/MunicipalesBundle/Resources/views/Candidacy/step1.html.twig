@@ -55,7 +55,10 @@
                   {% endif %}
                       
                   <div data-step="1" class="step-pane active row">
-                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'candidacy.h1_title'|trans }}</h2><div class="col-xs-12 col-sm-offset-0"><div class="hr hr-dotted"></div></div>
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'candidacy.h1_title'|trans }}</h2>
+                      
+                      <div class="col-xs-12 col-sm-offset-0"><div class="hr hr-dotted"></div></div>
+                      
                       <div class="form-group{% if form.name.vars.errors|length > 0 %} has-error{% endif %}">
 						  {{ form_label(form.name, 'candidacy.step1.name'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
 						  {{ form_widget(form.name) }}
