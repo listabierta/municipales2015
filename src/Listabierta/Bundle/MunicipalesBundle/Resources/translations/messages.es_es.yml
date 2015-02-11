@@ -103,6 +103,8 @@ candidacy:
         h1_title: Reserva una dirección de internet
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
+        continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
+        choose_address: Elige tu dirección
         
     step5:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
@@ -111,6 +113,7 @@ candidacy:
         previous: Anterior
         explanation_link: Proporciona este enlace público a los candidatos y candidatas para que se den de alta rellenando el formulario que les aparecerá
         continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
+        register_link: Enlace de Alta
         
     step6:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
