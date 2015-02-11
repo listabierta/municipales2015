@@ -243,7 +243,7 @@ class CandidacyController extends Controller
     	$ok = TRUE;
     	if ($form->isValid())
     	{
-    		$phone = $session->get('phone', array());
+    		$phone = $session->get('phone', NULL);
     		
     		if(empty($phone))
     		{
@@ -251,7 +251,7 @@ class CandidacyController extends Controller
     			$ok = FALSE;
     		}
     		
-    		$email = $session->get('email', array());
+    		$email = $session->get('email', NULL);
     		if(empty($email))
     		{
     			$form->addError(new FormError('El email no esta presente. ¿Sesión caducada?'));
@@ -322,7 +322,7 @@ class CandidacyController extends Controller
     		$technical_constrains = $form['technical_constrains'];
     		
     		$admin_id = $session->get('admin_id', NULL);;
-    		$town = $session->get('town', array());;
+    		$town = $session->get('town', NULL);;
     		
     		$town_slug = $this->get('slugify')->slugify($town);
     		
@@ -562,7 +562,7 @@ class CandidacyController extends Controller
     
     			$form2->handleRequest($request);
     
-    			$town = $session->get('town', array());;
+    			$town = $session->get('town', NULL);;
     			
     			$default_address_slug = $this->get('slugify')->slugify($town);
     			
@@ -802,7 +802,7 @@ class CandidacyController extends Controller
     {
     	$session = $this->getRequest()->getSession();
     	
-    	$candidacy_to_date = $session->get('to', array());
+    	$candidacy_to_date = $session->get('to', NULL);
     	
     	$candidacy_finished = $candidacy_to_date <= time();
     	
