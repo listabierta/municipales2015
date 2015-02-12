@@ -10,6 +10,8 @@ use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
 
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep1Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep2Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep3Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep4Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStepVerifyType;
 
 use Symfony\Component\Form\FormError;
@@ -219,8 +221,7 @@ class TownController extends Controller
 		
 				return $this->render('MunicipalesBundle:Town:step2.html.twig', array(
 						'form' => $form2->createView(),
-						'address' => $address_slug,
-						'documents_path' => $documents_path,
+						'address' => $address,
 					)
 				);
 			}
@@ -238,7 +239,29 @@ class TownController extends Controller
 	{
 		$this->verifyAdminAddress($address);
 		
-		$form = $this->createForm(new TownStep1Type(), NULL, array(
+		$session = $this->getRequest()->getSession();
+		
+		$voter_id = $session->get('voter_id', NULL);
+		
+		if(empty($voter_id))
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'Sesión expirada. No existe el identificador de votante para cargar la dirección ' . $address,
+			));
+		}
+		
+		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
+		
+		$voter = $voter_repository->findOneById($voter_id);
+		
+		if(empty($voter))
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'No existe el identificador de votante para cargar la dirección ' . $address_slug,
+			));
+		}
+		
+		$form = $this->createForm(new TownStep2Type(), NULL, array(
 				'action' => $this->generateUrl('town_candidacy_vote_step2', array('address' => $address)),
 				'method' => 'POST',
 			)
@@ -248,11 +271,106 @@ class TownController extends Controller
 	
 		if ($form->isValid())
 		{
-	
+			$academic_level = $form['academic_level']->getData();
+			$languages      = $form['languages']->getData();
+			
+			if($ok)
+			{
+				$session->set('voter_academic_level', $academic_level);
+				$session->set('voter_languages', $languages);
+			
+				$voter->setAcademicLevel($academic_level);
+				$voter->setLanguages($languages);
+					
+				$entity_manager->persist($voter);
+				$entity_manager->flush();
+			
+				$form2 = $this->createForm(new TownStep3Type(), NULL, array(
+						'action' => $this->generateUrl('town_candidacy_vote_step3', array('address' => $address)),
+						'method' => 'POST',
+				));
+			
+				$form2->handleRequest($request);
+			
+				return $this->render('MunicipalesBundle:Town:step3.html.twig', array(
+						'address' => $address,
+						'form' => $form2->createView()
+					)
+				);
+			}
 		}
 	
 		return $this->render('MunicipalesBundle:Town:step2.html.twig', array(
-				'town' => $town,
+				'address' => $address,
+				'form' => $form->createView(),
+				'errors' => $form->getErrors()
+		));
+	}
+
+	public function vote3Action($address = NULL, Request $request = NULL)
+	{
+		$this->verifyAdminAddress($address);
+	
+		$session = $this->getRequest()->getSession();
+	
+		$voter_id = $session->get('voter_id', NULL);
+	
+		if(empty($voter_id))
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'Sesión expirada. No existe el identificador de votante para cargar la dirección ' . $address,
+			));
+		}
+	
+		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
+	
+		$voter = $voter_repository->findOneById($voter_id);
+	
+		if(empty($voter))
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'No existe el identificador de votante para cargar la dirección ' . $address_slug,
+			));
+		}
+	
+		$form = $this->createForm(new TownStep3Type(), NULL, array(
+				'action' => $this->generateUrl('town_candidacy_vote_step3', array('address' => $address)),
+				'method' => 'POST',
+		)
+		);
+			
+		$form->handleRequest($request);
+	
+		if ($form->isValid())
+		{
+			$job_experience = $form['job_experience']->getData();
+				
+			if($ok)
+			{
+				$session->set('voter_job_experience', $job_experience);
+					
+				$voter->setJobExperience($job_experience);
+					
+				$entity_manager->persist($voter);
+				$entity_manager->flush();
+					
+				$form2 = $this->createForm(new TownStep4Type(), NULL, array(
+						'action' => $this->generateUrl('town_candidacy_vote_step4', array('address' => $address)),
+						'method' => 'POST',
+				));
+					
+				$form2->handleRequest($request);
+					
+				return $this->render('MunicipalesBundle:Town:step4.html.twig', array(
+						'address' => $address,
+						'form' => $form2->createView()
+				)
+				);
+			}
+		}
+	
+		return $this->render('MunicipalesBundle:Town:step3.html.twig', array(
+				'address' => $address,
 				'form' => $form->createView(),
 				'errors' => $form->getErrors()
 		));
