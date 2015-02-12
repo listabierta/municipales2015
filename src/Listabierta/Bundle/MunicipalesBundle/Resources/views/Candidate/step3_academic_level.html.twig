@@ -22,6 +22,7 @@
 			<p>
 				{{ 'candidate.step3.academic_level_title'|trans }} <br />
 				{{ form_widget(form.academic_level) }}
+				{{ form_errors(form.academic_level) }}
 			</p>
 			<br/><br/>
 			<p>
@@ -32,7 +33,7 @@
 				{% for child in form.languages %}
 					<tr>
 				        <td>{{ form_widget(child) }}</td> 
-				        <td style="padding:5px">{{ form_label(child) }}</td>       
+				        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
 				    </tr>
 				{% endfor %}
 				</table>

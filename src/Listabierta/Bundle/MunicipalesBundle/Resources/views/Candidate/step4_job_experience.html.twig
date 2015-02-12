@@ -10,8 +10,7 @@
 {% endspaceless %}
 {% endblock checkbox_widget %}
 
-{% block head %}
-    {{ parent() }}
+{% block appjsinline %}
     <script>
     $(document).ready(function() 
     {
@@ -49,7 +48,7 @@
 				{% for child in form.job_experience %}
 					<tr>
 				        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td> 
-				        <td style="padding:5px">{{ form_label(child) }}</td>       
+				        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
 				    </tr>
 				{% endfor %}
 				</table>

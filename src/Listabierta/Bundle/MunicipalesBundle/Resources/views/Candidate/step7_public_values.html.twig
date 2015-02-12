@@ -49,7 +49,7 @@
 				{% for child in form.public_values %}
 					<tr>
 				        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td> 
-				        <td style="padding:5px">{{ form_label(child) }}</td>       
+				        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
 				    </tr>
 				{% endfor %}
 				</table>
