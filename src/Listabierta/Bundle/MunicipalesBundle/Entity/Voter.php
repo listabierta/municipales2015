@@ -478,4 +478,116 @@ class Voter implements AdvancedUserInterface, \Serializable
     {
         return $this->languages;
     }
+    /**
+     * @var array
+     */
+    private $job_experience;
+
+    /**
+     * @var array
+     */
+    private $town_activities;
+
+    /**
+     * @var array
+     */
+    private $govern_priorities;
+
+    /**
+     * @var array
+     */
+    private $public_values;
+
+
+    /**
+     * Set job_experience
+     *
+     * @param array $jobExperience
+     * @return Voter
+     */
+    public function setJobExperience($jobExperience)
+    {
+        $this->job_experience = $jobExperience;
+
+        return $this;
+    }
+
+    /**
+     * Get job_experience
+     *
+     * @return array 
+     */
+    public function getJobExperience()
+    {
+        return $this->job_experience;
+    }
+
+    /**
+     * Set town_activities
+     *
+     * @param array $townActivities
+     * @return Voter
+     */
+    public function setTownActivities($townActivities)
+    {
+        $this->town_activities = $townActivities;
+
+        return $this;
+    }
+
+    /**
+     * Get town_activities
+     *
+     * @return array 
+     */
+    public function getTownActivities()
+    {
+        return $this->town_activities;
+    }
+
+    /**
+     * Set govern_priorities
+     *
+     * @param array $governPriorities
+     * @return Voter
+     */
+    public function setGovernPriorities($governPriorities)
+    {
+        $this->govern_priorities = $governPriorities;
+
+        return $this;
+    }
+
+    /**
+     * Get govern_priorities
+     *
+     * @return array 
+     */
+    public function getGovernPriorities()
+    {
+        return $this->govern_priorities;
+    }
+
+    /**
+     * Set public_values
+     *
+     * @param array $publicValues
+     * @return Voter
+     */
+    public function setPublicValues($publicValues)
+    {
+        $this->public_values = $publicValues;
+
+        return $this;
+    }
+
+    /**
+     * Get public_values
+     *
+     * @return array 
+     */
+    public function getPublicValues()
+    {
+        return $this->public_values;
+    }
 }
