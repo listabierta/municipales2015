@@ -170,7 +170,7 @@ town:
     step2:
         header: Filtra candidatos por nivel academico
         html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 2
-        h1_title: Filtra candidatos
+        h1_title: Filtra candidatos por nivel academico
         academic_level: ¿Que nivel académico prefieres que tenga el candidato o candidata?  (elige de una a tres opciones)
         languages: "¿Es bueno que hable alguno de estos idiomas? (elige de una a tres opciones)"
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
@@ -179,21 +179,23 @@ town:
     step3:
         header: Seleciona experiencia laboral
         html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 3
-        h1_title: Filtra candidatos
+        h1_title: Seleciona experiencia laboral
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
         job_experience_title: ¿Qué campo de experiencia laboral te gustaría que hubiese desarrollado? (Seleccione hasta tres opciones)
         
     step4:
         header: Selecciona actividades municipales
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 3
-        h1_title: Filtra candidatos
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 4
+        h1_title: Selecciona actividades municipales
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
         town_activities_title: ¿Qué experiencia relacionada con el desempeño municipal te gustaría que hubiese desarrollado? (Seleccione hasta tres opciones)
      
     step5:
         header: Selecciona prioridades municipales
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 5
+        h1_title: Selecciona prioridades municipales
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
         govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones) 
@@ -201,21 +203,29 @@ town:
         
     step6:
         header: Asigna importancia
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 6
+        h1_title: Asigna importancia
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior          
      
     step7:
         header: Elige candidatos
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 7
+        h1_title: Elige candidatos
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
      
     step8:
         header: Asigna puntuaciones
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 8
+        h1_title: Asigna puntuaciones
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior 
         
     step9:
         header: Fin
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 9
+        h1_title: Fin
         previous: Anterior
                        
 candidate:
