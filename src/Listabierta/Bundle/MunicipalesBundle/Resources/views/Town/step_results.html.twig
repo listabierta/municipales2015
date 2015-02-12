@@ -1,12 +1,75 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
 {% block title %}{{ 'candidacy.step9.html_title'|trans }}{% endblock %}
+
+{% from 'MunicipalesBundle:macros:steps.html.twig' import steps_town_widget %}
+
 {% block content %}
-    <h1>{{ 'candidacy.step9.h1_title'|trans }}</h1>
-    
-    <p class="important">
+<section class="section-2">
+      <div class="container marketing">
+
+        <div class="headline">
+          <h2>{{ 'home.step_h2'|trans }} 7</h2>
+        </div><h3 class="featurette-headin"> <i>{{ 'town.step9.h1_title'|trans }}</i>
+        </h3>
+        
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider2">
+        <!--    division -->
+
+        <div class="row featurette2">
+          <div class="widget-box">
+            
+
+            <div class="widget-body">
+              <div class="widget-main">
+              
+              	
+              	
+                <div id="fuelux-wizard-container">
+                  {{ steps_town_widget(9) }}
+                  
+				  <hr>
+
+                  <div class="step-content pos-rel">
+  
+                    <div data-step="1" class="step-pane active row">
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'town.step9.h1_title'|trans }}</h2>
+                      
+                      <div class="col-sm-offset-1 col-md-10 well">
+
+						<p class="lead2">
 		Cuando se cierra la votación se genera una url con los resultados que se 
 		envía por email a todos los votantes, candidatos y administrador, tipo:
-	</p>
-	
+</p>
+			          
+			        </div>
+
+                      
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+                <div class="wizard-actions">
+
+				  <button class="btn btn-prev" onclick="parent.location='{{ path('town_candidacy_vote_step8', {'address' : address }) }}'">
+                    <i class="mine-icon fa fa-arrow-left"></i>
+                    {{ 'town.step9.previous'|trans }}
+                  </button>
+
+                </div>
+              </div>
+              
+              
+              <!-- /.widget-main --> </div>
+            <!-- /.widget-body --> </div>
+        </div>
+
+        <!--    division -->
+
+        <!-- /END THE FEATURETTES --> </div>
+        
+</section>
 {% endblock %}
