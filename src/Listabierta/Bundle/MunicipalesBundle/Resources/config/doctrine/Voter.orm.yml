@@ -32,4 +32,13 @@ Listabierta\Bundle\MunicipalesBundle\Entity\Voter:
         phone:
             type: string
             length: '20'
+            
+        academic_level:
+            type: integer
+            nullable: TRUE
+            
+        languages:
+            type: array
+            nullable: TRUE
+            
     lifecycleCallbacks: {  }
