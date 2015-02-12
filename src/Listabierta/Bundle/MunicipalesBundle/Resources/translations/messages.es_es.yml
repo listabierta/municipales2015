@@ -168,8 +168,8 @@ town:
         previous: Anterior
                 
     step2:
-        header: Filtra candidatos
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana
+        header: Filtra candidatos por nivel academico
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 2
         h1_title: Filtra candidatos
         academic_level: ¿Que nivel académico prefieres que tenga el candidato o candidata?  (elige de una a tres opciones)
         languages: "¿Es bueno que hable alguno de estos idiomas? (elige de una a tres opciones)"
@@ -177,38 +177,45 @@ town:
         previous: Anterior
         
     step3:
-        header: Change me
+        header: Seleciona experiencia laboral
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 3
+        h1_title: Filtra candidatos
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
         job_experience_title: ¿Qué campo de experiencia laboral te gustaría que hubiese desarrollado? (Seleccione hasta tres opciones)
         
     step4:
-        header: Change me
+        header: Selecciona actividades municipales
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 3
+        h1_title: Filtra candidatos
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
+        town_activities_title: ¿Qué experiencia relacionada con el desempeño municipal te gustaría que hubiese desarrollado? (Seleccione hasta tres opciones)
      
     step5:
-        header: Change me
+        header: Selecciona prioridades municipales
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
-     
+        govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones) 
+        public_values_title: ¿Qué valores morales consideras de mayor importancia para el desempeño de la función pública? (elige hasta tres)
+        
     step6:
-        header: Change me
+        header: Asigna importancia
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior          
      
     step7:
-        header: Change me
+        header: Elige candidatos
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
      
     step8:
-        header: Change me
+        header: Asigna puntuaciones
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior 
         
     step9:
-        header: Change me
+        header: Fin
         previous: Anterior
                        
 candidate:
