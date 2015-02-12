@@ -41,4 +41,20 @@ Listabierta\Bundle\MunicipalesBundle\Entity\Voter:
             type: array
             nullable: TRUE
             
+        job_experience:
+            type: array
+            nullable: TRUE
+            
+        town_activities:
+            type: array
+            nullable: TRUE
+            
+        govern_priorities:
+            type: array
+            nullable: TRUE        
+        
+        public_values:
+            type: array
+            nullable: TRUE         
+            
     lifecycleCallbacks: {  }
