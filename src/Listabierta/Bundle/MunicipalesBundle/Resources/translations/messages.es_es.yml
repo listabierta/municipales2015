@@ -180,6 +180,7 @@ town:
         header: Change me
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
+        job_experience_title: ¿Qué campo de experiencia laboral te gustaría que hubiese desarrollado? (Seleccione hasta tres opciones)
         
     step4:
         header: Change me
