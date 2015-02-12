@@ -422,4 +422,60 @@ class Voter implements AdvancedUserInterface, \Serializable
     {
     	$this->roles->removeElement($roles);
     }
+    /**
+     * @var integer
+     */
+    private $academic_level;
+
+    /**
+     * @var array
+     */
+    private $languages;
+
+
+    /**
+     * Set academic_level
+     *
+     * @param integer $academicLevel
+     * @return Voter
+     */
+    public function setAcademicLevel($academicLevel)
+    {
+        $this->academic_level = $academicLevel;
+
+        return $this;
+    }
+
+    /**
+     * Get academic_level
+     *
+     * @return integer 
+     */
+    public function getAcademicLevel()
+    {
+        return $this->academic_level;
+    }
+
+    /**
+     * Set languages
+     *
+     * @param array $languages
+     * @return Voter
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+
+        return $this;
+    }
+
+    /**
+     * Get languages
+     *
+     * @return array 
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
 }
