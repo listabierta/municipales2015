@@ -12,6 +12,9 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep1Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep2Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep3Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep4Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep5Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep6Type;
+
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStepVerifyType;
 
 use Symfony\Component\Form\FormError;
@@ -241,6 +244,8 @@ class TownController extends Controller
 		
 		$session = $this->getRequest()->getSession();
 		
+		$entity_manager = $this->getDoctrine()->getManager();
+		
 		$voter_id = $session->get('voter_id', NULL);
 		
 		if(empty($voter_id))
@@ -269,6 +274,7 @@ class TownController extends Controller
 			
 		$form->handleRequest($request);
 	
+		$ok = TRUE;
 		if ($form->isValid())
 		{
 			$academic_level = $form['academic_level']->getData();
@@ -312,6 +318,7 @@ class TownController extends Controller
 		$this->verifyAdminAddress($address);
 	
 		$session = $this->getRequest()->getSession();
+		$entity_manager = $this->getDoctrine()->getManager();
 	
 		$voter_id = $session->get('voter_id', NULL);
 	
@@ -341,10 +348,18 @@ class TownController extends Controller
 			
 		$form->handleRequest($request);
 	
+		$ok = TRUE;
+		
 		if ($form->isValid())
 		{
 			$job_experience = $form['job_experience']->getData();
-				
+
+			if(count($job_experience) > 3)
+			{
+				$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
+				$ok = FALSE;
+			}
+			
 			if($ok)
 			{
 				$session->set('voter_job_experience', $job_experience);
@@ -375,6 +390,172 @@ class TownController extends Controller
 				'errors' => $form->getErrors()
 		));
 	}
+
+
+	public function vote4Action($address = NULL, Request $request = NULL)
+	{
+		$this->verifyAdminAddress($address);
+	
+		$session = $this->getRequest()->getSession();
+		$entity_manager = $this->getDoctrine()->getManager();
+	
+		$voter_id = $session->get('voter_id', NULL);
+	
+		if(empty($voter_id))
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'Sesión expirada. No existe el identificador de votante para cargar la dirección ' . $address,
+			));
+		}
+	
+		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
+	
+		$voter = $voter_repository->findOneById($voter_id);
+	
+		if(empty($voter))
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'No existe el identificador de votante para cargar la dirección ' . $address_slug,
+			));
+		}
+	
+		$form = $this->createForm(new TownStep4Type(), NULL, array(
+				'action' => $this->generateUrl('town_candidacy_vote_step4', array('address' => $address)),
+				'method' => 'POST',
+			)
+		);
+			
+		$form->handleRequest($request);
+	
+		$ok = TRUE;
+	
+		if ($form->isValid())
+		{
+			$town_activities = $form['town_activities']->getData();
+	
+			if(count($town_activities) > 3)
+			{
+				$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
+				$ok = FALSE;
+			}
+			
+			if($ok)
+			{
+				$session->set('voter_town_activities', $town_activities);
+					
+				$voter->setTownActivities($town_activities);
+					
+				$entity_manager->persist($voter);
+				$entity_manager->flush();
+					
+				$form2 = $this->createForm(new TownStep5Type(), NULL, array(
+						'action' => $this->generateUrl('town_candidacy_vote_step5', array('address' => $address)),
+						'method' => 'POST',
+				));
+					
+				$form2->handleRequest($request);
+					
+				return $this->render('MunicipalesBundle:Town:step5.html.twig', array(
+						'address' => $address,
+						'form' => $form2->createView()
+					)
+				);
+			}
+		}
+	
+		return $this->render('MunicipalesBundle:Town:step4.html.twig', array(
+				'address' => $address,
+				'form' => $form->createView(),
+				'errors' => $form->getErrors()
+		));
+	}
+
+	public function vote5Action($address = NULL, Request $request = NULL)
+	{
+		$this->verifyAdminAddress($address);
+	
+		$session = $this->getRequest()->getSession();
+		$entity_manager = $this->getDoctrine()->getManager();
+	
+		$voter_id = $session->get('voter_id', NULL);
+	
+		if(empty($voter_id))
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'Sesión expirada. No existe el identificador de votante para cargar la dirección ' . $address,
+			));
+		}
+	
+		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
+	
+		$voter = $voter_repository->findOneById($voter_id);
+	
+		if(empty($voter))
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'No existe el identificador de votante para cargar la dirección ' . $address_slug,
+			));
+		}
+	
+		$form = $this->createForm(new TownStep5Type(), NULL, array(
+				'action' => $this->generateUrl('town_candidacy_vote_step5', array('address' => $address)),
+				'method' => 'POST',
+		)
+		);
+			
+		$form->handleRequest($request);
+	
+		$ok = TRUE;
+	
+		if ($form->isValid())
+		{
+			$govern_priorities = $form['govern_priorities']->getData();
+			$public_values = $form['public_values']->getData();
+	
+			if(count($govern_priorities) > 3)
+			{
+				$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
+				$ok = FALSE;
+			}
+			
+			if(count($public_values) > 3)
+			{
+				$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
+				$ok = FALSE;
+			}
+				
+			if($ok)
+			{
+				$session->set('voter_govern_priorities', $govern_priorities);
+				$session->set('voter_public_values', $public_values);
+					
+				$voter->setGovernPriorities($govern_priorities);
+				$voter->setPublicValues($public_values);
+					
+				$entity_manager->persist($voter);
+				$entity_manager->flush();
+					
+				$form2 = $this->createForm(new TownStep6Type(), NULL, array(
+						'action' => $this->generateUrl('town_candidacy_vote_step6', array('address' => $address)),
+						'method' => 'POST',
+				));
+					
+				$form2->handleRequest($request);
+					
+				return $this->render('MunicipalesBundle:Town:step6.html.twig', array(
+						'address' => $address,
+						'form' => $form2->createView()
+					)
+				);
+			}
+		}
+	
+		return $this->render('MunicipalesBundle:Town:step5.html.twig', array(
+				'address' => $address,
+				'form' => $form->createView(),
+				'errors' => $form->getErrors()
+		));
+	}
 	
 	public function resultsAction($town = NULL, Request $request = NULL)
 	{
@@ -382,5 +563,4 @@ class TownController extends Controller
 				'town' => $town,
 		));
 	}	
-	
 }
