@@ -205,7 +205,7 @@ town:
         header: Asigna importancia
         html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 6
         h1_title: Asigna importancia
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        continue: Ver candidatos seleccionados <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior          
      
     step7:
