@@ -6,10 +6,6 @@ body
     padding: 0;
     color: #666;
     color: #525252;
-    /*font-family: "Open Sans",sans-serif;*/
-   /* font-family: "Oswald",sans-serif;*/
-    /*font-weight: 300;*/
-   /* font-family:  georgia, serif;*/
 }
 .wrapper
 {
@@ -38,7 +34,7 @@ h2/*, h3, h4*/
     border: none;
 
 }
-.headline h2/*, .headline h3, .headline h4*/ {
+.headline h2 {
     border-bottom: 2px solid #e25311;
    /* display: inline-block;*/
     margin: 0 0 -2px;
@@ -203,5 +199,5 @@ section .container
 }
 
 .container.marketing .widget-box {
-    min-height: 480px;
+    /*min-height: 480px;*/
 }
