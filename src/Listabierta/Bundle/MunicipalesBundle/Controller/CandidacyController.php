@@ -598,7 +598,41 @@ class CandidacyController extends Controller
     		)
     	);
 
-    	$town = $session->get('town', NULL);
+    	$admin_id = NULL;
+
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	 
+    	$securityContext = $this->container->get('security.context');
+    	
+    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+    	{
+    		$current_user = $securityContext->getToken()->getUser();
+    	
+    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
+    		{
+    			$admin_id = $current_user->getId();
+    		}
+    	}
+    	else
+    	{
+    		$admin_id = $session->get('admin_id');
+    	}
+    	 
+    	if(!empty($admin_id))
+    	{
+    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    		
+    		if(!empty($admin_candidacy))
+    		{
+    			$town = $admin_candidacy->getTown();
+    		}
+    	}
+
+    	if(empty($town))
+    	{
+	    	$town = $session->get('town', NULL);
+    	}
     	
     	if(empty($town))
     	{
@@ -627,16 +661,10 @@ class CandidacyController extends Controller
     			$address_slug = $this->get('slugify')->slugify($address_data);
     			
     			$session->set('address', $address_slug);
-    			
-    			$admin_id = $session->get('admin_id');
-    			
+
     			$entity_manager = $this->getDoctrine()->getManager();
 
-    			$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
-    				
-    			$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
-    			
-    			if(empty($admin_candidacy))
+    			if(empty($admin_candidacy) || empty($admin_id))
     			{
     				throw $this->createNotFoundException('No existe la candidatura de administrador para guardar la dirección ' . $address_slug);
     			}
@@ -660,7 +688,7 @@ class CandidacyController extends Controller
     			);
     		}
     	}
-    
+    	
     	return $this->render('MunicipalesBundle:Candidacy:step4.html.twig', array(
     			'form' => $form->createView(),
     			'default_address_slug' => $default_address_slug,
