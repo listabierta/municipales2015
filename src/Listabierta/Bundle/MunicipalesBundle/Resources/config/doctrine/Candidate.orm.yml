@@ -64,5 +64,9 @@ Listabierta\Bundle\MunicipalesBundle\Entity\Candidate:
         additional_info:
             type: text
             nullable: TRUE
-                
+
+        status:
+            type: integer
+            nullable: TRUE
+                            
     lifecycleCallbacks: {  }
