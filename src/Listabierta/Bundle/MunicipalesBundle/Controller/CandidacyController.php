@@ -508,6 +508,37 @@ class CandidacyController extends Controller
     	);
     
     	$form->handleRequest($request);
+    	
+    	$admin_id = NULL;
+    	
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	
+    	$securityContext = $this->container->get('security.context');
+    	 
+    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+    	{
+    		$current_user = $securityContext->getToken()->getUser();
+    		 
+    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
+    		{
+    			$admin_id = $current_user->getId();
+    		}
+    	}
+    	else
+    	{
+    		$admin_id = $session->get('admin_id');
+    	}
+    	
+    	if(!empty($admin_id))
+    	{
+    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    	
+    		if(!empty($admin_candidacy))
+    		{
+    			$town = $admin_candidacy->getTown();
+    		}
+    	}
 
     	$ok = TRUE;
     	if ($form->isValid())
@@ -539,18 +570,10 @@ class CandidacyController extends Controller
     		{
     			$session->set('from', $from_data->getTimestamp());
     			$session->set('to', $to_data->getTimestamp());
-    			
-    			$admin_id = $session->get('admin_id');
-    			 
-    			$entity_manager = $this->getDoctrine()->getManager();
-    			
-    			$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
-    			
-    			$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
-    			 
-    			if(empty($admin_candidacy))
+
+    			if(empty($admin_candidacy) || empty($admin_id))
     			{
-    				throw $this->createNotFoundException('No existe la candidatura de administrador para guardar la dirección ' . $address_slug);
+    				throw $this->createNotFoundException('No existe la candidatura de administrador para el identificador de administrador');
     			}
     			 
     			$admin_candidacy->setFromdate($from_data);
