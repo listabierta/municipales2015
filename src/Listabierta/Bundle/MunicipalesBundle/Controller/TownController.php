@@ -20,6 +20,7 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep8Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStepVerifyType;
 
 use Symfony\Component\Form\FormError;
+use Symfony\Component\BrowserKit\Response;
 
 class TownController extends Controller
 {
@@ -35,22 +36,29 @@ class TownController extends Controller
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 		
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
-			
-		if(empty($admin_candidacy) || empty($address))
+		
+		if(empty($admin_candidacy) || $admin_candidacy == NULL || empty($address))
 		{
 			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
-					'error' => 'No existe la candidatura de administrador para cargar la dirección <b>' . $address . '</b>',
+				'error' => 'No existe la candidatura de administrador para cargar la dirección <b>' . $address . '</b>',
 			));
 		}
 	}
 	
 	public function vote1Action($address = NULL, Request $request = NULL)
 	{
+		//@todo check end vote date
+		
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
 		
-		$this->verifyAdminAddress($address);
-		
+		$result = $this->verifyAdminAddress($address);
+
+		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
+		{
+			return $result;
+		}
+
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
 		
@@ -169,7 +177,12 @@ class TownController extends Controller
 	 */
 	public function voteVerifyAction(Request $request = NULL, $address = NULL)
 	{
-		$this->verifyAdminAddress($address);
+		$result = $this->verifyAdminAddress($address);
+
+		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
+		{
+			return $result;
+		}
 		
 		$session = $this->getRequest()->getSession();
 	
@@ -242,7 +255,12 @@ class TownController extends Controller
 		
 	public function vote2Action($address = NULL, Request $request = NULL)
 	{
-		$this->verifyAdminAddress($address);
+		$result = $this->verifyAdminAddress($address);
+
+		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
+		{
+			return $result;
+		}
 		
 		$session = $this->getRequest()->getSession();
 		
@@ -317,7 +335,12 @@ class TownController extends Controller
 
 	public function vote3Action($address = NULL, Request $request = NULL)
 	{
-		$this->verifyAdminAddress($address);
+		$result = $this->verifyAdminAddress($address);
+
+		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
+		{
+			return $result;
+		}
 	
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
@@ -396,7 +419,12 @@ class TownController extends Controller
 
 	public function vote4Action($address = NULL, Request $request = NULL)
 	{
-		$this->verifyAdminAddress($address);
+		$result = $this->verifyAdminAddress($address);
+
+		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
+		{
+			return $result;
+		}
 	
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
@@ -474,7 +502,12 @@ class TownController extends Controller
 
 	public function vote5Action($address = NULL, Request $request = NULL)
 	{
-		$this->verifyAdminAddress($address);
+		$result = $this->verifyAdminAddress($address);
+
+		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
+		{
+			return $result;
+		}
 	
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
@@ -561,7 +594,12 @@ class TownController extends Controller
 
 	public function vote6Action($address = NULL, Request $request = NULL)
 	{
-		$this->verifyAdminAddress($address);
+		$result = $this->verifyAdminAddress($address);
+
+		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
+		{
+			return $result;
+		}
 	
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
@@ -626,7 +664,12 @@ class TownController extends Controller
 
 	public function vote7Action($address = NULL, Request $request = NULL)
 	{
-		$this->verifyAdminAddress($address);
+		$result = $this->verifyAdminAddress($address);
+
+		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
+		{
+			return $result;
+		}
 	
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
@@ -691,7 +734,12 @@ class TownController extends Controller
 	
 	public function vote8Action($address = NULL, Request $request = NULL)
 	{
-		$this->verifyAdminAddress($address);
+		$result = $this->verifyAdminAddress($address);
+
+		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
+		{
+			return $result;
+		}
 	
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
