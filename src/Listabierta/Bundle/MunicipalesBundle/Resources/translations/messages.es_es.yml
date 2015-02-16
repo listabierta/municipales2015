@@ -295,3 +295,5 @@ login:
     username: Usuario
     password: Contraseña
     access: Acceder
+    remember_me: Recordar mis datos
+    conditions: Accede con tus credenciales de usuario y contraseña
