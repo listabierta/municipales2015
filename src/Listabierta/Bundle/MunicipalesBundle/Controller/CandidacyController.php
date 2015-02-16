@@ -718,7 +718,6 @@ class CandidacyController extends Controller
     		
     		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
     		{
-    			
     			$admin_id = $current_user->getId();
     		}
     	}
@@ -733,7 +732,7 @@ class CandidacyController extends Controller
     	if(empty($admin_id))
     	{
     		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada',
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
     		));
     	}
     	
@@ -743,7 +742,7 @@ class CandidacyController extends Controller
     	if(empty($admin_candidacy))
     	{
     		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada',
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
     		));
     	}
     	
