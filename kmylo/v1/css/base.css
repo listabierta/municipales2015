@@ -27,6 +27,11 @@ h2/*, h3, h4*/
 {
     color:#fff;
 }
+
+textarea {
+    resize: none !important;
+}
+
 .featurette2.well.inverse
 {
     background-color:#6d6d6d;
@@ -200,4 +205,12 @@ section .container
 
 .container.marketing .widget-box {
     /*min-height: 480px;*/
+}
+.featurette2 {
+    min-height: 560px;
+}
+
+textarea.long-text {
+    min-height: 150px;
+    word-wrap: break-word;
 }

@@ -101,7 +101,7 @@
           <h2>Paso 2</h2>
         </div>
         <h3 class="featurette-headin">
-          <i>Establece las condiciones de la candidatura ciudadana</i>
+          <i> Filtra candidatos por nivel academico</i>
         </h3>
         <div class="row featurette2">
           <div class="widget-box col-xs-12">
@@ -111,52 +111,52 @@
                 <div id="fuelux-wizard-container">
                   <div>
                     <ul class="steps">
-                      <li data-step="1" class="complete">
-                        <span class="step">1</span>
-                        <span class="title">Regístrate y registra el municipio de la candidatura</span>
-                      </li>
+    <li data-step="1" class="complete">
+    <span class="step">1</span>
+    <span class="title">Registrate como votante</span>
+    </li>
 
-                      <li data-step="2" class="active">
-                        <span class="step">2</span>
-                        <span class="title">Establece las condiciones de la candidatura ciudadana</span>
-                      </li>
+    <li data-step="2" class="active">
+    <span class="step">2</span>
+    <span class="title">Filtra candidatos por nivel academico</span>
+    </li>
 
-                      <li data-step="3">
-                        <span class="step">3</span>
-                        <span class="title">Establece los plazos de votación</span>
-                      </li>
+    <li data-step="3">
+    <span class="step">3</span>
+    <span class="title">Seleciona experiencia laboral</span>
+    </li>
 
-                      <li data-step="4">
-                        <span class="step">4</span>
-                        <span class="title">Reserva una dirección de internet</span>
-                      </li>
+    <li data-step="4">
+    <span class="step">4</span>
+    <span class="title">Selecciona actividades municipales</span>
+    </li>
 
-                      <li data-step="5">
-                        <span class="step">5</span>
-                        <span class="title">Alta de candidatos y candidatas</span>
-                      </li>
+    <li data-step="5">
+    <span class="step">5</span>
+    <span class="title">Selecciona prioridades municipales</span>
+    </li>
 
-                      <li data-step="6">
-                        <span class="step">6</span>
-                        <span class="title">Validación de candidatos y candidatas</span>
-                      </li>
+    <li data-step="6">
+    <span class="step">6</span>
+    <span class="title">Asigna importancia</span>
+    </li>
 
-                      <li data-step="7">
-                        <span class="step">7</span>
-                        <span class="title">Votaciones</span>
-                      </li>
+    <li data-step="7">
+    <span class="step">7</span>
+    <span class="title">Elige candidatos</span>
+    </li>
 
-                      <li data-step="8">
-                        <span class="step">8</span>
-                        <span class="title">Verificación del voto y resultados</span>
-                      </li>
+    <li data-step="8">
+    <span class="step">8</span>
+    <span class="title">Asigna puntuaciones</span>
+    </li>
 
-                      <li data-step="9">
-                        <span class="step">9</span>
-                        <span class="title">Presentación de las listas electas</span>
-                      </li>
+    <li data-step="9">
+    <span class="step">9</span>
+    <span class="title">Fin</span>
+    </li>
 
-                    </ul>
+  </ul>
                   </div>
 
                   <hr>
@@ -164,15 +164,12 @@
                   <div class="step-content pos-rel container-fluid">
 
                     <div class="row">
-                      <h2 class="col-md-8 col-sm-offset-2 text-center">Regístrate como candidato</h2>
+                      <h2 class="col-md-8 col-sm-offset-2 text-center">Filtra candidatos por nivel academico</h2>
                     </div>
                     <div class="row">
                       <div class="col-md-offset-2 col-md-8 well">
 
-                        <p class="lead2 text-center">
-                          Antes de subir tu perfil, debes descargarte, firmar (digital o manualmente) y volver a enviar los documentos siguientes para confirmar tu aceptación de las condiciones de la candidatura ciudadana
-                          <br>
-                          (Estas condiciones deberán ser aceptadas por cada uno de los candidatos o candidatas)
+                        <p class="lead2 text-center">Texto descriptivo
                         </p>
                       </div>
                     </div>
@@ -180,7 +177,7 @@
                     <div data-step="1" class="step-pane active col-md-offset-2 col-md-8">
 
                       <div class="row">
-                        <label class="bolder" for="form-field-select-3">¿Cuál es tu nivel académico?</label>
+                        <label for="form-field-select-3" class="bolder">¿Que nivel académico prefieres que tenga el candidato o candidata? (elige de una a tres opciones) </label>
 
                         <select class="form-control" name="candidate_step3[academic_level]" id="candidate_step3_academic_level">
                           <option value="1">Sin estudios</option>
@@ -201,9 +198,15 @@
 
                             <div class="col-xs-12">
                               <div class="control-group">
-                                <label class="control-label bolder ">
-                                  ¿Eres capáz de mantener una conversación telefónica en alguno de estos idiomas? (puedes seleccionar ninguno o varios)
+                                <label class="control-label">
+                                <span class="bolder"> ¿Es bueno que hable alguno de estos idiomas? </span><small>(elige de una a tres opciones)</small>
                                 </label>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" class="mine" name="form-field-checkbox">
+                                    <span class="lbl">No considero necesario que hable idiomas</span>
+                                  </label>
+                                </div>
                                 <div class="checkbox">
                                   <label>
                                     <input type="checkbox" class="mine" name="form-field-checkbox">

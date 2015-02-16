@@ -98,10 +98,10 @@
 
         <!--    division -->
         <div class="headline">
-          <h2>Paso 2</h2>
+          <h2>Paso 3</h2>
         </div>
         <h3 class="featurette-headin">
-          <i>Establece las condiciones de la candidatura ciudadana</i>
+          <i>Seleciona experiencia laboral</i>
         </h3>
         <div class="row featurette2">
           <div class="widget-box col-xs-12">
@@ -111,52 +111,52 @@
                 <div id="fuelux-wizard-container">
                   <div>
                     <ul class="steps">
-                      <li data-step="1" class="complete">
-                        <span class="step">1</span>
-                        <span class="title">Regístrate y registra el municipio de la candidatura</span>
-                      </li>
+    <li data-step="1" class="complete">
+    <span class="step">1</span>
+    <span class="title">Registrate como votante</span>
+    </li>
 
-                      <li data-step="2" class="active">
-                        <span class="step">2</span>
-                        <span class="title">Establece las condiciones de la candidatura ciudadana</span>
-                      </li>
+    <li data-step="2" class="complete">
+    <span class="step">2</span>
+    <span class="title">Filtra candidatos por nivel academico</span>
+    </li>
 
-                      <li data-step="3">
-                        <span class="step">3</span>
-                        <span class="title">Establece los plazos de votación</span>
-                      </li>
+    <li data-step="3" class="active">
+    <span class="step">3</span>
+    <span class="title">Seleciona experiencia laboral</span>
+    </li>
 
-                      <li data-step="4">
-                        <span class="step">4</span>
-                        <span class="title">Reserva una dirección de internet</span>
-                      </li>
+    <li data-step="4">
+    <span class="step">4</span>
+    <span class="title">Selecciona actividades municipales</span>
+    </li>
 
-                      <li data-step="5">
-                        <span class="step">5</span>
-                        <span class="title">Alta de candidatos y candidatas</span>
-                      </li>
+    <li data-step="5">
+    <span class="step">5</span>
+    <span class="title">Selecciona prioridades municipales</span>
+    </li>
 
-                      <li data-step="6">
-                        <span class="step">6</span>
-                        <span class="title">Validación de candidatos y candidatas</span>
-                      </li>
+    <li data-step="6">
+    <span class="step">6</span>
+    <span class="title">Asigna importancia</span>
+    </li>
 
-                      <li data-step="7">
-                        <span class="step">7</span>
-                        <span class="title">Votaciones</span>
-                      </li>
+    <li data-step="7">
+    <span class="step">7</span>
+    <span class="title">Elige candidatos</span>
+    </li>
 
-                      <li data-step="8">
-                        <span class="step">8</span>
-                        <span class="title">Verificación del voto y resultados</span>
-                      </li>
+    <li data-step="8">
+    <span class="step">8</span>
+    <span class="title">Asigna puntuaciones</span>
+    </li>
 
-                      <li data-step="9">
-                        <span class="step">9</span>
-                        <span class="title">Presentación de las listas electas</span>
-                      </li>
+    <li data-step="9">
+    <span class="step">9</span>
+    <span class="title">Fin</span>
+    </li>
 
-                    </ul>
+  </ul>
                   </div>
 
                   <hr>
@@ -164,86 +164,125 @@
                   <div class="step-content pos-rel container-fluid">
 
                     <div class="row">
-                      <h2 class="col-md-8 col-sm-offset-2 text-center">Regístrate como candidato</h2>
+                      <h2 class="col-md-8 col-sm-offset-2 text-center">Seleciona experiencia laboral</h2>
                     </div>
-                    <div class="row">
-                      <div class="col-md-offset-2 col-md-8 well">
 
-                        <p class="lead2 text-center">
-                          Antes de subir tu perfil, debes descargarte, firmar (digital o manualmente) y volver a enviar los documentos siguientes para confirmar tu aceptación de las condiciones de la candidatura ciudadana
-                          <br>
-                          (Estas condiciones deberán ser aceptadas por cada uno de los candidatos o candidatas)
-                        </p>
-                      </div>
-                    </div>
                     <hr class="featurette-divider2">
-                    <div data-step="1" class="step-pane active col-md-offset-2 col-md-8">
+                    <div class="step-pane active col-md-offset-2 col-md-8" data-step="1">
 
-                      <div class="row">
-                        <label class="bolder" for="form-field-select-3">¿Cuál es tu nivel académico?</label>
-
-                        <select class="form-control" name="candidate_step3[academic_level]" id="candidate_step3_academic_level">
-                          <option value="1">Sin estudios</option>
-                          <option value="2">Estudios primarios o equivalentes</option>
-                          <option value="3">Enseñanza general secundaria, 1er ciclo</option>
-                          <option value="4">Enseñanza Profesional de 2º grado, 2º ciclo</option>
-                          <option value="5">Enseñanza general secundaria, 2º ciclo</option>
-                          <option value="6">Enseñanzas profesionales superiores</option>
-                          <option value="7">Estudios universitarios o equivalentes</option>
-                          <option value="8">Máster universitario o doctorado</option>
-                        </select>
-                      </div>
-                      <hr>
-                      <div class=" form-horizont row">
+                      <div class="form-horizont row">
 
                         <div class="form-group ">
                           <form name="candidate_step3" method="post" action="/manzanares/alta-candidaturas-paso-3" class="form_settings">
 
                             <div class="col-xs-12">
                               <div class="control-group">
-                                <label class="control-label bolder ">
-                                  ¿Eres capáz de mantener una conversación telefónica en alguno de estos idiomas? (puedes seleccionar ninguno o varios)
+                                <label class="control-label">
+                                  <span class="bolder">
+                                    ¿Qué campo de experiencia laboral te gustaría que hubiese desarrollado?
+                                  </span>
+                                  <small>(elige de una a tres opciones)</small>
                                 </label>
                                 <div class="checkbox">
                                   <label>
                                     <input type="checkbox" class="mine" name="form-field-checkbox">
-                                    <span class="lbl">Inglés</span>
+                                    <span class="lbl">No considero importante su experiencia laboral previa</span>
                                   </label>
                                 </div>
                                 <div class="checkbox">
                                   <label>
                                     <input type="checkbox" class="mine" name="form-field-checkbox">
-                                    <span class="lbl">Francés</span>
+                                    <span class="lbl">Actividades físicas o deportivas</span>
                                   </label>
                                 </div>
                                 <div class="checkbox">
                                   <label>
                                     <input type="checkbox" class="mine" name="form-field-checkbox">
-                                    <span class="lbl">Alemán</span>
+                                    <span class="lbl">Administración o gestión</span>
                                   </label>
                                 </div>
                                 <div class="checkbox">
                                   <label>
                                     <input type="checkbox" class="mine" name="form-field-checkbox">
-                                    <span class="lbl">Italiano</span>
+                                    <span class="lbl">Agraria o pesquera</span>
                                   </label>
                                 </div>
                                 <div class="checkbox">
                                   <label>
                                     <input type="checkbox" class="mine" name="form-field-checkbox">
-                                    <span class="lbl">Chino</span>
+                                    <span class="lbl">Arte o artesanía</span>
                                   </label>
                                 </div>
                                 <div class="checkbox">
                                   <label>
                                     <input type="checkbox" class="mine" name="form-field-checkbox">
-                                    <span class="lbl">Árabe</span>
+                                    <span class="lbl">Comercio y marketing</span>
                                   </label>
                                 </div>
                                 <div class="checkbox">
                                   <label>
                                     <input type="checkbox" class="mine" name="form-field-checkbox">
-                                    <span class="lbl">Otro</span>
+                                    <span class="lbl">Edificación, obra civil</span>
+                                  </label>
+                                </div>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" class="mine" name="form-field-checkbox">
+                                    <span class="lbl">Energía o agua</span>
+                                  </label>
+                                </div>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" class="mine" name="form-field-checkbox">
+                                    <span class="lbl">Mecánica, electricidad o electrónica</span>
+                                  </label>
+                                </div>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" class="mine" name="form-field-checkbox">
+                                    <span class="lbl">Hostelería y turismo</span>
+                                  </label>
+                                </div>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" class="mine" name="form-field-checkbox">
+                                    <span class="lbl">Informática o comunicaciones</span>
+                                  </label>
+                                </div>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" class="mine" name="form-field-checkbox">
+                                    <span class="lbl">Industria</span>
+                                  </label>
+                                </div>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" class="mine" name="form-field-checkbox">
+                                    <span class="lbl">Sanidad</span>
+                                  </label>
+                                </div>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" class="mine" name="form-field-checkbox">
+                                    <span class="lbl">Medio Ambiente</span>
+                                  </label>
+                                </div>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" class="mine" name="form-field-checkbox">
+                                    <span class="lbl">Educación o servicios a la comunidad</span>
+                                  </label>
+                                </div>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" class="mine" name="form-field-checkbox">
+                                    <span class="lbl">Transporte</span>
+                                  </label>
+                                </div>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" class="mine" name="form-field-checkbox">
+                                    <span class="lbl">Finanzas</span>
                                   </label>
                                 </div>
 
@@ -261,12 +300,12 @@
                 <hr>
                 <div class="wizard-actions">
 
-                  <button class="btn btn-prev" onclick="parent.location='/alta-candidatura'">
+                  <button onclick="parent.location='/alta-candidatura'" class="btn btn-prev">
                     <i class="mine-icon fa fa-arrow-left"></i>
                     Anterior
                   </button>
 
-                  <button type="submit" id="candidacy_step_verify_continue" name="candidacy_step_verify[continue]" class="submit btn btn-success btn-next">
+                  <button class="submit btn btn-success btn-next" name="candidacy_step_verify[continue]" id="candidacy_step_verify_continue" type="submit">
                     Continuar
                     <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
                   </button>
