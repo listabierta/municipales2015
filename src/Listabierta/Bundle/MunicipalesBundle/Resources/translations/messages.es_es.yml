@@ -234,6 +234,7 @@ candidate:
     h1_title: Regístrate como candidato
 
     step1:
+        header: Registrate como candidato
         p1: "Bienvenido o bienvenida a el alta de candidatos para la candidatura ciudadana <b>%address%</b> al municipio de <b>%town%</b>.<br/>Por favor rellena tu candidatura con exactitud, si te equivocas o quieres modificarla más adelante tendrás que rellenar de nuevo el cuestionario."
         p2: El plazo de presentación de candidaturas establecido es desde %fromdate% hasta %todate%
         name: Nombre 
@@ -241,17 +242,18 @@ candidate:
         dni: DNI
         email: Email
         phone: Número de móvil
-        continue: Continuar
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
 
     verify_msg: Confirma el registro de candidato enviando un SMS con la palabra ACEPTO al móvil nº %sms_inbound_number% que proporcionaste en el paso anterior, después haz clic en CONTINUAR
     
     step_verify:
         html_title: Municipales 2015 - Alta de candidato
         h1_title: Verifica tu número de móvil
-        continue: Continuar
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
         
     step2:
+        header: Firma documentos
         p1: Antes de subir tu perfil, debes descargarte, firmar (digital o manualmente) y volver a enviar los documentos siguientes para confirmar tu aceptación de las condiciones de la candidatura ciudadana
     
         program: Aceptación del programa de la candidatura
@@ -261,34 +263,46 @@ candidate:
         voter_conditions: Aceptación del censo disponible y del sistema de votación
         technical_constrains: Aceptación de las limitaciones técnicas y legales del sistema de voto.
     
-        continue: Continuar     
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         
     step3:      
+        header: Proporciona tu nivel académico
         academic_level_title: ¿Cuál es tu nivel académico?
         languages_title: ¿Eres capáz de mantener una conversación telefónica en alguno de estos idiomas? (puedes seleccionar ninguno o varios)
-        continue: Continuar  
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     
     step4:      
+        header: Proporciona tu experiencia laboral
         job_experience_title: ¿Cuál es el campo de tu experiencia laboral? (Seleccione hasta tres opciones)
-        continue: Continuar  
-        
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+          
     step5:      
+        header: Proporciona el desempeño municipal
         town_activities_title: ¿Has tenido alguna experiencia relacionada con el desempeño municipal?  (Seleccione hasta tres opciones siempre que tu actividad incluya la coordinación o gestión de un grupo superior a las 10 personas, posteriormente tendrás que explicarlo)
-        continue: Continuar
-       
-    step6:      
-        govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones)
-        continue: Continuar
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         
-    step7:      
+    step6:      
+        header: Establece prioridades de gobierno
+        govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones)
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        
+    step7:  
+        header: Selecciona valores morales    
         public_values_title: ¿Qué valores morales consideras de mayor importancia para el desempeño de la función pública? (elige hasta tres)
         motivation_text_title: Describe tu motivación para presentarte
         town_activities_explanation_title: Describe tu experiencia relacionada con (Introducir los campos seleccionados en “¿Has tenido alguna experiencia relacionada con el desempeño  municipal? Campos seleccionados
         additional_info_title: Aporta alguna información adicional que consideres de importancia para tu candidatura
         profile_image_title: Adjunta foto
-        continue: Continuar
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         
     final_step:
+        header: Fin    
         end: "¡Candidatura completada!"
         
 login:
