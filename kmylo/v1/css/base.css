@@ -185,13 +185,13 @@ section .container
 
 
 .btn,.btn-default,.btn:focus,.btn-default:focus{
-    background-color:#f26321!important;
-    border-color:#e25311;
+   /* background-color:#f26321!important;
+    border-color:#e25311;*/
 }
 
 .btn:hover,.btn-default:hover,.btn:active,.btn-default:active,.open .btn.dropdown-toggle,.open .btn-default.dropdown-toggle{
-    background-color:#B94B18!important;
-    border-color:#ad3f0d;
+    /*background-color:#B94B18!important;
+    border-color:#ad3f0d;*/
 }
 
 .btn-lg {
@@ -207,10 +207,20 @@ section .container
     /*min-height: 480px;*/
 }
 .featurette2 {
-    min-height: 560px;
+   /* min-height: 560px;*/
 }
 
 textarea.long-text {
     min-height: 150px;
     word-wrap: break-word;
+}
+
+.btn-primary2,.btn-primary2:focus{
+    background-color:#f26321!important;
+    border-color:#e25311;
+}
+
+.btn-primary2:hover,.btn-primary2:active, .open .btn-primary2.dropdown-toggle{
+    background-color:#B94B18!important;
+    border-color:#ad3f0d;
 }

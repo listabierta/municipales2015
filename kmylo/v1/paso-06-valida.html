@@ -77,27 +77,27 @@
                   <div id="fuelux-wizard-container">
                     <div>
                       <ul class="steps">
-                        <li data-step="1" class="complete">
+                        <li class="complete" data-step="1">
                           <span class="step">1</span>
                           <span class="title">Regístrate y registra el municipio de la candidatura</span>
                         </li>
-                        <li data-step="2" class="complete">
+                        <li class="complete" data-step="2">
                           <span class="step">2</span>
                           <span class="title">Establece las condiciones de la candidatura ciudadana</span>
                         </li>
-                        <li data-step="3" class="complete">
+                        <li class="complete" data-step="3">
                           <span class="step">3</span>
                           <span class="title">Establece los plazos de votación</span>
                         </li>
-                        <li data-step="4" class="complete">
+                        <li class="complete" data-step="4">
                           <span class="step">4</span>
                           <span class="title">Reserva una dirección de internet</span>
                         </li>
-                        <li data-step="5" class="complete">
+                        <li class="complete" data-step="5">
                           <span class="step">5</span>
                           <span class="title">Alta de candidatos y candidatas</span>
                         </li>
-                        <li data-step="6" class="active">
+                        <li class="active" data-step="6">
                           <span class="step">6</span>
                           <span class="title">Validación de candidatos y candidatas</span>
                         </li>
@@ -121,8 +121,8 @@
                         <h2 class="col-md-8 col-sm-offset-2 text-center">Tabla Validación Candidatos</h2>
                       </div>
                       <div class="row">
-                        <div class="step-pane active col-xs-12" data-step="1">
-                          <div class="col-md-offset-2 col-md-8 form-horizont">
+                        <div data-step="1" class="step-pane active col-xs-12">
+                          <div class="col-md-offset-0 col-md-12 form-horizont">
                             <div class="widget-box2">
                               <div class="widget-body">
                                 <div class="widget-main">
@@ -145,10 +145,12 @@
                                         <td></td>
                                         <td></td>
                                         <td>
-                                          <img src="docs/asdsad/7/candidate/1/photo/photo.jpg" style="width:45px;height:45px"></td>
+                                          <img style="width:45px;height:45px" src="docs/asdsad/7/candidate/1/photo/photo.jpg"></td>
                                         <td>
-                                          <a title="Aceptar candidato hlh kljlkj" href="/candidate/accept/1">Aceptar</a>
-                                          <a title="Rechazar candidato hlh kljlkj" href="/candidate/reject/1">Rechazar</a>
+<div class="btn-group">
+<a title="Aceptar candidato hlh kljlkj" href="/candidate/accept/1" class="btn btn-xs btn-success"><i class="mine-icon fa fa-check bigger-120">Aceptar</i></a><a title="Rechazar candidato hlh kljlkj" href="/candidate/reject/1" class="btn btn-xs btn-danger"><i class="mine-icon fa fa-close bigger-120"></i>Rechazar</a>
+
+  </div>
                                         </td>
                                       </tr>
                                       <tr>
@@ -157,23 +159,23 @@
                                         <td>hlhkhlh</td>
                                         <td>lkhlklk</td>
                                         <td>
-                                          <img src="docs/asdsad/7/candidate/2/photo/photo.jpg" style="width:45px;height:45px"></td>
+                                          <img style="width:45px;height:45px" src="docs/asdsad/7/candidate/2/photo/photo.jpg"></td>
                                         <td>
-                                          <a title="Aceptar candidato hlh kljlkj" href="/candidate/accept/2">Aceptar</a>
-                                          <a title="Rechazar candidato hlh kljlkj" href="/candidate/reject/2">Rechazar</a>
+                                          <a href="/candidate/accept/2" title="Aceptar candidato hlh kljlkj">Aceptar</a>
+                                          <a href="/candidate/reject/2" title="Rechazar candidato hlh kljlkj">Rechazar</a>
                                         </td>
                                       </tr>
                                     </tbody>
                                   </table>
                                   <div class="form-group">
                                     <div class="text-center">
-                                      <button class="submit btn mine-icon fa fa-arrow-right icon-on-right" name="candidacy_step_7[start_candidacy]" id="candidacy_step_7_start_candidacy" type="submit">Continuar</button>
+                                      <button class="submit btn " name="candidacy_step_7[start_candidacy]" id="candidacy_step_7_start_candidacy" type="submit"><i class="mine-icon fa fa-check"></i>Continuar</button>
                                     </div>
                                     <hr>
                                     <div class="input-group">
-                                      <label class="required" for="candidacy_step_7_total_days">Total days</label>
-                                      <input type="text" required="required" name="candidacy_step_7[total_days]" id="candidacy_step_7_total_days"></div>
-                                    <input type="hidden" value="CcQoOHU00sDdlbPQeZfjRTtuJ9CzzSJnl4lQuy4Pq68" name="candidacy_step_7[_token]" id="candidacy_step_7__token"></div>
+                                      <label for="candidacy_step_7_total_days" class="required">Total days</label>
+                                      <input type="text" id="candidacy_step_7_total_days" name="candidacy_step_7[total_days]" required="required"></div>
+                                    <input type="hidden" id="candidacy_step_7__token" name="candidacy_step_7[_token]" value="CcQoOHU00sDdlbPQeZfjRTtuJ9CzzSJnl4lQuy4Pq68"></div>
                                 </div>
                               </div>
                             </div>
@@ -184,10 +186,10 @@
                   </div>
                   <hr>
                   <div class="wizard-actions">
-                    <button class="btn btn-prev" onclick="parent.location='/alta-candidatura-paso-4'"> <i class="mine-icon fa fa-arrow-left"></i>
+                    <button onclick="parent.location='/alta-candidatura-paso-4'" class="btn btn-prev"> <i class="mine-icon fa fa-arrow-left"></i>
                       Anterior
                     </button>
-                    <button type="submit" id="candidacy_step_5_continue" name="candidacy_step_5[continue]" class="submit btn btn-success btn-next">
+                    <button class="submit btn btn-success btn-next" name="candidacy_step_5[continue]" id="candidacy_step_5_continue" type="submit">
                       Continuar
                       <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
                     </button>
@@ -200,7 +202,7 @@
       </div>
       <div class="col-xs-12 col-sm-2">
         <span class="block input-icon input-icon-right">
-          <input type="hidden" id="candidacy_step_5__token" name="candidacy_step_5[_token]" value="SknWXpafsmw_l57EIshni24y8IFf38CJ1PTcToTBqb8"></span>
+          <input type="hidden" value="SknWXpafsmw_l57EIshni24y8IFf38CJ1PTcToTBqb8" name="candidacy_step_5[_token]" id="candidacy_step_5__token"></span>
       </div>
       <!--    division -->
       <!-- /END THE FEATURETTES --> </section>
