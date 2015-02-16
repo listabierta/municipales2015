@@ -71,7 +71,7 @@
 		                <div class="col-md-offset-2 col-md-9 form-horizont">
 		                  <div class="row">
 		                  
-		                    <div class="form-group row">
+		                    <div class="form-group row{% if form.program.vars.errors|length > 0 %} has-error{% endif %}">
 		                      <div class="col-xs-12">
 		                        <label class="required control-label" for="candidacy_step2_program">
 		                          {{ form_label(form.program, 'candidacy.step2.program'|trans) }}
@@ -100,7 +100,7 @@
 		
 		                    </div>
 		                    
-		                    <div class="form-group has-error row">
+		                    <div class="form-group row{% if form.legal_conditions.vars.errors|length > 0 %} has-error{% endif %}">
 		                      <div class="col-xs-12">
 		                        <label class="required control-label" for="candidacy_step2_legal_conditions">
 		                          {{ form_label(form.legal_conditions, 'candidacy.step2.legal_conditions'|trans) }}
@@ -109,7 +109,7 @@
 		                      <div class="input-group col-xs-12">
 		                        <div class="col-xs-8 col-md-10">
 		                          <label class="mine-file-input">
-		                            <input type="file" id="id-input-file-2">
+		                            {{ form_widget(form.legal_conditions) }}
 		                            <span class="mine-file-container" data-title="Examinar">
 		                              <span class="mine-file-name" data-title="Subir archivo...">
 		                                <i class=" mine-icon fa fa-upload"></i>
@@ -118,6 +118,7 @@
 		                            <a class="remove" href="#">
 		                              <i class=" mine-icon fa fa-times"></i>
 		                            </a>
+		                            {{ form_errors(form.legal_conditions) }}
 		                          </label>
 		                        </div>
 		                        <div class="col-xs-4 col-md-2 row">
@@ -125,36 +126,20 @@
 		                          <a class="col-xs-12 row" title="{{ 'candidacy.step2.legal_conditions'|trans }}" href="{{ asset('bundles/municipales/pdf/legal_conditions_example.pdf') }}">{{ 'candidacy.step2.example'|trans }}</a>
 		                        </div>
 		                      </div>
-		                      <span class="help-block with-errors col-xs-12">
-		                        <ul class="list-unstyled">
-		                          <li>No se ha seleccionado ningún archivo.</li>
-		                        </ul>
-		                      </span>
 		                    </div>
 		
-		
-		
-			<div class="form-group">
-			{{ form_label(form.recall_term, 'candidacy.step2.recall_term'|trans) }} <a 
-			href="{{ asset('bundles/municipales/pdf/recall_term_example.pdf') }}" 
-			title="{{ 'candidacy.step2.recall_term'|trans }}">{{ 'candidacy.step2.example'|trans }}</a>
-			<span>{{ form_errors(form.recall_term) }}</span>
-			{{ form_widget(form.recall_term) }}
-	</div>
 	
 	
-	
-		                    <div class="form-group row">
+		                    <div class="form-group row{% if form.recall_term.vars.errors|length > 0 %} has-error{% endif %}">
 		                      <div class="col-xs-12">
 		                        <label class="required control-label" for="candidacy_step2_participatory_term">
-		                          El mandato participativo del candidato
-		                          <span title="This field is required" class="required">*</span>
+		                          {{ form_label(form.recall_term, 'candidacy.step2.recall_term'|trans) }}
 		                        </label>
 		                      </div>
 		                      <div class="input-group col-xs-12">
 		                        <div class="col-xs-8 col-md-10">
 		                          <label class="mine-file-input">
-		                            <input type="file" id="id-input-file-2">
+		                            {{ form_widget(form.recall_term) }}
 		                            <span class="mine-file-container" data-title="Examinar">
 		                              <span class="mine-file-name" data-title="Subir archivo...">
 		                                <i class=" mine-icon fa fa-upload"></i>
@@ -162,39 +147,30 @@
 		                            </span>
 		                            <a class="remove" href="#">
 		                              <i class=" mine-icon fa fa-times"></i>
+		                              {{ form_errors(form.recall_term) }}
 		                            </a>
 		                          </label>
 		                        </div>
 		                        <div class="col-xs-4 col-md-2 row">
 		
-		                          <a href="/bundles/municipales/pdf/program_example.pdf" title="El programa de la candidatura" class="col-xs-12 row">{{ 'candidacy.step2.example'|trans }}</a>
+		                          <a href="{{ asset('bundles/municipales/pdf/recall_term_example.pdf') }}" title="{{ 'candidacy.step2.recall_term'|trans }}" class="col-xs-12 row">{{ 'candidacy.step2.example'|trans }}</a>
 		                        </div>
 		                      </div>
 		
 		                    </div>
 		                    
+		                      
 		                    
-		                    
-	<div class="form-group">
-			{{ form_label(form.participatory_term, 'candidacy.step2.participatory_term'|trans) }} <a 
-			href="{{ asset('bundles/municipales/pdf/participatory_term_example.pdf') }}" 
-			title="{{ 'candidacy.step2.participatory_term'|trans }}">{{ 'candidacy.step2.example'|trans }}</a>
-			<span>{{ form_errors(form.participatory_term) }}</span>
-			{{ form_widget(form.participatory_term) }}
-	</div>
-		                    
-		                    
-		                    <div class="form-group row">
+		                    <div class="form-group row{% if form.participatory_term.vars.errors|length > 0 %} has-error{% endif %}">
 		                      <div class="col-xs-12">
 		                        <label for="candidacy_step2_recall_term" class="required control-label">
-		                          El mandato revocatorio del candidato
-		                          <span class="required" title="This field is required">*</span>
+		                          {{ form_label(form.participatory_term, 'candidacy.step2.participatory_term'|trans) }}
 		                        </label>
 		                      </div>
 		                      <div class="input-group col-xs-12">
 		                        <div class="col-xs-8 col-md-10">
 		                          <label class="mine-file-input">
-		                            <input type="file" id="id-input-file-2">
+		                            {{ form_widget(form.participatory_term) }}
 		                            <span data-title="Examinar" class="mine-file-container">
 		                              <span data-title="Subir archivo..." class="mine-file-name">
 		                                <i class=" mine-icon fa fa-upload"></i>
@@ -202,41 +178,30 @@
 		                            </span>
 		                            <a href="#" class="remove">
 		                              <i class=" mine-icon fa fa-times"></i>
+		                              {{ form_errors(form.participatory_term) }}
 		                            </a>
 		                          </label>
 		                        </div>
 		                        <div class="col-xs-4 col-md-2 row">
 		
-		                          <a class="col-xs-12 row" title="El programa de la candidatura" href="/bundles/municipales/pdf/program_example.pdf">{{ 'candidacy.step2.example'|trans }}</a>
+		                          <a class="col-xs-12 row" title="{{ 'candidacy.step2.participatory_term'|trans }}" href="{{ asset('bundles/municipales/pdf/participatory_term_example.pdf') }}">{{ 'candidacy.step2.example'|trans }}</a>
 		                        </div>
 		                      </div>
 		
 		                    </div>
 		                    
+
 		                    
-		                    
-		                    	<div class="form-group">
-			{{ form_label(form.voter_conditions, 'candidacy.step2.voter_conditions'|trans) }} <a 
-			href="{{ asset('bundles/municipales/pdf/voter_conditions_example.pdf') }}" 
-			title="{{ 'candidacy.step2.voter_conditions'|trans }}">{{ 'candidacy.step2.example'|trans }}</a>
-			<span>{{ form_errors(form.voter_conditions) }}</span>
-			{{ form_widget(form.voter_conditions) }}
-	</div>
-		                    
-		                    
-		                    
-		                    <div class="form-group row">
+		                    <div class="form-group row{% if form.voter_conditions.vars.errors|length > 0 %} has-error{% endif %}">
 		                      <div class="col-xs-12">
 		                        <label for="candidacy_step2_voter_conditions" class="required control-label">
-		                          Las condiciones para poder participar como votante
-		                          <span class="small">(censo y aceptación del sistema de votación)</span>
-		                          <span class="required" title="This field is required">*</span>
+		                          {{ form_label(form.voter_conditions, 'candidacy.step2.voter_conditions'|trans) }}
 		                        </label>
 		                      </div>
 		                      <div class="input-group col-xs-12">
 		                        <div class="col-xs-8 col-md-10">
 		                          <label class="mine-file-input">
-		                            <input type="file" id="id-input-file-2">
+		                            {{ form_widget(form.voter_conditions) }}
 		                            <span class="mine-file-container" data-title="Examinar">
 		                              <span class="mine-file-name" data-title="Subir archivo...">
 		                                <i class=" mine-icon fa fa-upload"></i>
@@ -244,37 +209,30 @@
 		                            </span>
 		                            <a class="remove" href="#">
 		                              <i class=" mine-icon fa fa-times"></i>
+		                              {{ form_errors(form.voter_conditions) }}
 		                            </a>
 		                          </label>
 		                        </div>
 		                        <div class="col-xs-4 col-md-2 row">
 		
-		                          <a href="/bundles/municipales/pdf/program_example.pdf" title="El programa de la candidatura" class="col-xs-12 row">{{ 'candidacy.step2.example'|trans }}</a>
+		                          <a href="{{ asset('bundles/municipales/pdf/voter_conditions_example.pdf') }}" title="{{ 'candidacy.step2.voter_conditions'|trans }}" class="col-xs-12 row">{{ 'candidacy.step2.example'|trans }}</a>
 		                        </div>
 		                      </div>
 		
 		                    </div>
 		                    
 		                    
-		                    	<div class="form-group">
-			{{ form_label(form.technical_constrains, 'candidacy.step2.technical_constrains'|trans) }} <a 
-			href="{{ asset('bundles/municipales/pdf/technical_constrains_example.pdf') }}" 
-			title="{{ 'candidacy.step2.technical_constrains'|trans }}">{{ 'candidacy.step2.example'|trans }}</a>
-			<span>{{ form_errors(form.technical_constrains) }}</span>
-			{{ form_widget(form.technical_constrains) }}
-	</div>
-	
-		                    <div class="form-group row">
+
+		                    <div class="form-group row{% if form.technical_constrains.vars.errors|length > 0 %} has-error{% endif %}">
 		                      <div class="col-xs-12">
 		                        <label class="required control-label" for="candidacy_step2_technical_constrains">
-		                          Las limitaciones técnicas y legales del sistema de voto.
-		                          <span title="This field is required" class="required">*</span>
+		                          {{ form_label(form.technical_constrains, 'candidacy.step2.technical_constrains'|trans) }}
 		                        </label>
 		                      </div>
 		                      <div class="input-group col-xs-12">
 		                        <div class="col-xs-8 col-md-10">
 		                          <label class="mine-file-input">
-		                            <input type="file" id="id-input-file-2">
+		                            {{ form_widget(form.technical_constrains) }}
 		                            <span data-title="Examinar" class="mine-file-container">
 		                              <span data-title="Subir archivo..." class="mine-file-name">
 		                                <i class=" mine-icon fa fa-upload"></i>
@@ -282,12 +240,13 @@
 		                            </span>
 		                            <a href="#" class="remove">
 		                              <i class=" mine-icon fa fa-times"></i>
+		                              {{ form_errors(form.technical_constrains) }}
 		                            </a>
 		                          </label>
 		                        </div>
 		                        <div class="col-xs-4 col-md-2 row">
 		
-		                          <a class="col-xs-12 row" title="El programa de la candidatura" href="/bundles/municipales/pdf/program_example.pdf">{{ 'candidacy.step2.example'|trans }}</a>
+		                          <a class="col-xs-12 row" title="{{ 'candidacy.step2.technical_constrains'|trans }}" href="{{ asset('bundles/municipales/pdf/technical_constrains_example.pdf') }}">{{ 'candidacy.step2.example'|trans }}</a>
 		                        </div>
 		                      </div>
 		                    </div>
