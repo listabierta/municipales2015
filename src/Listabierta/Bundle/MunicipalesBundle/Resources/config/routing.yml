@@ -64,6 +64,19 @@ municipales_candidacy_step8:
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl 
 
+# Extra for accept/reject candidates
+municipales_candidacy_accept:
+    path:     /candidate/accept/{id}
+    defaults: { _controller: MunicipalesBundle:Candidacy:accept }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl  
+
+municipales_candidacy_reject:
+    path:     /candidate/reject/{id}
+    defaults: { _controller: MunicipalesBundle:Candidacy:reject }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl  
+        
 # http://municipales2015.listabierta.org/elmunicipioregistrado/resultados
 town_results:
     path:     /{address}/resultados
