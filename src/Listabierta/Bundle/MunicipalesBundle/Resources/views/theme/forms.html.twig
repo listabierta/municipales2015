@@ -18,7 +18,17 @@
         </span>
     </div>               
 {% endblock form_widget_simple %}            
-                          
+ 
+{% block form_widget_simple2 %}
+    {% set type = type|default('text') %}
+
+    <div class="col-xs-12 col-sm-12">
+    	<span class="block input-icon input-icon-right">
+        	<input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}> 
+        </span>
+    </div>               
+{% endblock form_widget_simple2 %}
+                         
 {% block form_label %}
 	   {% if label is not sameas(false) %}
 	        {% if not compound %}

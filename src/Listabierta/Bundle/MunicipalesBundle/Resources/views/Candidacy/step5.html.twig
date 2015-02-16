@@ -41,7 +41,7 @@
 				        	<h2 class="col-md-8 col-sm-offset-2 text-center">{{ 'candidacy.step5.register_link'|trans }}</h2>
 				      </div>
 			            
-					  {% if not form.vars.valid %}
+					  {% if not form.vars.valid and form.vars.errors|length > 0 %}
 	                  <div class="alert alert-danger">
 	                          <button data-dismiss="alert" class="close" type="button">
 	                            <i class="mine-icon fa fa-times"></i>
@@ -91,7 +91,7 @@
                   <hr>
 	                <div class="wizard-actions">
 	
-					  <button class="btn btn-prev" onclick="parent.location='{{ path('municipales_candidacy_step4') }}'">
+					  <button class="btn btn-prev" onclick="location.href='{{ path('municipales_candidacy_step4') }}'; return false;">
 	                    <i class="mine-icon fa fa-arrow-left"></i>
 	                    {{ 'candidacy.step5.previous'|trans }}
 	                  </button>

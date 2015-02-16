@@ -49,7 +49,7 @@
 									{{ 'candidacy.step7.explanation'|trans }}
 								</p>
 								
-								{% if not form.vars.valid %}
+								{% if not form.vars.valid and form.vars.errors|length > 0 %}
 				                  <div class="alert alert-danger">
 				                          <button data-dismiss="alert" class="close" type="button">
 				                            <i class="mine-icon fa fa-times"></i>

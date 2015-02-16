@@ -81,7 +81,7 @@
 	
 		<div class="wizard-actions">
 		
-			<button class="submit btn btn-success btn-next" onclick="parent.location='{{ path('municipales_candidacy_step7') }}'">
+			<button class="submit btn btn-success btn-next" onclick="location.href='{{ path('municipales_candidacy_step7') }}'; return false;">
 			     {{ 'candidacy.step6.continue'|trans|raw }}
 			</button>
 		

@@ -67,7 +67,7 @@
 
                   <div class="step-content pos-rel">
                   
-				  {% if not form.vars.valid %}
+				  {% if not form.vars.valid and form.vars.errors|length > 0 %}
                   <div class="alert alert-danger">
                           <button data-dismiss="alert" class="close" type="button">
                             <i class="mine-icon fa fa-times"></i>
@@ -117,7 +117,7 @@
                 <hr>
                 <div class="wizard-actions">
 
-				  <button class="btn btn-prev" onclick="parent.location='{{ path('town_candidacy_vote_step4', {'address' : address }) }}'">
+				  <button class="btn btn-prev" onclick="location.href='{{ path('town_candidacy_vote_step4', {'address' : address }) }}'; return false;">
                     <i class="mine-icon fa fa-arrow-left"></i>
                     {{ 'town.step4.previous'|trans }}
                   </button>

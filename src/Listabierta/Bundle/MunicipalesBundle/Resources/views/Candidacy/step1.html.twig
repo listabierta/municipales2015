@@ -180,7 +180,7 @@
 
                 <hr>
                 <div class="wizard-actions">
-                  <button class="btn btn-prev" onclick="parent.location='{{ path('municipales_candidacy_step_conditions') }}'">
+                  <button class="btn btn-prev" onclick="location.href='{{ path('municipales_candidacy_step_conditions') }}'; return false;">
                     <i class="mine-icon fa fa-arrow-left"></i>
                     {{ 'candidacy.step1.previous'|trans }}
                   </button>
