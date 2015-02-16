@@ -54,6 +54,11 @@ security:
             logout:
                 path:   /logout
                 target: /
+            remember_me:
+                key:      "%secret%"
+                lifetime: 31536000 # 365 days in seconds
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
 
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
