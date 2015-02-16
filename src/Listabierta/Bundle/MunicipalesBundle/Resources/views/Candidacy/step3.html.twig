@@ -38,7 +38,7 @@
                 	<div class="step-content pos-rel container-fluid">
                   
 	                  <div class="row">
-				        	<h2 class="col-md-8 col-sm-offset-2 text-center">{{ 'candidacy.step4.choose_address'|trans }}</h2>
+				        	<h2 class="col-md-8 col-sm-offset-2 text-center">{{ 'candidacy.step3.h1_title'|trans }}</h2>
 				      </div>
 			          
 			          <hr class="featurette-divider2">
@@ -60,16 +60,9 @@
 				                  <div class="widget-body">
 				                    <div class="widget-main">
 
-
-
-
-
-
-    <h1>{{ 'candidacy.step3.h1_title'|trans }}</h1>
-    
     {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
-			
- 	{% if not form.vars.valid %}
+
+     	{% if not form.vars.valid %}
 		<div class="alert alert-danger">
 			  <button data-dismiss="alert" class="close" type="button">
 				<i class="mine-icon fa fa-times"></i>
@@ -78,30 +71,44 @@
 		</div>
 	{% endif %}
 	
-    <p class="important">
-		{{ 'candidacy.step3.explanation_date'|trans }}:
-	</p>
+	<div class="row">
+		<p class="important">
+			{{ 'candidacy.step3.explanation_date'|trans }}:
+		</p>
+	</div>
 	
-	<p>
-		<span>{{ form_label(form.from, 'candidacy.step3.from_label'|trans) }}</span>
-		<span>{{ form_errors(form.from) }}</span>
-		{{ form_widget(form.from) }}
-	</p> 
+			
+			<div class="row">
+				<label>{{ form_label(form.from, 'candidacy.step3.from_label'|trans) }}</label>
+				
+				<div class="form-group{% if form.from.vars.errors|length > 0 %} has-error{% endif %}">
+								<div class="col-xs-12 col-sm-12">
+		                          <div class="input-daterange input-group">
+		                          	
+		                          	{{ form_widget(form.from, { 'label': 'candidacy.step3.from_label'|trans|raw, 'label_attr' : { 'class' : 'input-sm form-control'}} ) }}
 	
-	<p>
-		<span>{{ form_label(form.to, 'candidacy.step3.to_label'|trans) }}</span>
-		<span>{{ form_errors(form.to) }}</span>
-		{{ form_widget(form.to) }}
-	</p> 
-		
-	<p>
-	</p>
+		                            {% if form.from.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.from) }}</div>{% endif %}
+		                        </div>
+		    		 </div>
+	    		 </div>
+    		 </div>
+    		 
+    		 <div class="row">
+    		 <br />
+				<label>{{ form_label(form.to, 'candidacy.step3.to_label'|trans) }}</label>
+				
+				<div class="form-group{% if form.to.vars.errors|length > 0 %} has-error{% endif %}">
+					<div class="col-xs-12 col-sm-12">
+	                          <div class="input-daterange input-group">
+	                          	
+	                          	{{ form_widget(form.to, { 'label': 'candidacy.step3.to_label'|trans|raw, 'label_attr' : { 'class' : 'input-sm form-control'}} ) }}
 
-	
-	----------
-	
-	
-</div>
+	                            {% if form.to.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.to) }}</div>{% endif %}
+	                        </div>
+	    		 	</div>
+    			 </div>
+    		 </div>
+		</div>
 			                  </div>
 			                </div>
 			              </div>
