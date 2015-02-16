@@ -6,11 +6,43 @@
 {% from 'MunicipalesBundle:macros:steps.html.twig' import steps_widget %}
 
 {% block content %}
-    <h1>{{ 'candidacy.step6.h1_title'|trans }}</h1>
-    
-    <p class="important">
+<section class="section-2">
+      <div class="container marketing">
+
+        <!-- START THE FEATURETTES -->
+
+        <!--    division -->
+        
+        <div class="headline">
+          <h2>{{ 'home.step_h2'|trans }} 6</h2>
+        </div>
+        <h3 class="featurette-headin">
+          <i>{{ 'candidacy.step6.h1_title'|trans }}</i>
+        </h3>
+        <div class="row featurette2">
+          <div class="widget-box col-xs-12">
+
+            <div class="widget-body">
+              <div class="widget-main">
+                <div id="fuelux-wizard-container">
+                  {{ steps_widget(6) }}
+
+                  <hr>
+
+                  <div class="step-content pos-rel container-fluid">
+
+                    <div class="row">
+                      <h2 class="col-md-12 col-sm-offset-0 text-center">
+						{{ 'candidacy.step6.h1_title'|trans }}
+                      </h2>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-offset-0 col-md-12 well">
+
+                        <p class="lead2 text-center">
+                        
     {% if candidates|length > 0 %}
-    	<table>
+    	<table class="table">
     		<tr>
     			<td>Nombre y Apellidos</td>
     			<td>Texto motivacional</td>
@@ -27,8 +59,14 @@
 				<td>{% if candidate.additionalInfo is defined %}{{ candidate.additionalInfo }}{% endif %}</td> 
 				<td style="padding:5px"><img style="width:45px;height:45px" src="{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" /></td>       
 				<td style="padding:5px">
-					<a href="/candidate/accept/{{ candidate.id }}" title="Aceptar candidato {{ candidate.name }} {{ candidate.lastname }}">Aceptar</a>
-					<a href="/candidate/reject/{{ candidate.id }}" title="Rechazar candidato {{ candidate.name }} {{ candidate.lastname }}">Rechazar</a>
+					{% if candidate.status == 0 %}
+						<a href="/candidate/accept/{{ candidate.id }}" title="Aceptar candidato {{ candidate.name }} {{ candidate.lastname }}">Aceptar</a>
+						<a href="/candidate/reject/{{ candidate.id }}" title="Rechazar candidato {{ candidate.name }} {{ candidate.lastname }}">Rechazar</a>
+					{% elseif candidate.status == 1 %}
+						Aceptado
+					{% elseif candidate.status == 2 %}
+						Rechazado
+					{% endif %}
 				</td>   
 			</tr>
 		{% endfor %}
@@ -36,17 +74,28 @@
 	{% else %}
 		{{ 'candidacy.step6.no_candidates'|trans }}
 	{% endif %}
+	
 	</p>
 	
+		<hr>
 	
-	{{ form_start(form_step7, { 'attr': {'class': 'form_settings'}}) }}
-			
-	<p style="text-align:center">
-		{{ form_widget(form_step7.start_candidacy, { 'label': 'candidacy.step6.continue'|trans }) }}
-	</p>
-			
-	{{ form_rest(form_step7) }}
-			
-	{{ form_end(form_step7) }}
+		<div class="wizard-actions">
+		
+			<button class="submit btn btn-success btn-next" onclick="parent.location='{{ path('municipales_candidacy_step7') }}'">
+			     {{ 'candidacy.step6.continue'|trans|raw }}
+			</button>
+		
+		</div>
+	
+	 	<!-- /.widget-main --> </div>
+            <!-- /.widget-body --> </div>
+        </div>
+
+			  
+        <!--    division -->
+
+        <!-- /END THE FEATURETTES --> 
+        </div>
+</section>
 	
 {% endblock %}
