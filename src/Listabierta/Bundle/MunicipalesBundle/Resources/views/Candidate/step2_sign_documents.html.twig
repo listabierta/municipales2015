@@ -1,51 +1,281 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
 {% block title %}{{ 'candidate.html_title'|trans }}{% endblock %}
-{% block content %}
-    <h1>{{ 'candidate.h1_title'|trans }}</h1>
-    
-    <p class="important">
-    	<div>
-			{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
-			
-			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
 
-			<p>
-				{{ 'candidate.step2.p1'|trans }}
-			</p>
+{% form_theme form 'MunicipalesBundle:theme:forms.html.twig' %}
+
+{% from 'MunicipalesBundle:macros:steps.html.twig' import steps_widget_candidate %}
+
+{% block content %}
+
+    <section class="section-2">
+      <div class="container marketing">
+      
+        <div class="headline">
+          <h2>{{ 'home.step_h2'|trans }} 2</h2>
+        </div><h3 class="featurette-headin"> <i>{{ 'candidate.step_2.header'|trans }}</i>
+        </h3>
+
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider2">
+        
+        {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+        
+        <!--    division -->
+        <div class="row featurette2">
+          <div class="widget-box">
+            
+
+            <div class="widget-body">
+              <div class="widget-main">
+                <div id="fuelux-wizard-container">
+                  {{ steps_widget_candidate(2) }}
+                  
+                  <hr>
+
+                  
+                  <div class="step-content pos-rel container-fluid">
+
+                  	  {% if not form.vars.valid and form.vars.errors|length > 0 %}
+	                  <div class="alert alert-danger">
+	                          <button data-dismiss="alert" class="close" type="button">
+	                            <i class="mine-icon fa fa-times"></i>
+	                          </button>
+	                          {{ form_errors(form) }}
+	                  </div>
+	                  {% endif %}
+                  
+		              <div class="row">
+		                <h2 class="col-md-10 col-sm-offset-1 text-center">{{ 'candidate.step2.header'|trans|raw }}</h2>
+		              </div>
+		              
+		              <div class="row">
+		                <div class="col-md-offset-1 col-md-10 well">
+		
+		                  <p class="lead2 text-center">
+		                    {{ 'candidate.step2.p1'|trans|raw }}
+		                  </p>
+		                </div>
+		              </div>
+		              
+		              <hr class="featurette-divider2">
+		              
+		              <div class="step-pane active col-xs-12" data-step="1">
+		
+		                <div class="col-md-offset-2 col-md-9 form-horizont">
+		                  <div class="row">
+		                  
+		                    <div class="form-group row{% if form.program.vars.errors|length > 0 %} has-error{% endif %}">
+		                      <div class="col-xs-12">
+		                        <label class="required control-label" for="candidate_step2_program">
+		                          {{ form_label(form.program, 'candidate.step2.program'|trans) }}
+		                        </label>
+		                      </div>
+		                      <div class="input-group col-xs-12">
+		                        <div class="col-xs-8 col-md-10">
+		                          <label class="mine-file-input">
+		                            {{ form_widget(form.program) }}
+		                            
+		                            <span data-title="Examinar" class="mine-file-container">
+		                            	
+		                              <span data-title="Subir archivo..." class="mine-file-name"> <i class=" mine-icon fa fa-upload"></i>
+		                              </span>
+		                            </span>
+		                            <a href="#" class="remove">
+		                              <i class=" mine-icon fa fa-times"></i>
+		                            </a>
+		                            {{ form_errors(form.program) }}
+		                          </label>
+		                        </div>
+		                        <div class="col-xs-4 col-md-2 row">
+		                          <a class="col-xs-12 row" title="{{ 'candidate.step2.program'|trans }}" href="{{ asset('bundles/municipales/pdf/program_example.pdf') }}">{{ 'candidate.step2.download'|trans }}</a>
+		                        </div>
+		                      </div>
+		
+		                    </div>
+		                    
+		                    <div class="form-group row{% if form.legal_conditions.vars.errors|length > 0 %} has-error{% endif %}">
+		                      <div class="col-xs-12">
+		                        <label class="required control-label" for="candidate_step2_legal_conditions">
+		                          {{ form_label(form.legal_conditions, 'candidate.step2.legal_conditions'|trans) }}
+		                        </label>
+		                      </div>
+		                      <div class="input-group col-xs-12">
+		                        <div class="col-xs-8 col-md-10">
+		                          <label class="mine-file-input">
+		                            {{ form_widget(form.legal_conditions) }}
+		                            <span class="mine-file-container" data-title="Examinar">
+		                              <span class="mine-file-name" data-title="Subir archivo...">
+		                                <i class=" mine-icon fa fa-upload"></i>
+		                              </span>
+		                            </span>
+		                            <a class="remove" href="#">
+		                              <i class=" mine-icon fa fa-times"></i>
+		                            </a>
+		                            {{ form_errors(form.legal_conditions) }}
+		                          </label>
+		                        </div>
+		                        <div class="col-xs-4 col-md-2 row">
+		
+		                          <a class="col-xs-12 row" title="{{ 'candidate.step2.legal_conditions'|trans }}" href="{{ asset('bundles/municipales/pdf/legal_conditions_example.pdf') }}">{{ 'candidate.step2.download'|trans }}</a>
+		                        </div>
+		                      </div>
+		                    </div>
+		
+	
+	
+		                    <div class="form-group row{% if form.recall_term.vars.errors|length > 0 %} has-error{% endif %}">
+		                      <div class="col-xs-12">
+		                        <label class="required control-label" for="candidate_step2_participatory_term">
+		                          {{ form_label(form.recall_term, 'candidate.step2.recall_term'|trans) }}
+		                        </label>
+		                      </div>
+		                      <div class="input-group col-xs-12">
+		                        <div class="col-xs-8 col-md-10">
+		                          <label class="mine-file-input">
+		                            {{ form_widget(form.recall_term) }}
+		                            <span class="mine-file-container" data-title="Examinar">
+		                              <span class="mine-file-name" data-title="Subir archivo...">
+		                                <i class=" mine-icon fa fa-upload"></i>
+		                              </span>
+		                            </span>
+		                            <a class="remove" href="#">
+		                              <i class=" mine-icon fa fa-times"></i>
+		                              {{ form_errors(form.recall_term) }}
+		                            </a>
+		                          </label>
+		                        </div>
+		                        <div class="col-xs-4 col-md-2 row">
+		
+		                          <a href="{{ asset('bundles/municipales/pdf/recall_term_example.pdf') }}" title="{{ 'candidate.step2.recall_term'|trans }}" class="col-xs-12 row">{{ 'candidate.step2.download'|trans }}</a>
+		                        </div>
+		                      </div>
+		
+		                    </div>
+		                    
+		                      
+		                    
+		                    <div class="form-group row{% if form.participatory_term.vars.errors|length > 0 %} has-error{% endif %}">
+		                      <div class="col-xs-12">
+		                        <label for="candidate_step2_recall_term" class="required control-label">
+		                          {{ form_label(form.participatory_term, 'candidate.step2.participatory_term'|trans) }}
+		                        </label>
+		                      </div>
+		                      <div class="input-group col-xs-12">
+		                        <div class="col-xs-8 col-md-10">
+		                          <label class="mine-file-input">
+		                            {{ form_widget(form.participatory_term) }}
+		                            <span data-title="Examinar" class="mine-file-container">
+		                              <span data-title="Subir archivo..." class="mine-file-name">
+		                                <i class=" mine-icon fa fa-upload"></i>
+		                              </span>
+		                            </span>
+		                            <a href="#" class="remove">
+		                              <i class=" mine-icon fa fa-times"></i>
+		                              {{ form_errors(form.participatory_term) }}
+		                            </a>
+		                          </label>
+		                        </div>
+		                        <div class="col-xs-4 col-md-2 row">
+		
+		                          <a class="col-xs-12 row" title="{{ 'candidate.step2.participatory_term'|trans }}" href="{{ asset('bundles/municipales/pdf/participatory_term_example.pdf') }}">{{ 'candidate.step2.download'|trans }}</a>
+		                        </div>
+		                      </div>
+		
+		                    </div>
+		                    
+
+		                    
+		                    <div class="form-group row{% if form.voter_conditions.vars.errors|length > 0 %} has-error{% endif %}">
+		                      <div class="col-xs-12">
+		                        <label for="candidate_step2_voter_conditions" class="required control-label">
+		                          {{ form_label(form.voter_conditions, 'candidate.step2.voter_conditions'|trans) }}
+		                        </label>
+		                      </div>
+		                      <div class="input-group col-xs-12">
+		                        <div class="col-xs-8 col-md-10">
+		                          <label class="mine-file-input">
+		                            {{ form_widget(form.voter_conditions) }}
+		                            <span class="mine-file-container" data-title="Examinar">
+		                              <span class="mine-file-name" data-title="Subir archivo...">
+		                                <i class=" mine-icon fa fa-upload"></i>
+		                              </span>
+		                            </span>
+		                            <a class="remove" href="#">
+		                              <i class=" mine-icon fa fa-times"></i>
+		                              {{ form_errors(form.voter_conditions) }}
+		                            </a>
+		                          </label>
+		                        </div>
+		                        <div class="col-xs-4 col-md-2 row">
+		
+		                          <a href="{{ asset('bundles/municipales/pdf/voter_conditions_example.pdf') }}" title="{{ 'candidate.step2.voter_conditions'|trans }}" class="col-xs-12 row">{{ 'candidate.step2.download'|trans }}</a>
+		                        </div>
+		                      </div>
+		
+		                    </div>
+		                    
+		                    
+
+		                    <div class="form-group row{% if form.technical_constrains.vars.errors|length > 0 %} has-error{% endif %}">
+		                      <div class="col-xs-12">
+		                        <label class="required control-label" for="candidate_step2_technical_constrains">
+		                          {{ form_label(form.technical_constrains, 'candidate.step2.technical_constrains'|trans) }}
+		                        </label>
+		                      </div>
+		                      <div class="input-group col-xs-12">
+		                        <div class="col-xs-8 col-md-10">
+		                          <label class="mine-file-input">
+		                            {{ form_widget(form.technical_constrains) }}
+		                            <span data-title="Examinar" class="mine-file-container">
+		                              <span data-title="Subir archivo..." class="mine-file-name">
+		                                <i class=" mine-icon fa fa-upload"></i>
+		                              </span>
+		                            </span>
+		                            <a href="#" class="remove">
+		                              <i class=" mine-icon fa fa-times"></i>
+		                              {{ form_errors(form.technical_constrains) }}
+		                            </a>
+		                          </label>
+		                        </div>
+		                        <div class="col-xs-4 col-md-2 row">
+		
+		                          <a class="col-xs-12 row" title="{{ 'candidate.step2.technical_constrains'|trans }}" href="{{ asset('bundles/municipales/pdf/technical_constrains_example.pdf') }}">{{ 'candidate.step2.download'|trans }}</a>
+		                        </div>
+		                      </div>
+		                    </div>
+		                  </div>
+		                  
+
+                  </div>
+                </div>
+                
+				<hr>
+				
+                <div class="wizard-actions">
+                  <button class="btn btn-prev" onclick="location.href='{{ path('municipales_candidacy_step_verify') }}'; return false;">
+                    <i class="mine-icon fa fa-arrow-left"></i>
+                    {{ 'candidacy.step2.previous'|trans }}
+                  </button>
+                  
+					{{ form_widget(form.continue, { 'label': 'candidate.step2.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
+                  
+                </div>
+
+              </div>
+              <!-- /.widget-main --> </div>
+            <!-- /.widget-body --> </div>
+        </div>
+
+        {{ form_rest(form) }}
 			
-			<p>
-				{{ 'candidate.step2.program'|trans }} <a href="/{{ documents_path }}/program.pdf" title="{{ 'candidate.step2.program'|trans }}">Descargar</a>
-				{{ form_widget(form.program) }}
-			</p>
-			<p>
-				{{ 'candidate.step2.legal_conditions'|trans }} <a href="/{{ documents_path }}/legal_conditions.pdf" title="{{ 'candidate.step2.legal_conditions'|trans }}">Descargar</a>
-				{{ form_widget(form.legal_conditions) }}
-			</p>
-			<p>	
-				{{ 'candidate.step2.recall_term'|trans }} <a href="/{{ documents_path }}/recall_term.pdf" title="{{ 'candidate.step2.recall_term'|trans }}">Descargar</a>
-				{{ form_widget(form.recall_term) }}
-			</p>
-			<p>	
-				{{ 'candidate.step2.participatory_term'|trans }} <a href="/{{ documents_path }}/participatory_term.pdf" title="{{ 'candidate.step2.participatory_term'|trans }}">Descargar</a>
-				{{ form_widget(form.participatory_term) }}
-			</p>
-			<p>	
-				{{ 'candidate.step2.voter_conditions'|trans }} <a href="/{{ documents_path }}/voter_conditions.pdf" title="{{ 'candidate.step2.voter_conditions'|trans }}">Descargar</a> 
-				{{ form_widget(form.voter_conditions) }}
-			</p>
-			<p>	
-				{{ 'candidate.step2.technical_constrains'|trans }} <a href="/{{ documents_path }}/technical_constrains.pdf" title="{{ 'candidate.step2.technical_constrains'|trans }}">Descargar</a>
-				{{ form_widget(form.technical_constrains) }}
-			</p>
-			
-			<p>
-			    {{ form_widget(form.continue, { 'label': 'candidate.step2.continue'|trans }) }}
-			</p>
-			
-			{{ form_rest(form) }}
-			
-			{{ form_end(form) }}
-		</div>
-    </p>
+	{{ form_end(form) }}
+	
+        <!--    division -->
+
+        <!-- /END THE FEATURETTES --> </div>
+</div>
+</div>
+</section>    
 {% endblock %}
