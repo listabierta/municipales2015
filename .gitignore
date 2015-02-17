@@ -1,3 +1,6 @@
+# Ignore chain TSA files
+web/chain-*.txt
+
 #Ignore uploaded files
 web/docs/
 
