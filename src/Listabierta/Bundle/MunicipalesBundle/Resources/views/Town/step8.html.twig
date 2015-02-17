@@ -18,9 +18,7 @@
 
         <hr class="featurette-divider2">
         <!--    division -->
-        
-        {{ form_start(form, { 'attr': {'class': 'form_settings', 'id': 'town_step8'}}) }}
-        
+
         <div class="row featurette2">
           <div class="widget-box">
             
@@ -36,15 +34,6 @@
 				  <hr>
 
                   <div class="step-content pos-rel">
-                  
-				  {% if not form.vars.valid and form.vars.errors|length > 0 %}
-                  <div class="alert alert-danger">
-                          <button data-dismiss="alert" class="close" type="button">
-                            <i class="mine-icon fa fa-times"></i>
-                          </button>
-                          {{ form_errors(form) }}
-                  </div>
-                  {% endif %}
                           
                     <div data-step="1" class="step-pane active row">
                       <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'town.step8.h1_title'|trans }}</h2>
@@ -52,9 +41,12 @@
                       <div class="col-sm-offset-1 col-md-10 well">
 
 						<p class="lead2">
-		PUNTOS TOTALES
-		PUNTOS DISPONIBLES
-</p>
+
+									<div class="form-group has-success">
+			                          <label class="col-xs-12 col-sm-12 control-label no-padding-right" for="inputSuccess">¡Enhorabuena! Tu voto ha sido procesado correctamente</label>
+
+			                        </div>
+							</p>
 			          
 			        </div>
 
@@ -62,28 +54,12 @@
                     </div>
                   </div>
                 </div>
-
-                <hr>
-                <div class="wizard-actions">
-
-				  <button class="btn btn-prev" onclick="location.href='{{ path('town_candidacy_vote_step7', {'address' : address }) }}'; return false;">
-                    <i class="mine-icon fa fa-arrow-left"></i>
-                    {{ 'town.step8.previous'|trans }}
-                  </button>
-                  
-                  {{ form_widget(form.continue, { 'label': 'town.step8.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
-
-                </div>
               </div>
               
               
               <!-- /.widget-main --> </div>
             <!-- /.widget-body --> </div>
         </div>
-
-        {{ form_rest(form) }}
-			
-		{{ form_end(form) }}
 			  
         <!--    division -->
 
