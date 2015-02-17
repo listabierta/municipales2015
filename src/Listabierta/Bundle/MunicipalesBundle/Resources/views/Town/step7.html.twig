@@ -79,7 +79,7 @@
 										<td style="padding:5px"><img style="width:45px;height:45px" src="{{ app.request.schemeAndHttpHost }}/{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" /></td>       
 										<td style="padding:5px">
 											{% if candidate.status == 1 %}
-												<select name="town_step7[candidate_{{ candidate.id }}]" id="candidate_{{ candidate.id }}">
+												<select required="required" name="town_step_7[candidate_{{ candidate.id }}]" id="candidate_{{ candidate.id }}">
 													{% for index in 1..candidates|length  %}
 														<option>{{ index }}</option>
 													{% endfor %}
