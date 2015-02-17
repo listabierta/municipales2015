@@ -36,55 +36,116 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ 'candidate.h1_title'|trans }}</h1>
-    
-    <p class="important">
-    	<div>
-			{{ form_start(form, { 'attr': {'class': 'form_settings', 'id': 'candidate_step7'}}) }}
-			
-			<p><div style="background-color:gold;color:black">{{ form_errors(form) }}</div><p>
-			
-			<p>
-				{{ 'candidate.step7.public_values_title'|trans }}
+<section class="section-2">
+      <div class="container marketing">
 
-				<table>
-				{% for child in form.public_values %}
-					<tr>
-				        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td> 
-				        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
-				    </tr>
-				{% endfor %}
-				</table>
-			</p>
+        <div class="headline">
+          <h2>{{ 'home.step_h2'|trans }} 7</h2>
+        </div><h3 class="featurette-headin"> <i>{{ 'candidate.step7.header'|trans }}</i>
+        </h3>
+        
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider2">
+        <!--    division -->
+        
+        {{ form_start(form, { 'attr': {'class': 'form_settings', 'id': 'candidate_step7'}}) }}
+        
+        <div class="row featurette2">
+          <div class="widget-box">
+            
+
+            <div class="widget-body">
+              <div class="widget-main">
+              
+              	
+              	
+                <div id="fuelux-wizard-container">
+                  {{ steps_widget_candidate(7) }}
+                  
+				  <hr>
+
+                  <div class="step-content pos-rel">
+                  
+				  {% if not form.vars.valid and form.vars.errors|length > 0 %}
+                  <div class="alert alert-danger">
+                          <button data-dismiss="alert" class="close" type="button">
+                            <i class="mine-icon fa fa-times"></i>
+                          </button>
+                          {{ form_errors(form) }}
+                  </div>
+                  {% endif %}
+                          
+                    <div data-step="1" class="step-pane active row">
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'candidate.step7.header'|trans }}</h2>
+                      
+                      <div class="col-sm-offset-1 col-md-10 well">
+
+							<p class="lead2">
+							
+							
+								{{ 'candidate.step7.public_values_title'|trans }}
+				
+								<table>
+								{% for child in form.public_values %}
+									<tr>
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td> 
+								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
+								    </tr>
+								{% endfor %}
+								</table>
+							</p>
+							
+							<p class="lead2">
+								{{ 'candidate.step7.motivation_text_title'|trans }}<br />
+								{{ form_widget(form.motivation_text) }}
+							</p>
+							
+							<p class="lead2">
+								{{ 'candidate.step7.town_activities_explanation_title'|trans }}:<br />
+									1, 2 y 3
+								{{ form_widget(form.town_activities_explanation) }}
+							</p>
+							
+							<p class="lead2">
+								{{ 'candidate.step7.additional_info_title'|trans }}<br />
+								{{ form_widget(form.additional_info) }}
+							</p>
+							
+							<p class="lead2">
+								{{ 'candidate.step7.profile_image_title'|trans }}<br />
+								{{ form_widget(form.profile_image) }}
+							</p>
 			
-			<p>
-				{{ 'candidate.step7.motivation_text_title'|trans }}<br />
-				{{ form_widget(form.motivation_text) }}
-			</p>
+					</div>
+                  </div>
+                </div>
+
+                <hr>
+                <div class="wizard-actions">
+
+				  <button class="btn btn-prev" onclick="location.href='{{ path('candidate_step6', {'address' : address }) }}'; return false;">
+                    <i class="mine-icon fa fa-arrow-left"></i>
+                    {{ 'candidate.step7.previous'|trans }}
+                  </button>
+                  
+                  {{ form_widget(form.continue, { 'label': 'candidate.step7.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
+
+                </div>
+              </div>
+              
+              
+              <!-- /.widget-main --> </div>
+            <!-- /.widget-body --> </div>
+        </div>
+
+        {{ form_rest(form) }}
 			
-			<p>
-				{{ 'candidate.step7.town_activities_explanation_title'|trans }}:<br />
-					1, 2 y 3
-				{{ form_widget(form.town_activities_explanation) }}
-			</p>
-			
-			<p>
-				{{ 'candidate.step7.additional_info_title'|trans }}<br />
-				{{ form_widget(form.additional_info) }}
-			</p>
-			
-			<p>
-				{{ 'candidate.step7.profile_image_title'|trans }}<br />
-				{{ form_widget(form.profile_image) }}
-			</p>
-			
-			<p>
-			    {{ form_widget(form.continue, { 'label': 'candidate.step7.continue'|trans }) }}
-			</p>
-			
-			{{ form_rest(form) }}
-			
-			{{ form_end(form) }}
-		</div>
-    </p>
+		{{ form_end(form) }}
+			  
+        <!--    division -->
+
+        <!-- /END THE FEATURETTES --> </div>
+        
+</section>
 {% endblock %}
