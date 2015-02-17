@@ -2,7 +2,9 @@
 
 {% block title %}{{ 'candidate.html_title'|trans }}{% endblock %}
 
-{% form_theme form _self %}
+{% form_theme form 'MunicipalesBundle:theme:forms.html.twig' %}
+
+{% from 'MunicipalesBundle:macros:steps.html.twig' import steps_widget_candidate %}
 
 {% block checkbox_widget %}
 {% spaceless %}
