@@ -263,6 +263,7 @@ candidate:
         voter_conditions: Aceptación del censo disponible y del sistema de votación
         technical_constrains: Aceptación de las limitaciones técnicas y legales del sistema de voto.
     
+        download: Descargar
         previous: Anterior
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         
