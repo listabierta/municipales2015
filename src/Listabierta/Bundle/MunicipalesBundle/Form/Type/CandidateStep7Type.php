@@ -54,6 +54,7 @@ class CandidateStep7Type extends AbstractType
 			     		'data_class' => NULL,
 			     		'constraints' => array(
 			     				new Assert\File(array('maxSize' =>'1024k')),
+			     				new Assert\NotBlank(),
 			     		)
 			     	)
 			     )
