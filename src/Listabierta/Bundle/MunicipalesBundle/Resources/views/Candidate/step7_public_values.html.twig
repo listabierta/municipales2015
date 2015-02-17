@@ -12,8 +12,7 @@
 {% endspaceless %}
 {% endblock checkbox_widget %}
 
-{% block head %}
-    {{ parent() }}
+{% block appjsinline %}
     <script>
     $(document).ready(function() 
     {
@@ -103,7 +102,28 @@
 							
 							<p class="lead2">
 								{{ 'candidate.step7.town_activities_explanation_title'|trans }}:<br />
-									1, 2 y 3
+									{% set town_activities_text = {'1' : 'He tenido experiencia en la mejora del funcionamiento organizativo de entidades',
+			     				'2' : 'He participado en la elaboración de planes de protección civil o seguridad ciudadana',
+			     				'3' : 'He contribuido a la lucha contra la pobreza o la exclusión social',
+			     				'4' : 'He gestionado actividades de atención sanitaria',
+			     				'5' : 'He gestionado actividades educativas o culturales',
+			     				'6' : 'He gestionado planes de infraestructura, vivienda o urbanismo',
+			     				'7' : 'He gestionado actividades de fomento de la sostenibilidad o protección medioambiental',
+			     				'8' : 'He gestionado actividades de fomento del empleo',
+			     				'9' : 'He gestionado actividades de fomento de la transparencia, la participación ciudadana o la igualdad de género',
+			     				'10' : 'He gestionado actividades colectivas en el campo industrial o agrícola',
+			     				'11' : 'He gestionado actividades colectivas en el campo de las tecnologías de la información o la comunicación',
+			     				'12' : 'He gestionado actividades colectivas de investigación o desarrollo',
+			     				'13' : 'He gestionado actividades colectivas en el campo del cooperativismo',
+			     				'14' : 'He gestionado eficazmente presupuestos superiores al millón de euros',
+			     				'15' : 'He tenido experiencia de trabajo internacional',
+			     				'16' : 'He realizado funciones de representación o portavocía de colectivos'}
+									%}
+									<ul>
+									{% for activity in town_activities %}
+										<li>{{ town_activities_text[activity] }}</li>
+									{% endfor %}
+									</ul>
 								{{ form_widget(form.town_activities_explanation) }}
 							</p>
 							
@@ -113,10 +133,36 @@
 							</p>
 							
 							<p class="lead2">
-								{{ 'candidate.step7.profile_image_title'|trans }}<br />
-								{{ form_widget(form.profile_image) }}
+							
+								<div class="form-group row{% if form.profile_image.vars.errors|length > 0 %} has-error{% endif %}">
+			                      <div class="col-xs-12">
+			                        <label class="required control-label" for="candidate_profile_image">
+			                          {{ form_label(form.profile_image, 'candidate.step7.profile_image_title'|trans) }}
+			                        </label>
+			                      </div>
+			                      <div class="input-group col-xs-12">
+			                        <div class="col-xs-8 col-md-10">
+			                          <label class="mine-file-input">
+			                            {{ form_widget(form.profile_image) }}
+			                            
+			                            <span data-title="Examinar" class="mine-file-container">
+			                            	
+			                              <span data-title="Subir archivo..." class="mine-file-name"> <i class=" mine-icon fa fa-upload"></i>
+			                              </span>
+			                            </span>
+			                            <a href="#" class="remove">
+			                              <i class=" mine-icon fa fa-times"></i>
+			                            </a>
+			                            {{ form_errors(form.profile_image) }}
+			                          </label>
+			                        </div>
+			                      </div>
+			
+			                    </div>
+
 							</p>
 			
+					
 					</div>
                   </div>
                 </div>
