@@ -826,8 +826,9 @@ class CandidateController extends Controller
 	
 				return $this->render('MunicipalesBundle:Candidate:step7_public_values.html.twig', array(
 						'address' => $address_slug,
-						'form' => $form2->createView()
-				)
+						'form' => $form2->createView(),
+						'town_activities' => $candidate->getTownActivities(),
+					)
 				);
 			}
 		}
@@ -952,6 +953,18 @@ class CandidateController extends Controller
 				$entity_manager->persist($candidate);
 				$entity_manager->flush();
 				
+				$message = \Swift_Message::newInstance()
+				->setSubject('Nuevo candidato registrado')
+				->setFrom('candidaturas@municipales2015.listabierta.org', 'Candidaturas')
+				->setTo($admin_candidacy->getEmail())
+				->setBody(
+						$this->renderView(
+								'MunicipalesBundle:Mail:candidate_signup.html.twig',
+								array('name' => $candidate->getName())
+						)
+				);
+				 
+				$this->get('mailer')->send($message);
 	
 				return $this->render('MunicipalesBundle:Candidate:final_step.html.twig', array(
 						'address' => $address_slug,
@@ -964,6 +977,7 @@ class CandidateController extends Controller
 				'form' => $form->createView(),
 				'errors' => $form->getErrors(),
 				'address' => $address_slug,
+				'town_activities' => $candidate->getTownActivities(),
 		));
 	}
 }
