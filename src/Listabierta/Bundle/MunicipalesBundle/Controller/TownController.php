@@ -24,6 +24,8 @@ use Symfony\Component\BrowserKit\Response;
 
 class TownController extends Controller
 {
+	const MAX_AVAILABLE_CANDIDATES = 5;
+	
 	public function indexAction(Request $request = NULL)
 	{
 		$this->step1Action($request);
@@ -636,22 +638,27 @@ class TownController extends Controller
 	
 		if ($form->isValid())
 		{
+			$extra_data = $form->getExtraData();
+			
+			$levels = array();
+			$levels[1] = $extra_data['level1'];
+			$levels[2] = $extra_data['level2'];
+			$levels[3] = $extra_data['level3'];
+			$levels[4] = $extra_data['level4'];
+			$levels[5] = $extra_data['level5'];
+			$levels[6] = $extra_data['level6'];
+			
+			if(count($levels) != count(array_unique($levels)))
+			{
+				$form->addError(new FormError('Las opciones entre columnas deben ser excluyentes'));
+				$ok = FALSE;
+			}
+			
 			if($ok)
 			{
+				$session->set('voter_levels', $levels);
 				
-				$form2 = $this->createForm(new TownStep7Type(), NULL, array(
-						'action' => $this->generateUrl('town_candidacy_vote_step7', array('address' => $address)),
-						'method' => 'POST',
-				));
-					
-				$form2->handleRequest($request);
-				
-					
-				return $this->render('MunicipalesBundle:Town:step7.html.twig', array(
-						'address' => $address,
-						'form' => $form2->createView()
-					)
-				);
+				return $this->vote7Action($address, $request);
 			}
 		}
 	
@@ -697,18 +704,87 @@ class TownController extends Controller
 		$form = $this->createForm(new TownStep7Type(), NULL, array(
 				'action' => $this->generateUrl('town_candidacy_vote_step7', array('address' => $address)),
 				'method' => 'POST',
-		)
+			)
 		);
 			
 		$form->handleRequest($request);
 	
 		$ok = TRUE;
-	
+		
+		$voter_levels = $session->get('voter_levels', NULL);
+		
+		//var_dump($voter_levels);
+		
+		if(empty($voter_levels))
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'Sesión expirada en paso 6 de votante',
+			));
+		}
+		
+		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+		
+		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
+		
+		$admin_id = $admin_candidacy->getId();
+		
+		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
+		 
+		$candidates = $candidate_repository->findAll(array('admin_id' => $admin_id));
+		
+		if(empty($candidates))
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'No existen candidatos en esta candidatura',
+			));
+		}
+		
+		// Filter only candidates accepted
+		$valid_candidates = array();
+		foreach($candidates as $candidate)
+		{
+			if($candidate->getStatus() == 1)
+			{
+				$valid_candidates[] = $candidate;
+			}
+		}
+		
+		// Filter candidates with voter levels here until MAX_AVAILABLE_CANDIDATES
+		$valid_candidates = array_slice($valid_candidates, 0, self::MAX_AVAILABLE_CANDIDATES);
+		
+		// Random position
+		shuffle($valid_candidates);
+		
+		$town = $admin_candidacy->getTown();
+		
+		$town_slug = $this->get('slugify')->slugify($town);
+		 
+		$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
+
 		if ($form->isValid())
 		{
 			if($ok)
 			{
-	
+				$extra_data = $form->getExtraData();
+				
+				$vote_info = array();
+				$vote_info['admin_id'] = $admin_id;
+				$vote_info['voter_id'] = $voter_id;
+				
+				$candidate_voters = array();
+				foreach($extra_data as $candidate_key => $candidate_points)
+				{
+					$candidate_id = intval(str_replace('candidate_', '', $candidate_key));
+					
+					$candidate_voters[] = array('id' => $candidate_id, 'points' => intval($candidate_points));
+				}
+				
+				$vote_info['candidates'] = $candidate_voters;
+				
+				//var_dump($vote_info);
+				
+				// @todo Tractis TSA here
+				
 				$form2 = $this->createForm(new TownStep8Type(), NULL, array(
 						'action' => $this->generateUrl('town_candidacy_vote_step8', array('address' => $address)),
 						'method' => 'POST',
@@ -720,7 +796,7 @@ class TownController extends Controller
 				return $this->render('MunicipalesBundle:Town:step8.html.twig', array(
 						'address' => $address,
 						'form' => $form2->createView()
-				)
+					)
 				);
 			}
 		}
@@ -728,7 +804,9 @@ class TownController extends Controller
 		return $this->render('MunicipalesBundle:Town:step7.html.twig', array(
 				'address' => $address,
 				'form' => $form->createView(),
-				'errors' => $form->getErrors()
+				'errors' => $form->getErrors(),
+				'candidates' => $valid_candidates,
+				'documents_path' => $documents_path,
 		));
 	}
 	
