@@ -14,11 +14,16 @@ class TownStep6Type extends AbstractType
     {
         $builder->add('continue', 'submit', array('attr' => array('class' => 'submit')));
     }
-	
+
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+    	$resolver->setDefaults(
+    			array(
+    					'allow_extra_fields' => TRUE
+    			)
+    	);
     }
-
+    
     public function getName()
     {
         return 'town_step_6';
