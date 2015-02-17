@@ -22,6 +22,9 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStepVerifyType;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\BrowserKit\Response;
 
+require_once __DIR__ .  '/trusted_timestamps.php';
+use TrustedTimestamps;
+
 class TownController extends Controller
 {
 	const MAX_AVAILABLE_CANDIDATES = 5;
@@ -174,7 +177,7 @@ class TownController extends Controller
 
 	/**
 	 *
-	 * @param Request $request
+	 * @param Reqtrusted_timestamps.phpuest $request
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function voteVerifyAction(Request $request = NULL, $address = NULL)
@@ -763,27 +766,101 @@ class TownController extends Controller
 
 		if ($form->isValid())
 		{
+			$extra_data = $form->getExtraData();
+			
+			$vote_info = array();
+			$vote_info['admin_id'] = $admin_id;
+			$vote_info['voter_id'] = $voter_id;
+			
+			$candidate_voters = array();
+			$candidate_points_values = array();
+			foreach($extra_data as $candidate_key => $candidate_points)
+			{
+				$candidate_id = intval(str_replace('candidate_', '', $candidate_key));
+					
+				$candidate_voters[] = array('id' => $candidate_id, 'points' => intval($candidate_points));
+				$candidate_points_values[] = $candidate_points;
+			}
+			
+			if(count($extra_data) != count(array_unique($candidate_points_values)))
+			{
+				$form->addError(new FormError('Las puntuaciones asignadas no pueden repetirse'));
+				$ok = FALSE;
+			}
+			
+			$vote_info['candidates'] = $candidate_voters;
+			
+			//var_dump($vote_info);
+			
 			if($ok)
 			{
-				$extra_data = $form->getExtraData();
+				// Tractis TSA here
+
+				// Create an API Key here: https://www.tractis.com/webservices/tsa/apikeys
+				$tractis_api_identifier = $this->container->getParameter('tractis_api_identifier');
+				$tractis_api_secret = $this->container->getParameter('tractis_api_secret');
 				
-				$vote_info = array();
-				$vote_info['admin_id'] = $admin_id;
-				$vote_info['voter_id'] = $voter_id;
+				$current_time = time();
 				
-				$candidate_voters = array();
-				foreach($extra_data as $candidate_key => $candidate_points)
+				$tsa_cert_chain_file = '/tmp/chain-' . $admin_id . '-' . $voter_id . '-' . $current_time . '.txt';
+				
+				$myfile = @fopen($tsa_cert_chain_file, "w");
+				
+				$my_hash = sha1(serialize($vote_info));
+				
+				$requestfile_path = \TrustedTimestamps::createRequestfile($my_hash);
+				$response = \TrustedTimestamps::signRequestfile($requestfile_path, "https://api.tractis.com/rfc3161tsa", $tractis_api_identifier, $tractis_api_secret);
+				//print_r($response);
+				
+				/*
+				 Array
+				 (
+				 [response_string] => Shitload of text (base64-encoded Timestamp-Response of the TSA)
+				 [response_time] => 1299098823
+				 )
+				 */
+				
+				if(empty($response))
 				{
-					$candidate_id = intval(str_replace('candidate_', '', $candidate_key));
-					
-					$candidate_voters[] = array('id' => $candidate_id, 'points' => intval($candidate_points));
+					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+							'error' => 'Error en el firmado de voto TSA. Respuesta vacía',
+					));
 				}
 				
-				$vote_info['candidates'] = $candidate_voters;
+				if(empty($response['response_string']))
+				{
+					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+							'error' => 'Error en el firmado de voto TSA. Respuesta con cadena vacía',
+					));
+				}
 				
-				//var_dump($vote_info);
+				if(empty($response['response_time']))
+				{
+					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+							'error' => 'Error en el firmado de voto TSA. Respuesta con tiempo vacía',
+					));
+				}
 				
-				// @todo Tractis TSA here
+				//echo \TrustedTimestamps::getTimestampFromAnswer($response['response_string']); //1299098823
+				
+				//$validate = \TrustedTimestamps::validate($my_hash, $response['response_string'], $response['response_time'], $tsa_cert_chain_file);
+				//var_dump($validate);
+				
+				/*
+				 
+				$validate = \TrustedTimestamps::validate($my_hash, $response['response_string'], $response['response_time'], $tsa_cert_chain_file);
+				print_r("\nValidation result\n");
+				var_dump($validate); //bool(true)
+				
+				//now with an incorrect hash. Same goes for a manipulated response string or response time
+				$validate = \TrustedTimestamps::validate(sha1("im not the right hash"), 
+								$response['response_string'], 
+									$response['response_time'], 
+						$tsa_cert_chain_file);
+				print_r("\nValidation result after content manipulation\n");
+				var_dump($validate); //bool(false)
+				*/
+				
 				
 				$form2 = $this->createForm(new TownStep8Type(), NULL, array(
 						'action' => $this->generateUrl('town_candidacy_vote_step8', array('address' => $address)),
