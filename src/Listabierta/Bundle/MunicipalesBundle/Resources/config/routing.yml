@@ -194,9 +194,13 @@ manager_index:
     defaults: { _controller: MunicipalesBundle:Manager:index }
     
 manager_verify_phone:
-    path:     /manager/verify-phone
+    path:     /manager/verify-phone/{phone}
     defaults: { _controller: MunicipalesBundle:Manager:verifyPhone }
 
+manager_purge_phones:
+    path:     /manager/purge-phones
+    defaults: { _controller: MunicipalesBundle:Manager:purgePhones }
+    
 manager_purge_candidacies:
     path:     /manager/purge-candidacies
     defaults: { _controller: MunicipalesBundle:Manager:purgeCandidacies }
