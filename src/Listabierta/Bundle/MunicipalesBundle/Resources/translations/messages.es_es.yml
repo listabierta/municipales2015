@@ -213,7 +213,7 @@ town:
         header: Elige candidatos
         html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 7
         h1_title: Elige candidatos
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        continue: VOTA <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
      
     step8:
