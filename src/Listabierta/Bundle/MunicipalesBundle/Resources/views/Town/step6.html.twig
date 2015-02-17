@@ -5,6 +5,58 @@
 {% from 'MunicipalesBundle:macros:steps.html.twig' import steps_town_widget %}
 {% form_theme form 'MunicipalesBundle:theme:forms.html.twig' %}
 
+{% block appjsinline %}
+    <script>
+    $(document).ready(function() 
+    {
+		$(document).on('submit','#town_step6', function(event)
+	    {
+				var levels_values = [];
+				for(level = 1; level <= 6; level++)
+				{
+				    if($("#town_step6 .level" + level + "[type='radio']:checked").length < 1)
+				    {
+				    	alert('Debes seleccionar al menos una opción en la fila ' + level);
+
+			    		event.preventDefault();
+				    }
+
+				    current = $("#town_step6 .level" + level + "[type='radio']:checked");
+
+				    if(current)
+				    {
+				    	current_value = current.val();
+				    }
+				    else
+				    {
+					   current_value = -1;
+				    }
+				    
+				    levels_values[level] = current_value;
+				}
+
+				// Check unique (xor items)
+				levels_values_other = levels_values.reverse().filter(function (e, i, arr) {
+				    return arr.indexOf(e, i+1) === -1;
+				}).reverse();
+				
+				if(levels_values.length - 1 != levels_values_other.length)
+				{
+					//console.log(levels_values)
+					//console.log(levels_values_other)
+					
+					alert('Las opciones entre columnas deben ser excluyentes');
+
+		    		event.preventDefault();
+				}
+
+			    return;
+	    });
+    });
+    
+	</script>
+{% endblock %}
+
 {% block content %}
 
 <section class="section-2">
@@ -53,166 +105,163 @@
                       <div class="col-sm-offset-1 col-md-10 well">
 
 						<p class="lead2">
-							Tabla
-
-
 							 ¿Cómo consideras estas opciones que has elegido? (excluyentes)
 							 
-							 <table style="border:1px solid black">
+							 <table class="table" style="border:1px solid black">
 							 	<tr>
-							 		<td></td>
-							 		<td style="border:1px solid black">
+							 		<td style="border-bottom:1px solid black;border-right:1px solid black;border-left:1px solid #f5f5f5;border-top:1px solid #f5f5f5;text-align:center"></td>
+							 		<td style="border:1px solid black;text-align:center;background-color:#B0B0B0">
 							 			El más importante
 							 		</td>
-							 		<td style="border:1px solid black">
+							 		<td style="border:1px solid black;text-align:center;background-color:#B0B0B0">
 							 			Muy importante
 							 		</td>
-							 		<td style="border:1px solid black">
+							 		<td style="border:1px solid black;text-align:center;background-color:#B0B0B0">
 							 			Importante
 							 		</td>
-							 		<td style="border:1px solid black">
+							 		<td style="border:1px solid black;text-align:center;background-color:#B0B0B0">
 							 			Relativamente importante
 							 		</td>
-							 		<td style="border:1px solid black">
+							 		<td style="border:1px solid black;text-align:center;background-color:#B0B0B0">
 							 			Poco importante
 							 		</td>
-							 		<td style="border:1px solid black">
+							 		<td style="border:1px solid black;text-align:center;background-color:#B0B0B0">
 							 			El menos importante
 							 		</td>
 							 	</tr>
 							 	
 							 	<tr>
-							 		<td>Nivel Academico</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center;background-color:#B0B0B0">Nivel Academico</td>
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level1" type="radio" id="level10" name="town_step_6[level1]" required="required" value="0">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level1" type="radio" id="level11" name="town_step_6[level1]" required="required" value="1">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level1" type="radio" id="level12" name="town_step_6[level1]" required="required" value="2">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level1" type="radio" id="level13" name="town_step_6[level1]" required="required" value="3">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level1" type="radio" id="level14" name="town_step_6[level1]" required="required" value="4">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level1" type="radio" id="level15" name="town_step_6[level1]" required="required" value="5">
 							 		</td>
 							 	</tr>
 							 	
 							 	<tr>
-							 		<td>Idiomas</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center;background-color:#B0B0B0">Idiomas</td>
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level2" type="radio" id="level20" name="town_step_6[level2]" required="required" value="0">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level2" type="radio" id="level21" name="town_step_6[level2]" required="required" value="1">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level2" type="radio" id="level22" name="town_step_6[level2]" required="required" value="2">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level2" type="radio" id="level23" name="town_step_6[level2]" required="required" value="3">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level2" type="radio" id="level24" name="town_step_6[level2]" required="required" value="4">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
-							 		</td>
-							 	</tr>
-							 	
-							 	
-							 	<tr>
-							 		<td>Experiencia laboral</td>
-							 		<td style="border:1px solid black">
-							 			x
-							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
-							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
-							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
-							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
-							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level2" type="radio" id="level25" name="town_step_6[level2]" required="required" value="5">
 							 		</td>
 							 	</tr>
 							 	
 							 	
 							 	<tr>
-							 		<td>Experiencia relacionada con el desempeño municipal</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center;background-color:#B0B0B0">Experiencia laboral</td>
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level3" type="radio" id="level30" name="town_step_6[level3]" required="required" value="0">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level3" type="radio" id="level31" name="town_step_6[level3]" required="required" value="1">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level3" type="radio" id="level32" name="town_step_6[level3]" required="required" value="2">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level3" type="radio" id="level33" name="town_step_6[level3]" required="required" value="3">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level3" type="radio" id="level34" name="town_step_6[level3]" required="required" value="4">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level3" type="radio" id="level35" name="town_step_6[level3]" required="required" value="5">
 							 		</td>
 							 	</tr>
 							 	
 							 	
 							 	<tr>
-							 		<td>Prioridades de actuación municipal</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center;background-color:#B0B0B0">Experiencia relacionada con el desempeño municipal</td>
+									<td style="border:1px solid black;text-align:center">
+							 			<input class="level4" type="radio" id="level40" name="town_step_6[level4]" required="required" value="0">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level4" type="radio" id="level41" name="town_step_6[level4]" required="required" value="1">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level4" type="radio" id="level42" name="town_step_6[level4]" required="required" value="2">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level4" type="radio" id="level43" name="town_step_6[level4]" required="required" value="3">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level4" type="radio" id="level44" name="town_step_6[level4]" required="required" value="4">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level4" type="radio" id="level45" name="town_step_6[level4]" required="required" value="5">
+							 		</td>
+							 	</tr>
+							 	
+							 	
+							 	<tr>
+							 		<td style="border:1px solid black;text-align:center;background-color:#B0B0B0">Prioridades de actuación municipal</td>
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level5" type="radio" id="level50" name="town_step_6[level5]" required="required" value="0">
+							 		</td>
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level5" type="radio" id="level51" name="town_step_6[level5]" required="required" value="1">
+							 		</td>
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level5" type="radio" id="level52" name="town_step_6[level5]" required="required" value="2">
+							 		</td>
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level5" type="radio" id="level53" name="town_step_6[level5]" required="required" value="3">
+							 		</td>
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level5" type="radio" id="level54" name="town_step_6[level5]" required="required" value="4">
+							 		</td>
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level5" type="radio" id="level55" name="town_step_6[level5]" required="required" value="5">
 							 		</td>
 							 	</tr>
 							 	
 							 	<tr>
-							 		<td>Valores morales</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center;background-color:#B0B0B0">Valores morales</td>
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level6" type="radio" id="level60" name="town_step_6[level6]" required="required" value="0">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level6" type="radio" id="level61" name="town_step_6[level6]" required="required" value="1">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level6" type="radio" id="level62" name="town_step_6[level6]" required="required" value="2">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level6" type="radio" id="level63" name="town_step_6[level6]" required="required" value="3">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level6" type="radio" id="level64" name="town_step_6[level6]" required="required" value="4">
 							 		</td>
-							 		<td style="border:1px solid black">
-							 			x
+							 		<td style="border:1px solid black;text-align:center">
+							 			<input class="level6" type="radio" id="level65" name="town_step_6[level6]" required="required" value="5">
 							 		</td>
 							 	</tr>
 							 	
