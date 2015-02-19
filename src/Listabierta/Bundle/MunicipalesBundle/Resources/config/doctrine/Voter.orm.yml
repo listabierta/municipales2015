@@ -21,12 +21,13 @@ Listabierta\Bundle\MunicipalesBundle\Entity\Voter:
         email:
             type: string
             length: 255
-        username:
-            type: string
-            length: '25'
-        password:
-            type: string
-            length: 255
+        # Not needed for now
+        #username:
+        #    type: string
+        #    length: '25'
+        #password:
+        #    type: string
+        #    length: 255
         isActive:
             type: boolean
         phone:

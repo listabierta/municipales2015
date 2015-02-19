@@ -83,14 +83,17 @@ class TownController extends Controller
 			$name     = $form['name']->getData();
 			$lastname = $form['lastname']->getData();
 			$dni      = $form['dni']->getData();
+			/*
 			$username = $form['username']->getData();
 			$password = $form['password']->getData();
+			*/
 			$email    = $form['email']->getData();
 			$phone    = $form['phone']->getData();
 			
 			$entity_manager = $this->getDoctrine()->getManager();
 			$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
 			
+			/*
 			$voter_username = $voter_repository->findOneBy(array('username' => $username));
 			 
 			if(!empty($voter_username))
@@ -98,6 +101,7 @@ class TownController extends Controller
 				$form->addError(new FormError('Ya existe un usuario votante registrado con el nombre de usuario ' . $username));
 				$ok = FALSE;
 			}
+			*/
 			
 			$voter_email = $voter_repository->findOneBy(array('email' => $email));
 			 
@@ -124,6 +128,8 @@ class TownController extends Controller
 				$voter->setName($name);
 				$voter->setLastname($lastname);
 				$voter->setDni($dni);
+				
+				/*
 				$voter->setUsername($username);
 				 
 				$factory = $this->get('security.encoder_factory');
@@ -131,6 +137,7 @@ class TownController extends Controller
 				$encodedPassword = $encoder->encodePassword($password, $voter->getSalt());
 			
 				$voter->setPassword($encodedPassword);
+				*/
 				$voter->setEmail($email);
 				$voter->setPhone($phone);
 				 

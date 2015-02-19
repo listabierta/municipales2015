@@ -40,6 +40,7 @@ class TownStep1Type extends AbstractType
 					new Assert\NotBlank(),
 					new DNI(),
 				)))
+				/* Not needed for now
 		->add('username', 'text', array(
 				'required' => true,
 				'constraints' => array(
@@ -62,6 +63,7 @@ class TownStep1Type extends AbstractType
 								'maxMessage' => 'Your password cannot be longer than {{ limit }} characters long',
 						))
 				)))
+				*/
 		->add('email', 'email', array(
 				'required' => true, 
 				'constraints' => array(
