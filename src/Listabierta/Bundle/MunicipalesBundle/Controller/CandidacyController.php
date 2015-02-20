@@ -731,7 +731,7 @@ class CandidacyController extends Controller
     	$address_slug = $session->get('address', NULL);
     	
     	$form = $this->createForm(new CandidacyStep5Type(), NULL, array(
-    			'action' => $this->generateUrl('municipales_candidacy_step6'),
+    			'action' => $this->generateUrl('municipales_candidacy_step5'),
     			'method' => 'POST',
     		)
     	);
@@ -743,7 +743,7 @@ class CandidacyController extends Controller
     	{
     		if($ok)
     		{
-    			$this->step6Action($request);
+    			return $this->step6Action($request);
     		}
     	}
     
