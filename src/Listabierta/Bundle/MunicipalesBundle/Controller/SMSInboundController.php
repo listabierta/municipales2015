@@ -30,43 +30,50 @@ class SMSInboundController extends Controller
 		$entity_manager = $this->getDoctrine()->getManager();
 		$phone_verified_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified');
 		 
-		$phone_verified = $phone_verified_repository->findOneBy(array('phone' => $phone));
+		$phones_verified = $phone_verified_repository->findeBy(array('phone' => $phone));
 		
-		if(!empty($phone_verified) && $phone_verified->getTimestamp() == 0)
+		$result = '';
+		// Treat the special case for the same phone and several emails
+		foreach($phones_verified as $phone_verified)
 		{
-			if($keyword == self::KEYWORD_INBOUND)
+			if(!empty($phone_verified) && $phone_verified->getTimestamp() == 0)
 			{
-				$email = $phone_verified->getEmail();
-				$phone_verified->setTimestamp(time());
-				
-				$entity_manager->persist($phone_verified);
-				$entity_manager->flush();
-				
-				// . implode(',', $query->all())
-				$message = \Swift_Message::newInstance()
-				->setSubject('Tu telefono movil ' . $phone . ' ha sido verificado correctamente')
-				->setFrom('verificaciones@municipales2015.listabierta.org', 'Verificaciones')
-				->setTo($email)
-				->setBody(
-						$this->renderView(
-								'MunicipalesBundle:Mail:sms_inbound_verification.html.twig',
-								array('phone' => $phone)
-						)
-				)
-				;
-				$this->get('mailer')->send($message);
+				if($keyword == self::KEYWORD_INBOUND)
+				{
+					$email = $phone_verified->getEmail();
+					$phone_verified->setTimestamp(time());
+					
+					$entity_manager->persist($phone_verified);
+					$entity_manager->flush();
+					
+					// . implode(',', $query->all())
+					$message = \Swift_Message::newInstance()
+					->setSubject('Tu telefono movil ' . $phone . ' ha sido verificado correctamente')
+					->setFrom('verificaciones@municipales2015.listabierta.org', 'Verificaciones')
+					->setTo($email)
+					->setBody(
+							$this->renderView(
+									'MunicipalesBundle:Mail:sms_inbound_verification.html.twig',
+									array('phone' => $phone)
+							)
+					)
+					;
+					$this->get('mailer')->send($message);
+					
+					$result .= 'Verified ' . $phone . ' with mail ' . $email . '<br />';
+				}
+				else 
+				{
+					echo 'Keyword sms is not valid';
+				}
 			}
 			else 
 			{
-				echo 'Keyword sms is not valid';
+				echo 'No phone found or already verified';
 			}
 		}
-		else 
-		{
-			echo 'No phone found or already verified';
-		}
 		
-		return new Response('OK', 200);
+		return new Response('OK' . $result, 200);
 	}
 	
 	public function callbackAction(Request $request = NULL)
@@ -88,42 +95,49 @@ class SMSInboundController extends Controller
 		$entity_manager = $this->getDoctrine()->getManager();
 		$phone_verified_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified');
 		 
-		$phone_verified = $phone_verified_repository->findOneBy(array('phone' => $phone));
+		$phones_verified = $phone_verified_repository->findeBy(array('phone' => $phone));
 		
-		if(!empty($phone_verified) && $phone_verified->getTimestamp() == 0)
+		$result = '';
+		// Treat the special case for the same phone and several emails
+		foreach($phones_verified as $phone_verified)
 		{
-			if($keyword == self::KEYWORD_INBOUND)
+			if(!empty($phone_verified) && $phone_verified->getTimestamp() == 0)
 			{
-				$email = $phone_verified->getEmail();
-				$phone_verified->setTimestamp(time());
-				
-				$entity_manager->persist($phone_verified);
-				$entity_manager->flush();
-				
-				// . implode(',', $query->all())
-				$message = \Swift_Message::newInstance()
-				->setSubject('Tu telefono movil ' . $phone . ' ha sido verificado correctamente')
-				->setFrom('verificaciones@municipales2015.listabierta.org', 'Verificaciones')
-				->setTo($email)
-				->setBody(
-						$this->renderView(
-								'MunicipalesBundle:Mail:sms_inbound_verification.html.twig',
-								array('phone' => $phone)
-						)
-				)
-				;
-				$this->get('mailer')->send($message);
+				if($keyword == self::KEYWORD_INBOUND)
+				{
+					$email = $phone_verified->getEmail();
+					$phone_verified->setTimestamp(time());
+					
+					$entity_manager->persist($phone_verified);
+					$entity_manager->flush();
+					
+					// . implode(',', $query->all())
+					$message = \Swift_Message::newInstance()
+					->setSubject('Tu telefono movil ' . $phone . ' ha sido verificado correctamente')
+					->setFrom('verificaciones@municipales2015.listabierta.org', 'Verificaciones')
+					->setTo($email)
+					->setBody(
+							$this->renderView(
+									'MunicipalesBundle:Mail:sms_inbound_verification.html.twig',
+									array('phone' => $phone)
+							)
+					)
+					;
+					$this->get('mailer')->send($message);
+					
+					$result .= 'Verified ' . $phone . ' with mail ' . $email . '<br />';
+				}
+				else 
+				{
+					echo 'Keyword sms is not valid';
+				}
 			}
 			else 
 			{
-				echo 'Keyword sms is not valid';
+				echo 'No phone found or already verified';
 			}
 		}
-		else 
-		{
-			echo 'No phone found or already verified';
-		}
 		
-		return new Response('OK', 200);
+		return new Response('OK' . $result, 200);
 	}
 }

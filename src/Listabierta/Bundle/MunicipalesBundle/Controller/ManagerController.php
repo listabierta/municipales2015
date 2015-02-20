@@ -31,20 +31,27 @@ class ManagerController extends Controller
 	{
 		if($this->container->getParameter('kernel.environment') == 'dev')
 		{
+			$result = '';
 			$entity_manager = $this->getDoctrine()->getManager();
 			$phone_verified_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified');
 				
-			$phone_verified = $phone_verified_repository->findOneBy(array('phone' => $phone));
+			$phones_verified = $phone_verified_repository->findBy(array('phone' => $phone));
 			
-			if(!empty($phone_verified) && $phone_verified->getTimestamp() == 0)
-			{
-				$phone_verified->setTimestamp(time());
-				
-				$entity_manager->persist($phone_verified);
-				$entity_manager->flush();
+			foreach($phones_verified as $phone_verified)
+			{	
+				if(!empty($phone_verified) && $phone_verified->getTimestamp() == 0)
+				{
+					$email = $phone_verified->getEmail();
+					$phone_verified->setTimestamp(time());
+					
+					$entity_manager->persist($phone_verified);
+					$entity_manager->flush();
+					
+					$result .= 'Verified ' . $phone . ' with mail ' . $email . '<br />';
+				}
 			}
 			
-			return new Response('OK ' . $phone, 200);
+			return new Response('OK ' . $result, 200);
 		}
 		else
 		{
