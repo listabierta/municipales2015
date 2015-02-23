@@ -30,7 +30,7 @@ class SMSInboundController extends Controller
 		$entity_manager = $this->getDoctrine()->getManager();
 		$phone_verified_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified');
 		 
-		$phones_verified = $phone_verified_repository->findeBy(array('phone' => $phone));
+		$phones_verified = $phone_verified_repository->findBy(array('phone' => $phone));
 		
 		$result = '';
 		// Treat the special case for the same phone and several emails
@@ -95,7 +95,7 @@ class SMSInboundController extends Controller
 		$entity_manager = $this->getDoctrine()->getManager();
 		$phone_verified_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified');
 		 
-		$phones_verified = $phone_verified_repository->findeBy(array('phone' => $phone));
+		$phones_verified = $phone_verified_repository->findBy(array('phone' => $phone));
 		
 		$result = '';
 		// Treat the special case for the same phone and several emails
