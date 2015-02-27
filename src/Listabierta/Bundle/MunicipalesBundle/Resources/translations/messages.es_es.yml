@@ -172,7 +172,7 @@ town:
         header: Filtra candidatos por nivel academico
         html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 2
         h1_title: Filtra candidatos por nivel academico
-        academic_level: ¿Que nivel académico prefieres que tenga el candidato o candidata?  (elige de una a tres opciones)
+        academic_level: ¿Quieres elegir el nivel académico que prefieres que tenga el candidato o candidata?
         languages: "¿Es bueno que hable alguno de estos idiomas? (elige de una a tres opciones)"
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
