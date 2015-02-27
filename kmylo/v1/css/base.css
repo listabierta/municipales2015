@@ -62,7 +62,19 @@ textarea {
     color: #8a8a8a;
     font-size: 31px;
 }
+/**/
 
+/* no-gutters Class Rules */
+.row.no-gutters {
+   margin-right: 0;
+   margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+   padding-right: 0;
+   padding-left: 0;
+}
+/**/
 
 .txt-container {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 0.33);
@@ -223,4 +235,8 @@ textarea.long-text {
 .btn-primary2:hover,.btn-primary2:active, .open .btn-primary2.dropdown-toggle{
     background-color:#B94B18!important;
     border-color:#ad3f0d;
+}
+
+.candidatos .widget-box {
+    padding: 20px 5px;
 }
