@@ -5,6 +5,7 @@ namespace Listabierta\Bundle\MunicipalesBundle\Form\Type\Vote;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class StepFilterType extends AbstractType
 {
@@ -22,7 +23,16 @@ class StepFilterType extends AbstractType
 			     			'7' => 'Estudios universitarios o equivalentes',
 			     			'8' => 'Máster universitario o doctorado',
 			     	),
-			     ))
+			     ))       
+			     ->add('academic_level_option', 'choice', array(
+				        'choices' => array('no' => 'No', 'yes' => 'Si'),
+        				'preferred_choices' => array('no'),
+        				'data' => 'no',
+				        'multiple' => false,
+				        'expanded' => true,
+				        'required' => false,
+			     		'empty_value' => false
+				    ))
 			     ->add('languages', 'choice', array(
 			     		'multiple' => TRUE,
 			     		'expanded' => TRUE,
