@@ -96,37 +96,48 @@
                   {% endif %}
                           
                     <div data-step="1" class="step-pane active row">
-                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'town.step2.h1_title'|trans }}</h2>
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'town.step2.filter_title'|trans }}</h2>
                       
                       <div class="col-sm-offset-1 col-md-10 well">
 
-						<div class="control-group" style="display:inline-block;">
-							{{ 'town.step2.academic_level'|trans }}
-							{{ form_widget(form.academic_level_option, {'separator':none}) }}
-							{{ form_errors(form.academic_level_option) }}
-						</div>	
+                      Ten en cuenta que si no aplicas ningún filtro, te aparecerá la totalidad de candidatos y 
+                      candidatas que se han presentado y puede resultar tedioso ver todos los perfiles y 
+                      después puntuarlos, así que si tienes alguna preferencia clara márcala, posteriormente 
+                      podrás revisar tus filtros.
+                      
+                      </div>
+                      
+                      <div class="row">
+                      
+                      	<div class="col-sm-offset-1 col-md-10">
+							<div class="control-group" style="display:inline-block;">
+								{{ 'town.step2.academic_level'|trans }}
+								{{ form_widget(form.academic_level_option, {'separator':none}) }}
+								{{ form_errors(form.academic_level_option) }}
+							</div>	
+							
+							<p class="lead2" style="display:none">
+								{{ form_widget(form.academic_level) }}
+								{{ form_errors(form.academic_level) }}
+							</p>
 						
-						<p class="lead2" style="display:none">
-							{{ form_widget(form.academic_level) }}
-							{{ form_errors(form.academic_level) }}
-						</p>
-					
-						<div class="control-group" style="display:inline-block;">
-							{{ 'town.step2.languages'|trans }}
-							{{ form_widget(form.languages_option, {'separator':none}) }}
-							{{ form_errors(form.languages_option) }}
-						</div>	
-					
-						<p class="lead2">
-							<table class="table">
-							{% for child in form.languages %}
-								<tr>
-							        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td>
-							        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
-							    </tr>
-							{% endfor %}
-							</table>
-						</p>
+							<div class="control-group" style="display:inline-block;">
+								{{ 'town.step2.languages'|trans }}
+								{{ form_widget(form.languages_option, {'separator':none}) }}
+								{{ form_errors(form.languages_option) }}
+							</div>	
+						
+							<p class="lead2">
+								<table class="table">
+								{% for child in form.languages %}
+									<tr>
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td>
+								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
+								    </tr>
+								{% endfor %}
+								</table>
+							</p>
+						</div>
 			          
 			          </div>
 
