@@ -47,6 +47,10 @@
 	</script>
 	<style>
 	#vote_step_filter_academic_level_option{display:inline;margin-left:15px}
+	#vote_step_filter_languages_option{display:inline;margin-left:15px}
+	#vote_step_filter_job_experience_option{display:inline;margin-left:15px}
+	#vote_step_filter_town_activities_option{display:inline;margin-left:15px}
+	#vote_step_filter_govern_priorities_option{display:inline;margin-left:15px}
 	</style>
 {% endblock %}
 
@@ -107,7 +111,11 @@
 							{{ form_errors(form.academic_level) }}
 						</p>
 					
-						<p class="lead2">{{ 'town.step2.languages'|trans }}</p>
+						<div class="control-group" style="display:inline-block;">
+							{{ 'town.step2.languages'|trans }}
+							{{ form_widget(form.languages_option, {'separator':none}) }}
+							{{ form_errors(form.languages_option) }}
+						</div>	
 					
 						<p class="lead2">
 							<table class="table">
@@ -127,7 +135,11 @@
                     
                       <div class="col-sm-offset-1 col-md-10 well">
 
-						<p class="lead2">{{ 'town.step3.job_experience_title'|trans }}</p>
+                      	<div class="control-group" style="display:inline-block;">
+							{{ 'town.step3.job_experience_title'|trans }}
+							{{ form_widget(form.job_experience_option, {'separator':none}) }}
+							{{ form_errors(form.job_experience_option) }}
+						</div>
 					
 						<p class="lead2">
 							<table>
@@ -144,7 +156,11 @@
 			          
 			          <div class="col-sm-offset-1 col-md-10 well">
 
-						<p class="lead2">{{ 'town.step4.town_activities_title'|trans }}</p>
+						<div class="control-group" style="display:inline-block;">
+							{{ 'town.step4.town_activities_title'|trans }}
+							{{ form_widget(form.town_activities_option, {'separator':none}) }}
+							{{ form_errors(form.town_activities_option) }}
+						</div>	
 					
 						<p class="lead2">
 							<table>
@@ -162,8 +178,12 @@
 			        
 			        <div class="col-sm-offset-1 col-md-10 well">
 
-						<p class="lead2">{{ 'town.step5.govern_priorities_title'|trans }}</p>
-					
+			        	<div class="control-group" style="display:inline-block;">
+							{{ 'town.step5.govern_priorities_title'|trans }}
+							{{ form_widget(form.govern_priorities_option, {'separator':none}) }}
+							{{ form_errors(form.govern_priorities_option) }}
+						</div>
+
 						<p class="lead2">
 							<table>
 							{% for child in form.govern_priorities %}
@@ -175,7 +195,11 @@
 							</table>
 						</p>
 						
-						<p class="lead2">{{ 'town.step5.public_values_title'|trans }}</p>
+						<div class="control-group" style="display:inline-block;">
+							{{ 'town.step5.public_values_title'|trans }}
+							{{ form_widget(form.public_values_option, {'separator':none}) }}
+							{{ form_errors(form.public_values_option) }}
+						</div>
 					
 						<p class="lead2">
 							<table>
