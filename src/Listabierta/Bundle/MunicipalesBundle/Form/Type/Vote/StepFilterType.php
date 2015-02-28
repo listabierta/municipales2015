@@ -47,6 +47,15 @@ class StepFilterType extends AbstractType
 			     				'7' => 'Otro',
 			     		),
 			     ))
+			     ->add('languages_option', 'choice', array(
+			     		'choices' => array('no' => 'No', 'yes' => 'Si'),
+			     		'preferred_choices' => array('no'),
+			     		'data' => 'no',
+			     		'multiple' => false,
+			     		'expanded' => true,
+			     		'required' => false,
+			     		'empty_value' => false
+			     ))
 			     ->add('job_experience', 'choice', array(
 			     		'multiple' => TRUE,
 			     		'expanded' => TRUE,
@@ -77,6 +86,15 @@ class StepFilterType extends AbstractType
 			     						'maxMessage' => 'Sólo puedes seleccionar hasta {{ limit }} opciones como máximo',
 			     				))
 			     		)
+			     ))
+			     ->add('job_experience_option', 'choice', array(
+			     		'choices' => array('no' => 'No', 'yes' => 'Si'),
+			     		'preferred_choices' => array('no'),
+			     		'data' => 'no',
+			     		'multiple' => false,
+			     		'expanded' => true,
+			     		'required' => false,
+			     		'empty_value' => false
 			     ))
 			     ->add('town_activities', 'choice', array(
 			     		'multiple' => TRUE,
@@ -109,6 +127,15 @@ class StepFilterType extends AbstractType
 			     				))
 			     		)
 			     ))
+			     ->add('town_activities_option', 'choice', array(
+			     		'choices' => array('no' => 'No', 'yes' => 'Si'),
+			     		'preferred_choices' => array('no'),
+			     		'data' => 'no',
+			     		'multiple' => false,
+			     		'expanded' => true,
+			     		'required' => false,
+			     		'empty_value' => false
+			     ))
 			     ->add('govern_priorities', 'choice', array(
 			     		'multiple' => TRUE,
 			     		'expanded' => TRUE,
@@ -136,6 +163,15 @@ class StepFilterType extends AbstractType
 			     				))
 			     		)
 			     ))
+			     ->add('govern_priorities_option', 'choice', array(
+			     		'choices' => array('no' => 'No', 'yes' => 'Si'),
+			     		'preferred_choices' => array('no'),
+			     		'data' => 'no',
+			     		'multiple' => false,
+			     		'expanded' => true,
+			     		'required' => false,
+			     		'empty_value' => false
+			     ))
 			     ->add('public_values', 'choice', array(
 			     		'multiple' => TRUE,
 			     		'expanded' => TRUE,
@@ -160,6 +196,15 @@ class StepFilterType extends AbstractType
 			     						'maxMessage' => 'Sólo puedes seleccionar hasta {{ limit }} opciones como máximo',
 			     				))
 			     		)
+			     ))
+			     ->add('public_values_option', 'choice', array(
+			     		'choices' => array('no' => 'No', 'yes' => 'Si'),
+			     		'preferred_choices' => array('no'),
+			     		'data' => 'no',
+			     		'multiple' => false,
+			     		'expanded' => true,
+			     		'required' => false,
+			     		'empty_value' => false
 			     ))
 	            ->add('continue', 'submit', array('attr' => array('class' => 'submit')));
     }
