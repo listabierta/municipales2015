@@ -7,7 +7,7 @@
 
 {% block checkbox_widget %}
 {% spaceless %}
-<input type="checkbox" style="width:25px" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+<input type="checkbox" class="mine" style="width:25px" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
 {% endspaceless %}
 {% endblock checkbox_widget %}
 
@@ -99,12 +99,7 @@
                       <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'town.step2.filter_title'|trans }}</h2>
                       
                       <div class="col-sm-offset-1 col-md-10 well">
-
-                      Ten en cuenta que si no aplicas ningún filtro, te aparecerá la totalidad de candidatos y 
-                      candidatas que se han presentado y puede resultar tedioso ver todos los perfiles y 
-                      después puntuarlos, así que si tienes alguna preferencia clara márcala, posteriormente 
-                      podrás revisar tus filtros.
-                      
+							{{ 'town.step2.filter_p1'|trans }}
                       </div>
                       
                       <div class="row">
@@ -127,8 +122,8 @@
 								{{ form_errors(form.languages_option) }}
 							</div>	
 						
-							<p class="lead2">
-								<table class="table">
+							<p class="lead2" style="display:none">
+								<table class="table" style="display:none">
 								{% for child in form.languages %}
 									<tr>
 								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td>
@@ -137,93 +132,89 @@
 								{% endfor %}
 								</table>
 							</p>
+							
+							
+							
+							<div class="control-group" style="display:inline-block;">
+								{{ 'town.step3.job_experience_title'|trans }}
+								{{ form_widget(form.job_experience_option, {'separator':none}) }}
+								{{ form_errors(form.job_experience_option) }}
+							</div>
+						
+							<p class="lead2" style="display:none">
+								<table class="table" style="display:none">
+								{% for child in form.job_experience %}
+									<tr>
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td> 
+								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
+								    </tr>
+								{% endfor %}
+								</table>
+							</p>
+						
+						
+							<div class="control-group" style="display:inline-block;">
+								{{ 'town.step4.town_activities_title'|trans }}
+								{{ form_widget(form.town_activities_option, {'separator':none}) }}
+								{{ form_errors(form.town_activities_option) }}
+							</div>	
+						
+							<p class="lead2" style="display:none">
+								<table class="table" style="display:none">
+								{% for child in form.town_activities %}
+									<tr>
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td> 
+								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
+								    </tr>
+								{% endfor %}
+								</table>
+							</p>
+							
+							
+							
+							<div class="control-group" style="display:inline-block;">
+								{{ 'town.step5.govern_priorities_title'|trans }}
+								{{ form_widget(form.govern_priorities_option, {'separator':none}) }}
+								{{ form_errors(form.govern_priorities_option) }}
+							</div>
+	
+							<p class="lead2" style="display:none">
+								<table class="table" style="display:none">
+								{% for child in form.govern_priorities %}
+									<tr>
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable1'}}) }}</td> 
+								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
+								    </tr>
+								{% endfor %}
+								</table>
+							</p>
+							
+							<div class="control-group" style="display:inline-block;">
+								{{ 'town.step5.public_values_title'|trans }}
+								{{ form_widget(form.public_values_option, {'separator':none}) }}
+								{{ form_errors(form.public_values_option) }}
+							</div>
+						
+							<div class="lead2" style="display:none">
+								<table class="table" style="display:none">
+								{% for child in form.public_values %}
+									<tr>
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable2'}}) }}</td> 
+								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
+								    </tr>
+								{% endfor %}
+								</table>
+							</div>
+						
+						
+							
 						</div>
 			          
 			          </div>
 
                       
                     </div>
-                    
-                      <div class="col-sm-offset-1 col-md-10 well">
 
-                      	<div class="control-group" style="display:inline-block;">
-							{{ 'town.step3.job_experience_title'|trans }}
-							{{ form_widget(form.job_experience_option, {'separator':none}) }}
-							{{ form_errors(form.job_experience_option) }}
-						</div>
-					
-						<p class="lead2">
-							<table>
-							{% for child in form.job_experience %}
-								<tr>
-							        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td> 
-							        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
-							    </tr>
-							{% endfor %}
-							</table>
-						</p>
-			          
-			          </div>
-			          
-			          <div class="col-sm-offset-1 col-md-10 well">
-
-						<div class="control-group" style="display:inline-block;">
-							{{ 'town.step4.town_activities_title'|trans }}
-							{{ form_widget(form.town_activities_option, {'separator':none}) }}
-							{{ form_errors(form.town_activities_option) }}
-						</div>	
-					
-						<p class="lead2">
-							<table>
-							{% for child in form.town_activities %}
-								<tr>
-							        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td> 
-							        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
-							    </tr>
-							{% endfor %}
-							</table>
-						</p>
-			          
-			        </div>
-			        
-			        
-			        <div class="col-sm-offset-1 col-md-10 well">
-
-			        	<div class="control-group" style="display:inline-block;">
-							{{ 'town.step5.govern_priorities_title'|trans }}
-							{{ form_widget(form.govern_priorities_option, {'separator':none}) }}
-							{{ form_errors(form.govern_priorities_option) }}
-						</div>
-
-						<p class="lead2">
-							<table>
-							{% for child in form.govern_priorities %}
-								<tr>
-							        <td>{{ form_widget(child, {'attr' : {'class' : 'countable1'}}) }}</td> 
-							        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
-							    </tr>
-							{% endfor %}
-							</table>
-						</p>
-						
-						<div class="control-group" style="display:inline-block;">
-							{{ 'town.step5.public_values_title'|trans }}
-							{{ form_widget(form.public_values_option, {'separator':none}) }}
-							{{ form_errors(form.public_values_option) }}
-						</div>
-					
-						<p class="lead2">
-							<table>
-							{% for child in form.public_values %}
-								<tr>
-							        <td>{{ form_widget(child, {'attr' : {'class' : 'countable2'}}) }}</td> 
-							        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
-							    </tr>
-							{% endfor %}
-							</table>
-						</p>
-			          
-			        </div>
 
                     
                   </div>
