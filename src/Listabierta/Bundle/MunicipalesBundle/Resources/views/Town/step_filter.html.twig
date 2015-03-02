@@ -42,6 +42,40 @@
 			    }
 			}
 	    });
+
+		$('#vote_step_filter_academic_level_option_1').on('change', function(event)
+	    {
+		    if($(this)[0].checked)
+			{
+		    	$('#vote_step_filter_academic_level').parent().css('display', 'block');
+			}
+		});
+
+		$('#vote_step_filter_academic_level_option_0').on('change', function(event)
+		{
+			if($(this)[0].checked)
+			{
+				$('#vote_step_filter_academic_level').parent().css('display', 'none');
+			}
+		});
+
+		$('#vote_step_filter_languages_option_1').on('change', function(event)
+	    {
+			if($(this)[0].checked)
+			{
+				$('#vote_step_filter_languages_0').parent().parent().parent().parent().css('display', 'block');
+			}
+		});
+
+		$('#vote_step_filter_languages_option_0').on('change', function(event)
+		{
+			if($(this)[0].checked)
+			{
+				$('#vote_step_filter_languages_0').parent().parent().parent().parent().css('display', 'none');
+			}
+		});
+		
+		
     });
     
 	</script>
@@ -51,6 +85,7 @@
 	#vote_step_filter_job_experience_option{display:inline;margin-left:15px}
 	#vote_step_filter_town_activities_option{display:inline;margin-left:15px}
 	#vote_step_filter_govern_priorities_option{display:inline;margin-left:15px}
+	#vote_step_filter_public_values_option{display:inline;margin-left:15px}
 	</style>
 {% endblock %}
 
