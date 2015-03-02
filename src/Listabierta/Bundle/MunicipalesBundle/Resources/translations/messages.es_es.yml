@@ -169,9 +169,10 @@ town:
         previous: Anterior
                 
     step2:
-        header: Filtra candidatos por nivel academico
+        header: Filtra candidatos
         html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 2
         filter_title: ¿Qué criterios deseas utilizar para seleccionar a los candidatos y candidatas?
+        filter_p1: Ten en cuenta que si no aplicas ningún filtro, te aparecerá la totalidad de candidatos y candidatas que se han presentado y puede resultar tedioso ver todos los perfiles y después puntuarlos, así que si tienes alguna preferencia clara márcala, posteriormente podrás revisar tus filtros.
         h1_title: Filtra candidatos por nivel academico
         academic_level: ¿Quieres elegir el nivel académico que prefieres que tenga el candidato o candidata?
         languages: "¿Es bueno que hable alguno de estos idiomas? (elige de una a tres opciones)"
