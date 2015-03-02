@@ -13,36 +13,47 @@
 
 {% block appjsinline %}
     <script>
+
+    check_countables = function(countable, event)
+    {
+    	// If first option is checked, then invalidate the others
+		if($("#town_step2 ." + countable + "[type='checkbox']").first().prop('checked'))
+		{
+			$.each($("#town_step2 ." + countable + "[type='checkbox']:checked"), function(key, item) 
+			{
+				item.checked = false
+			});
+			
+			$("#town_step2 ." + countable + "[type='checkbox']").first().prop('checked', true);
+		}
+		else
+		{
+			// If first is not checked count the max items checked
+		    if($("#town_step2 ." + countable + "[type='checkbox']:checked").length > 3)
+		    {
+		    	alert('Solo pueden seleccionarse hasta maximo 3 opciones');
+	    		// $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
+	    		event.preventDefault();
+		    }
+		    else
+		    {
+		    	return;
+		    }
+		}
+    }
+    
     $(document).ready(function() 
     {
 		$(document).on('submit','#town_step2', function(event)
 	    {
-			// If first option is checked, then invalidate the others
-			if($("#town_step2 .countable[type='checkbox']").first().prop('checked'))
-			{
-				$.each($("#town_step2 .countable[type='checkbox']:checked"), function(key, item) 
-				{
-					item.checked = false
-				});
-				
-				$("#town_step2 .countable[type='checkbox']").first().prop('checked', true);
-			}
-			else
-			{
-				// If first is not checked count the max items checked
-			    if($("#town_step2 .countable[type='checkbox']:checked").length > 3)
-			    {
-			    	alert('Solo pueden seleccionarse hasta maximo 3 opciones');
-		    		// $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
-		    		event.preventDefault();
-			    }
-			    else
-			    {
-			    	return;
-			    }
-			}
+			check_countables('countable_language', event);
+			check_countables('countable_job_experience', event);
+			check_countables('countable_town_activities', event);
+			check_countables('countable_govern_priorities', event);
+			check_countables('countable_public_values', event);
 	    });
 
+		// Academic level filter
 		$('#vote_step_filter_academic_level_option_1').on('change', function(event)
 	    {
 		    if($(this)[0].checked)
@@ -59,6 +70,7 @@
 			}
 		});
 
+		// Language filter
 		$('#vote_step_filter_languages_option_1').on('change', function(event)
 	    {
 			if($(this)[0].checked)
@@ -74,8 +86,76 @@
 				$('#vote_step_filter_languages_0').parent().parent().parent().parent().css('display', 'none');
 			}
 		});
+
+		// Job experience filter
+		$('#vote_step_filter_job_experience_option_1').on('change', function(event)
+	    {
+			if($(this)[0].checked)
+			{
+				$('#vote_step_filter_job_experience_0').parent().parent().parent().parent().css('display', 'block');
+			}
+		});
+
+		$('#vote_step_filter_job_experience_option_0').on('change', function(event)
+		{
+			if($(this)[0].checked)
+			{
+				$('#vote_step_filter_job_experience_0').parent().parent().parent().parent().css('display', 'none');
+			}
+		});
 		
-		
+		// Town Activities filter
+		$('#vote_step_filter_town_activities_option_1').on('change', function(event)
+	    {
+			if($(this)[0].checked)
+			{
+				$('#vote_step_filter_town_activities_0').parent().parent().parent().parent().css('display', 'block');
+			}
+		});
+
+		$('#vote_step_filter_town_activities_option_0').on('change', function(event)
+		{
+			if($(this)[0].checked)
+			{
+				$('#vote_step_filter_town_activities_0').parent().parent().parent().parent().css('display', 'none');
+			}
+		});		
+
+		// Govern Priorities filter
+		$('#vote_step_filter_govern_priorities_option_1').on('change', function(event)
+	    {
+			if($(this)[0].checked)
+			{
+				$('#vote_step_filter_govern_priorities_0').parent().parent().parent().parent().css('display', 'block');
+			}
+		});
+
+		$('#vote_step_filter_govern_priorities_option_0').on('change', function(event)
+		{
+			if($(this)[0].checked)
+			{
+				$('#vote_step_filter_govern_priorities_0').parent().parent().parent().parent().css('display', 'none');
+			}
+		});	
+
+		// Public Values filter
+		$('#vote_step_filter_public_values_option_1').on('change', function(event)
+	    {
+			if($(this)[0].checked)
+			{
+				$('#vote_step_filter_public_values_0').parent().parent().parent().parent().css('display', 'block');
+				$('#vote_step_filter_public_values_0').parent().parent().parent().parent().parent().css('display', 'block');
+			}
+		});
+
+		$('#vote_step_filter_public_values_option_0').on('change', function(event)
+		{
+			if($(this)[0].checked)
+			{
+				$('#vote_step_filter_public_values_0').parent().parent().parent().parent().css('display', 'none');
+				$('#vote_step_filter_public_values_0').parent().parent().parent().parent().parent().css('display', 'none');
+			}
+		});	
     });
     
 	</script>
@@ -161,7 +241,7 @@
 								<table class="table" style="display:none">
 								{% for child in form.languages %}
 									<tr>
-								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td>
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_language'}}) }}</td>
 								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
 								    </tr>
 								{% endfor %}
@@ -180,7 +260,7 @@
 								<table class="table" style="display:none">
 								{% for child in form.job_experience %}
 									<tr>
-								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td> 
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_job_experience'}}) }}</td> 
 								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
 								    </tr>
 								{% endfor %}
@@ -198,7 +278,7 @@
 								<table class="table" style="display:none">
 								{% for child in form.town_activities %}
 									<tr>
-								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable'}}) }}</td> 
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_town_activities'}}) }}</td> 
 								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
 								    </tr>
 								{% endfor %}
@@ -217,7 +297,7 @@
 								<table class="table" style="display:none">
 								{% for child in form.govern_priorities %}
 									<tr>
-								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable1'}}) }}</td> 
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_govern_priorities'}}) }}</td> 
 								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
 								    </tr>
 								{% endfor %}
@@ -234,7 +314,7 @@
 								<table class="table" style="display:none">
 								{% for child in form.public_values %}
 									<tr>
-								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable2'}}) }}</td> 
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_public_values'}}) }}</td> 
 								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
 								    </tr>
 								{% endfor %}
