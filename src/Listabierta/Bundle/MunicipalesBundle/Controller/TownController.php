@@ -354,8 +354,32 @@ class TownController extends Controller
 		$ok = TRUE;
 		if ($form->isValid())
 		{
-			$academic_level = $form['academic_level']->getData();
-			$languages      = $form['languages']->getData();
+			$academic_level_option = $form['academic_level_option']->getData();
+			
+			if($academic_level_option == 'yes')
+			{
+				$academic_level = $form['academic_level']->getData();
+			}
+			else // Option no
+			{
+				$academic_level = 0;
+			}
+			
+			/*
+			 job_experience_option
+			 town_activities_option
+			 govern_priorities_option
+			 public_values_option
+			 */
+			
+			if($languages_option == 'yes')
+			{
+				$languages      = $form['languages']->getData();
+			}
+			else // Option no
+			{
+				$languages = 0;
+			}
 			
 			$job_experience = $form['job_experience']->getData();
 			
@@ -389,7 +413,7 @@ class TownController extends Controller
 			}
 			
 			if($ok)
-			{
+			{			
 				$session->set('voter_academic_level', $academic_level);
 				$session->set('voter_languages', $languages);
 			
