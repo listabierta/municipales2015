@@ -355,6 +355,10 @@ class TownController extends Controller
 		if ($form->isValid())
 		{
 			$academic_level_option = $form['academic_level_option']->getData();
+			$job_experience_option = $form['job_experience_option']->getData();
+			$town_activities_option = $form['town_activities_option']->getData();
+			$govern_priorities_option = $form['govern_priorities_option']->getData();
+			$public_values_option = $form['public_values_option']->getData();
 			
 			if($academic_level_option == 'yes')
 			{
@@ -364,13 +368,6 @@ class TownController extends Controller
 			{
 				$academic_level = 0;
 			}
-			
-			/*
-			 job_experience_option
-			 town_activities_option
-			 govern_priorities_option
-			 public_values_option
-			 */
 			
 			if($languages_option == 'yes')
 			{
@@ -396,27 +393,49 @@ class TownController extends Controller
 				$job_experience = array();
 			}
 
-			$town_activities = $form['town_activities']->getData();
-			
-			if(count($town_activities) > 3)
+			if($town_activities_option == 'yes')
 			{
-				$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
-				$ok = FALSE;
+				$town_activities = $form['town_activities']->getData();
+				
+				if(count($town_activities) > 3)
+				{
+					$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
+					$ok = FALSE;
+				}
+			}
+			else // Option no
+			{
+				$town_activities = array();
 			}
 
-			$govern_priorities = $form['govern_priorities']->getData();
-			$public_values = $form['public_values']->getData();
-			
-			if(count($govern_priorities) > 3)
+			if($govern_priorities_option == 'yes')
 			{
-				$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
-				$ok = FALSE;
+				$govern_priorities = $form['govern_priorities']->getData();
+					
+				if(count($govern_priorities) > 3)
+				{
+					$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
+					$ok = FALSE;
+				}
 			}
-				
-			if(count($public_values) > 3)
+			else // Option no
 			{
-				$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
-				$ok = FALSE;
+				$govern_priorities = array();
+			}
+			
+			if($public_values_option == 'yes')
+			{
+				$public_values = $form['public_values']->getData();
+	
+				if(count($public_values) > 3)
+				{
+					$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
+					$ok = FALSE;
+				}
+			}
+			else // Option no
+			{
+				$public_values = array();
 			}
 			
 			if($ok)
