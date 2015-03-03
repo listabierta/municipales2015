@@ -381,14 +381,21 @@ class TownController extends Controller
 				$languages = 0;
 			}
 			
-			$job_experience = $form['job_experience']->getData();
-			
-			if(count($job_experience) > 3)
+			if($job_experience_option == 'yes')
 			{
-				$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
-				$ok = FALSE;
+				$job_experience = $form['job_experience']->getData();
+				
+				if(count($job_experience) > 3)
+				{
+					$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
+					$ok = FALSE;
+				}
 			}
-			
+			else // Option no
+			{
+				$job_experience = array();
+			}
+
 			$town_activities = $form['town_activities']->getData();
 			
 			if(count($town_activities) > 3)
