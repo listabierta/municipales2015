@@ -580,21 +580,135 @@ class TownController extends Controller
 				}
 			}
 		}
+		else // No filter applied
+		{
+			$result_candidates = $valid_candidates;
+		}
 		
 		$valid_candidates = $result_candidates;
 		
-		// @todo Filter by language
+		// Filter by language voter option
+		$result_candidates = array();
+		if(!empty($languages) && count($languages) > 0)
+		{
+			foreach($valid_candidates as $candidate)
+			{
+				$found = FALSE;
+				foreach($languages as $language)
+				{
+					if($found == FALSE && in_array($language, $candidate->getLanguages()))
+					{
+						$result_candidates[] = $candidate;
+						$found = TRUE;
+					}
+				}
+			}
+		}
+		else // No filter applied
+		{
+			$result_candidates = $valid_candidates;
+		}
 		
-		// @todo Filter by job experience
+		$valid_candidates = $result_candidates;
+		
+		// Filter by job experience voter option
+		$result_candidates = array();
+		if(!empty($job_experience) && count($job_experience) > 0)
+		{
+			foreach($valid_candidates as $candidate)
+			{
+				$found = FALSE;
+				foreach($job_experience as $job)
+				{
+					if($found == FALSE && in_array($job, $candidate->getJobExperience()))
+					{
+						$result_candidates[] = $candidate;
+						$found = TRUE;
+					}
+				}
+			}
+		}
+		else // No filter applied
+		{
+			$result_candidates = $valid_candidates;
+		}
+		
+		$valid_candidates = $result_candidates;
 
-		// @todo Filter by town activities
+		// Filter by town activities voter option
+		$result_candidates = array();
+		if(!empty($town_activities) && count($town_activities) > 0)
+		{
+			foreach($valid_candidates as $candidate)
+			{
+				$found = FALSE;
+				foreach($town_activities as $town_activity)
+				{
+					if($found == FALSE && in_array($town_activity, $candidate->getTownActivities()))
+					{
+						$result_candidates[] = $candidate;
+						$found = TRUE;
+					}
+				}
+			}
+		}
+		else // No filter applied
+		{
+			$result_candidates = $valid_candidates;
+		}
 		
-		// @todo Filter by govern priorities
+		$valid_candidates = $result_candidates;
 		
-		// @todo Filter by public values
+		// Filter by govern priorities voter option
+		$result_candidates = array();
+		if(!empty($govern_priorities) && count($govern_priorities) > 0)
+		{
+			foreach($valid_candidates as $candidate)
+			{
+				$found = FALSE;
+				foreach($govern_priorities as $govern_priority)
+				{
+					if($found == FALSE && in_array($govern_priority, $candidate->getGovernPriorities()))
+					{
+						$result_candidates[] = $candidate;
+						$found = TRUE;
+					}
+				}
+			}
+		}
+		else // No filter applied
+		{
+			$result_candidates = $valid_candidates;
+		}
+		
+		$valid_candidates = $result_candidates;
+	
+		// Filter by public values voter option
+		$result_candidates = array();
+		if(!empty($public_values) && count($public_values) > 0)
+		{
+			foreach($valid_candidates as $candidate)
+			{
+				$found = FALSE;
+				foreach($public_values as $public_value)
+				{
+					if($found == FALSE && in_array($public_value, $candidate->getPublicValues()))
+					{
+						$result_candidates[] = $candidate;
+						$found = TRUE;
+					}
+				}
+			}
+		}
+		else // No filter applied
+		{
+			$result_candidates = $valid_candidates;
+		}
+		
+		$valid_candidates = $result_candidates;
 		
 		// Filter candidates with voter levels here until MAX_AVAILABLE_CANDIDATES
-		$valid_candidates = array_slice($valid_candidates, 0, self::MAX_AVAILABLE_CANDIDATES);
+		//$valid_candidates = array_slice($valid_candidates, 0, self::MAX_AVAILABLE_CANDIDATES);
 		
 		// Random position
 		shuffle($valid_candidates);
