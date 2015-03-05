@@ -355,6 +355,7 @@ class TownController extends Controller
 		if ($form->isValid())
 		{
 			$academic_level_option = $form['academic_level_option']->getData();
+			$languages_option = $form['languages_option']->getData();
 			$job_experience_option = $form['job_experience_option']->getData();
 			$town_activities_option = $form['town_activities_option']->getData();
 			$govern_priorities_option = $form['govern_priorities_option']->getData();
@@ -458,18 +459,19 @@ class TownController extends Controller
 				$entity_manager->persist($voter);
 				$entity_manager->flush();
 			
-				$form2 = $this->createForm(new TownStep7Type(), NULL, array(
+				return $this->vote7Action($address, $request);
+				/*$form2 = $this->createForm(new TownStep7Type(), NULL, array(
 						'action' => $this->generateUrl('town_candidacy_vote_step7', array('address' => $address)),
 						'method' => 'POST',
 				));
 			
 				$form2->handleRequest($request);
 			
-				return $this->render('MunicipalesBundle:Town:step6.html.twig', array(
+				return $this->render('MunicipalesBundle:Town:step7.html.twig', array(
 						'address' => $address,
 						'form' => $form2->createView()
 					)
-				);
+				);*/
 			}
 		}
 	
@@ -521,17 +523,6 @@ class TownController extends Controller
 		$form->handleRequest($request);
 	
 		$ok = TRUE;
-		
-		$voter_levels = $session->get('voter_levels', NULL);
-		
-		//var_dump($voter_levels);
-		
-		if(empty($voter_levels))
-		{
-			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-					'error' => 'Sesión expirada en paso 6 de votante',
-			));
-		}
 		
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 		
