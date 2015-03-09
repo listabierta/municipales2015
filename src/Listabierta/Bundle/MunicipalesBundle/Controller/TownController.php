@@ -116,6 +116,14 @@ class TownController extends Controller
 			}
 			*/
 			
+			$voter_dni = $voter_repository->findOneBy(array('dni' => $dni));
+			
+			if(!empty($voter_dni))
+			{
+				$form->addError(new FormError('Ya existe un usuario votante registrado con el dni ' . $dni));
+				$ok = FALSE;
+			}
+			
 			$voter_email = $voter_repository->findOneBy(array('email' => $email));
 			 
 			if(!empty($voter_email))
