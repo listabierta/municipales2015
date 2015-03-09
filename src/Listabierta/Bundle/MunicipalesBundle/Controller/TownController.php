@@ -788,9 +788,15 @@ class TownController extends Controller
 				}
 				
 				//echo \TrustedTimestamps::getTimestampFromAnswer($response['response_string']); //1299098823
-				
-				$validate = \TrustedTimestamps::validate($my_hash, $response['response_string'], $response['response_time'], $tsa_cert_chain_file);
-				//var_dump($validate);
+				try 
+				{
+					$validate = \TrustedTimestamps::validate($my_hash, $response['response_string'], $response['response_time'], $tsa_cert_chain_file);
+					//var_dump($validate);
+				} 
+				catch (Exception $e) 
+				{
+					$logger = $this->get('logger')->error('Vote validation Error: ' . $e->getMessage());
+				}
 				
 				/*
 				 
