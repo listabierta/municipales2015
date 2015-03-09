@@ -143,7 +143,15 @@ class CandidacyController extends Controller
     		 
     		if(!empty($admin_username))
     		{
-    			$form->addError(new FormError('Ya existe un usuario registrado con el nombre de usuario ' . $username));
+    			$form->addError(new FormError('Ya existe un usuario administrador registrado con el nombre de usuario ' . $username));
+    			$ok = FALSE;
+    		}
+    		
+    		$admin_dni = $admin_candidacy_repository->findOneBy(array('dni' => $dni));
+    			
+    		if(!empty($admin_dni))
+    		{
+    			$form->addError(new FormError('Ya existe un usuario administrador registrado con el dni ' . $dni));
     			$ok = FALSE;
     		}
     		
@@ -151,7 +159,7 @@ class CandidacyController extends Controller
     		 
     		if(!empty($admin_email))
     		{
-    			$form->addError(new FormError('Ya existe un usuario registrado con el email ' . $email));
+    			$form->addError(new FormError('Ya existe un usuario administrador registrado con el email ' . $email));
     			$ok = FALSE;
     		}
     		
@@ -159,7 +167,7 @@ class CandidacyController extends Controller
     		 
     		if(!empty($admin_phone))
     		{
-    			$form->addError(new FormError('Ya existe un usuario registrado con el teléfono ' . $phone));
+    			$form->addError(new FormError('Ya existe un usuario administrador registrado con el teléfono ' . $phone));
     			$ok = FALSE;
     		}
     		
