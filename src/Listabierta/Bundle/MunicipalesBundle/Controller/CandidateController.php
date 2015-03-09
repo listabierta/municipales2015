@@ -86,6 +86,7 @@ class CandidateController extends Controller
 		 
 		$form->handleRequest($request);
 		
+		$ok = TRUE;
 		if ($form->isValid())
 		{
 			$name     = $form['name']->getData();
@@ -94,50 +95,75 @@ class CandidateController extends Controller
 			$email    = $form['email']->getData();
 			$phone    = $form['phone']->getData();
 			
+			$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
 			
-			$entity_manager = $this->getDoctrine()->getManager();
+			$candidate_dni = $candidate_repository->findOneBy(array('dni' => $dni));
 			 
-			// Store info in database AdminCandidacy
-			$candidate = new Candidate();
-			$candidate->setName($name);
-			$candidate->setLastname($lastname);
-			$candidate->setDni($dni);
-			$candidate->setEmail($email);
-			$candidate->setPhone($phone);
-			$candidate->setAdminId($admin_candidacy->getId());
+			if(!empty($candidate_dni))
+			{
+				$form->addError(new FormError('Ya existe un usuario candidato registrado con el dni ' . $dni));
+				$ok = FALSE;
+			}
+			
+			$candidate_email = $candidate_repository->findOneBy(array('email' => $email));
 			 
-			$entity_manager->persist($candidate);
-			$entity_manager->flush();
+			if(!empty($candidate_email))
+			{
+				$form->addError(new FormError('Ya existe un usuario candidato registrado con el email ' . $email));
+				$ok = FALSE;
+			}
+			
+			$candidate_phone = $candidate_repository->findOneBy(array('phone' => $phone));
 			 
-			// Store email and phone in database as pending PhoneVerified without timestamp
-			$phone_verified = new PhoneVerified();
-			$phone_verified->setPhone($phone);
-			$phone_verified->setEmail($email);
-			$phone_verified->setTimestamp(0);
-			
-			$entity_manager->persist($phone_verified);
-			$entity_manager->flush();
-			
-			$session->set('candidate_id', $candidate->getId());
-			$session->set('candidate_name', $name);
-			$session->set('candidate_lastname', $lastname);
-			$session->set('candidate_dni', $dni);
-			$session->set('candidate_email', $email);
-			$session->set('candidate_phone', $phone);
-			
-			$form2 = $this->createForm(new CandidateStepVerifyType(), NULL, array(
-					'action' => $this->generateUrl('candidate_step_verify', array('address' => $address)),
-					'method' => 'POST',
-			));
-			 
-			$form2->handleRequest($request);
-			
-			return $this->render('MunicipalesBundle:Candidate:step_verify.html.twig', array(
-					'form' => $form2->createView(),
-					'address' => $address_slug,
-				)
-			);
-			
+			if(!empty($candidate_phone))
+			{
+				$form->addError(new FormError('Ya existe un usuario candidato registrado con el teléfono ' . $phone));
+				$ok = FALSE;
+			}
+
+			if($ok)
+			{
+				// Store info in database AdminCandidacy
+				$candidate = new Candidate();
+				$candidate->setName($name);
+				$candidate->setLastname($lastname);
+				$candidate->setDni($dni);
+				$candidate->setEmail($email);
+				$candidate->setPhone($phone);
+				$candidate->setAdminId($admin_candidacy->getId());
+				 
+				$entity_manager->persist($candidate);
+				$entity_manager->flush();
+				 
+				// Store email and phone in database as pending PhoneVerified without timestamp
+				$phone_verified = new PhoneVerified();
+				$phone_verified->setPhone($phone);
+				$phone_verified->setEmail($email);
+				$phone_verified->setTimestamp(0);
+				
+				$entity_manager->persist($phone_verified);
+				$entity_manager->flush();
+				
+				$session->set('candidate_id', $candidate->getId());
+				$session->set('candidate_name', $name);
+				$session->set('candidate_lastname', $lastname);
+				$session->set('candidate_dni', $dni);
+				$session->set('candidate_email', $email);
+				$session->set('candidate_phone', $phone);
+				
+				$form2 = $this->createForm(new CandidateStepVerifyType(), NULL, array(
+						'action' => $this->generateUrl('candidate_step_verify', array('address' => $address)),
+						'method' => 'POST',
+				));
+				 
+				$form2->handleRequest($request);
+				
+				return $this->render('MunicipalesBundle:Candidate:step_verify.html.twig', array(
+						'form' => $form2->createView(),
+						'address' => $address_slug,
+					)
+				);
+			}
 		}
 
 		return $this->render('MunicipalesBundle:Candidate:step1.html.twig', array(
