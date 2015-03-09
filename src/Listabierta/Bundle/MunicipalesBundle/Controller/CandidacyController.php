@@ -213,6 +213,21 @@ class CandidacyController extends Controller
 	    		$session->set('town', $town);
 	    		$session->set('phone', $phone);
 	    		
+	    		// Send mail with login link for admin
+	    		
+	    		$message = \Swift_Message::newInstance()
+	    		->setSubject('Tu cuenta de administrador ha sido creada')
+	    		->setFrom('candidaturas@municipales2015.listabierta.org', 'Candidaturas')
+	    		->setTo($email)
+	    		->setBody(
+	    				$this->renderView(
+	    						'MunicipalesBundle:Mail:admin_created.html.twig',
+	    						array('name' => $name)
+	    				)
+	    		);
+	    		 
+	    		$this->get('mailer')->send($message);
+	    		
 	    		$warnings = array();
 	    		
 	    		$form2 = $this->createForm(new CandidacyStepVerifyType(), NULL, array(
