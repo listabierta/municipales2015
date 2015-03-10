@@ -6,12 +6,12 @@ home:
     steps: Para dar de alta una candidatura ciudadana debes
     featured: Abre tu ayuntamiento a la ciudadanía en estas elecciones
     
-    open_council: Abre tu ayuntamiento a la ciudadan&iacute;a en estas elecciones
-    who_h3: "¿Quienes somos?"
+    open_council: Abre tu ayuntamiento a la ciudadan&iacute;a en estas elecciones municipales de mayo 2015
+    who_h3: "Empieza por aquí"
     intro_p1: es el fruto de un esfuerzo de financiación colectiva y de un equipo de trabajo que pretende abrir las organizaciones a la ciudadanía. Entre estas organizaciones ocupan un lugar destacado los Ayuntamientos.
     intro_p2: La elección de candidatos y candidatas en listas abiertas para los comicios municipales, permiten que los electos se “deban” a los ciudadanos que los han elegido y a no a quien les hubiese incluido en unas lista cerrada o negociada. 
-    intro_p3: Si estás directamente implicado en la organización de una candidatura de listas abiertas en tu municipio para las próximas elecciones de mayo de 2.015, puedes organizarla con esta herramienta online sin coste y con resultados auditables, porque otra forma de gobernar tu Ayuntamiento es posible y necesaria.
-    intro_p4: Empieza por ver este tutorial del proceso
+    intro_p3: Si estás <b>directamente implicado en la organización</b> de una candidatura de listas abiertas en tu municipio para las próximas elecciones de mayo de 2.015, puedes organizarla con esta herramienta online sin coste y con resultados auditables, porque otra forma de gobernar tu Ayuntamiento es posible y necesaria.
+    intro_p4: Es muy importante que antes de empezar el proceso de registro de la candidatura, veas este tutorial del proceso completo.
     intro_p5: ¿Cómo funciona la herramienta de listas abiertas municipales?
     
     step_1: Regístrate y registra el municipio de la candidatura
@@ -24,7 +24,7 @@ home:
     step_8: Verificación del voto y resultados
     step_9: Presentación de las listas electas
     
-    start_here: Comienza aquí
+    start_here: Iniciar el registro
     welcome: "&iexcl;Bienvenidos al sitio!"
 
 header:
