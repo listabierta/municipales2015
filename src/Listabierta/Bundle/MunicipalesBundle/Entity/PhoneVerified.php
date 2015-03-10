@@ -111,4 +111,32 @@ class PhoneVerified
     {
         return $this->timestamp;
     }
+    /**
+     * @var integer
+     */
+    private $mode;
+
+
+    /**
+     * Set mode
+     *
+     * @param integer $mode
+     * @return PhoneVerified
+     */
+    public function setMode($mode)
+    {
+        $this->mode = $mode;
+
+        return $this;
+    }
+
+    /**
+     * Get mode
+     *
+     * @return integer 
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
 }
