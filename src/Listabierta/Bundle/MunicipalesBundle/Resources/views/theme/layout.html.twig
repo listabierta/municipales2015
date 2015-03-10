@@ -123,12 +123,20 @@
 		<script>
 		$( document ).ready(function() 
 		{
-			$('.bfh-selectbox-options li a').click(function() {
+			$('.bfh-selectbox-options li a').click(function() 
+			{
 				  //console.log($(this).data('option')); 
 				  var path = '{{ path(app.request.get('_route'), app.request.get('_route_params', [])) }}';
 				  //console.log(path)
 				  window.location.href=path + '?_locale=' + $(this).data('option')
 			});
+
+			$('.bfh-selectbox-options li a').each(function(key, value) {
+			    console.log($(this).text().replace(' (Spain)',''))
+			    $(this).text($(this).text().replace(' (Spain)',''))
+			});
+			
+			$('.bfh-selectbox-option').text($('.bfh-selectbox-option').text().replace(' (Spain)',''))
 		});
 		</script>
 		{% block appjsinline %}{% endblock %}							
