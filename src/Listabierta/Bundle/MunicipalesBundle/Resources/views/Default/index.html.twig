@@ -40,7 +40,7 @@
         <p class="lead2">{{ 'home.intro_p2'|trans }}</p>
       </div>
       <div class="col-md-6">
-        <p class="lead2">{{ 'home.intro_p3'|trans }}</p></div>
+        <p class="lead2">{{ 'home.intro_p3'|trans|raw }}</p></div>
     </div>
     <hr class="featurette-divider2">
  <!--    division -->
@@ -48,7 +48,7 @@
       <div class="col-md-6">
         
         <div class="headline"> <h2>Tutorial</h2></div><h3 class="featurette-headin"> <i>{{ 'home.who_h3'|trans }}</i>
-        </h3><p class="lead2">-{{ 'home.intro_p4'|trans }}</p>
+        </h3><p class="lead2">{{ 'home.intro_p4'|trans }}</p>
             <div class="embed-responsive embed-responsive-16by9">
             <iframe  class="embed-responsive-item" src="https://www.youtube.com/embed/v-ysTeRE9lc"></iframe>
             </div>
@@ -113,8 +113,8 @@
  <div class="row featurette2 well inverse">
 
       <div class="col-md-6">
-      <h3 class="featurette-headin"> <i>{{ 'home.welcome'|trans|raw }}</i>
-        </h3>
+      {#<h3 class="featurette-headin"> <i>{{ 'home.welcome'|trans|raw }}</i>
+        </h3> #}
       </div>
       <div class="col-md-3 pull-ri col-md-offset-2">
           <a href="{{ path('municipales_candidacy_step_conditions') }}"title="{{ 'home.start_here'|trans }}" class="btn btn-primary2 btn-lg btn-block">{{ 'home.start_here'|trans }}</a>
