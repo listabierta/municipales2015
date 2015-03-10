@@ -170,6 +170,7 @@ class TownController extends Controller
 				$phone_verified->setPhone($phone);
 				$phone_verified->setEmail($email);
 				$phone_verified->setTimestamp(0);
+				$phone_verified->setMode(PhoneVerified::MODE_VOTER);
 			
 				$entity_manager->persist($phone_verified);
 				$entity_manager->flush();
