@@ -69,6 +69,11 @@ candidacy:
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
         explanation: Explicación
+        dni_info: Sin introducir guión entre número y letra
+        username_info: Anota tu nombre de usuario
+        password_info: Anota tu contraseña
+        email_info: Recibirás un email de confirmación
+        phone_info: Deberás confirmarlo con un mensaje en el siguiente paso, si introduces un número incorrecto, no podrás continuar
 
     step_verify:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
