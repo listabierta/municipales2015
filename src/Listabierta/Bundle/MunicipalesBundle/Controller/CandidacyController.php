@@ -124,6 +124,7 @@ class CandidacyController extends Controller
     	$form->handleRequest($request);
 
     	$ok = TRUE;
+    	$already_registered = FALSE;
     	if ($form->isValid())
     	{
     		$name     = $form['name']->getData();
@@ -145,6 +146,7 @@ class CandidacyController extends Controller
     		{
     			$form->addError(new FormError('Ya existe un usuario administrador registrado con el nombre de usuario ' . $username));
     			$ok = FALSE;
+    			$already_registered = TRUE;
     		}
     		
     		$admin_dni = $admin_candidacy_repository->findOneBy(array('dni' => $dni));
@@ -153,6 +155,7 @@ class CandidacyController extends Controller
     		{
     			$form->addError(new FormError('Ya existe un usuario administrador registrado con el dni ' . $dni));
     			$ok = FALSE;
+    			$already_registered = TRUE;
     		}
     		
     		$admin_email = $admin_candidacy_repository->findOneBy(array('email' => $email));
@@ -161,6 +164,7 @@ class CandidacyController extends Controller
     		{
     			$form->addError(new FormError('Ya existe un usuario administrador registrado con el email ' . $email));
     			$ok = FALSE;
+    			$already_registered = TRUE;
     		}
     		
     		$admin_phone = $admin_candidacy_repository->findOneBy(array('phone' => $phone));
@@ -169,6 +173,12 @@ class CandidacyController extends Controller
     		{
     			$form->addError(new FormError('Ya existe un usuario administrador registrado con el teléfono ' . $phone));
     			$ok = FALSE;
+    			$already_registered = TRUE;
+    		}
+    		
+    		if($already_registered)
+    		{
+    			$form->addError(new FormError('Si te registraste con anterioridad, puedes acceder a tu registro en: <a href="http://municipales2015.listabierta.org/login" title="Login">http://municipales2015.listabierta.org/login</a> y continuar por el paso dónde lo dejaste.'));
     		}
     		
     		if($ok)
