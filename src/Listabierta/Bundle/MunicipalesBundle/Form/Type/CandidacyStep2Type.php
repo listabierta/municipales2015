@@ -12,7 +12,7 @@ class CandidacyStep2Type extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('program', 'file', array(
-        					'required' => true, 
+        					'required' => FALSE, 
         					'data_class' => NULL,
         					'constraints' => array(
         						new Assert\NotBlank(),
@@ -21,7 +21,7 @@ class CandidacyStep2Type extends AbstractType
         				)
         			)
         		->add('legal_conditions', 'file', array(
-        					'required' => true,
+        					'required' => FALSE,
         					'data_class' => NULL,
         					'constraints' => array(
         						new Assert\NotBlank(),
@@ -30,7 +30,7 @@ class CandidacyStep2Type extends AbstractType
         				)
         			)
         		->add('recall_term', 'file', array(
-        					'required' => true,
+        					'required' => FALSE,
         					'data_class' => NULL,
         					'constraints' => array(
         						new Assert\NotBlank(),
@@ -39,7 +39,7 @@ class CandidacyStep2Type extends AbstractType
         				)
         			)
         		->add('participatory_term', 'file', array(
-        					'required' => true,
+        					'required' => FALSE,
         					'data_class' => NULL,
         					'constraints' => array(
         						new Assert\NotBlank(),
@@ -48,7 +48,7 @@ class CandidacyStep2Type extends AbstractType
         				)
         			)
         		->add('voter_conditions', 'file', array(
-        					'required' => true,
+        					'required' => FALSE,
         					'data_class' => NULL,
         					'constraints' => array(
         						new Assert\NotBlank(),
@@ -57,7 +57,7 @@ class CandidacyStep2Type extends AbstractType
         				)
         			)
         		->add('technical_constrains', 'file', array(
-        					'required' => true,
+        					'required' => FALSE,
         				    'data_class' => NULL,
         					'constraints' => array(
         						new Assert\NotBlank(),
