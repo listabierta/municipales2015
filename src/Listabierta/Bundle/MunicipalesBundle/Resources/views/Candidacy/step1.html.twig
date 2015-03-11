@@ -74,14 +74,14 @@
 					  <div class="form-group{% if form.dni.vars.errors|length > 0 %} has-error{% endif %}">
 			    	  	  {{ form_label(form.dni, 'candidacy.step1.dni'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 			    		  {{ form_widget(form.dni) }}
-			    		  <div class="help-block col-xs-12 col-sm-reset inline">{{ 'candidacy.step1.dni_info'|trans }}</div>
+			    		  <div class="help-block col-xs-12 col-sm-4 inline">{{ 'candidacy.step1.dni_info'|trans }}</div>
 			    	  	  {% if form.dni.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.dni) }}{% endif %}
 					  </div>
 			
 					  <div class="form-group{% if form.username.vars.errors|length > 0 %} has-error{% endif %}">
 			    		  {{ form_label(form.username, 'candidacy.step1.username'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 			    		  {{ form_widget(form.username) }}
-			    		  <div class="help-block col-xs-12 col-sm-reset inline">{{ 'candidacy.step1.username_info'|trans }}</div>
+			    		  <div class="help-block col-xs-12 col-sm-4 inline">{{ 'candidacy.step1.username_info'|trans }}</div>
 			    		  {% if form.username.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.username) }}</div>{% endif %}
 			    		  
 					  </div>
@@ -89,14 +89,14 @@
 					  <div class="form-group{% if form.password.vars.errors|length > 0 %} has-error{% endif %}">
 			    		  {{ form_label(form.password, 'candidacy.step1.password'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 			    		  {{ form_widget(form.password) }}
-			    		  <div class="help-block col-xs-12 col-sm-reset inline">{{ 'candidacy.step1.password_info'|trans }}</div>
+			    		  <div class="help-block col-xs-12 col-sm-4 inline">{{ 'candidacy.step1.password_info'|trans }}</div>
 			    		  {% if form.password.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.password) }}</div>{% endif %}
 					  </div>
 			
 					  <div class="form-group{% if form.email.vars.errors|length > 0 %} has-error{% endif %}">
 			    		  {{ form_label(form.email, 'candidacy.step1.email'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 			    		  {{ form_widget(form.email) }}
-			    		  <div class="help-block col-xs-12 col-sm-reset inline">{{ 'candidacy.step1.email_info'|trans }}</div>
+			    		  <div class="help-block col-xs-12 col-sm-4 inline">{{ 'candidacy.step1.email_info'|trans }}</div>
 			    		  {% if form.email.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.email) }}</div>{% endif %}
 					  </div>
 			
@@ -115,7 +115,7 @@
 					  <div class="form-group{% if form.phone.vars.errors|length > 0 %} has-error{% endif %}">
 					      {{ form_label(form.phone, 'candidacy.step1.phone'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 					      {{ form_widget(form.phone) }}
-					      <div class="help-block col-xs-12 col-sm-reset inline">{{ 'candidacy.step1.phone_info'|trans }}</div>
+					      <div class="help-block col-xs-12 col-sm-4 inline">{{ 'candidacy.step1.phone_info'|trans }}</div>
 					      {% if form.phone.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.phone) }}</div>{% endif %}
 					      <a class='explanation_dni' href="#explanation_dni_content"><img style="margin-left:15px;width:16px;height:16px" src="{{ asset('bundles/municipales/images/question.png') }}"
 					       alt="{{ 'candidacy.step1.explanation'|trans }}"
