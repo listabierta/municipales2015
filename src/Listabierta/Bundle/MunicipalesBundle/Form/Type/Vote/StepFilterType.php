@@ -13,7 +13,6 @@ class StepFilterType extends AbstractType
     {
         $builder->add('academic_level', 'choice', array(
 			     	'choices' => array(
-			     			'0' => 'Me resulta indiferente su nivel académico', // no aparece el resto de opciones
 			     			'1' => 'Sin estudios',
 			     			'2' => 'Estudios primarios o equivalentes', 
 			     			'3' => 'Enseñanza general secundaria, 1er ciclo',
@@ -37,7 +36,6 @@ class StepFilterType extends AbstractType
 			     		'multiple' => TRUE,
 			     		'expanded' => TRUE,
 			     		'choices' => array(
-			     				'0' => 'No considero necesario que hable idiomas',
 			     				'1' => 'Inglés',
 			     				'2' => 'Francés',
 			     				'3' => 'Alemán',
@@ -60,7 +58,6 @@ class StepFilterType extends AbstractType
 			     		'multiple' => TRUE,
 			     		'expanded' => TRUE,
 			     		'choices' => array(
-			     				'0' => 'No considero importante su experiencia laboral previa', // (no aparece el resto de opciones)
 			     				'1' => 'Actividades físicas o deportivas',
 			     				'2' => 'Administración o gestión',
 			     				'3' => 'Agraria o pesquera',
@@ -100,7 +97,6 @@ class StepFilterType extends AbstractType
 			     		'multiple' => TRUE,
 			     		'expanded' => TRUE,
 			     		'choices' => array(
-			     				'0' => 'No considero que deba tener ninguna experiencia previa relacionada con el desempeño municipal',
 			     				'1' => 'He tenido experiencia en la mejora del funcionamiento organizativo de entidades',
 			     				'2' => 'He participado en la elaboración de planes de protección civil o seguridad ciudadana',
 			     				'3' => 'He contribuido a la lucha contra la pobreza o la exclusión social',
