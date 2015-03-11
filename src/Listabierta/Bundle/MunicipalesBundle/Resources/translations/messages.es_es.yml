@@ -90,7 +90,7 @@ candidacy:
         program: El programa de la candidatura
         legal_conditions: Condiciones legales y veracidad de la información aportada de candidatos y candidatas
         recall_term: El mandato revocatorio del candidato
-        participatory_term: El mandato participativo del candidato
+        participatory_term: El código ético de la candidatura
         voter_conditions: Las condiciones para poder participar como votante (censo y aceptación del sistema de votación)
         technical_constrains: Las limitaciones técnicas y legales del sistema de voto.
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
