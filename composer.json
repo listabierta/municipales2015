@@ -21,7 +21,8 @@
         "packagist/yuicompressor-bin": "2.4.8",
         "swiftmailer/swiftmailer": "@stable",
         "cocur/slugify": "~1.0",
-	"ircmaxell/password-compat": "~1.0"
+	"ircmaxell/password-compat": "~1.0",
+        "kartik-v/bootstrap-fileinput": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
