@@ -57,50 +57,27 @@
                       <div class="col-xs-12 candidatos">
                         {% if candidates|length > 0 %}
                         	{% for candidate in candidates %}
-                        <div class="row no-gutterso  widget-box ">
-                          <div class="col-xs-12 col-sm-2 center">
-                            <div>
-                              <span class="profile-picture">
-                                <img src="{{ app.request.schemeAndHttpHost }}/{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" alt="{{ candidate.name }} {{ candidate.lastname }} Avatar" class="editable img-responsive editable-click editable-empty" id="avatar"></span>
-                              <div class="space-4"></div>
-                              <div class="label label-info label-xlg ">
-                                <div class="inline position-relative">
-                                  <span>
-                                    <span class="white">{{ candidate.name }} {{ candidate.lastname }}</span>
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="space-6"></div>
-                            <div class="hr hr12 dotted"></div>
-                            <div class="clearfix">
-                              <div class="grid2">
-                                <span class="bigger-175 blue">{{ loop.index }} de {{ candidates|length }}</span>
-                                <br>Posición</div>
-                              <div class="grid2">
-                                <span class="bigger-175 blue">{{ candidate.id }}</span>
-                                <br>Candidatos</div>
-                            </div>
-                            <div class="hr hr16 dotted"></div>
-                          </div>
+
+                        <div class="row widget-box ">
+
                           <div class="col-xs-12 col-sm-5">
                             <div class="profile-user-info-striped">
                               <div class="profile-info-row">
                                 <div class="profile-info-name">Nivel académico</div>
                                 <div class="profile-info-value">
-                                  <span class="lalala">38</span>
+                                  <span class="lalala">{% if candidate.academicLevel is defined %}{{ candidate.academicLevel }}{% endif %}</span>
                                 </div>
                               </div>
                               <div class="profile-info-row">
                                 <div class="profile-info-name">Idiomas</div>
                                 <div class="profile-info-value">
-                                  <span class="lalala">idioma1, idioma2</span>
+                                  <span class="lalala">{% if candidate.languages is defined %}{{ candidate.languages }}{% endif %}</span>
                                 </div>
                               </div>
                               <div class="profile-info-row">
                                 <div class="profile-info-name">Valores morales que prioriza</div>
                                 <div class="profile-info-value">
-                                  <span class="" id="">Valor moral 1, Valor moral 2,Valor moral 3.</span>
+                                  <span id="" class="">{% if candidate.publicValues is defined %}{{ candidate.publicValues }}{% endif %}</span>
                                 </div>
                               </div>
                               <div class="profile-info-row">
@@ -117,46 +94,66 @@
                               <div class="profile-info-row">
                                 <div class="profile-info-name">Experiencias relacionadas</div>
                                 <div class="profile-info-value">
-                                  <span id="age" class="lalala">
-                                    Experiencias relacionadas 1, Experiencias relacionadas 2, Experiencias relacionadas 3
+                                  <span class="lalala" id="age">
+                                    {% if candidate.townActivities is defined %}{{ candidate.townActivities }}{% endif %}
                                   </span>
                                 </div>
                               </div>
                               <div class="profile-info-row">
                                 <div class="profile-info-name">Descripción experiencia</div>
                                 <div class="profile-info-value">
-                                  <span id="login" class="lalala">Lorem ipsum dolor sit amet</span>
+                                  <span class="lalala" id="login">{% if candidate.jobExperience is defined %}{{ candidate.jobExperience }}{% endif %}</span>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <div class="col-xs-12 col-sm-5">
+                          <div class="col-xs-12 col-sm-4">
                             <div class="profile-user-info-striped">
                               <div class="profile-info-row">
                                 <div class="profile-info-name">Considera prioritario que el Ayuntamiento se centre en:</div>
                                 <div class="profile-info-value">
-                                  <span class="lalala" id="age">
-                                    {% if candidate.townActivitiesExplanation is defined %}{{ candidate.townActivitiesExplanation }}{% endif %}
+                                  <span id="age" class="lalala">
+                                   {% if candidate.townActivitiesExplanation is defined %}{{ candidate.townActivitiesExplanation }}{% endif %}
                                   </span>
                                 </div>
                               </div>
                               <div class="profile-info-row">
                                 <div class="profile-info-name">Motivación para presentarse</div>
                                 <div class="profile-info-value">
-                                  <span class="" id=""></span>
+                                  <span id="" class="">{% if candidate.motivationText is defined %}{{ candidate.motivationText }}{% endif %}</span>
                                 </div>
                               </div>
                               <div class="profile-info-row">
                                 <div class="profile-info-name">Información adicional</div>
                                 <div class="profile-info-value">
-                                  <span id="login" class="lalala">{% if candidate.additionalInfo is defined %}{{ candidate.additionalInfo }}{% endif %}</span>
+                                  <span class="lalala" id="login">{% if candidate.additionalInfo is defined %}{{ candidate.additionalInfo }}{% endif %}</span>
                                 </div>
                               </div>
-                              <div class="profile-info-row">
-                                <div class="profile-info-name">Filtro de Candidatos</div>
+
+                            </div>
+                          </div>
+                          <div class="col-xs-12 col-sm-3 center">
+                            <div>
+                              <span class="profile-picture">
+                                <img src="{{ app.request.schemeAndHttpHost }}/{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" alt="{{ candidate.name }} {{ candidate.lastname }} Avatar" class="editable img-responsive editable-click editable-empty" id="avatar"></span>
+                              <div class="space-4"></div>
+                              <div class="label label-info label-xlg ">
+                                <div class="inline position-relative">
+                                  <span>
+                                    <span class="white">{{ candidate.name }} {{ candidate.lastname }}</span>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="space-6"></div>
+                            <div class="hr hr12 dotted"></div>
+                            <div class="clearfix">
+                              <div class="grid2 candidate-{{ candidate.id }}">
+                                <span class="bigger-175 blue">{{ loop.index }} de {{ candidates|length }}</span>
+                                <br>Posición</div>
+                              <div class="grid2">
                                 <div class="profile-info-value">
                                   <label>
-                                    Posición
                                     {% if candidate.status == 1 %}
 												<select class="form-control input-sm" aria-controls="dynamic-table" required="required" name="town_step_7[candidate_{{ candidate.id }}]" id="candidate_{{ candidate.id }}">
 													{% for index in 1..candidates|length  %}
@@ -164,11 +161,12 @@
 													{% endfor %}
 												</select>
 									{% endif %}
-                                    records
+                                    Candidatos
                                   </label>
                                 </div>
                               </div>
                             </div>
+                            <div class="hr hr16 dotted"></div>
                           </div>
                         </div>
                         <hr>
