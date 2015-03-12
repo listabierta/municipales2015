@@ -83,37 +83,38 @@
 						    	      {% if form.lastname.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.lastname) }}</div>{% endif %}
 								  </div>
 								
-								<div class="form-group{% if form.dni.vars.errors|length > 0 %} has-error{% endif %}">
-			    	  	  {{ form_label(form.dni, 'candidacy.step1.dni'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.dni) }}
-			    	  	  {% if form.dni.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.dni) }}{% endif %}
-					  </div>
-								
-								<div class="form-group{% if form.email.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.email, 'candidacy.step1.email'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.email) }}
-			    		  {% if form.email.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.email) }}</div>{% endif %}
-					  </div>
-					
-								<div class="form-group{% if form.phone.vars.errors|length > 0 %} has-error{% endif %}">
-					      {{ form_label(form.phone, 'candidacy.step1.phone'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-					      {{ form_widget(form.phone) }}
-					      {% if form.phone.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.phone) }}</div>{% endif %}
-					      <a class='explanation_dni' href="#explanation_dni_content"><img style="margin-left:15px;width:16px;height:16px" src="{{ asset('bundles/municipales/images/question.png') }}"
-					       alt="{{ 'candidacy.step1.explanation'|trans }}"
-					       title="{{ 'candidacy.step1.explanation'|trans }}"/></a>
-					    
-					      <!-- This contains the hidden content for inline calls -->
-						  <div style='display:none'>
-							  <div id='explanation_dni_content' style='width:200px;padding:10px; background:#fff;'>
-								  {{ 'candidacy.step1.explanation_dni'|trans }}
+							  <div class="form-group{% if form.dni.vars.errors|length > 0 %} has-error{% endif %}">
+					    	  	  {{ form_label(form.dni, 'candidacy.step1.dni'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+					    		  {{ form_widget(form.dni) }}
+					    	  	  {% if form.dni.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.dni) }}</div>{% endif %}
 							  </div>
-						  </div>
-					  </div>
+										
+							  <div class="form-group{% if form.email.vars.errors|length > 0 %} has-error{% endif %}">
+					    		  {{ form_label(form.email, 'candidacy.step1.email'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+					    		  {{ form_widget(form.email) }}
+					    		  {% if form.email.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.email) }}</div>{% endif %}
+							  </div>
 					
-							</div>
-
-  
+							  <div class="form-group{% if form.phone.vars.errors|length > 0 %} has-error{% endif %}">
+							      {{ form_label(form.phone, 'candidacy.step1.phone'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+							      {{ form_widget(form.phone) }}
+							      {% if form.phone.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.phone) }}</div>{% endif %}
+							      <a class='explanation_dni' href="#explanation_dni_content"><img style="margin-left:15px;width:16px;height:16px" src="{{ asset('bundles/municipales/images/question.png') }}"
+							       alt="{{ 'candidacy.step1.explanation'|trans }}"
+							       title="{{ 'candidacy.step1.explanation'|trans }}"/></a>
+							    
+							      <!-- This contains the hidden content for inline calls -->
+								  <div style='display:none'>
+									  <div id='explanation_dni_content' style='width:200px;padding:10px; background:#fff;'>
+										  {{ 'candidacy.step1.explanation_dni'|trans }}
+									  </div>
+								  </div>
+							  </div>
+					
+							<div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline"><div class="alert alert-warning">{{ 'candidate.step1.warning_text'|trans|raw }}</div></div>
+ 
+						</div>
+ 
                     </div>
                   </div>
                 </div>
