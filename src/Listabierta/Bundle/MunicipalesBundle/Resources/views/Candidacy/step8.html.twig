@@ -32,8 +32,7 @@
 
                     <div class="row">
                       <h2 class="col-md-8 col-sm-offset-2 text-center">
-                  		{# {{ 'candidacy.step8.explanation'|trans }} #}
-                        Seguridad en la generación de sellos de tiempo
+                  		{{ 'candidacy.step8.h1_title'|trans }}
                       </h2>
                     </div>
                     <div class="row">
@@ -44,27 +43,33 @@
                         
                         <div class="entry">
 				
-				<p>Tractis requiere aplicar “sellos de tiempo” en una variedad de situaciones (p.ej: en el instante de validación de la firma de un contrato con el fin de establecer una cota superior del instante de creación de la firma) y para ello dispone de su propia “Autoridad de Sellado de Tiempo” (“Time Stamping Authority” o “TSA”), la cual supera el 100% de la&nbsp;<a href="http://www.jnsa.org/mpki/#pkits" target="_blank">JNSA CPKI-Test Suite 2.0</a>.</p>
-<p>Para la provisión segura y a prueba de fallos de dicho servicio, Tractis dispone de:</p>
-<ol>
-<li> <strong>Hardware Security Modules</strong>: Tractis utiliza dispositivos HSM (o “<a href="\" target="_blank">Hardware Security Module</a>“) con un doble fin, tanto como dispositivos de firma segura como con fines de aceleración criptográfica en la generación de firmas electrónicas. En concreto utilizamos <a href="http://www.safenet-inc.com/products/pki/lunaSA.asp" target="_blank">Luna SA de Safenet</a> que cumplen <a href="http://en.wikipedia.org/wiki/Evaluation_Assurance_Level" target="_blank">EAL 4+ CWA 14169</a> y que por tanto ofrecen las máximas garantías en la generación de sellos de tiempo:
-<ul>
-<li> Para la administración de estos dispositivos HSM requerimos autenticación de doble factor (token + pin code) y, por tanto, presencia física en el datacenter.</li>
-<li> Aún contando con presencia física es imposible extraer la clave con la que realizamos la firma dado que se encuentra almacenada en la memoria interna “tamper proof” del propio dispositivo. En otras palabras, la clave no puede ser exportada para su uso fraudulento en otros sistemas.</li>
-<li> Finalmente, para poder controlar el acceso al HSM empleamos el concepto “trusted path”, con lo que sólo las máquinas que han sido dadas de alta mediante procesos de administración presenciales pueden hacer uso del dispositivo.</li>
-</ul>
-</li>
-<li><strong>Fuente segura de tiempo</strong>: Para la obtención del tiempo utilizado en la confección de los sellos de tiempo empleamos fuentes fiables de tiempo. Tractis dispone de un servidor de tiempo NTP (o <a href="http://en.wikipedia.org/wiki/Network_Time_Protocol" target="_blank">Network Time Protocol</a>) de primer nivel (o <a href="http://en.wikipedia.org/wiki/Network_Time_Protocol#Clock_strata" target="_blank">stratum 1</a>) que obtiene su referencia a partir de un receptor GPS (o <a href="http://en.wikipedia.org/wiki/Gps" target="_blank">Global Positioning System</a>). El sistema utiliza un reloj hardware que permite conocer el tiempo UTC (o <a href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time" target="_blank">Coordinated Universal Time</a>) con una precisión dentro del microsegundo. Este reloj se mantiene sincronizado cada segundo con las señales de referencia procedentes de varios satélites de la constelación Navstar, que constituye el alma del sistema GPS, y que son visibles desde la ubicación geográfica del servidor.</li>
-<li><strong>Certificado de sello de tiempo</strong>: Como certificado de sello de tiempo Tractis utiliza un certificado de sello de tiempo emitido por <a href="http://www.firmaprofesional.com/" target="_blank">Firmaprofesional</a>, Autoridad de Certificación española.</li>
-</ol>
-<p>Puedes tener un mayor detalle en las condiciones en las que se brinda el Servicio de Autoridad de Sello de Tiempo consultando el documento de <a title="CPS TSA Tractis" href="https://www.tractis.com/contracts/480550042">Declaración de Prácticas de Sellado de Tiempo de Tractis.</a></p>
+							<p>
+								Una vez finalizada la votación, aparecerán en esta pantalla los resultados de la suma de puntos en un listado, ordenados de mayor a menor puntuación.
+							</p>
+						
+							<h3>¿Cómo funciona el sistema de puntuación?</h3>
+								
+							<p>
+								El sistema que listabierta.org ha escogido es el Borda Modificado, porque es 
+								sencillo de entender por el votante y permite una elección más diversa y 
+								consensuada. En este caso el votante asigna a los candidatos o candidatas 
+								preseleccionados una posición que va del primer al quinto lugar. Una vez 
+								establecido el orden, procede a votar. Internamente, el recuento de puntos 
+								funciona de la siguiente forma:
+							</p>
+								
+							<p>
+								<ul>
+									<li>El candidato o candidata elegido en primer lugar recibe un punto (1)</li>
+									<li>El candidato o candidata elegido en segundo lugar recibe medio punto (½) = 0,5 puntos</li>
+									<li>El candidato o candidata elegido en tercer lugar recibe un tercio de punto (⅓) = 0, 33 puntos</li>
+									<li>El candidato o candidata elegido en cuarto lugar recibe un cuarto de punto (¼) = 0, 25 puntos</li>
+									<li>El candidato o candidata elegido en quinto  lugar recibe una quinta parte de punto (⅕) = 0,20 puntos</li>
+								</ul>
+							</p>
 
-				
+						</div>
 
-			</div>
-                        
-                        
-                        
                         </p>
                       </div>
                     </div>
