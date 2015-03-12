@@ -159,6 +159,7 @@ candidacy:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Presentación de las listas electas       
         continue: Iniciar votación
+        result: Resultados de la votación
          
 town:
     html_title: Municipales 2015 - Vota en la candidatura ciudadana
@@ -253,8 +254,8 @@ candidate:
     h1_title: Regístrate como candidato
 
     step1:
-        header: Registrate como candidato
-        p1: "Bienvenido o bienvenida a el alta de candidatos para la candidatura ciudadana <b>%address%</b> al municipio de <b>%town%</b>.<br/>Por favor rellena tu candidatura con exactitud, si te equivocas o quieres modificarla más adelante tendrás que rellenar de nuevo el cuestionario."
+        header: Registrate como candidato o candidata
+        p1: "Bienvenido o bienvenida a el alta de candidatos para la candidatura ciudadana <b>%address%</b> al municipio de <b>%town%</b>.<br/>Por favor rellena tu candidatura con exactitud, si introduces datos erróneos, no podrás modificarlos más adelante."
         p2: El plazo de presentación de candidaturas establecido es desde %fromdate% hasta %todate%
         name: Nombre 
         lastname: Apellidos
@@ -262,6 +263,7 @@ candidate:
         email: Email
         phone: Número de móvil
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que otra persona tendrá que dar de alta esta candidatura ciudadana. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
 
     verify_msg: Confirma el registro de candidato enviando un SMS con la palabra ACEPTO al número nº %sms_inbound_number% que proporcionaste en el paso anterior, después haz clic en CONTINUAR
     verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
