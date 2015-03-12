@@ -116,7 +116,7 @@
 					      {{ form_label(form.phone, 'candidacy.step1.phone'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 					      {{ form_widget(form.phone) }}
 					      
-					      <div class="help-block col-xs-12 col-sm-4 inline"><div class="alert alert-warning">{{ 'candidacy.step1.phone_info'|trans }}</div></div>
+					      <div class="help-block col-xs-12 col-sm-4 inline">{{ 'candidacy.step1.phone_info'|trans }}</div>
 					      {% if form.phone.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.phone) }}</div>{% endif %}
 					      <a class='explanation_dni' href="#explanation_dni_content"><img style="margin-left:15px;width:16px;height:16px" src="{{ asset('bundles/municipales/images/question.png') }}"
 					       alt="{{ 'candidacy.step1.explanation'|trans }}"
@@ -130,6 +130,8 @@
 						  </div>
 					  </div>
 			
+					  <div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline"><div class="alert alert-warning">{{ 'candidacy.step1.warning_text'|trans|raw }}</div></div>
+					  
 					{# 
                       <div class="form-group has-warning">
                           <label class=" col-sm-3 control-label no-padding-right" for="inputWarning">Input with alerta</label>
