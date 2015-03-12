@@ -60,22 +60,24 @@
 				                  <div class="widget-body">
 				                    <div class="widget-main">
 
-    {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
-
-     	{% if not form.vars.valid %}
-		<div class="alert alert-danger">
-			  <button data-dismiss="alert" class="close" type="button">
-				<i class="mine-icon fa fa-times"></i>
-			  </button>
-			  {{ form_errors(form) }}
-		</div>
-	{% endif %}
-	
-	<div class="row">
-		<p class="important">
-			{{ 'candidacy.step3.explanation_date'|trans }}:
-		</p>
-	</div>
+		    {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
+		
+		     	{% if not form.vars.valid %}
+				<div class="alert alert-danger">
+					  <button data-dismiss="alert" class="close" type="button">
+						<i class="mine-icon fa fa-times"></i>
+					  </button>
+					  {{ form_errors(form) }}
+				</div>
+			{% endif %}
+			
+			<div class="row">
+				<div class="col-md-offset-2 col-md-8 well">
+		            <p class="lead2 text-center">
+		                {{ 'candidacy.step3.explanation_date'|trans }}:
+		            </p>
+		        </div>
+			</div>
 	
 			
 			<div class="row">
