@@ -54,5 +54,8 @@ Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy:
         fromdate:
             type: datetime
             nullable: TRUE
+        total_days:
+            type: integer
+            nullable: TRUE
             
     lifecycleCallbacks: {  }
