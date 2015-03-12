@@ -64,6 +64,12 @@ municipales_candidacy_step8:
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl 
 
+municipales_candidacy_step9:
+    path:     /alta-candidatura-paso-9
+    defaults: { _controller: MunicipalesBundle:Candidacy:step9 }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl 
+        
 # Extra for accept/reject candidates
 municipales_candidacy_accept:
     path:     /candidate/accept/{id}
