@@ -1,0 +1,93 @@
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}{{ 'candidacy.step9.html_title'|trans }}{% endblock %}
+
+{% from 'MunicipalesBundle:macros:steps.html.twig' import steps_widget %}
+
+{% block content %}
+<section class="section-2">
+      <div class="container marketing">
+
+        <!-- START THE FEATURETTES -->
+
+        <!--    division -->
+        
+        <div class="headline">
+          <h2>{{ 'home.step_h2'|trans }} 9</h2>
+        </div>
+        <h3 class="featurette-headin">
+          <i>{{ 'candidacy.step9.h1_title'|trans }}</i>
+        </h3>
+        <div class="row featurette2">
+          <div class="widget-box col-xs-12">
+
+            <div class="widget-body">
+              <div class="widget-main">
+                <div id="fuelux-wizard-container">
+                  {{ steps_widget(9) }}
+
+                  <hr>
+
+                  <div class="step-content pos-rel container-fluid">
+
+                    <div class="row">
+                      <h2 class="col-md-8 col-sm-offset-2 text-center">
+                  		{{ 'candidacy.step9.results'|trans }}
+                      </h2>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-offset-2 col-md-8 well">
+
+                        <p class="lead2 text-center">
+                        
+                        
+                        <div class="entry">
+							Puedes auditar el resultado aquí: (enlace a TRactis)
+							¿Cómo funciona el sellado de tiempo? https://www.tractis.com/home/webservices/tsa
+							
+							<table class="table">
+							
+								<thead>
+									<tr>
+										<td>Nombre y Apellidos</td>
+										<td>DNI</td>
+										<td>Número de Móvil</td>
+										<td>Total de puntos</td>
+										<td>Posición</td>
+									</tr>
+								</thead>
+								
+								<tbody>
+									<tr>
+										<td>Nombre y Apellidos</td>
+										<td>DNI</td>
+										<td>Número de Móvil</td>
+										<td>Total de puntos</td>
+										<td>Posición</td>
+									</tr>
+								</tbody>
+							
+							</table>
+							
+							
+
+						</div>
+
+                        </p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+	            
+              </div>
+              <!-- /.widget-main --> </div>
+            <!-- /.widget-body --> </div>
+        </div>
+
+        <!--    division -->
+
+        <!-- /END THE FEATURETTES --> </div>
+    </section>
+
+{% endblock %}
