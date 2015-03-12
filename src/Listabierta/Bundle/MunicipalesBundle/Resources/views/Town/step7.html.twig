@@ -84,7 +84,7 @@
                                 <div class="profile-info-name">Experiencia laboral</div>
                                 <div class="profile-info-value">
                                   <span class="lalala">
-                                    Campo experiencia 1, Campo experiencia 2, Campo experiencia 3
+                                    {% if candidate.jobExperience is defined %}{{ candidate.jobExperience }}{% endif %}
                                   </span>
                                 </div>
                               </div>
@@ -102,7 +102,7 @@
                               <div class="profile-info-row">
                                 <div class="profile-info-name">Descripción experiencia</div>
                                 <div class="profile-info-value">
-                                  <span class="lalala" id="login">{% if candidate.jobExperience is defined %}{{ candidate.jobExperience }}{% endif %}</span>
+                                  <span class="lalala" id="login">{% if candidate.townActivitiesExplanation is defined %}{{ candidate.townActivitiesExplanation }}{% endif %}</span>
                                 </div>
                               </div>
                             </div>
@@ -113,7 +113,7 @@
                                 <div class="profile-info-name">Considera prioritario que el Ayuntamiento se centre en:</div>
                                 <div class="profile-info-value">
                                   <span id="age" class="lalala">
-                                   {% if candidate.townActivitiesExplanation is defined %}{{ candidate.townActivitiesExplanation }}{% endif %}
+                                   {% if candidate.governPriorities is defined %}{{ candidate.governPriorities }}{% endif %}
                                   </span>
                                 </div>
                               </div>
@@ -124,7 +124,7 @@
                                 </div>
                               </div>
                               <div class="profile-info-row">
-                                <div class="profile-info-name">Información adicional</div>
+                                <div class="profile-info-name">Biografía e información adicional</div>
                                 <div class="profile-info-value">
                                   <span class="lalala" id="login">{% if candidate.additionalInfo is defined %}{{ candidate.additionalInfo }}{% endif %}</span>
                                 </div>
