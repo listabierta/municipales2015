@@ -988,7 +988,7 @@ class CandidateController extends Controller
 						$this->renderView(
 								'MunicipalesBundle:Mail:candidate_signup.html.twig',
 								array('name' => $candidate->getName())
-						)
+						), 'text/html'
 				);
 				 
 				$this->get('mailer')->send($message);
