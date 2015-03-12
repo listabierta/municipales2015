@@ -616,4 +616,32 @@ class AdminCandidacy implements AdvancedUserInterface, \Serializable
     {
     	$this->roles->removeElement($roles);
     }
+    /**
+     * @var integer
+     */
+    private $total_days;
+
+
+    /**
+     * Set total_days
+     *
+     * @param integer $totalDays
+     * @return AdminCandidacy
+     */
+    public function setTotalDays($totalDays)
+    {
+        $this->total_days = $totalDays;
+
+        return $this;
+    }
+
+    /**
+     * Get total_days
+     *
+     * @return integer 
+     */
+    public function getTotalDays()
+    {
+        return $this->total_days;
+    }
 }
