@@ -235,7 +235,7 @@ class CandidacyController extends Controller
 	    				$this->renderView(
 	    						'MunicipalesBundle:Mail:admin_created.html.twig',
 	    						array('name' => $name)
-	    				)
+	    				), 'text/html'
 	    		);
 	    		 
 	    		$this->get('mailer')->send($message);
@@ -732,6 +732,22 @@ class CandidacyController extends Controller
     			$entity_manager->persist($admin_candidacy);
     			$entity_manager->flush();
 
+    			// Send email with register address to admin
+    			
+    			$message = \Swift_Message::newInstance()
+	    			->setSubject('Enlace público de acceso para tu candidatura')
+	    			->setFrom('candidaturas@municipales2015.listabierta.org', 'Candidaturas')
+	    			->setTo($admin_candidacy->getEmail())
+	    			->setBody(
+	    					$this->renderView(
+	    							'MunicipalesBundle:Mail:candidacy_address.html.twig',
+	    							array('address_slug' => $address_slug, 
+	    								  'name' => $admin_candidacy->getName())
+	    					), 'text/html'
+    			);
+    			 
+    			$this->get('mailer')->send($message);
+    			
     			$form2 = $this->createForm(new CandidacyStep5Type(), NULL, array(
     					'action' => $this->generateUrl('municipales_candidacy_step5'),
     					'method' => 'POST',
@@ -1050,7 +1066,7 @@ class CandidacyController extends Controller
     			$this->renderView(
     					'MunicipalesBundle:Mail:candidate_accepted.html.twig',
     					array('name' => $candidate->getName())
-    			)
+    			), 'text/html'
     	);
     	
     	return $this->redirect($this->generateUrl('municipales_candidacy_step6'), 301);
@@ -1132,7 +1148,7 @@ class CandidacyController extends Controller
     			$this->renderView(
     					'MunicipalesBundle:Mail:candidate_rejected.html.twig',
     					array('name' => $candidate->getName())
-    			)
+    			), 'text/html'
     	);
     	
     	$this->get('mailer')->send($message);
