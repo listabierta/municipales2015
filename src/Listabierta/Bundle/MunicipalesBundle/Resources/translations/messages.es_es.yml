@@ -132,6 +132,12 @@ candidacy:
         h1_title: Validación de candidatos y candidatas  
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         no_candidates: En estos momentos no existe ningun candidato inscrito para validar
+        name_header: Nombre y Apellidos
+        motivational_text_header: Texto motivacional
+        town_activities_explanation_header: Explicación actividades municipales
+        additional_info_header: Biografía
+        photo_header: Foto
+        action_header: Acción
         
     step7:
         html_title: Municipales 2015 - Alta de candidatura ciudadana

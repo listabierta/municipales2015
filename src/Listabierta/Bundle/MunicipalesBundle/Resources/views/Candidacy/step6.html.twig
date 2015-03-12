@@ -44,19 +44,19 @@
     {% if candidates|length > 0 %}
     	<table class="table">
     		<tr>
-    			<td>Nombre y Apellidos</td>
-    			<td>Texto motivacional</td>
-    			<td>Explicación actividades municipales</td>
-    			<td>Información adicional</td>
-    			<td>Foto</td>
-    			<td>Acción</td>
+    			<td>{{ 'candidacy.step6.name_header'|trans }}</td>
+    			<td>{{ 'candidacy.step6.motivational_text_header'|trans }}</td>
+    			<td>{{ 'candidacy.step6.town_activities_explanation_header'|trans }}</td>
+    			<td>{{ 'candidacy.step6.additional_info_header'|trans }}</td>
+    			<td>{{ 'candidacy.step6.photo_header'|trans }}</td>
+    			<td>{{ 'candidacy.step6.action_header'|trans }}</td>
     		</tr>
 		{% for candidate in candidates %}
 			<tr>
 				<td>{{ candidate.name }} {{ candidate.lastname }}</td> 
 				<td>{% if candidate.motivationText is defined %}{{ candidate.motivationText }}{% endif %}</td> 
 				<td>{% if candidate.townActivitiesExplanation is defined %}{{ candidate.townActivitiesExplanation }}{% endif %}</td> 
-				<td>{% if candidate.additionalInfo is defined %}{{ candidate.additionalInfo }}{% endif %}</td> 
+				<td style="width:20%">{% if candidate.additionalInfo is defined %}{{ candidate.additionalInfo }}{% endif %}</td> 
 				<td style="padding:5px"><img style="width:45px;height:45px" src="{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" /></td>       
 				<td style="padding:5px">
 					{% if candidate.status == 0 %}
