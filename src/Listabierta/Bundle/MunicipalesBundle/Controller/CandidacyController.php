@@ -990,7 +990,16 @@ class CandidacyController extends Controller
     {
     	return $this->render('MunicipalesBundle:Candidacy:step8.html.twig', array('bla' => 'ble'));
     }
-    
+
+    /**
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function step9Action(Request $request = NULL)
+    {
+    	return $this->render('MunicipalesBundle:Candidacy:step9.html.twig', array('bla' => 'ble'));
+    }
     /**
      *
      * @param Request $request
