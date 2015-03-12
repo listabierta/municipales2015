@@ -112,7 +112,8 @@ candidacy:
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
         continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
-        choose_address: Elige tu dirección
+        choose_address: Elige tu dirección de internet
+        warning: Si en el espacio en blanco escribes por ejemplo: FuenteovejunaParticipa, las direcciones asociadas a tu candidatura serán del tipo: http://municipales2015.listabierta.org/FuenteovejunaParticipa/...
         
     step5:
         html_title: Municipales 2015 - Alta de candidatura ciudadana

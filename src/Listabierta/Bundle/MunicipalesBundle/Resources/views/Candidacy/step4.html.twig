@@ -63,8 +63,7 @@
 			
 			                  
 			                            <div class="form-group{% if form.address.vars.errors|length > 0 %} has-error{% endif %}">
-			                              <label for="form-field-mask-2">Tu dirección<small class="text-warning"> (algo)</small>
-			                              </label><div class="input-group">
+			                              <div class="input-group">
 			                                <div class="input-group-addon">
 			                                  <span class="mine-icon fa fa-check2"><span>http://municipales2015.listabierta.org / </span></span>
 			                                </div>
@@ -77,6 +76,12 @@
 										    {% if form.address.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.address) }}{% endif %}
 											{% do form.address.setRendered %}
 			                              </div>
+			                            </div>
+			                            
+			                            <div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline">
+			                            	<div class="alert alert-warning">
+			                            		{{ 'candidacy.step4.warning'|trans }}
+			                            	</div>
 			                            </div>
 			
 			                    </div>
