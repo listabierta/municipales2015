@@ -908,10 +908,10 @@ class TownController extends Controller
 		));
 	}
 	
-	public function resultsAction($town = NULL, Request $request = NULL)
+	public function resultsAction($address = NULL, Request $request = NULL)
 	{
 		return $this->render('MunicipalesBundle:Town:step_results.html.twig', array(
-				'town' => $town,
+				'address' => $address,
 		));
 	}	
 }
