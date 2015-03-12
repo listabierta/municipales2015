@@ -149,7 +149,8 @@ candidacy:
         start_candidacy: Iniciar votación
         public_link: Este es el enlace a la votación que puedes hacer público
         no_finished_candidacy: Aún no puede iniciarse la votación ya que la fecha de finalización de las candidaturas no ha terminado. 
-                        
+        sent_mail: Te hemos enviado una copia de este enlace a tu email
+                                
     step8:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Verificación del voto y resultados
@@ -235,7 +236,6 @@ town:
         h1_title: Elige candidatos
         continue: VOTA <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
-        sent_mail: Te hemos enviado una copia de este enlace a tu email
      
     step8:
         header: Asigna puntuaciones
