@@ -123,7 +123,9 @@ candidacy:
         explanation_link: Proporciona este enlace público a los candidatos y candidatas para que se den de alta rellenando el formulario que les aparecerá
         continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
         register_link: Enlace de Alta
-        
+        send_link: Te hemos enviado una copia de este enlace a tu email
+        next_step_explanation: En el siguiente paso podrás validar a los candidatos y candidatas que se den de alta utilizando el enlace anterior.
+
     step6:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Validación de candidatos y candidatas  
