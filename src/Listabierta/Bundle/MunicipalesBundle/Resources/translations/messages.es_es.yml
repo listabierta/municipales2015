@@ -235,6 +235,7 @@ town:
         h1_title: Elige candidatos
         continue: VOTA <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
+        sent_mail: Te hemos enviado una copia de este enlace a tu email
      
     step8:
         header: Asigna puntuaciones
