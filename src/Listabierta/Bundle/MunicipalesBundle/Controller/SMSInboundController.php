@@ -55,10 +55,32 @@ class SMSInboundController extends Controller
 							$this->renderView(
 									'MunicipalesBundle:Mail:sms_inbound_verification.html.twig',
 									array('phone' => $phone)
-							)
-					)
-					;
+							), 'text/html'
+					);
+					
 					$this->get('mailer')->send($message);
+					
+					// Check if mode is admin for sent a welcome email confirmation
+					if($phone_verified->getMode() == PhoneVerified::MODE_ADMIN)
+					{
+						// Search admin record from email and phone
+						
+						// Sent email with admin register data to his own mail with name, password and admin link
+						/*
+						$message = \Swift_Message::newInstance()
+						->setSubject('Tu cuenta administrador ha sido verificada correctamente')
+						->setFrom('verificaciones@municipales2015.listabierta.org', 'Verificaciones')
+						->setTo($email)
+						->setBody(
+								$this->renderView(
+										'MunicipalesBundle:Mail:sms_inbound_verification.html.twig',
+										array('phone' => $phone)
+								), 'text/html'
+						);
+							
+						$this->get('mailer')->send($message);
+						*/
+					}
 					
 					$result .= 'Verified ' . $phone . ' with mail ' . $email . '<br />';
 				}
