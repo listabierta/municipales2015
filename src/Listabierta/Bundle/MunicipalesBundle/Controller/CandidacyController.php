@@ -32,6 +32,7 @@ class CandidacyController extends Controller
 	const CANDIDATE_UNASSIGNED = 0;
 	const CANDIDATE_ACCEPTED   = 1;
 	const CANDIDATE_REJECTED   = 2;
+	const MIN_CANDIDACY_DAYS   = 2;
 	
 	/**
 	 * 
@@ -594,9 +595,9 @@ class CandidacyController extends Controller
     		$interval = $from_data->diff($to_data);
     		$total_days = intval($interval->format('%a'));
     		
-    		if($total_days < 7)
+    		if($total_days < self::MIN_CANDIDACY_DAYS)
     		{
-    			$form->addError(new FormError('El número mínimo de dias entre la fecha inicial y final es 7'));
+    			$form->addError(new FormError('El número mínimo de dias entre la fecha inicial y final es ' . self::MIN_CANDIDACY_DAYS));
     			$ok = FALSE;
     		}
 
