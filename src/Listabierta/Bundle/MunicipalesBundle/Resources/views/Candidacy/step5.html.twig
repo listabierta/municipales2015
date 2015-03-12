@@ -62,7 +62,7 @@
 			          
 			           <div data-step="1" class="step-pane active col-xs-12">
 			
-			              <div class="col-md-offset-2 col-md-8 form-horizont">
+			              <div class="col-md-offset-1 col-md-8 form-horizont">
 			                <div class="widget-box2">
 			
 			                  <div class="widget-body">
@@ -71,10 +71,22 @@
 			
 			                  
 			                            <div class="form-group text-center">
-			                              <a target="_blank" href="http://municipales2015.listabierta.org/{{ address_slug }}/altacandidaturas" 
+			                              <a target="_blank" style="font-size:30px" href="http://municipales2015.listabierta.org/{{ address_slug }}/altacandidaturas" 
 			                              title="Alta candidaturas {{ address_slug }}">http://municipales2015.listabierta.org/{{ address_slug }}/altacandidaturas</a>
 		
 			                            </div>
+			                            
+			                            <div class="row">
+											<div class="col-md-offset-2 col-md-8">
+									            <p class="lead2 text-center">
+									                {{ 'candidacy.step5.send_link'|trans }}:
+									            </p>
+									        </div>
+										</div>
+										
+										<div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline">
+										 	<div class="alert alert-warning">{{ 'candidacy.step5.next_step_explanation'|trans }}</div>
+										</div>
 			
 			                    </div>
 			                  </div>
