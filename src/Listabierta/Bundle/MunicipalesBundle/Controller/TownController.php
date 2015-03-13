@@ -821,6 +821,7 @@ class TownController extends Controller
 				$tractis_api_identifier = $this->container->getParameter('tractis_api_identifier');
 				$tractis_api_secret = $this->container->getParameter('tractis_api_secret');
 				
+				/** COMMENT FOR NOW
 				$current_time = time();
 				
 				$tsa_cert_chain_file = '/tmp/chain-' . $admin_id . '-' . $voter_id . '-' . $current_time . '.txt';
@@ -831,8 +832,8 @@ class TownController extends Controller
 				
 				$requestfile_path = \TrustedTimestamps::createRequestfile($my_hash);
 				$response = \TrustedTimestamps::signRequestfile($requestfile_path, "https://api.tractis.com/rfc3161tsa", $tractis_api_identifier, $tractis_api_secret);
-				print_r($response);
-				
+				//print_r($response);
+				**/
 				/*
 				 Array
 				 (
@@ -841,6 +842,7 @@ class TownController extends Controller
 				 )
 				 */
 				
+				/** COMMENT FOR NOW
 				if(empty($response))
 				{
 					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
@@ -872,7 +874,7 @@ class TownController extends Controller
 				{
 					$logger = $this->get('logger')->error('Vote validation Error: ' . $e->getMessage());
 				}
-				
+				**/
 				/*
 				 
 				$validate = \TrustedTimestamps::validate($my_hash, $response['response_string'], $response['response_time'], $tsa_cert_chain_file);
