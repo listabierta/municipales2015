@@ -89,7 +89,7 @@
 		                          </label>
 		                        </div>
 		                        <div class="col-xs-4 col-md-2 row">
-		                          <a class="col-xs-12 row" title="{{ 'candidate.step2.program'|trans }}" href="{{ asset('bundles/municipales/pdf/program_example.pdf') }}">{{ 'candidate.step2.download'|trans }}</a>
+		                          <a class="col-xs-12 row" title="{{ 'candidate.step2.program'|trans }}" href="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ documents_path }}/program.pdf">{{ 'candidate.step2.download'|trans }}</a>
 		                        </div>
 		                      </div>
 		
@@ -118,7 +118,7 @@
 		                        </div>
 		                        <div class="col-xs-4 col-md-2 row">
 		
-		                          <a class="col-xs-12 row" title="{{ 'candidate.step2.legal_conditions'|trans }}" href="{{ asset('bundles/municipales/pdf/legal_conditions_example.pdf') }}">{{ 'candidate.step2.download'|trans }}</a>
+		                          <a class="col-xs-12 row" title="{{ 'candidate.step2.legal_conditions'|trans }}" href="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ documents_path }}/legal_conditions.pdf">{{ 'candidate.step2.download'|trans }}</a>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -148,7 +148,8 @@
 		                        </div>
 		                        <div class="col-xs-4 col-md-2 row">
 		
-		                          <a href="{{ asset('bundles/municipales/pdf/recall_term_example.pdf') }}" title="{{ 'candidate.step2.recall_term'|trans }}" class="col-xs-12 row">{{ 'candidate.step2.download'|trans }}</a>
+		                          <a href="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ documents_path }}/recall_term.pdf" 
+		                          title="{{ 'candidate.step2.recall_term'|trans }}" class="col-xs-12 row">{{ 'candidate.step2.download'|trans }}</a>
 		                        </div>
 		                      </div>
 		
@@ -179,7 +180,8 @@
 		                        </div>
 		                        <div class="col-xs-4 col-md-2 row">
 		
-		                          <a class="col-xs-12 row" title="{{ 'candidate.step2.participatory_term'|trans }}" href="{{ asset('bundles/municipales/pdf/participatory_term_example.pdf') }}">{{ 'candidate.step2.download'|trans }}</a>
+		                          <a class="col-xs-12 row" title="{{ 'candidate.step2.participatory_term'|trans }}" 
+		                          href="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ documents_path }}/participatory_term.pdf">{{ 'candidate.step2.download'|trans }}</a>
 		                        </div>
 		                      </div>
 		
@@ -210,7 +212,9 @@
 		                        </div>
 		                        <div class="col-xs-4 col-md-2 row">
 		
-		                          <a href="{{ asset('bundles/municipales/pdf/voter_conditions_example.pdf') }}" title="{{ 'candidate.step2.voter_conditions'|trans }}" class="col-xs-12 row">{{ 'candidate.step2.download'|trans }}</a>
+		                          <a href="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ documents_path }}/voter_conditions.pdf" 
+		                          title="{{ 'candidate.step2.voter_conditions'|trans }}" 
+		                          class="col-xs-12 row">{{ 'candidate.step2.download'|trans }}</a>
 		                        </div>
 		                      </div>
 		
@@ -241,7 +245,9 @@
 		                        </div>
 		                        <div class="col-xs-4 col-md-2 row">
 		
-		                          <a class="col-xs-12 row" title="{{ 'candidate.step2.technical_constrains'|trans }}" href="{{ asset('bundles/municipales/pdf/technical_constrains_example.pdf') }}">{{ 'candidate.step2.download'|trans }}</a>
+		                          <a class="col-xs-12 row" 
+		                          title="{{ 'candidate.step2.technical_constrains'|trans }}" 
+		                          href="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ documents_path }}/technical_constrains.pdf">{{ 'candidate.step2.download'|trans }}</a>
 		                        </div>
 		                      </div>
 		                    </div>
