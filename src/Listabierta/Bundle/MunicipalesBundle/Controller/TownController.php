@@ -15,6 +15,7 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep4Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep5Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep6Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep7Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep7ConfirmationType;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStep8Type;
 
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStepVerifyType;
@@ -576,8 +577,8 @@ class TownController extends Controller
 			));
 		}
 	
-		$form = $this->createForm(new TownStep7Type(), NULL, array(
-				'action' => $this->generateUrl('town_candidacy_vote_step7', array('address' => $address)),
+		$form = $this->createForm(new TownStep7ConfirmationType(), NULL, array(
+				'action' => $this->generateUrl('town_candidacy_vote_step7_confirmation', array('address' => $address)),
 				'method' => 'POST',
 			)
 		);
@@ -613,7 +614,8 @@ class TownController extends Controller
 			}
 		}
 
-		if(count($valid_candidates) < 1)
+		$total_candidates = count($valid_candidates);
+		if($total_candidates < 1)
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'Error: No existen candidatos habilitados para votar.',
@@ -799,6 +801,7 @@ class TownController extends Controller
 				'form' => $form->createView(),
 				'errors' => $form->getErrors(),
 				'candidates' => $valid_candidates,
+				'total_candidates' => $total_candidates,
 				'documents_path' => $documents_path,
 		));
 	}
@@ -838,7 +841,7 @@ class TownController extends Controller
 		$form = $this->createForm(new TownStep7Type(), NULL, array(
 				'action' => $this->generateUrl('town_candidacy_vote_step7', array('address' => $address)),
 				'method' => 'POST',
-		)
+			)
 		);
 			
 		$form->handleRequest($request);
@@ -1075,6 +1078,8 @@ class TownController extends Controller
 				
 			if($ok)
 			{
+				// @todo Check already voted (seek in database if result was already sent)
+				
 				// Tractis TSA here
 	
 				// Create an API Key here: https://www.tractis.com/webservices/tsa/apikeys
