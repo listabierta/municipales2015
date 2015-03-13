@@ -1072,6 +1072,20 @@ class CandidacyController extends Controller
     			$entity_manager->persist($admin_candidacy);
     			$entity_manager->flush();
     			
+    			$message = \Swift_Message::newInstance()
+    			->setSubject('Enlace público de acceso de votaciones para tu candidatura')
+    			->setFrom('candidaturas@municipales2015.listabierta.org', 'Candidaturas')
+    			->setTo($admin_candidacy->getEmail())
+    			->setBody(
+    					$this->renderView(
+    							'MunicipalesBundle:Mail:candidacy_vote_address.html.twig',
+    							array('address_slug' => $address_slug,
+    									'name' => $admin_candidacy->getName())
+    					), 'text/html'
+    			);
+    			
+    			$this->get('mailer')->send($message);
+    			
     			return $this->redirect($this->generateUrl('municipales_candidacy_step8'), 301);
     		}
     	}
