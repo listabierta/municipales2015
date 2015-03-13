@@ -21,6 +21,9 @@ Listabierta\Bundle\MunicipalesBundle\Entity\Voter:
         email:
             type: string
             length: 255
+        admin_id:
+            type: integer
+            nullable: TRUE
         # Not needed for now
         #username:
         #    type: string
