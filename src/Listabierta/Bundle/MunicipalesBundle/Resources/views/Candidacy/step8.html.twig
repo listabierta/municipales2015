@@ -35,44 +35,106 @@
                   		{{ 'candidacy.step8.h1_title'|trans }}
                       </h2>
                     </div>
+                    
                     <div class="row">
-                      <div class="col-md-offset-2 col-md-8 well">
+                        <div class="col-md-offset-1 col-md-10 well">
 
-                        <p class="lead2 text-center">
-                        
-                        
-                        <div class="entry">
-				
-							<p>
-								Una vez finalizada la votación, aparecerán en esta pantalla los resultados de la suma de puntos en un listado, ordenados de mayor a menor puntuación.
-							</p>
-						
-							<h3>¿Cómo funciona el sistema de puntuación?</h3>
+	                        <p class="lead2 text-center">
+	 
+		                        <div class="entry">
+		                        
+									<p>
+										Una vez finalizada la votación, aparecerán en esta pantalla los resultados de la suma de puntos en un listado, ordenados de mayor a menor puntuación.
+									</p>
 								
-							<p>
-								El sistema que listabierta.org ha escogido es el Borda Modificado, porque es 
-								sencillo de entender por el votante y permite una elección más diversa y 
-								consensuada. En este caso el votante asigna a los candidatos o candidatas 
-								preseleccionados una posición que va del primer al quinto lugar. Una vez 
-								establecido el orden, procede a votar. Internamente, el recuento de puntos 
-								funciona de la siguiente forma:
-							</p>
-								
-							<p>
-								<ul>
-									<li>El candidato o candidata elegido en primer lugar recibe un punto (1)</li>
-									<li>El candidato o candidata elegido en segundo lugar recibe medio punto (½) = 0,5 puntos</li>
-									<li>El candidato o candidata elegido en tercer lugar recibe un tercio de punto (⅓) = 0, 33 puntos</li>
-									<li>El candidato o candidata elegido en cuarto lugar recibe un cuarto de punto (¼) = 0, 25 puntos</li>
-									<li>El candidato o candidata elegido en quinto  lugar recibe una quinta parte de punto (⅕) = 0,20 puntos</li>
-								</ul>
-							</p>
-
-						</div>
-
-                        </p>
-                      </div>
+									<h3>¿Cómo funciona el sistema de puntuación?</h3>
+										
+									<p>
+										El sistema que listabierta.org ha escogido es el Borda Modificado, porque es 
+										sencillo de entender por el votante y permite una elección más diversa y 
+										consensuada. En este caso el votante asigna a los candidatos o candidatas 
+										preseleccionados una posición que va del primer al quinto lugar. Una vez 
+										establecido el orden, procede a votar. Internamente, el recuento de puntos 
+										funciona de la siguiente forma:
+									</p>
+										
+									<p>
+										<ul>
+											<li>El candidato o candidata elegido en primer lugar recibe un punto (1)</li>
+											<li>El candidato o candidata elegido en segundo lugar recibe medio punto (½) = 0,5 puntos</li>
+											<li>El candidato o candidata elegido en tercer lugar recibe un tercio de punto (⅓) = 0, 33 puntos</li>
+											<li>El candidato o candidata elegido en cuarto lugar recibe un cuarto de punto (¼) = 0, 25 puntos</li>
+											<li>El candidato o candidata elegido en quinto  lugar recibe una quinta parte de punto (⅕) = 0,20 puntos</li>
+										</ul>
+									</p>
+		
+								</div>
+	
+	                        </p>
+                        </div>
                     </div>
+                        
+                        {% if candidacy_finished %}
+                        
+                        	<div class="row">
+		                      <h2 class="col-md-8 col-sm-offset-2 text-center">
+		                  		Votación finalizada
+		                      </h2>
+		                    </div>
+                    
+	                        <div class="row">
+		                      <div class="col-md-offset-1 col-md-10 well">
+		
+		                        <p class="lead2 text-center">
+		                        
+			                        <div class="entry">
+										Puedes auditar el resultado aquí: (enlace a TRactis)
+										¿Cómo funciona el sellado de tiempo? https://www.tractis.com/home/webservices/tsa
+										
+										<table class="table">
+										
+											<thead>
+												<tr>
+													<td>Nombre y Apellidos</td>
+													<td>DNI</td>
+													<td>Número de Móvil</td>
+													<td>Total de puntos</td>
+													<td>Posición</td>
+												</tr>
+											</thead>
+											
+											<tbody>
+												<tr>
+													<td>Nombre y Apellidos</td>
+													<td>DNI</td>
+													<td>Número de Móvil</td>
+													<td>Total de puntos</td>
+													<td>Posición</td>
+												</tr>
+											</tbody>
+										
+										</table>
+										
+										
+			
+									</div>
+		
+		                        </p>
+		                      </div>
+		                    </div>
+                        {% else %}
+                        	<div class="row alert alert-warning col-sm-offset-1 col-md-10">
+                        		
+	                        		<h2 class="col-md-8 col-sm-offset-2 text-center">
+				                  		La votación aún no ha finalizado y aún no estan disponibles los resultados finales. 
+				                    </h2>
+				                     
+				                    <p class="col-md-8 col-sm-offset-2 text-center">
+				                    	Fecha de cierre de votaciones: {{ end_date|date('d-m-Y') }}
+				                    </p>
+		                      
+		                    </div>
+                        {% endif %}
 
                     <div class="step-pane active col-xs-12" data-step="1">
 
