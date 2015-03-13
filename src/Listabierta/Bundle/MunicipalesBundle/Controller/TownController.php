@@ -1075,10 +1075,21 @@ class TownController extends Controller
 			$vote_info['candidates'] = $candidate_voters;
 				
 			//var_dump($vote_info);
+			
+			// Check already voted (seek in database if result was already sent)
+			$aux_vote_info = $voter->getVoteInfo();
+			
+			if(!empty($aux_vote_info))
+			{
+				return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+						'error' => 'Error: este usuario ya ha llevado a cabo una votación. No esta permitido cambiar el voto.',
+				));
+			}
 				
 			if($ok)
 			{
-				// @todo Check already voted (seek in database if result was already sent)
+				// Store the result in database
+				$voter->setVoteInfo($vote_info);
 				
 				// Tractis TSA here
 	
@@ -1167,7 +1178,7 @@ class TownController extends Controller
 				return $this->render('MunicipalesBundle:Town:step8.html.twig', array(
 						'address' => $address,
 						'form' => $form2->createView()
-				)
+					)
 				);
 			}
 		}
