@@ -33,6 +33,7 @@ class CandidacyController extends Controller
 	const CANDIDATE_ACCEPTED   = 1;
 	const CANDIDATE_REJECTED   = 2;
 	const MIN_CANDIDACY_DAYS   = 2;
+	const MIN_VOTE_CANDIDACY_DAYS = 2;
 	
 	/**
 	 * 
@@ -624,7 +625,20 @@ class CandidacyController extends Controller
     
     			$form2->handleRequest($request);
     
-    			$town = $session->get('town', NULL);;
+    			$town = $admin_candidacy->getTown();
+    			
+    			if(empty($town))
+    			{
+    				$town = $session->get('town', NULL);
+    			}
+    			
+    			if(empty($town))
+    			{
+    				// @todo This should redirect to admin panel, because the user cannot refill the step 1 with town
+    				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    						'error' => 'Error: no se ha configurado un municipio para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step1') . '" title="Paso 1 Candidatura - Regístrate y registra el municipio de la candidatura">establece un municipio en el paso 1 de la candidatura</a>',
+    				));
+    			}
     			
     			$default_address_slug = $this->get('slugify')->slugify($town);
     			
@@ -778,8 +792,41 @@ class CandidacyController extends Controller
     public function step5Action(Request $request = NULL)
     {
     	$session = $this->getRequest()->getSession();
-    
-    	$address_slug = $session->get('address', NULL);
+    	
+    	$admin_id = NULL;
+    	 
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	 
+    	$securityContext = $this->container->get('security.context');
+    	
+    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+    	{
+    		$current_user = $securityContext->getToken()->getUser();
+    		 
+    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
+    		{
+    			$admin_id = $current_user->getId();
+    		}
+    	}
+    	else
+    	{
+    		$admin_id = $session->get('admin_id');
+    	}
+    	 
+    	if(!empty($admin_id))
+    	{
+    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    		 
+    		if(!empty($admin_candidacy))
+    		{
+    			$address_slug = $admin_candidacy->getAddress();
+    		}
+    	}
+    	else 
+    	{
+    		$address_slug = $session->get('address', NULL);
+    	}
     	
     	$form = $this->createForm(new CandidacyStep5Type(), NULL, array(
     			'action' => $this->generateUrl('municipales_candidacy_step5'),
@@ -941,6 +988,16 @@ class CandidacyController extends Controller
     		));
     	}
     	
+    	$address = $admin_candidacy->getAddress();
+    	
+    	// Redirect to step 4 if no address set
+    	if(empty($address))
+    	{
+    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    				'error' => 'Error: no se ha configurado una dirección de internet para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step4') . '" title="Paso 4 Candidatura - Reserva una dirección de internet">establece una dirección en el paso 4 de la candidatura</a>',
+    		));
+    	}
+    	
     	$candidacy_to_date = $session->get('to', NULL);
     	
     	$candidacy_finished = $candidacy_to_date <= time();
@@ -959,15 +1016,21 @@ class CandidacyController extends Controller
     	{
     		$total_days = intval($form['total_days']->getData());
 
-    		if($total_days < 7)
+    		if($total_days < self::MIN_VOTE_CANDIDACY_DAYS)
     		{
-    			$form->addError(new FormError('El número mínimo de dias es 7'));
+    			$form->addError(new FormError('El número mínimo de dias es ' . self::MIN_VOTE_CANDIDACY_DAYS));
     			$ok = FALSE;
     		}
     		
     		if($ok)
     		{
     			$session->set('total_days', $total_days);
+    			
+    			$admin_candidacy->setTotalDays($total_days);
+    			 
+    			$entity_manager->persist($admin_candidacy);
+    			$entity_manager->flush();
+    			
     			return $this->redirect($this->generateUrl('municipales_candidacy_step8'), 301);
     		}
     	}
@@ -975,7 +1038,7 @@ class CandidacyController extends Controller
     	return $this->render('MunicipalesBundle:Candidacy:step7.html.twig', array(
     			'form' => $form->createView(),
     			'candidacy_finished' => $candidacy_finished,
-    			'address' => $admin_candidacy->getAddress(),
+    			'address' => $address,
     			'town' => $admin_candidacy->getTown(),
     		)
     	);
@@ -988,7 +1051,97 @@ class CandidacyController extends Controller
      */
     public function step8Action(Request $request = NULL)
     {
-    	return $this->render('MunicipalesBundle:Candidacy:step8.html.twig', array('bla' => 'ble'));
+    	$session = $this->getRequest()->getSession();
+    	
+    	$admin_id = NULL;
+    	 
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	 
+    	$securityContext = $this->container->get('security.context');
+    	
+    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+    	{
+    		$current_user = $securityContext->getToken()->getUser();
+    		 
+    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
+    		{
+    			$admin_id = $current_user->getId();
+    		}
+    	}
+    	else
+    	{
+    		$admin_id = $session->get('admin_id');
+    	}
+    	 
+    	$address_slug = NULL;
+    	$candidacy_end_date = NULL;
+    	
+    	if(!empty($admin_id))
+    	{
+    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    		 
+    		if(!empty($admin_candidacy))
+    		{
+
+    			$candidacy_to_date = $admin_candidacy->getTodate();
+    			
+    			if(empty($candidacy_to_date))
+    			{
+    				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    						'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
+    				));
+    			}
+    			
+    			$candidacy_total_days = $admin_candidacy->getTotalDays();
+    			
+    			if(empty($candidacy_total_days))
+    			{
+    				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    						'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
+    				));
+    			}
+    			
+    			$candidacy_end_date = $candidacy_to_date->add(\DateInterval::createFromDateString('+' . $candidacy_total_days . ' days'));
+    		}
+    		else 
+    		{
+    			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    					'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    			));
+    		}
+    	}
+    	else
+    	{
+    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    		));
+    	}
+    	
+    	$now = new \Datetime('NOW');
+    	
+    	// Candidacy is finished, we can show the results
+    	if($now->getTimestamp() - ($candidacy_to_date->getTimestamp() + $candidacy_total_days * 24 * 3600) > 0)
+    	{
+    		$candidacy_finished = TRUE;
+    	}
+    	else // Candidacy is not finished. Hide the temporal results
+    	{
+    		$candidacy_finished = FALSE;
+    	}
+    	
+
+    	
+    	// @todo Detect if candidacy is really finished
+    	$candidacy_finished = FALSE;
+    	
+    	//$candidacy_finished = $candidacy_to_date <= time();
+    	
+    	return $this->render('MunicipalesBundle:Candidacy:step8.html.twig', array(
+    			'candidacy_finished' => $candidacy_finished,
+    			'end_date' => $candidacy_end_date,
+    			)
+    		);
     }
 
     /**
@@ -998,7 +1151,45 @@ class CandidacyController extends Controller
      */
     public function step9Action(Request $request = NULL)
     {
-    	return $this->render('MunicipalesBundle:Candidacy:step9.html.twig', array('bla' => 'ble'));
+    	$session = $this->getRequest()->getSession();
+    	 
+    	$admin_id = NULL;
+    	
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	
+    	$securityContext = $this->container->get('security.context');
+    	 
+    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+    	{
+    		$current_user = $securityContext->getToken()->getUser();
+    		 
+    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
+    		{
+    			$admin_id = $current_user->getId();
+    		}
+    	}
+    	else
+    	{
+    		$admin_id = $session->get('admin_id');
+    	}
+    	
+    	$address_slug = NULL;
+    	if(!empty($admin_id))
+    	{
+    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    		 
+    		if(!empty($admin_candidacy))
+    		{
+    			$address_slug = $admin_candidacy->getAddress();
+    		}
+    	}
+    	else
+    	{
+    		$address_slug = $session->get('address', NULL);
+    	}
+    	
+    	return $this->render('MunicipalesBundle:Candidacy:step9.html.twig', array('address_slug' => $address_slug));
     }
     /**
      *
