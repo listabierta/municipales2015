@@ -178,6 +178,7 @@ class TownController extends Controller
 				*/
 				$voter->setEmail($email);
 				$voter->setPhone($phone);
+				$voter->setAdminId($admin_id);
 				 
 				$entity_manager->persist($voter);
 				$entity_manager->flush();
@@ -520,7 +521,7 @@ class TownController extends Controller
 				$entity_manager->persist($voter);
 				$entity_manager->flush();
 			
-				return $this->vote7Action($address, $request);
+				return $this->vote7confirmationAction($address, $request);
 				/*$form2 = $this->createForm(new TownStep7Type(), NULL, array(
 						'action' => $this->generateUrl('town_candidacy_vote_step7', array('address' => $address)),
 						'method' => 'POST',
@@ -543,7 +544,7 @@ class TownController extends Controller
 		));
 	}
 
-	public function vote7Action($address = NULL, Request $request = NULL)
+	public function vote7confirmationAction($address = NULL, Request $request = NULL)
 	{
 		$result = $this->verifyAdminAddress($address);
 
@@ -787,12 +788,271 @@ class TownController extends Controller
 
 		if ($form->isValid())
 		{
-			$extra_data = $form->getExtraData();
+			if($ok)
+			{
+				return $this->vote7Action($address, $request);
+			}
+		}
+	
+		return $this->render('MunicipalesBundle:Town:step7_confirmation.html.twig', array(
+				'address' => $address,
+				'form' => $form->createView(),
+				'errors' => $form->getErrors(),
+				'candidates' => $valid_candidates,
+				'documents_path' => $documents_path,
+		));
+	}
+
+	public function vote7Action($address = NULL, Request $request = NULL)
+	{
+		$result = $this->verifyAdminAddress($address);
+	
+		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
+		{
+			return $result;
+		}
+	
+		$session = $this->getRequest()->getSession();
+		$entity_manager = $this->getDoctrine()->getManager();
+	
+		$voter_id = $session->get('voter_id', NULL);
+	
+		if(empty($voter_id))
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'Sesión expirada. No existe el identificador de votante para cargar la dirección ' . $address,
+			));
+		}
+	
+		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
+	
+		$voter = $voter_repository->findOneById($voter_id);
+	
+		if(empty($voter))
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'No existe el identificador de votante para cargar la dirección ' . $address_slug,
+			));
+		}
+	
+		$form = $this->createForm(new TownStep7Type(), NULL, array(
+				'action' => $this->generateUrl('town_candidacy_vote_step7', array('address' => $address)),
+				'method' => 'POST',
+		)
+		);
 			
+		$form->handleRequest($request);
+	
+		$ok = TRUE;
+	
+		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+	
+		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
+	
+		$admin_id = $admin_candidacy->getId();
+	
+		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
+			
+		$candidates = $candidate_repository->findAll(array('admin_id' => $admin_id));
+	
+		if(empty($candidates))
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'No existen candidatos en esta candidatura',
+			));
+		}
+	
+		// Filter only candidates accepted
+		$valid_candidates = array();
+		foreach($candidates as $candidate)
+		{
+			if($candidate->getStatus() == 1)
+			{
+				$valid_candidates[] = $candidate;
+			}
+		}
+	
+		if(count($valid_candidates) < 1)
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'Error: No existen candidatos habilitados para votar.',
+			));
+		}
+	
+		// Filter candidates with voter filters
+		$academic_level = $voter->getAcademicLevel();
+		$languages = $voter->getLanguages();
+		$job_experience = $voter->getJobExperience();
+		$town_activities = $voter->getTownActivities();
+		$govern_priorities = $voter->getGovernPriorities();
+		$public_values = $voter->getPublicValues();
+	
+		// Filter by academic level voter option
+		$result_candidates = array();
+		if(!empty($academic_level) && $academic_level > 0)
+		{
+			foreach($valid_candidates as $candidate)
+			{
+				if($candidate->getAcademicLevel() == $academic_level)
+				{
+					$result_candidates[] = $candidate;
+				}
+			}
+		}
+		else // No filter applied
+		{
+			$result_candidates = $valid_candidates;
+		}
+	
+		$valid_candidates = $result_candidates;
+	
+		// Filter by language voter option
+		$result_candidates = array();
+		if(!empty($languages) && count($languages) > 0)
+		{
+			foreach($valid_candidates as $candidate)
+			{
+				$found = FALSE;
+				foreach($languages as $language)
+				{
+					if($found == FALSE && in_array($language, $candidate->getLanguages()))
+					{
+						$result_candidates[] = $candidate;
+						$found = TRUE;
+					}
+				}
+			}
+		}
+		else // No filter applied
+		{
+			$result_candidates = $valid_candidates;
+		}
+	
+		$valid_candidates = $result_candidates;
+	
+		// Filter by job experience voter option
+		$result_candidates = array();
+		if(!empty($job_experience) && count($job_experience) > 0)
+		{
+			foreach($valid_candidates as $candidate)
+			{
+				$found = FALSE;
+				foreach($job_experience as $job)
+				{
+					if($found == FALSE && in_array($job, $candidate->getJobExperience()))
+					{
+						$result_candidates[] = $candidate;
+						$found = TRUE;
+					}
+				}
+			}
+		}
+		else // No filter applied
+		{
+			$result_candidates = $valid_candidates;
+		}
+	
+		$valid_candidates = $result_candidates;
+	
+		// Filter by town activities voter option
+		$result_candidates = array();
+		if(!empty($town_activities) && count($town_activities) > 0)
+		{
+			foreach($valid_candidates as $candidate)
+			{
+				$found = FALSE;
+				foreach($town_activities as $town_activity)
+				{
+					if($found == FALSE && in_array($town_activity, $candidate->getTownActivities()))
+					{
+						$result_candidates[] = $candidate;
+						$found = TRUE;
+					}
+				}
+			}
+		}
+		else // No filter applied
+		{
+			$result_candidates = $valid_candidates;
+		}
+	
+		$valid_candidates = $result_candidates;
+	
+		// Filter by govern priorities voter option
+		$result_candidates = array();
+		if(!empty($govern_priorities) && count($govern_priorities) > 0)
+		{
+			foreach($valid_candidates as $candidate)
+			{
+				$found = FALSE;
+				foreach($govern_priorities as $govern_priority)
+				{
+					if($found == FALSE && in_array($govern_priority, $candidate->getGovernPriorities()))
+					{
+						$result_candidates[] = $candidate;
+						$found = TRUE;
+					}
+				}
+			}
+		}
+		else // No filter applied
+		{
+			$result_candidates = $valid_candidates;
+		}
+	
+		$valid_candidates = $result_candidates;
+	
+		// Filter by public values voter option
+		$result_candidates = array();
+		if(!empty($public_values) && count($public_values) > 0)
+		{
+			foreach($valid_candidates as $candidate)
+			{
+				$found = FALSE;
+				foreach($public_values as $public_value)
+				{
+					if($found == FALSE && in_array($public_value, $candidate->getPublicValues()))
+					{
+						$result_candidates[] = $candidate;
+						$found = TRUE;
+					}
+				}
+			}
+		}
+		else // No filter applied
+		{
+			$result_candidates = $valid_candidates;
+		}
+	
+		$valid_candidates = $result_candidates;
+	
+		// Filter candidates with voter levels here until MAX_AVAILABLE_CANDIDATES
+		//$valid_candidates = array_slice($valid_candidates, 0, self::MAX_AVAILABLE_CANDIDATES);
+	
+		if(count($valid_candidates) < 1)
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'No existen candidatos para votar. El filtro de candidatos debe ser mas flexible. Volver al <a href="' . $this->generateUrl('town_candidacy_vote_step2', array('address' => $address)) . '">paso 2</a>',
+			));
+		}
+	
+		// Random position
+		shuffle($valid_candidates);
+	
+		$town = $admin_candidacy->getTown();
+	
+		$town_slug = $this->get('slugify')->slugify($town);
+			
+		$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
+	
+		if ($form->isValid())
+		{
+			$extra_data = $form->getExtraData();
+				
 			$vote_info = array();
 			$vote_info['admin_id'] = $admin_id;
 			$vote_info['voter_id'] = $voter_id;
-			
+				
 			$candidate_voters = array();
 			$candidate_points_values = array();
 			foreach($extra_data as $candidate_key => $candidate_points)
@@ -802,37 +1062,37 @@ class TownController extends Controller
 				$candidate_voters[] = array('id' => $candidate_id, 'points' => intval($candidate_points));
 				$candidate_points_values[] = $candidate_points;
 			}
-			
+				
 			if(count($extra_data) != count(array_unique($candidate_points_values)))
 			{
 				$form->addError(new FormError('Las puntuaciones asignadas no pueden repetirse'));
 				$ok = FALSE;
 			}
-			
+				
 			$vote_info['candidates'] = $candidate_voters;
-			
+				
 			//var_dump($vote_info);
-			
+				
 			if($ok)
 			{
 				// Tractis TSA here
-
+	
 				// Create an API Key here: https://www.tractis.com/webservices/tsa/apikeys
 				$tractis_api_identifier = $this->container->getParameter('tractis_api_identifier');
 				$tractis_api_secret = $this->container->getParameter('tractis_api_secret');
-				
+	
 				/** COMMENT FOR NOW
-				$current_time = time();
-				
-				$tsa_cert_chain_file = '/tmp/chain-' . $admin_id . '-' . $voter_id . '-' . $current_time . '.txt';
-				
-				$myfile = @fopen($tsa_cert_chain_file, "w");
-				
-				$my_hash = sha1(serialize($vote_info));
-				
-				$requestfile_path = \TrustedTimestamps::createRequestfile($my_hash);
-				$response = \TrustedTimestamps::signRequestfile($requestfile_path, "https://api.tractis.com/rfc3161tsa", $tractis_api_identifier, $tractis_api_secret);
-				//print_r($response);
+					$current_time = time();
+	
+					$tsa_cert_chain_file = '/tmp/chain-' . $admin_id . '-' . $voter_id . '-' . $current_time . '.txt';
+	
+					$myfile = @fopen($tsa_cert_chain_file, "w");
+	
+					$my_hash = sha1(serialize($vote_info));
+	
+					$requestfile_path = \TrustedTimestamps::createRequestfile($my_hash);
+					$response = \TrustedTimestamps::signRequestfile($requestfile_path, "https://api.tractis.com/rfc3161tsa", $tractis_api_identifier, $tractis_api_secret);
+					//print_r($response);
 				**/
 				/*
 				 Array
@@ -840,57 +1100,57 @@ class TownController extends Controller
 				 [response_string] => Shitload of text (base64-encoded Timestamp-Response of the TSA)
 				 [response_time] => 1299098823
 				 )
-				 */
-				
+				*/
+	
 				/** COMMENT FOR NOW
-				if(empty($response))
-				{
+					if(empty($response))
+					{
 					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-							'error' => 'Error en el firmado de voto TSA. Respuesta vacía',
+					'error' => 'Error en el firmado de voto TSA. Respuesta vacía',
 					));
-				}
-				
-				if(empty($response['response_string']))
-				{
+					}
+	
+					if(empty($response['response_string']))
+					{
 					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-							'error' => 'Error en el firmado de voto TSA. Respuesta con cadena vacía',
+					'error' => 'Error en el firmado de voto TSA. Respuesta con cadena vacía',
 					));
-				}
-				
-				if(empty($response['response_time']))
-				{
+					}
+	
+					if(empty($response['response_time']))
+					{
 					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-							'error' => 'Error en el firmado de voto TSA. Respuesta con tiempo vacía',
+					'error' => 'Error en el firmado de voto TSA. Respuesta con tiempo vacía',
 					));
-				}
-				
-				//echo \TrustedTimestamps::getTimestampFromAnswer($response['response_string']); //1299098823
-				try 
-				{
+					}
+	
+					//echo \TrustedTimestamps::getTimestampFromAnswer($response['response_string']); //1299098823
+					try
+					{
 					$validate = \TrustedTimestamps::validate($my_hash, $response['response_string'], $response['response_time'], $tsa_cert_chain_file);
 					//var_dump($validate);
-				} 
-				catch (Exception $e) 
-				{
+					}
+					catch (Exception $e)
+					{
 					$logger = $this->get('logger')->error('Vote validation Error: ' . $e->getMessage());
-				}
+					}
 				**/
 				/*
-				 
+				 	
 				$validate = \TrustedTimestamps::validate($my_hash, $response['response_string'], $response['response_time'], $tsa_cert_chain_file);
 				print_r("\nValidation result\n");
 				var_dump($validate); //bool(true)
-				
+	
 				//now with an incorrect hash. Same goes for a manipulated response string or response time
-				$validate = \TrustedTimestamps::validate(sha1("im not the right hash"), 
-								$response['response_string'], 
-									$response['response_time'], 
-						$tsa_cert_chain_file);
+				$validate = \TrustedTimestamps::validate(sha1("im not the right hash"),
+				$response['response_string'],
+				$response['response_time'],
+				$tsa_cert_chain_file);
 				print_r("\nValidation result after content manipulation\n");
 				var_dump($validate); //bool(false)
 				*/
-				
-				
+	
+	
 				$form2 = $this->createForm(new TownStep8Type(), NULL, array(
 						'action' => $this->generateUrl('town_candidacy_vote_step8', array('address' => $address)),
 						'method' => 'POST',
@@ -902,7 +1162,7 @@ class TownController extends Controller
 				return $this->render('MunicipalesBundle:Town:step8.html.twig', array(
 						'address' => $address,
 						'form' => $form2->createView()
-					)
+				)
 				);
 			}
 		}
