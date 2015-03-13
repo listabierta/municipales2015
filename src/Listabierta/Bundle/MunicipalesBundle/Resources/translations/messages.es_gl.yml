@@ -1,7 +1,19 @@
 home:
     html_title: Municipales 2015 - Home
     h1_title: Municipales 2015
-    steps: Pasos para dar de alta una candidatura ciudadana
+    steps_h2: Pasos
+    step_h2: Paso
+    steps: Para dar de alta una candidatura ciudadana debes
+    featured: Abre tu ayuntamiento a la ciudadanía en estas elecciones municipales de mayo 2015
+    
+    open_council: Abre tu ayuntamiento a la ciudadan&iacute;a en estas elecciones municipales de mayo 2015
+    who_we_are: "¿Quienes somos?"
+    who_h3: "Empieza por aquí"
+    intro_p1: es el fruto de un esfuerzo de financiación colectiva y de un equipo de trabajo que pretende abrir las organizaciones a la ciudadanía. Entre estas organizaciones ocupan un lugar destacado los Ayuntamientos.
+    intro_p2: La elección de candidatos y candidatas en listas abiertas para los comicios municipales permite que los electos se “deban” a los ciudadanos que los han elegido, y no a quien les hubiese incluido en una lista cerrada o negociada. 
+    intro_p3: Si estás <b>directamente implicado en la organización</b> de una candidatura de listas abiertas en tu municipio para las próximas elecciones de mayo de 2.015, puedes organizarla con esta herramienta online sin coste y con resultados auditables, porque otra forma de gobernar tu Ayuntamiento es posible y necesaria.
+    intro_p4: Es muy importante que antes de empezar el proceso de registro de la candidatura, veas este tutorial del proceso completo.
+    intro_p5: ¿Cómo funciona la herramienta de listas abiertas municipales?
     
     step_1: Regístrate y registra el municipio de la candidatura
     step_2: Establece las condiciones de la candidatura ciudadana
@@ -13,18 +25,327 @@ home:
     step_8: Verificación del voto y resultados
     step_9: Presentación de las listas electas
     
-    start_here: Comienza aquí
+    start_here: Iniciar el registro
+    welcome: "&iexcl;Bienvenidos al sitio!"
 
 header:
     languages:
         es_eu: Euskera
         es_ca: Català
         es_gl: Galego
-        es_es: Español 
+        es_es: Español
         
 candidacy:
     html_title: Municipales 2015 - Alta de candidatura ciudadana
     h1_title: Regístrate y registra el municipio de la candidatura
+    verify_msg: Confirma el registro y las condiciones enviando un SMS con la palabra ACEPTO al número nº %sms_inbound_number% que proporcionaste en el paso anterior, después haz clic en CONTINUAR
+    verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
+    
+    step_conditions:
+      html_title: Municipales 2015 - Condiciones de alta de candidatura ciudadana
+      h1_title: Regístrate y registra el municipio de la candidatura
+    
+      p1_title: Al iniciar el registro aceptas las siguientes condiciones
+      p1_content: Que formas parte un colectivo (partido político, coalición de partidos o agrupación de electores) que desea presentarse a los comicios municipales que se celebrarán el 24 de mayo de 2.015 y que para ello tienen la intención de registrarse en plazo y forma en la correspondiente junta electoral provincial.
+      p2_content: Que has sido designado por dicho colectivo para efectuar el alta del municipio en la presente herramienta de voto de listas abiertas, no existiendo conflicto interno en cuanto a su uso.
+      p3_content: Que dicho colectivo comprende y acepta las limitaciones del uso de la herramienta en cuanto al sistema de voto y su verificación.
+      p4_content: Que dicho colectivo comprende y acepta que el proceso de verificación y aceptación de las candidaturas lo efectúa el administrador o administradora de la votación.
+      p5_content: Que mediante el acto de registro estás dando tu consentimiento expreso al tratamiento de los datos personales que aportas, según lo dispuesto en el artículo 6 de la LOPD y que podrás ejercer tus derechos en los términos dispuestos por el artículo 5 de la LOPD.
+      p6_content: Que la información que aportas durante el registro es cierta, tanto los datos personales como las condiciones de la votación, de la candidatura y su programa. <b>Ten en cuenta que no podrás modificarla más adelante, ya que los datos de registro se utilizan para identificarte como usuario único</b>.
+      accept: ACEPTAS ESTAS CONDICIONES
+      continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
+      
+    step1:
+        name: Nombre 
+        lastname: Apellidos
+        dni: DNI
+        username: Usuario
+        password: Contraseña
+        email: Email
+        province: Provincia del municipio
+        town: Nombre del municipio
+        phone: Número de móvil
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
+        explanation: Explicación
+        dni_info: Sin introducir guión entre número y letra
+        username_info: Anota tu nombre de usuario
+        password_info: Anota tu contraseña
+        email_info: Recibirás un email de confirmación
+        phone_info: Deberás confirmarlo con un mensaje en el siguiente paso, si introduces un número incorrecto, no podrás continuar
+        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que otra persona tendrá que dar de alta esta candidatura ciudadana. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
+
+    step_verify:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Verifica tu número de móvil
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
+        
+    step2:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Establece las condiciones de la candidatura ciudadana
+        
+        p1: "Sube en formato PDF aquellas condiciones que deban aceptar los candidatos o candidatas para presentarse en la candidatura ciudadana. Por ejemplo: El programa de la candidatura, las condiciones legales y la veracidad de la información aportada, el mandato revocatorio y participativo, el código ético, la aceptación del censo y el sistema de voto, etc.  Si no subes ninguna condición, te recomendamos que busques algún método alternativo para verificar que el candidato o candidata va a cumplirlas antes de su inclusión en las listas."
+  
+        program: El programa de la candidatura
+        legal_conditions: Condiciones legales y veracidad de la información aportada de candidatos y candidatas
+        recall_term: El mandato revocatorio del candidato
+        participatory_term: El código ético de la candidatura
+        voter_conditions: Las condiciones para poder participar como votante (censo y aceptación del sistema de votación)
+        technical_constrains: Las limitaciones técnicas y legales del sistema de voto.
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
+        example: Ejemplo
+                      
+    step3:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Establece los plazos de presentación de candidaturas
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        explanation_date: Plazo de presentación de candidaturas (mínimo 2 días, se recomiendan 15 días) 
+        from_label: DE
+        to_label: HASTA  
+        previous: Anterior
+              
+    step4:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Reserva una dirección de internet
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
+        continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
+        choose_address: Elige tu dirección de internet
+        warning: Si en el espacio en blanco escribes por ejemplo: FuenteovejunaParticipa, las direcciones asociadas a tu candidatura serán del tipo: http://municipales2015.listabierta.org/FuenteovejunaParticipa/...
+        
+    step5:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Alta de candidatos y candidatas
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
+        explanation_link: Proporciona este enlace público a los candidatos y candidatas para que se den de alta rellenando el formulario que les aparecerá
+        continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
+        register_link: Enlace de Alta
+        send_link: Te hemos enviado una copia de este enlace a tu email
+        next_step_explanation: En el siguiente paso podrás validar a los candidatos y candidatas que se den de alta utilizando el enlace anterior.
+
+    step6:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Validación de candidatos y candidatas  
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        no_candidates: En estos momentos no existe ningun candidato inscrito para validar
+        name_header: Nombre y Apellidos
+        motivational_text_header: Texto motivacional
+        town_activities_explanation_header: Explicación actividades municipales
+        additional_info_header: Biografía
+        photo_header: Foto
+        action_header: Acción
+        
+    step7:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Inicio y fin de las Votaciones
+        days: Días
+        explanation: Introduce el número de días naturales que permanecerá activa la votación de candidatos desde el inicio de la votación (se recomiendan al menos 14 días, mínimo dos días).
+        init_vote_explanation: Haz clic en el siguiente botón para iniciar la votación
+        warning_explanation: ATENCIÓN !! Una vez iniciada la votación ya NO SE PODRÁN AÑADIR más candidatos o candidatas. Se proporcionará un enlace que habilitará el registro a los votantes y emitir el voto.
+        start_candidacy: Iniciar votación
+        public_link: Este es el enlace a la votación que puedes hacer público
+        no_finished_candidacy: Aún no puede iniciarse la votación ya que la fecha de finalización de las candidaturas no ha terminado. 
+        sent_mail: Te hemos enviado una copia de este enlace a tu email
+                                
+    step8:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Verificación del voto y resultados
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        
+    step9:
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        h1_title: Presentación de las listas electas       
+        continue: Iniciar votación
+        result: Resultados de la votación
+         
+town:
+    html_title: Municipales 2015 - Vota en la candidatura ciudadana
+    h1_title: Registrate como votante
+    verify_msg: Confirma el registro y las condiciones enviando un SMS con la palabra ACEPTO al número nº %sms_inbound_number% que proporcionaste en el paso anterior, después haz clic en CONTINUAR
+    verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
+       
+    step1:
+        welcome: Bienvenido o bienvenida a la votación de la candidatura ciudadana de
+        welcome_more: Como primer paso has de registrarte como votante. Si introduces datos erróneos, no podrás modificarlos más adelante
+        header: Registrate como votante
+        name: Nombre 
+        lastname: Apellidos
+        dni: DNI
+        email: Email
+        username: Usuario
+        password: Contraseña
+        phone: Número de móvil
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
+        explanation: Explicación
+        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que otra persona tendrá que realizar el voto. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
+
+    step_verify:
+        html_title: Municipales 2015 - Registrate como votante
+        h1_title: Verifica tu número de móvil
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
+                
+    step2:
+        header: Filtra candidatos
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 2
+        filter_title: ¿Qué criterios deseas utilizar para seleccionar a los candidatos y candidatas?
+        filter_p1: Ten en cuenta que si no aplicas ningún filtro, te aparecerá la totalidad de candidatos y candidatas que se han presentado y puede resultar tedioso ver todos los perfiles y después puntuarlos, así que si tienes alguna preferencia clara márcala, posteriormente podrás revisar tus filtros.
+        h1_title: Filtra candidatos por nivel academico
+        academic_level: ¿Quieres elegir el nivel académico que prefieres que tenga el candidato o candidata?
+        languages: "¿Es bueno que hable alguno de estos idiomas? (elige de una a tres opciones)"
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
+        
+    step3:
+        header: Seleciona experiencia laboral
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 3
+        h1_title: Seleciona experiencia laboral
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
+        job_experience_title: ¿Qué campo de experiencia laboral te gustaría que hubiese desarrollado? (Seleccione hasta tres opciones)
+        
+    step4:
+        header: Selecciona actividades municipales
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 4
+        h1_title: Selecciona actividades municipales
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
+        town_activities_title: ¿Qué experiencia relacionada con el desempeño municipal te gustaría que hubiese desarrollado? (Seleccione hasta tres opciones)
+     
+    step5:
+        header: Selecciona prioridades municipales
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 5
+        h1_title: Selecciona prioridades municipales
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
+        govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones) 
+        public_values_title: ¿Qué valores morales consideras de mayor importancia para el desempeño de la función pública? (elige hasta tres)
+        
+    step6:
+        header: Asigna importancia
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 6
+        h1_title: Asigna importancia
+        continue: Ver candidatos seleccionados <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior          
+
+    step7_confirmation:
+        header: Elige candidatos
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 7
+        h1_title: Seleccion previa de candidatos
+        continue: Ver candidatos seleccionados <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Quiero revisar mis criterios para que se me muestren más o menos candidatos
+             
+    step7:
+        header: Elige candidatos
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 7
+        h1_title: Elige candidatos
+        continue: VOTA <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
+     
+    step8:
+        header: Asigna puntuaciones
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 8
+        h1_title: Asigna puntuaciones
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior 
+        
+    step9:
+        header: Fin
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 9
+        h1_title: Fin
+        previous: Anterior
+                       
+candidate:
+    html_title: Municipales 2015 - Alta de candidato
+    h1_title: Regístrate como candidato o candidata
+
+    step1:
+        header: Regístrate como candidato o candidata
+        p1: "Bienvenido o bienvenida a el alta de candidatos para la candidatura ciudadana <b>%address%</b> al municipio de <b>%town%</b>.<br/>Por favor rellena tu candidatura con exactitud, si introduces datos erróneos, no podrás modificarlos más adelante."
+        p2: El plazo de presentación de candidaturas establecido es desde %fromdate% hasta %todate%
+        name: Nombre 
+        lastname: Apellidos
+        dni: DNI
+        email: Email
+        phone: Número de móvil
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás dar de alta tu candidatura. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
+
+    verify_msg: Confirma el registro de candidato enviando un SMS con la palabra ACEPTO al número nº %sms_inbound_number% que proporcionaste en el paso anterior, después haz clic en CONTINUAR
+    verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
+    
+    step_verify:
+        html_title: Municipales 2015 - Alta de candidato
+        h1_title: Verifica tu número de móvil
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
+        
+    step2:
+        header: Firma documentos
+        p1: Antes de subir tu perfil, debes descargarte, firmar (digital o manualmente) y volver a enviar los documentos siguientes para confirmar tu aceptación de las condiciones de la candidatura ciudadana
+    
+        program: Aceptación del programa de la candidatura
+        legal_conditions: Cumplimiento de las condiciones legales y veracidad de la información aportada
+        recall_term: Aceptación del mandato revocatorio del candidato   
+        participatory_term: Aceptación del mandato participativo del candidato
+        voter_conditions: Aceptación del censo disponible y del sistema de votación
+        technical_constrains: Aceptación de las limitaciones técnicas y legales del sistema de voto.
+    
+        download: Descargar
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        
+    step3:      
+        header: Proporciona tu nivel académico
+        academic_level_title: ¿Cuál es tu nivel académico?
+        languages_title: ¿Eres capáz de mantener una conversación telefónica en alguno de estos idiomas? (puedes seleccionar ninguno o varios)
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    
+    step4:      
+        header: Proporciona tu experiencia laboral
+        job_experience_title: ¿Cuál es el campo de tu experiencia laboral? (Seleccione hasta tres opciones)
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+          
+    step5:      
+        header: Proporciona el desempeño municipal
+        town_activities_title: ¿Has tenido alguna experiencia relacionada con el desempeño municipal?  (Seleccione hasta tres opciones siempre que tu actividad incluya la coordinación o gestión de un grupo superior a las 10 personas, posteriormente tendrás que explicarlo)
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        
+    step6:      
+        header: Establece prioridades de gobierno
+        govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones)
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        
+    step7:  
+        header: Selecciona valores morales    
+        public_values_title: ¿Qué valores morales consideras de mayor importancia para el desempeño de la función pública? (elige hasta tres)
+        motivation_text_title: Describe tu motivación para presentarte
+        town_activities_explanation_title: Describe tu experiencia relacionada
+        additional_info_title: Biografía e información adicional que quieras aportar
+        profile_image_title: Adjunta foto
+        previous: Anterior
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        
+    final_step:
+        header: Fin    
+        end: "¡Candidatura completada!"
+        
+login:
+    html_title: Login
+    username: Usuario
+    password: Contraseña
+    access: Acceder
+    remember_me: Recordar mis datos
+    conditions: Accede con tus credenciales de usuario y contraseña
     
     step2:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
