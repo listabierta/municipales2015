@@ -82,6 +82,23 @@ class TownController extends Controller
 			));
 		}
 		
+		// Filter only candidates accepted
+		$valid_candidates = array();
+		foreach($candidates as $candidate)
+		{
+			if($candidate->getStatus() == 1)
+			{
+				$valid_candidates[] = $candidate;
+			}
+		}
+		
+		if(count($valid_candidates) < 1)
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'Error: No se puede iniciar la votación si no existe al menos un candidato habilitado para ser votado',
+			));
+		}
+		
 		$form = $this->createForm(new TownStep1Type(), NULL, array(
 				'action' => $this->generateUrl('town_candidacy_vote_step1', array('address' => $address)),
 				'method' => 'POST',
@@ -200,7 +217,8 @@ class TownController extends Controller
 		return $this->render('MunicipalesBundle:Town:step1.html.twig', array(
 				'town' => $town, 
 				'form' => $form->createView(),
-				'errors' => $form->getErrors()
+				'errors' => $form->getErrors(),
+				'address' => $address,
 		));
 	}
 
@@ -235,6 +253,23 @@ class TownController extends Controller
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'No se puede iniciar la votación ya que aún no existen candidatos en esta candidatura',
+			));
+		}
+		
+		// Filter only candidates accepted
+		$valid_candidates = array();
+		foreach($candidates as $candidate)
+		{
+			if($candidate->getStatus() == 1)
+			{
+				$valid_candidates[] = $candidate;
+			}
+		}
+		
+		if(count($valid_candidates) < 1)
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'Error: No se puede iniciar la votación si no existe al menos un candidato habilitado para ser votado',
 			));
 		}
 		
@@ -329,6 +364,23 @@ class TownController extends Controller
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'No se puede iniciar la votación ya que aún no existen candidatos en esta candidatura',
+			));
+		}
+		
+		// Filter only candidates accepted
+		$valid_candidates = array();
+		foreach($candidates as $candidate)
+		{
+			if($candidate->getStatus() == 1)
+			{
+				$valid_candidates[] = $candidate;
+			}
+		}
+		
+		if(count($valid_candidates) < 1)
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'Error: No se puede iniciar la votación si no existe al menos un candidato habilitado para ser votado',
 			));
 		}
 		
@@ -559,8 +611,15 @@ class TownController extends Controller
 				$valid_candidates[] = $candidate;
 			}
 		}
+
+		if(count($valid_candidates) < 1)
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'Error: No existen candidatos habilitados para votar.',
+			));
+		}
 		
-		// @todo Filter candidates with voter filters
+		// Filter candidates with voter filters
 		$academic_level = $voter->getAcademicLevel();
 		$languages = $voter->getLanguages();
 		$job_experience = $voter->getJobExperience();
@@ -709,6 +768,13 @@ class TownController extends Controller
 		
 		// Filter candidates with voter levels here until MAX_AVAILABLE_CANDIDATES
 		//$valid_candidates = array_slice($valid_candidates, 0, self::MAX_AVAILABLE_CANDIDATES);
+		
+		if(count($valid_candidates) < 1)
+		{
+			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+					'error' => 'No existen candidatos para votar. El filtro de candidatos debe ser mas flexible. Volver al <a href="' . $this->generateUrl('town_candidacy_vote_step2', array('address' => $address)) . '">paso 2</a>',
+			));
+		}
 		
 		// Random position
 		shuffle($valid_candidates);
