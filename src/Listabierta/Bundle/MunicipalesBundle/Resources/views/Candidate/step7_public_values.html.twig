@@ -13,6 +13,11 @@
 {% endblock checkbox_widget %}
 
 {% block appjsinline %}
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="{{ asset('bundles/municipales/bootstrap-fileinput/css/fileinput.min.css') }}" media="all" rel="stylesheet" type="text/css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="{{ asset('bundles/municipales/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
+	
     <script>
     $(document).ready(function() 
     {
@@ -29,6 +34,153 @@
 		    	return;
 		    }
 	    });
+
+
+	    var upload_processor = function(fileidentifier)
+		{
+			var allowed_mimes = {
+			    pdf: function(vType, vName) {
+			        return (typeof vType !== "undefined") ? vType == 'application/pdf' : vName.match(/\.(pdf)$/i);
+			    },
+			}
+
+			$(fileidentifier).fileinput('refresh', {
+				browseLabel: 'Examinar', 
+				browseIcon: '<i class="glyphicon glyphicon-folder-open"></i> &nbsp;',
+				removeLabel: 'Borrar'});
+
+			$(fileidentifier).fileinput({
+				showUpload: true, 
+				maxFileCount: 1, 
+				mainClass: "input-group-lg", 
+				previewFileIcon: '<i class="glyphicon glyphicon-file"></i>',
+				browseLabel: 'Examinar', 
+				browseIcon: '<i class="glyphicon glyphicon-folder-open"></i> &nbsp;',
+				browseClass : 'browse-class',
+				removeLabel: 'Borrar',
+				removeTitle: 'Eliminar archivos seleccionados',
+				removeClass: 'btn btn-xs btn-default',
+				cancelLabel: 'Cancelar',
+				uploadLabel: 'Subir',
+				uploadTitle: 'Subir archivos seleccionados',
+				uploadClass: 'btn btn-xs btn-default',
+				elCaptionText: 'elCaptionText',
+				maxFileSize: 1024,
+				msgSizeTooLarge: 'File "{name}" (<b>{size} KB</b>) exceeds maximum allowed upload size of <b>{maxSize} KB</b>. Please retry your upload!',
+				fileTypeSettings: allowed_mimes
+			});
+			
+			$(fileidentifier).on('fileclear', function(event) 
+			{
+			    console.log("fileclear");
+			    //$(this).fileinput('filebrowse');
+			});
+
+			$(fileidentifier).on('fileerror', function(event, file, previewId, index) 
+			{
+			    console.log("fileerror");
+			});
+
+			$(fileidentifier).on('fileloaded', function(event, file, previewId, index, reader) 
+			{
+			    console.log("fileloaded");
+			    /*console.log(event)
+			    console.log(file)
+			    console.log(previewId)
+			    console.log(index)
+			    console.log(reader)
+			    */
+			    $('#' + event.target.id).parent().parent().parent().children().eq(0).find('div.status_label').text('');
+			    console.log($('#' + event.target.id).parent().parent().parent().children().eq(1).find('button.fileinput-upload-button'))
+			    $('#' + event.target.id).parent().parent().parent().children().eq(1).find('button.fileinput-upload-button').hide()
+			});
+
+			$(fileidentifier).on('filereset', function(event) 
+			{
+			    console.log("filereset");
+			});
+
+			$(fileidentifier).on('fileimageloaded', function(event, previewId) 
+			{
+			    console.log("fileimageloaded");
+			});
+
+			$(fileidentifier).on('filebrowse', function(event) 
+			{
+			    console.log("File browse triggered.");
+			});
+
+			$(fileidentifier).on('filebatchselected', function(event, files) 
+			{
+			    console.log('File batch selected triggered');
+			});
+
+			$(fileidentifier).on('fileselectnone', function(event) {
+			    console.log("Huh! No files were selected.");
+			});
+
+			$(fileidentifier).on('filelock', function(event, filestack, extraData) {
+			    var fstack = filestack.filter(function(n){ return n != undefined });
+			    console.log('Files selected - ' + fstack.length);
+			});
+
+			$(fileidentifier).on('fileunlock', function(event, filestack, extraData) {
+			    var fstack = filestack.filter(function(n){ return n != undefined });
+			    console.log('Files selected - ' + fstack.length);
+			});
+
+			$(fileidentifier).on('filepredelete', function(event, key, jqXHR) {
+			    console.log('Key = ' + key);
+			});
+
+			$(fileidentifier).on('filedeleted', function(event, key) {
+			    console.log('Key = ' + key);
+			});
+
+			$(fileidentifier).on('filedeleteerror', function(event, data, preview, index) {
+			    console.log('File delete error');
+			});
+
+			$(fileidentifier).on('filepreupload', function(event, data, previewId, index, jqXHR) {
+			    var form = data.form, files = data.files, extra = data.extra, 
+			        response = data.response, reader = data.reader;
+			    console.log('File pre upload triggered');
+			});
+
+			$(fileidentifier).on('fileuploaded', function(event, data, previewId, index) {
+			    var form = data.form, files = data.files, extra = data.extra, 
+			        response = data.response, reader = data.reader;
+			    console.log('File uploaded triggered');
+			});
+
+			$(fileidentifier).on('fileuploaderror', function(event, data, previewId, index) {
+			    var form = data.form, files = data.files, extra = data.extra, 
+			        response = data.response, reader = data.reader;
+			    console.log('File upload error');
+			});
+
+			$(fileidentifier).on('filebatchpreupload', function(event, data, jqXHR) {
+			    var form = data.form, files = data.files, extra = data.extra, 
+			        response = data.response, reader = data.reader;
+			    console.log('File batch pre upload triggered');
+			});
+
+			$(fileidentifier).on('filebatchuploadsuccess', function(event, data) {
+			    var form = data.form, files = data.files, extra = data.extra, 
+			        response = data.response, reader = data.reader;
+			    console.log('File batch upload success');
+			});
+
+
+		};
+
+		upload_processor('#candidate_step7_profile_image');
+		
+		// div.form-control.file-caption.kv-fileinput-caption
+		$('.kv-fileinput-caption').each(function(index, value)
+		{
+			$(this).prepend('<div style="display:inline-block;float:left;"><i class=" mine-icon fa fa-upload"></i></div><div class="status_label" style="margin-left: 23px;margin-top: -19px;position: relative;float:left;display:inline-block;width:500px;height:30px">Subir archivo...</div>');
+		}); //.delay( 1500 );
     });
     
 	</script>
@@ -60,7 +212,7 @@
               	
               	
                 <div id="fuelux-wizard-container">
-                  {{ steps_widget_candidate(7) }}
+                  {{ steps_widget_candidate(7, address) }}
                   
 				  <hr>
 
@@ -136,25 +288,16 @@
 							
 								<div class="form-group row{% if form.profile_image.vars.errors|length > 0 %} has-error{% endif %}">
 			                      <div class="col-xs-12">
-			                        <label class="required control-label" for="candidate_profile_image">
-			                          {{ form_label(form.profile_image, 'candidate.step7.profile_image_title'|trans) }}
+			                        <label class="required control-label">
+			                        	{{ 'candidate.step7.profile_image_title'|trans }}
 			                        </label>
 			                      </div>
 			                      <div class="input-group col-xs-12">
 			                        <div class="col-xs-8 col-md-10">
-			                          <label class="mine-file-input">
-			                            {{ form_widget(form.profile_image) }}
-			                            
-			                            <span data-title="Examinar" class="mine-file-container">
-			                            	
-			                              <span data-title="Subir archivo..." class="mine-file-name"> <i class=" mine-icon fa fa-upload"></i>
-			                              </span>
-			                            </span>
-			                            <a href="#" class="remove">
-			                              <i class=" mine-icon fa fa-times"></i>
-			                            </a>
-			                            {{ form_errors(form.profile_image) }}
-			                          </label>
+			                            {{ form_widget(form.profile_image, { 'label': 'candidacy.step1.continue'|trans|raw, 'attr' : {'class' : 'file' , 'multiple' : 'false' }}) }}
+			                        </div>
+			                        <div class="col-xs-8 col-md-10">
+			                        	{% if form.profile_image.vars.errors|length > 0 %}{{ form_errors(form.profile_image) }}{% endif %}
 			                        </div>
 			                      </div>
 			
