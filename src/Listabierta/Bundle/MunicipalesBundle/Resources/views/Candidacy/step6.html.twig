@@ -77,6 +77,8 @@
 	
 	</p>
 	
+		{# Only show the continue button if at least there are 2 candidates #}
+		{% if candidates|length > 2 %}
 		<hr>
 	
 		<div class="wizard-actions">
@@ -86,6 +88,7 @@
 			</button>
 		
 		</div>
+		{% endif %}
 	
 	 	<!-- /.widget-main --> </div>
             <!-- /.widget-body --> </div>
