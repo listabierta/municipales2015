@@ -9,9 +9,10 @@
       <div class="container marketing">
 
         <div class="headline">
-          <h2>{{ 'home.step_h2'|trans }} 7</h2>
-        </div><h3 class="featurette-headin"> <i>Resultados de la elección de X en listAbierta.org</i>
-        </h3>
+          <h2>Resultados públicos de la votación</h2>
+        </div>
+        
+        <h3 class="featurette-headin"> <i>Resultados de la elección del municipio {{ town|capitalize }} en listAbierta.org</i></h3>
         
         <!-- START THE FEATURETTES -->
 
@@ -32,12 +33,18 @@
                   <div class="step-content pos-rel">
   
                     <div data-step="1" class="step-pane active row">
-                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'town.step9.h1_title'|trans }}</h2>
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">Candidatos votados</h2>
                       
                       <div class="col-sm-offset-1 col-md-10 well">
 
 						<p class="lead2">
 
+						    <div class="col-sm-offset-0 col-md-12">
+		                      	Total votantes: {{ total_voters }}
+		                    </div>
+                      
+							<br /><br />
+							
 							<table class="table">
 							
 								<thead>
@@ -50,12 +57,17 @@
 								</thead>
 								
 								<tbody>
-									<tr>
-										<td>Foto</td>
-										<td>Nombre y Apellidos</td>
-										<td>Total de puntos</td>
-										<td>Posición</td>
-									</tr>
+									{% if candidates|length > 0 %}
+									
+										{% for candidate in candidates %}
+										<tr>
+											<td><img style="width:45px;height:45px" src="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" /></td>
+											<td>{{ candidate.name }} {{ candidate.lastname }}</td>
+											<td>{{ candidate.points }}</td>
+											<td>{{ loop.index }}</td>
+										</tr>
+										{% endfor %}
+									{% endif %}
 								</tbody>
 							
 							</table>
