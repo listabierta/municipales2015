@@ -374,15 +374,18 @@ class CandidacyController extends Controller
     		{
     			$program_data = $program->getData();
     		
-    			if($program_data->getClientMimeType() !== 'application/pdf')
+    			if(!empty($program_data))
     			{
-    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $program_data->getClientMimeType()));
-    				$ok = FALSE;
-    			}
-    		
-    			if($ok)
-    			{
-    				$program_data->move($documents_path, 'program.pdf');
+	    			if($program_data->getClientMimeType() !== 'application/pdf')
+	    			{
+	    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $program_data->getClientMimeType()));
+	    				$ok = FALSE;
+	    			}
+	    		
+	    			if($ok)
+	    			{
+	    				$program_data->move($documents_path, 'program.pdf');
+	    			}
     			}
     		}
     		else
@@ -395,15 +398,18 @@ class CandidacyController extends Controller
     		{
     			$legal_conditions_data = $legal_conditions->getData();
     		
-    			if($legal_conditions_data->getClientMimeType() !== 'application/pdf')
+    			if(!empty($legal_conditions_data))
     			{
-    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $legal_conditions_data->getClientMimeType()));
-    				$ok = FALSE;
-    			}
-    		
-    			if($ok)
-    			{
-    				$legal_conditions_data->move($documents_path, 'legal_conditions.pdf');
+	    			if($legal_conditions_data->getClientMimeType() !== 'application/pdf')
+	    			{
+	    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $legal_conditions_data->getClientMimeType()));
+	    				$ok = FALSE;
+	    			}
+	    		
+	    			if($ok)
+	    			{
+	    				$legal_conditions_data->move($documents_path, 'legal_conditions.pdf');
+	    			}
     			}
     		}
     		else
@@ -416,15 +422,18 @@ class CandidacyController extends Controller
     		{
     			$recall_term_data = $recall_term->getData();
     		
-    			if($recall_term_data->getClientMimeType() !== 'application/pdf')
+    			if(!empty($recall_term_data))
     			{
-    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $recall_term_data->getClientMimeType()));
-    				$ok = FALSE;
-    			}
-    		
-    			if($ok)
-    			{
-    				$recall_term_data->move($documents_path, 'recall_term.pdf');
+	    			if($recall_term_data->getClientMimeType() !== 'application/pdf')
+	    			{
+	    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $recall_term_data->getClientMimeType()));
+	    				$ok = FALSE;
+	    			}
+	    		
+	    			if($ok)
+	    			{
+	    				$recall_term_data->move($documents_path, 'recall_term.pdf');
+	    			}
     			}
     		}
     		else
@@ -437,15 +446,18 @@ class CandidacyController extends Controller
     		{
     			$participatory_term_data = $participatory_term->getData();
     		
-    			if($participatory_term_data->getClientMimeType() !== 'application/pdf')
+    			if(!empty($participatory_term_data))
     			{
-    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $participatory_term_data->getClientMimeType()));
-    				$ok = FALSE;
-    			}
-    		
-    			if($ok)
-    			{
-    				$participatory_term_data->move($documents_path, 'participatory_term.pdf');
+	    			if($participatory_term_data->getClientMimeType() !== 'application/pdf')
+	    			{
+	    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $participatory_term_data->getClientMimeType()));
+	    				$ok = FALSE;
+	    			}
+	    		
+	    			if($ok)
+	    			{
+	    				$participatory_term_data->move($documents_path, 'participatory_term.pdf');
+	    			}
     			}
     		}
     		else
@@ -458,15 +470,18 @@ class CandidacyController extends Controller
     		{
     			$voter_conditions_data = $voter_conditions->getData();
     		
-    			if($voter_conditions_data->getClientMimeType() !== 'application/pdf')
+    			if(!empty($voter_conditions_data))
     			{
-    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $voter_conditions_data->getClientMimeType()));
-    				$ok = FALSE;
-    			}
-    		
-    			if($ok)
-    			{
-    				$voter_conditions_data->move($documents_path, 'voter_conditions.pdf');
+	    			if($voter_conditions_data->getClientMimeType() !== 'application/pdf')
+	    			{
+	    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $voter_conditions_data->getClientMimeType()));
+	    				$ok = FALSE;
+	    			}
+	    		
+	    			if($ok)
+	    			{
+	    				$voter_conditions_data->move($documents_path, 'voter_conditions.pdf');
+	    			}
     			}
     		}
     		else
@@ -479,15 +494,18 @@ class CandidacyController extends Controller
     		{
     			$technical_constrains_data = $technical_constrains->getData();
     		
-    			if($technical_constrains_data->getClientMimeType() !== 'application/pdf')
+    			if(!empty($technical_constrains_data))
     			{
-    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $technical_constrains_data->getClientMimeType()));
-    				$ok = FALSE;
-    			}
-    		
-    			if($ok)
-    			{
-    				$technical_constrains_data->move($documents_path, 'technical_constrains.pdf');
+	    			if($technical_constrains_data->getClientMimeType() !== 'application/pdf')
+	    			{
+	    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $technical_constrains_data->getClientMimeType()));
+	    				$ok = FALSE;
+	    			}
+	    		
+	    			if($ok)
+	    			{
+	    				$technical_constrains_data->move($documents_path, 'technical_constrains.pdf');
+	    			}
     			}
     		}
     		else
@@ -498,12 +516,35 @@ class CandidacyController extends Controller
     		
     		if($ok)
     		{
-    			$session->set('program', $program_data->getClientOriginalName());
-    			$session->set('legal_conditions', $legal_conditions_data->getClientOriginalName());
-    			$session->set('recall_term', $recall_term_data->getClientOriginalName());
-    			$session->set('participatory_term', $participatory_term_data->getClientOriginalName());
-    			$session->set('voter_conditions', $voter_conditions_data->getClientOriginalName());
-    			$session->set('technical_constrains', $technical_constrains_data->getClientOriginalName());
+    			if(!empty($program_data))
+    			{
+    				$session->set('program', $program_data->getClientOriginalName());
+    			}
+    			
+    			if(!empty($legal_conditions_data))
+    			{
+    				$session->set('legal_conditions', $legal_conditions_data->getClientOriginalName());
+    			}
+    			
+    			if(!empty($recall_term_data))
+    			{
+    				$session->set('recall_term', $recall_term_data->getClientOriginalName());
+    			}
+
+    			if(!empty($participatory_term_data))
+    			{
+    				$session->set('participatory_term', $participatory_term_data->getClientOriginalName());
+    			}
+
+    			if(!empty($voter_conditions_data))
+    			{
+    				$session->set('voter_conditions', $voter_conditions_data->getClientOriginalName());
+    			}
+
+    			if(!empty($technical_constrains_data))
+    			{
+    				$session->set('technical_constrains', $technical_constrains_data->getClientOriginalName());
+    			}
 
     			$warnings = array();
 				
