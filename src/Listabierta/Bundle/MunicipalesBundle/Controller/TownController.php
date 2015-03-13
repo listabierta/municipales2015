@@ -1091,6 +1091,9 @@ class TownController extends Controller
 				// Store the result in database
 				$voter->setVoteInfo($vote_info);
 				
+				$entity_manager->persist($voter);
+				$entity_manager->flush();
+				
 				// Tractis TSA here
 	
 				// Create an API Key here: https://www.tractis.com/webservices/tsa/apikeys
