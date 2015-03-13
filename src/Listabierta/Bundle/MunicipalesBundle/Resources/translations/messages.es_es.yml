@@ -232,7 +232,14 @@ town:
         h1_title: Asigna importancia
         continue: Ver candidatos seleccionados <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior          
-     
+
+    step7_confirmation:
+        header: Elige candidatos
+        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 7
+        h1_title: Seleccion previa de candidatos
+        continue: Ver candidatos seleccionados <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Quiero revisar mis criterios para que se me muestren más o menos candidatos
+             
     step7:
         header: Elige candidatos
         html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 7
