@@ -618,4 +618,32 @@ class Voter implements AdvancedUserInterface, \Serializable
     {
         return $this->admin_id;
     }
+    /**
+     * @var array
+     */
+    private $vote_info;
+
+
+    /**
+     * Set vote_info
+     *
+     * @param array $voteInfo
+     * @return Voter
+     */
+    public function setVoteInfo($voteInfo)
+    {
+        $this->vote_info = $voteInfo;
+
+        return $this;
+    }
+
+    /**
+     * Get vote_info
+     *
+     * @return array 
+     */
+    public function getVoteInfo()
+    {
+        return $this->vote_info;
+    }
 }
