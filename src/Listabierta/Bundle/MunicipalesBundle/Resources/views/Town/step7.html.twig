@@ -65,26 +65,112 @@
                               <div class="profile-info-row">
                                 <div class="profile-info-name">Nivel académico</div>
                                 <div class="profile-info-value">
-                                  <span class="lalala">{% if candidate.academicLevel is defined %}{{ candidate.academicLevel }}{% endif %}</span>
+                                  <span class="lalala">
+                            		{% if candidate.academicLevel is defined %}
+                                    {% set academic_level_text = { 	'0' : 'Me resulta indiferente su nivel académico',
+													     			'1' : 'Sin estudios',
+													     			'2' : 'Estudios primarios o equivalentes', 
+													     			'3' : 'Enseñanza general secundaria, 1er ciclo',
+													     			'4' : 'Enseñanza Profesional de 2º grado, 2º ciclo',
+													     			'5' : 'Enseñanza general secundaria, 2º ciclo',
+													     			'6' : 'Enseñanzas profesionales superiores',
+													     			'7' : 'Estudios universitarios o equivalentes',
+													     			'8' : 'Máster universitario o doctorado'
+																}
+									%}
+										{% if candidate.academicLevel > -1 %}
+											{{ academic_level_text[candidate.academicLevel] }}
+	                                    {% endif %}
+                                    {% endif %}      
+                        			</span>
                                 </div>
                               </div>
                               <div class="profile-info-row">
                                 <div class="profile-info-name">Idiomas</div>
                                 <div class="profile-info-value">
-                                  <span class="lalala">{% if candidate.languages is defined %}{{ candidate.languages }}{% endif %}</span>
+                                  <span class="lalala">
+                                  {% if candidate.languages is defined %}
+                                    {% set languages_text = { 	'0' : 'No considero necesario que hable idiomas',
+																'1' : 'Inglés',
+											     				'2' : 'Otro idioma europeo',
+											     				'3' : 'Otro idioma no europeo',
+											     				'4' : 'Catalá',
+											     				'5' : 'Galego',
+											     				'6' : 'Euskara',
+											     				'7' : 'Valenciá (Caloret)',
+									}
+									%}
+										{% if candidate.languages|length > 0 %}
+											<ul>
+											{% for languages in candidate.languages %}
+												<li>{{ languages_text[languages] }}</li>
+											{% endfor %}
+											</ul>
+	                                    {% endif %}
+                                    {% endif %}
+									</span>
                                 </div>
                               </div>
                               <div class="profile-info-row">
                                 <div class="profile-info-name">Valores morales que prioriza</div>
                                 <div class="profile-info-value">
-                                  <span id="" class="">{% if candidate.publicValues is defined %}{{ candidate.publicValues }}{% endif %}</span>
+                                  <span id="" class="">
+                                  {% if candidate.publicValues is defined %}
+                                    {% set public_values_text = { 	'1' : 'HONESTIDAD',
+												     				'2' : 'TRANSPARENCIA',
+												     				'3' : 'RESPETO',
+												     				'4' : 'RESPONSABILIDAD',
+												     				'5' : 'COMPROMISO',
+												     				'6' : 'INTEGRIDAD',
+												     				'7' : 'IGUALDAD',
+												     				'8' : 'TOLERANCIA',
+												     				'9' : 'COOPERACIÓN',
+												     				'10' : 'SOLIDARIDAD',
+												     				'11' : 'JUSTICIA'
+									}
+									%}
+										{% if candidate.publicValues|length > 0 %}
+											<ul>
+											{% for public_values in candidate.publicValues %}
+												<li>{{ public_values_text[public_values] }}</li>
+											{% endfor %}
+											</ul>
+	                                    {% endif %}
+                                    {% endif %}
+                        	
+                        			</span>
                                 </div>
                               </div>
                               <div class="profile-info-row">
                                 <div class="profile-info-name">Experiencia laboral</div>
                                 <div class="profile-info-value">
                                   <span class="lalala">
-                                    {% if candidate.jobExperience is defined %}{{ candidate.jobExperience }}{% endif %}
+                                  	{% if candidate.jobExperience is defined %}
+                                    {% set job_experience_text = { 	'1' : 'Actividades físicas o deportivas',
+												     				'2' : 'Administración o gestión',
+												     				'3' : 'Agraria o pesquera',
+												     				'4' : 'Arte o artesanía',
+												     				'5' : 'Comercio y marketing',
+												     				'6' : 'Edificación, obra civil',
+												     				'7' : 'Energía o agua',
+												     				'8' : 'Mecánica, electricidad o electrónica',
+												     				'9' : 'Hostelería y turismo',
+												     				'10' : 'Informática o comunicaciones',
+												     				'11' : 'Industria',
+												     				'12' : 'Sanidad',
+												     				'13' : 'Medio Ambiente',
+												     				'14' : 'Educación o servicios a la comunidad',
+												     				'15' : 'Transporte',
+												     				'16' : 'Finanzas'}
+									%}
+										{% if candidate.jobExperience|length > 0 %}
+											<ul>
+											{% for job_experience in candidate.jobExperience %}
+												<li>{{ job_experience_text[job_experience] }}</li>
+											{% endfor %}
+											</ul>
+	                                    {% endif %}
+                                    {% endif %}
                                   </span>
                                 </div>
                               </div>
@@ -95,7 +181,32 @@
                                 <div class="profile-info-name">Experiencias relacionadas</div>
                                 <div class="profile-info-value">
                                   <span class="lalala" id="age">
-                                    {% if candidate.townActivities is defined %}{{ candidate.townActivities }}{% endif %}
+                                    {% if candidate.townActivities is defined %}
+                                    {% set town_activities_text = { '1' : 'He tenido experiencia en la mejora del funcionamiento organizativo de entidades',
+												     				'2' : 'He participado en la elaboración de planes de protección civil o seguridad ciudadana',
+												     				'3' : 'He contribuido a la lucha contra la pobreza o la exclusión social',
+												     				'4' : 'He gestionado actividades de atención sanitaria',
+												     				'5' : 'He gestionado actividades educativas o culturales',
+												     				'6' : 'He gestionado planes de infraestructura, vivienda o urbanismo',
+												     				'7' : 'He gestionado actividades de fomento de la sostenibilidad o protección medioambiental',
+												     				'8' : 'He gestionado actividades de fomento del empleo',
+												     				'9' : 'He gestionado actividades de fomento de la transparencia, la participación ciudadana o la igualdad de género',
+												     				'10' : 'He gestionado actividades colectivas en el campo industrial o agrícola',
+												     				'11' : 'He gestionado actividades colectivas en el campo de las tecnologías de la información o la comunicación',
+												     				'12' : 'He gestionado actividades colectivas de investigación o desarrollo',
+												     				'13' : 'He gestionado actividades colectivas en el campo del cooperativismo',
+												     				'14' : 'He gestionado eficazmente presupuestos superiores al millón de euros',
+												     				'15' : 'He tenido experiencia de trabajo internacional',
+												     				'16' : 'He realizado funciones de representación o portavocía de colectivos'}
+									%}
+										{% if candidate.townActivities|length > 0 %}
+											<ul>
+											{% for activity in candidate.townActivities %}
+												<li>{{ town_activities_text[activity] }}</li>
+											{% endfor %}
+											</ul>
+	                                    {% endif %}
+                                    {% endif %}
                                   </span>
                                 </div>
                               </div>
@@ -113,7 +224,30 @@
                                 <div class="profile-info-name">Considera prioritario que el Ayuntamiento se centre en:</div>
                                 <div class="profile-info-value">
                                   <span id="age" class="lalala">
-                                   {% if candidate.governPriorities is defined %}{{ candidate.governPriorities }}{% endif %}
+                                  {% if candidate.governPriorities is defined %}
+                                    {% set govern_priorities_text = {   '1' : 'Mejorar las funciones de gobierno del municipio',
+													     				'2' : 'Mejorar la seguridad ciudadana',
+													     				'3' : 'Luchar contra la pobreza y la exclusión social',
+													     				'4' : 'Mejorar la atención sanitaria',
+													     				'5' : 'Mejorar la gestión educativa y cultural',
+													     				'6' : 'Atender a los problemas de vivienda, urbanismo e infraestructuras',
+													     				'7' : 'Mejorar la sostenibilidad del municipio',
+													     				'8' : 'Invertir en fomento del empleo',
+													     				'9' : 'Aumentar la participación ciudadana en la gestión municipal',
+													     				'10' : 'Mejorar los servicios de transporte',
+													     				'11' : 'Invertir en actividades industriales, agrícolas o comerciales',
+													     				'12' : 'Invertir en Investigación',
+													     				'13' : 'Gestionar mejor la deuda y las operaciones financieras',
+									}
+									%}
+										{% if candidate.governPriorities|length > 0 %}
+											<ul>
+											{% for govern_priorities in candidate.governPriorities %}
+												<li>{{ govern_priorities_text[govern_priorities] }}</li>
+											{% endfor %}
+											</ul>
+	                                    {% endif %}
+                                    {% endif %}
                                   </span>
                                 </div>
                               </div>
