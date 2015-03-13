@@ -241,7 +241,7 @@
 								<table class="table" style="display:none">
 								{% for child in form.languages %}
 									<tr>
-								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_language'}}) }}</td>
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_language mine'}}) }}</td>
 								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
 								    </tr>
 								{% endfor %}
@@ -260,7 +260,7 @@
 								<table class="table" style="display:none">
 								{% for child in form.job_experience %}
 									<tr>
-								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_job_experience'}}) }}</td> 
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_job_experience mine'}}) }}</td> 
 								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
 								    </tr>
 								{% endfor %}
@@ -278,7 +278,7 @@
 								<table class="table" style="display:none">
 								{% for child in form.town_activities %}
 									<tr>
-								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_town_activities'}}) }}</td> 
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_town_activities mine'}}) }}</td> 
 								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
 								    </tr>
 								{% endfor %}
@@ -297,7 +297,7 @@
 								<table class="table" style="display:none">
 								{% for child in form.govern_priorities %}
 									<tr>
-								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_govern_priorities'}}) }}</td> 
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_govern_priorities mine'}}) }}</td> 
 								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
 								    </tr>
 								{% endfor %}
@@ -314,7 +314,7 @@
 								<table class="table" style="display:none">
 								{% for child in form.public_values %}
 									<tr>
-								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_public_values'}}) }}</td> 
+								        <td>{{ form_widget(child, {'attr' : {'class' : 'countable_public_values mine'}}) }}</td> 
 								        <td style="padding:5px">{{ form_label(child) }}{{ form_errors(child) }}</td>       
 								    </tr>
 								{% endfor %}
