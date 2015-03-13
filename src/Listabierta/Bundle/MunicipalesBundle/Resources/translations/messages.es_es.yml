@@ -169,6 +169,8 @@ town:
     verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
        
     step1:
+        welcome: Bienvenido o bienvenida a la votación de la candidatura ciudadana de
+        welcome_more: Como primer paso has de registrarte como votante. Si introduces datos erróneos, no podrás modificarlos más adelante
         header: Registrate como votante
         name: Nombre 
         lastname: Apellidos
