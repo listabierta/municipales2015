@@ -36,13 +36,13 @@ class StepFilterType extends AbstractType
 			     		'multiple' => TRUE,
 			     		'expanded' => TRUE,
 			     		'choices' => array(
-			     				'1' => 'Inglés',
-			     				'2' => 'Francés',
-			     				'3' => 'Alemán',
-			     				'4' => 'Italiano',
-			     				'5' => 'Chino',
-			     				'6' => 'Árabe',
-			     				'7' => 'Otro',
+								'1' => 'Inglés',
+			     				'2' => 'Otro idioma europeo',
+			     				'3' => 'Otro idioma no europeo',
+			     				'4' => 'Catalá',
+			     				'5' => 'Galego',
+			     				'6' => 'Euskara',
+			     				'7' => 'Valenciá (Caloret)',
 			     		),
 			     ))
 			     ->add('languages_option', 'choice', array(

@@ -28,13 +28,13 @@ class TownStep2Type extends AbstractType
 			     		'expanded' => TRUE,
 			     		'choices' => array(
 			     				'0' => 'No considero necesario que hable idiomas',
-			     				'1' => 'Inglés',
-			     				'2' => 'Francés',
-			     				'3' => 'Alemán',
-			     				'4' => 'Italiano',
-			     				'5' => 'Chino',
-			     				'6' => 'Árabe',
-			     				'7' => 'Otro',
+								'1' => 'Inglés',
+			     				'2' => 'Otro idioma europeo',
+			     				'3' => 'Otro idioma no europeo',
+			     				'4' => 'Catalá',
+			     				'5' => 'Galego',
+			     				'6' => 'Euskara',
+			     				'7' => 'Valenciá (Caloret)',
 			     		),
 			     ))
 	            ->add('continue', 'submit', array('attr' => array('class' => 'submit')));
