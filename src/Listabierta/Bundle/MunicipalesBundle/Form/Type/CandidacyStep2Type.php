@@ -15,7 +15,6 @@ class CandidacyStep2Type extends AbstractType
         					'required' => FALSE, 
         					'data_class' => NULL,
         					'constraints' => array(
-        						new Assert\NotBlank(),
         						new Assert\File(array('maxSize' =>'1024k')),
         					)
         				)
@@ -24,7 +23,6 @@ class CandidacyStep2Type extends AbstractType
         					'required' => FALSE,
         					'data_class' => NULL,
         					'constraints' => array(
-        						new Assert\NotBlank(),
         						new Assert\File(array('maxSize' =>'1024k')),
         					)
         				)
@@ -33,7 +31,6 @@ class CandidacyStep2Type extends AbstractType
         					'required' => FALSE,
         					'data_class' => NULL,
         					'constraints' => array(
-        						new Assert\NotBlank(),
         						new Assert\File(array('maxSize' =>'1024k')),
         					)
         				)
@@ -42,7 +39,6 @@ class CandidacyStep2Type extends AbstractType
         					'required' => FALSE,
         					'data_class' => NULL,
         					'constraints' => array(
-        						new Assert\NotBlank(),
         						new Assert\File(array('maxSize' =>'1024k')),
         					)
         				)
@@ -51,7 +47,6 @@ class CandidacyStep2Type extends AbstractType
         					'required' => FALSE,
         					'data_class' => NULL,
         					'constraints' => array(
-        						new Assert\NotBlank(),
         						new Assert\File(array('maxSize' =>'1024k')),
         					)
         				)
@@ -60,7 +55,6 @@ class CandidacyStep2Type extends AbstractType
         					'required' => FALSE,
         				    'data_class' => NULL,
         					'constraints' => array(
-        						new Assert\NotBlank(),
         						new Assert\File(array('maxSize' =>'1024k')),
         					)
         				)
