@@ -55,7 +55,7 @@
 		                        
 		                        	<div class="col-sm-offset-1 well">
 		                        		<p class="lead">
-				                        	Con tu selección actual de filtros se te mostrarán:
+				                        	{{ 'town.step7_confirmation.filter_selection'|trans }}:
 				                        	
 				                        	<div class="col-xs-12 center inline">
 				                        		{{ candidates|length }} candidatos/as de {{ total_candidates }} (*)
@@ -64,7 +64,7 @@
 											<br />
 											
 											<div class="col-xs-12 center">
-												(*) Te aconsejamos un máximo de 7 
+												(*) {{ 'town.step7_confirmation.advice'|trans }}
 											</div>
 											
 											<br />
