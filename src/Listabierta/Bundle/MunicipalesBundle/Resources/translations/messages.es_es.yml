@@ -197,7 +197,7 @@ town:
         filter_p1: Ten en cuenta que si no aplicas ningún filtro, te aparecerá la totalidad de candidatos y candidatas que se han presentado y puede resultar tedioso ver todos los perfiles y después puntuarlos, así que si tienes alguna preferencia clara márcala, posteriormente podrás revisar tus filtros.
         h1_title: Filtra candidatos por nivel academico
         academic_level: ¿Quieres elegir el nivel académico que prefieres que tenga el candidato o candidata?
-        languages: "¿Es bueno que hable alguno de estos idiomas? (elige de una a tres opciones)"
+        languages: "¿Es bueno que hable alguno de estos idiomas?"
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
         
@@ -207,7 +207,7 @@ town:
         h1_title: Seleciona experiencia laboral
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
-        job_experience_title: ¿Qué campo de experiencia laboral te gustaría que hubiese desarrollado? (Seleccione hasta tres opciones)
+        job_experience_title: ¿Qué campo de experiencia laboral te gustaría que hubiese desarrollado?
         
     step4:
         header: Selecciona actividades municipales
@@ -215,7 +215,7 @@ town:
         h1_title: Selecciona actividades municipales
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
-        town_activities_title: ¿Qué experiencia relacionada con el desempeño municipal te gustaría que hubiese desarrollado? (Seleccione hasta tres opciones)
+        town_activities_title: ¿Qué experiencia relacionada con el desempeño municipal te gustaría que hubiese desarrollado?
      
     step5:
         header: Selecciona prioridades municipales
@@ -223,8 +223,8 @@ town:
         h1_title: Selecciona prioridades municipales
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
-        govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones) 
-        public_values_title: ¿Qué valores morales consideras de mayor importancia para el desempeño de la función pública? (elige hasta tres)
+        govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ?
+        public_values_title: ¿Qué valores morales consideras de mayor importancia para el desempeño de la función pública?
         
     step6:
         header: Asigna importancia
@@ -238,7 +238,9 @@ town:
         html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 7
         h1_title: Seleccion previa de candidatos
         continue: Ver candidatos seleccionados <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Quiero revisar mis criterios para que se me muestren más o menos candidatos
+        previous: Revisar criterios
+        filter_selection: Con tu selección actual de filtros se te mostrarán
+        advice: Te aconsejamos un máximo de 10
              
     step7:
         header: Elige candidatos
