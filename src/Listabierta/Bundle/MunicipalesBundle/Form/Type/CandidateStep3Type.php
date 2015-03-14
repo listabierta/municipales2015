@@ -33,7 +33,7 @@ class CandidateStep3Type extends AbstractType
 			     				'4' => 'Catalá',
 			     				'5' => 'Galego',
 			     				'6' => 'Euskara',
-			     				'7' => 'Valenciá (Caloret)',
+			     				'7' => 'Valenciá',
 			     		),
 			     ))
 	            ->add('continue', 'submit', array('attr' => array('class' => 'submit')));
