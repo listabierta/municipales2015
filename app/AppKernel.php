@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Listabierta\Bundle\MunicipalesBundle\MunicipalesBundle(),
         	new Cocur\Slugify\Bridge\Symfony\CocurSlugifyBundle(),
+        	new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
