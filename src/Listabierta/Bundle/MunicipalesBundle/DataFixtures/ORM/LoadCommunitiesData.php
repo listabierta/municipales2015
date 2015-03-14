@@ -39,6 +39,18 @@ class LoadCommunitiesData extends AbstractFixture implements OrderedFixtureInter
     	$manager->flush();
     	
     	echo 'Autonomus Communities for Spain loaded' . PHP_EOL;
+    	
+    	$fixture_file = $this->container->get('kernel')
+    	->locateResource('@MunicipalesBundle/Resources/fixtures/provinces_spain.sql');
+    	
+    	// Read file contents
+    	$sql_data = file_get_contents($fixture_file);
+    	// Execute native SQL
+    	$manager->getConnection()->exec($sql_data);
+    	 
+    	$manager->flush();
+    	 
+    	echo 'Provinces for Spain loaded' . PHP_EOL;
     }
     
     /**
