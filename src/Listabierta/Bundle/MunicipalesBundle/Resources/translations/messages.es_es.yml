@@ -317,6 +317,7 @@ candidate:
           
     step5:      
         header: Proporciona el desempeño municipal
+        header_title: ¿Has tenido alguna experiencia que pueda estar relacionada con las actividades que desarrolla un Ayuntamiento?
         town_activities_title: ¿Has tenido alguna experiencia relacionada con el desempeño municipal?  (Seleccione hasta tres opciones siempre que tu actividad incluya la coordinación o gestión de un grupo superior a las 10 personas, posteriormente tendrás que explicarlo)
         previous: Anterior
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
