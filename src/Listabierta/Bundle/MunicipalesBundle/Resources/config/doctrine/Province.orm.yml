@@ -1,0 +1,15 @@
+Listabierta\Bundle\MunicipalesBundle\Entity\Province:
+    type: entity
+    table: provinces_spain
+    repositoryClass: Listabierta\Bundle\MunicipalesBundle\Entity\ProvinceRepository
+    id:
+        id:
+            type: smallint
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '45'
+    lifecycleCallbacks: {  }
