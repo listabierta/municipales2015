@@ -7,9 +7,26 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Listabierta\Bundle\MunicipalesBundle\Validator\Constraints\DNI;
+use Listabierta\Bundle\MunicipalesBundle\Entity\ProvinceRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class CandidacyStep1Type extends AbstractType
 {
+	
+	private $provinces_data = array();
+	
+	public function __construct($provinces_data)
+	{
+		// Flatten the results array
+		$result = array();
+		foreach($provinces_data as $province)
+		{
+			$result[$province['id']] = $province['name'];
+		}
+		
+		$this->provinces_data = $result;
+	}
+
 	public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', 'text', array(
@@ -68,7 +85,8 @@ class CandidacyStep1Type extends AbstractType
         					new Assert\NotBlank(),
         					new Assert\Email(),
         				)))
-        	    ->add('province', 'text', array(
+        	    ->add('province', 'choice', array(
+        	    		'choices' => $this->provinces_data,
         	    		'required' => true, 
         				'constraints' => array(
         					new Assert\NotBlank(),
