@@ -51,6 +51,18 @@ class LoadCommunitiesData extends AbstractFixture implements OrderedFixtureInter
     	$manager->flush();
     	 
     	echo 'Provinces for Spain loaded' . PHP_EOL;
+    	
+    	$fixture_file = $this->container->get('kernel')
+    	->locateResource('@MunicipalesBundle/Resources/fixtures/municipalities_spain.sql');
+    	 
+    	// Read file contents
+    	$sql_data = file_get_contents($fixture_file);
+    	// Execute native SQL
+    	$manager->getConnection()->exec($sql_data);
+    	
+    	$manager->flush();
+    	
+    	echo 'Municipalities for Spain loaded' . PHP_EOL;
     }
     
     /**
