@@ -9,6 +9,9 @@ Listabierta\Bundle\MunicipalesBundle\Entity\Province:
             generator:
                 strategy: AUTO
     fields:
+        community_id:
+            type: smallint
+            
         name:
             type: string
             length: '45'

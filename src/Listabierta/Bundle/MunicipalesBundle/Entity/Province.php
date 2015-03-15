@@ -52,4 +52,32 @@ class Province
     {
         return $this->name;
     }
+    /**
+     * @var integer
+     */
+    private $community_id;
+
+
+    /**
+     * Set community_id
+     *
+     * @param integer $communityId
+     * @return Province
+     */
+    public function setCommunityId($communityId)
+    {
+        $this->community_id = $communityId;
+
+        return $this;
+    }
+
+    /**
+     * Get community_id
+     *
+     * @return integer 
+     */
+    public function getCommunityId()
+    {
+        return $this->community_id;
+    }
 }
