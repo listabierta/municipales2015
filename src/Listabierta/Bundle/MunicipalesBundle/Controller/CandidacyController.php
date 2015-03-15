@@ -80,17 +80,7 @@ class CandidacyController extends Controller
     			$session->clear();
     			$session->set('conditions', $conditions);
     	   
-    			$form2 = $this->createForm(new CandidacyStep1Type(), NULL, array(
-    					'action' => $this->generateUrl('municipales_candidacy_step1'),
-    					'method' => 'POST',
-    			));
-    	   
-    			$form2->handleRequest($request);
-    	   
-    			return $this->render('MunicipalesBundle:Candidacy:step1.html.twig', array(
-    					'form' => $form2->createView()
-    				)
-    			);
+    			return $this->step1Action($request);
     		}
     	}
     	 
@@ -108,6 +98,7 @@ class CandidacyController extends Controller
     public function step1Action(Request $request = NULL)
     {
     	$session = $this->getRequest()->getSession();
+    	$entity_manager = $this->getDoctrine()->getManager();
     	
     	$conditions = $session->get('conditions');
     	
@@ -117,7 +108,10 @@ class CandidacyController extends Controller
     		return $this->redirect($this->generateUrl('municipales_candidacy_step_conditions'), 301);
     	}
     	
-    	$form = $this->createForm(new CandidacyStep1Type(), NULL, array(
+    	$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+    	$provinces_data = $province_repository->fetchProvinces();
+    	
+    	$form = $this->createForm(new CandidacyStep1Type($provinces_data), NULL, array(
     			'action' => $this->generateUrl('municipales_candidacy_step1'),
 			    'method' => 'POST',
     			)
@@ -139,7 +133,7 @@ class CandidacyController extends Controller
     		$town     = $form['town']->getData();
     		$phone    = $form['phone']->getData();
 
-    		$entity_manager = $this->getDoctrine()->getManager();
+    		
     		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 
     		$admin_username = $admin_candidacy_repository->findOneBy(array('username' => $username));
