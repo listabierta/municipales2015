@@ -102,7 +102,11 @@
 			
 					  <div class="form-group{% if form.province.vars.errors|length > 0 %} has-error{% endif %}">
 			    		  {{ form_label(form.province, 'candidacy.step1.province'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.province) }}
+			    		  <div class="col-xs-12 col-sm-2">
+	    					  <span class="block input-icon input-icon-right">
+	    					      {{ form_widget(form.province) }}
+	    					  </span>
+    					  </div> 
 			    		  {% if form.province.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.province) }}</div>{% endif %}
 					  </div>
 			
