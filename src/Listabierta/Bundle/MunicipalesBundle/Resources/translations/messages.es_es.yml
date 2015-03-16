@@ -170,7 +170,7 @@ town:
        
     step1:
         welcome: Bienvenido o bienvenida a la votación de la candidatura ciudadana de
-        welcome_more: Como primer paso has de registrarte como votante. Si introduces datos erróneos, no podrás modificarlos más adelante
+        welcome_more: Como primer paso has de registrarte como votante. <br />Si introduces datos erróneos, no podrás modificarlos más adelante
         header: Registrate como votante
         name: Nombre 
         lastname: Apellidos
