@@ -183,12 +183,17 @@ town:
         explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
         explanation: Explicación
         warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás votar
+    
     step_verify:
         html_title: Municipales 2015 - Registrate como votante
         h1_title: Verifica tu número de móvil
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
-                
+        verify_conditions_header: Requisitos para el voto: 
+        verify_conditions_op1: Apoyas esta candidatura ciudadana de listas abiertas y estás conforme con este proceso de registro.
+        verify_conditions_op2: Estás dando tu consentimiento expreso al tratamiento tus los datos personales según lo dispuesto en el artículo 5 y 6 de la LOPD y podremos contactarte en tu email con información estrictamente relacionada con el proceso de votación, nunca cederemos tus datos de registro a terceros.
+        verify_conditions_op3: La información que aportas durante este registro es cierta y  tu residencia habitual se encuentra en el municipio objeto de la votación
+    
     step2:
         header: Filtra candidatos
         html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 2
