@@ -19,6 +19,7 @@ class CandidacyStep1Type extends AbstractType
 	{
 		// Flatten the results array
 		$result = array();
+		$result[0] = 'Elige una provincia';
 		foreach($provinces_data as $province)
 		{
 			$result[$province['id']] = $province['name'];
@@ -90,23 +91,12 @@ class CandidacyStep1Type extends AbstractType
         	    		'required' => true, 
         				'constraints' => array(
         					new Assert\NotBlank(),
-        					new Assert\Length(array(
-        						'min'        => 2,
-        						'max'        => 255,
-        						'minMessage' => 'Your province must be at least {{ limit }} characters long',
-        						'maxMessage' => 'Your province cannot be longer than {{ limit }} characters long',
-        					))
         				)))
-        	    ->add('town', 'text', array(
+        	    ->add('town', 'choice', array(
+        	    		'choices' => array(0 => 'Elige un municipio'),
         	    		'required' => true, 
         				'constraints' => array(
         					new Assert\NotBlank(),
-        					new Assert\Length(array(
-        							'min'        => 2,
-        							'max'        => 255,
-        							'minMessage' => 'Your town must be at least {{ limit }} characters long',
-        							'maxMessage' => 'Your town cannot be longer than {{ limit }} characters long',
-        					))
         				)))
         	    ->add('phone', 'text', array(
         	    		'required' => true, 
