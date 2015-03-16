@@ -167,9 +167,13 @@ class CandidateController extends Controller
 			}
 		}
 
+		$town = $admin_candidacy->getTown();
+		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+		$town_name = $province_repository->getMunicipalityName($town);
+		
 		return $this->render('MunicipalesBundle:Candidate:step1.html.twig', array(
 				'address' => $address, 
-				'town' => $admin_candidacy->getTown(),
+				'town' => $town_name,
 				'todate' => $candidacy_to,
 				'fromdate' => $candidacy_from,
 				'form' => $form->createView(),
@@ -253,7 +257,10 @@ class CandidateController extends Controller
 				$admin_id = $admin_candidacy->getId();
 				$town = $admin_candidacy->getTown();
 				
-				$town_slug = $this->get('slugify')->slugify($town);
+				$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+				$town_name = $province_repository->getMunicipalityName($town);
+				
+				$town_slug = $this->get('slugify')->slugify($town_name);
 				
 				$documents_path = 'docs/' . $town_slug . '/' . $admin_id;
 				
@@ -300,7 +307,10 @@ class CandidateController extends Controller
 		$admin_id = $admin_candidacy->getId();
 		$town = $admin_candidacy->getTown();
 		
-		$town_slug = $this->get('slugify')->slugify($town);
+		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+		$town_name = $province_repository->getMunicipalityName($town);
+		
+		$town_slug = $this->get('slugify')->slugify($town_name);
 		
 		$documents_path = 'docs/' . $town_slug . '/' . $admin_id;
 		
@@ -979,7 +989,10 @@ class CandidateController extends Controller
 			$admin_id = $admin_candidacy->getId();
 			$town = $admin_candidacy->getTown();
 			
-			$town_slug = $this->get('slugify')->slugify($town);
+			$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+			$town_name = $province_repository->getMunicipalityName($town);
+			
+			$town_slug = $this->get('slugify')->slugify($town_name);
 			
 			$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/' . $candidate_id . '/photo';
 			
