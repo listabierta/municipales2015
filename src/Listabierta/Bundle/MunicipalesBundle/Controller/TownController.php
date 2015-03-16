@@ -70,6 +70,10 @@ class TownController extends Controller
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
 		
 		$town = $admin_candidacy->getTown();
+		
+		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+		$town_name = $province_repository->getMunicipalityName($town);
+		
 		$admin_id = $admin_candidacy->getId();
 		
 		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
@@ -217,7 +221,7 @@ class TownController extends Controller
 		}
 
 		return $this->render('MunicipalesBundle:Town:step1.html.twig', array(
-				'town' => $town, 
+				'town' => $town_name, 
 				'form' => $form->createView(),
 				'errors' => $form->getErrors(),
 				'address' => $address,
@@ -784,7 +788,10 @@ class TownController extends Controller
 		
 		$town = $admin_candidacy->getTown();
 		
-		$town_slug = $this->get('slugify')->slugify($town);
+		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+		$town_name = $province_repository->getMunicipalityName($town);
+		
+		$town_slug = $this->get('slugify')->slugify($town_name);
 		 
 		$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
 
@@ -1043,8 +1050,11 @@ class TownController extends Controller
 		shuffle($valid_candidates);
 	
 		$town = $admin_candidacy->getTown();
-	
-		$town_slug = $this->get('slugify')->slugify($town);
+		
+		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+		$town_name = $province_repository->getMunicipalityName($town);
+
+		$town_slug = $this->get('slugify')->slugify($town_name);
 			
 		$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
 	
@@ -1273,6 +1283,10 @@ class TownController extends Controller
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
 		
 		$town = $admin_candidacy->getTown();
+		
+		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+		$town_name = $province_repository->getMunicipalityName($town);
+		
 		$admin_id = $admin_candidacy->getId();
 		
 		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
@@ -1338,13 +1352,13 @@ class TownController extends Controller
 		
 		array_multisort($points, SORT_DESC, $candidates_result);
 		
-		$town_slug = $this->get('slugify')->slugify($town);
+		$town_slug = $this->get('slugify')->slugify($town_name);
 		 
 		$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
 		
 		return $this->render('MunicipalesBundle:Town:step_results.html.twig', array(
 				'address' => $address,
-				'town' => $town,
+				'town' => $town_name,
 				'total_voters' => $total_voters,
 				'documents_path' => $documents_path,
 				'candidates' => $candidates_result,
