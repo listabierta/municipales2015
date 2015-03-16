@@ -20,4 +20,20 @@ class ProvinceRepository extends EntityRepository
 		$statement = $this->getEntityManager()->getConnection()->executeQuery($query);
 		return $statement->fetchAll();
 	}
+	
+	public function getMunicipalityName($municipality_id)
+	{
+		$query = "SELECT name FROM municipalities_spain WHERE id='" . intval($municipality_id) . "' LIMIT 1";
+	
+		$statement = $this->getEntityManager()->getConnection()->executeQuery($query);
+		
+		$result = $statement->fetchAll();
+		
+		if(!empty($result))
+		{
+			return $result['name'];
+		}
+		
+		return NULL;
+	}
 }
