@@ -199,6 +199,14 @@ candidate_step7:
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl  
 
+# Ajax requests
+
+ajax_get_municipalities_list:
+    path:     /ajax/get-municipalities-list/{province_id}
+    defaults: { _controller: MunicipalesBundle:Ajax:getMunicipalities }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+
 # Manager
 
 manager_index:
