@@ -64,13 +64,18 @@
 						    	      {% if form.total_days.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.total_days) }}</div>{% endif %}
 								</div>
 								
+								<br /><br /> <br />
 								<div class="row">
-						              <div class="col-md-offset-0 col-md-10">
-						
-						                <p class="text-center">
-											{{ 'candidacy.step7.warning_explanation'|trans }}
-										</p>
-						              </div>
+							              <div class="col-md-offset-0 col-md-10">
+							
+												<div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline">
+													<div class="alert alert-warning">
+										                <p class="text-center">
+															{{ 'candidacy.step7.warning_explanation'|trans }}
+														</p>
+													</div>
+												</div>
+										  </div>
 						        </div>
 						        
 								<div class="row">
