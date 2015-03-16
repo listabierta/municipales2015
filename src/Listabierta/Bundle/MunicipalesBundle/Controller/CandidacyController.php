@@ -355,10 +355,13 @@ class CandidacyController extends Controller
     		$voter_conditions     = $form['voter_conditions'];
     		$technical_constrains = $form['technical_constrains'];
     		
-    		$admin_id = $session->get('admin_id', NULL);;
-    		$town = $session->get('town', NULL);;
+    		$admin_id = $session->get('admin_id', NULL);
+    		$town = $session->get('town', NULL);
     		
-    		$town_slug = $this->get('slugify')->slugify($town);
+    		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+    		$town_name = $province_repository->getMunicipalityName($town);
+
+    		$town_slug = $this->get('slugify')->slugify($town_name);
     		
     		$documents_path = 'docs/' . $town_slug . '/' . $admin_id;
     		
@@ -608,6 +611,9 @@ class CandidacyController extends Controller
     		if(!empty($admin_candidacy))
     		{
     			$town = $admin_candidacy->getTown();
+    			
+    			$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+    			$town_name = $province_repository->getMunicipalityName($town);
     		}
     	}
 
@@ -675,7 +681,10 @@ class CandidacyController extends Controller
     				));
     			}
     			
-    			$default_address_slug = $this->get('slugify')->slugify($town);
+    			$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+    			$town_name = $province_repository->getMunicipalityName($town);
+
+    			$default_address_slug = $this->get('slugify')->slugify($town_name);
     			
     			return $this->render('MunicipalesBundle:Candidacy:step4.html.twig', array(
     					'default_address_slug' => $default_address_slug,
@@ -747,8 +756,11 @@ class CandidacyController extends Controller
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada para obtener la ciudad',
     		));
     	}
-    	 
-    	$default_address_slug = $this->get('slugify')->slugify($town);
+    	
+    	$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+    	$town_name = $province_repository->getMunicipalityName($town);
+
+    	$default_address_slug = $this->get('slugify')->slugify($town_name);
     	
     	$form->handleRequest($request);
     
@@ -961,8 +973,11 @@ class CandidacyController extends Controller
     	}
     	
     	$town = $admin_candidacy->getTown();
-    		
-    	$town_slug = $this->get('slugify')->slugify($town);
+
+    	$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+    	$town_name = $province_repository->getMunicipalityName($town);
+    	
+    	$town_slug = $this->get('slugify')->slugify($town_name);
     	
     	$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
     	
@@ -1083,12 +1098,16 @@ class CandidacyController extends Controller
     			return $this->redirect($this->generateUrl('municipales_candidacy_step8'), 301);
     		}
     	}
-    	 
+    	
+    	$town = $admin_candidacy->getTown();
+    	$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+    	$town_name = $province_repository->getMunicipalityName($town);
+    	
     	return $this->render('MunicipalesBundle:Candidacy:step7.html.twig', array(
     			'form' => $form->createView(),
     			'candidacy_finished' => $candidacy_finished,
     			'address' => $address,
-    			'town' => $admin_candidacy->getTown(),
+    			'town' => $town_name,
     		)
     	);
     }
