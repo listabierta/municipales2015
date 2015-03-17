@@ -44,27 +44,22 @@
 		                        <div class="entry">
 		                        
 									<p>
-										Una vez finalizada la votación, aparecerán en esta pantalla los resultados de la suma de puntos en un listado, ordenados de mayor a menor puntuación.
+										{{ 'candidacy.step8.header_p1'|trans }}.
 									</p>
 								
-									<h3>¿Cómo funciona el sistema de puntuación?</h3>
+									<h3>{{ 'candidacy.step8.header_p1_h3'|trans }}</h3>
 										
 									<p>
-										El sistema que listabierta.org ha escogido es el Borda Modificado, porque es 
-										sencillo de entender por el votante y permite una elección más diversa y 
-										consensuada. En este caso el votante asigna a los candidatos o candidatas 
-										preseleccionados una posición que va del primer al quinto lugar. Una vez 
-										establecido el orden, procede a votar. Internamente, el recuento de puntos 
-										funciona de la siguiente forma:
+										{{ 'candidacy.step8.header_p2'|trans }}:
 									</p>
 										
 									<p>
 										<ul>
-											<li>El candidato o candidata elegido en primer lugar recibe un punto (1)</li>
-											<li>El candidato o candidata elegido en segundo lugar recibe medio punto (½) = 0,5 puntos</li>
-											<li>El candidato o candidata elegido en tercer lugar recibe un tercio de punto (⅓) = 0, 33 puntos</li>
-											<li>El candidato o candidata elegido en cuarto lugar recibe un cuarto de punto (¼) = 0, 25 puntos</li>
-											<li>El candidato o candidata elegido en quinto  lugar recibe una quinta parte de punto (⅕) = 0,20 puntos</li>
+											<li>{{ 'candidacy.step8.header_li1'|trans }}</li>
+											<li>{{ 'candidacy.step8.header_li2'|trans }}</li>
+											<li>{{ 'candidacy.step8.header_li3'|trans }}</li>
+											<li>{{ 'candidacy.step8.header_li4'|trans }}</li>
+											<li>{{ 'candidacy.step8.header_li5'|trans }}</li>
 										</ul>
 									</p>
 		
@@ -78,7 +73,7 @@
                         
                         	<div class="row">
 		                      <h2 class="col-md-8 col-sm-offset-2 text-center">
-		                  		Votación finalizada
+		                  		{{ 'candidacy.step8.vote_finished'|trans }}
 		                      </h2>
 		                    </div>
                     
@@ -88,37 +83,34 @@
 		                        <p class="lead2 text-center">
 		                        
 			                        <div class="entry">
-										Puedes auditar el resultado aquí: (enlace a TRactis)
-										¿Cómo funciona el sellado de tiempo? https://www.tractis.com/home/webservices/tsa
+										{{ 'candidacy.step8.audit'|trans }}: <a href="#">(enlace a TRACTIS(@todo))</a>
+										<br />
+										<a href="https://www.tractis.com/home/webservices/tsa" 
+										title="{{ 'candidacy.step8.how_works_tsa'|trans }}">{{ 'candidacy.step8.how_works_tsa'|trans }}</a>
 										
 										<table class="table">
 										
 											<thead>
 												<tr>
-													<td>Nombre y Apellidos</td>
-													<td>DNI</td>
-													<td>Número de Móvil</td>
-													<td>Total de puntos</td>
-													<td>Posición</td>
+													<td>{{ 'candidacy.step8.photo'|trans }}</td>
+													<td>{{ 'candidacy.step8.name_lastname'|trans }}</td>
+													<td>{{ 'candidacy.step8.dni'|trans }}</td>
+													<td>{{ 'candidacy.step8.phone'|trans }}</td>
+													<td>{{ 'candidacy.step8.total_points'|trans }}</td>
+													<td>{{ 'candidacy.step8.position'|trans }}</td>
 												</tr>
 											</thead>
 											
 											<tbody>
 												<tr>
-													<td>Foto</td>
-													<td>Nombre y Apellidos</td>
-													<td>DNI</td>
-													<td>Número de Móvil</td>
-													<td>Total de puntos</td>
-													<td>Posición</td>
 													{% if candidates|length > 0 %}
 									
 														{% for candidate in candidates %}
 														<tr>
 															<td><img style="width:45px;height:45px" src="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" /></td>
 															<td>{{ candidate.name }} {{ candidate.lastname }}</td>
-															<td>DNI</td>
-															<td>Número de Móvil</td>
+															<td>{{ candidate.dni }}</td>
+															<td>{{ candidate.phone }}</td>
 															<td>{{ candidate.points }}</td>
 															<td>{{ loop.index }}</td>
 														</tr>
@@ -140,12 +132,12 @@
                         	<div class="row alert alert-warning col-sm-offset-1 col-md-10">
                         		
 	                        		<h2 class="col-md-8 col-sm-offset-2 text-center">
-				                  		La votación aún no ha finalizado y aún no estan disponibles los resultados finales. 
+				                  		{{ 'candidacy.step8.vote_not_finished_warning'|trans }}. 
 				                    </h2>
 				                     
 				                    <p class="col-md-8 col-sm-offset-2 text-center">
-				                    	Fecha de inicio de votaciones: {{ vote_start_date|date('d-m-Y') }}<br/>
-				                    	Fecha de cierre de votaciones: {{ vote_end_date|date('d-m-Y') }}
+				                    	{{ 'candidacy.step8.vote_start_date'|trans }}: {{ vote_start_date|date('d-m-Y') }}<br/>
+				                    	{{ 'candidacy.step8.vote_end_date'|trans }}: {{ vote_end_date|date('d-m-Y') }}
 				                    </p>
 		                      
 		                    </div>
