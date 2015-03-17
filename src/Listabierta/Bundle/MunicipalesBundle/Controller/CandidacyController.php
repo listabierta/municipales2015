@@ -1225,8 +1225,11 @@ class CandidacyController extends Controller
     	
     	$now = new \Datetime('NOW');
     	
+    	$candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
+    	$vote_end_date = $candidaty_to_date_timestamp + $candidacy_total_days * 24 * 3600;
+    	
     	// Candidacy is finished, we can show the results
-    	if($now->getTimestamp() - ($candidacy_to_date->getTimestamp() + $candidacy_total_days * 24 * 3600) > 0)
+    	if($now->getTimestamp() - $vote_end_date > 0)
     	{
     		$candidacy_finished = TRUE;
     		
@@ -1307,16 +1310,10 @@ class CandidacyController extends Controller
     		$candidates_result = array();
     	}
     	
-
-    	
-    	// @todo Detect if candidacy is really finished
-    	$candidacy_finished = FALSE;
-    	
-    	//$candidacy_finished = $candidacy_to_date <= time();
-    	
     	return $this->render('MunicipalesBundle:Candidacy:step8.html.twig', array(
     			'candidacy_finished' => $candidacy_finished,
-    			'end_date' => $candidacy_end_date,
+    			'vote_start_date' => $candidacy_to_date,
+    			'vote_end_date' => $vote_end_date,
     			'town' => $town_name,
     			'total_voters' => $total_voters,
     			'documents_path' => $documents_path,
