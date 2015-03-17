@@ -155,6 +155,7 @@ candidacy:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Verificación del voto y resultados
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
         vote_finished: Votación finalizada
         audit: Puedes auditar el resultado aquí
         how_works_tsa: ¿Cómo funciona el sellado de tiempo?
@@ -285,7 +286,7 @@ town:
         
     step9:
         header: Fin
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 9
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Fin
         previous: Anterior
         headline: Resultados públicos de la votación
