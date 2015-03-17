@@ -61,15 +61,6 @@
 				                    <div class="widget-main">
 
 		    {{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
-		
-		     	{% if not form.vars.valid %}
-				<div class="alert alert-danger">
-					  <button data-dismiss="alert" class="close" type="button">
-						<i class="mine-icon fa fa-times"></i>
-					  </button>
-					  {{ form_errors(form) }}
-				</div>
-			{% endif %}
 			
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8 well">
@@ -87,7 +78,7 @@
 								<div class="col-xs-12 col-sm-12">
 		                          <div class="input-daterange input-group">
 		                          	
-		                          	{{ form_widget(form.from, { 'label': 'candidacy.step3.from_label'|trans|raw, 'label_attr' : { 'class' : 'input-sm form-control'}} ) }}
+		                          	{{ form_widget(form.from, { 'label': 'candidacy.step3.from_label'|trans|raw, 'label_attr' : { 'class' : 'input-sm form-control', 'lang' : 'es'}} ) }}
 	
 		                            {% if form.from.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.from) }}</div>{% endif %}
 		                        </div>
@@ -103,7 +94,7 @@
 					<div class="col-xs-12 col-sm-12">
 	                          <div class="input-daterange input-group">
 	                          	
-	                          	{{ form_widget(form.to, { 'label': 'candidacy.step3.to_label'|trans|raw, 'label_attr' : { 'class' : 'input-sm form-control'}} ) }}
+	                          	{{ form_widget(form.to, { 'label': 'candidacy.step3.to_label'|trans|raw, 'label_attr' : { 'class' : 'input-sm form-control', 'lang' : 'es'}} ) }}
 
 	                            {% if form.to.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.to) }}</div>{% endif %}
 	                        </div>
