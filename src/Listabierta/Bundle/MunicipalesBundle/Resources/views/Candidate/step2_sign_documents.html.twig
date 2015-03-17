@@ -151,12 +151,35 @@
 
 				};
 
-				upload_processor('#candidate_step2_program');
-				upload_processor('#candidate_step2_legal_conditions');
-				upload_processor('#candidate_step2_recall_term');
-				upload_processor('#candidate_step2_participatory_term');
-				upload_processor('#candidate_step2_voter_conditions');
-				upload_processor('#candidate_step2_technical_constrains');
+				if($('#candidate_step2_program')) 
+				{
+					upload_processor('#candidate_step2_program');
+				}
+				
+				if($('#candidate_step2_legal_conditions')) 
+				{
+					upload_processor('#candidate_step2_legal_conditions');
+				}
+
+				if($('#candidate_step2_recall_term')) 
+				{
+					upload_processor('#candidate_step2_recall_term');
+				}
+
+				if($('#candidate_step2_participatory_term')) 
+				{
+					upload_processor('#candidate_step2_participatory_term');
+				}
+
+				if($('#candidate_step2_voter_conditions')) 
+				{
+					upload_processor('#candidate_step2_voter_conditions');
+				}
+
+				if($('#candidate_step2_technical_constrains')) 
+				{
+					upload_processor('#candidate_step2_technical_constrains');
+				}
 				
 				// div.form-control.file-caption.kv-fileinput-caption
 				$('.kv-fileinput-caption').each(function(index, value)
@@ -228,6 +251,7 @@
 		                <div class="col-md-offset-2 col-md-9 form-horizont">
 		                  <div class="row">
 		                  
+		                  {% if loaded_files.program %}
 		                    <div class="form-group row{% if form.program.vars.errors|length > 0 %} has-error{% endif %}">
 		                      <div class="col-xs-12">
 		                        <label class="required control-label">
@@ -249,7 +273,9 @@
 		                      </div>
 		
 		                    </div>
-		                    
+		                  {% endif %}
+		                   
+		                  {% if loaded_files.legal_conditions %}
 		                    <div class="form-group row{% if form.legal_conditions.vars.errors|length > 0 %} has-error{% endif %}">
 		                      <div class="col-xs-12">
 		                        <label class="required control-label">
@@ -271,9 +297,9 @@
 		                        </div>
 		                      </div>
 		                    </div>
-		
+						 {% endif %}
 	
-	
+						 {% if loaded_files.recall_term %}
 		                    <div class="form-group row{% if form.recall_term.vars.errors|length > 0 %} has-error{% endif %}">
 		                      <div class="col-xs-12">
 		                        <label class="required control-label">
@@ -297,9 +323,9 @@
 		                      </div>
 		
 		                    </div>
-		                    
+		                  {% endif %}  
 		                      
-		                    
+		                  {% if loaded_files.participatory_term %} 
 		                    <div class="form-group row{% if form.participatory_term.vars.errors|length > 0 %} has-error{% endif %}">
 		                      <div class="col-xs-12">
 		                        <label class="required control-label">
@@ -323,9 +349,9 @@
 		                      </div>
 		
 		                    </div>
-		                    
+		                  {% endif %}  
 
-		                    
+		                  {% if loaded_files.voter_conditions %}  
 		                    <div class="form-group row{% if form.voter_conditions.vars.errors|length > 0 %} has-error{% endif %}">
 		                      <div class="col-xs-12">
 		                        <label class="required control-label">
@@ -350,9 +376,9 @@
 		                      </div>
 		
 		                    </div>
+		                  {% endif %}   
 		                    
-		                    
-
+						  {% if loaded_files.technical_constrains %}  
 		                    <div class="form-group row{% if form.technical_constrains.vars.errors|length > 0 %} has-error{% endif %}">
 		                      <div class="col-xs-12">
 		                        <label class="required control-label">
@@ -377,7 +403,7 @@
 		                      </div>
 		                    </div>
 		                  </div>
-		                  
+		                 {% endif %}   
 
                   </div>
                 </div>
