@@ -14,8 +14,9 @@ class CandidacyStep1Type extends AbstractType
 {
 	
 	private $provinces_data = array();
+	private $municipalities_data = array();
 	
-	public function __construct($provinces_data)
+	public function __construct($provinces_data = NULL, $municipalities_data = NULL)
 	{
 		// Flatten the results array
 		$result = array();
@@ -26,6 +27,8 @@ class CandidacyStep1Type extends AbstractType
 		}
 		
 		$this->provinces_data = $result;
+		
+		$this->municipalities_data = $municipalities_data;
 	}
 
 	public function buildForm(FormBuilderInterface $builder, array $options)
@@ -93,8 +96,8 @@ class CandidacyStep1Type extends AbstractType
         					new Assert\NotBlank(),
         				)))
         	    ->add('town', 'choice', array(
-        	    		'choices' => array(0 => 'Elige un municipio'),
-        	    		'required' => true, 
+        	    		'choices' => empty($this->municipalities_data) ? array(0 => 'Elige un municipio') : $this->municipalities_data,
+        	    		'required' => false, 
         				'constraints' => array(
         					new Assert\NotBlank(),
         				)))
