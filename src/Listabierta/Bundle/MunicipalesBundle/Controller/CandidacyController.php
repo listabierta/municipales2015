@@ -111,7 +111,28 @@ class CandidacyController extends Controller
     	$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
     	$provinces_data = $province_repository->fetchProvinces();
     	
-    	$form = $this->createForm(new CandidacyStep1Type($provinces_data), NULL, array(
+    	if(isset($_REQUEST['candidacy_step1']) && isset($_REQUEST['candidacy_step1']['province']))
+    	{
+    		if(!empty($_REQUEST['candidacy_step1']['province']))
+    		{
+    			$province_form = intval($_REQUEST['candidacy_step1']['province']);
+    			
+    			$municipalities = array();
+    			$municipalities[0] = 'Elige municipio';
+    			 
+    			$query = "SELECT id, name FROM municipalities_spain WHERE province_id='" . intval($province_form) . "'";
+
+    			$statement = $entity_manager->getConnection()->executeQuery($query);
+    			$municipalities_data = $statement->fetchAll();
+    			 
+    			foreach($municipalities_data as $result)
+    			{
+    				$municipalities[$result['id']] = $result['name'];
+    			}
+    		}
+    	}
+    	
+    	$form = $this->createForm(new CandidacyStep1Type($provinces_data, $municipalities), NULL, array(
     			'action' => $this->generateUrl('municipales_candidacy_step1'),
 			    'method' => 'POST',
     			)
@@ -165,6 +186,21 @@ class CandidacyController extends Controller
     		
     		$admin_phone = $admin_candidacy_repository->findOneBy(array('phone' => $phone));
     		 
+    		if(empty($town) || $town == 0)
+    		{
+    			$form->addError(new FormError('El campo municipio es obligatorio'));
+    			$ok = FALSE;
+    		}
+    		
+    		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+    		$town_name = $province_repository->getMunicipalityName($town);
+    		
+    		if(empty($town_name))
+    		{
+    			$form->addError(new FormError('El campo municipio es obligatorio. No se ha encontrado un nombre de identificador valido para el ID de municipio ' . $town));
+    			$ok = FALSE;
+    		}
+    		
     		if(!empty($admin_phone))
     		{
     			$form->addError(new FormError('Ya existe un usuario administrador registrado con el teléfono ' . $phone));
@@ -1192,10 +1228,81 @@ class CandidacyController extends Controller
     	if($now->getTimestamp() - ($candidacy_to_date->getTimestamp() + $candidacy_total_days * 24 * 3600) > 0)
     	{
     		$candidacy_finished = TRUE;
+    		
+    		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
+    		
+    		$voters = $voter_repository->findBy(array('admin_id' => $admin_id));
+    		
+    		$total_voters = 0;
+    		$final_voters = array();
+    		$results = array();
+    		foreach($voters as $voter)
+    		{
+    			$vote_info = $voter->getVoteInfo();
+    				
+    			if(!empty($vote_info))
+    			{
+    				$total_voters += 1;
+    		
+    				$candidates = $vote_info['candidates'];
+    		
+    				foreach($candidates as $candidate)
+    				{
+    					$candidate_id = $candidate['id'];
+    					$candidate_points = $candidate['points'];
+    					if(isset($results[$candidate_id]))
+    					{
+    						$results[$candidate_id] += $candidate['points'];
+    					}
+    					else
+    					{
+    						$results[$candidate_id] = $candidate['points'];
+    					}
+    				}
+    			}
+    		}
+    		
+    		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
+    		
+    		$candidates_result = array();
+    		if(!empty($results))
+    		{
+    			foreach($results as $result_id => $result_points)
+    			{
+    				$candidate_info = $candidate_repository->findOneById($result_id);
+    		
+    				if(!empty($candidate_info))
+    				{
+    					$candidate_aux = array();
+    					$candidate_aux['id'] = $result_id;
+    					$candidate_aux['name'] = $candidate_info->getName();
+    					$candidate_aux['lastname'] = $candidate_info->getLastname();
+    					$candidate_aux['points'] = $result_points;
+    						
+    					$candidates_result[] = $candidate_aux;
+    				}
+    			}
+    		}
+    		
+    		$points = array();
+    		foreach ($candidates_result as $key => $row)
+    		{
+    			$points[$key] = $row['points'];
+    		}
+    		
+    		array_multisort($points, SORT_DESC, $candidates_result);
+    		
+    		$town_slug = $this->get('slugify')->slugify($town_name);
+    			
+    		$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
     	}
     	else // Candidacy is not finished. Hide the temporal results
     	{
     		$candidacy_finished = FALSE;
+    		$town_name = NULL;
+    		$documents_path = NULL;
+    		$candidates = NULL;
+    		$total_voters = NULL;
     	}
     	
 
@@ -1208,6 +1315,10 @@ class CandidacyController extends Controller
     	return $this->render('MunicipalesBundle:Candidacy:step8.html.twig', array(
     			'candidacy_finished' => $candidacy_finished,
     			'end_date' => $candidacy_end_date,
+    			'town' => $town_name,
+    			'total_voters' => $total_voters,
+    			'documents_path' => $documents_path,
+    			'candidates' => $candidates_result,
     			)
     		);
     }
