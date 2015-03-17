@@ -57,13 +57,13 @@
 		                        		<p class="lead">
 				                        	{{ 'town.step7_confirmation.filter_selection'|trans }}:
 				                        	
-				                        	<div class="col-xs-12 center inline">
-				                        		{{ candidates|length }} candidatos/as de {{ total_candidates }} (*)
+				                        	<div class="col-xs-12 center inline" style="color:red">
+				                        		{{ candidates|length }} {{ 'town.step7_confirmation.candidates_of'|trans }} {{ total_candidates }} (*)
 				                        	</div>
 				
 											<br />
 											
-											<div class="col-xs-12 center">
+											<div class="col-xs-12 center" style="color:red">
 												(*) {{ 'town.step7_confirmation.advice'|trans }}
 											</div>
 											
