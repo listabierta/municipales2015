@@ -77,6 +77,15 @@ class CandidateController extends Controller
 					'error' => 'La candidatura esta cerrada para ' . $address_slug . ', la fecha de finalización fue ' . $candidacy_to->format('d-m-Y'),
 			));
 		}
+		
+		$candidacy_total_days = $admin_candidacy->getTotalDays();
+		 
+		if(!empty($candidacy_total_days))
+		{
+			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+					'error' => 'Error: una vez iniciada la votación no es posible registrar más candidatos o candidatas.',
+			));
+		}
 
 		$form = $this->createForm(new CandidateStep1Type(), NULL, array(
 				'action' => $this->generateUrl('candidate_step1', array('address' => $address)),
@@ -205,6 +214,15 @@ class CandidateController extends Controller
 			));		
 		}
 	
+		$candidacy_total_days = $admin_candidacy->getTotalDays();
+			
+		if(!empty($candidacy_total_days))
+		{
+			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+					'error' => 'Error: una vez iniciada la votación no es posible registrar más candidatos o candidatas.',
+			));
+		}
+		
 		$form = $this->createForm(new CandidateStepVerifyType(), NULL, array(
 				'action' => $this->generateUrl('candidate_step_verify', array('address' => $address_slug)),
 				'method' => 'POST',
@@ -279,6 +297,15 @@ class CandidateController extends Controller
 		{
 			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
 					'error' => 'No existe la candidatura de administrador para cargar la dirección ' . $address_slug,
+			));
+		}
+		
+		$candidacy_total_days = $admin_candidacy->getTotalDays();
+			
+		if(!empty($candidacy_total_days))
+		{
+			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+					'error' => 'Error: una vez iniciada la votación no es posible registrar más candidatos o candidatas.',
 			));
 		}
 		
@@ -585,6 +612,15 @@ class CandidateController extends Controller
 			));
 		}
 		
+		$candidacy_total_days = $admin_candidacy->getTotalDays();
+			
+		if(!empty($candidacy_total_days))
+		{
+			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+					'error' => 'Error: una vez iniciada la votación no es posible registrar más candidatos o candidatas.',
+			));
+		}
+		
 		$candidate_id = $session->get('candidate_id', NULL);
 		
 		if(empty($candidate_id))
@@ -673,6 +709,15 @@ class CandidateController extends Controller
 		{
 			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
 					'error' => 'No existe la candidatura de administrador para cargar la dirección ' . $address_slug,
+			));
+		}
+		
+		$candidacy_total_days = $admin_candidacy->getTotalDays();
+			
+		if(!empty($candidacy_total_days))
+		{
+			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+					'error' => 'Error: una vez iniciada la votación no es posible registrar más candidatos o candidatas.',
 			));
 		}
 	
@@ -769,6 +814,15 @@ class CandidateController extends Controller
 					'error' => 'No existe la candidatura de administrador para cargar la dirección ' . $address_slug,
 			));
 		}
+		
+		$candidacy_total_days = $admin_candidacy->getTotalDays();
+			
+		if(!empty($candidacy_total_days))
+		{
+			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+					'error' => 'Error: una vez iniciada la votación no es posible registrar más candidatos o candidatas.',
+			));
+		}
 	
 		$candidate_id = $session->get('candidate_id', NULL);
 	
@@ -863,6 +917,15 @@ class CandidateController extends Controller
 					'error' => 'No existe la candidatura de administrador para cargar la dirección ' . $address_slug,
 			));
 		}
+		
+		$candidacy_total_days = $admin_candidacy->getTotalDays();
+			
+		if(!empty($candidacy_total_days))
+		{
+			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+					'error' => 'Error: una vez iniciada la votación no es posible registrar más candidatos o candidatas.',
+			));
+		}
 	
 		$candidate_id = $session->get('candidate_id', NULL);
 	
@@ -944,6 +1007,15 @@ class CandidateController extends Controller
 		{
 			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
 					'error' => 'No existe la candidatura de administrador para cargar la dirección ' . $address_slug,
+			));
+		}
+		
+		$candidacy_total_days = $admin_candidacy->getTotalDays();
+			
+		if(!empty($candidacy_total_days))
+		{
+			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+					'error' => 'Error: una vez iniciada la votación no es posible registrar más candidatos o candidatas.',
 			));
 		}
 	
