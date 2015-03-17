@@ -1179,7 +1179,6 @@ class CandidacyController extends Controller
     	}
     	 
     	$address_slug = NULL;
-    	$candidacy_end_date = NULL;
     	
     	if(!empty($admin_id))
     	{
@@ -1206,8 +1205,6 @@ class CandidacyController extends Controller
     						'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
     				));
     			}
-    			
-    			$candidacy_end_date = $candidacy_to_date->add(\DateInterval::createFromDateString('+' . $candidacy_total_days . ' days'));
     		}
     		else 
     		{

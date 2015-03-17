@@ -119,8 +119,6 @@ class TownController extends Controller
 			));
 		}
 		 
-		$candidacy_end_date = $candidacy_to_date->add(\DateInterval::createFromDateString('+' . $candidacy_total_days . ' days'));
-		
 		$now = new \Datetime('NOW');
 		
 		// Candidacy is finished, we can show the results
@@ -341,8 +339,6 @@ class TownController extends Controller
 			));
 		}
 			
-		$candidacy_end_date = $candidacy_to_date->add(\DateInterval::createFromDateString('+' . $candidacy_total_days . ' days'));
-		
 		$now = new \Datetime('NOW');
 		
 		// Candidacy is finished, we can show the results
@@ -519,8 +515,6 @@ class TownController extends Controller
 			));
 		}
 			
-		$candidacy_end_date = $candidacy_to_date->add(\DateInterval::createFromDateString('+' . $candidacy_total_days . ' days'));
-		
 		$now = new \Datetime('NOW');
 		
 		// Candidacy is finished, we can show the results
@@ -542,8 +536,8 @@ class TownController extends Controller
 			{
 				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 						'error' => 'Error: El plazo de votación aún no se ha iniciado. <br />
-						Fecha de inicio: ' . date('d-m-Y' , $candidaty_to_date_timestamp) . '<br />' .
-						'Fecha de fin: ' . date('d-m-Y' , $vote_end_date),
+						Fecha de inicio: ' . date('d-m-Y h:i:s' , $candidaty_to_date_timestamp) . '<br />' .
+						'Fecha de fin: ' . date('d-m-Y h:i:s' , $vote_end_date),
 				));
 			}
 		}
@@ -737,8 +731,6 @@ class TownController extends Controller
 			));
 		}
 			
-		$candidacy_end_date = $candidacy_to_date->add(\DateInterval::createFromDateString('+' . $candidacy_total_days . ' days'));
-		
 		$now = new \Datetime('NOW');
 		
 		// Candidacy is finished, we can show the results
@@ -1052,8 +1044,6 @@ class TownController extends Controller
 			));
 		}
 			
-		$candidacy_end_date = $candidacy_to_date->add(\DateInterval::createFromDateString('+' . $candidacy_total_days . ' days'));
-		
 		$now = new \Datetime('NOW');
 		
 		// Candidacy is finished, we can show the results
@@ -1468,8 +1458,6 @@ class TownController extends Controller
 			));
 		}
 			
-		$candidacy_end_date = $candidacy_to_date->add(\DateInterval::createFromDateString('+' . $candidacy_total_days . ' days'));
-		
 		$now = new \Datetime('NOW');
 		
 		// Candidacy is finished, we can show the results
@@ -1527,8 +1515,6 @@ class TownController extends Controller
 	
 	public function resultsAction($address = NULL, Request $request = NULL)
 	{
-		// @todo Check end vote for show data
-		
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
 		
@@ -1567,8 +1553,6 @@ class TownController extends Controller
 			));
 		}
 			
-		$candidacy_end_date = $candidacy_to_date->add(\DateInterval::createFromDateString('+' . $candidacy_total_days . ' days'));
-		
 		$now = new \Datetime('NOW');
 		
 		// Candidacy is finished, we can show the results
