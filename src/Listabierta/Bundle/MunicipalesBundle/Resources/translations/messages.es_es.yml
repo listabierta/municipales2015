@@ -293,7 +293,7 @@ candidate:
         
     step2:
         header: Firma documentos
-        p1: Antes de subir tu perfil, debes descargarte, firmar (digital o manualmente) y volver a enviar los documentos siguientes para confirmar tu aceptación de las condiciones de la candidatura ciudadana
+        p1: Debes firmar tu conformidad con los condicionantes de la candidatura, para ello haz clic en “Descargar” y firma (digital o manualmente) el documento, y una vez firmado lo adjuntas haciendo clic en “Examinar”.  Cuando hayas hecho lo mismo con todos los documentos,  haz clic en continuar. Puede que el administrador de la candidatura no ha subido ninguna condición, entonces, simplemente haz clic en continuar
     
         program: Aceptación del programa de la candidatura
         legal_conditions: Cumplimiento de las condiciones legales y veracidad de la información aportada
