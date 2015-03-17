@@ -143,16 +143,21 @@
 		                    </div>
                         {% endif %}
 
-	                {% if candidacy_finished %} 
+	                
 	                    <hr>
 		                <div class="wizard-actions">
 		
-						  <button class="submit btn btn-success btn-next" onclick="location.href='{{ path('municipales_candidacy_step9') }}'; return false;">
-							     {{ 'candidacy.step8.continue'|trans|raw }}
+						  <button class="submit btn btn-success btn-next" onclick="location.href='{{ path('municipales_candidacy_step7') }}'; return false;">
+							     {{ 'candidacy.step8.previous'|trans|raw }}
 						  </button>
+						  
+						  {% if candidacy_finished %} 
+						 	 <button class="submit btn btn-success btn-next" onclick="location.href='{{ path('municipales_candidacy_step9') }}'; return false;">
+								     {{ 'candidacy.step8.continue'|trans|raw }}
+							 </button>
+		           		  {% endif %}
 
 		                </div>
-		            {% endif %}
                     
                   </div>
                 </div>
