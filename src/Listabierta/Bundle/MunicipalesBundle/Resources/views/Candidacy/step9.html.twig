@@ -32,21 +32,21 @@
 
                     <div class="row">
                       <h2 class="col-md-8 col-sm-offset-2 text-center">
-                  		Enlace a los resultados de la elección
+                  		{{ 'candidacy.step9.link_result'|trans }}
                       </h2>
                     </div>
                     <div class="row">
-                      <div class="col-md-offset-2 col-md-8 well">
+                      <div class="col-md-offset-0 col-md-12 well center">
 
                         <p class="lead2 text-center">
                         
                         
                         <div class="entry">
-							Proporciona este enlace público para mostrar los resultados de la votación
-							
+                        	{{ 'candidacy.step9.public_link'|trans }}
+
 							<br/>
 							
-							<h1>http://municipales2015.listabierta.org/{{ address_slug }}/resultados</h1>
+							<h1><a href="http://municipales2015.listabierta.org/{{ address_slug }}/resultados" title="{{ 'candidacy.step9.public_link'|trans }}">http://municipales2015.listabierta.org/{{ address_slug }}/resultados</a></h1>
 
 						</div>
 
