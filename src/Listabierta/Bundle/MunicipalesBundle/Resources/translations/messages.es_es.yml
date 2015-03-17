@@ -155,6 +155,26 @@ candidacy:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Verificación del voto y resultados
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        vote_finished: Votación finalizada
+        audit: Puedes auditar el resultado aquí
+        how_works_tsa: ¿Cómo funciona el sellado de tiempo?
+        photo: Foto
+        name_lastname: Nombre y Apellidos
+        dni: DNI
+        phone: Número de Móvil
+        total_points: Total de puntos
+        position: Posición
+        vote_not_finished_warning: La votación aún no ha finalizado y aún no estan disponibles los resultados finales
+        vote_start_date: Fecha de inicio de votaciones
+        vote_end_date: Fecha de cierre de votaciones
+        header_p1: Una vez finalizada la votación, aparecerán en esta pantalla los resultados de la suma de puntos en un listado, ordenados de mayor a menor puntuación
+        header_p1_h3: ¿Cómo funciona el sistema de puntuación?
+        header_p2: El sistema que listabierta.org ha escogido es el Borda Modificado, porque es sencillo de entender por el votante y permite una elección más diversa y consensuada. En este caso el votante asigna a los candidatos o candidatas preseleccionados una posición que va del primer al quinto lugar. Una vez establecido el orden, procede a votar. Internamente, el recuento de puntos funciona de la siguiente forma
+        header_li1: "El candidato o candidata elegido en primer lugar recibe un punto (1)"
+        header_li2: "El candidato o candidata elegido en segundo lugar recibe medio punto (½) = 0,5 puntos"
+        header_li3: "El candidato o candidata elegido en tercer lugar recibe un tercio de punto (⅓) = 0, 33 puntos"
+        header_li4: "El candidato o candidata elegido en cuarto lugar recibe un cuarto de punto (¼) = 0, 25 puntos"
+        header_li5: "El candidato o candidata elegido en quinto  lugar recibe una quinta parte de punto (⅕) = 0,20 puntos"
         
     step9:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
@@ -245,6 +265,7 @@ town:
         previous: Revisar criterios
         filter_selection: Con tu selección actual de filtros se te mostrarán
         advice: Te aconsejamos un máximo de 10
+        candidates_of: candidatos/as de
              
     step7:
         header: Elige candidatos
