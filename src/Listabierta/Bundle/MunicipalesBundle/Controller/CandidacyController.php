@@ -372,6 +372,7 @@ class CandidacyController extends Controller
     public function step2Action(Request $request = NULL)
     {
     	$session = $this->getRequest()->getSession();
+    	$entity_manager = $this->getDoctrine()->getManager();
     	 
     	$form = $this->createForm(new CandidacyStep2Type(), NULL, array(
     			'action' => $this->generateUrl('municipales_candidacy_step2'),
