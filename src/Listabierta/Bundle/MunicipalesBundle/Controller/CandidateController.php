@@ -329,6 +329,12 @@ class CandidateController extends Controller
 		$loaded_files['voter_conditions']     = @file_exists($documents_path . '/voter_conditions.pdf');
 		$loaded_files['technical_constrains'] = @file_exists($documents_path . '/technical_constrains.pdf');
 		
+		// The admin didn't upload any document, so skipping to next step
+		if(count($loaded_files) == 0)
+		{
+			return $this->step3Action($request, $address);
+		}
+		
 		$candidate_id = $session->get('candidate_id', NULL);
 		
 		if(empty($candidate_id))
