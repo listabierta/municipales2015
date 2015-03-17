@@ -143,24 +143,17 @@
 		                    </div>
                         {% endif %}
 
-                    <div class="step-pane active col-xs-12" data-step="1">
+	                {% if candidacy_finished %} 
+	                    <hr>
+		                <div class="wizard-actions">
+		
+						  <button class="submit btn btn-success btn-next" onclick="location.href='{{ path('municipales_candidacy_step9') }}'; return false;">
+							     {{ 'candidacy.step8.continue'|trans|raw }}
+						  </button>
 
-                      <div class="col-md-offset-2 col-md-8 form-horizont">
-                        <div class="widget-box2">
-
-                          <div class="widget-body">
-                            <div class="widget-main">
-
-                              <div class="form-group text-center">
-
-                                {# <a href="#" title="Alta candidaturas asdsad">http://link</a> #}
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+		                </div>
+		            {% endif %}
+                    
                   </div>
                 </div>
 	            
