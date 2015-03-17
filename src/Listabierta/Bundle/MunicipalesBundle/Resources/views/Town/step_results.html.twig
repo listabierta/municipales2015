@@ -1,6 +1,6 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
-{% block title %}{{ 'candidacy.step9.html_title'|trans }}{% endblock %}
+{% block title %}{{ 'town.step9.html_title'|trans }}{% endblock %}
 
 {% from 'MunicipalesBundle:macros:steps.html.twig' import steps_town_widget %}
 
@@ -9,10 +9,10 @@
       <div class="container marketing">
 
         <div class="headline">
-          <h2>{{ 'candidacy.step9.headline'|trans }}</h2>
+          <h2>{{ 'town.step9.headline'|trans }}</h2>
         </div>
         
-        <h3 class="featurette-headin"> <i>{{ 'candidacy.step9.headin1'|trans }} {{ town|capitalize }} {{ 'candidacy.step9.headin2'|trans }} listAbierta.org</i></h3>
+        <h3 class="featurette-headin"> <i>{{ 'town.step9.headin1'|trans }} {{ town|capitalize }} {{ 'town.step9.headin2'|trans }} listAbierta.org</i></h3>
         
         <!-- START THE FEATURETTES -->
 
@@ -33,14 +33,14 @@
                   <div class="step-content pos-rel">
   
                     <div data-step="1" class="step-pane active row">
-                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'candidacy.step9.candidates_voted'|trans }}</h2>
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'town.step9.candidates_voted'|trans }}</h2>
                       
                       <div class="col-sm-offset-1 col-md-10 well">
 
 						<p class="lead2">
 
 						    <div class="col-sm-offset-0 col-md-12">
-		                      	{{ 'candidacy.step9.total_voters'|trans }}: {{ total_voters }}
+		                      	{{ 'town.step9.total_voters'|trans }}: {{ total_voters }}
 		                    </div>
                       
 							<br /><br />
@@ -51,8 +51,8 @@
 									<tr>
 										<td></td>
 										<td></td>
-										<td>{{ 'candidacy.step9.total_points'|trans }}</td>
-										<td>{{ 'candidacy.step9.position'|trans }}</td>
+										<td>{{ 'town.step9.total_points'|trans }}</td>
+										<td>{{ 'town.step9.position'|trans }}</td>
 									</tr>
 								</thead>
 								
