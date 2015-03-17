@@ -60,15 +60,15 @@
 
 								<div class="form-group{% if form.total_days.vars.errors|length > 0 %} has-error{% endif %}">
 						    		  {{ form_label(form.total_days, 'candidacy.step7.days'|trans, {'label_attr' : { 'class' : 'col-sm-1 control-label no-padding-right' } }) }}
-						    	      {{ form_widget(form.total_days, { 'value' : 7 }) }}
+						    	      {{ form_widget(form.total_days, { 'value' : 2 }) }}
 						    	      {% if form.total_days.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.total_days) }}</div>{% endif %}
 								</div>
 								
 								<br /><br /> <br />
 								<div class="row">
-							              <div class="col-md-offset-0 col-md-10">
+							              <div class="col-md-offset-0 col-md-12">
 							
-												<div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline">
+												<div class="help-block col-xs-12 col-sm-10 col-sm-offset-1 inline">
 													<div class="alert alert-warning">
 										                <p class="text-center">
 															{{ 'candidacy.step7.warning_explanation'|trans }}
