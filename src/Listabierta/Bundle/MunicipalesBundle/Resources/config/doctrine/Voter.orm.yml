@@ -63,6 +63,14 @@ Listabierta\Bundle\MunicipalesBundle\Entity\Voter:
         
         vote_info:
             type: array
-            nullable: TRUE    
+            nullable: TRUE   
+        
+        vote_response_string:
+            type: string
+            nullable: TRUE
+            
+        vote_response_time:
+            type: integer
+            nullable: TRUE
             
     lifecycleCallbacks: {  }

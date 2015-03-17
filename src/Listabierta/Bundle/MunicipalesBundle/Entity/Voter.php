@@ -646,4 +646,60 @@ class Voter implements AdvancedUserInterface, \Serializable
     {
         return $this->vote_info;
     }
+    /**
+     * @var string
+     */
+    private $vote_response_string;
+
+    /**
+     * @var integer
+     */
+    private $vote_response_time;
+
+
+    /**
+     * Set vote_response_string
+     *
+     * @param string $voteResponseString
+     * @return Voter
+     */
+    public function setVoteResponseString($voteResponseString)
+    {
+        $this->vote_response_string = $voteResponseString;
+
+        return $this;
+    }
+
+    /**
+     * Get vote_response_string
+     *
+     * @return string 
+     */
+    public function getVoteResponseString()
+    {
+        return $this->vote_response_string;
+    }
+
+    /**
+     * Set vote_response_time
+     *
+     * @param integer $voteResponseTime
+     * @return Voter
+     */
+    public function setVoteResponseTime($voteResponseTime)
+    {
+        $this->vote_response_time = $voteResponseTime;
+
+        return $this;
+    }
+
+    /**
+     * Get vote_response_time
+     *
+     * @return integer 
+     */
+    public function getVoteResponseTime()
+    {
+        return $this->vote_response_time;
+    }
 }
