@@ -374,6 +374,49 @@ class CandidacyController extends Controller
     	$session = $this->getRequest()->getSession();
     	$entity_manager = $this->getDoctrine()->getManager();
     	 
+    	$admin_id = NULL;
+    	
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	
+    	$securityContext = $this->container->get('security.context');
+    	 
+    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+    	{
+    		$current_user = $securityContext->getToken()->getUser();
+    		 
+    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
+    		{
+    			$admin_id = $current_user->getId();
+    		}
+    	}
+    	else
+    	{
+    		$admin_id = $session->get('admin_id');
+    	}
+    	
+    	if(!empty($admin_id))
+    	{
+    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    	
+    		if(!empty($admin_candidacy))
+    		{
+    			$town = $admin_candidacy->getTown();
+    		}
+    	}
+    	
+    	if(empty($town))
+    	{
+    		$town = $session->get('town', NULL);
+    	}
+    	 
+    	if(empty($town))
+    	{
+    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada para obtener la ciudad',
+    		));
+    	}
+    	
     	$form = $this->createForm(new CandidacyStep2Type(), NULL, array(
     			'action' => $this->generateUrl('municipales_candidacy_step2'),
     			'method' => 'POST',
@@ -391,9 +434,6 @@ class CandidacyController extends Controller
     		$participatory_term   = $form['participatory_term'];
     		$voter_conditions     = $form['voter_conditions'];
     		$technical_constrains = $form['technical_constrains'];
-    		
-    		$admin_id = $session->get('admin_id', NULL);
-    		$town = $session->get('town', NULL);
     		
     		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
     		$town_name = $province_repository->getMunicipalityName($town);
@@ -1162,12 +1202,14 @@ class CandidacyController extends Controller
     	 
     	$entity_manager = $this->getDoctrine()->getManager();
     	 
+        $admin_id = NULL;
+
     	$securityContext = $this->container->get('security.context');
     	
     	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
     	{
     		$current_user = $securityContext->getToken()->getUser();
-    		 
+    	
     		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
     		{
     			$admin_id = $current_user->getId();
@@ -1176,6 +1218,29 @@ class CandidacyController extends Controller
     	else
     	{
     		$admin_id = $session->get('admin_id');
+    	}
+    	 
+    	if(!empty($admin_id))
+    	{
+    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    		
+    		if(!empty($admin_candidacy))
+    		{
+    			$town = $admin_candidacy->getTown();
+    		}
+    	}
+
+    	if(empty($town))
+    	{
+	    	$town = $session->get('town', NULL);
+    	}
+    	
+    	if(empty($town))
+    	{
+    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada para obtener la ciudad',
+    		));
     	}
     	 
     	$address_slug = NULL;
@@ -1278,6 +1343,8 @@ class CandidacyController extends Controller
     					$candidate_aux['id'] = $result_id;
     					$candidate_aux['name'] = $candidate_info->getName();
     					$candidate_aux['lastname'] = $candidate_info->getLastname();
+    					$candidate_aux['dni'] = $candidate_info->getDNI();
+    					$candidate_aux['phone'] = $candidate_info->getPhone();
     					$candidate_aux['points'] = $result_points;
     						
     					$candidates_result[] = $candidate_aux;
@@ -1292,6 +1359,15 @@ class CandidacyController extends Controller
     		}
     		
     		array_multisort($points, SORT_DESC, $candidates_result);
+    		
+    		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+    		$town_name = $province_repository->getMunicipalityName($town);
+    		
+    		if(empty($town_name))
+    		{
+    			$form->addError(new FormError('El campo municipio es obligatorio. No se ha encontrado un nombre de identificador valido para el ID de municipio ' . $town));
+    			$ok = FALSE;
+    		}
     		
     		$town_slug = $this->get('slugify')->slugify($town_name);
     			
