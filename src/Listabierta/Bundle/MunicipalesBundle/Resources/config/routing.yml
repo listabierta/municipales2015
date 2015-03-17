@@ -207,6 +207,14 @@ ajax_get_municipalities_list:
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
 
+# Tractis
+
+tractis_sign:
+    path:     /tractis/sign
+    defaults: { _controller: MunicipalesBundle:Tractis:sign }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+
 # Manager
 
 manager_index:
