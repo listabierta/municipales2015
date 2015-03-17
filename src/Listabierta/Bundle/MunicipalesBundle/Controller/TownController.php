@@ -1578,7 +1578,7 @@ class TownController extends Controller
 		if($now->getTimestamp() - $vote_end_date < 0)
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-					'error' => 'Error: El plazo de votación aun no ha finalizado. <br />Fecha de inicio: ' . date('d-m-Y' , $candidaty_to_date_timestamp) . '<br />' .
+					'error' => 'Error: El plazo de votación aún no ha finalizado. <br />Fecha de inicio: ' . date('d-m-Y' , $candidaty_to_date_timestamp) . '<br />' .
 								'Fecha de fin: ' . date('d-m-Y' , $vote_end_date),
 					
 			));
