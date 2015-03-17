@@ -181,6 +181,8 @@ candidacy:
         h1_title: Presentación de las listas electas       
         continue: Iniciar votación
         result: Resultados de la votación
+        link_result: Enlace a los resultados de la elección
+        public_link: Proporciona este enlace público para mostrar los resultados de la votación
          
 town:
     html_title: Municipales 2015 - Vota en la candidatura ciudadana
