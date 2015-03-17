@@ -24,8 +24,7 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\Vote\StepFilterType;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\BrowserKit\Response;
 
-require_once __DIR__ .  '/trusted_timestamps.php';
-use TrustedTimestamps;
+use Listabierta\Bundle\MunicipalesBundle\Lib\tractis\SymfonyTractisApi;
 
 class TownController extends Controller
 {
@@ -1104,81 +1103,54 @@ class TownController extends Controller
 				$entity_manager->persist($voter);
 				$entity_manager->flush();
 				
-				// Tractis TSA here
-	
+				// Tractis TSA sign
+				
 				// Create an API Key here: https://www.tractis.com/webservices/tsa/apikeys
 				$tractis_api_identifier = $this->container->getParameter('tractis_api_identifier');
-				$tractis_api_secret = $this->container->getParameter('tractis_api_secret');
-	
-				/** COMMENT FOR NOW
-					$current_time = time();
-	
-					$tsa_cert_chain_file = '/tmp/chain-' . $admin_id . '-' . $voter_id . '-' . $current_time . '.txt';
-	
-					$myfile = @fopen($tsa_cert_chain_file, "w");
-	
-					$my_hash = sha1(serialize($vote_info));
-	
-					$requestfile_path = \TrustedTimestamps::createRequestfile($my_hash);
-					$response = \TrustedTimestamps::signRequestfile($requestfile_path, "https://api.tractis.com/rfc3161tsa", $tractis_api_identifier, $tractis_api_secret);
-					//print_r($response);
-				**/
-				/*
-				 Array
-				 (
-				 [response_string] => Shitload of text (base64-encoded Timestamp-Response of the TSA)
-				 [response_time] => 1299098823
-				 )
-				*/
-	
-				/** COMMENT FOR NOW
-					if(empty($response))
-					{
+				$tractis_api_secret     = $this->container->getParameter('tractis_api_secret');
+				
+				// Fetch the chain sign TSA file
+				$tsa_cert_chain_file = $this->container->get('kernel')->locateResource('@MunicipalesBundle/Lib/tractis/chain.txt');
+				
+				// Init the Symfony Tractis TSA Api
+				$symfony_tractis_api = new SymfonyTractisApi($tractis_api_identifier, $tractis_api_secret, $tsa_cert_chain_file);
+				
+				// Sign a valid vote
+				$response = $symfony_tractis_api::sign(serialize($vote_info));
+				
+				// Check response data
+				if(empty($response))
+				{
 					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-					'error' => 'Error en el firmado de voto TSA. Respuesta vacía',
+							'error' => 'Error en el firmado de voto TSA. Respuesta vacía',
 					));
-					}
-	
-					if(empty($response['response_string']))
-					{
+				}
+				 
+				if(empty($response['response_string']))
+				{
 					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-					'error' => 'Error en el firmado de voto TSA. Respuesta con cadena vacía',
+							'error' => 'Error en el firmado de voto TSA. Respuesta con cadena vacía',
 					));
-					}
-	
-					if(empty($response['response_time']))
-					{
+				}
+				 
+				if(empty($response['response_time']))
+				{
 					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-					'error' => 'Error en el firmado de voto TSA. Respuesta con tiempo vacía',
+							'error' => 'Error en el firmado de voto TSA. Respuesta con tiempo vacía',
 					));
-					}
-	
-					//echo \TrustedTimestamps::getTimestampFromAnswer($response['response_string']); //1299098823
-					try
-					{
-					$validate = \TrustedTimestamps::validate($my_hash, $response['response_string'], $response['response_time'], $tsa_cert_chain_file);
-					//var_dump($validate);
-					}
-					catch (Exception $e)
-					{
-					$logger = $this->get('logger')->error('Vote validation Error: ' . $e->getMessage());
-					}
-				**/
-				/*
-				 	
-				$validate = \TrustedTimestamps::validate($my_hash, $response['response_string'], $response['response_time'], $tsa_cert_chain_file);
-				print_r("\nValidation result\n");
-				var_dump($validate); //bool(true)
-	
-				//now with an incorrect hash. Same goes for a manipulated response string or response time
-				$validate = \TrustedTimestamps::validate(sha1("im not the right hash"),
-				$response['response_string'],
-				$response['response_time'],
-				$tsa_cert_chain_file);
-				print_r("\nValidation result after content manipulation\n");
-				var_dump($validate); //bool(false)
-				*/
-	
+				}
+				 
+				// Fetch the data response if valid
+				$response_string = $response['response_string'];
+				$response_time   = $response['response_time'];
+				
+				// Store the sign TSA result in database
+				$voter->setVoteResponseString($response_string);
+				$voter->setVoteResponseTime($response_time);
+				
+				$entity_manager->persist($voter);
+				$entity_manager->flush();
+					
 	
 				$form2 = $this->createForm(new TownStep8Type(), NULL, array(
 						'action' => $this->generateUrl('town_candidacy_vote_step8', array('address' => $address)),
