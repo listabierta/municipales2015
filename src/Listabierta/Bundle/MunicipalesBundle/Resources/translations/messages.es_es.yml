@@ -328,6 +328,7 @@ candidate:
         
     step6:      
         header: Establece prioridades de gobierno
+        subheader: Establece las prioridades en las que debería mejorarse la gestión municipal 
         govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones)
         previous: Anterior
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
