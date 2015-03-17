@@ -31,9 +31,7 @@ class TrustedTimestamps
     public static function createRequestfile ($hash)
     {
         if (strlen($hash) !== 40)
-        {
             throw new Exception("Invalid Hash.");
-        }
             
         $outfilepath = self::createTempFile();
         $cmd = "openssl ts -query -digest ".escapeshellarg($hash)." -cert -out ".escapeshellarg($outfilepath);
@@ -42,15 +40,11 @@ class TrustedTimestamps
         exec($cmd." 2>&1", $retarray, $retcode);
         
         if ($retcode !== 0)
-        {
             throw new Exception("OpenSSL does not seem to be installed: ".implode(", ", $retarray));
-        }
         
         if (stripos($retarray[0], "openssl:Error") !== false)
-        {
             throw new Exception("There was an error with OpenSSL. Is version >= 0.99 installed?: ".implode(", ", $retarray));
-        }
-        
+
         return $outfilepath;
     }
 
@@ -107,15 +101,11 @@ class TrustedTimestamps
 
         $cmd = "openssl ts -reply -in ".escapeshellarg($responsefile)." -text";
         
-        //echo $cmd . '<br />';
-        
         $retarray = array();
         exec($cmd." 2>&1", $retarray, $retcode);
         
         if ($retcode !== 0)
-        {
             throw new Exception("The reply failed: ".implode(", ", $retarray));
-        }
         
         $matches = array();
         $response_time = 0;
@@ -137,9 +127,7 @@ class TrustedTimestamps
         }
 
         if (!$response_time)
-        {
             throw new Exception("The Timestamp was not found"); 
-        }
             
         return $response_time;
     }
@@ -160,24 +148,18 @@ class TrustedTimestamps
         $binary_response_string = base64_decode($base64_response_string);
         
         if (!strlen($binary_response_string))
-        {
             throw new Exception("There was no response-string");    
-        }
             
         if (!intval($response_time))
-        {
             throw new Exception("There is no valid response-time given");
-        }
         
+        echo getcwd();
         if (!file_exists($tsa_cert_file))
-        {
-            throw new Exception("The TSA-Certificate ' . $tsa_cert_file . 'could not be found");
-        }
+            throw new Exception("The TSA-Certificate could not be found");
         
         $responsefile = self::createTempFile($binary_response_string);
 
         $cmd = "openssl ts -verify -digest ".escapeshellarg($hash)." -in ".escapeshellarg($responsefile)." -CAfile ".escapeshellarg($tsa_cert_file);
-        //echo $cmd;
         
         $retarray = array();
         exec($cmd." 2>&1", $retarray, $retcode);
