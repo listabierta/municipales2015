@@ -339,6 +339,7 @@ candidate:
         motivation_text_title: Describe tu motivación para presentarte
         town_activities_explanation_title: Describe tu experiencia relacionada
         additional_info_title: Biografía e información adicional que quieras aportar
+        url_info_title: Dirección web o URL (vídeo, blog, etc) (opcional)
         profile_image_title: Adjunta foto
         previous: Anterior
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>

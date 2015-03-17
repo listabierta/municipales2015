@@ -912,19 +912,7 @@ class CandidateController extends Controller
 				$entity_manager->persist($candidate);
 				$entity_manager->flush();
 	
-				$form2 = $this->createForm(new CandidateStep7Type(), NULL, array(
-						'action' => $this->generateUrl('candidate_step7', array('address' => $address_slug)),
-						'method' => 'POST',
-				));
-	
-				$form2->handleRequest($request);
-	
-				return $this->render('MunicipalesBundle:Candidate:step7_public_values.html.twig', array(
-						'address' => $address_slug,
-						'form' => $form2->createView(),
-						'town_activities' => $candidate->getTownActivities(),
-					)
-				);
+				return $this->step7Action($request, $address_slug);
 			}
 		}
 	
@@ -994,6 +982,7 @@ class CandidateController extends Controller
 			$motivation_text = $form['motivation_text']->getData();
 			$town_activities_explanation = $form['town_activities_explanation']->getData();
 			$additional_info = $form['additional_info']->getData();
+			$url_info = $form['url_info']->getData();
 	
 			$profile_image = $form['profile_image'];
 			
@@ -1040,6 +1029,7 @@ class CandidateController extends Controller
 				$session->set('candidate_motivation_text', $motivation_text);
 				$session->set('candidate_town_activities_explanation', $town_activities_explanation);
 				$session->set('candidate_additional_info', $documents_path);
+				$session->set('candidate_url_info', $url_info);
 				
 				$session->set('candidate_profile_image', $documents_path);
 	
@@ -1047,6 +1037,7 @@ class CandidateController extends Controller
 				$candidate->setMotivationText($motivation_text);
 				$candidate->setTownActivitiesExplanation($town_activities_explanation);
 				$candidate->setAdditionalInfo($additional_info);
+				$candidate->setUrlInfo($url_info);
 	
 				$entity_manager->persist($candidate);
 				$entity_manager->flush();

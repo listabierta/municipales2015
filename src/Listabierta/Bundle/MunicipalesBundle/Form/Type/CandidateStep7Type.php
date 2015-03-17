@@ -49,6 +49,9 @@ class CandidateStep7Type extends AbstractType
 			     		'attr' => array('class' => 'tinymce', 'style' => 'width:100%;height:200px'),
 			     		'required' => FALSE
 			     ))
+			     ->add('url_info', 'text', array(
+			     		'required' => FALSE
+			     ))
 			     ->add('profile_image', 'file', array(
 			     		'required' => FALSE,
 			     		'data_class' => NULL,

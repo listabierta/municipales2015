@@ -573,4 +573,32 @@ class Candidate implements AdvancedUserInterface, \Serializable
     {
         return $this->status;
     }
+    /**
+     * @var string
+     */
+    private $url_info;
+
+
+    /**
+     * Set url_info
+     *
+     * @param string $urlInfo
+     * @return Candidate
+     */
+    public function setUrlInfo($urlInfo)
+    {
+        $this->url_info = $urlInfo;
+
+        return $this;
+    }
+
+    /**
+     * Get url_info
+     *
+     * @return string 
+     */
+    public function getUrlInfo()
+    {
+        return $this->url_info;
+    }
 }
