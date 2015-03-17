@@ -65,12 +65,12 @@
 			                            <div class="form-group{% if form.address.vars.errors|length > 0 %} has-error{% endif %}">
 			                              <div class="input-group">
 			                                <div class="input-group-addon">
-			                                  <span class="mine-icon fa fa-check2"><span>http://municipales2015.listabierta.org / </span></span>
+			                                  <span class="mine-icon fa fa-check2"><span style="font-size: 22px;">http://municipales2015.listabierta.org/ </span></span>
 			                                </div>
 			                                
 											<div class="col-xs-12 col-sm-12" style="padding-left: 0px;">
 										    	<span class="block input-icon input-icon-right">
-										        	<input type="text" id="{{ form.address.vars.id }}" name="{{ form.vars.id }}[{{ form.address.vars.name }}]" required="required" class="form-control input-mask" style="width: 100%; display: table-cell;background-image: none; background-position: 0% 0%; background-repeat: repeat;" value="{{ form.address.vars.value|default(default_address_slug) }}"> 
+										        	<input type="text" id="{{ form.address.vars.id }}" name="{{ form.vars.id }}[{{ form.address.vars.name }}]" required="required" class="form-control input-mask" style="font-size: 22px;width: 100%; display: table-cell;background-image: none; background-position: 0% 0%; background-repeat: repeat;" value="{{ form.address.vars.value|default(default_address_slug) }}"> 
 										        </span>
 										    </div>
 										    {% if form.address.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.address) }}{% endif %}
