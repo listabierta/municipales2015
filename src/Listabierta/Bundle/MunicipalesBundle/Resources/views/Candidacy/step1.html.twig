@@ -141,11 +141,11 @@
 			    		  {% if form.province.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.province) }}</div>{% endif %}
 					  </div>
 			
-					  <div id="town_select" class="form-group{% if form.town.vars.errors|length > 0 %} has-error{% endif %}" style="display:none">
+					  <div id="town_select" class="form-group{% if form.town.vars.errors|length > 0 %} has-error{% endif %}"{% if form.town.vars.value == 0 %} style="display:none"{% endif %}>
 					      {{ form_label(form.town, 'candidacy.step1.town'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 					      <div class="col-xs-12 col-sm-2">
 	    					  <span class="block input-icon input-icon-right">
-	    					  	{{ form_widget(form.town) }}
+	    					  	{{ form_widget(form.town, {'value' : form.town.vars.value}) }}
 	    					  </span>
     					  </div>
 					      {% if form.town.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.town) }}</div>{% endif %}
