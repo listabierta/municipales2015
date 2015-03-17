@@ -1125,7 +1125,7 @@ class CandidacyController extends Controller
     			->setBody(
     					$this->renderView(
     							'MunicipalesBundle:Mail:candidacy_vote_address.html.twig',
-    							array('address_slug' => $address_slug,
+    							array('address_slug' => $address,
     									'name' => $admin_candidacy->getName())
     					), 'text/html'
     			);
@@ -1203,7 +1203,7 @@ class CandidacyController extends Controller
     			if(empty($candidacy_total_days))
     			{
     				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    						'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
+    						'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
     				));
     			}
     			
@@ -1304,6 +1304,7 @@ class CandidacyController extends Controller
     		$documents_path = NULL;
     		$candidates = NULL;
     		$total_voters = NULL;
+    		$candidates_result = array();
     	}
     	
 
