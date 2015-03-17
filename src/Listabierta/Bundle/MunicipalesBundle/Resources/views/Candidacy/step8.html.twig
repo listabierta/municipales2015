@@ -105,11 +105,25 @@
 											
 											<tbody>
 												<tr>
+													<td>Foto</td>
 													<td>Nombre y Apellidos</td>
 													<td>DNI</td>
 													<td>Número de Móvil</td>
 													<td>Total de puntos</td>
 													<td>Posición</td>
+													{% if candidates|length > 0 %}
+									
+														{% for candidate in candidates %}
+														<tr>
+															<td><img style="width:45px;height:45px" src="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" /></td>
+															<td>{{ candidate.name }} {{ candidate.lastname }}</td>
+															<td>DNI</td>
+															<td>Número de Móvil</td>
+															<td>{{ candidate.points }}</td>
+															<td>{{ loop.index }}</td>
+														</tr>
+														{% endfor %}
+													{% endif %}
 												</tr>
 											</tbody>
 										
