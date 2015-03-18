@@ -21,11 +21,9 @@
           <h2>Panel Admin</h2>
         </div>
         
-        <h3 class="featurette-headin"> <i>Hola X</i></h3>
+        <h3 class="featurette-headin"> <i>Hola {{ admin.name }} {{ admin.lastname }}</i></h3>
         
         <!-- START THE FEATURETTES -->
-
-        <hr class="featurette-divider2">
         <!--    division -->
 
         <div class="row featurette2">
@@ -50,7 +48,27 @@
                       <div class="row">
                       
                       	<div class="col-sm-offset-1 col-md-10">
-							<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
+                      	
+                      	    {% if needs_phone_verification %}              			
+	                  			<div class="help-block col-xs-12 col-sm-10 col-sm-offset-1 inline">
+	                  				<div class="alert alert-warning">Aun no has validado tu número de móvil <b>{{ admin.phone }}</b>. Es necesario validar tu móvil para continuar con cualquier acción.
+	                  				<br /><br />
+	                  				{{ 'town.verify_msg'|trans({'%sms_inbound_number%': sms_inbound_number}) }}
+	                  				</div>
+	                  			</div>
+	                  			<br />
+	                  			<br />
+	                  		{% else %}
+	                  			<div class="help-block col-xs-12 col-sm-10 col-sm-offset-1 inline">
+	                  				<div class="alert alert-success">
+	                  					<i class="fa fa-check"></i> Tu número de móvil <b>{{ admin.phone }}</b> esta verificado correctamente.
+	                  				</div>
+	                  			</div>
+	                  			<br />
+	                  			<br />
+                  			{% endif %}
+                  			
+							<button class="btn btn-default btn-lg" style="height:40px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('panel_admin_modify_personal_data') }}'; return false;">
 			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
 			                    Modificar datos personales
 			                </button>
@@ -58,77 +76,68 @@
                   			<br />
                   			<br />
                   			
-                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
-			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
-			                    Subir documentos
-			                </button>
-			                
-			                <br />
-                  			<br />
-                  			
-			                <button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
-			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
-			                    Cambiar/establecer los plazos presentación de candidaturas
-			                </button>
-                  			
-                  			<br />
-                  			<br />
-                  			
-                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
-			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
-			                    Cambiar/establecer dirección de internet
-			                </button>
-                  			
-                  			<br />
-                  			<br />
-                  			
-                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
-			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
-			                    Ver enlace de alta de candidatos/as
-			                </button>
-                  			
-                  			<br />
-                  			<br />
-                  			
-                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
-			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
-			                    Validar candidatos/as
-			                </button>
-                  			
-                  			<br />
-                  			<br />
-                  			
-                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
-			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
-			                    Establecer número de días de la votación (plazo de votación)
-			                </button>
-                  			
-                  			<br />
-                  			<br />
-                  			
-                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
-			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
-			                    Ver resultados internos de la votación
-			                </button>
-                  			
-                  			<br />
-                  			<br />
-                  			
-                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
-			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
-			                    Ver enlace de resultados públicos de la votación
-			                </button>
-                  			
-                  			<br />
-                  			<br />
-                  			
-                  			<div class="help-block col-xs-12 col-sm-10 col-sm-offset-1 inline">
-                  				<div class="alert alert-warning">Aun no has validado tu número de móvil. Es necesario validar tu móvil para continuar con cualquier acción.
-                  				<br /><br />
-                  				{{ 'town.verify_msg'|trans({'%sms_inbound_number%': sms_inbound_number}) }}
-                  				</div>
-                  			</div>
-					  
+                  			{% if not needs_phone_verification %}
+	                  			<button class="btn btn-prev" style="height:40px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step2') }}'; return false;">
+				                    <i class="mine-icon fa fa-upload"></i>
+				                    Subir documentos
+				                </button>
+				                
+				                <br />
+	                  			<br />
+	                  			
+				                <button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='/panel-admin#'; return false;">
+				                    <i class="mine-icon fa fa-calendar"></i>
+				                    Cambiar/establecer los plazos <br />presentación de candidaturas
+				                </button>
+	                  			
+	                  			<br />
+	                  			<br />
+	                  			
+	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='/panel-admin#'; return false;">
+				                    <i class="mine-icon fa fa-calendar-o"></i>
+				                    Cambiar/establecer <br />dirección de internet
+				                </button>
+	                  			
+	                  			<br />
+	                  			<br />
+	                  			
+	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='/panel-admin#'; return false;">
+				                    <i class="mine-icon fa-book fa"></i>
+				                    Ver enlace <br />de alta de candidatos/as
+				                </button>
+	                  			
+	                  			<br />
+	                  			<br />
+	                  			
+	                  			<button class="btn btn-prev" style="height:40px;padding: 0 15px;font-size:18px" onclick="location.href='/panel-admin#'; return false;">
+				                    <i class="mine-icon fa fa-check-square"></i>
+				                    Validar candidatos/as
+				                </button>
+	                  			
+	                  			<br />
+	                  			<br />
+	                  			
+	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='/panel-admin#'; return false;">
+				                    <i class="mine-icon fa fa-pencil fa-fw"></i>
+				                    Establecer número de días <br />de la votación (plazo de votación)
+				                </button>
+	                  			
+	                  			<br />
+	                  			<br />
+	                  			
+	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='/panel-admin#'; return false;">
+				                    <i class="mine-icon fa fa-key fa-fw"></i>
+				                    Ver resultados internos <br />de la votación
+				                </button>
+	                  			
+	                  			<br />
+	                  			<br />
+	                  			
+	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='/panel-admin#'; return false;">
+				                    <i class="mine-icon fa fa-eye"></i>
+				                    Ver enlace de resultados públicos<br /> de la votación
+				                </button>
+			                {% endif %}
 						</div>
 			          
 			          </div>
