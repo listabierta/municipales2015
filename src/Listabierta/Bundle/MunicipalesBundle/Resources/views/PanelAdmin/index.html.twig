@@ -1,0 +1,156 @@
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}Panel Admin{% endblock %}
+
+{% block appjsinline %}
+    <script>
+
+    $(document).ready(function() 
+    {
+
+    });
+    
+	</script>
+{% endblock %}
+
+{% block content %}
+<section class="section-2">
+      <div class="container marketing">
+
+        <div class="headline">
+          <h2>Panel Admin</h2>
+        </div>
+        
+        <h3 class="featurette-headin"> <i>Hola X</i></h3>
+        
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider2">
+        <!--    division -->
+
+        <div class="row featurette2">
+          <div class="widget-box">
+            
+
+            <div class="widget-body">
+              <div class="widget-main">
+              
+                <div id="fuelux-wizard-container">
+
+                  <div class="step-content pos-rel">
+
+                          
+                    <div data-step="1" class="step-pane active row">
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">Panel Admin</h2>
+                      
+                      <div class="col-sm-offset-1 col-md-10 well">
+							En este panel puedes gestionar tu candidatura
+                      </div>
+                      
+                      <div class="row">
+                      
+                      	<div class="col-sm-offset-1 col-md-10">
+							<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
+			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
+			                    Modificar datos personales
+			                </button>
+                  			
+                  			<br />
+                  			<br />
+                  			
+                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
+			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
+			                    Subir documentos
+			                </button>
+			                
+			                <br />
+                  			<br />
+                  			
+			                <button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
+			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
+			                    Cambiar/establecer plazos de votación
+			                </button>
+                  			
+                  			<br />
+                  			<br />
+                  			
+                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
+			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
+			                    Cambiar/establecer dirección de internet
+			                </button>
+                  			
+                  			<br />
+                  			<br />
+                  			
+                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
+			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
+			                    Ver enlace de alta de candidatos/as
+			                </button>
+                  			
+                  			<br />
+                  			<br />
+                  			
+                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
+			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
+			                    Validar candidatos/as
+			                </button>
+                  			
+                  			<br />
+                  			<br />
+                  			
+                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
+			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
+			                    Establecer días de la votación
+			                </button>
+                  			
+                  			<br />
+                  			<br />
+                  			
+                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
+			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
+			                    Ver resultados internos de la votación
+			                </button>
+                  			
+                  			<br />
+                  			<br />
+                  			
+                  			<button class="btn btn-prev" onclick="location.href='/panel-admin#}'; return false;">
+			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
+			                    Ver enlace de resultados públicos de la votación
+			                </button>
+                  			
+                  			<br />
+                  			<br />
+                  			
+                  			<div class="help-block col-xs-12 col-sm-10 col-sm-offset-1 inline">
+                  				<div class="alert alert-warning">Aun no has validado tu número de móvil. Es necesario validar tu móvil para continuar con cualquier acción.
+                  				<br /><br />
+                  				{{ 'town.verify_msg'|trans({'%sms_inbound_number%': sms_inbound_number}) }}
+                  				</div>
+                  			</div>
+					  
+						</div>
+			          
+			          </div>
+
+                      
+                    </div>
+
+
+                    
+                  </div>
+                </div>
+
+              </div>
+              
+              
+              <!-- /.widget-main --> </div>
+            <!-- /.widget-body --> </div>
+        </div>
+			  
+        <!--    division -->
+
+        <!-- /END THE FEATURETTES --> </div>
+        
+</section>
+{% endblock %}
