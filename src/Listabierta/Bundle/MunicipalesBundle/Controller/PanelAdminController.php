@@ -9,6 +9,289 @@ class PanelAdminController extends Controller
 {
     public function indexAction(Request $request)
     {
-        return $this->render('MunicipalesBundle:PanelAdmin:index.html.twig');
+    	$session = $this->getRequest()->getSession();
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	
+    	$admin_id = NULL;
+    	
+    	$securityContext = $this->container->get('security.context');
+    	
+    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+    	{
+    		$current_user = $securityContext->getToken()->getUser();
+    		 
+    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
+    		{
+    			$admin_id = $current_user->getId();
+    		}
+    	}
+    	else
+    	{
+    		$admin_id = $session->get('admin_id');
+    	}
+    	
+    	$needs_phone_verification = FALSE;
+    	
+    	// Redirect to login
+    	if(empty($admin_id))
+    	{
+    		return $this->redirect($this->generateUrl('login'));
+    	}
+    	else 
+    	{
+    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    		 
+    		if(empty($admin_candidacy))
+    		{
+    			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    				'error' => 'Error: no se ha encontrado el identificador de administrador ' . $admin_id . ' en la base de datos',
+    			));
+    		}
+    		else
+    		{
+    			$phone_verified_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified');
+    			 
+    			$phone = $admin_candidacy->getPhone();
+    			$email = $admin_candidacy->getEmail();
+    			
+    			$phone_status = $phone_verified_repository->findOneBy(array('phone' => $phone, 'email' => $email));
+    			 
+    			if(empty($phone_status) || $phone_status->getTimestamp() == 0)
+    			{
+    				$needs_phone_verification = TRUE;
+    			}
+    			
+    			$town = $admin_candidacy->getTown();
+    			
+    			// @todo
+    			
+    		}
+    	}
+    	
+        return $this->render('MunicipalesBundle:PanelAdmin:index.html.twig', array(
+        		'admin' => $admin_candidacy,
+        		'needs_phone_verification' => $needs_phone_verification,
+        ));
+    }
+    
+    public function modifyPersonalDataAction(Request $request)
+    {
+    	$session = $this->getRequest()->getSession();
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	
+    	$admin_id = NULL;
+    	 
+    	$securityContext = $this->container->get('security.context');
+    	 
+    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+    	{
+    		$current_user = $securityContext->getToken()->getUser();
+    		 
+    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
+    		{
+    			$admin_id = $current_user->getId();
+    		}
+    	}
+    	else
+    	{
+    		$admin_id = $session->get('admin_id');
+    	}
+    	 
+    	// Redirect to login
+    	if(empty($admin_id))
+    	{
+    		return $this->redirect($this->generateUrl('login'));
+    	}
+    	else
+    	{
+    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    		 
+    		if(empty($admin_candidacy))
+    		{
+    			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    					'error' => 'Error: no se ha encontrado el identificador de administrador ' . $admin_id . ' en la base de datos',
+    			));
+    		}
+    		else
+    		{
+    			$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+    			$provinces_data = $province_repository->fetchProvinces();
+    			 
+    			if(isset($_REQUEST['candidacy_step1']) && isset($_REQUEST['candidacy_step1']['province']))
+    			{
+    				if(!empty($_REQUEST['candidacy_step1']['province']))
+    				{
+    					$province_form = intval($_REQUEST['candidacy_step1']['province']);
+    					 
+    					$municipalities = array();
+    					$municipalities[0] = 'Elige municipio';
+    			
+    					$query = "SELECT id, name FROM municipalities_spain WHERE province_id='" . intval($province_form) . "'";
+    			
+    					$statement = $entity_manager->getConnection()->executeQuery($query);
+    					$municipalities_data = $statement->fetchAll();
+    			
+    					foreach($municipalities_data as $result)
+    					{
+    						$municipalities[$result['id']] = $result['name'];
+    					}
+    				}
+    			}
+    			 
+    			$form = $this->createForm(new CandidacyStep1Type($provinces_data, $municipalities), NULL, array(
+    					'action' => $this->generateUrl('panel_admin_modify_personal_data'),
+    					'method' => 'POST',
+    			)
+    			);
+    			 
+    			$form->handleRequest($request);
+    			
+    			$ok = TRUE;
+    			$already_registered = FALSE;
+    			if ($form->isValid())
+    			{
+    				$name     = $form['name']->getData();
+    				$lastname = $form['lastname']->getData();
+    				$dni      = $form['dni']->getData();
+    				$username = $form['username']->getData();
+    				$password = $form['password']->getData();
+    				$email    = $form['email']->getData();
+    				$province = $form['province']->getData();
+    				$town     = $form['town']->getData();
+    				$phone    = $form['phone']->getData();
+    			
+    				/*
+    				$admin_username = $admin_candidacy_repository->findOneBy(array('username' => $username));
+    				 
+    				if(!empty($admin_username))
+    				{
+    					$form->addError(new FormError('Ya existe un usuario administrador registrado con el nombre de usuario ' . $username));
+    					$ok = FALSE;
+    					$already_registered = TRUE;
+    				}
+    			
+    				$admin_dni = $admin_candidacy_repository->findOneBy(array('dni' => $dni));
+    				 
+    				if(!empty($admin_dni))
+    				{
+    					$form->addError(new FormError('Ya existe un usuario administrador registrado con el dni ' . $dni));
+    					$ok = FALSE;
+    					$already_registered = TRUE;
+    				}
+    			
+    				$admin_email = $admin_candidacy_repository->findOneBy(array('email' => $email));
+    				 
+    				if(!empty($admin_email))
+    				{
+    					$form->addError(new FormError('Ya existe un usuario administrador registrado con el email ' . $email));
+    					$ok = FALSE;
+    					$already_registered = TRUE;
+    				}
+    			
+    				$admin_phone = $admin_candidacy_repository->findOneBy(array('phone' => $phone));
+    				*/
+    				if(empty($town) || $town == 0)
+    				{
+    					$form->addError(new FormError('El campo municipio es obligatorio'));
+    					$ok = FALSE;
+    				}
+    			
+    				$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+    				$town_name = $province_repository->getMunicipalityName($town);
+    			
+    				if(empty($town_name))
+    				{
+    					$form->addError(new FormError('El campo municipio es obligatorio. No se ha encontrado un nombre de identificador valido para el ID de municipio ' . $town));
+    					$ok = FALSE;
+    				}
+    			
+    				/*
+    				if(!empty($admin_phone))
+    				{
+    					$form->addError(new FormError('Ya existe un usuario administrador registrado con el teléfono ' . $phone));
+    					$ok = FALSE;
+    					$already_registered = TRUE;
+    				}
+    				*/
+    			
+    				if($already_registered)
+    				{
+    					$form->addError(new FormError('Si te registraste con anterioridad, puedes acceder a tu registro en: <a href="http://municipales2015.listabierta.org/login" title="Login">http://municipales2015.listabierta.org/login</a> y continuar por el paso dónde lo dejaste.'));
+    				}
+    			
+    				if($ok)
+    				{
+    					// Store info in database AdminCandidacy
+    					$admin_candidacy->setName($name);
+    					$admin_candidacy->setLastname($lastname);
+    					$admin_candidacy->setDni($dni);
+    					$admin_candidacy->setUsername($username);
+    					 
+    					$factory = $this->get('security.encoder_factory');
+    					$encoder = $factory->getEncoder($admin_candidacy);
+    					$encodedPassword = $encoder->encodePassword($password, $admin_candidacy->getSalt());
+    			
+    					$admin_candidacy->setPassword($encodedPassword);
+    					$admin_candidacy->setEmail($email);
+    					$admin_candidacy->setProvince($province);
+    					$admin_candidacy->setTown($town);
+    					
+    					$old_admin_phone = $admin_candidacy->getPhone();
+    					if($old_admin_phone != $phone)
+    					{
+    						$admin_candidacy->setPhone($phone);
+    					}
+    					 
+    					$entity_manager->persist($admin_candidacy);
+    					$entity_manager->flush();
+    					 
+    					if($old_admin_phone != $phone)
+    					{
+	    					// Store email and phone in database as pending PhoneVerified without timestamp
+	    					$phone_verified = new PhoneVerified();
+	    					$phone_verified->setPhone($phone);
+	    					$phone_verified->setEmail($email);
+	    					$phone_verified->setTimestamp(0);
+	    					$phone_verified->setMode(PhoneVerified::MODE_ADMIN);
+	    			
+	    					$entity_manager->persist($phone_verified);
+	    					$entity_manager->flush();
+    					}
+    			
+    					$session->set('admin_id', $admin_candidacy->getId());
+    					$session->set('name', $name);
+    					$session->set('lastname', $lastname);
+    					$session->set('dni', $dni);
+    					$session->set('email', $email);
+    					$session->set('province', $province);
+    					$session->set('town', $town);
+    					$session->set('phone', $phone);
+    					 
+    					// Send mail with login link for admin
+    					 
+    					$message = \Swift_Message::newInstance()
+    					->setSubject('Tu cuenta de administrador ha sido actualizada')
+    					->setFrom('candidaturas@municipales2015.listabierta.org', 'Candidaturas')
+    					->setTo($email)
+    					->setBody(
+    							$this->renderView(
+    									'MunicipalesBundle:Mail:admin_created.html.twig',
+    									array('name' => $name)
+    							), 'text/html'
+    					);
+    			
+    					$this->get('mailer')->send($message);
+    					 
+    					return $this->redirect($this->generateUrl('panel_admin'));
+    				}
+    			}
+    			 
+    			return $this->render('MunicipalesBundle:Candidacy:step1.html.twig', array(
+    					'form' => $form->createView(),
+    			));
+    		}
+    	}
     }
 }
