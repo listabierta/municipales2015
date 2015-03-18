@@ -89,7 +89,13 @@ panel_admin:
     defaults: { _controller: MunicipalesBundle:PanelAdmin:index }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl 
-        
+
+panel_admin_modify_personal_data:
+    path:     /panel-admin/modify-personal-data
+    defaults: { _controller: MunicipalesBundle:PanelAdmin:modifyPersonalData }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl 
+               
 # http://municipales2015.listabierta.org/elmunicipioregistrado/resultados
 town_results:
     path:     /{address}/resultados
