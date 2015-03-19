@@ -111,14 +111,14 @@ class CandidacyController extends Controller
     	$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
     	$provinces_data = $province_repository->fetchProvinces();
     	
+    	$municipalities = array();
+    	$municipalities[0] = 'Elige municipio';
+    	
     	if(isset($_REQUEST['candidacy_step1']) && isset($_REQUEST['candidacy_step1']['province']))
     	{
     		if(!empty($_REQUEST['candidacy_step1']['province']))
     		{
     			$province_form = intval($_REQUEST['candidacy_step1']['province']);
-    			
-    			$municipalities = array();
-    			$municipalities[0] = 'Elige municipio';
     			 
     			$query = "SELECT id, name FROM municipalities_spain WHERE province_id='" . intval($province_form) . "'";
 
