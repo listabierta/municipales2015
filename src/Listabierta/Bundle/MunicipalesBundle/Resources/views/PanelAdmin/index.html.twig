@@ -85,7 +85,7 @@
 				                <br />
 	                  			<br />
 	                  			
-				                <button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='/panel-admin#'; return false;">
+				                <button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step3') }}'; return false;">
 				                    <i class="mine-icon fa fa-calendar"></i>
 				                    Cambiar/establecer los plazos <br />presentación de candidaturas
 				                </button>
@@ -93,7 +93,7 @@
 	                  			<br />
 	                  			<br />
 	                  			
-	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='/panel-admin#'; return false;">
+	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step4') }}'; return false;">
 				                    <i class="mine-icon fa fa-calendar-o"></i>
 				                    Cambiar/establecer <br />dirección de internet
 				                </button>
@@ -101,13 +101,15 @@
 	                  			<br />
 	                  			<br />
 	                  			
-	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='/panel-admin#'; return false;">
-				                    <i class="mine-icon fa-book fa"></i>
-				                    Ver enlace <br />de alta de candidatos/as
-				                </button>
-	                  			
-	                  			<br />
-	                  			<br />
+	                  			{% if not admin.address is empty %}
+		                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('candidate_step1', {'address' : admin.address }) }}'; return false;">
+					                    <i class="mine-icon fa-book fa"></i>
+					                    Ver enlace <br />de alta de candidatos/as
+					                </button>
+		                  			
+		                  			<br />
+		                  			<br />
+	                  			{% endif %}
 	                  			
 	                  			<button class="btn btn-prev" style="height:40px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step6') }}'; return false;">
 				                    <i class="mine-icon fa fa-check-square"></i>
@@ -117,7 +119,7 @@
 	                  			<br />
 	                  			<br />
 	                  			
-	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='/panel-admin#'; return false;">
+	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step7') }}'; return false;">
 				                    <i class="mine-icon fa fa-pencil fa-fw"></i>
 				                    Establecer número de días <br />de la votación (plazo de votación)
 				                </button>
@@ -125,18 +127,19 @@
 	                  			<br />
 	                  			<br />
 	                  			
-	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='/panel-admin#'; return false;">
+	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step8') }}#'; return false;">
 				                    <i class="mine-icon fa fa-key fa-fw"></i>
 				                    Ver resultados internos <br />de la votación
 				                </button>
 	                  			
 	                  			<br />
 	                  			<br />
-	                  			
-	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='/panel-admin#'; return false;">
+	                  			{% if not admin.address is empty %}
+	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('town_results', {'address' : admin.address }) }}'; return false;">
 				                    <i class="mine-icon fa fa-eye"></i>
 				                    Ver enlace de resultados públicos<br /> de la votación
 				                </button>
+				                {% endif %}
 			                {% endif %}
 						</div>
 			          
