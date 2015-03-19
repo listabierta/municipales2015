@@ -4,6 +4,7 @@ namespace Listabierta\Bundle\MunicipalesBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep1Type;
 
 class PanelAdminController extends Controller
 {
@@ -119,6 +120,9 @@ class PanelAdminController extends Controller
     			$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
     			$provinces_data = $province_repository->fetchProvinces();
     			 
+    			$municipalities = array();
+    			$municipalities[0] = 'Elige municipio';
+    			
     			if(isset($_REQUEST['candidacy_step1']) && isset($_REQUEST['candidacy_step1']['province']))
     			{
     				if(!empty($_REQUEST['candidacy_step1']['province']))
