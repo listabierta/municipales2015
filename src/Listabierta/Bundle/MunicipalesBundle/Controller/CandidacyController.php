@@ -1024,7 +1024,7 @@ class CandidacyController extends Controller
     	
     	$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
     	
-    	$candidates = $candidate_repository->findAll(array('admin_id' => $admin_id));
+    	$candidates = $candidate_repository->findBy(array('admin_id' => $admin_id));
     	
     	$form_step7 = $this->createForm(new CandidacyStep7Type(), NULL, array(
     			'action' => $this->generateUrl('municipales_candidacy_step7'),
