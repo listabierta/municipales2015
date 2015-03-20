@@ -16,8 +16,9 @@ set  :keep_releases,  3
 
 # Avoid clone the repo in every deploy (use cache)
 set :deploy_via, :remote_cache
-set   :use_sudo,      false
-
+set :use_sudo,      false
+set :git_enable_submodules, 1
+ssh_options[:forward_agent] = true
 
 set :shared_files,      ["app/config/parameters.yml"]
 set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor", app_path + "/sessions", app_path + "/docs"]
@@ -27,7 +28,7 @@ set :update_vendors, true
 
 set :writable_dirs,       ["app/cache", "app/logs", app_path + "/docs"]
 set :webserver_user,      "www-data"
-set :user, "#{deploy_user}"
+set :user, "root" # #{deploy_user}
 set :permission_method,   :acl
 set :use_set_permissions, true
 
