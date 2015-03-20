@@ -51,3 +51,39 @@ If you need the raw SQL queries you can load with the following commands:
     
     For validate mobile phones this project use a SMS inbound number. You will need reserve some number. Currently the
     project uses Nexmo API (nexmo.com) as free SMS inbound provider 
+    
+== Deploying with Capifony ==
+
+This project could be deployed using Capifony.
+
+For use capifony in Ubuntu you will need install the following dependencies
+
+    $ sudo apt-get install -y nginx ruby git php5 php5-fpm php5-mysql php5-cli php5-curl php-apc acl
+    $ sudo gem install capifony
+
+Then you can clone the repository with:
+
+    # git clone https://github.com/listabierta/municipales2015.git
+    # cd municipales2015
+    
+Then perform a cold installation:
+
+	# cap symfony:doctrine:database:create
+	
+The following command will ask you the initial parameters for configure the project
+
+	# cap deploy:setup
+	
+Then perform a normal deploy:
+
+	# cap deploy
+	
+For simply update the repository and deploy:
+
+	# cap deploy:update
+    
+== Recommendations ==
+
+We recomend use Percona 5.6 as database server. This script could install easyly for you on Ubuntu servers
+
+    # wget https://raw.githubusercontent.com/shakaran/scripts/master/ubuntu-percona-5.6-setup.sh -O - | bash
