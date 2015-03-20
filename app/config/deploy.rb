@@ -20,10 +20,18 @@ set   :use_sudo,      false
 
 
 set :shared_files,      ["app/config/parameters.yml"]
-set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor"]
+set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor", app_path + "/sessions", app_path + "/docs"]
 set :use_composer, true
 set :update_vendors, true
 
+
+set :writable_dirs,       ["app/cache", "app/logs", app_path + "/docs"]
+set :webserver_user,      "www-data"
+set :user, "#{deploy_user}"
+set :permission_method,   :acl
+set :use_set_permissions, true
+
+before "deploy:restart", "deploy:set_permissions"
 after "deploy", "deploy:cleanup"
 
 logger.level = Logger::MAX_LEVEL
