@@ -1,6 +1,6 @@
-Hola <b>{{ name }},<br />
+{{ 'mail.admin_created.hello'|trans }} <b>{{ name }}</b>,<br />
 <br />
-Tu cuenta de administrador de candidatura ha sido creada.<br />
+{{ 'mail.admin_created.account'|trans }}.<br />
 <br />
-Puedes acceder a tu cuenta desde el enlace <a href="http://municipales2015.listabierta.org/login">http://municipales2015.listabierta.org/login</a>
+{{ 'mail.admin_created.can_create'|trans }} <a href="{{ path('login') }}" title="{{ 'mail.admin_created.login'|trans }}">{{ path('login') }}</a>
 <br />
