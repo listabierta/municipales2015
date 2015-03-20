@@ -3,10 +3,87 @@
 {% block title %}{{ 'town.html_title'|trans }}{% endblock %}
 
 {% block appjsinline %}
+    <script src="js/geoPosition.js" type="text/javascript" charset="utf-8"></script>
     <script>
 			$(document).ready(function()
 			{
 				$(".explanation_dni").colorbox({inline:true, width:"15%"});
+
+				{% if app.request.server.get('HTTP_ORIGIN') == 'primarias.ahorasevilla.org' %}
+					function geo_error() 
+					{
+						if (err.code == 1) 
+						{
+							console.log("User said no!");
+						}
+						else
+						{
+							console.log("Sorry, no position available.");
+						}
+					}
+	
+					var geo_options = {
+							  enableHighAccuracy: true, 
+							  maximumAge        : 30000, 
+							  timeout           : 27000
+							};
+	
+					// http://dev.w3.org/geo/api/spec-source.html#geolocation
+					if('geolocation' in navigator) 
+					{
+						$("#live-geolocation").parent().css('display', 'block');
+						
+						
+						  /* geolocation is available */
+	
+						navigator.geolocation.getCurrentPosition(
+							function(position) 
+							{
+								  var geo_msg = 'Tiempo: ' + position.timestamp + ' <br/>Latitud: ' + position.coords.latitude + ' <br/>Longitud: ' + position.coords.longitude + 
+										  	  ' <br/>Altitud: ' + position.coords.altitude +
+										  	  ' <br/>Precision: ' + position.coords.accuracy +
+										  	  ' <br/>Precision altitud: ' +  position.coords.altitudeAccuracy +
+										  	  ' <br/>Heading: ' +  position.coords.heading +
+										  	  ' <br/>Speed: ' +  position.coords.speed
+										  	  
+								   console.log(geo_msg);
+								  $("#live-geolocation").html(geo_msg);
+								  
+								var img = new Image();
+								img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + position.coords.latitude + "," + position.coords.longitude + "&zoom=13&size=300x300&sensor=false";
+
+								console.log(img.src)
+								$("#live-geolocation").append(img);
+								    
+							},
+							geo_error,
+							geo_options
+						);
+					} 
+					else 
+					{
+						console.log('geolocation IS NOT available')
+	
+						/*
+						 if(geoPosition.init()){  // Geolocation Initialisation
+						            geoPosition.getCurrentPosition(success_callback,error_callback,{enableHighAccuracy:true});
+						    }else{
+						            // You cannot use Geolocation in this device
+						    }
+						    geoPositionSimulator.init(); 
+				
+						    // p : geolocation object
+						    function success_callback(p){
+						        // p.latitude : latitude value
+						        // p.longitude : longitude value
+						    }
+				
+						    function error_callback(p){
+						        // p.message : error message
+						    }
+					    */
+					}
+				{% endif %}
 			});
 	</script>
 {% endblock %}
@@ -57,6 +134,12 @@
                       
                       <div class="col-xs-12 col-sm-offset-0"><div class="hr hr-dotted"></div></div>
                       
+                      {% if app.request.server.get('HTTP_ORIGIN') == 'primarias.ahorasevilla.org' %}
+                      <div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline center" style="display:none">
+                      		<div class="alert alert-success" id="live-geolocation"></div>
+                      </div>
+                      {% endif %}
+                       
                       <div class="col-xs-12 col-sm-offset-1">   
                       	  <div class="justify-block">
 		                      {{ 'town.step1.welcome'|trans }} <b>{{ town|capitalize }}</b>. 
