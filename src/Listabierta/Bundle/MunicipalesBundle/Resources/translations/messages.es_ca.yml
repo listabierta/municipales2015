@@ -102,7 +102,7 @@ candidacy:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Establece los plazos de presentación de candidaturas
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        explanation_date: Plazo de presentación de candidaturas <br/>(mínimo 2 días, se recomiendan 15 días) 
+        explanation_date: Plazo de presentación de candidaturas <br/>(mínimo 2 días) 
         from_label: DE
         to_label: HASTA  
         previous: Anterior
@@ -143,7 +143,7 @@ candidacy:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Inicio y fin de las Votaciones
         days: Días
-        explanation: Introduce el número de días naturales que permanecerá activa la votación de candidatos desde el inicio de la votación (se recomiendan al menos 14 días, mínimo dos días).
+        explanation: Introduce el número de días naturales que permanecerá activa la votación de candidatos desde el inicio de la votación (mínimo dos días).
         init_vote_explanation: Haz clic en el siguiente botón para iniciar la votación
         warning_explanation: ATENCIÓN !! Una vez iniciada la votación ya NO SE PODRÁN AÑADIR más candidatos o candidatas. Se proporcionará un enlace que habilitará el registro a los votantes y emitir el voto.
         start_candidacy: Iniciar votación
@@ -155,12 +155,35 @@ candidacy:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Verificación del voto y resultados
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Anterior
+        vote_finished: Votación finalizada
+        audit: Puedes auditar el resultado aquí
+        how_works_tsa: ¿Cómo funciona el sellado de tiempo?
+        photo: Foto
+        name_lastname: Nombre y Apellidos
+        dni: DNI
+        phone: Número de Móvil
+        total_points: Total de puntos
+        position: Posición
+        vote_not_finished_warning: La votación aún no ha finalizado y aún no estan disponibles los resultados finales
+        vote_start_date: Fecha de inicio de votaciones
+        vote_end_date: Fecha de cierre de votaciones
+        header_p1: Una vez finalizada la votación, aparecerán en esta pantalla los resultados de la suma de puntos en un listado, ordenados de mayor a menor puntuación
+        header_p1_h3: ¿Cómo funciona el sistema de puntuación?
+        header_p2: El sistema que listabierta.org ha escogido es el Borda Modificado, porque es sencillo de entender por el votante y permite una elección más diversa y consensuada. En este caso el votante asigna a los candidatos o candidatas preseleccionados una posición que va del primer al quinto lugar. Una vez establecido el orden, procede a votar. Internamente, el recuento de puntos funciona de la siguiente forma
+        header_li1: "El candidato o candidata elegido en primer lugar recibe un punto (1)"
+        header_li2: "El candidato o candidata elegido en segundo lugar recibe medio punto (½) = 0,5 puntos"
+        header_li3: "El candidato o candidata elegido en tercer lugar recibe un tercio de punto (⅓) = 0, 33 puntos"
+        header_li4: "El candidato o candidata elegido en cuarto lugar recibe un cuarto de punto (¼) = 0, 25 puntos"
+        header_li5: "El candidato o candidata elegido en quinto  lugar recibe una quinta parte de punto (⅕) = 0,20 puntos"
         
     step9:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Presentación de las listas electas       
         continue: Iniciar votación
         result: Resultados de la votación
+        link_result: Enlace a los resultados de la elección
+        public_link: Proporciona este enlace público para mostrar los resultados de la votación
          
 town:
     html_title: Municipales 2015 - Vota en la candidatura ciudadana
@@ -245,6 +268,7 @@ town:
         previous: Revisar criterios
         filter_selection: Con tu selección actual de filtros se te mostrarán
         advice: Te aconsejamos un máximo de 10
+        candidates_of: candidatos/as de
              
     step7:
         header: Elige candidatos
@@ -262,10 +286,17 @@ town:
         
     step9:
         header: Fin
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 9
+        html_title: Municipales 2015 - Alta de candidatura ciudadana
         h1_title: Fin
         previous: Anterior
-                       
+        headline: Resultados públicos de la votación
+        headin1: Resultados de la elección del municipio
+        headin2: en    
+        candidates_voted: Candidatos votados
+        total_voters: Total votantes
+        total_points: Total de puntos
+        position: Posición
+               
 candidate:
     html_title: Municipales 2015 - Alta de candidato
     h1_title: Regístrate como candidato o candidata
@@ -293,7 +324,7 @@ candidate:
         
     step2:
         header: Firma documentos
-        p1: Antes de subir tu perfil, debes descargarte, firmar (digital o manualmente) y volver a enviar los documentos siguientes para confirmar tu aceptación de las condiciones de la candidatura ciudadana
+        p1: Debes firmar tu conformidad con los condicionantes de la candidatura, para ello haz clic en “Descargar” y firma (digital o manualmente) el documento, y una vez firmado lo adjuntas haciendo clic en “Examinar”.  Cuando hayas hecho lo mismo con todos los documentos,  haz clic en continuar. Puede que el administrador de la candidatura no ha subido ninguna condición, entonces, simplemente haz clic en continuar
     
         program: Aceptación del programa de la candidatura
         legal_conditions: Cumplimiento de las condiciones legales y veracidad de la información aportada
@@ -328,6 +359,7 @@ candidate:
         
     step6:      
         header: Establece prioridades de gobierno
+        subheader: Establece las prioridades en las que debería mejorarse la gestión municipal 
         govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones)
         previous: Anterior
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
@@ -338,6 +370,7 @@ candidate:
         motivation_text_title: Describe tu motivación para presentarte
         town_activities_explanation_title: Describe tu experiencia relacionada
         additional_info_title: Biografía e información adicional que quieras aportar
+        url_info_title: Dirección web o URL (vídeo, blog, etc) (opcional)
         profile_image_title: Adjunta foto
         previous: Anterior
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
@@ -354,3 +387,33 @@ login:
     remember_me: Recordar mis datos
     conditions: Accede con tus credenciales de usuario y contraseña
     
+mail:
+    admin_created:
+        hello: Hola
+        account: Tu cuenta de administrador de candidatura ha sido creada
+        can_create: Puedes acceder a tu cuenta desde el enlace
+        login: Login
+
+    candidacy_address:
+        hello: Hola
+        supply_link: Puedes proporcionar este enlace público a los candidatos y candidatas para que se den de alta rellenando el formulario que les aparecerá 
+      
+    candidacy_vote_address:
+        hello: Hola
+        can_public: Puedes proporcionar este enlace público de votacion a los votantes para que procedan rellenando el formulario que les aparecerá
+        
+    candidate_accepted:
+        hello: Hola
+        accepted: Tu candidatura ha sido aceptada por el administrador
+    
+    candidate_rejected:
+        hello: Hola
+        rejected: Tu candidatura ha sido rechazada por el administrador
+    
+    candidate_signup:
+        new: Se ha registrado un nuevo candidato con nombre
+    
+    sms_inbound_verification:
+        your_phone: Tu telefono
+        verify: ha sido verificado correctamente
+        
