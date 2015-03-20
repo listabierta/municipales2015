@@ -3,7 +3,7 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
+    database_name:     listabierta
     database_user:     root
     database_password: ~
     # You should uncomment this if you want use pdo_sqlite
@@ -24,5 +24,7 @@ parameters:
     admin_email: ~
     
     # Tractis TSA
+    # Read https://www.tractis.com/home/webservices/tsa
+    # Create an API Key here: https://www.tractis.com/webservices/tsa/apikeys
     tractis_api_identifier: ~
     tractis_api_secret: ~
