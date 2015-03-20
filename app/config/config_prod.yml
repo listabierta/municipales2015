@@ -1,6 +1,11 @@
 imports:
     - { resource: config.yml }
 
+services:
+    twig.extension.debug:
+        class: Twig_Extension_Debug
+        tags: [{ name: 'twig.extension' }]
+        
 #framework:
 #    validation:
 #        cache: apc
