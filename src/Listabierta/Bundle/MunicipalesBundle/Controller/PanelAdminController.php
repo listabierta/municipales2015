@@ -292,7 +292,7 @@ class PanelAdminController extends Controller
     				}
     			}
     			 
-    			return $this->render('MunicipalesBundle:Candidacy:step1.html.twig', array(
+    			return $this->render('MunicipalesBundle:PanelAdmin:modify_personal_data.html.twig', array(
     					'form' => $form->createView(),
     			));
     		}
