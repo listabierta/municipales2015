@@ -71,8 +71,8 @@
 			
 			                  
 			                            <div class="form-group text-center">
-			                              <a target="_blank" style="font-size:24px" href="http://municipales2015.listabierta.org/{{ address_slug }}/altacandidaturas" 
-			                              title="Alta candidaturas {{ address_slug }}">http://municipales2015.listabierta.org/{{ address_slug }}/altacandidaturas</a>
+			                              <a target="_blank" style="font-size:24px" href="http://{{ app.request.server.get('HTTP_ORIGIN') }}/{{ address_slug }}/altacandidaturas" 
+			                              title="Alta candidaturas {{ address_slug }}">http://{{ app.request.server.get('HTTP_ORIGIN') }}/{{ address_slug }}/altacandidaturas</a>
 		
 			                            </div>
 			                            

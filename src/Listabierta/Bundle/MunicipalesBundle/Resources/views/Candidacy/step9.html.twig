@@ -46,7 +46,7 @@
 
 							<br/>
 							
-							<h1><a href="http://municipales2015.listabierta.org/{{ address_slug }}/resultados" title="{{ 'candidacy.step9.public_link'|trans }}">http://municipales2015.listabierta.org/{{ address_slug }}/resultados</a></h1>
+							<h1><a href="http://{{ app.request.server.get('HTTP_ORIGIN') }}/{{ address_slug }}/resultados" title="{{ 'candidacy.step9.public_link'|trans }}">http://{{ app.request.server.get('HTTP_ORIGIN') }}/{{ address_slug }}/resultados</a></h1>
 
 						</div>
 

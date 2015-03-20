@@ -105,7 +105,7 @@
 											{{ 'candidacy.step7.public_link'|trans }}
 											
 											<div style="text-align:center">
-												<h3><a href="http://municipales2015.listabierta.org/{{ address }}/vota" title="Votar en {{ town }}">http://municipales2015.listabierta.org/{{ address }}/vota</a></h3>
+												<h3><a href="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ address }}/vota" title="Votar en {{ town }}">http://{{ app.request.server.get('HTTP_ORIGIN') }}/{{ address }}/vota</a></h3>
 											</div>
 										</p>
 										
