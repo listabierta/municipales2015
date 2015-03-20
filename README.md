@@ -39,3 +39,15 @@ If you need the raw SQL queries you can load with the following commands:
 
     $ cat src/Listabierta/Bundle/MunicipalesBundle/Resources/fixtures/provinces_spain.sql | mysql listabierta
     $ cat src/Listabierta/Bundle/MunicipalesBundle/Resources/fixtures/municipalities_spain.sql | mysql listabierta
+    
+== Third parties ==
+
+* Tractis TSA
+    
+    This project use Tractis TSA (https://www.tractis.com/home/webservices/tsa) to cipher vote results. You will need
+    create an API key here: https://www.tractis.com/webservices/tsa/apikeys
+
+* SMS inbound
+    
+    For validate mobile phones this project use a SMS inbound number. You will need reserve some number. Currently the
+    project uses Nexmo API (nexmo.com) as free SMS inbound provider 
