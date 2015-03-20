@@ -417,3 +417,26 @@ mail:
         your_phone: Tu telefono
         verify: ha sido verificado correctamente
     
+# Panel admin
+panel_admin:
+    index:
+        header: Panel Admin
+        hello: Hola
+        logout: Salir
+        manage: En este panel puedes gestionar la candidatura ciudadana
+        not_yet_validated: Aun no has validado tu número de móvil
+        needed_continue: Es necesario validar tu móvil para continuar con cualquier acción
+        your_phone_number: Tu número de móvil
+        is_verified: esta verificado correctamente.
+        modify_personal_data: Modificar datos personales
+        upload_documents: Subir documentos
+        set_candidacy_date: Cambiar/establecer los plazos <br />presentación de candidaturas
+        change_address: Cambiar/establecer <br />dirección de internet
+        candidacy_register: Ver enlace <br />de alta de candidatos/as
+        validate_candidates: Validar candidatos/as
+        set_vote_days: Establecer número de días <br />de la votación (plazo de votación)
+        see_internal_results: Ver resultados internos <br />de la votación
+        see_public_results: Ver enlace de resultados públicos<br /> de la votación
+        
+    modify_personal_data:
+        bla: ble

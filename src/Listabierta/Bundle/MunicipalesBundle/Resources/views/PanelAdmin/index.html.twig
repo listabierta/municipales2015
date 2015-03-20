@@ -21,7 +21,7 @@
           <h2>Panel Admin</h2>
         </div>
         
-        <h3 class="featurette-headin"> <i>Hola {{ admin.name }} {{ admin.lastname }}</i>, <a title="Salir" href="{{ path('admin_logout') }}">Salir</a></h3>
+        <h3 class="featurette-headin"> <i>{{ 'panel_admin.index.hello'|trans }} {{ admin.name }} {{ admin.lastname }}</i>, <a title="{{ 'panel_admin.index.logout'|trans }}" href="{{ path('admin_logout') }}">{{ 'panel_admin.index.logout' }}</a></h3>
         
         <!-- START THE FEATURETTES -->
         <!--    division -->
@@ -39,10 +39,10 @@
 
                           
                     <div data-step="1" class="step-pane active row">
-                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">Panel Admin</h2>
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'panel_admin.index.header'|trans }}</h2>
                       
                       <div class="col-sm-offset-1 col-md-10 well">
-							En este panel puedes gestionar la candidatura ciudadana
+							{{ 'panel_admin.index.manage'|trans }}
                       </div>
                       
                       <div class="row">
@@ -51,7 +51,8 @@
                       	
                       	    {% if needs_phone_verification %}              			
 	                  			<div class="help-block col-xs-12 col-sm-10 col-sm-offset-1 inline">
-	                  				<div class="alert alert-warning">Aun no has validado tu número de móvil <b>{{ admin.phone }}</b>. Es necesario validar tu móvil para continuar con cualquier acción.
+	                  				<div class="alert alert-warning">{{ 'panel_admin.index.not_yet_validated'|trans }} <b>{{ admin.phone }}</b>. 
+	                  				{{ 'panel_admin.index.needed_continue'|trans }}.
 	                  				<br /><br />
 	                  				{{ 'town.verify_msg'|trans({'%sms_inbound_number%': sms_inbound_number}) }}
 	                  				</div>
@@ -61,7 +62,7 @@
 	                  		{% else %}
 	                  			<div class="help-block col-xs-12 col-sm-10 col-sm-offset-1 inline">
 	                  				<div class="alert alert-success">
-	                  					<i class="fa fa-check"></i> Tu número de móvil <b>{{ admin.phone }}</b> esta verificado correctamente.
+	                  					<i class="fa fa-check"></i> {{ 'panel_admin.index.your_phone_number'|trans }} <b>{{ admin.phone }}</b> {{ 'panel_admin.index.is_verified'|trans }}
 	                  				</div>
 	                  			</div>
 	                  			<br />
@@ -70,7 +71,7 @@
                   			
 							<button class="btn btn-default btn-lg" style="height:40px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('panel_admin_modify_personal_data') }}'; return false;">
 			                    <i class="mine-icon fa fa-pencil fa-fw"></i>
-			                    Modificar datos personales
+			                    {{ 'panel_admin.index.modify_personal_data'|trans }}
 			                </button>
                   			
                   			<br />
@@ -79,7 +80,7 @@
                   			{% if not needs_phone_verification %}
 	                  			<button class="btn btn-prev" style="height:40px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step2') }}'; return false;">
 				                    <i class="mine-icon fa fa-upload"></i>
-				                    Subir documentos
+				                    {{ 'panel_admin.index.upload_documents'|trans }}
 				                </button>
 				                
 				                <br />
@@ -87,7 +88,7 @@
 	                  			
 				                <button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step3') }}'; return false;">
 				                    <i class="mine-icon fa fa-calendar"></i>
-				                    Cambiar/establecer los plazos <br />presentación de candidaturas
+				                    {{ 'panel_admin.index.set_candidacy_date'|trans|raw }}
 				                </button>
 	                  			
 	                  			<br />
@@ -95,7 +96,7 @@
 	                  			
 	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step4') }}'; return false;">
 				                    <i class="mine-icon fa fa-calendar-o"></i>
-				                    Cambiar/establecer <br />dirección de internet
+				                    {{ 'panel_admin.index.change_address'|trans|raw }}
 				                </button>
 	                  			
 	                  			<br />
@@ -104,7 +105,7 @@
 	                  			{% if not admin.address is empty %}
 		                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('candidate_step1', {'address' : admin.address }) }}'; return false;">
 					                    <i class="mine-icon fa-book fa"></i>
-					                    Ver enlace <br />de alta de candidatos/as
+					                    {{ 'panel_admin.index.candidacy_register'|trans|raw }}
 					                </button>
 		                  			
 		                  			<br />
@@ -113,7 +114,7 @@
 	                  			
 	                  			<button class="btn btn-prev" style="height:40px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step6') }}'; return false;">
 				                    <i class="mine-icon fa fa-check-square"></i>
-				                    Validar candidatos/as
+				                    {{ 'panel_admin.index.validate_candidates'|trans }}
 				                </button>
 	                  			
 	                  			<br />
@@ -121,7 +122,7 @@
 	                  			
 	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step7') }}'; return false;">
 				                    <i class="mine-icon fa fa-pencil fa-fw"></i>
-				                    Establecer número de días <br />de la votación (plazo de votación)
+				                    {{ 'panel_admin.index.set_vote_days'|trans|raw }}
 				                </button>
 	                  			
 	                  			<br />
@@ -129,7 +130,7 @@
 	                  			
 	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step8') }}#'; return false;">
 				                    <i class="mine-icon fa fa-key fa-fw"></i>
-				                    Ver resultados internos <br />de la votación
+				                    {{ 'panel_admin.index.see_internal_results'|trans|raw }}
 				                </button>
 	                  			
 	                  			<br />
@@ -137,7 +138,7 @@
 	                  			{% if not admin.address is empty %}
 	                  			<button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('town_results', {'address' : admin.address }) }}'; return false;">
 				                    <i class="mine-icon fa fa-eye"></i>
-				                    Ver enlace de resultados públicos<br /> de la votación
+				                    {{ 'panel_admin.index.see_public_results'|trans|raw }}
 				                </button>
 				                {% endif %}
 			                {% endif %}
