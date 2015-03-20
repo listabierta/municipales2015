@@ -13,6 +13,7 @@ class SMSInboundController extends Controller
 	
 	public function indexAction(Request $request = NULL)
 	{
+		$logger = $this->get('logger');
 		$query = $request->query;
 		
 		$msisdn = $query->get('msisdn', NULL); // Customer mobile number
@@ -26,6 +27,9 @@ class SMSInboundController extends Controller
 		// Remove prefix (34) (spain)
 		$phone = strlen($msisdn) > 9 && substr($msisdn, 0, 2) == '34' ? substr($msisdn, 2, strlen($msisdn)) : $msisdn;
 
+		$logger->info('SMS Callback: ' . $msisdn . ' ' . $to . ' ' . $message_id . ' ' . $text . ' ' . $type . ' ' . $keyword . ' ' . $message_timestamp);
+		
+		
 		// Look the phone and mail to verify
 		$entity_manager = $this->getDoctrine()->getManager();
 		$phone_verified_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified');
@@ -38,18 +42,19 @@ class SMSInboundController extends Controller
 		{
 			if(!empty($phone_verified) && $phone_verified->getTimestamp() == 0)
 			{
-				if($keyword == self::KEYWORD_INBOUND)
-				{
+				//if($keyword == self::KEYWORD_INBOUND)
+				//{
 					$email = $phone_verified->getEmail();
 					$phone_verified->setTimestamp(time());
 					
+					$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
 					$entity_manager->persist($phone_verified);
 					$entity_manager->flush();
 					
 					// . implode(',', $query->all())
 					$message = \Swift_Message::newInstance()
 					->setSubject('Tu telefono movil ' . $phone . ' ha sido verificado correctamente')
-					->setFrom('verificaciones@municipales2015.listabierta.org', 'Verificaciones')
+					->setFrom('verificaciones@' . $host, 'Verificaciones')
 					->setTo($email)
 					->setBody(
 							$this->renderView(
@@ -83,11 +88,11 @@ class SMSInboundController extends Controller
 					}
 					
 					$result .= 'Verified ' . $phone . ' with mail ' . $email . '<br />';
-				}
-				else 
-				{
-					echo 'Keyword sms is not valid';
-				}
+				//}
+				//else 
+				//{
+				//	echo 'Keyword sms is not valid';
+				//}
 			}
 			else 
 			{
@@ -100,6 +105,7 @@ class SMSInboundController extends Controller
 	
 	public function callbackAction(Request $request = NULL)
 	{
+		$logger = $this->get('logger');
 		$query = $request->query;
 		
 		$msisdn = $query->get('msisdn', NULL); // Customer mobile number
@@ -113,6 +119,9 @@ class SMSInboundController extends Controller
 		// Remove prefix (34) (spain)
 		$phone = strlen($msisdn) > 9 && substr($msisdn, 0, 2) == '34' ? substr($msisdn, 2, strlen($msisdn)) : $msisdn;
 
+		
+		$logger->info('SMS Callback: ' . $msisdn . ' ' . $to . ' ' . $message_id . ' ' . $text . ' ' . $type . ' ' . $keyword . ' ' . $message_timestamp);
+		
 		// Look the phone and mail to verify
 		$entity_manager = $this->getDoctrine()->getManager();
 		$phone_verified_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified');
@@ -125,10 +134,12 @@ class SMSInboundController extends Controller
 		{
 			if(!empty($phone_verified) && $phone_verified->getTimestamp() == 0)
 			{
-				if($keyword == self::KEYWORD_INBOUND)
-				{
+				//if($keyword == self::KEYWORD_INBOUND)
+				//{
 					$email = $phone_verified->getEmail();
 					$phone_verified->setTimestamp(time());
+					
+					$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
 					
 					$entity_manager->persist($phone_verified);
 					$entity_manager->flush();
@@ -136,7 +147,7 @@ class SMSInboundController extends Controller
 					// . implode(',', $query->all())
 					$message = \Swift_Message::newInstance()
 					->setSubject('Tu telefono movil ' . $phone . ' ha sido verificado correctamente')
-					->setFrom('verificaciones@municipales2015.listabierta.org', 'Verificaciones')
+					->setFrom('verificaciones@' . $host, 'Verificaciones')
 					->setTo($email)
 					->setBody(
 							$this->renderView(
@@ -148,11 +159,11 @@ class SMSInboundController extends Controller
 					$this->get('mailer')->send($message);
 					
 					$result .= 'Verified ' . $phone . ' with mail ' . $email . '<br />';
-				}
-				else 
-				{
-					echo 'Keyword sms is not valid';
-				}
+				//}
+				//else 
+				//{
+				//	echo 'Keyword sms is not valid';
+				//}
 			}
 			else 
 			{
