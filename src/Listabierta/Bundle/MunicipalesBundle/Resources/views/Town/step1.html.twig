@@ -3,7 +3,7 @@
 {% block title %}{{ 'town.html_title'|trans }}{% endblock %}
 
 {% block appjsinline %}
-    <script src="js/geoPosition.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ asset('bundles/municipales/js/geoPosition.js') }}" type="text/javascript" charset="utf-8"></script>
     <script>
 			$(document).ready(function()
 			{
