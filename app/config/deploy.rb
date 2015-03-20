@@ -1,4 +1,4 @@
-set :application, "municipales2015.listabierta.com"
+set :application, "municipales2015.listabierta.org"
 set :deploy_user, "muni"
 set :domain,      "#{application}"
 set :deploy_to,   "/home/#{deploy_user}/public"
@@ -17,6 +17,12 @@ set  :keep_releases,  3
 # Avoid clone the repo in every deploy (use cache)
 set :deploy_via, :remote_cache
 set   :use_sudo,      false
+
+
+set :shared_files,      ["app/config/parameters.yml"]
+set :shared_children,     [app_path + "/logs", web_path + "/uploads", "vendor"]
+set :use_composer, true
+set :update_vendors, true
 
 after "deploy", "deploy:cleanup"
 
