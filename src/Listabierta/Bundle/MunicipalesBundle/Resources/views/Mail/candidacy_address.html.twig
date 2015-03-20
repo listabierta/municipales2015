@@ -1,7 +1,7 @@
-Hola <b>{{ name }},<br />
+{{ 'mail.candidacy_address.hello'|trans }} <b>{{ name }}</b>,<br />
 <br />
-Puedes proporcionar este enlace público a los candidatos y candidatas para que se 
-den de alta rellenando el formulario que les aparecerá:<br /><br />
+{{ 'mail.candidacy_address.supply_link'|trans }}:<br /><br />
 <br />
-<a href="http://municipales2015.listabierta.org/{{ address_slug }}/altacandidaturas">http://municipales2015.listabierta.org/{{ address_slug }}/altacandidaturas</a>
+<a href="{{ path('candidate_step1', { 'address' : address_slug }) }}" 
+title="{{ 'candidacy.step1.header'|trans }}">{{ path('candidate_step1', { 'address' : address_slug }) }}</a>
 <br />
