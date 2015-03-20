@@ -58,7 +58,7 @@ This project could be deployed using Capifony.
 
 For use capifony in Ubuntu you will need install the following dependencies
 
-    $ sudo apt-get install -y nginx ruby git php5 php5-fpm php5-mysql php5-cli php5-curl php-apc acl
+    $ sudo apt-get install -y nginx ruby git php5 php5-fpm php5-mysql php5-cli php5-curl php-apc acl php5-memcache* memcached
     $ sudo gem install capifony
 
 Then you can clone the repository with:
@@ -69,6 +69,8 @@ Then you can clone the repository with:
 Then perform a cold installation:
 
 	# cap symfony:doctrine:database:create
+	# cap symfony:doctrine:schema:update
+	# cap symfony:doctrine:load_fixtures
 	
 The following command will ask you the initial parameters for configure the project
 
