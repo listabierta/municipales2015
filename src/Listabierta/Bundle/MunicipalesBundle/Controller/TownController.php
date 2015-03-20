@@ -267,6 +267,7 @@ class TownController extends Controller
 				'form' => $form->createView(),
 				'errors' => $form->getErrors(),
 				'address' => $address,
+				'enable_geolocation'  => isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == 'primarias.ahorasevilla.org',
 		));
 	}
 

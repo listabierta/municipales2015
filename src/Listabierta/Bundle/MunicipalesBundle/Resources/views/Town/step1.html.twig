@@ -9,7 +9,7 @@
 			{
 				$(".explanation_dni").colorbox({inline:true, width:"15%"});
 
-				{% if app.request.server.get('HTTP_HOST') == 'primarias.ahorasevilla.org' or 1 %}
+				{% if enable_geolocation %}
 					function geo_error() 
 					{
 						if (err.code == 1) 
@@ -99,7 +99,7 @@
       <div class="container marketing">
  
          <div class="headline">
-          <h2>{{ 'home.step_h2'|trans }} 1 {{ app.request.server|join(' ') }} {{ app.request|join(' ') }}</h2>
+          <h2>{{ 'home.step_h2'|trans }} 1</h2>
         </div><h3 class="featurette-headin"> <i>{{ 'town.step1.header'|trans }}</i>
         </h3>
                
@@ -134,10 +134,9 @@
                       
                       <div class="col-xs-12 col-sm-offset-0"><div class="hr hr-dotted"></div></div>
                       
-                      {% if app.request.server.get('HTTP_HOST') == 'primarias.ahorasevilla.org' or 1 %}
+                      {% if enable_geolocation %}
                       <div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline center" style="display:none">
                       		<div class="alert alert-success" id="live-geolocation"></div>
-                      		{{ dump(app.request.server) }}
                       </div>
                       {% endif %}
                        
