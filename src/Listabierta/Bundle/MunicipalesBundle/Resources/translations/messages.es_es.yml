@@ -439,4 +439,5 @@ panel_admin:
         see_public_results: Ver enlace de resultados públicos<br /> de la votación
         
     modify_personal_data:
-        bla: ble
+        back: Volver
+        save: Guardar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
