@@ -283,6 +283,7 @@ town:
         h1_title: Asigna puntuaciones
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior 
+        congratulations: <strong><i class="mine-icon fa fa-check"></i> ¡Enhorabuena!</strong> Tu voto ha sido procesado correctamente 
         
     step9:
         header: Fin
