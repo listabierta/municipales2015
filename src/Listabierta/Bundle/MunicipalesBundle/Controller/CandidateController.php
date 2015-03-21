@@ -1120,9 +1120,11 @@ class CandidateController extends Controller
 				$entity_manager->persist($candidate);
 				$entity_manager->flush();
 				
+				$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+				
 				$message = \Swift_Message::newInstance()
 				->setSubject('Nuevo candidato registrado')
-				->setFrom('candidaturas@municipales2015.listabierta.org', 'Candidaturas')
+				->setFrom('candidaturas@' . $host, 'Candidaturas')
 				->setTo($admin_candidacy->getEmail())
 				->setBody(
 						$this->renderView(

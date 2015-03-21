@@ -257,10 +257,11 @@ class CandidacyController extends Controller
 	    		$session->set('phone', $phone);
 	    		
 	    		// Send mail with login link for admin
+	    		$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
 	    		
 	    		$message = \Swift_Message::newInstance()
 	    		->setSubject('Tu cuenta de administrador ha sido creada')
-	    		->setFrom('candidaturas@municipales2015.listabierta.org', 'Candidaturas')
+	    		->setFrom('candidaturas@' . $host, 'Candidaturas')
 	    		->setTo($email)
 	    		->setBody(
 	    				$this->renderView(
@@ -871,10 +872,10 @@ class CandidacyController extends Controller
     			$entity_manager->flush();
 
     			// Send email with register address to admin
-    			
+    			$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
     			$message = \Swift_Message::newInstance()
 	    			->setSubject('Enlace público de acceso para tu candidatura')
-	    			->setFrom('candidaturas@municipales2015.listabierta.org', 'Candidaturas')
+	    			->setFrom('candidaturas@' . $host, 'Candidaturas')
 	    			->setTo($admin_candidacy->getEmail())
 	    			->setBody(
 	    					$this->renderView(
@@ -1158,9 +1159,10 @@ class CandidacyController extends Controller
     			$entity_manager->persist($admin_candidacy);
     			$entity_manager->flush();
     			
+    			$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
     			$message = \Swift_Message::newInstance()
     			->setSubject('Enlace público de acceso de votaciones para tu candidatura')
-    			->setFrom('candidaturas@municipales2015.listabierta.org', 'Candidaturas')
+    			->setFrom('candidaturas@' . $host, 'Candidaturas')
     			->setTo($admin_candidacy->getEmail())
     			->setBody(
     					$this->renderView(
@@ -1509,9 +1511,10 @@ class CandidacyController extends Controller
     	$entity_manager->persist($candidate);
     	$entity_manager->flush();
 
+    	$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
     	$message = \Swift_Message::newInstance()
     	->setSubject('Tu candidatura ha sido aceptada por el administrador')
-    	->setFrom('candidaturas@municipales2015.listabierta.org', 'Candidaturas')
+    	->setFrom('candidaturas@' . $host, 'Candidaturas')
     	->setTo($candidate->getEmail())
     	->setBody(
     			$this->renderView(
@@ -1591,9 +1594,11 @@ class CandidacyController extends Controller
     	$entity_manager->persist($candidate);
     	$entity_manager->flush();  
 
+    	$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+    	
     	$message = \Swift_Message::newInstance()
     	->setSubject('Tu candidatura ha sido rechazada por el administrador')
-    	->setFrom('candidaturas@municipales2015.listabierta.org', 'Candidaturas')
+    	->setFrom('candidaturas@' . $host, 'Candidaturas')
     	->setTo($candidate->getEmail())
     	->setBody(
     			$this->renderView(
