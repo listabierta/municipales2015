@@ -32,6 +32,13 @@ set :user, "root" # #{deploy_user}
 set :permission_method,   :acl
 set :use_set_permissions, true
 
+after "deploy:finalize_update" do
+  run "sudo chmod -R 777 #{latest_release}/#{cache_path}"
+  run "sudo chown -R #{deploy_user}:#{webserver_user} #{latest_release}/#{cache_path}"
+  run "sudo chown -R #{deploy_user}:#{webserver_user} #{latest_release}/#{log_path}"
+  run "sudo chown -R #{deploy_user}:#{webserver_user} #{latest_release}"
+end
+
 before "deploy:restart", "deploy:set_permissions"
 after "deploy", "deploy:cleanup"
 
