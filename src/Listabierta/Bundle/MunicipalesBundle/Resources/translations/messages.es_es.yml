@@ -138,6 +138,9 @@ candidacy:
         additional_info_header: Biografía
         photo_header: Foto
         action_header: Acción
+        accepted: Aceptado
+        rejected: Rechazado
+        accept_candidate: Aceptar candidato
         
     step7:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
