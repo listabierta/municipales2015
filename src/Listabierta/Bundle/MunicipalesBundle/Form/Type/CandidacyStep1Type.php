@@ -82,7 +82,8 @@ class CandidacyStep1Type extends AbstractType
         								'max'        => 255,
         								'minMessage' => 'forms.candidacy_step1.password.minMessage',
         								'maxMessage' => 'forms.candidacy_step1.password.maxMessage',
-        						))
+        						)),
+        				'translation_domain' => 'messages'
         				)))
         	    ->add('email', 'email', array(
         	    		'required' => true, 
