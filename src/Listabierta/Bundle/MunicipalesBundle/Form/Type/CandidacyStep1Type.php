@@ -70,7 +70,8 @@ class CandidacyStep1Type extends AbstractType
         								'max'        => 255,
         								'minMessage' => 'Your username must be at least {{ limit }} characters long',
         								'maxMessage' => 'Your username cannot be longer than {{ limit }} characters long',
-        						))
+        						)),
+        				'translation_domain' => 'messages'
         				)))
         		->add('password', 'password', array(
         				'required' => true,
