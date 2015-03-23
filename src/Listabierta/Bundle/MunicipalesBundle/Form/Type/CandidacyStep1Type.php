@@ -79,8 +79,8 @@ class CandidacyStep1Type extends AbstractType
         						new Assert\Length(array(
         								'min'        => 8,
         								'max'        => 255,
-        								'minMessage' => 'Your password must be at least {{ limit }} characters long',
-        								'maxMessage' => 'Your password cannot be longer than {{ limit }} characters long',
+        								'minMessage' => 'forms.candidacy_step1.password.minMessage',
+        								'maxMessage' => 'forms.candidacy_step1.password.maxMessage',
         						))
         				)))
         	    ->add('email', 'email', array(

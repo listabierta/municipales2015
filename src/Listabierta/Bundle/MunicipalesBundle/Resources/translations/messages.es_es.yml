@@ -445,3 +445,10 @@ panel_admin:
     modify_personal_data:
         back: Volver
         save: Guardar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        
+
+forms:
+    candidacy_step1:
+        password:
+            minMessage: Tu contraseña debe de ser de al menos {{ limit }} caracteres
+            maxMessage: Tu contraseña debe de ser mayor de {{ limit }} caracteres
