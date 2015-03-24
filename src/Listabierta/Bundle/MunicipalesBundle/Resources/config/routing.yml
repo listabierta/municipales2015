@@ -282,7 +282,7 @@ admin_logout:
 
 recover_password:
     path:     /recover_password
-    defaults: { _controller: MunicipalesBundle:Candidacy:changePasswdAction }
+    defaults: { _controller: MunicipalesBundle:Candidacy:changePasswd }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
     
