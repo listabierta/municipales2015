@@ -20,4 +20,25 @@ class ChangePassword
      * )
      */
      protected $newPassword;
+     
+     
+     public function getOldPassword()
+     {
+     	return $this->oldPassword;
+     }
+     
+	 public function getNewPassword()
+     {
+     	return $this->newPassword;
+     }
+     
+     public function setOldPassword($oldPassword = NULL)
+     {
+     	$this->oldPassword = $oldPassword;
+     }
+     
+     public function setNewPassword($newPassword = NULL)
+     {
+     	$this->newPassword = $newPassword;
+     }
 }
