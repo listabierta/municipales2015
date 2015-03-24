@@ -847,10 +847,25 @@ class CandidacyController extends Controller
     			$ok = FALSE;
     		}
 
+    		$address_slug = $this->get('slugify')->slugify($address_data);
+    		
+    		if(empty($address_slug))
+    		{
+    			$form->addError(new FormError('El slug de dirección no puede ser vacío'));
+    			$ok = FALSE;
+    		}
+    		
+    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    		$admin_address = $admin_candidacy_repository->findOneByAddress($address_slug);
+    		
+    		if(!empty($admin_address))
+    		{
+    			$form->addError(new FormError('La dirección ' . $admin_address . ' ya esta siendo utilizada por otra candidatura.'));
+    			$ok = FALSE;
+    		}
+    		
     		if($ok)
     		{
-    			$address_slug = $this->get('slugify')->slugify($address_data);
-    			
     			$session->set('address', $address_slug);
 
     			$entity_manager = $this->getDoctrine()->getManager();
