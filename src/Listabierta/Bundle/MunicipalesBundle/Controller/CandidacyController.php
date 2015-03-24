@@ -899,25 +899,17 @@ class CandidacyController extends Controller
     			 
     			$this->get('mailer')->send($message);
     			
-    			$form2 = $this->createForm(new CandidacyStep5Type(), NULL, array(
-    					'action' => $this->generateUrl('municipales_candidacy_step5'),
-    					'method' => 'POST',
-    			));
-    
-    			$form2->handleRequest($request);
-    
-    			return $this->render('MunicipalesBundle:Candidacy:step5.html.twig', array(
-    					'form' => $form2->createView(),
-    					'address_slug' => $address_slug,
-    				)
-    			);
+    			return $this->step5Action($request, $address_slug);
     		}
     	}
+    	
+    	$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
     	
     	return $this->render('MunicipalesBundle:Candidacy:step4.html.twig', array(
     			'form' => $form->createView(),
     			'default_address_slug' => $default_address_slug,
     			'address_slug' => $default_address_slug,
+    			'host' => $host,
     	));
     }
     

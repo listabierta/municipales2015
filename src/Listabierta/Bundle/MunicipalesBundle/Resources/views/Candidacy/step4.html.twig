@@ -65,7 +65,7 @@
 			                            <div class="form-group{% if form.address.vars.errors|length > 0 %} has-error{% endif %}">
 			                              <div class="input-group">
 			                                <div class="input-group-addon">
-			                                  <span class="mine-icon fa fa-check2"><span style="font-size: 22px;">http://{{ app.request.server.get('HTTP_ORIGIN') }}/ </span></span>
+			                                  <span class="mine-icon fa fa-check2"><span style="font-size: 22px;">http://{{ host }}/ </span></span>
 			                                </div>
 			                                
 											<div class="col-xs-12 col-sm-12" style="padding-left: 0px;">
@@ -80,7 +80,7 @@
 			                            
 			                            <div class="help-block col-xs-12 col-sm-10 col-sm-offset-1 inline">
 			                            	<div class="alert alert-warning">
-			                            		{{ 'candidacy.step4.warning'|trans }}
+			                            		{{ 'candidacy.step4.warning'|trans({'host' : host }) }}
 			                            	</div>
 			                            </div>
 			
