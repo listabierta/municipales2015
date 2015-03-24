@@ -1,37 +1,32 @@
 home:
-    html_title: Municipales 2015 - Home
-    h1_title: Municipales 2015
-    steps_h2: Pasoak
-    step_h2: Pasoak
-    steps: Para dar de alta una candidatura ciudadana debes
-    featured: Abre tu ayuntamiento a la ciudadanía en estas elecciones municipales de mayo 2015
-    html_title: Udal eta Batzar Nagusietarako Hauteskundeak 2015 - Home
-    h1_title: Udal eta Batzar Nagusietarako Hauteskundeak 2015
-    steps_h2: Pausoak
-    step_h2: Pauso
-    steps: Herritar hautagaitza aurkezteko egin behar duzuna:
-    featured: Ireki zure udaletxea herritarrei 2015ko Udal eta Batzar Nagusietarako Hauteskundeetan
-    open_council: Ireki zure udaletxea herritarrei&iacute; 2015ko Udal eta Batzar Nagusietarako Hauteskundeetan
-    who_we_are: "Nortzuk Gara?"
-    who_h3: "Hasi Hemendik"
-    intro_p1: es el fruto de un esfuerzo de financiación colectiva y de un equipo de trabajo que pretende abrir las organizaciones a la ciudadanía. Entre estas organizaciones ocupan un lugar destacado los Ayuntamientos.
-    intro_p2: La elección de candidatos y candidatas en listas abiertas para los comicios municipales permite que los electos se “deban” a los ciudadanos que los han elegido, y no a quien les hubiese incluido en una lista cerrada o negociada. 
-    intro_p3: Si estás <b>directamente implicado en la organización</b> de una candidatura de listas abiertas en tu municipio para las próximas elecciones de mayo de 2.015, puedes organizarla con esta herramienta online sin coste y con resultados auditables, porque otra forma de gobernar tu Ayuntamiento es posible y necesaria.
-    intro_p4: Es muy importante que antes de empezar el proceso de registro de la candidatura, veas este tutorial del proceso completo.
-    intro_p5: ¿Cómo funciona la herramienta de listas abiertas municipales?
+    html_title: Udal-Hauteskundeak 2015 - Home
+    h1_title: Udal-Hauteskundeak 2015
+    steps_h2: Pausuak
+    step_h2: Pausuak
+    steps: Hiri-hautagaitza alta hartzeko egin behar duzu
+    featured: Zabal ezazu zure Udala hiritarrentzat 2015 urteko maiatzaren udal-hauteskunde hauetan
     
-    step_1: Regístrate y registra el municipio de la candidatura
-    step_2: Establece las condiciones de la candidatura ciudadana
-    step_3: Establece los plazos de votación
-    step_4: Reserva una dirección de internet
-    step_5: Alta de candidatos y candidatas
-    step_6: Validación de candidatos y candidatas
-    step_7: Votaciones
-    step_8: Verificación del voto y resultados
-    step_9: Presentación de las listas electas
+    open_council: Zabal ezazu zure Udala hiritarrentzat 2015 urteko maiatzaren udal-hauteskunde hauetan
+    who_we_are: "Nortzuk gara?"
+    who_h3: "Has zaitez hemendik"
+    intro_p1: talde-finantzazioaren eta lan-taldearen ahaleginaren emaitza da erakundeak hiritarrentzat zabal daitezela. Erakunde hauen artean Udalak dira nabarienak.
+    intro_p2: Udal-hauteskundeetarako zerrenda-zabaletan hautagaien aukerak baimentzen du aukeratutako hautetsiek hiritarrei "zor" dietela, eta ez diote ezer zor zerrenda itxian eta negoziatuan sartzen duenari. 
+    intro_p3: Baldin bazaude <b>zuzen nahasterik</b> zure Udaleko zerrenda zabaletako hautagaitzaren antolaketan 2.015 urteko maiatzaren hurrengo hauteskundeetarako, kosturik gabeko erreminta on-line honekin baita emaitza ikuskatuekin ere antola dezakezu, zure Udala beste zuzentzeko era posiblea eta beharrezkoa delako.
+    intro_p4: Hautagaitzaren erregistro-prozesua hasi baino lehen, prozesu osoko tutoriala ikustea oso garrantzi handikoa da.
+    intro_p5: Nola funtzionatzen du udal-zerrenda zabaletako erremintak?
     
-    start_here: Iniciar el registro
-    welcome: "&iexcl;Bienvenidos al sitio!"
+    step_1: Izena eman zaitez eta izena eman ezazu zure hautagaitzaren herria
+    step_2: Jar itzazu hiri-hautagaitzaren baldintzak
+    step_3: Jar itzazu botoa emateko epea
+    step_4: Erreserba ezazu internet helbide bat
+    step_5: Hautagaien alta
+    step_6: Hautagaien balioztatzea
+    step_7: Bozketak
+    step_8: Botoen balioztatzea eta emaitzak
+    step_9: Zerrenda hautatuen aurkezpena
+    
+    start_here: Has ezazu erregistroa
+    welcome: "&iexcl;Ongi etorri!"
 
 header:
     languages:
@@ -41,67 +36,67 @@ header:
         es_es: Español
         
 candidacy:
-    html_title: Municipales 2015 - Alta de candidatura ciudadana
-    h1_title: Regístrate y registra el municipio de la candidatura
-    verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
-    verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
+    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta
+    h1_title: Izena eman zaitez eta izena eman ezazu hautagaitzaren herria
+    verify_msg: Baiezta itzazu erregistroa eta baldintzak SMS bidaliz zure mugikorretik ACEPTO hitzarekin telefono zenbakira %sms_inbound_number%, gero klikatu CONTINUAR hitza
+    verify_extra: Mezuaren kostua 10 zentimokoa da (edo doan, zure operadorearen arabera), ez da SMS premium bat eta listabierta.org erakundeak ez du etekinik lortzen zerbitzu honen truke.
     
     step_conditions:
-      html_title: Municipales 2015 - Condiciones de alta de candidatura ciudadana
-      h1_title: Regístrate y registra el municipio de la candidatura
+      html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta-baldintzak
+      h1_title: Izena eman zaitez eta izena eman ezazu hautagaitzaren herria
     
-      p1_title: Al iniciar el registro aceptas las siguientes condiciones
-      p1_content: Que formas parte un colectivo (partido político, coalición de partidos o agrupación de electores) que desea presentarse a los comicios municipales que se celebrarán el 24 de mayo de 2.015 y que para ello tienen la intención de registrarse en plazo y forma en la correspondiente junta electoral provincial.
-      p2_content: Que has sido designado por dicho colectivo para efectuar el alta del municipio en la presente herramienta de voto de listas abiertas, no existiendo conflicto interno en cuanto a su uso.
-      p3_content: Que dicho colectivo comprende y acepta las limitaciones del uso de la herramienta en cuanto al sistema de voto y su verificación.
-      p4_content: Que dicho colectivo comprende y acepta que el proceso de verificación y aceptación de las candidaturas lo efectúa el administrador o administradora de la votación.
-      p5_content: Que mediante el acto de registro estás dando tu consentimiento expreso al tratamiento de los datos personales que aportas, según lo dispuesto en el artículo 6 de la LOPD y que podrás ejercer tus derechos en los términos dispuestos por el artículo 5 de la LOPD.
-      p6_content: Que la información que aportas durante el registro es cierta, tanto los datos personales como las condiciones de la votación, de la candidatura y su programa. <b>Ten en cuenta que no podrás modificarla más adelante, ya que los datos de registro se utilizan para identificarte como usuario único</b>.
-      accept: ACEPTAS ESTAS CONDICIONES
-      continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
+      p1_title: Erregistroa hastean hurrengo baldintza hauek onartu behar dituzu
+      p1_content: Talde baten kidea izatea (alderdi politikoa, alderdien koalizioa edo hautesle-elkartea) eta 2.015.eko maiatzaren 24an gertatuko diren udal-hauteskundeetara aurkeztu nahian, eta dagokion probintziako hauteskunde-batzordean erregistratu nahian garaiz eta egoki.
+      p2_content: Talde horrek hautatu egin zaitu herriaren alta hartzeko zerrenda zabaletako boto-erreminta honetan, eta ez dago barne-gatazkarik bere erabilpenari dagokionez.
+      p3_content: Talde horrek ulertzen eta onartzen ditu erremintaren erabilpenaren mugaketak boto-sistemari eta egiaztapenari dagokionez.
+      p4_content: Talde horrek ulertzen eta onartzen ditu bozketaren administratzaileak egiaztapen-prozesua eta hautagaitzen onarpena egin ditzala.
+      p5_content: Erregistro-ekintzaren bidez zure baimen zehatza ematen duzu zuk dakartzazu datu-prozesamendurako, LOPD legearen 6. artikuluan agertzen denaren arabera eta zure eskubideak erabil ditzakezu LOPD legearen 5. artikuluan agertzen denaren arabera.
+      p6_content: Erregistroan zehar emandako informazioa egiazkoa da, bai datu pertsonalak bai bozketaren baldintzak, hautagaitzarena eta programarena. <b>Kontuan har ezazu ezin izango duzula aldatu geroago, erregistro-datuek erabiltzaile bakar gisa identifikatzen zaituztelako</b>.
+      accept: BALDINTZA HAUEK ONARTZEN DITUZU
+      continue: <i class="ace-icon fa fa-check bigger-110"></i> Jarraitu
       
     step1:
-        name: Nombre 
-        lastname: Apellidos
-        dni: DNI
-        username: Usuario
-        password: Contraseña
+        name: Izena 
+        lastname: Abizenak
+        dni: NAN
+        username: Erabiltzaile
+        password: Pasahitza
         email: Email
-        province: Provincia del municipio
-        town: Nombre del municipio
-        phone: Número de móvil
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
-        explanation: Explicación
-        dni_info: Sin introducir guión entre número y letra
-        username_info: Anota tu nombre de usuario
-        password_info: Anota tu contraseña
-        email_info: Recibirás un email de confirmación
-        phone_info: Deberás confirmarlo con un mensaje en el siguiente paso, si introduces un número incorrecto, no podrás continuar
-        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que otra persona tendrá que dar de alta esta candidatura ciudadana. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
+        province: Herriko probintzia
+        town: Herriko izena
+        phone: Mugikorraren zenbakia
+        previous: Aurrekoa
+        continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        explanation_dni: Zertarako behar dugu zure NAN eta mugikorraren zenbakia? Spam-a eta hautagaitzen erregistro anizkuna saihesteko. Erregistroarekin jarraitu ahal izateko, bi datu horiek zuzen eman behar dituzu.
+        explanation: Azalpena
+        dni_info: Ez jarri gidoirik zenbakiaren eta letraren artean
+        username_info: Idatz ezazu zure erabiltzailearen izena
+        password_info: Idatz ezazu zure pasahitza
+        email_info: Baieztapen-emaila jasoko duzu
+        phone_info: Hurrengo pausuan mezu baten bidez baieztatu behar izango duzu, zenbaki okerra sartuz gero, ezin duzu jarraituko.
+        warning_text: <b>Erne!</b>: erregistro-datuak zuzen sartzea guztiz beharrezkoa da, zure mugikorraren zenbakia barne, erregistro-datuen akatsak ekarriko du beste pertsona batek hiri-hautagaitza alta hartu behar izango duela. Zalatzaren bat badago, ikus ezazu bideoa berriro <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
 
     step_verify:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Verifica tu número de móvil
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
+        html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta
+        h1_title: Egiazta ezazu zure mugikorraren zenbakia
+        continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Aurrekoa
         
     step2:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Establece las condiciones de la candidatura ciudadana
+        html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta
+        h1_title: Jar itzazu hiri-hautagaitzaren baldintzak
         
-        p1: "Sube en formato PDF aquellas condiciones que deban aceptar los candidatos o candidatas (una, algunas, todas o ninguna) para presentarse en la candidatura ciudadana. Por ejemplo: El programa de la candidatura, las condiciones legales y la veracidad de la información aportada, el mandato revocatorio y participativo, el código ético, la aceptación del censo y el sistema de voto, etc.  Si no subes ninguna condición, te recomendamos que busques algún método alternativo para verificar que el candidato o candidata va a cumplirlas antes de su inclusión en las listas."
+        p1: "Igo itzazu PDF formatuan hautagaiek onartu behar dituzten baldintzak (bat, batzuk, guztiak edo ezer ez) hiri-hautagaitzan aurkeztu ahal izateko. Adibidez: hautagaitzaren programa, baldintza legalak eta emandako informazioaren egiazkotasuna, agindu ezeztatua eta parte-hartzailea, kode etikoa, erroldaren onarpena eta boto-sistema, etab.  Baldintzarik igo ezean, hautagaiak baldintzak beteko dituela egiaztatzeko ordezko metodo bat bilatzea gomendatzen zaituztegu zerrendetan sartu baino lehen."
   
-        program: El programa de la candidatura
-        legal_conditions: Condiciones legales y veracidad de la información aportada de candidatos y candidatas
-        recall_term: El mandato revocatorio del candidato
-        participatory_term: El código ético de la candidatura
-        voter_conditions: Las condiciones para poder participar como votante (censo y aceptación del sistema de votación)
-        technical_constrains: Las limitaciones técnicas y legales del sistema de voto.
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        example: Ejemplo
+        program: Hautagaitzaren programa
+        legal_conditions: Hautagaiek emandako informazioaren egiazkotasuna eta baldintza legalak
+        recall_term: Hautagaiaren agindu ezeztatua
+        participatory_term: Hautagaitzaren kode etikoa
+        voter_conditions: Boto-emaile izateko eta parte hartzeko baldintzak (erroldaren eta bozketa-sistema onarpena)
+        technical_constrains: Bozketa-sistemaren mugaketa tekniko eta legalak.
+        continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        previous: Aurrekoa
+        example: Adibidea
                       
     step3:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
