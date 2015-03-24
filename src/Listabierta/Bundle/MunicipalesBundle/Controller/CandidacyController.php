@@ -215,7 +215,7 @@ class CandidacyController extends Controller
     		
     		if($already_registered)
     		{
-    			$login_url = $this->generateUrl('login');
+    			$login_url = $this->generateUrl('login', array(), TRUE);
     			$form->addError(new FormError('Si te registraste con anterioridad, puedes acceder a tu registro en: <a href="' . $login_url . '" 
     					title="Login">' . $login_url . '</a> y continuar por el paso dónde lo dejaste.'));
     		}
@@ -1096,7 +1096,7 @@ class CandidacyController extends Controller
     	if(empty($admin_id))
     	{
     		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
     	 
@@ -1106,7 +1106,7 @@ class CandidacyController extends Controller
     	if(empty($admin_candidacy))
     	{
     		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
     	
@@ -1270,14 +1270,14 @@ class CandidacyController extends Controller
     		else 
     		{
     			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    					'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    					'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     			));
     		}
     	}
     	else
     	{
     		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
     	
@@ -1469,7 +1469,7 @@ class CandidacyController extends Controller
     	if(empty($admin_id))
     	{
     		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
     	
@@ -1479,7 +1479,7 @@ class CandidacyController extends Controller
     	if(empty($admin_candidacy))
     	{
     		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
     	
@@ -1551,7 +1551,7 @@ class CandidacyController extends Controller
     	if(empty($admin_id))
     	{
     		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
     	
@@ -1561,7 +1561,7 @@ class CandidacyController extends Controller
     	if(empty($admin_candidacy))
     	{
     		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
     	
@@ -1636,7 +1636,7 @@ class CandidacyController extends Controller
     	if(empty($admin_id))
     	{
     		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
     	 
@@ -1646,7 +1646,7 @@ class CandidacyController extends Controller
     	if(empty($admin_candidacy))
     	{
     		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
     	 
