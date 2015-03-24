@@ -60,14 +60,14 @@
 				<td style="padding:5px"><img style="width:45px;height:45px" src="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" /></td>       
 				<td style="padding:5px">
 					{% if candidate.status == 0 %}
-						<a href="/candidate/accept/{{ candidate.id }}" title="{{ 'candidacy.step6.accept_candidate'|trans }} {{ candidate.name }} {{ candidate.lastname }}">{{ 'candidacy.step6.accept'|trans }}</a>
-						<a href="/candidate/reject/{{ candidate.id }}" title="{{ 'candidacy.step6.reject_candidate'|trans }} {{ candidate.name }} {{ candidate.lastname }}">{{ 'candidacy.step6.reject'|trans }}</a>
+						<a href="{{ path('municipales_candidacy_accept', {'id' : candidate.id }) }}" title="{{ 'candidacy.step6.accept_candidate'|trans }} {{ candidate.name }} {{ candidate.lastname }}">{{ 'candidacy.step6.accept'|trans }}</a>
+						<a href="{{ path('municipales_candidacy_reject', {'id' : candidate.id }) }}" title="{{ 'candidacy.step6.reject_candidate'|trans }} {{ candidate.name }} {{ candidate.lastname }}">{{ 'candidacy.step6.reject'|trans }}</a>
 					{% elseif candidate.status == 1 %}
 						{{ 'candidacy.step6.accepted'|trans }}
 					{% elseif candidate.status == 2 %}
 						{{ 'candidacy.step6.rejected'|trans }}
 					{% endif %}
-					<a href="/candidate/delete/{{ candidate.id }}" title="{{ 'candidacy.step6.delete_candidate'|trans }} {{ candidate.name }} {{ candidate.lastname }}">{{ 'candidacy.step6.delete'|trans }}</a>
+					<a href="{{ path('municipales_candidacy_delete', {'id' : candidate.id }) }}" title="{{ 'candidacy.step6.delete_candidate'|trans }} {{ candidate.name }} {{ candidate.lastname }}">{{ 'candidacy.step6.delete'|trans }}</a>
 				</td>   
 			</tr>
 		{% endfor %}
