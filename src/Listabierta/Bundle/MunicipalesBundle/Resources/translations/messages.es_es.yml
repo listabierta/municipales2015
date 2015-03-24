@@ -398,6 +398,11 @@ login:
     recover_password: ¿Olvidaste tu contraseña?
     
 mail:
+    candidate_created:
+        hello: Hola
+        account: Este es un mensaje de confirmación de que tu registro de candidato ha sido creado
+        contact: Puedes comentarle cualquier incidencia al administrador de la candidatura en el correo
+        
     admin_created:
         hello: Hola
         account: Tu cuenta de administrador de candidatura ha sido creada

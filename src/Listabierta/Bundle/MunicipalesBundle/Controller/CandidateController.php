@@ -161,6 +161,26 @@ class CandidateController extends Controller
 				$session->set('candidate_email', $email);
 				$session->set('candidate_phone', $phone);
 				
+				// Send mail with login link for admin
+				$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+				 
+				// pueda comentarle las incidencias (el administrador 
+				$message = \Swift_Message::newInstance()
+					->setSubject('Te has dado de alta como candidato')
+					->setFrom('candidaturas@' . $host, 'Candidaturas')
+					->setTo($email)
+					->setBody(
+							$this->renderView(
+									'MunicipalesBundle:Mail:candidate_created.html.twig',
+									array(
+											'name' => $name,
+											'admin_email' => $admin_candidacy->getEmail()
+									)
+							), 'text/html'
+				);
+				
+				$this->get('mailer')->send($message);
+				
 				return $this->stepVerifyAction($request, $address_slug);
 			}
 		}
