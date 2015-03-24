@@ -61,12 +61,6 @@
 
 					    	<div class="row">
 
-					    		<div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline">
-					    			<div class="alert alert-warning">
-					    				{{ 'candidate.step1.warning_text'|trans|raw }}
-					    			</div>
-					    		</div>
- 
 					    		<div class="col-sm-offset-1 col-xs-10 col-sm-10">
 									<p>
 										{{ 'candidate.step1.p1'|trans({'%address%': address|capitalize, '%town%': town|capitalize})|raw }}
@@ -76,6 +70,12 @@
 						            	<iframe  class="embed-responsive-item" src="https://www.youtube.com/embed/v-ysTeRE9lc"></iframe>
 						            </div>
             
+	            					<div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline">
+						    			<div class="alert alert-warning">
+						    				{{ 'candidate.step1.warning_text'|trans|raw }}
+						    			</div>
+						    		</div>
+						    		
 									<p>
 										{{ 'candidate.step1.p2'|trans({'%fromdate%': fromdate|date('d-m-Y'), '%todate%': todate|date('d-m-Y')}) }}
 									</p>
