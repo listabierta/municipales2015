@@ -193,9 +193,9 @@ class PanelAdminController extends Controller
     					$ok = FALSE;
     					$already_registered = TRUE;
     				}
-    			
-    				$admin_phone = $admin_candidacy_repository->findOneBy(array('phone' => $phone));
     				*/
+    				
+    				
     				if(empty($town) || $town == 0)
     				{
     					$form->addError(new FormError('El campo municipio es obligatorio'));
@@ -211,14 +211,24 @@ class PanelAdminController extends Controller
     					$ok = FALSE;
     				}
     			
-    				/*
-    				if(!empty($admin_phone))
+    				$admin_phone = $admin_candidacy_repository->findOneBy(array('phone' => $admin_candidacy->getPhone()));
+    				if(empty($admin_phone))
     				{
-    					$form->addError(new FormError('Ya existe un usuario administrador registrado con el teléfono ' . $phone));
+    					$form->addError(new FormError('No existe un usuario administrador registrado con el teléfono ' . $phone . ' para cambiar sus datos'));
     					$ok = FALSE;
-    					$already_registered = TRUE;
     				}
-    				*/
+    				elseif($admin_phone->getId() != $admin_id)
+    				{
+    					$form->addError(new FormError('El número de teléfono en uso ' . $phone . ' no se corresponde para este administrador ' . $admin_id . ' para cambiar sus datos'));
+    					$ok = FALSE;
+    				}
+    				
+    				$admin_phone = $admin_candidacy_repository->findOneBy(array('phone' => $phone));
+    				if(!empty($admin_phone) && $admin_phone->getId() != $admin_id)
+    				{
+    					$form->addError(new FormError('Otro usuario ya tiene en uso el teléfono ' . $phone));
+    					$ok = FALSE;
+    				}
     			
     				if($already_registered)
     				{
