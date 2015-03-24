@@ -161,18 +161,7 @@ class CandidateController extends Controller
 				$session->set('candidate_email', $email);
 				$session->set('candidate_phone', $phone);
 				
-				$form2 = $this->createForm(new CandidateStepVerifyType(), NULL, array(
-						'action' => $this->generateUrl('candidate_step_verify', array('address' => $address)),
-						'method' => 'POST',
-				));
-				 
-				$form2->handleRequest($request);
-				
-				return $this->render('MunicipalesBundle:Candidate:step_verify.html.twig', array(
-						'form' => $form2->createView(),
-						'address' => $address_slug,
-					)
-				);
+				return $this->stepVerifyAction($request, $address_slug);
 			}
 		}
 
