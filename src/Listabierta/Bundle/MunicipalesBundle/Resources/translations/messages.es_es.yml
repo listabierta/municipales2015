@@ -38,7 +38,7 @@ header:
 candidacy:
     html_title: Municipales 2015 - Alta de candidatura ciudadana
     h1_title: Regístrate y registra el municipio de la candidatura
-    verify_msg: Confirma el registro y las condiciones enviando un SMS con la palabra ACEPTO al número nº %sms_inbound_number% que proporcionaste en el paso anterior, después haz clic en CONTINUAR
+    verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
     verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
     
     step_conditions:
@@ -196,7 +196,7 @@ candidacy:
 town:
     html_title: Municipales 2015 - Vota en la candidatura ciudadana
     h1_title: Registrate como votante
-    verify_msg: Confirma el registro y las condiciones enviando un SMS con la palabra ACEPTO al número nº %sms_inbound_number% que proporcionaste en el paso anterior, después haz clic en CONTINUAR
+    verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
     verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
        
     step1:
@@ -322,7 +322,7 @@ candidate:
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás dar de alta tu candidatura. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
 
-    verify_msg: Confirma el registro enviando un SMS con la palabra ACEPTO al número nº %sms_inbound_number% que proporcionaste en el paso anterior, después haz clic en CONTINUAR
+    verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
     verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
     
     step_verify:
