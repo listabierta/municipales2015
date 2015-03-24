@@ -309,6 +309,7 @@ class PanelAdminController extends Controller
     			 
     			return $this->render('MunicipalesBundle:PanelAdmin:modify_personal_data.html.twig', array(
     					'form' => $form->createView(),
+    					'admin' => $admin_candidacy,
     			));
     		}
     	}
