@@ -167,4 +167,24 @@ class ManagerController extends Controller
 			return new Response('Access only enabled in dev mode', 403);
 		}
 	}
+	
+	public function listCandidaciesAction(Request $request = NULL)
+	{
+		if($this->container->getParameter('kernel.environment') == 'dev')
+		{
+			$entity_manager = $this->getDoctrine()->getManager();
+			$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+				
+			$candidacies = $admin_candidacy_repository->findAll();
+				
+			if(!empty($candidacies))
+			{
+				
+			}
+		}
+		else
+		{
+			return new Response('Access only enabled in dev mode', 403);
+		}
+	}		
 }
