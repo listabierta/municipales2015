@@ -210,7 +210,9 @@ class CandidacyController extends Controller
     		
     		if($already_registered)
     		{
-    			$form->addError(new FormError('Si te registraste con anterioridad, puedes acceder a tu registro en: <a href="http://municipales2015.listabierta.org/login" title="Login">http://municipales2015.listabierta.org/login</a> y continuar por el paso dónde lo dejaste.'));
+    			$login_url = $this->generateUrl('login');
+    			$form->addError(new FormError('Si te registraste con anterioridad, puedes acceder a tu registro en: <a href="' . $login_url . '" 
+    					title="Login">' . $login_url . '</a> y continuar por el paso dónde lo dejaste.'));
     		}
     		
     		if($ok)
