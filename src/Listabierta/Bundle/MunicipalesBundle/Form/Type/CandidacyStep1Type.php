@@ -15,9 +15,12 @@ class CandidacyStep1Type extends AbstractType
 	
 	private $provinces_data = array();
 	private $municipalities_data = array();
+	private $translations = array();
 	
-	public function __construct($provinces_data = NULL, $municipalities_data = NULL)
+	public function __construct($provinces_data = NULL, $municipalities_data = NULL, $translations = array())
 	{
+		$this->translations = $translations;
+		
 		// Flatten the results array
 		$result = array();
 		$result[0] = 'Elige una provincia';
@@ -80,8 +83,8 @@ class CandidacyStep1Type extends AbstractType
         						new Assert\Length(array(
         								'min'        => 8,
         								'max'        => 255,
-        								'minMessage' => 'forms.candidacy_step1.password.minMessage',
-        								'maxMessage' => 'forms.candidacy_step1.password.maxMessage',
+        								'minMessage' => $this->translations['forms.candidacy_step1.password.minMessage'],
+        								'maxMessage' => $this->translations['forms.candidacy_step1.password.maxMessage'],
         						)),
         				'translation_domain' => 'messages'
         				)))
