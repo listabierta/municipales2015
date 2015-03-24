@@ -144,7 +144,12 @@ class PanelAdminController extends Controller
     				}
     			}
     			 
-    			$form = $this->createForm(new CandidacyStep1Type($provinces_data, $municipalities), NULL, array(
+    			$translator = $this->get('translator');
+    			$translations = array();
+    			$translations['forms.candidacy_step1.password.minMessage'] = $translator->trans('forms.candidacy_step1.password.minMessage');
+    			$translations['forms.candidacy_step1.password.maxMessage'] = $translator->trans('forms.candidacy_step1.password.maxMessage');
+    			 
+    			$form = $this->createForm(new CandidacyStep1Type($provinces_data, $municipalities, $translations), NULL, array(
     					'action' => $this->generateUrl('panel_admin_modify_personal_data'),
     					'method' => 'POST',
     			)
