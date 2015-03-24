@@ -83,7 +83,13 @@ municipales_candidacy_reject:
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl  
 
-# Panel Adminf or Admin Candidacy users
+municipales_candidacy_delete:
+    path:     /candidate/delete/{id}
+    defaults: { _controller: MunicipalesBundle:Candidacy:reject }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+        
+# Panel Admin or Admin Candidacy users
 panel_admin:
     path:     /panel-admin
     defaults: { _controller: MunicipalesBundle:PanelAdmin:index }
