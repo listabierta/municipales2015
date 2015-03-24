@@ -427,7 +427,7 @@ mail:
         new: Se ha registrado un nuevo candidato con nombre
     
     sms_inbound_verification:
-        your_phone: Tu telefono
+        your_phone: Tu teléfono
         verify: ha sido verificado correctamente
     
 # Panel admin

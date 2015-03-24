@@ -27,7 +27,7 @@ class SMSInboundController extends Controller
 		// Remove prefix (34) (spain)
 		$phone = strlen($msisdn) > 9 && substr($msisdn, 0, 2) == '34' ? substr($msisdn, 2, strlen($msisdn)) : $msisdn;
 
-		$logger->info('SMS Callback: ' . $msisdn . ' ' . $to . ' ' . $message_id . ' ' . $text . ' ' . $type . ' ' . $keyword . ' ' . $message_timestamp);
+		$logger->info('SMS Index: ' . $msisdn . ' ' . $to . ' ' . $message_id . ' ' . $text . ' ' . $type . ' ' . $keyword . ' ' . $message_timestamp);
 		
 		
 		// Look the phone and mail to verify
@@ -53,7 +53,7 @@ class SMSInboundController extends Controller
 					
 					// . implode(',', $query->all())
 					$message = \Swift_Message::newInstance()
-					->setSubject('Tu telefono movil ' . $phone . ' ha sido verificado correctamente')
+					->setSubject('Tu teléfono movil ' . $phone . ' ha sido verificado correctamente')
 					->setFrom('verificaciones@' . $host, 'Verificaciones')
 					->setTo($email)
 					->setBody(
@@ -146,14 +146,14 @@ class SMSInboundController extends Controller
 					
 					// . implode(',', $query->all())
 					$message = \Swift_Message::newInstance()
-					->setSubject('Tu telefono movil ' . $phone . ' ha sido verificado correctamente')
+					->setSubject('Tu teléfono movil ' . $phone . ' ha sido verificado correctamente')
 					->setFrom('verificaciones@' . $host, 'Verificaciones')
 					->setTo($email)
 					->setBody(
 							$this->renderView(
 									'MunicipalesBundle:Mail:sms_inbound_verification.html.twig',
 									array('phone' => $phone)
-							)
+							), 'text/html'
 					)
 					;
 					$this->get('mailer')->send($message);
