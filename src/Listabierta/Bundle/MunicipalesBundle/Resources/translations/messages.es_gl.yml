@@ -38,7 +38,7 @@ header:
 candidacy:
     html_title: Municipales 2015 - Alta de candidatura ciudadana
     h1_title: Regístrate y registra el municipio de la candidatura
-    verify_msg: Confirma el registro y las condiciones enviando un SMS con la palabra ACEPTO al número nº %sms_inbound_number% que proporcionaste en el paso anterior, después haz clic en CONTINUAR
+    verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
     verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
     
     step_conditions:
@@ -114,7 +114,7 @@ candidacy:
         previous: Anterior
         continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
         choose_address: Elige tu dirección de internet
-        warning: Si en el espacio en blanco escribes por ejemplo: FuenteovejunaParticipa, las direcciones asociadas a tu candidatura serán del tipo: http://municipales2015.listabierta.org/FuenteovejunaParticipa/...
+        warning: Si en el espacio en blanco escribes por ejemplo: FuenteovejunaParticipa, las direcciones asociadas a tu candidatura serán del tipo: http://%host%/FuenteovejunaParticipa/...
         
     step5:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
@@ -138,6 +138,14 @@ candidacy:
         additional_info_header: Biografía
         photo_header: Foto
         action_header: Acción
+        accept: Aceptar
+        reject: Rechazar
+        delete: Borrar
+        accepted: Aceptado
+        rejected: Rechazado
+        accept_candidate: Aceptar candidato
+        reject_candidate: Rechazar candidato
+        delete_candidate: Borrar candidato
         
     step7:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
@@ -188,7 +196,7 @@ candidacy:
 town:
     html_title: Municipales 2015 - Vota en la candidatura ciudadana
     h1_title: Registrate como votante
-    verify_msg: Confirma el registro y las condiciones enviando un SMS con la palabra ACEPTO al número nº %sms_inbound_number% que proporcionaste en el paso anterior, después haz clic en CONTINUAR
+    verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
     verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
        
     step1:
@@ -283,6 +291,7 @@ town:
         h1_title: Asigna puntuaciones
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior 
+        congratulations: <strong><i class="mine-icon fa fa-check"></i> ¡Enhorabuena!</strong> Tu voto ha sido procesado correctamente 
         
     step9:
         header: Fin
@@ -303,7 +312,7 @@ candidate:
 
     step1:
         header: Regístrate como candidato o candidata
-        p1: "Bienvenido o bienvenida a el alta de candidatos para la candidatura ciudadana <b>%address%</b> al municipio de <b>%town%</b>.<br/>Por favor rellena tu candidatura con exactitud, si introduces datos erróneos, no podrás modificarlos más adelante."
+        p1: "Antes de registrarte como candidato o candidata en la candidatura ciudadana <b>%address%</b>, del municipio <b>%town%</b>debes ver este video explicativo del proceso de registro."
         p2: El plazo de presentación de candidaturas establecido es desde %fromdate% hasta %todate%
         name: Nombre 
         lastname: Apellidos
@@ -313,7 +322,7 @@ candidate:
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás dar de alta tu candidatura. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
 
-    verify_msg: Confirma el registro de candidato enviando un SMS con la palabra ACEPTO al número nº %sms_inbound_number% que proporcionaste en el paso anterior, después haz clic en CONTINUAR
+    verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
     verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
     
     step_verify:
@@ -386,14 +395,26 @@ login:
     access: Acceder
     remember_me: Recordar mis datos
     conditions: Accede con tus credenciales de usuario y contraseña
+    recover_password: ¿Olvidaste tu contraseña?
     
 mail:
+    candidate_created:
+        hello: Hola
+        account: Este es un mensaje de confirmación de que tu registro de candidato ha sido creado
+        contact: Puedes comentarle cualquier incidencia al administrador de la candidatura en el correo
+        
     admin_created:
         hello: Hola
         account: Tu cuenta de administrador de candidatura ha sido creada
         can_create: Puedes acceder a tu cuenta desde el enlace
         login: Login
 
+    admin_updated:
+        hello: Hola
+        account: Tu cuenta de administrador de candidatura ha sido actualizada
+        can_create: Puedes acceder a tu cuenta desde el enlace
+        login: Login
+        
     candidacy_address:
         hello: Hola
         supply_link: Puedes proporcionar este enlace público a los candidatos y candidatas para que se den de alta rellenando el formulario que les aparecerá 
@@ -405,15 +426,55 @@ mail:
     candidate_accepted:
         hello: Hola
         accepted: Tu candidatura ha sido aceptada por el administrador
-    
+        admin_email: Dirección de correo del administrador
+        
     candidate_rejected:
         hello: Hola
         rejected: Tu candidatura ha sido rechazada por el administrador
-    
+        admin_email: Dirección de correo del administrador
+
+    candidate_deleted:
+        hello: Hola
+        deleted: Tu candidatura ha sido borrada por el administrador
+        admin_email: Dirección de correo del administrador
+
     candidate_signup:
         new: Se ha registrado un nuevo candidato con nombre
     
     sms_inbound_verification:
-        your_phone: Tu telefono
+        your_phone: Tu teléfono
         verify: ha sido verificado correctamente
+    
+# Panel admin
+panel_admin:
+    index:
+        header: Panel Admin
+        hello: Hola
+        logout: Salir
+        manage: En este panel puedes gestionar la candidatura ciudadana
+        not_yet_validated: Aun no has validado tu número de móvil
+        needed_continue: Es necesario validar tu móvil para continuar con cualquier acción
+        your_phone_number: Tu número de móvil
+        is_verified: esta verificado correctamente.
+        modify_personal_data: Modificar datos personales
+        upload_documents: Subir documentos
+        set_candidacy_date: Cambiar/establecer los plazos <br />presentación de candidaturas
+        change_address: Cambiar/establecer <br />dirección de internet
+        candidacy_register: Ver enlace <br />de alta de candidatos/as
+        validate_candidates: Validar candidatos/as
+        set_vote_days: Establecer número de días <br />de la votación (plazo de votación)
+        see_internal_results: Ver resultados internos <br />de la votación
+        see_public_results: Ver enlace de resultados públicos<br /> de la votación
+        verify_msg: Confirma tu cuenta administrador enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después <a href="#" onclick="javascript:window.location.reload()">actualiza/recarga</a> esta página
+
+    modify_personal_data:
+        title: Modificar datos personales
+        back: Volver
+        save: Guardar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         
+
+forms:
+    candidacy_step1:
+        password:
+            minMessage: Tu contraseña debe de ser de al menos {{ limit }} caracteres
+            maxMessage: Tu contraseña debe de ser mayor de {{ limit }} caracteres
