@@ -1529,7 +1529,10 @@ class CandidacyController extends Controller
     	->setBody(
     			$this->renderView(
     					'MunicipalesBundle:Mail:candidate_accepted.html.twig',
-    					array('name' => $candidate->getName())
+    					array(
+    							'name' => $candidate->getName(), 
+    							'admin_email' => $admin_candidacy->getEmail()
+    					)
     			), 'text/html'
     	);
     	
@@ -1612,7 +1615,10 @@ class CandidacyController extends Controller
     	->setBody(
     			$this->renderView(
     					'MunicipalesBundle:Mail:candidate_rejected.html.twig',
-    					array('name' => $candidate->getName())
+    					array(
+    							'name' => $candidate->getName(), 
+    							'admin_email' => $admin_candidacy->getEmail()
+    					)
     			), 'text/html'
     	);
     	
@@ -1698,7 +1704,10 @@ class CandidacyController extends Controller
     	->setBody(
     			$this->renderView(
     					'MunicipalesBundle:Mail:candidate_deleted.html.twig',
-    					array('name' => $candidate_name)
+    					array(
+    						  'name' => $candidate_name, 
+    						  'admin_email' => $admin_candidacy->getEmail()
+    					)
     			), 'text/html'
     	);
     	 
