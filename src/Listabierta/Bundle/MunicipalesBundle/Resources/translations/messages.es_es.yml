@@ -403,6 +403,12 @@ mail:
         can_create: Puedes acceder a tu cuenta desde el enlace
         login: Login
 
+    admin_updated:
+        hello: Hola
+        account: Tu cuenta de administrador de candidatura ha sido actualizada
+        can_create: Puedes acceder a tu cuenta desde el enlace
+        login: Login
+        
     candidacy_address:
         hello: Hola
         supply_link: Puedes proporcionar este enlace público a los candidatos y candidatas para que se den de alta rellenando el formulario que les aparecerá 

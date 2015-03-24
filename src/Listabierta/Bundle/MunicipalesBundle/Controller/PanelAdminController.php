@@ -309,7 +309,7 @@ class PanelAdminController extends Controller
     					->setTo($email)
     					->setBody(
     							$this->renderView(
-    									'MunicipalesBundle:Mail:admin_created.html.twig',
+    									'MunicipalesBundle:Mail:admin_updated.html.twig',
     									array('name' => $name)
     							), 'text/html'
     					);
