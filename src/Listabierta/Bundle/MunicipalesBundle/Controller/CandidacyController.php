@@ -279,20 +279,7 @@ class CandidacyController extends Controller
 	    		 
 	    		$this->get('mailer')->send($message);
 	    		
-	    		$warnings = array();
-	    		
-	    		$form2 = $this->createForm(new CandidacyStepVerifyType(), NULL, array(
-	    				'action' => $this->generateUrl('municipales_candidacy_step_verify'),
-	    				'method' => 'POST',
-	    		));
-	    		
-	    		$form2->handleRequest($request);
-	    		
-	    		return $this->render('MunicipalesBundle:Candidacy:step_verify.html.twig', array(
-	    				'warnings' => $warnings,
-	    				'form' => $form2->createView()
-	    			)
-	    		);
+				return $this->stepVerifyAction($request);
     		}
     	}
     	
@@ -1016,7 +1003,7 @@ class CandidacyController extends Controller
     	if(empty($admin_id))
     	{
     		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
     	
@@ -1026,7 +1013,7 @@ class CandidacyController extends Controller
     	if(empty($admin_candidacy))
     	{
     		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
     	
