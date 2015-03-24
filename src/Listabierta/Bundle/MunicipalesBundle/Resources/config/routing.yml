@@ -279,3 +279,10 @@ login_check:
     
 admin_logout:
     pattern:   /logout
+
+recover_password:
+    path:     /recover_password
+    defaults: { _controller: MunicipalesBundle:Candidacy:changePasswdAction }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
+    

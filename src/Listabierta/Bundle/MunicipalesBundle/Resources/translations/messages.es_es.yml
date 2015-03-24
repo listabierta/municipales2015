@@ -395,6 +395,7 @@ login:
     access: Acceder
     remember_me: Recordar mis datos
     conditions: Accede con tus credenciales de usuario y contraseña
+    recover_password: ¿Olvidaste tu contraseña?
     
 mail:
     admin_created:
