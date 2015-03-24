@@ -33,6 +33,7 @@ set :permission_method,   :acl
 set :use_set_permissions, true
 
 after "deploy:finalize_update" do
+  run "sudo mkdir -p #{latest_release}/#{web_path}/docs"
   run "sudo chmod -R 777 #{latest_release}/#{cache_path}"
   run "sudo chown -R #{deploy_user}:#{webserver_user} #{latest_release}/#{cache_path}"
   run "sudo chown -R #{deploy_user}:#{webserver_user} #{latest_release}/#{log_path}"
