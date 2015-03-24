@@ -312,7 +312,7 @@ candidate:
 
     step1:
         header: Regístrate como candidato o candidata
-        p1: "Bienvenido o bienvenida a el alta de candidatos para la candidatura ciudadana <b>%address%</b> al municipio de <b>%town%</b>.<br/>Por favor rellena tu candidatura con exactitud, si introduces datos erróneos, no podrás modificarlos más adelante."
+        p1: "Antes de registrarte como candidato o candidata en la candidatura ciudadana <b>%address%</b>, del municipio <b>%town%</b>debes ver este video explicativo del proceso de registro."
         p2: El plazo de presentación de candidaturas establecido es desde %fromdate% hasta %todate%
         name: Nombre 
         lastname: Apellidos
