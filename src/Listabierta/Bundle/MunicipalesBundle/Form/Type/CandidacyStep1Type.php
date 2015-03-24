@@ -74,7 +74,6 @@ class CandidacyStep1Type extends AbstractType
         								'minMessage' => 'Your username must be at least {{ limit }} characters long',
         								'maxMessage' => 'Your username cannot be longer than {{ limit }} characters long',
         						)),
-        				'translation_domain' => 'messages'
         				)))
         		->add('password', 'password', array(
         				'required' => true,
@@ -86,7 +85,6 @@ class CandidacyStep1Type extends AbstractType
         								'minMessage' => $this->translations['forms.candidacy_step1.password.minMessage'],
         								'maxMessage' => $this->translations['forms.candidacy_step1.password.maxMessage'],
         						)),
-        				'translation_domain' => 'messages'
         				)))
         	    ->add('email', 'email', array(
         	    		'required' => true, 
