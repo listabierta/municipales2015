@@ -140,10 +140,12 @@ candidacy:
         action_header: Acción
         accept: Aceptar
         reject: Rechazar
+        delete: Borrar
         accepted: Aceptado
         rejected: Rechazado
         accept_candidate: Aceptar candidato
         reject_candidate: Rechazar candidato
+        delete_candidate: Borrar candidato
         
     step7:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
@@ -416,7 +418,11 @@ mail:
     candidate_rejected:
         hello: Hola
         rejected: Tu candidatura ha sido rechazada por el administrador
-    
+
+    candidate_deleted:
+        hello: Hola
+        deleted: Tu candidatura ha sido borrada por el administrador
+
     candidate_signup:
         new: Se ha registrado un nuevo candidato con nombre
     
