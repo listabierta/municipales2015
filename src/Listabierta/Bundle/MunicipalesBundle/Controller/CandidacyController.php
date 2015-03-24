@@ -271,7 +271,7 @@ class CandidacyController extends Controller
 	    		
 	    		$message = \Swift_Message::newInstance()
 	    		->setSubject('Tu cuenta de administrador ha sido creada')
-	    		->setFrom('candidaturas@' . $host, 'Candidaturas')
+	    		->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
 	    		->setTo($email)
 	    		->setBody(
 	    				$this->renderView(
@@ -887,7 +887,7 @@ class CandidacyController extends Controller
     			$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
     			$message = \Swift_Message::newInstance()
 	    			->setSubject('Enlace público de acceso para tu candidatura')
-	    			->setFrom('candidaturas@' . $host, 'Candidaturas')
+	    			->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
 	    			->setTo($admin_candidacy->getEmail())
 	    			->setBody(
 	    					$this->renderView(
@@ -1166,7 +1166,7 @@ class CandidacyController extends Controller
     			$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
     			$message = \Swift_Message::newInstance()
     			->setSubject('Enlace público de acceso de votaciones para tu candidatura')
-    			->setFrom('candidaturas@' . $host, 'Candidaturas')
+    			->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
     			->setTo($admin_candidacy->getEmail())
     			->setBody(
     					$this->renderView(
@@ -1519,7 +1519,7 @@ class CandidacyController extends Controller
     	$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
     	$message = \Swift_Message::newInstance()
     	->setSubject('Tu candidatura ha sido aceptada por el administrador')
-    	->setFrom('candidaturas@' . $host, 'Candidaturas')
+    	->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
     	->setTo($candidate->getEmail())
     	->setBody(
     			$this->renderView(
@@ -1605,7 +1605,7 @@ class CandidacyController extends Controller
     	
     	$message = \Swift_Message::newInstance()
     	->setSubject('Tu candidatura ha sido rechazada por el administrador')
-    	->setFrom('candidaturas@' . $host, 'Candidaturas')
+    	->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
     	->setTo($candidate->getEmail())
     	->setBody(
     			$this->renderView(
@@ -1694,7 +1694,7 @@ class CandidacyController extends Controller
     	 
     	$message = \Swift_Message::newInstance()
     	->setSubject('Tu candidatura ha sido borrada por el administrador')
-    	->setFrom('candidaturas@' . $host, 'Candidaturas')
+    	->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
     	->setTo($candidate_email)
     	->setBody(
     			$this->renderView(

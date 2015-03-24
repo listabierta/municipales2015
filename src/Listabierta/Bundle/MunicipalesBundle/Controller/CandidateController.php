@@ -167,7 +167,7 @@ class CandidateController extends Controller
 				// pueda comentarle las incidencias (el administrador 
 				$message = \Swift_Message::newInstance()
 					->setSubject('Te has dado de alta como candidato')
-					->setFrom('candidaturas@' . $host, 'Candidaturas')
+					->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
 					->setTo($email)
 					->setBody(
 							$this->renderView(
@@ -1133,7 +1133,7 @@ class CandidateController extends Controller
 				
 				$message = \Swift_Message::newInstance()
 				->setSubject('Nuevo candidato registrado')
-				->setFrom('candidaturas@' . $host, 'Candidaturas')
+				->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
 				->setTo($admin_candidacy->getEmail())
 				->setBody(
 						$this->renderView(

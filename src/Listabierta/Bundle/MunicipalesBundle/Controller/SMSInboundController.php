@@ -54,7 +54,7 @@ class SMSInboundController extends Controller
 					// . implode(',', $query->all())
 					$message = \Swift_Message::newInstance()
 					->setSubject('Tu teléfono movil ' . $phone . ' ha sido verificado correctamente')
-					->setFrom('verificaciones@' . $host, 'Verificaciones')
+					->setFrom('verificaciones@' . rtrim($host, '.'), 'Verificaciones')
 					->setTo($email)
 					->setBody(
 							$this->renderView(
@@ -147,7 +147,7 @@ class SMSInboundController extends Controller
 					// . implode(',', $query->all())
 					$message = \Swift_Message::newInstance()
 					->setSubject('Tu teléfono movil ' . $phone . ' ha sido verificado correctamente')
-					->setFrom('verificaciones@' . $host, 'Verificaciones')
+					->setFrom('verificaciones@' . rtrim($host, '.'), 'Verificaciones')
 					->setTo($email)
 					->setBody(
 							$this->renderView(

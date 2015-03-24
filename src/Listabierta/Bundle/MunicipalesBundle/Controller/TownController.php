@@ -262,12 +262,19 @@ class TownController extends Controller
 			}
 		}
 
+		$enable_geolocation = isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == 'primarias.ahorasevilla.org';
+		
+		if($enable_geolocation)
+		{
+			//http://maps.googleapis.com/maps/api/geocode/json?latlng=37.3753708,-5.9550583&sensor=true
+		}
+		
 		return $this->render('MunicipalesBundle:Town:step1.html.twig', array(
 				'town' => $town_name, 
 				'form' => $form->createView(),
 				'errors' => $form->getErrors(),
 				'address' => $address,
-				'enable_geolocation'  => isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == 'primarias.ahorasevilla.org',
+				'enable_geolocation' => $enable_geolocation,
 		));
 	}
 
