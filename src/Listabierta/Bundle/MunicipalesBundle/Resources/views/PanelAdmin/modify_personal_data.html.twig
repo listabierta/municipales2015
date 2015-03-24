@@ -1,6 +1,6 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
-{% block title %}{{ 'candidacy.html_title'|trans }}{% endblock %}
+{% block title %}{{ 'panel_admin.modify_personal_data.title'|trans }}{% endblock %}
 
 {% block appjsinline %}
     <script>
@@ -43,8 +43,6 @@
 {% endblock %}
 
 {% form_theme form 'MunicipalesBundle:theme:forms.html.twig' %}
-
-{% from 'MunicipalesBundle:macros:steps.html.twig' import steps_widget %}
 
 {% block content %}
 
