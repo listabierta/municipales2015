@@ -101,6 +101,13 @@ panel_admin_modify_personal_data:
     defaults: { _controller: MunicipalesBundle:PanelAdmin:modifyPersonalData }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl 
+
+panel_admin_modify_vote_points_system:
+    path:     /panel-admin/modify-vote-points-system
+    defaults: { _controller: MunicipalesBundle:PanelAdmin:modifyVotePointsSystem }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl 
+
                
 # http://municipales2015.listabierta.org/elmunicipioregistrado/resultados
 town_results:
