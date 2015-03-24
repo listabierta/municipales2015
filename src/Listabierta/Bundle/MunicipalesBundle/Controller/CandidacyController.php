@@ -1714,7 +1714,10 @@ class CandidacyController extends Controller
     public function changePasswdAction(Request $request)
     {
     	$changePasswordModel = new ChangePassword();
-    	$form = $this->createForm(new ChangePasswordType(), $changePasswordModel);
+    	$form = $this->createForm(new ChangePasswordType(), $changePasswordModel, array(
+    		'action' => $this->generateUrl('recover_password'),
+    		'method' => 'POST',
+    	));
     
     	$form->handleRequest($request);
     
