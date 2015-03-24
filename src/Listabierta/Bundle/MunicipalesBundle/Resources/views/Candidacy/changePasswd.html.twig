@@ -11,8 +11,8 @@
       <div class="container marketing">
 
         <div class="headline">
-          <h2>{{ 'home.step_h2'|trans }} 1</h2>
-        </div><h3 class="featurette-headin"> <i>{{ 'candidacy.step_conditions.h1_title'|trans }}</i>
+          <h2>{{ 'candidacy.recover_password.header'|trans }}</h2>
+        </div><h3 class="featurette-headin"> <i>{{ 'candidacy.recover_password.h1_title'|trans }}</i>
         </h3>
         
         <!-- START THE FEATURETTES -->
@@ -43,14 +43,25 @@
                   {% endif %}
                           
                     <div data-step="1" class="step-pane active row">
-                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'candidacy.step_verify.h1_title'|trans }}</h2><div class="col-sm-offset-3 col-md-6 well">
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">
+                      	{{ 'candidacy.recover_password.h1_subtitle'|trans }}
+                      </h2>
+                      
+                      	<div class="col-sm-offset-3 col-md-6 well">
 
-					  <p class="lead2 phone_verify">
-	
-						
-					 </p>
-			          
-			        </div>
+                      	  <div class="form-group{% if form.oldPassword.vars.errors|length > 0 %} has-error{% endif %}">
+				    	  	  {{ form_label(form.oldPassword, 'candidacy.recover_password.oldPassword'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+				    		  {{ form_widget(form.oldPassword) }}
+				    	  	  {% if form.oldPassword.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.oldPassword) }}{% endif %}
+						  </div>
+					  
+					  	  <div class="form-group{% if form.newPassword.vars.errors|length > 0 %} has-error{% endif %}">
+				    	  	  {{ form_label(form.newPassword, 'candidacy.recover_password.newPassword'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+				    		  {{ form_widget(form.newPassword) }}
+				    	  	  {% if form.newPassword.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.newPassword) }}{% endif %}
+						  </div>
+
+			        	</div>
 
                       
                     </div>
@@ -60,7 +71,7 @@
                 <hr>
                 <div class="wizard-actions">
 
-                  {{ form_widget(form.continue, { 'label': 'candidacy.step_verify.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
+                  {# { form_widget(form.save, { 'label': 'candidacy.step_verify.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }#}
 
                 </div>
               </div>
