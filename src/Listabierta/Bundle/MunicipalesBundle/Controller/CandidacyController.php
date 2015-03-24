@@ -1444,6 +1444,7 @@ class CandidacyController extends Controller
     	
     	return $this->render('MunicipalesBundle:Candidacy:step9.html.twig', array('address_slug' => $address_slug));
     }
+    
     /**
      *
      * @param Request $request
@@ -1525,8 +1526,7 @@ class CandidacyController extends Controller
     	
     	return $this->redirect($this->generateUrl('municipales_candidacy_step6'), 301);
     }
-    
-    
+      
     /**
      *
      * @param Request $request
@@ -1609,6 +1609,92 @@ class CandidacyController extends Controller
     	
     	$this->get('mailer')->send($message);
     	
+    	return $this->redirect($this->generateUrl('municipales_candidacy_step6'), 301);
+    }
+    
+    /**
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function deleteAction($id = NULL, Request $request = NULL)
+    {
+    	$admin_id = NULL;
+    	$session = $this->getRequest()->getSession();
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	 
+    	$securityContext = $this->container->get('security.context');
+    
+    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+    	{
+    		$current_user = $securityContext->getToken()->getUser();
+    		 
+    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
+    		{
+    			$admin_id = $current_user->getId();
+    		}
+    	}
+    	else
+    	{
+    		$admin_id = $session->get('admin_id');
+    	}
+    	 
+    	if(empty($admin_id))
+    	{
+    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    		));
+    	}
+    	 
+    	$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    	$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    	 
+    	if(empty($admin_candidacy))
+    	{
+    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login') . '" title="Login administrador">login</a>',
+    		));
+    	}
+    	 
+    	$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
+    
+    	$candidate = $candidate_repository->findOneById($id);
+    
+    	if(empty($candidate))
+    	{
+    		return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+    				'error' => 'No existe el candidato para el identificador ' . $id,
+    		));
+    	}
+    
+    	if(intval($admin_candidacy->getId()) !== intval($candidate->getAdminId()))
+    	{
+    		return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+    				'error' => 'No coincide el identificador del administrador con el identificador candidato administrador numero ' . $id,
+    		));
+    	}
+    
+    	$candidate_email = $candidate->getEmail();
+    	$candidate_name  = $candidate->getName();
+    
+    	$entity_manager->remove($candidate);
+    	$entity_manager->flush();
+    
+    	$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+    	 
+    	$message = \Swift_Message::newInstance()
+    	->setSubject('Tu candidatura ha sido borrada por el administrador')
+    	->setFrom('candidaturas@' . $host, 'Candidaturas')
+    	->setTo($candidate_email)
+    	->setBody(
+    			$this->renderView(
+    					'MunicipalesBundle:Mail:candidate_deleted.html.twig',
+    					array('name' => $candidate_name)
+    			), 'text/html'
+    	);
+    	 
+    	$this->get('mailer')->send($message);
+    	 
     	return $this->redirect($this->generateUrl('municipales_candidacy_step6'), 301);
     }
 }
