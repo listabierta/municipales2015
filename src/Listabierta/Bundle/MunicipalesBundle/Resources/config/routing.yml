@@ -85,7 +85,7 @@ municipales_candidacy_reject:
 
 municipales_candidacy_delete:
     path:     /candidate/delete/{id}
-    defaults: { _controller: MunicipalesBundle:Candidacy:reject }
+    defaults: { _controller: MunicipalesBundle:Candidacy:delete }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
