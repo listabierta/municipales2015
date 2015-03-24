@@ -152,11 +152,24 @@ class PanelAdminController extends Controller
     			$form = $this->createForm(new CandidacyStep1Type($provinces_data, $municipalities, $translations), NULL, array(
     					'action' => $this->generateUrl('panel_admin_modify_personal_data'),
     					'method' => 'POST',
-    			)
+    				)
     			);
-    			 
-    			$form->handleRequest($request);
     			
+    			if (!$request->isMethod('POST'))
+    			{
+    				$form->get('name')->setData($admin_candidacy->getName());
+    				$form->get('lastname')->setData($admin_candidacy->getLastname());
+    				$form->get('dni')->setData($admin_candidacy->getDni());
+    				$form->get('username')->setData($admin_candidacy->getUsername());
+    				$form->get('password')->setData($admin_candidacy->getPassword());
+    				$form->get('email')->setData($admin_candidacy->getEmail());
+    				$form->get('province')->setData($admin_candidacy->getProvince());
+    				$form->get('town')->setData($admin_candidacy->getTown());
+    				$form->get('phone')->setData($admin_candidacy->getPhone());
+    			}
+    			
+    			$form->handleRequest($request);
+
     			$ok = TRUE;
     			$already_registered = FALSE;
     			if ($form->isValid())
