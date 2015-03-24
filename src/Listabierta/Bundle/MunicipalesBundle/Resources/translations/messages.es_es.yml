@@ -453,6 +453,7 @@ panel_admin:
         verify_msg: Confirma tu cuenta administrador enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después <a href="#" onclick="javascript:window.location.reload()">actualiza/recarga</a> esta página
 
     modify_personal_data:
+        title: Modificar datos personales
         back: Volver
         save: Guardar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         
