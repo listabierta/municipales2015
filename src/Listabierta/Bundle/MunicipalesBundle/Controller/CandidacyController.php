@@ -725,7 +725,9 @@ class CandidacyController extends Controller
 
     			if(empty($admin_candidacy) || empty($admin_id))
     			{
-    				throw $this->createNotFoundException('No existe la candidatura de administrador para el identificador de administrador');
+    				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    						'error' => 'No existe la candidatura de administrador para el identificador de administrador',
+    				));
     			}
     			 
     			$admin_candidacy->setFromdate($from_data);
@@ -734,38 +736,7 @@ class CandidacyController extends Controller
     			$entity_manager->persist($admin_candidacy);
     			$entity_manager->flush();
 
-    			$form2 = $this->createForm(new CandidacyStep4Type(), NULL, array(
-    					'action' => $this->generateUrl('municipales_candidacy_step4'),
-    					'method' => 'POST',
-    			));
-    
-    			$form2->handleRequest($request);
-    
-    			$town = $admin_candidacy->getTown();
-    			
-    			if(empty($town))
-    			{
-    				$town = $session->get('town', NULL);
-    			}
-    			
-    			if(empty($town))
-    			{
-    				// @todo This should redirect to admin panel, because the user cannot refill the step 1 with town
-    				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
-    						'error' => 'Error: no se ha configurado un municipio para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step1') . '" title="Paso 1 Candidatura - Regístrate y registra el municipio de la candidatura">establece un municipio en el paso 1 de la candidatura</a>',
-    				));
-    			}
-    			
-    			$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
-    			$town_name = $province_repository->getMunicipalityName($town);
-
-    			$default_address_slug = $this->get('slugify')->slugify($town_name);
-    			
-    			return $this->render('MunicipalesBundle:Candidacy:step4.html.twig', array(
-    					'default_address_slug' => $default_address_slug,
-    					'form' => $form2->createView()
-    				)
-    			);
+    			return $this->step4Action($request);
     		}
     	}
     
