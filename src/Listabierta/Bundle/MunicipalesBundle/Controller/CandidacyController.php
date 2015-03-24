@@ -22,6 +22,9 @@ use Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy;
 
 use Symfony\Component\Form\FormError;
 
+use Listabierta\Bundle\MunicipalesBundle\Form\ChangePasswordType;
+use Listabierta\Bundle\MunicipalesBundle\Form\Model\ChangePassword;
+
 /**
  * CandidacyController
  * 
@@ -1714,5 +1717,23 @@ class CandidacyController extends Controller
     	$this->get('mailer')->send($message);
     	 
     	return $this->redirect($this->generateUrl('municipales_candidacy_step6'), 301);
+    }
+    
+    public function changePasswdAction(Request $request)
+    {
+    	$changePasswordModel = new ChangePassword();
+    	$form = $this->createForm(new ChangePasswordType(), $changePasswordModel);
+    
+    	$form->handleRequest($request);
+    
+    	if ($form->isSubmitted() && $form->isValid()) 
+    	{
+    		// @todo encoding with MessageDigestPasswordEncoder and persist
+    		return $this->redirect($this->generateUrl('change_passwd_success'));
+    	}
+    
+    	return $this->render('MunicipalesBundle:Candidacy:changePasswd.html.twig', array(
+    			'form' => $form->createView(),
+    	));
     }
 }
