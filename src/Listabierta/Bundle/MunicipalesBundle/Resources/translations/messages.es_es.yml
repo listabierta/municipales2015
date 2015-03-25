@@ -575,6 +575,7 @@ panel_admin:
         see_internal_results: Ver resultados internos <br />de la votación
         see_public_results: Ver enlace de resultados públicos<br /> de la votación
         verify_msg: Confirma tu cuenta administrador enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después <a href="#" onclick="javascript:window.location.reload()">actualiza/recarga</a> esta página
+        modify_vote_points_system: Modificar puntuación en la votación de candidatos
 
     modify_personal_data:
         title: Modificar datos personales
