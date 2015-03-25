@@ -374,6 +374,7 @@ town:
         govern_priorities_text_13: Gestionar mejor la deuda y las operaciones financieras
         motivationText: Motivación para presentarse
         additionalInfo: Biografía e información adicional
+        more_info: Más información en la web
         
     step8:
         header: Asigna puntuaciones

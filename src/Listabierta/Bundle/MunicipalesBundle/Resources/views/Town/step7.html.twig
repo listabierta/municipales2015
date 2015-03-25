@@ -275,6 +275,15 @@
                                   </span>
                                 </div>
                               </div>
+                              {% if candidate.urlInfo is defined %}
+                              <div class="label label-info label-xlg ">
+                                <div class="inline position-relative">
+                                  <span>
+                                    <span class="white"><a href="{{ candidate.urlInfo }}" title="{{ 'town.step7.more_info'|trans }}">{{ 'town.step7.more_info'|trans }}</a></span>
+                                  </span>
+                                </div>
+                              </div>
+                              {% endif %}
                             </div>
                             <div class="space-6"></div>
                             <div class="hr hr12 dotted"></div>
