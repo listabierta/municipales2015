@@ -300,8 +300,22 @@
 												<select class="form-control input-sm" aria-controls="dynamic-table" 
 														required="required" name="town_step_7[candidate_{{ candidate.id }}]" 
 														id="candidate_{{ candidate.id }}">
+														{{ index }}
+													{% set position_text = {   '0' : 'town.step7.position_text_0'|trans,
+													     				'1' : 'town.step7.position_text_1'|trans,
+													     				'2' : 'town.step7.position_text_2'|trans,
+													     				'3' : 'town.step7.position_text_3'|trans,
+													     				'4' : 'town.step7.position_text_4'|trans,
+													     				'5' : 'town.step7.position_text_5'|trans,
+													     				'6' : 'town.step7.position_text_6'|trans,
+													     				'7' : 'town.step7.position_text_7'|trans,
+													     				'8' : 'town.step7.position_text_8'|trans,
+													     				'9' : 'town.step7.position_text_9'|trans,
+													     				'10' : 'town.step7.position_text_10'|trans,
+																	}
+																	%}
 													{% for index in 1..candidates|length  %}
-														<option>{{ index }}</option>
+														<option value="{{ index }}">{{ position_text[index] }}</option>
 													{% endfor %}
 												</select>
 									{% endif %}

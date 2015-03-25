@@ -375,7 +375,18 @@ town:
         motivationText: Motivación para presentarse
         additionalInfo: Biografía e información adicional
         more_info: Más información en la web
-        
+        position_text_0: Sin puntuar
+        position_text_1: Primero
+        position_text_2: Segundo
+        position_text_3: Tercero
+        position_text_4: Cuarto
+        position_text_5: Quinto
+        position_text_6: Sexto
+        position_text_7: Séptimo
+        position_text_8: Octavo
+        position_text_9: Noveno
+        position_text_10: Décimo
+
     step8:
         header: Asigna puntuaciones
         html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 8
