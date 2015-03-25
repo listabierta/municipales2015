@@ -778,7 +778,7 @@ class TownController extends Controller
 
 		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
 		 
-		$candidates = $candidate_repository->findAll(array('admin_id' => $admin_id));
+		$candidates = $candidate_repository->findBy(array('admin_id' => $admin_id));
 		
 		if(empty($candidates))
 		{
@@ -1091,7 +1091,7 @@ class TownController extends Controller
 	
 		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
 			
-		$candidates = $candidate_repository->findAll(array('admin_id' => $admin_id));
+		$candidates = $candidate_repository->findBy(array('admin_id' => $admin_id));
 	
 		if(empty($candidates))
 		{
