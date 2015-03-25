@@ -142,9 +142,11 @@
                        
                       <div class="col-xs-12 col-sm-offset-1">   
                       	  <div class="justify-block">
-		                      {{ 'town.step1.welcome'|trans }} <b>{{ town|capitalize }}</b>. 
-							  {{ 'town.step1.welcome_more'|trans|raw }}
+		                      {{ 'town.step1.welcome'|trans({'%address%' : address, '%town%' : town|capitalize })|raw }}
 							  <br/><br/>
+							  <div class="embed-responsive embed-responsive-16by9">
+						           <iframe  class="embed-responsive-item" src="https://www.youtube.com/embed/v-ysTeRE9lc"></iframe>
+						      </div>
 						  </div>
 					  </div>
                       
