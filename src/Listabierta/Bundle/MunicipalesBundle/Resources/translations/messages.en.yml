@@ -1,0 +1,424 @@
+home:
+  html_title: Municipal Elections 2015 - Home
+  h1_title: Municipal Elections 2015
+  steps_h2: Steps
+  step_h2: Step
+  steps: To register a candidacy you must
+  featured: Open your city hall to all citizens in the municipal elections of May 2015
+  open_council: Open your city hall to all citizens in the municipal elections of May 2015
+  who_we_are: About us
+  who_h3: Start here
+  intro_p1: Is the result of a collective funding effort and of a work-team that intends to open organizations for the citizens. Among these organizations City Halls occupy a very important place.
+  intro_p2: The election of candidates in  open lists for municipal elections allows that those who has been elected "must" be there for the citizens who elected them, and not for whom had included them in a closed or negotiated list.
+  intro_p3: If you are <b>directly involved in the organization</b> of any candidacy open lists in your town for the upcoming elections in May 2015, you can organize them with this online tool at no cost and auditable results,  as a different way to rule your City Council is not just possible but necessary.
+  intro_p4: It is very important that before you start the candidacy registration process, you see this entire process tutorial.
+  intro_p5: How does  the municipal open lists tool work?
+  step_1: Sign up and register the municipal candidature
+  step_2: Establishes the conditions of the citizen candidate
+  step_3: Sets the deadline for the voting
+  step_4: Reserve an internet address
+  step_5: 'Candidates Registration '
+  step_6: Candidates Validation
+  step_7: Polling
+  step_8: Verification vote and results
+  step_9: Presentation of the elected lists
+  start_here: Start registration
+  welcome: 'Welcome to the site!'
+header:
+  languages:
+    es_eu: Basque
+    es_ca: Catalan
+    es_gl: Galician
+    es_es: Spanish
+candidacy:
+  html_title: Municipal election 2015 - Registry of citizen candidature
+  h1_title: 'Sign up and register the candidature of municipality  '
+  verify_msg: Confirm the registration and conditions, by sending an SMS from your mobile telephone with the word ACEPTO to the number %sms_inbound_number%, and then click CONTINUE
+  verify_extra: The message cost is about EUR 10 cents (or free, depending on the cost of your operator). It is not a premium SMS and listabierta.org does no charge any amount for this service.
+  step_conditions:
+    html_title: Municipal election 2015 - Registry terms of citizen candidacy
+    h1_title: Sign up and register the candidature of the municipality
+    p1_title: When you start the registration you must accept the following conditions
+    p1_content: That you are part of a collective (political party, party coalition or group of voters) willing to attend at the municipal elections which will take place on May 24, 2.015; and therefore have the intention to register in due time and form in the corresponding provincial electoral board.
+    p2_content: That you has been designated by your collective to register your municipality within this open voting list tool, not existing any internal conflict with it's use.
+    p3_content: That said collective understand and agree to the tools limitations in regard to the polls and its verification.
+    p4_content: That said collective understand and agree that the verification and acceptance of the registry is done by the administrator of the poll.
+    p5_content: That by the act of registration you are giving your acceptance to the processing of personal data that you files, in accordance with Article 6 of the LOPD (data protection act); and that you can exercise your rights in the terms provided in Article 5 of the LOPD.
+    p6_content: That the information you file during the registration is true, including the personal information, the poll conditions, the candidate and its program. <b>Note that you may not modify it later, as registry data is used to identify you as a single user.</b>
+    accept: ACCEPTANCE OF THESE CONDITIONS
+    continue: <i class="ace-icon fa fa-check bigger-110"></i> Continue
+  step1:
+    name: Name
+    lastname: Last name
+    dni: ID (DNI or NIE)
+    username: User
+    password: Password
+    email: Email
+    province: Province of city hall
+    town: City hall name
+    phone: Mobile telephone number
+    previous: Previous
+    continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    explanation_dni: Why we need your ID and your mobile telephone number? To prevent spam and multiple log entries. You have to provide both data correctly before you may continue with the registration.
+    explanation: Explanation
+    dni_info: Without introducing dash between number and letter
+    username_info: Write your username
+    password_info: Write your password
+    email_info: You will receive a confirmation email
+    phone_info: You must confirm it with a message (SMS) in the next step. If you enter a wrong number, you can not continue.
+    warning_text: '<b>Attention</b> it is essential to enter all registration data correctly, including your mobile telephone number. An error in the registration data imply that someone else will have to enlist this citizen candidacy. If you are unsure of the process, see again the video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Opens organizations citizenship (Short Version)">here</a> . The system does not support "test" applications.'
+  step_verify:
+    html_title: Municipal elections 2015 - Registry of citizen candidacy
+    h1_title: Check your mobile telephone number
+    continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: Previous
+  step2:
+    html_title: Municipal elections 2015 - Registry of citizen candidacy
+    h1_title: Establish the conditions of your citizen candidacy
+    p1: 'Upload in PDF format all the conditions which must be accepted by the candidates (one, some, all, or none) which want to participate in the citizen candidacy . For example: the application program; the legal and the accuracy of the information provided; the recall and participatory mandate; the ethical code; the acceptance of the census and of the voting system; etc. If you do not upload any conditions, we recommend that you seek an alternative method to verify that the candidate will fulfill the conditions before her/his inclusion in the lists.'
+    program: The candidacy program
+    legal_conditions: Legal condition and accuracy of the information provided about candidates
+    recall_term: The candidate recall mandate
+    participatory_term: The  candidacy ethical code
+    voter_conditions: The conditions to participate as voter (census and acceptance of the poll system)
+    technical_constrains: The technical and legal limitatios of the voting system.
+    continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: Previous
+    example: Example
+  step3:
+    html_title: Municipal elections 2015 - Registry of citizen candidacy
+    h1_title: Set the timetable for candidate presentation
+    continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    explanation_date: Time limit for candidate applications <br/> (Minimum 2 days)
+    from_label: FROM
+    to_label: TO
+    previous: Previous
+  step4:
+    html_title: Municipal election 2015 - Registry of citizen candidacy
+    h1_title: Reserve an internet address
+    continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: Previous
+    choose_address: Choose your internet address
+    warning: 'If in the blank space, for example, you write: FuenteovejunaParticipa, the associated address to your candidacy will be like: http://% host%/FuenteovejunaParticipa/ ...'
+  step5:
+    html_title: Municipal elections 2015 - Registry of citizen candidacy
+    h1_title: Registry of candidates
+    continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: Previous
+    explanation_link: You can provide this public link to the candidates so that they can registry by their own, filling out the form that appears to them
+    register_link: Registry lLink
+    send_link: We sent to your email a copy of this link
+    next_step_explanation: In the next step, you will be able to validate the candidates, which registered using the previous link.
+  step6:
+    html_title: Municipal elections 2015 - Registry of citizen candidacy
+    h1_title: Validation of candidates
+    continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    no_candidates: At present time there is no registered candidate to validate
+    name_header: Name and last name
+    motivational_text_header: Motivational text
+    town_activities_explanation_header: Explanation municipal activities
+    additional_info_header: Biography
+    photo_header: Photo
+    action_header: Action
+    accept: Accept
+    reject: Reject
+    delete: Delete
+    accepted: Accepted
+    rejected: Rejected
+    accept_candidate: Acept candidate
+    reject_candidate: Reject candidate
+    delete_candidate: Delete candidate
+  step7:
+    html_title: Municipal election 2015 - Registry of citizen candidacy
+    h1_title: Start and end of voting
+    days: Days
+    explanation: Enter the number of calendar days that the voting of candidates remain active from the start of the voting date (minimum two days).
+    init_vote_explanation: Click the following button to begin voting
+    warning_explanation: ATTENTION !! You CAN NOT ADD more candidates once the poll is initiated. A link will be provided to enable the voters registery, and cast their vote.
+    start_candidacy: Start voting
+    public_link: This is the link to the voting that you may do public
+    no_finished_candidacy: You can not begin voting as the end time for the candidate registration is not over.
+    sent_mail: We sent to your email a copy of this link
+  step8:
+    html_title: Municipal election 2015 - Registry of citizen candidacy
+    h1_title: Verification of voting and results
+    continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: Previous
+    vote_finished: Voting finished
+    audit: You can audit the result here
+    how_works_tsa: How the time stamping works?
+    photo: Photo
+    name_lastname: Name and last name
+    dni: ID (DNI or NIE)
+    phone: Mobile telephone number
+    total_points: Total points
+    position: Position
+    vote_not_finished_warning: The poll has not yet been terminated and the final results are not available yet
+    vote_start_date: Start date of votation
+    vote_end_date: Closing date of votation
+    header_p1: After the poll, the results of the sum of points will appear in this screen, from highest to lowest score
+    header_p1_h3: How does the rating system work?
+    header_p2: The system that listabierta.org has chosen is the Modified Borda, because it is easy to understand by the voter and allows a more diverse and consensual choice. In this case the voter assignes to the preselected candidates a position that goes from first to fifth place. Once the order is established, proceed to vote. Internally, the points count works as follows
+    header_li1: The candidate chosen  in first place will receive a point (1)
+    header_li2: The candidate chosen in second place will receive a half point (½) = 0,5 point
+    header_li3: The candidate chosen in third place receives one third point (⅓) = 0,33 point
+    header_li4: The candidate chosen in fourth place receives a quarter point (¼) = 0,25 point
+    header_li5: The candidate chosen  in fifth place will receive one fifth point (⅕) = 0,20 point
+  step9:
+    html_title: Municipal elections 2015 - Registry of citizen candidacy
+    h1_title: Presentation of elected lists
+    continue: Start voting
+    result: Voting results
+    link_result: Link to poll results
+    public_link: Provide this public link to show the voting results
+  recover_password:
+    h1_title: Recover password
+    header: Administrator account
+    h1_subtitle: Recovers the password for your administrator account
+    oldPassword: Old password
+    newPassword: New password
+town:
+  html_title: Municipal election 2015 - Vote in the citizen candidacy
+  h1_title: Register as voter
+  verify_msg: Confirm the registration and conditions, by sending an SMS from your mobile telephone with the word ACEPTO to the number %sms_inbound_number%, and then click CONTINUE
+  verify_extra: The message cost is about EUR 10 cents (or free, depending on the cost of your operator). While it is not a premium SMS, listabierta.org does not charge any amount for this service.
+  step1:
+    welcome: Welcometo the  citizens candidacy vote
+    welcome_more: as first step please register as a voter. <br /> If you introduce wrong information, you will not be able to modify them later
+    header: Register as a voter
+    name: Name
+    lastname: last name
+    dni: Identity card
+    email: Email
+    username: User
+    password: Password
+    phone: Mobile Number
+    continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    explanation_dni: Why do we need your ID and your mobile number? to prevent spam and multiple log entries. In order to continue with the registration process we need you to provide both data correctly.
+    explanation: Explanation
+    warning_text: '<b>Please note</b> it is essential to enter the registration data correctly, including your phone number, an error log data implies that you can not vote'
+  step_verify:
+    html_title: Municipal elections 2015 -  Register as a voter
+    h1_title: Check your mobile number
+    continue: continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: back
+    verify_conditions_header: 'Requirements for voting:'
+    verify_conditions_op1: You support the candidacy of citizen  open lists and you agree with this registration process.
+    verify_conditions_op2: You are giving your consent to process your personal data in accordance with Article 5 and 6 of the LOPD and we are allow to contact you by email with information strictly related to the voting process, we will never  give your login information to third parties.
+    verify_conditions_op3: The information you contribute during this registration is real  and your main residence is located in the town under vote
+  step2:
+    header: Filter candidates
+    html_title: Municipal elections of 2015 - citizens candidacy vote - Step 2
+    filter_title: What criteria would you like to use for selecting candidates?
+    filter_p1: Note that if you do not apply any filter, all candidates  will appear and it could be tedious to  see all the profiles and rate them, so if you have any clear preference, please select it. Afterwards you can check your filters.
+    h1_title: Filter candidates by academic level
+    academic_level: would you like to  choose the desired candidate academic level  ?
+    languages: would it be good that the candidate can speak another languages?
+    continue: continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: back
+  step3:
+    header: please Select work experience
+    html_title: Municipal elections of 2015 - citizens candidacy vote  - Step 3
+    h1_title: please Select professional experience
+    continue: continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: back
+    job_experience_title: What area of  professional experience would you like the candidate have worked previously?
+  step4:
+    header: Choose municipal activities
+    html_title: Municipal 2015 - cutizens candidacy vote - Step 4
+    h1_title: Choose municipal activities
+    continue: continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: back
+    town_activities_title: What experience related to municipal performance you wish there were developed?
+  step5:
+    header: Choose municipal priorities
+    html_title: Municipal 2015 - Vote in the public bid - Step 5
+    h1_title: Choose municipal priorities
+    continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: Previous
+    govern_priorities_title: What activities do you think I should focus priority municipal government?
+    public_values_title: What moral values ​​most important to consider the performance of public functions?
+  step6:
+    header: Attaches importance
+    html_title: Municipal 2015 - Vote in the public bid - Step 6
+    h1_title: Attaches importance
+    continue: View candidates <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: Previous
+  step7_confirmation:
+    header: Choose candidates
+    html_title: Municipal 2015 - Vote in the public bid - Step 7
+    h1_title: Pre-selection of candidates
+    continue: View candidates <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: Review criteria
+    filter_selection: With your current filters they will show
+    advice: We recommend a maximum of 10
+    candidates_of: candidates / ace
+  step7:
+    header: Choose candidates
+    html_title: Municipal 2015 - Vote in the public bid - Step 7
+    h1_title: Choose candidates
+    continue: VOTE <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: Previous
+  step8:
+    header: Assigns Rating
+    html_title: Municipal 2015 - Vote in the public bid - Step 8
+    h1_title: Assigns Rating
+    continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: Previous
+    congratulations: <strong><i class="mine-icon fa fa-check"></i> Congratulations!</strong> Your vote has been successfully processed
+  step9:
+    header: End
+    html_title: Municipal 2015 - Top of citizen candidacy
+    h1_title: End
+    previous: Previous
+    headline: Public voting results
+    headin1: 'Municipal election results '
+    headin2: in
+    candidates_voted: Voted candidates
+    total_voters: Total Voters
+    total_points: Total points
+    position: Order number
+candidate:
+  html_title: Municipal 2015 - Top of candidate
+  h1_title: Sign up as a candidate
+  step1:
+    header: Sign up as a candidate
+    p1: Before registering as a candidate in citizen <b>candidacy% address%,</b> the <b>town municipality%%</b> you should watch this video explaining the registration process.
+    p2: The deadline for applications is set fromdate% from% to% todate%
+    name: Name
+    lastname: Surname
+    dni: DNI
+    email: Email
+    phone: Mobile Number
+    continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    warning_text: '<b>Please note</b> it is essential to enter registration data correctly, including your phone number, an error log data implies that you can not enlist your application. If you are unsure of the process, returns to see the video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Opens organizations citizenship (Short Version)">here</a> . The system does not support applications "test".'
+  verify_msg: Confirm the registration and conditions, by sending an SMS from your mobile telephone with the word ACEPTO to the number %sms_inbound_number%, and then click CONTINUE
+  verify_extra: The message cost is about EUR 10 cents (or free, depending on the cost of your operator). It is not a premium SMS and listabierta.org does no charge any amount for this service.
+  step_verify:
+    html_title: Municipal 2015 - Top of candidate
+    h1_title: Check your mobile
+    continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    previous: Previous
+  step2:
+    header: Signing documents
+    p1: You must sign your compliance with the conditions of the bid, for it click "Download" and signature (digital or manual) document, and once you signed appended by clicking "Browse". When you've done the same with all the documents, click Continue. Maybe the manager candidacy has not uploaded any conditions, then just click to continue
+    program: Acceptance of the application program
+    legal_conditions: Compliance with the legal and accuracy of the information provided
+    recall_term: Acceptance of the recall term of the candidate
+    participatory_term: Acceptance of participatory mandate candidate
+    voter_conditions: Acceptance available census and voting system
+    technical_constrains: Acceptance of the technical and legal constraints of the voting system.
+    download: Download
+    previous: Previous
+    continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+  step3:
+    header: Provide your academic level
+    academic_level_title: What is your educational level?
+    languages_title: Are you able to have a phone conversation in any of these languages? (You can select zero or more)
+    previous: Previous
+    continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+  step4:
+    header: Provide your work experience
+    job_experience_title: What is the field of your work experience? (Select up to three options)
+    previous: Previous
+    continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+  step5:
+    header: Provides municipal performance
+    header_title: Have you had any experience that may be related to the activities developed by a municipality?
+    town_activities_title: Did you have any experiences about municipal work? (Select up to three options whenever your activity includes either coordination or management of more than 10 people-group, then you will have to explain it)
+    previous: Previous
+    continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+  step6:
+    header: Government Prioritizes
+    subheader: Establishes priorities that should be improved municipal management
+    govern_priorities_title: What activities do you think I should focus priority municipal government? (Select up to three options)
+    previous: Previous
+    continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+  step7:
+    header: Select moral values
+    public_values_title: What moral values ​​do you consider uppermost important in order of performing public functions? (Choose up to three)
+    motivation_text_title: Describe your motivation to introduce yourself
+    town_activities_explanation_title: Describe your related experience
+    additional_info_title: Biography and additional information you want to contribute
+    url_info_title: Web address or URL (video, blog, etc) (optional)
+    profile_image_title: Attached photo
+    previous: Previous
+    continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+  final_step:
+    header: End
+    end: Application form completed!
+login:
+  html_title: Login
+  username: User
+  password: Password
+  access: Log in
+  remember_me: Remember me
+  conditions: Login with your username and password credentials
+  recover_password: Forgot your password?
+mail:
+  candidate_created:
+    hello: Hello
+    account: This is a confirmation message that your candidate record has been created
+    contact: You can mention any incidents  to the administrator of the application by mail
+  admin_created:
+    hello: Hello
+    account: Your application administrator account has been created
+    can_create: You can gain access to your account from the link
+    login: Login
+  admin_updated:
+    hello: Hello
+    account: Your account manager candidacy has been updated
+    can_create: You can access your account from the link
+    login: Login
+  candidacy_address:
+    hello: Hello
+    supply_link: You can provide this public link for the candidates to be registered by filling out the form that will show up
+  candidacy_vote_address:
+    hello: Hello
+    can_public: You can provide with this public link to the voters for them to proceed by filling out the form that will appear
+  candidate_accepted:
+    hello: Hello
+    accepted: Your bid has been accepted by the administrator
+    admin_email: E-mail manager
+  candidate_rejected:
+    hello: Hello
+    rejected: Your application has been rejected by the administrator
+    admin_email: E-mail manager
+  candidate_deleted:
+    hello: Hello
+    deleted: Your application has been deleted by the administrator
+    admin_email: E-mail admin
+  candidate_signup:
+    new: A new named candidate has been registered
+  sms_inbound_verification:
+    your_phone: Your phone number
+    verify: has been successfully verified
+panel_admin:
+  index:
+    header: Admin Panel
+    hello: Hello
+    logout: Get Out
+    manage: In this panel you can manage public bid
+    not_yet_validated: You have not yet validated your mobile number
+    needed_continue: You need to validate your mobile number  to proceed with any action
+    your_phone_number: Your mobile number
+    is_verified: has been successfully verified
+    modify_personal_data: Modify personal data
+    upload_documents: Upload documents
+    set_candidacy_date: Set deadlines for nominations
+    change_address: Change / set <br /> Internet address
+    candidacy_register: See link <br /> for candidates registration
+    validate_candidates: 'Validate candidates '
+    set_vote_days: Set the deadline for voting (voting period)
+    see_internal_results: See internal results <br /> voting
+    see_public_results: 'See the public results <br /> voting link '
+    verify_msg: Confirm your administrative accont, by sending an SMS from your mobile telephone with the word ACEPTO to the number %sms_inbound_number%, and then <a href="#" onclick="javascript:window.location.reload()">update / reload</a> this page
+  modify_personal_data:
+    title: Modify personal data
+    back: Come Back
+    save: Save <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+forms:
+  candidacy_step1:
+    password:
+    minMessage: Your password must be at least {{limit}} characters long
+    maxMessage: Your password must be at least  {{limit}} characters long
