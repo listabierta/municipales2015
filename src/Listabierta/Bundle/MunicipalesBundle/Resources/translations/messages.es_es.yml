@@ -179,11 +179,17 @@ candidacy:
         header_p1: Una vez finalizada la votación, aparecerán en esta pantalla los resultados de la suma de puntos en un listado, ordenados de mayor a menor puntuación
         header_p1_h3: ¿Cómo funciona el sistema de puntuación?
         header_p2: El sistema que listabierta.org ha escogido es el Borda Modificado, porque es sencillo de entender por el votante y permite una elección más diversa y consensuada. En este caso el votante asigna a los candidatos o candidatas preseleccionados una posición que va del primer al quinto lugar. Una vez establecido el orden, procede a votar. Internamente, el recuento de puntos funciona de la siguiente forma
-        header_li1: "El candidato o candidata elegido en primer lugar recibe un punto (1)"
-        header_li2: "El candidato o candidata elegido en segundo lugar recibe medio punto (½) = 0,5 puntos"
-        header_li3: "El candidato o candidata elegido en tercer lugar recibe un tercio de punto (⅓) = 0, 33 puntos"
-        header_li4: "El candidato o candidata elegido en cuarto lugar recibe un cuarto de punto (¼) = 0, 25 puntos"
-        header_li5: "El candidato o candidata elegido en quinto  lugar recibe una quinta parte de punto (⅕) = 0,20 puntos"
+        header_li0: "El candidato o candidata elegido sin puntuar recibe %points% puntos"
+        header_li1: "El candidato o candidata elegido en primer lugar recibe %points% puntos"
+        header_li2: "El candidato o candidata elegido en segundo lugar recibe %points% puntos"
+        header_li3: "El candidato o candidata elegido en tercer lugar recibe %points% puntos"
+        header_li4: "El candidato o candidata elegido en cuarto lugar recibe %points% puntos"
+        header_li5: "El candidato o candidata elegido en quinto lugar recibe %points% puntos"
+        header_li6: "El candidato o candidata elegido en sexto lugar recibe %points% puntos"
+        header_li7: "El candidato o candidata elegido en séptimo lugar recibe %points% puntos"
+        header_li8: "El candidato o candidata elegido en octavo lugar recibe %points% puntos"
+        header_li9: "El candidato o candidata elegido en noveno lugar recibe %points% puntos"
+        header_li10: "El candidato o candidata elegido en decimo lugar recibe %points% puntos"
         
     step9:
         html_title: Municipales 2015 - Alta de candidatura ciudadana
