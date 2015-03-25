@@ -1,480 +1,425 @@
-home:
-    html_title: Municipales 2015 - LaMaison
-    h1_title: Municipales 2015
-    steps_h2: Pases
-    step_h2: Pase
-    steps: Para dar de alta una candidatura ciudadana debes
-    featured: Abre tu ayuntamiento a la ciudadanía en estas elecciones municipales de mayo 2015
-    
-    open_council: Abre tu ayuntamiento a la ciudadan&iacute;a en estas elecciones municipales de mayo 2015
-    who_we_are: "¿Quienes somos?"
-    who_h3: "Empieza por aquí"
-    intro_p1: es el fruto de un esfuerzo de financiación colectiva y de un equipo de trabajo que pretende abrir las organizaciones a la ciudadanía. Entre estas organizaciones ocupan un lugar destacado los Ayuntamientos.
-    intro_p2: La elección de candidatos y candidatas en listas abiertas para los comicios municipales permite que los electos se “deban” a los ciudadanos que los han elegido, y no a quien les hubiese incluido en una lista cerrada o negociada. 
-    intro_p3: Si estás <b>directamente implicado en la organización</b> de una candidatura de listas abiertas en tu municipio para las próximas elecciones de mayo de 2.015, puedes organizarla con esta herramienta online sin coste y con resultados auditables, porque otra forma de gobernar tu Ayuntamiento es posible y necesaria.
-    intro_p4: Es muy importante que antes de empezar el proceso de registro de la candidatura, veas este tutorial del proceso completo.
-    intro_p5: ¿Cómo funciona la herramienta de listas abiertas municipales?
-    
-    step_1: Regístrate y registra el municipio de la candidatura
-    step_2: Establece las condiciones de la candidatura ciudadana
-    step_3: Establece los plazos de votación
-    step_4: Reserva una dirección de internet
-    step_5: Alta de candidatos y candidatas
-    step_6: Validación de candidatos y candidatas
-    step_7: Votaciones
-    step_8: Verificación del voto y resultados
-    step_9: Presentación de las listas electas
-    
-    start_here: Iniciar el registro
-    welcome: "&iexcl;Bienvenidos al sitio!"
-
-header:
+ca_ES:
+  home:
+    html_title: Municipals 2015 - Home
+    h1_title: Municipals 2015
+    steps_h2: Passos
+    step_h2: Pas
+    steps: Per donar d'alta una candidatura ciutadana cal
+    featured: Obri el teu ajuntament a la ciutadania en aquestes eleccions municipals de maig 2015
+    open_council: Obri el teu ajuntament a la ciutadania i acudeix en aquestes eleccions municipals de maig 2015
+    who_we_are: Qui som?
+    who_h3: Comença per aquí
+    intro_p1: és el fruit d'un esforç de finançament col·lectiu i d'un equip de treball que pretén obrir les organitzacions a la ciutadania. Entre aquestes organitzacions els ajuntaments hi ocupen un lloc destacat .
+    intro_p2: L'elecció de candidats i candidates en llistes obertes per als comicis municipals permet que els electes estiguen compromesos amb el vot dels ciutadans que els han triat i no amb qui els haurien inclòs en una llista tancada o negociada.
+    intro_p3: Si estàs <b>directament implicat en l'organització</b> d'una candidatura de llistes obertes al teu municipi per a les properes eleccions de maig de 2.015, amb aquesta eina en línia la pots organitzar  sense cap cost i amb resultats auditables, perquè una altra forma de governar el teu ajuntament és possible i necessària.
+    intro_p4: És molt important que abans de començar el procés de registre de la candidatura, veges aquest tutorial del procés complet.
+    intro_p5: Com funciona l'eina de llistes obertes municipals?
+    step_1: Registra't i registra el municipi de la candidatura
+    step_2: Estableix les condicions de la candidatura ciutadana
+    step_3: Estableix els terminis de votació
+    step_4: Reserva una adreça d'internet
+    step_5: Alta de candidats i candidates
+    step_6: Validació de candidats i candidates
+    step_7: Votacions
+    step_8: Verificació del vot i resultats
+    step_9: Presentació de les llistes electes
+    start_here: Inicia el registre
+    welcome: 'Benvinguts al lloc!'
+  header:
     languages:
-        es_eu: Euskera
-        es_ca: Català
-        es_gl: Galego
-        es_es: Español
-        
-candidacy:
-    html_title: Municipales 2015 - Alta de candidatura ciudadana
-    h1_title: Regístrate y registra el municipio de la candidatura
-    verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
-    verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
-    
+      es_eu: Euskera
+      es_ca: Català
+      es_gl: Gallec
+      es_es: Espanyol
+  candidacy:
+    html_title: Municipals 2015 - Alta de candidatura ciutadana
+    h1_title: Registra't i registra el municipi de la candidatura
+    verify_msg: Confirma el registre i les condicions enviant des del teu mòbil un SMS amb la paraula ACCEPTE al número %sms_inbound_number%, després fes clic a CONTINUAR
+    verify_extra: El cost del missatge és d'uns 10 cèntims d'euro (o gratuït, depén del cost de la teua operadora) no és un sms premium i listabierta.org no cobra per aquest servei.
     step_conditions:
-      html_title: Municipales 2015 - Condiciones de alta de candidatura ciudadana
-      h1_title: Regístrate y registra el municipio de la candidatura
-    
-      p1_title: Al iniciar el registro aceptas las siguientes condiciones
-      p1_content: Que formas parte un colectivo (partido político, coalición de partidos o agrupación de electores) que desea presentarse a los comicios municipales que se celebrarán el 24 de mayo de 2.015 y que para ello tienen la intención de registrarse en plazo y forma en la correspondiente junta electoral provincial.
-      p2_content: Que has sido designado por dicho colectivo para efectuar el alta del municipio en la presente herramienta de voto de listas abiertas, no existiendo conflicto interno en cuanto a su uso.
-      p3_content: Que dicho colectivo comprende y acepta las limitaciones del uso de la herramienta en cuanto al sistema de voto y su verificación.
-      p4_content: Que dicho colectivo comprende y acepta que el proceso de verificación y aceptación de las candidaturas lo efectúa el administrador o administradora de la votación.
-      p5_content: Que mediante el acto de registro estás dando tu consentimiento expreso al tratamiento de los datos personales que aportas, según lo dispuesto en el artículo 6 de la LOPD y que podrás ejercer tus derechos en los términos dispuestos por el artículo 5 de la LOPD.
-      p6_content: Que la información que aportas durante el registro es cierta, tanto los datos personales como las condiciones de la votación, de la candidatura y su programa. <b>Ten en cuenta que no podrás modificarla más adelante, ya que los datos de registro se utilizan para identificarte como usuario único</b>.
-      accept: ACEPTAS ESTAS CONDICIONES
+      html_title: Municipals 2015 - Condicions d'alta de candidatura ciutadana
+      h1_title: Registra't i registra el municipi de la candidatura
+      p1_title: 'En iniciar el registre acceptes les condicions següents '
+      p1_content: Que formes part un col·lectiu (partit polític, coalició de partits o agrupació d'electors) que desitja presentar-se als comicis municipals que se celebraran el 24 de maig de 2.015 i que per això tenen la intenció de registrar-se en termini i forma en la junta electoral provincial corresponent.
+      p2_content: Que has estat designat per aquest col·lectiu per efectuar l'alta del municipi en aquesta eina de vot de llistes obertes, sense existir conflicte intern pel que fa al seu ús.
+      p3_content: Que aquest col·lectiu comprèn i accepta les limitacions de l'ús de l'eina pel que fa al sistema de vot i la seva verificació.
+      p4_content: Qu'aquest col·lectiu comprén i accepta que el procés de verificació i acceptació de les candidatures l'efectua l'administrador o administradora de la votació.
+      p5_content: Que mitjançant l'acte de registre estàs donant el teu consentiment exprés al tractament de les dades personals que aportes, segons el que es disposa en l'article 6 de la LOPD i que podràs exercir els teus drets en els termes que disposa l'article 5 de la LOPD.
+      p6_content: Que la informació que aportes durant el registre és certa, tant les dades personals com les condicions de la votació, de la candidatura i el seu programa. <b>Cal tindre en compte que no la podràs modificar més endavant, ja que les dades de registre s'utilitzen per identificar-te com usuari únic.</b>
+      accept: ACCEPTES AQUESTES CONDICIONS
       continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
-      
     step1:
-        name: Nombre 
-        lastname: Apellidos
-        dni: DNI
-        username: Usuario
-        password: Contraseña
-        email: Email
-        province: Provincia del municipio
-        town: Nombre del municipio
-        phone: Número de móvil
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
-        explanation: Explicación
-        dni_info: Sin introducir guión entre número y letra
-        username_info: Anota tu nombre de usuario
-        password_info: Anota tu contraseña
-        email_info: Recibirás un email de confirmación
-        phone_info: Deberás confirmarlo con un mensaje en el siguiente paso, si introduces un número incorrecto, no podrás continuar
-        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que otra persona tendrá que dar de alta esta candidatura ciudadana. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
-
+      name: Nom
+      lastname: Cognoms
+      dni: DNI
+      username: Usuari
+      password: Contrasenya
+      email: Correu electrònic
+      province: Província del municipi
+      town: Nom del municipi
+      phone: Número de mòbil
+      previous: Anterior
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      explanation_dni: Per què necessitem el teu DNI i número de mòbil? Per a evitar el correu brossa i el registre múltiple de candidatures. Per a poder continuar amb el registre, cal que proporciones les dues dades correctament.
+      explanation: Explicació
+      dni_info: Sense introduir guió entre número i lletra
+      username_info: Escriu el nom d'usuari
+      password_info: Escriu la contrasenya
+      email_info: Rebràs un correu de confirmació
+      phone_info: Caldra que confirmes amb un missatge en el següent pas. Si introdueixes un número incorrecte, no podràs continuar
+      warning_text: '<b>Atenció:</b> és imprescindible que introdueixis les dades de registre de forma correcta, incloent el teu número de mòbil, un error en les dades de registre implica que una altra persona haurà de donar d''alta aquesta candidatura ciutadana. Si tens dubtes del procés, torna a veure el vídeo <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Obri les organitzacions a la ciutadania (Versió Curta)">aquí</a> . El sistema no admet candidatures "de prova".'
     step_verify:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Verifica tu número de móvil
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        
+      html_title: Municipals 2015 - Alta de candidatura ciutadana
+      h1_title: Verifica el teu número de mòbil
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
     step2:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Establece las condiciones de la candidatura ciudadana
-        
-        p1: "Sube en formato PDF aquellas condiciones que deban aceptar los candidatos o candidatas (una, algunas, todas o ninguna) para presentarse en la candidatura ciudadana. Por ejemplo: El programa de la candidatura, las condiciones legales y la veracidad de la información aportada, el mandato revocatorio y participativo, el código ético, la aceptación del censo y el sistema de voto, etc.  Si no subes ninguna condición, te recomendamos que busques algún método alternativo para verificar que el candidato o candidata va a cumplirlas antes de su inclusión en las listas."
-  
-        program: El programa de la candidatura
-        legal_conditions: Condiciones legales y veracidad de la información aportada de candidatos y candidatas
-        recall_term: El mandato revocatorio del candidato
-        participatory_term: El código ético de la candidatura
-        voter_conditions: Las condiciones para poder participar como votante (censo y aceptación del sistema de votación)
-        technical_constrains: Las limitaciones técnicas y legales del sistema de voto.
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        example: Ejemplo
-                      
+      html_title: Municipals 2015 - Alta de candidatura ciutadana
+      h1_title: Estableix les condicions de la candidatura ciutadana
+      p1: 'Puja en format PDF aquelles condicions que hagen d''acceptar els candidats o candidates (una, algunes, totes o cap) per a presentar-se a la candidatura ciutadana. Per exemple: El programa de la candidatura, les condicions legals i la veracitat de la informació aportada, el mandat revocatori i participatiu, el codi ètic, l''acceptació del cens i el sistema de vot, etc. Si no puges cap condició, et recomanem que busques algun mètode alternatiu per verificar que el candidat o candidata les complirà abans que siguen inclosos o incloses en les llistes. '
+      program: El programa de la candidatura
+      legal_conditions: Condicions legals i veracitat de la informació aportada
+      recall_term: El mandat revocatori del candidat
+      participatory_term: El codi ètic de la candidatura
+      voter_conditions: Les condicions per poder participar com a votant (cens i acceptació del sistema de votació)
+      technical_constrains: Les limitacions tècniques i legals del sistema de vot.
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
+      example: Exemple
     step3:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Establece los plazos de presentación de candidaturas
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        explanation_date: Plazo de presentación de candidaturas <br/>(mínimo 2 días) 
-        from_label: DE
-        to_label: HASTA  
-        previous: Anterior
-              
+      html_title: Municipals 2015 - Alta de candidatura ciutadana
+      h1_title: Estableix els terminis de presentació de candidatures
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      explanation_date: Termini de presentació de candidatures <br/> (mínim 2 dies)
+      from_label: DE
+      to_label: FINS
+      previous: Anterior
     step4:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Reserva una dirección de internet
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
-        choose_address: Elige tu dirección de internet
-        warning: Si en el espacio en blanco escribes por ejemplo: FuenteovejunaParticipa, las direcciones asociadas a tu candidatura serán del tipo: http://%host%/FuenteovejunaParticipa/...
-        
+      html_title: Municipals 2015 - Alta de candidatura ciutadana
+      h1_title: Reserva una adreça d'internet
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
+      choose_address: Tria la teua adreça d'internet
+      warning: 'Si a l''espai en blanc escrius, per exemple: FuenteovejunaParticipa, les adreces associades a la teua candidatura seran del tipus: http://%host%/FuenteovejunaParticipa/...'
     step5:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Alta de candidatos y candidatas
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        explanation_link: Proporciona este enlace público a los candidatos y candidatas para que se den de alta rellenando el formulario que les aparecerá
-        continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
-        register_link: Enlace de Alta
-        send_link: Te hemos enviado una copia de este enlace a tu email
-        next_step_explanation: En el siguiente paso podrás validar a los candidatos y candidatas que se den de alta utilizando el enlace anterior.
-
+      html_title: Municipals 2015 - Alta de candidatura ciutadana
+      h1_title: Alta de candidats i candidates
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
+      explanation_link: Proporciona aquest enllaç públic als candidats i candidates perquè es donen d'alta omplint el formulari que els hi apareixerà
+      register_link: Enllaç d'Alta
+      send_link: 'Hem enviat una còpia d''aquest enllaç al teu correu '
+      next_step_explanation: En el pas següent podràs validar els candidats i candidates que es donen d'alta utilitzant l'enllaç anterior.
     step6:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Validación de candidatos y candidatas  
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        no_candidates: En estos momentos no existe ningun candidato inscrito para validar
-        name_header: Nombre y Apellidos
-        motivational_text_header: Texto motivacional
-        town_activities_explanation_header: Explicación actividades municipales
-        additional_info_header: Biografía
-        photo_header: Foto
-        action_header: Acción
-        accept: Aceptar
-        reject: Rechazar
-        delete: Borrar
-        accepted: Aceptado
-        rejected: Rechazado
-        accept_candidate: Aceptar candidato
-        reject_candidate: Rechazar candidato
-        delete_candidate: Borrar candidato
-        
+      html_title: Municipals 2015 - Alta de candidatura ciutadana
+      h1_title: Validació de candidats i candidates
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      no_candidates: En aquests moments no hi ha cap candidat inscrit per validar
+      name_header: Nom i Cognoms
+      motivational_text_header: Text motivacional
+      town_activities_explanation_header: Explicació d'activitats municipals
+      additional_info_header: Biografia
+      photo_header: Foto
+      action_header: Acció
+      accept: Acceptar
+      reject: Rebutjar
+      delete: Esborrar
+      accepted: Acceptat
+      rejected: Rebutjat
+      accept_candidate: Acceptar candidat
+      reject_candidate: Rebutjar candidat
+      delete_candidate: Esborrar candidat
     step7:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Inicio y fin de las Votaciones
-        days: Días
-        explanation: Introduce el número de días naturales que permanecerá activa la votación de candidatos desde el inicio de la votación (mínimo dos días).
-        init_vote_explanation: Haz clic en el siguiente botón para iniciar la votación
-        warning_explanation: ATENCIÓN !! Una vez iniciada la votación ya NO SE PODRÁN AÑADIR más candidatos o candidatas. Se proporcionará un enlace que habilitará el registro a los votantes y emitir el voto.
-        start_candidacy: Iniciar votación
-        public_link: Este es el enlace a la votación que puedes hacer público
-        no_finished_candidacy: Aún no puede iniciarse la votación ya que la fecha de finalización de las candidaturas no ha terminado. 
-        sent_mail: Te hemos enviado una copia de este enlace a tu email
-                                
+      html_title: Municipals 2015 - Alta de candidatura ciutadana
+      h1_title: Inici i fi de les votacions
+      days: Dies
+      explanation: Introdueix el nombre de dies naturals que romandrà activa la votació de candidats des de l'inici de la votació (mínim dos dies).
+      init_vote_explanation: Fes clic en el botó següent per a iniciar la votació
+      warning_explanation: ATENCIÓ!! Un cop iniciada la votació ja NO ES PODRAN AFEGIR més candidats o candidates. Es proporcionarà un enllaç que habilitarà el registre als votants i l'emissio del vot.
+      start_candidacy: Iniciar la votació
+      public_link: Aquest és l'enllaç a la votació que pots fer pública
+      no_finished_candidacy: Encara no es pot  iniciar la votació ja que la data de finalització de les candidatures no ha acabat.
+      sent_mail: Hem enviat una còpia d'aquest enllaç al teu correu
     step8:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Verificación del voto y resultados
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        vote_finished: Votación finalizada
-        audit: Puedes auditar el resultado aquí
-        how_works_tsa: ¿Cómo funciona el sellado de tiempo?
-        photo: Foto
-        name_lastname: Nombre y Apellidos
-        dni: DNI
-        phone: Número de Móvil
-        total_points: Total de puntos
-        position: Posición
-        vote_not_finished_warning: La votación aún no ha finalizado y aún no estan disponibles los resultados finales
-        vote_start_date: Fecha de inicio de votaciones
-        vote_end_date: Fecha de cierre de votaciones
-        header_p1: Una vez finalizada la votación, aparecerán en esta pantalla los resultados de la suma de puntos en un listado, ordenados de mayor a menor puntuación
-        header_p1_h3: ¿Cómo funciona el sistema de puntuación?
-        header_p2: El sistema que listabierta.org ha escogido es el Borda Modificado, porque es sencillo de entender por el votante y permite una elección más diversa y consensuada. En este caso el votante asigna a los candidatos o candidatas preseleccionados una posición que va del primer al quinto lugar. Una vez establecido el orden, procede a votar. Internamente, el recuento de puntos funciona de la siguiente forma
-        header_li1: "El candidato o candidata elegido en primer lugar recibe un punto (1)"
-        header_li2: "El candidato o candidata elegido en segundo lugar recibe medio punto (½) = 0,5 puntos"
-        header_li3: "El candidato o candidata elegido en tercer lugar recibe un tercio de punto (⅓) = 0, 33 puntos"
-        header_li4: "El candidato o candidata elegido en cuarto lugar recibe un cuarto de punto (¼) = 0, 25 puntos"
-        header_li5: "El candidato o candidata elegido en quinto  lugar recibe una quinta parte de punto (⅕) = 0,20 puntos"
-        
+      html_title: Municipals 2015 - Alta de candidatura ciutadana
+      h1_title: Verificació del vot i resultats
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
+      vote_finished: Votació finalitzada
+      audit: Pots auditar el resultat ací
+      how_works_tsa: Com funciona el segellat de temps?
+      photo: Foto
+      name_lastname: Nom i Cognoms
+      dni: DNI
+      phone: Número de Mòbil
+      total_points: Total de punts
+      position: Posició
+      vote_not_finished_warning: La votació encara no ha finalitzat i encara no estan disponibles els resultats finals
+      vote_start_date: Data d'inici de votacions
+      vote_end_date: Data de tancament de votacions
+      header_p1: Un cop finalitzada la votació apareixeran en aquesta pantalla els resultats de la suma de punts en un llistat, ordenats de major a menor puntuació
+      header_p1_h3: Com funciona el sistema de puntuació?
+      header_p2: El sistema que listabierta.org ha escollit és el Borda Modificat, perquè és senzill d'entendre pel votant i permet una elecció més diversa i consensuada. En aquest cas el votant assigna als candidats o candidates preseleccionats una posició que va del primer al cinquè lloc. Un cop establit l'ordre, procedeix a votar. Internament, el recompte de punts funciona de la següent manera
+      header_li1: El candidat o candidata triat en primer lloc rep un punt (1)
+      header_li2: El candidat o candidata elegit en segon lloc rep mig punt (½) = 0,5 punts
+      header_li3: El candidat o candidata elegit en tercer lloc rep un terç de punt (⅓) = 0,33 punts
+      header_li4: El candidat o candidata elegit en quart lloc rep un quart de punt (¼) = 0,25 punts
+      header_li5: El candidat o candidata elegit en cinquè lloc rep una cinquena part de punt (⅕) = 0,20 punts
     step9:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Presentación de las listas electas       
-        continue: Iniciar votación
-        result: Resultados de la votación
-        link_result: Enlace a los resultados de la elección
-        public_link: Proporciona este enlace público para mostrar los resultados de la votación
-         
-town:
-    html_title: Municipales 2015 - Vota en la candidatura ciudadana
-    h1_title: Registrate como votante
-    verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
-    verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
-       
+      html_title: Municipals 2015 - Alta de candidatura ciutadana
+      h1_title: Presentació de les llistes electes
+      continue: Inicia votació
+      result: Resultats de la votació
+      link_result: Enllaç als resultats de l'elecció
+      public_link: Proporciona aquest enllaç públic per mostrar els resultats de la votació
+    recover_password:
+      h1_title: Recuperar contrasenya
+      header: Compte administrador
+      h1_subtitle: Recupera la contrasenya del compte administrador
+      oldPassword: Contrasenya antiga
+      newPassword: Contrasenya nova
+  town:
+    html_title: Municipals 2015 - Vota en la candidatura ciutadana
+    h1_title: Registra't com a votant
+    verify_msg: Confirma el registre i les condicions enviant des del teu mòbil un SMS amb la paraula ACCEPTO al número %sms_inbound_number%, després fes clic a CONTINUAR
+    verify_extra: El cost del missatge és d'uns 10 cèntims d'euro (o gratis, depèn del cost de la teva operadora) no és un sms premium i listabierta.org no cobra per aquest servei.
     step1:
-        welcome: Bienvenido o bienvenida a la votación de la candidatura ciudadana de
-        welcome_more: Como primer paso has de registrarte como votante. <br />Si introduces datos erróneos, no podrás modificarlos más adelante
-        header: Registrate como votante
-        name: Nombre 
-        lastname: Apellidos
-        dni: DNI
-        email: Email
-        username: Usuario
-        password: Contraseña
-        phone: Número de móvil
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
-        explanation: Explicación
-        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás votar
-    
+      welcome: Benvingut o benvinguda a la votació de la candidatura ciutadana de
+      welcome_more: Primer pas, t'has de registrar com a votant. <br /> Si introdueixes dades errònies, no les podràs modificar més endavant
+      header: Registra't com a votant
+      name: Nom
+      lastname: Cognoms
+      dni: DNI
+      email: Email
+      username: Usuari
+      password: Contrasenya
+      phone: Número de mòbil
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      explanation_dni: Per què necessitem el teu DNI i número de mòbil? Per a evitar el correu brossa i el registre múltiple de candidatures. Per a poder continuar amb el registre cal  que proporciones ambdues dades correctament.
+      explanation: Explicació
+      warning_text: '<b>Atenció:</b> és imprescindible que introdueixques les dades de registre de forma correcta, incloent-hi el teu número de mòbil, un error en les dades de registre implica que no podràs votar'
     step_verify:
-        html_title: Municipales 2015 - Registrate como votante
-        h1_title: Verifica tu número de móvil
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        verify_conditions_header: Requisitos para el voto: 
-        verify_conditions_op1: Apoyas esta candidatura ciudadana de listas abiertas y estás conforme con este proceso de registro.
-        verify_conditions_op2: Estás dando tu consentimiento expreso al tratamiento tus los datos personales según lo dispuesto en el artículo 5 y 6 de la LOPD y podremos contactarte en tu email con información estrictamente relacionada con el proceso de votación, nunca cederemos tus datos de registro a terceros.
-        verify_conditions_op3: La información que aportas durante este registro es cierta y  tu residencia habitual se encuentra en el municipio objeto de la votación
-    
+      html_title: Municipals 2015 - Registra't com a votant
+      h1_title: Verifica el teu número de mòbil
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
+      verify_conditions_header: 'Requisits per al vot:'
+      verify_conditions_op1: Recolzes aquesta candidatura ciutadana de llistes obertes i estàs d'acord amb aquest procés de registre.
+      verify_conditions_op2: Estàs donant el teu consentiment exprés al tractament de les teves dades personals segons el que disposa l'article 5 i 6 de la LOPD i podrem contactar amb tu mitjantçant el teu email per l'informació estrictament relacionada amb el procés de votació, mai cedirem les teves dades de registre a tercers.
+      verify_conditions_op3: La informació que aportes durant aquest registre és certa i la teva residència habitual es troba en el municipi objecte de la votació
     step2:
-        header: Filtra candidatos
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 2
-        filter_title: ¿Qué criterios deseas utilizar para seleccionar a los candidatos y candidatas?
-        filter_p1: Ten en cuenta que si no aplicas ningún filtro, te aparecerá la totalidad de candidatos y candidatas que se han presentado y puede resultar tedioso ver todos los perfiles y después puntuarlos, así que si tienes alguna preferencia clara márcala, posteriormente podrás revisar tus filtros.
-        h1_title: Filtra candidatos por nivel academico
-        academic_level: ¿Quieres elegir el nivel académico que prefieres que tenga el candidato o candidata?
-        languages: "¿Es bueno que hable alguno de estos idiomas?"
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        
+      header: Filtra candidats
+      html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 2
+      filter_title: Quins criteris desitges utilitzar per seleccionar els candidats i candidates?
+      filter_p1: Tin en compte que si no apliques cap filtre, t'apareixerà la totalitat de candidats i candidates que s'han presentat i pot resultar tediós veure tots els perfils i després puntuar-los, així que si tens alguna preferència clara marca-la, posteriorment podràs revisar les filtres.
+      h1_title: Filtra candidats per nivell acadèmic
+      academic_level: Vols triar el nivell acadèmic que prefereixes que tingui el candidat o candidata?
+      languages: És bo que parli algun d'aquests idiomes?
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
     step3:
-        header: Seleciona experiencia laboral
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 3
-        h1_title: Seleciona experiencia laboral
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        job_experience_title: ¿Qué campo de experiencia laboral te gustaría que hubiese desarrollado?
-        
+      header: Seleciona experiència laboral
+      html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 3
+      h1_title: Seleciona experiència laboral
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
+      job_experience_title: Quin camp d'experiència laboral t'agradaria que hagués desenvolupat?
     step4:
-        header: Selecciona actividades municipales
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 4
-        h1_title: Selecciona actividades municipales
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        town_activities_title: ¿Qué experiencia relacionada con el desempeño municipal te gustaría que hubiese desarrollado?
-     
+      header: Selecciona activitats municipals
+      html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 4
+      h1_title: Selecciona activitats municipals
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
+      town_activities_title: Quina experiència relacionada amb l'exercici municipal t'agradaria que hagués desenvolupat?
     step5:
-        header: Selecciona prioridades municipales
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 5
-        h1_title: Selecciona prioridades municipales
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ?
-        public_values_title: ¿Qué valores morales consideras de mayor importancia para el desempeño de la función pública?
-        
+      header: Selecciona prioritats municipals
+      html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 5
+      h1_title: Selecciona prioritats municipals
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
+      govern_priorities_title: En quines activitats creus que caldría centrar-se prioritàriament el govern municipal?
+      public_values_title: Quins valors morals consideres de major importància per a l'exercici de la funció pública?
     step6:
-        header: Asigna importancia
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 6
-        h1_title: Asigna importancia
-        continue: Ver candidatos seleccionados <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior          
-
+      header: Assigna importància
+      html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 6
+      h1_title: Assigna importància
+      continue: Veure candidats seleccionats <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
     step7_confirmation:
-        header: Elige candidatos
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 7
-        h1_title: Seleccion previa de candidatos
-        continue: Ver candidatos seleccionados <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Revisar criterios
-        filter_selection: Con tu selección actual de filtros se te mostrarán
-        advice: Te aconsejamos un máximo de 10
-        candidates_of: candidatos/as de
-             
+      header: Tria candidats
+      html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 7
+      h1_title: Selecció prèvia de candidats
+      continue: Veure candidats seleccionats <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Revisar criteris
+      filter_selection: Amb la teua selecció actual de filtres se't mostraran
+      advice: T'aconsellem un màxim de 10
+      candidates_of: candidats/es de
     step7:
-        header: Elige candidatos
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 7
-        h1_title: Elige candidatos
-        continue: VOTA <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-     
+      header: Tria candidats/es
+      html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 7
+      h1_title: Tria candidats
+      continue: VOTA <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
     step8:
-        header: Asigna puntuaciones
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 8
-        h1_title: Asigna puntuaciones
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior 
-        congratulations: <strong><i class="mine-icon fa fa-check"></i> ¡Enhorabuena!</strong> Tu voto ha sido procesado correctamente 
-        
+      header: Assigna puntuacions
+      html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 8
+      h1_title: Assigna puntuacions
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
+      congratulations: <strong><i class="mine-icon fa fa-check"></i> Enhorabona!</strong> El teu vot ha estat processat correctament
     step9:
-        header: Fin
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Fin
-        previous: Anterior
-        headline: Resultados públicos de la votación
-        headin1: Resultados de la elección del municipio
-        headin2: en    
-        candidates_voted: Candidatos votados
-        total_voters: Total votantes
-        total_points: Total de puntos
-        position: Posición
-               
-candidate:
-    html_title: Municipales 2015 - Alta de candidato
-    h1_title: Regístrate como candidato o candidata
-
+      header: Fi
+      html_title: Municipals 2015 - Alta de candidatura ciutadana
+      h1_title: Fi
+      previous: Anterior
+      headline: Resultats públics de la votació
+      headin1: Resultats de l'elecció del municipi
+      headin2: a
+      candidates_voted: Candidats votats
+      total_voters: Total votants
+      total_points: Total de punts
+      position: Posició
+  candidate:
+    html_title: Municipals 2015 - Alta de candidat
+    h1_title: Registra't com a candidat o candidata
     step1:
-        header: Regístrate como candidato o candidata
-        p1: "Antes de registrarte como candidato o candidata en la candidatura ciudadana <b>%address%</b>, del municipio <b>%town%</b>debes ver este video explicativo del proceso de registro."
-        p2: El plazo de presentación de candidaturas establecido es desde %fromdate% hasta %todate%
-        name: Nombre 
-        lastname: Apellidos
-        dni: DNI
-        email: Email
-        phone: Número de móvil
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás dar de alta tu candidatura. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
-
-    verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
-    verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
-    
+      header: Registra't com a candidat o candidata
+      p1: Abans de registrar-te com a candidat o candidata a la candidatura ciutadana <b>%address%</b>, del municipi <b>%town%</b> has de veure aquest vídeo explicatiu del procés de registre.
+      p2: El termini de presentació de candidatures establit és des de %fromdate% fins %todate%
+      name: Nom
+      lastname: Cognoms
+      dni: DNI
+      email: Correu electrònic
+      phone: Número de mòbil
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      warning_text: '<b>Atenció:</b> és imprescindible que introduïsques les dades de registre correctament, incloent hi el teu número de mòbil. Un error en les dades de registre implica que no podràs donar d''alta la teua candidatura. Si tens dubtes del procés, torna a veure el vídeo <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Obre les organitzacions a la ciutadania (Versió Curta)">ací</a> . El sistema no admet candidatures "de prova".'
+    verify_msg: Confirma el registre i les condicions enviant des del teu mòbil un SMS amb la paraula ACCEPTE al número %sms_inbound_number%, després clica en CONTINUAR
+    verify_extra: El cost del missatge és d'uns 10 cèntims d'euro (o gratuït, depén del cost de la teua operadora) no és un SMS premium i listabierta.org no cobra per aquest servei.
     step_verify:
-        html_title: Municipales 2015 - Alta de candidato
-        h1_title: Verifica tu número de móvil
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        
+      html_title: Municipals 2015 - Alta de candidat
+      h1_title: Verifica el teu número de mòbil
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+      previous: Anterior
     step2:
-        header: Firma documentos
-        p1: Debes firmar tu conformidad con los condicionantes de la candidatura, para ello haz clic en “Descargar” y firma (digital o manualmente) el documento, y una vez firmado lo adjuntas haciendo clic en “Examinar”.  Cuando hayas hecho lo mismo con todos los documentos,  haz clic en continuar. Puede que el administrador de la candidatura no ha subido ninguna condición, entonces, simplemente haz clic en continuar
-    
-        program: Aceptación del programa de la candidatura
-        legal_conditions: Cumplimiento de las condiciones legales y veracidad de la información aportada
-        recall_term: Aceptación del mandato revocatorio del candidato   
-        participatory_term: Aceptación del mandato participativo del candidato
-        voter_conditions: Aceptación del censo disponible y del sistema de votación
-        technical_constrains: Aceptación de las limitaciones técnicas y legales del sistema de voto.
-    
-        download: Descargar
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        
-    step3:      
-        header: Proporciona tu nivel académico
-        academic_level_title: ¿Cuál es tu nivel académico?
-        languages_title: ¿Eres capáz de mantener una conversación telefónica en alguno de estos idiomas? (puedes seleccionar ninguno o varios)
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-    
-    step4:      
-        header: Proporciona tu experiencia laboral
-        job_experience_title: ¿Cuál es el campo de tu experiencia laboral? (Seleccione hasta tres opciones)
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-          
-    step5:      
-        header: Proporciona el desempeño municipal
-        header_title: ¿Has tenido alguna experiencia que pueda estar relacionada con las actividades que desarrolla un Ayuntamiento?
-        town_activities_title: ¿Has tenido alguna experiencia relacionada con el desempeño municipal?  (Seleccione hasta tres opciones siempre que tu actividad incluya la coordinación o gestión de un grupo superior a las 10 personas, posteriormente tendrás que explicarlo)
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        
-    step6:      
-        header: Establece prioridades de gobierno
-        subheader: Establece las prioridades en las que debería mejorarse la gestión municipal 
-        govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones)
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        
-    step7:  
-        header: Selecciona valores morales    
-        public_values_title: ¿Qué valores morales consideras de mayor importancia para el desempeño de la función pública? (elige hasta tres)
-        motivation_text_title: Describe tu motivación para presentarte
-        town_activities_explanation_title: Describe tu experiencia relacionada
-        additional_info_title: Biografía e información adicional que quieras aportar
-        url_info_title: Dirección web o URL (vídeo, blog, etc) (opcional)
-        profile_image_title: Adjunta foto
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        
+      header: Signatura documents
+      p1: Tens que signar la teua conformitat amb els condicionants de la candidatura, per a això clica en "Descarregar" i signa (digitalment o manual) el document, i un cop signat l'adjuntes fent clic en "Examinar". Quan ho hages fet amb tots els documents, clica en "Continuar". Potser l'administrador de la candidatura no ha pujat cap condició, llavors, simplement fes clic en "Continuar"
+      program: Acceptació del programa de la candidatura
+      legal_conditions: Compliment de les condicions legals i veracitat de la informació aportada
+      recall_term: Acceptació del mandat revocatori del candidat
+      participatory_term: Acceptació del mandat participatiu del candidat
+      voter_conditions: Acceptació del cens disponible i del sistema de votació
+      technical_constrains: Acceptació de les limitacions tècniques i legals del sistema de vot.
+      download: Descarregar
+      previous: Anterior
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    step3:
+      header: Proporciona el teu nivell acadèmic
+      academic_level_title: Quin és el teu nivell acadèmic?
+      languages_title: Ets capaç de mantenir una conversa telefònica en algun d'aquests idiomes? (Pots seleccionar-ne cap o diversos)
+      previous: Anterior
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    step4:
+      header: Proporciona la teua experiència laboral
+      job_experience_title: Quin és el camp de la teua experiència laboral? (Seleccioneu fins tres opcions)
+      previous: Anterior
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    step5:
+      header: Proporciona l'exercici municipal
+      header_title: Has tingut alguna experiència que puga estar relacionada amb les activitats que desenvolupa un ajuntament?
+      town_activities_title: Has tingut alguna experiència relacionada amb l'exercici municipal? (Seleccioneu fins tres opcions sempre que la teua activitat incloga la coordinació o gestió d'un grup superior a les 10 persones, posteriorment ho hauràs d'explicar)
+      previous: Anterior
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    step6:
+      header: Estableix prioritats de govern
+      subheader: Estableix les prioritats on caldria millorar la gestió municipal
+      govern_priorities_title: En quines activitats creus que caldria centrar-se prioritàriament el govern municipal? (Seleccioneu fins tres opcions)
+      previous: Anterior
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+    step7:
+      header: Selecciona valors morals
+      public_values_title: Quins valors morals consideres de major importància per a l'exercici de la funció pública? (Tria'n fins tres)
+      motivation_text_title: Descriu la teua motivació per presentar-te
+      town_activities_explanation_title: Descriu la teua experiència relacionada
+      additional_info_title: Biografia i informació addicional que vulgues aportar
+      url_info_title: Adreça web o URL (vídeo, blog, etc.) (opcional)
+      profile_image_title: Adjunta-hi foto
+      previous: Anterior
+      continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     final_step:
-        header: Fin    
-        end: "¡Candidatura completada!"
-        
-login:
+      header: Fi
+      end: Candidatura completada!
+  login:
     html_title: Login
-    username: Usuario
-    password: Contraseña
-    access: Acceder
-    remember_me: Recordar mis datos
-    conditions: Accede con tus credenciales de usuario y contraseña
-    recover_password: ¿Olvidaste tu contraseña?
-    
-mail:
+    username: Usuari
+    password: Contrasenya
+    access: Accedir
+    remember_me: Recordar les meues dades
+    conditions: Accedeix-hi amb les teues credencials d'usuari i contrasenya
+    recover_password: Has oblidat la contrasenya?
+  mail:
     candidate_created:
-        hello: Hola
-        account: Este es un mensaje de confirmación de que tu registro de candidato ha sido creado
-        contact: Puedes comentarle cualquier incidencia al administrador de la candidatura en el correo
-        
+      hello: Holà
+      account: Aquest és un missatge que confirma que el teu registre de candidat ha estat creat
+      contact: Pots comentar qualsevol incidència a l'administrador de la candidatura a través del correu
     admin_created:
-        hello: Hola
-        account: Tu cuenta de administrador de candidatura ha sido creada
-        can_create: Puedes acceder a tu cuenta desde el enlace
-        login: Login
-
+      hello: Hola
+      account: El teu compte d'administrador de candidatura ha estat creat
+      can_create: Pots accedir al teu compte des de l'enllaç
+      login: Login
     admin_updated:
-        hello: Hola
-        account: Tu cuenta de administrador de candidatura ha sido actualizada
-        can_create: Puedes acceder a tu cuenta desde el enlace
-        login: Login
-        
+      hello: Holà
+      account: El teu compte d'administrador de candidatura ha estat actualitzat
+      can_create: Pots accedir al teu compte des de l'enllaç
+      login: Login
     candidacy_address:
-        hello: Hola
-        supply_link: Puedes proporcionar este enlace público a los candidatos y candidatas para que se den de alta rellenando el formulario que les aparecerá 
-      
+      hello: Holà
+      supply_link: Pots proporcionar aquest enllaç públic als candidats i candidates perquè es donen d'alta omplint el formulari que els hi apareixerà
     candidacy_vote_address:
-        hello: Hola
-        can_public: Puedes proporcionar este enlace público de votacion a los votantes para que procedan rellenando el formulario que les aparecerá
-        
+      hello: Holà
+      can_public: Pots proporcionar aquest enllaç públic de votació als votants perquè procedisquen a ompli el formulari que els hi apareixerà
     candidate_accepted:
-        hello: Hola
-        accepted: Tu candidatura ha sido aceptada por el administrador
-        admin_email: Dirección de correo del administrador
-        
+      hello: Holà
+      accepted: La teua candidatura ha estat acceptada per l'administrador
+      admin_email: Adreça de correu de l'administrador
     candidate_rejected:
-        hello: Hola
-        rejected: Tu candidatura ha sido rechazada por el administrador
-        admin_email: Dirección de correo del administrador
-
+      hello: Hola
+      rejected: La teua candidatura ha estat rebutjada per l'administrador
+      admin_email: Adreça de correu de l'administrador
     candidate_deleted:
-        hello: Hola
-        deleted: Tu candidatura ha sido borrada por el administrador
-        admin_email: Dirección de correo del administrador
-
+      hello: Hola
+      deleted: La teua candidatura ha estat esborrada per l'administrador
+      admin_email: Adreça de correu de l'administrador
     candidate_signup:
-        new: Se ha registrado un nuevo candidato con nombre
-    
+      new: S'ha registrat un nou candidat amb nom
     sms_inbound_verification:
-        your_phone: Tu teléfono
-        verify: ha sido verificado correctamente
-    
-# Panel admin
-panel_admin:
+      your_phone: El teu telèfon
+      verify: ha estat verificat correctament
+  panel_admin:
     index:
-        header: Panel Admin
-        hello: Hola
-        logout: Salir
-        manage: En este panel puedes gestionar la candidatura ciudadana
-        not_yet_validated: Aun no has validado tu número de móvil
-        needed_continue: Es necesario validar tu móvil para continuar con cualquier acción
-        your_phone_number: Tu número de móvil
-        is_verified: esta verificado correctamente.
-        modify_personal_data: Modificar datos personales
-        upload_documents: Subir documentos
-        set_candidacy_date: Cambiar/establecer los plazos <br />presentación de candidaturas
-        change_address: Cambiar/establecer <br />dirección de internet
-        candidacy_register: Ver enlace <br />de alta de candidatos/as
-        validate_candidates: Validar candidatos/as
-        set_vote_days: Establecer número de días <br />de la votación (plazo de votación)
-        see_internal_results: Ver resultados internos <br />de la votación
-        see_public_results: Ver enlace de resultados públicos<br /> de la votación
-        verify_msg: Confirma tu cuenta administrador enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después <a href="#" onclick="javascript:window.location.reload()">actualiza/recarga</a> esta página
-
+      header: Panell Admin
+      hello: Holà
+      logout: Eixir
+      manage: En aquest panell pots gestionar la candidatura ciutadana
+      not_yet_validated: Encara no has validat el teu número de mòbil
+      needed_continue: Cal validar el teu mòbil per continuar amb qualsevol acció
+      your_phone_number: El teu número de mòbil
+      is_verified: està verificat correctament.
+      modify_personal_data: Modificar dades personals
+      upload_documents: Pujar documents
+      set_candidacy_date: Canviar/establir els terminis <br /> presentació de candidatures
+      change_address: Canviar/establir <br /> adreça d'internet
+      candidacy_register: Veure enllaç <br /> d'alta de candidats/es
+      validate_candidates: Validar candidats/es
+      set_vote_days: Establir nombre de dies <br /> de la votació (termini de votació)
+      see_internal_results: Veure resultats interns <br /> de la votació
+      see_public_results: Veure enllaç de resultats públics <br /> de la votació
+      verify_msg: Confirma el teu compte d'administrador enviant des del teu mòbil un SMS amb la paraula ACCEPTO al número %sms_inbound_number%, després <a href="#" onclick="javascript:window.location.reload()">actualitza/recàrrega</a> aquesta pàgina
     modify_personal_data:
-        title: Modificar datos personales
-        back: Volver
-        save: Guardar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        
-
-forms:
+      title: Modificar dades personals
+      back: Tornar
+      save: Guardar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+  forms:
     candidacy_step1:
-        password:
-            minMessage: Tu contraseña debe de ser de al menos {{ limit }} caracteres
-            maxMessage: Tu contraseña debe de ser mayor de {{ limit }} caracteres
+      password:
+        minMessage: La contrasenya ha de ser d'almenys {{limit}} caràcters
+        maxMessage: La contrasenya ha de ser major de {{limit}} caràcters
