@@ -409,10 +409,12 @@ town:
         headline: Resultados públicos de la votación
         headin1: Resultados de la elección del municipio
         headin2: en    
-        candidates_voted: Candidatos votados
+        candidates_voted: Puntuación final obtenida por los candidatos y candidatas (*) 
+        candidates_voted_explanation: (*) La posición final puede tener correcciones de género u otros criterios determinados previamente en las condiciones de la candidatura aceptadas en el momento del registro por los candidatos y candidatas y los votantes.
         total_voters: Total votantes
         total_points: Total de puntos
         position: Posición
+        donwload_csv: Bajar csv con los sellados de tiempo de tractis
                
 candidate:
     html_title: Municipales 2015 - Alta de candidato

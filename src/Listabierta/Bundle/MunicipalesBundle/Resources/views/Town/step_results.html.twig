@@ -39,20 +39,31 @@
 
 						<p class="lead2">
 
+							<div class="col-sm-offset-0 col-md-12">
+		                      	{{ 'town.step9.candidates_voted_explanation'|trans }}
+		                    </div>
+		                    
 						    <div class="col-sm-offset-0 col-md-12">
 		                      	{{ 'town.step9.total_voters'|trans }}: {{ total_voters }}
 		                    </div>
                       
 							<br /><br />
 							
-							<table class="table">
+							<div class="col-sm-offset-0 col-md-12">
+								{# @todo #}
+								<a href="/download-tractis-csv/1">{{ 'town.step9.donwload_csv'|trans }}</a>
+							</div>
+                      
+							<br /><br />
+							
+							<table class="table" style="font-size: 18px">
 							
 								<thead>
 									<tr>
 										<td></td>
 										<td></td>
-										<td>{{ 'town.step9.total_points'|trans }}</td>
-										<td>{{ 'town.step9.position'|trans }}</td>
+										<td class="center">{{ 'town.step9.total_points'|trans }}</td>
+										<td class="center">{{ 'town.step9.position'|trans }}</td>
 									</tr>
 								</thead>
 								
@@ -63,8 +74,8 @@
 										<tr>
 											<td><img style="width:45px;height:45px" src="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" /></td>
 											<td>{{ candidate.name }} {{ candidate.lastname }}</td>
-											<td>{{ candidate.points }}</td>
-											<td>{{ loop.index }}</td>
+											<td class="center">{{ candidate.points }}</td>
+											<td class="center">{{ loop.index }}</td>
 										</tr>
 										{% endfor %}
 									{% endif %}
