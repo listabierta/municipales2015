@@ -644,4 +644,32 @@ class AdminCandidacy implements AdvancedUserInterface, \Serializable
     {
         return $this->total_days;
     }
+    /**
+     * @var array
+     */
+    private $borda_points;
+
+
+    /**
+     * Set borda_points
+     *
+     * @param array $bordaPoints
+     * @return AdminCandidacy
+     */
+    public function setBordaPoints($bordaPoints)
+    {
+        $this->borda_points = $bordaPoints;
+
+        return $this;
+    }
+
+    /**
+     * Get borda_points
+     *
+     * @return array 
+     */
+    public function getBordaPoints()
+    {
+        return $this->borda_points;
+    }
 }
