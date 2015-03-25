@@ -22,8 +22,22 @@ class LocaleListener implements EventSubscriberInterface
             return;
         }
 
-        // try to see if the locale has been set as a _locale routing parameter
-        $locale = $request->query->get('_locale');
+        // Try to see if the locale has been set as a _locale routing parameter
+        $locale = strtolower($request->query->get('_locale'));
+        
+        // Try to reverse the language picker flag
+        switch($locale)
+        {
+        	case 'ca_es':
+        		$locale = 'es_ca';
+        	break;
+        	case 'eu_es':
+        		$locale = 'es_eu';
+        	break;
+        	case 'gl_es':
+        		$locale = 'es_gl';
+        	break;
+        }
         
         if (!empty($locale)) 
         {
