@@ -1306,7 +1306,7 @@ class TownController extends Controller
 				
 			if(count($extra_data) != count(array_unique($candidate_points_values)))
 			{
-				$form->addError(new FormError('Las puntuaciones asignadas no pueden repetirse'));
+				$form->addError(new FormError('Las posiciones asignadas no pueden repetirse'));
 				$ok = FALSE;
 			}
 				
