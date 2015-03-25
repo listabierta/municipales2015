@@ -47,9 +47,6 @@
                   {% endif %}
 
                   {# 
-							
-							Sugerencia de algoritmo para la selección de candidatos:
-					
 							Comenzar el filtro desde el “más importante” al “menos importante” 
 							hasta que quede un número de candidatos de X
 				  #}
@@ -63,19 +60,19 @@
                           <div class="col-xs-12 col-sm-5">
                             <div class="profile-user-info-striped">
                               <div class="profile-info-row">
-                                <div class="profile-info-name">Nivel académico</div>
+                                <div class="profile-info-name">{{ 'town.step7.academic_level'|trans }}</div>
                                 <div class="profile-info-value">
                                   <span class="lalala">
                             		{% if candidate.academicLevel is defined %}
-                                    {% set academic_level_text = { 	'0' : 'Me resulta indiferente su nivel académico',
-													     			'1' : 'Sin estudios',
-													     			'2' : 'Estudios primarios o equivalentes', 
-													     			'3' : 'Enseñanza general secundaria, 1er ciclo',
-													     			'4' : 'Enseñanza Profesional de 2º grado, 2º ciclo',
-													     			'5' : 'Enseñanza general secundaria, 2º ciclo',
-													     			'6' : 'Enseñanzas profesionales superiores',
-													     			'7' : 'Estudios universitarios o equivalentes',
-													     			'8' : 'Máster universitario o doctorado'
+                                    {% set academic_level_text = { 	'0' : 'town.step7.academic_level_text_0'|trans,
+													     			'1' : 'town.step7.academic_level_text_1'|trans,
+													     			'2' : 'town.step7.academic_level_text_2'|trans, 
+													     			'3' : 'town.step7.academic_level_text_3'|trans,
+													     			'4' : 'town.step7.academic_level_text_4'|trans,
+													     			'5' : 'town.step7.academic_level_text_5'|trans,
+													     			'6' : 'town.step7.academic_level_text_6'|trans,
+													     			'7' : 'town.step7.academic_level_text_7'|trans,
+													     			'8' : 'town.step7.academic_level_text_8'|trans
 																}
 									%}
 										{% if candidate.academicLevel > -1 %}
@@ -86,18 +83,18 @@
                                 </div>
                               </div>
                               <div class="profile-info-row">
-                                <div class="profile-info-name">Idiomas</div>
+                                <div class="profile-info-name">{{ 'town.step7.language'|trans }}</div>
                                 <div class="profile-info-value">
                                   <span class="lalala">
                                   {% if candidate.languages is defined %}
-                                    {% set languages_text = { 	'0' : 'No considero necesario que hable idiomas',
-																'1' : 'Inglés',
-											     				'2' : 'Otro idioma europeo',
-											     				'3' : 'Otro idioma no europeo',
-											     				'4' : 'Catalá',
-											     				'5' : 'Galego',
-											     				'6' : 'Euskara',
-											     				'7' : 'Valenciá',
+                                    {% set languages_text = { 	'0' : 'town.step7.languages_text_0'|trans,
+																'1' : 'town.step7.languages_text_1'|trans,
+											     				'2' : 'town.step7.languages_text_2'|trans,
+											     				'3' : 'town.step7.languages_text_3'|trans,
+											     				'4' : 'town.step7.languages_text_4'|trans,
+											     				'5' : 'town.step7.languages_text_5'|trans,
+											     				'6' : 'town.step7.languages_text_6'|trans,
+											     				'7' : 'town.step7.languages_text_7'|trans,
 									}
 									%}
 										{% if candidate.languages|length > 0 %}
@@ -112,21 +109,21 @@
                                 </div>
                               </div>
                               <div class="profile-info-row">
-                                <div class="profile-info-name">Valores morales que prioriza</div>
+                                <div class="profile-info-name">{{ 'town.step7.public_values'|trans }}</div>
                                 <div class="profile-info-value">
                                   <span id="" class="">
                                   {% if candidate.publicValues is defined %}
-                                    {% set public_values_text = { 	'1' : 'HONESTIDAD',
-												     				'2' : 'TRANSPARENCIA',
-												     				'3' : 'RESPETO',
-												     				'4' : 'RESPONSABILIDAD',
-												     				'5' : 'COMPROMISO',
-												     				'6' : 'INTEGRIDAD',
-												     				'7' : 'IGUALDAD',
-												     				'8' : 'TOLERANCIA',
-												     				'9' : 'COOPERACIÓN',
-												     				'10' : 'SOLIDARIDAD',
-												     				'11' : 'JUSTICIA'
+                                    {% set public_values_text = { 	'1' : 'town.step7.public_values_text_1'|trans,
+												     				'2' : 'town.step7.public_values_text_2'|trans,
+												     				'3' : 'town.step7.public_values_text_3'|trans,
+												     				'4' : 'town.step7.public_values_text_4'|trans,
+												     				'5' : 'town.step7.public_values_text_5'|trans,
+												     				'6' : 'town.step7.public_values_text_6'|trans,
+												     				'7' : 'town.step7.public_values_text_7'|trans,
+												     				'8' : 'town.step7.public_values_text_8'|trans,
+												     				'9' : 'town.step7.public_values_text_9'|trans,
+												     				'10' : 'town.step7.public_values_text_10'|trans,
+												     				'11' : 'town.step7.public_values_text_11'|trans
 									}
 									%}
 										{% if candidate.publicValues|length > 0 %}
@@ -142,26 +139,26 @@
                                 </div>
                               </div>
                               <div class="profile-info-row">
-                                <div class="profile-info-name">Experiencia laboral</div>
+                                <div class="profile-info-name">{{ 'town.step7.job_experience'|trans }}</div>
                                 <div class="profile-info-value">
                                   <span class="lalala">
                                   	{% if candidate.jobExperience is defined %}
-                                    {% set job_experience_text = { 	'1' : 'Actividades físicas o deportivas',
-												     				'2' : 'Administración o gestión',
-												     				'3' : 'Agraria o pesquera',
-												     				'4' : 'Arte o artesanía',
-												     				'5' : 'Comercio y marketing',
-												     				'6' : 'Edificación, obra civil',
-												     				'7' : 'Energía o agua',
-												     				'8' : 'Mecánica, electricidad o electrónica',
-												     				'9' : 'Hostelería y turismo',
-												     				'10' : 'Informática o comunicaciones',
-												     				'11' : 'Industria',
-												     				'12' : 'Sanidad',
-												     				'13' : 'Medio Ambiente',
-												     				'14' : 'Educación o servicios a la comunidad',
-												     				'15' : 'Transporte',
-												     				'16' : 'Finanzas'}
+                                    {% set job_experience_text = { 	'1' : 'town.step7.job_experience_text_1'|trans,
+												     				'2' : 'town.step7.job_experience_text_2'|trans,
+												     				'3' : 'town.step7.job_experience_text_3'|trans,
+												     				'4' : 'town.step7.job_experience_text_4'|trans,
+												     				'5' : 'town.step7.job_experience_text_5'|trans,
+												     				'6' : 'town.step7.job_experience_text_6'|trans,
+												     				'7' : 'town.step7.job_experience_text_7'|trans,
+												     				'8' : 'town.step7.job_experience_text_8'|trans,
+												     				'9' : 'town.step7.job_experience_text_9'|trans,
+												     				'10' : 'town.step7.job_experience_text_10'|trans,
+												     				'11' : 'town.step7.job_experience_text_11'|trans,
+												     				'12' : 'town.step7.job_experience_text_12'|trans,
+												     				'13' : 'town.step7.job_experience_text_13'|trans,
+												     				'14' : 'town.step7.job_experience_text_14'|trans,
+												     				'15' : 'town.step7.job_experience_text_15'|trans,
+												     				'16' : 'town.step7.job_experience_text_16'|trans}
 									%}
 										{% if candidate.jobExperience|length > 0 %}
 											<ul>
@@ -178,26 +175,26 @@
                             <hr>
                             <div class="profile-user-info-striped">
                               <div class="profile-info-row">
-                                <div class="profile-info-name">Experiencias relacionadas</div>
+                                <div class="profile-info-name">{{ 'town.step7.townActivities'|trans }}</div>
                                 <div class="profile-info-value">
                                   <span class="lalala" id="age">
                                     {% if candidate.townActivities is defined %}
-                                    {% set town_activities_text = { '1' : 'He tenido experiencia en la mejora del funcionamiento organizativo de entidades',
-												     				'2' : 'He participado en la elaboración de planes de protección civil o seguridad ciudadana',
-												     				'3' : 'He contribuido a la lucha contra la pobreza o la exclusión social',
-												     				'4' : 'He gestionado actividades de atención sanitaria',
-												     				'5' : 'He gestionado actividades educativas o culturales',
-												     				'6' : 'He gestionado planes de infraestructura, vivienda o urbanismo',
-												     				'7' : 'He gestionado actividades de fomento de la sostenibilidad o protección medioambiental',
-												     				'8' : 'He gestionado actividades de fomento del empleo',
-												     				'9' : 'He gestionado actividades de fomento de la transparencia, la participación ciudadana o la igualdad de género',
-												     				'10' : 'He gestionado actividades colectivas en el campo industrial o agrícola',
-												     				'11' : 'He gestionado actividades colectivas en el campo de las tecnologías de la información o la comunicación',
-												     				'12' : 'He gestionado actividades colectivas de investigación o desarrollo',
-												     				'13' : 'He gestionado actividades colectivas en el campo del cooperativismo',
-												     				'14' : 'He gestionado eficazmente presupuestos superiores al millón de euros',
-												     				'15' : 'He tenido experiencia de trabajo internacional',
-												     				'16' : 'He realizado funciones de representación o portavocía de colectivos'}
+                                    {% set town_activities_text = { '1' : 'town.step7.town_activities_text_1'|trans,
+												     				'2' : 'town.step7.town_activities_text_2'|trans,
+												     				'3' : 'town.step7.town_activities_text_3'|trans,
+												     				'4' : 'town.step7.town_activities_text_4'|trans,
+												     				'5' : 'town.step7.town_activities_text_5'|trans,
+												     				'6' : 'town.step7.town_activities_text_6'|trans,
+												     				'7' : 'town.step7.town_activities_text_7'|trans,
+												     				'8' : 'town.step7.town_activities_text_8'|trans,
+												     				'9' : 'town.step7.town_activities_text_9'|trans,
+												     				'10' : 'town.step7.town_activities_text_10'|trans,
+												     				'11' : 'town.step7.town_activities_text_11'|trans,
+												     				'12' : 'town.step7.town_activities_text_12'|trans,
+												     				'13' : 'town.step7.town_activities_text_13'|trans,
+												     				'14' : 'town.step7.town_activities_text_14'|trans,
+												     				'15' : 'town.step7.town_activities_text_15'|trans,
+												     				'16' : 'town.step7.town_activities_text_16'|trans,}
 									%}
 										{% if candidate.townActivities|length > 0 %}
 											<ul>
@@ -211,7 +208,7 @@
                                 </div>
                               </div>
                               <div class="profile-info-row">
-                                <div class="profile-info-name">Descripción experiencia</div>
+                                <div class="profile-info-name">{{ 'town.step7.townActivitiesExplanation'|trans }}</div>
                                 <div class="profile-info-value">
                                   <span class="lalala" id="login">{% if candidate.townActivitiesExplanation is defined %}{{ candidate.townActivitiesExplanation }}{% endif %}</span>
                                 </div>
@@ -221,23 +218,23 @@
                           <div class="col-xs-12 col-sm-4">
                             <div class="profile-user-info-striped">
                               <div class="profile-info-row">
-                                <div class="profile-info-name">Considera prioritario que el Ayuntamiento se centre en:</div>
+                                <div class="profile-info-name">{{ 'town.step7.governPriorities'|trans }}:</div>
                                 <div class="profile-info-value">
                                   <span id="age" class="lalala">
                                   {% if candidate.governPriorities is defined %}
-                                    {% set govern_priorities_text = {   '1' : 'Mejorar las funciones de gobierno del municipio',
-													     				'2' : 'Mejorar la seguridad ciudadana',
-													     				'3' : 'Luchar contra la pobreza y la exclusión social',
-													     				'4' : 'Mejorar la atención sanitaria',
-													     				'5' : 'Mejorar la gestión educativa y cultural',
-													     				'6' : 'Atender a los problemas de vivienda, urbanismo e infraestructuras',
-													     				'7' : 'Mejorar la sostenibilidad del municipio',
-													     				'8' : 'Invertir en fomento del empleo',
-													     				'9' : 'Aumentar la participación ciudadana en la gestión municipal',
-													     				'10' : 'Mejorar los servicios de transporte',
-													     				'11' : 'Invertir en actividades industriales, agrícolas o comerciales',
-													     				'12' : 'Invertir en Investigación',
-													     				'13' : 'Gestionar mejor la deuda y las operaciones financieras',
+                                    {% set govern_priorities_text = {   '1' : 'town.step7.govern_priorities_text_1'|trans,
+													     				'2' : 'town.step7.govern_priorities_text_2'|trans,
+													     				'3' : 'town.step7.govern_priorities_text_3'|trans,
+													     				'4' : 'town.step7.govern_priorities_text_4'|trans,
+													     				'5' : 'town.step7.govern_priorities_text_5'|trans,
+													     				'6' : 'town.step7.govern_priorities_text_6'|trans,
+													     				'7' : 'town.step7.govern_priorities_text_7'|trans,
+													     				'8' : 'town.step7.govern_priorities_text_8'|trans,
+													     				'9' : 'town.step7.govern_priorities_text_9'|trans,
+													     				'10' : 'town.step7.govern_priorities_text_10'|trans,
+													     				'11' : 'town.step7.govern_priorities_text_11'|trans,
+													     				'12' : 'town.step7.govern_priorities_text_12'|trans,
+													     				'13' : 'town.step7.govern_priorities_text_13'|trans,
 									}
 									%}
 										{% if candidate.governPriorities|length > 0 %}
@@ -252,13 +249,13 @@
                                 </div>
                               </div>
                               <div class="profile-info-row">
-                                <div class="profile-info-name">Motivación para presentarse</div>
+                                <div class="profile-info-name">{{ 'town.step7.motivationText'|trans }}</div>
                                 <div class="profile-info-value">
                                   <span id="" class="">{% if candidate.motivationText is defined %}{{ candidate.motivationText }}{% endif %}</span>
                                 </div>
                               </div>
                               <div class="profile-info-row">
-                                <div class="profile-info-name">Biografía e información adicional</div>
+                                <div class="profile-info-name">{{ 'town.step7.additionalInfo'|trans }}</div>
                                 <div class="profile-info-value">
                                   <span class="lalala" id="login">{% if candidate.additionalInfo is defined %}{{ candidate.additionalInfo }}{% endif %}</span>
                                 </div>
@@ -269,7 +266,7 @@
                           <div class="col-xs-12 col-sm-3 center">
                             <div>
                               <span class="profile-picture">
-                                <img src="{{ app.request.schemeAndHttpHost }}/{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" alt="{{ candidate.name }} {{ candidate.lastname }} Avatar" class="editable img-responsive editable-click editable-empty" id="avatar"></span>
+                                <img src="{{ app.request.schemeAndHttpHost }}/{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" alt="{{ candidate.name }} {{ candidate.lastname }}" class="editable img-responsive editable-click editable-empty" id="avatar"></span>
                               <div class="space-4"></div>
                               <div class="label label-info label-xlg ">
                                 <div class="inline position-relative">
@@ -283,19 +280,24 @@
                             <div class="hr hr12 dotted"></div>
                             <div class="clearfix">
                               <div class="grid2 candidate-{{ candidate.id }}">
-                                <span class="bigger-175 blue">{{ loop.index }} de {{ candidates|length }}</span>
-                                <br>Posición</div>
+                                <span class="bigger-175 blue">{# {{ loop.index }} de #}{{ candidates|length }}</span>
+                                <br>
+                                {{ 'town.step7.candidates_selected'|trans }}
+                              </div>
                               <div class="grid2">
                                 <div class="profile-info-value">
                                   <label>
                                     {% if candidate.status == 1 %}
-												<select class="form-control input-sm" aria-controls="dynamic-table" required="required" name="town_step_7[candidate_{{ candidate.id }}]" id="candidate_{{ candidate.id }}">
+												<select class="form-control input-sm" aria-controls="dynamic-table" 
+														required="required" name="town_step_7[candidate_{{ candidate.id }}]" 
+														id="candidate_{{ candidate.id }}">
 													{% for index in 1..candidates|length  %}
 														<option>{{ index }}</option>
 													{% endfor %}
 												</select>
 									{% endif %}
-                                    Candidatos
+									
+                                    {{ 'town.step7.which_position'|trans }}
                                   </label>
                                 </div>
                               </div>

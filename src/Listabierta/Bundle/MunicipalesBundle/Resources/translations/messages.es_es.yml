@@ -290,7 +290,91 @@ town:
         h1_title: Elige candidatos
         continue: VOTA <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
-     
+        candidates_selected: Candidatos seleccionados
+        which_position: ¿Qué posición le asignas?
+        academic_level: Nivel académico
+        academic_level_text_0: Me resulta indiferente su nivel académico
+        academic_level_text_1: Sin estudios
+        academic_level_text_2: Estudios primarios o equivalentes
+        academic_level_text_3: Enseñanza general secundaria, 1er ciclo
+        academic_level_text_4: Enseñanza Profesional de 2º grado, 2º ciclo
+        academic_level_text_5: Enseñanza general secundaria, 2º ciclo
+        academic_level_text_6: Enseñanzas profesionales superiores
+        academic_level_text_7: Estudios universitarios o equivalentes
+        academic_level_text_8: Máster universitario o doctorado
+        language: Idiomas
+        town.step7.languages_text_0: No considero necesario que hable idiomas
+        town.step7.languages_text_1: Inglés
+        town.step7.languages_text_2: Otro idioma europeo
+        town.step7.languages_text_3: Otro idioma no europeo
+        town.step7.languages_text_4: Catalá
+        town.step7.languages_text_5: Galego
+        town.step7.languages_text_6: Euskara
+        town.step7.languages_text_7: Valenciá
+        public_values: Valores morales que prioriza
+        public_values_text_1: HONESTIDAD
+        public_values_text_2: TRANSPARENCIA
+        public_values_text_3: RESPETO
+        public_values_text_4: RESPONSABILIDAD
+        public_values_text_5: COMPROMISO
+        public_values_text_6: INTEGRIDAD
+        public_values_text_7: IGUALDAD
+        public_values_text_8: TOLERANCIA
+        public_values_text_9: COOPERACIÓN
+        public_values_text_10: SOLIDARIDAD
+        public_values_text_11: JUSTICIA
+        job_experience: Experiencia laboral
+        job_experience_text_1: Actividades físicas o deportivas
+        job_experience_text_2: Administración o gestión
+        job_experience_text_3: Agraria o pesquera
+        job_experience_text_4: Arte o artesanía
+        job_experience_text_5: Comercio y marketing
+        job_experience_text_6: Edificación, obra civil
+        job_experience_text_7: Energía o agua
+        job_experience_text_8: Mecánica, electricidad o electrónica
+        job_experience_text_9: Hostelería y turismo
+        job_experience_text_10: Informática o comunicaciones
+        job_experience_text_11: Industria
+        job_experience_text_12: Sanidad
+        job_experience_text_13: Medio Ambiente
+        job_experience_text_14: Educación o servicios a la comunidad
+        job_experience_text_15: Transporte
+        job_experience_text_16: Finanzas
+        townActivities: Experiencias relacionadas
+        town_activities_text_1: He tenido experiencia en la mejora del funcionamiento organizativo de entidades
+        town_activities_text_2: He participado en la elaboración de planes de protección civil o seguridad ciudadana
+        town_activities_text_3: He contribuido a la lucha contra la pobreza o la exclusión social
+        town_activities_text_4: He gestionado actividades de atención sanitaria
+        town_activities_text_5: He gestionado actividades educativas o culturales
+        town_activities_text_6: He gestionado planes de infraestructura, vivienda o urbanismo
+        town_activities_text_7: He gestionado actividades de fomento de la sostenibilidad o protección medioambiental
+        town_activities_text_8: He gestionado actividades de fomento del empleo
+        town_activities_text_9: He gestionado actividades de fomento de la transparencia, la participación ciudadana o la igualdad de género
+        town_activities_text_10: He gestionado actividades colectivas en el campo industrial o agrícola
+        town_activities_text_11: He gestionado actividades colectivas en el campo de las tecnologías de la información o la comunicación
+        town_activities_text_12: He gestionado actividades colectivas de investigación o desarrollo
+        town_activities_text_13: He gestionado actividades colectivas en el campo del cooperativismo
+        town_activities_text_14: He gestionado eficazmente presupuestos superiores al millón de euros
+        town_activities_text_15: He tenido experiencia de trabajo internacional
+        town_activities_text_16: He realizado funciones de representación o portavocía de colectivos
+        townActivitiesExplanation: Descripción experiencia
+        governPriorities: Considera prioritario que el Ayuntamiento se centre en
+        govern_priorities_text_1: Mejorar las funciones de gobierno del municipio
+        govern_priorities_text_2: Mejorar la seguridad ciudadana
+        govern_priorities_text_3: Luchar contra la pobreza y la exclusión social
+        govern_priorities_text_4: Mejorar la atención sanitaria
+        govern_priorities_text_5: Mejorar la gestión educativa y cultural
+        govern_priorities_text_6: Atender a los problemas de vivienda, urbanismo e infraestructuras
+        govern_priorities_text_7: Mejorar la sostenibilidad del municipio
+        govern_priorities_text_8: Invertir en fomento del empleo
+        govern_priorities_text_9: Aumentar la participación ciudadana en la gestión municipal
+        govern_priorities_text_10: Mejorar los servicios de transporte
+        govern_priorities_text_11: Invertir en actividades industriales, agrícolas o comerciales
+        govern_priorities_text_12: Invertir en Investigación
+        govern_priorities_text_13: Gestionar mejor la deuda y las operaciones financieras
+        motivationText: Motivación para presentarse
+        additionalInfo: Biografía e información adicional
+        
     step8:
         header: Asigna puntuaciones
         html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 8
