@@ -15,6 +15,9 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStep7Type;
 
 use Listabierta\Bundle\MunicipalesBundle\Entity\Candidate;
 use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+
 
 use Symfony\Component\Form\FormError;
 
@@ -1089,6 +1092,21 @@ class CandidateController extends Controller
 			
 			$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/' . $candidate_id . '/photo';
 			
+			$fs = new Filesystem();
+			
+			if(!$fs->exists($documents_path))
+			{
+				try 
+				{
+					$fs->mkdir($documents_path, 0700);
+				} 
+				catch (IOExceptionInterface $e) 
+				{
+					$form->addError(new FormError('An error occurred while creating your directory at: ' . $e->getPath()));
+					$ok = FALSE;
+				}
+			}
+			
 			if($profile_image->isValid())
 			{
 				$profile_image_data = $profile_image->getData();
@@ -1101,7 +1119,15 @@ class CandidateController extends Controller
 			
 				if($ok)
 				{
-					$profile_image_data->move($documents_path, 'photo.jpg');
+					try
+					{
+						$profile_image_data->move($documents_path, 'photo.jpg');
+					}
+					catch(FileException $e)
+					{
+						$form->addError(new FormError('Error uploading file in ' . $documents_path . ': ' . $e->getMessage()));
+						$ok = FALSE;
+					}
 				}
 			}
 			else
