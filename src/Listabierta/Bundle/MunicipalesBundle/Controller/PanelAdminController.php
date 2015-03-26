@@ -5,6 +5,7 @@ namespace Listabierta\Bundle\MunicipalesBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep1Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\ModifyVotePointsSystemType;
 
 class PanelAdminController extends Controller
 {
@@ -316,7 +317,9 @@ class PanelAdminController extends Controller
     			
     					$this->get('mailer')->send($message);
     					 
-    					return $this->redirect($this->generateUrl('panel_admin'));
+    					$this->get('session')->getFlashBag()->set('msg', 'Datos personales actualizados correctamente');
+
+    					return $this->redirectToRoute('panel_admin');
     				}
     			}
     			 
@@ -369,8 +372,56 @@ class PanelAdminController extends Controller
     		}
     		else
     		{
+    			$form = $this->createForm(new ModifyVotePointsSystemType(), NULL, array(
+    					'action' => $this->generateUrl('panel_admin_modify_vote_points_system'),
+    					'method' => 'POST',
+    				)
+    			);
+    			
+    			$borda_points = $admin_candidacy->getBordaPoints();
+    			
+    			if(empty($borda_points))
+    			{
+    				for($i = 0; $i <= 10; $i++)
+    				{
+    					// Apply borda system defaults values
+    					$form['vote' . $i]->setData($i != 0 ? 1 / $i : 0);
+    				}
+    			}
+    			else 
+    			{
+    				for($i = 0; $i <= 10; $i++)
+    				{
+    					// Load borda system values from database
+    					$form['vote' . $i]->setData($borda_points[$i]);
+    				}
+    			}
+    			
+    			$form->handleRequest($request);
+
+    			if ($form->isValid())
+    			{
+    				$borda_points = array();
+    				
+    				for($i = 0; $i <= 10; $i++)
+    				{
+    					$vote{$i} = $form['vote' . $i]->getData();
+    					
+    					$borda_points[$i] = $vote{$i};
+    				}
+    				
+    				$admin_candidacy->setBordaPoints($borda_points);
+    				
+    				$entity_manager->persist($admin_candidacy);
+    				$entity_manager->flush();
+    				
+    				$this->get('session')->getFlashBag()->set('msg', 'Puntuación de la votación actualizada correctamente');
+    				
+    				return $this->redirectToRoute('panel_admin');
+    			}
+    			
     			return $this->render('MunicipalesBundle:PanelAdmin:modify_vote_points_system.html.twig', array(
-    					//'form' => $form->createView(),
+    					'form' => $form->createView(),
     					'admin' => $admin_candidacy,
     			));
     		}
