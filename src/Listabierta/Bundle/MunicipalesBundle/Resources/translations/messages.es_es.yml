@@ -587,7 +587,11 @@ panel_admin:
         back: Volver
         save: Guardar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         
-
+    modify_vote_points_system:
+        title: Modificar puntuación en la votación de candidatos
+        back: Volver
+        save: Guardar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        
 forms:
     candidacy_step1:
         password:
