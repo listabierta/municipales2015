@@ -589,8 +589,21 @@ panel_admin:
         
     modify_vote_points_system:
         title: Modificar puntuación en la votación de candidatos
+        assign_points: Asignación de puntuación en la votación de candidatos
+        borda_explanation: En este apartado puedes asignar el valor que puntuará la posición de cada candidato. <br />Por defecto se usan los valores del <a href="http://en.wikipedia.org/wiki/Borda_count" title="Sistema de recuento Borda">sistema de recuento Borda</a> para máximo 10 candidatos puntuables.
         back: Volver
         save: Guardar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        first: Primero/a
+        second: Segundo/a
+        third: Tercero/a
+        forth: Cuarto/a
+        fifth: Quinto/a
+        sixth: Sexto/a
+        seventh: Séptimo/a
+        eighth: Octavo/a
+        ninth: Noveno/a
+        tenth: Décimo/a
+        no_points: Sin puntuar
         
 forms:
     candidacy_step1:
