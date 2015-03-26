@@ -427,4 +427,64 @@ class PanelAdminController extends Controller
     		}
     	}
     }
+    
+    public function modifyVotePointsSystemResetAction(Request $request)
+    {
+    	$session = $this->getRequest()->getSession();
+    	$entity_manager = $this->getDoctrine()->getManager();
+    
+    	$admin_id = NULL;
+    
+    	$securityContext = $this->container->get('security.context');
+    
+    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+    	{
+    		$current_user = $securityContext->getToken()->getUser();
+    		 
+    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
+    		{
+    			$admin_id = $current_user->getId();
+    		}
+    	}
+    	else
+    	{
+    		$admin_id = $session->get('admin_id');
+    	}
+    
+    	// Redirect to login
+    	if(empty($admin_id))
+    	{
+    		return $this->redirect($this->generateUrl('login'));
+    	}
+    	else
+    	{
+    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
+    		 
+    		if(empty($admin_candidacy))
+    		{
+    			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    					'error' => 'Error: no se ha encontrado el identificador de administrador ' . $admin_id . ' en la base de datos',
+    			));
+    		}
+    		else
+    		{
+    			for($i = 0; $i <= 10; $i++)
+    			{
+    				// Apply borda system defaults values
+    				$borda_points[$i] = $i != 0 ? 1 / $i : 0;
+    			}
+    				
+    			$admin_candidacy->setBordaPoints($borda_points);
+    
+    			$entity_manager->persist($admin_candidacy);
+    			$entity_manager->flush();
+    
+    			$this->get('session')->getFlashBag()->set('msg', 'Puntuación de la votación reiniciada a valores por defecto correctamente');
+    
+    			return $this->redirectToRoute('panel_admin');
+    		}
+    	}
+    }
+    
 }
