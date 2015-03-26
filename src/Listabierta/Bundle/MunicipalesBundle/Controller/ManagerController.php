@@ -216,6 +216,8 @@ class ManagerController extends Controller
 			);
 			 
 			$this->get('mailer')->send($message);
+			
+			return new Response('OK', 200);
 		}
 		else
 		{
