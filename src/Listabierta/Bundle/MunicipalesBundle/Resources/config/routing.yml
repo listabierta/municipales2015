@@ -113,7 +113,13 @@ panel_admin_modify_vote_points_system_reset:
     defaults: { _controller: MunicipalesBundle:PanelAdmin:modifyVotePointsSystemReset }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl 
-               
+
+panel_admin_recover_password:
+    path:     /panel-admin/recover_password
+    defaults: { _controller: MunicipalesBundle:Candidacy:changePasswd }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl   
+                      
 # http://municipales2015.listabierta.org/elmunicipioregistrado/resultados
 town_results:
     path:     /{address}/resultados
@@ -297,7 +303,6 @@ admin_logout:
 
 recover_password:
     path:     /recover_password
-    defaults: { _controller: MunicipalesBundle:Candidacy:changePasswd }
+    defaults: { _controller: MunicipalesBundle:Candidacy:recoverPassword }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
-    
