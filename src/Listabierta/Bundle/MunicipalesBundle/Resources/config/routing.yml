@@ -108,6 +108,11 @@ panel_admin_modify_vote_points_system:
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl 
 
+panel_admin_modify_vote_points_system_reset:
+    path:     /panel-admin/modify-vote-points-system/reset
+    defaults: { _controller: MunicipalesBundle:PanelAdmin:modifyVotePointsSystemReset }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl 
                
 # http://municipales2015.listabierta.org/elmunicipioregistrado/resultados
 town_results:
