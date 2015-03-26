@@ -49,6 +49,15 @@
                       
                       	<div class="col-sm-offset-1 col-md-10">
                       	
+                      		{% for flashMessage in app.session.flashbag.get('msg') %}
+							    <div class="alert alert-success">
+	                  				<button data-dismiss="alert" class="close" type="button">
+			                            	<i class="mine-icon fa fa-times"></i>
+			                        </button>
+			                        {{ flashMessage }}
+								</div>
+							{% endfor %}
+
                       	    {% if needs_phone_verification %}              			
 	                  			<div class="help-block col-xs-12 col-sm-10 col-sm-offset-1 inline">
 	                  				<div class="alert alert-warning">
