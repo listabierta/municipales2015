@@ -137,6 +137,11 @@
                     {{ 'panel_admin.modify_vote_points_system.back'|trans }}
                   </button>
                   
+                  <button class="btn btn-prev" onclick="location.href='{{ path('panel_admin_modify_vote_points_system_reset') }}'; return false;">
+                    <i class="mine-icon fa fa-dot-circle-o"></i>
+                    {{ 'panel_admin.modify_vote_points_system.reset'|trans }}
+                  </button>
+                  
                   {{ form_widget(form.continue, { 'label': 'panel_admin.modify_vote_points_system.save'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
                   
                 </div>
