@@ -1712,10 +1712,48 @@ class CandidacyController extends Controller
     
     	if ($form->isSubmitted() && $form->isValid()) 
     	{
+    		$old_pwd = $request->get('old_password');
+    		$new_pwd = $request->get('new_password');
+    		$user = $this->getUser();
+    		$encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
+    		$old_pwd_encoded = $encoder->encodePassword($old_pwd, $user->getSalt());
+    		
+    		if($user->getPassword() != $old_pwd_encoded) {
+    			$session->getFlashBag()->set('error_msg', "Wrong old password!");
+    		} else {
+    			$new_pwd_encoded = $encoder->encodePassword($new_pwd, $user->getSalt());
+    			$user->setPassword($new_pwd_encoded);
+    			$manager = $this->getDoctrine()->getManager();
+    			$manager->persist($user);
+    		
+    			$manager->flush();
+    			$session->getFlashBag()->set('success_msg', "Password change successfully!");
+    		}
+    		return $this->render('@adminlte/profile/change_password.html.twig');
+    		
     		// @todo encoding with MessageDigestPasswordEncoder and persist
     		return $this->redirect($this->generateUrl('change_passwd_success'));
     	}
     
+    	return $this->render('MunicipalesBundle:Candidacy:changePasswd.html.twig', array(
+    			'form' => $form->createView(),
+    	));
+    }
+
+    public function recoverPasswordAction(Request $request)
+    {
+    	$form = $this->createForm(new ChangePasswordType(), $changePasswordModel, array(
+    			'action' => $this->generateUrl('recover_password'),
+    			'method' => 'POST',
+    	));
+    	
+    	$form->handleRequest($request);
+    	
+    	if ($form->isSubmitted() && $form->isValid())
+    	{
+    	
+    	}
+    	
     	return $this->render('MunicipalesBundle:Candidacy:changePasswd.html.twig', array(
     			'form' => $form->createView(),
     	));
