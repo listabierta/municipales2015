@@ -1262,6 +1262,23 @@ class CandidacyController extends Controller
     		));
     	}
     	
+    	$borda_points = $admin_candidacy->getBordaPoints();
+
+    	// Use borda system defaults
+    	if(empty($borda_points))
+    	{
+    		for($i = 0; $i <= 10; $i++)
+    		{
+    		// Apply borda system defaults values
+    			$borda_points[$i] = $i != 0 ? 1 / $i : 0;
+    		}
+    		
+    		$admin_candidacy->setBordaPoints($borda_points);
+    		
+    		$entity_manager->persist($admin_candidacy);
+    		$entity_manager->flush();
+    	}
+    	
     	$now = new \Datetime('NOW');
     	
     	$candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
@@ -1322,7 +1339,7 @@ class CandidacyController extends Controller
     					$candidate_aux['lastname'] = $candidate_info->getLastname();
     					$candidate_aux['dni'] = $candidate_info->getDNI();
     					$candidate_aux['phone'] = $candidate_info->getPhone();
-    					$candidate_aux['points'] = $result_points;
+    					$candidate_aux['points'] = $borda_points[$result_points];
     						
     					$candidates_result[] = $candidate_aux;
     				}
@@ -1368,6 +1385,7 @@ class CandidacyController extends Controller
     			'total_voters' => $total_voters,
     			'documents_path' => $documents_path,
     			'candidates' => $candidates_result,
+    			'borda_points' => $borda_points,
     			)
     		);
     }
