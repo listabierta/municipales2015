@@ -65,8 +65,19 @@
 					              </a>
 					            </h1>
           					</div>
+							{% if app.request.locale == 'es_es' %}
+								{% set js_locale = 'es_ES' %}
+							{% elseif app.request.locale == 'es_gl' %}	
+								{% set js_locale = 'gl_ES' %}
+							{% elseif app.request.locale == 'es_ca' %}	
+								{% set js_locale = 'ca_ES' %}
+							{% elseif app.request.locale == 'es_eu' %}	
+								{% set js_locale = 'eu_ES' %}
+							{% else %}	
+								{% set js_locale = 'es_ES' %}
+							{% endif %}
 							
-          					<div class="bfh-selectbox bfh-languages pull-right" data-language="{{ app.request.locale|default('es_ES') }}" data-available="es_ES,gl_ES,ca_ES,eu_ES" data-flags="false" data-blank="false"></div>
+          					<div class="bfh-selectbox bfh-languages pull-right" data-language="{{ js_locale }}" data-available="es_ES,gl_ES,ca_ES,eu_ES" data-flags="false" data-blank="false"></div>
 
           					<div class="col-sm-2 header-social pull-right">
 		                        <a href="https://www.facebook.com/listAbierta"><i class="fa fa-facebook-square"></i></a>
