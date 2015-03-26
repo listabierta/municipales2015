@@ -10,16 +10,6 @@
     </style>
 {% endblock %}
 
-{% block form_row %}
-{% spaceless %}
-    <div class="form_row">
-        A{{ form_label(form) }}
-        B{{ form_errors(form) }}
-        C{{ form_widget(form) }}
-    </div>
-{% endspaceless %}
-{% endblock form_row %}
-
 {% block content %}
 
 
@@ -28,8 +18,8 @@
       <div class="container marketing">
 
         <div class="headline">
-          <h2>{{ 'candidacy.recover_password.header'|trans }}</h2>
-        </div><h3 class="featurette-headin"> <i>{{ 'candidacy.recover_password.h1_title'|trans }}</i>
+          <h2>{{ 'candidacy.change_password.header'|trans }}</h2>
+        </div><h3 class="featurette-headin"> <i>{{ 'candidacy.change_password.h1_title'|trans }}</i>
         </h3>
         
         <!-- START THE FEATURETTES -->
@@ -61,19 +51,19 @@
                           
                     <div data-step="1" class="step-pane active row">
 	                    <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">
-	                      	{{ 'candidacy.recover_password.h1_subtitle'|trans }}
+	                      	{{ 'candidacy.change_password.h1_subtitle'|trans }}
 	                    </h2>
                       
                       	<div class="col-sm-offset-1 col-md-10 well">
 
                       	  <div style="clear:both" class="form-group{% if form.oldPassword.vars.errors|length > 0 %} has-error{% endif %}">
-				    	  	  {{ form_label(form.oldPassword, 'candidacy.recover_password.oldPassword'|trans, {'label_attr' : { 'class' : 'col-sm-2 control-label no-padding-right' } }) }}
+				    	  	  {{ form_label(form.oldPassword, 'candidacy.change_password.oldPassword'|trans, {'label_attr' : { 'class' : 'col-sm-2 control-label no-padding-right' } }) }}
 				    		  {{ form_widget(form.oldPassword) }}
 				    	  	  {% if form.oldPassword.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.oldPassword) }}{% endif %}
 						  </div>
 					  
 					  	  <div style="clear:both"  class="form-group{% if form.newPassword.vars.errors|length > 0 %} has-error{% endif %}">
-				    	  	  {# { form_label(form.newPassword, 'candidacy.recover_password.newPassword'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) } #}
+				    	  	  {# { form_label(form.newPassword, 'candidacy.change_password.newPassword'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) } #}
 				    		  
 				    	  	  {% for child in form.newPassword %}
 									<div style="clear:both">
