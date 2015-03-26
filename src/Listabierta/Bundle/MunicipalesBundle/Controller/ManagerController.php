@@ -187,4 +187,39 @@ class ManagerController extends Controller
 			return new Response('Access only enabled in dev mode', 403);
 		}
 	}		
+	
+	/**
+	 * 
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function spamTestAction(Request $request = NULL)
+	{
+		if($this->container->getParameter('kernel.environment') == 'prod')
+		{
+			$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+			 
+			$admin_email = $this->container->getParameter('admin_email');
+			
+			$message = \Swift_Message::newInstance()
+			->setSubject('Prueba de correo a ' . $admin_email . ' con host ' . $host)
+			->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
+			->setTo($admin_email)
+			->setBody(
+					$this->renderView(
+							'MunicipalesBundle:Mail:candidate_rejected.html.twig',
+							array(
+									'name' => $host,
+									'admin_email' => $admin_email
+							)
+					), 'text/html'
+			);
+			 
+			$this->get('mailer')->send($message);
+		}
+		else
+		{
+			return new Response('Access only enabled in prod mode', 403);
+		}
+	}
 }
