@@ -617,3 +617,6 @@ forms:
         password:
             minMessage: Tu contraseña debe de ser de al menos {{ limit }} caracteres
             maxMessage: Tu contraseña debe de ser mayor de {{ limit }} caracteres
+            
+footer:
+    donate: ListAbierta.org es una iniciativa opensource y gratuita, contribuye a su sostenibilidad, gracias
