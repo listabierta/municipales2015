@@ -576,7 +576,12 @@ panel_admin:
         see_public_results: Ver enlace de resultados públicos<br /> de la votación
         verify_msg: Confirma tu cuenta administrador enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después <a href="#" onclick="javascript:window.location.reload()">actualiza/recarga</a> esta página
         modify_vote_points_system: Modificar puntuación en la votación de candidatos
-
+        borda_system: Sistema Borda
+        vote_results: Resultados Votaciones
+        candidates: Candidatos
+        candidacy: Candidatura ciudadana
+        admin_account: Cuenta administrador
+        
     modify_personal_data:
         title: Modificar datos personales
         back: Volver
