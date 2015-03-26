@@ -51,141 +51,81 @@
                   {% endif %}
                       
                   <div data-step="1" class="step-pane active row">
-                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'panel_admin.modify_personal_data.title'|trans }}</h2>
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'panel_admin.modify_vote_points_system.assign_points'|trans }}</h2>
+                      
+                      <p class="lead col-xs-10 col-sm-offset-1">
+                      	  {{ 'panel_admin.modify_vote_points_system.borda_explanation'|trans|raw }}
+                      </p>
                       
                       <div class="col-xs-12 col-sm-offset-0"><div class="hr hr-dotted"></div></div>
                       
-                      <div class="form-group{% if form.name.vars.errors|length > 0 %} has-error{% endif %}">
-						  {{ form_label(form.name, 'candidacy.step1.name'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
-						  {{ form_widget(form.name) }}
-						  {% if form.name.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.name) }}</div>{% endif %}
+                      <div class="form-group{% if form.vote1.vars.errors|length > 0 %} has-error{% endif %}">
+						  {{ form_label(form.vote1, 'panel_admin.modify_vote_points_system.first'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+						  {{ form_widget(form.vote1) }}
+						  {% if form.vote1.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.vote1) }}</div>{% endif %}
 					  </div>
 
-					  <div class="form-group{% if form.lastname.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.lastname, 'candidacy.step1.lastname'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    	      {{ form_widget(form.lastname) }}
-			    	      {% if form.lastname.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.lastname) }}</div>{% endif %}
+					  <div class="form-group{% if form.vote2.vars.errors|length > 0 %} has-error{% endif %}">
+						  {{ form_label(form.vote2, 'panel_admin.modify_vote_points_system.second'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+						  {{ form_widget(form.vote2) }}
+						  {% if form.vote2.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.vote2) }}</div>{% endif %}
 					  </div>
-			
-					  <div class="form-group{% if form.dni.vars.errors|length > 0 %} has-error{% endif %}">
-			    	  	  {{ form_label(form.dni, 'candidacy.step1.dni'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.dni) }}
-			    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'candidacy.step1.dni_info'|trans }}</div>
-			    	  	  {% if form.dni.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.dni) }}{% endif %}
-					  </div>
-			
-					  <div class="form-group{% if form.username.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.username, 'candidacy.step1.username'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.username) }}
-			    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'candidacy.step1.username_info'|trans }}</div>
-			    		  {% if form.username.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.username) }}</div>{% endif %}
-			    		  
-					  </div>
-			
-					  <div class="form-group{% if form.password.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.password, 'candidacy.step1.password'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.password) }}
-			    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'candidacy.step1.password_info'|trans }}</div>
-			    		  {% if form.password.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.password) }}</div>{% endif %}
-					  </div>
-			
-					  <div class="form-group{% if form.email.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.email, 'candidacy.step1.email'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.email) }}
-			    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'candidacy.step1.email_info'|trans }}</div>
-			    		  {% if form.email.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.email) }}</div>{% endif %}
-					  </div>
-			
-					  <div class="form-group{% if form.province.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.province, 'candidacy.step1.province'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  <div class="col-xs-12 col-sm-2">
-	    					  <span class="block input-icon input-icon-right">
-	    					      {{ form_widget(form.province) }}
-	    					  </span>
-    					  </div> 
-			    		  {% if form.province.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.province) }}</div>{% endif %}
-					  </div>
-			
-					  <div id="town_select" class="form-group{% if form.town.vars.errors|length > 0 %} has-error{% endif %}"{% if form.town.vars.value == 0 %} style="display:none"{% endif %}>
-					      {{ form_label(form.town, 'candidacy.step1.town'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-					      <div class="col-xs-12 col-sm-2">
-	    					  <span class="block input-icon input-icon-right">
-	    					  	{{ form_widget(form.town, {'value' : form.town.vars.value}) }}
-	    					  </span>
-    					  </div>
-					      {% if form.town.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.town) }}</div>{% endif %}
-					  </div>
-			
-					  <div class="form-group{% if form.phone.vars.errors|length > 0 %} has-error{% endif %}">
-					      {{ form_label(form.phone, 'candidacy.step1.phone'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-					      {{ form_widget(form.phone) }}
-					      
-					      <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'candidacy.step1.phone_info'|trans }}</div>
-					      {% if form.phone.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.phone) }}</div>{% endif %}
-					      <a class='explanation_dni' href="#explanation_dni_content"><img style="margin-left:15px;width:16px;height:16px" src="{{ asset('bundles/municipales/images/question.png') }}"
-					       alt="{{ 'candidacy.step1.explanation'|trans }}"
-					       title="{{ 'candidacy.step1.explanation'|trans }}"/></a>
-					    
-					      <!-- This contains the hidden content for inline calls -->
-						  <div style='display:none'>
-							  <div id='explanation_dni_content' style='width:200px;padding:10px; background:#fff;'>
-								  {{ 'candidacy.step1.explanation_dni'|trans }}
-							  </div>
-						  </div>
-					  </div>
-			
-					  <div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline"><div class="alert alert-warning">{{ 'candidacy.step1.warning_text'|trans|raw }}</div></div>
 					  
-					{# 
-                      <div class="form-group has-warning">
-                          <label class=" col-sm-3 control-label no-padding-right" for="inputWarning">Input with alerta</label>
-
-                          <div class="col-xs-12 col-sm-5">
-                            <span class="block input-icon input-icon-right">
-                              <input type="text" class="width-100" id="inputWarning"> <i class="mine-icon fa fa-leaf"></i>
-                            </span>
-                          </div>
-                          <div class="help-block col-xs-12 col-sm-reset inline">Alerta tooltip Ayuda</div>
-                        </div>
-
-                        <div class="form-group has-error">
-                          <label class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right" for="inputError">Input with error</label>
-
-                          <div class="col-xs-12 col-sm-5">
-                            <span class="block input-icon input-icon-right">
-                              <input type="text" class="width-100" id="inputError"> <i class="mine-icon fa fa-times-circle"></i>
-                            </span>
-                          </div>
-                          <div class="help-block col-xs-12 col-sm-reset inline">Error tooltip Ayuda</div>
-                        </div>
-
-                        <div class="form-group has-success">
-                          <label class="col-xs-12 col-sm-3 control-label no-padding-right" for="inputSuccess">Input con ok</label>
-
-                          <div class="col-xs-12 col-sm-5">
-                            <span class="block input-icon input-icon-right">
-                              <input type="text" class="width-100" id="inputSuccess">
-                              <i class="mine-icon fa fa-check-circle"></i>
-                            </span>
-                          </div>
-                          <div class="help-block col-xs-12 col-sm-reset inline">OK tooltip Ayuda</div>
-                        </div>
-
-                        <div class="form-group has-info">
-                          <label class="col-xs-12 col-sm-3 control-label no-padding-right" for="inputInfo">Input with info</label>
-
-                          <div class="col-xs-12 col-sm-5">
-                            <span class="block input-icon input-icon-right">
-                              <input type="text" class="width-100" id="inputInfo">
-                              <i class="mine-icon fa fa-info-circle"></i>
-                            </span>
-                          </div>
-                          <div class="help-block col-xs-12 col-sm-reset inline">Info tooltip Ayuda</div>
-                        </div>
-					  #}
-                     
+					  <div class="form-group{% if form.vote3.vars.errors|length > 0 %} has-error{% endif %}">
+						  {{ form_label(form.vote3, 'panel_admin.modify_vote_points_system.third'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+						  {{ form_widget(form.vote3) }}
+						  {% if form.vote3.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.vote3) }}</div>{% endif %}
+					  </div>
 					  
-                      
+					  <div class="form-group{% if form.vote4.vars.errors|length > 0 %} has-error{% endif %}">
+						  {{ form_label(form.vote4, 'panel_admin.modify_vote_points_system.forth'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+						  {{ form_widget(form.vote4) }}
+						  {% if form.vote4.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.vote4) }}</div>{% endif %}
+					  </div>	
+					  
+					  <div class="form-group{% if form.vote5.vars.errors|length > 0 %} has-error{% endif %}">
+						  {{ form_label(form.vote5, 'panel_admin.modify_vote_points_system.fifth'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+						  {{ form_widget(form.vote5) }}
+						  {% if form.vote5.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.vote5) }}</div>{% endif %}
+					  </div>	
+					  
+					  <div class="form-group{% if form.vote6.vars.errors|length > 0 %} has-error{% endif %}">
+						  {{ form_label(form.vote6, 'panel_admin.modify_vote_points_system.sixth'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+						  {{ form_widget(form.vote6) }}
+						  {% if form.vote6.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.vote6) }}</div>{% endif %}
+					  </div>
+					  
+					  <div class="form-group{% if form.vote7.vars.errors|length > 0 %} has-error{% endif %}">
+						  {{ form_label(form.vote7, 'panel_admin.modify_vote_points_system.seventh'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+						  {{ form_widget(form.vote7) }}
+						  {% if form.vote7.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.vote7) }}</div>{% endif %}
+					  </div>
+					  
+					  <div class="form-group{% if form.vote8.vars.errors|length > 0 %} has-error{% endif %}">
+						  {{ form_label(form.vote8, 'panel_admin.modify_vote_points_system.eighth'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+						  {{ form_widget(form.vote8) }}
+						  {% if form.vote8.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.vote8) }}</div>{% endif %}
+					  </div>
+					  
+					  <div class="form-group{% if form.vote9.vars.errors|length > 0 %} has-error{% endif %}">
+						  {{ form_label(form.vote9, 'panel_admin.modify_vote_points_system.ninth'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+						  {{ form_widget(form.vote9) }}
+						  {% if form.vote9.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.vote9) }}</div>{% endif %}
+					  </div>
+					  
+					  <div class="form-group{% if form.vote10.vars.errors|length > 0 %} has-error{% endif %}">
+						  {{ form_label(form.vote10, 'panel_admin.modify_vote_points_system.tenth'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+						  {{ form_widget(form.vote10) }}
+						  {% if form.vote10.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.vote10) }}</div>{% endif %}
+					  </div>
+					  					  					  					  					  					  					  				  
+                      <div class="form-group{% if form.vote0.vars.errors|length > 0 %} has-error{% endif %}">
+						  {{ form_label(form.vote0, 'panel_admin.modify_vote_points_system.no_points'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+						  {{ form_widget(form.vote0) }}
+						  {% if form.vote0.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.vote0) }}</div>{% endif %}
+					  </div>
+						
+					
                     </div>
                   </div>
                 </div>
@@ -194,10 +134,10 @@
                 <div class="wizard-actions">
                   <button class="btn btn-prev" onclick="location.href='{{ path('panel_admin') }}'; return false;">
                     <i class="mine-icon fa fa-arrow-left"></i>
-                    {{ 'panel_admin.modify_personal_data.back'|trans }}
+                    {{ 'panel_admin.modify_vote_points_system.back'|trans }}
                   </button>
                   
-                  {{ form_widget(form.continue, { 'label': 'panel_admin.modify_personal_data.save'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
+                  {{ form_widget(form.continue, { 'label': 'panel_admin.modify_vote_points_system.save'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
                   
                 </div>
               </div>
