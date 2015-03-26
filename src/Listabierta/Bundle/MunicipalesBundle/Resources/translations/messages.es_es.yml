@@ -199,12 +199,18 @@ candidacy:
         link_result: Enlace a los resultados de la elección
         public_link: Proporciona este enlace público para mostrar los resultados de la votación
 
+    change_password:
+        h1_title: Cambiar contraseña 
+        header: Cuenta administrador
+        h1_subtitle: Cambia la contraseña de tu cuenta administrador       
+        oldPassword: Contraseña antigua
+        newPassword: Contraseña nueva
+
     recover_password:
         h1_title: Recuperar contraseña 
         header: Cuenta administrador
         h1_subtitle: Recupera la contraseña de tu cuenta administrador       
-        oldPassword: Contraseña antigua
-        newPassword: Contraseña nueva
+        recover: Nombre de usuario o dirección de correo electrónico
 town:
     html_title: Municipales 2015 - Vota en la candidatura ciudadana
     h1_title: Registrate como votante
