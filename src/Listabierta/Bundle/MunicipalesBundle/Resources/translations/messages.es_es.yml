@@ -515,6 +515,16 @@ login:
     recover_password: ¿Olvidaste tu contraseña?
     
 mail:
+    new_recover_data:
+        hello: Hola
+        details: Los detalles de acceso nuevos generados para su cuenta son
+        user: Usuario
+        password: Contraseña
+        email: Correo electrónico
+        regards: Saludos
+        admin_zone: zona de acceso de administrador
+        you_can_access: Ahora puede acceder con estos nuevos datos desde la zona de acceso de administrador
+        
     recovery_password:
         hello: Hola
         request: Usted o alguien ha solicitado restablecer la contraseña de su cuenta porque parece haber olvidado la contraseña
