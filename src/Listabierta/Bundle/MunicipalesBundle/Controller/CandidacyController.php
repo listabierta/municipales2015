@@ -476,7 +476,7 @@ class CandidacyController extends Controller
 	    		
 	    			if($ok)
 	    			{
-	    				$program_data->move($documents_path, 'program.pdf');
+	    				$program_data->move($document_root . '/' . $documents_path, 'program.pdf');
 	    			}
     			}
     		}
@@ -500,7 +500,7 @@ class CandidacyController extends Controller
 	    		
 	    			if($ok)
 	    			{
-	    				$legal_conditions_data->move($documents_path, 'legal_conditions.pdf');
+	    				$legal_conditions_data->move($document_root . '/' . $documents_path, 'legal_conditions.pdf');
 	    			}
     			}
     		}
@@ -524,7 +524,7 @@ class CandidacyController extends Controller
 	    		
 	    			if($ok)
 	    			{
-	    				$recall_term_data->move($documents_path, 'recall_term.pdf');
+	    				$recall_term_data->move($document_root . '/' . $documents_path, 'recall_term.pdf');
 	    			}
     			}
     		}
@@ -548,7 +548,7 @@ class CandidacyController extends Controller
 	    		
 	    			if($ok)
 	    			{
-	    				$participatory_term_data->move($documents_path, 'participatory_term.pdf');
+	    				$participatory_term_data->move($document_root . '/' . $documents_path, 'participatory_term.pdf');
 	    			}
     			}
     		}
@@ -572,7 +572,7 @@ class CandidacyController extends Controller
 	    		
 	    			if($ok)
 	    			{
-	    				$voter_conditions_data->move($documents_path, 'voter_conditions.pdf');
+	    				$voter_conditions_data->move($document_root . '/' . $documents_path, 'voter_conditions.pdf');
 	    			}
     			}
     		}
@@ -596,7 +596,7 @@ class CandidacyController extends Controller
 	    		
 	    			if($ok)
 	    			{
-	    				$technical_constrains_data->move($documents_path, 'technical_constrains.pdf');
+	    				$technical_constrains_data->move($document_root . '/' . $documents_path, 'technical_constrains.pdf');
 	    			}
     			}
     		}

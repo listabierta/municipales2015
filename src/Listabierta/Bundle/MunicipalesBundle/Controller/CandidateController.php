@@ -1096,7 +1096,7 @@ class CandidateController extends Controller
 			
 			$fs = new Filesystem();
 			
-			if(!$fs->exists($document_root . '/' .$documents_path))
+			if(!$fs->exists($document_root . '/' . $documents_path))
 			{
 				try 
 				{
@@ -1123,11 +1123,11 @@ class CandidateController extends Controller
 				{
 					try
 					{
-						$profile_image_data->move($base_path . '/' . $documents_path, 'photo.jpg');
+						$profile_image_data->move($document_root . '/' . $documents_path, 'photo.jpg');
 					}
 					catch(FileException $e)
 					{
-						$form->addError(new FormError('Error uploading file in ' . $base_path . '/' . $documents_path . ': ' . $e->getMessage()));
+						$form->addError(new FormError('Error uploading file in ' . $document_root . '/' . $documents_path . ': ' . $e->getMessage()));
 						$ok = FALSE;
 					}
 				}
