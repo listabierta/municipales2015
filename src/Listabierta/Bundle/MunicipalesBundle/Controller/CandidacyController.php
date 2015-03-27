@@ -25,6 +25,9 @@ use Symfony\Component\Form\FormError;
 use Listabierta\Bundle\MunicipalesBundle\Form\ChangePasswordType;
 use Listabierta\Bundle\MunicipalesBundle\Form\Model\ChangePassword;
 
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+
 /**
  * CandidacyController
  * 
@@ -438,7 +441,24 @@ class CandidacyController extends Controller
 
     		$town_slug = $this->get('slugify')->slugify($town_name);
     		
+    		$document_root = $this->getRequest()->server->get('DOCUMENT_ROOT'); // Must be 777
+    		
     		$documents_path = 'docs/' . $town_slug . '/' . $admin_id;
+    		
+    		$fs = new Filesystem();
+    			
+    		if(!$fs->exists($document_root . '/' . $documents_path))
+    		{
+    			try
+    			{
+    				$fs->mkdir($document_root . '/' . $documents_path, 0700);
+    			}
+    			catch (IOExceptionInterface $e)
+    			{
+    				$form->addError(new FormError('An error occurred while creating your directory at: ' . $e->getPath()));
+    				$ok = FALSE;
+    			}
+    		}
     		
     		// getMaxFilesize()
     		
