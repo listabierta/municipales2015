@@ -1668,4 +1668,99 @@ class TownController extends Controller
 				'candidates' => $candidates_result,
 		));
 	}	
+	
+	public function downloadCsvAction($address = NULL, Request $request = NULL)
+	{
+		$session = $this->getRequest()->getSession();
+		$entity_manager = $this->getDoctrine()->getManager();
+		
+		$result = $this->verifyAdminAddress($address);
+		
+		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
+		{
+			return $result;
+		}
+		
+		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
+		
+		$town = $admin_candidacy->getTown();
+		
+		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
+		$town_name = $province_repository->getMunicipalityName($town);
+		
+		$admin_id = $admin_candidacy->getId();
+		
+		$candidacy_to_date = $admin_candidacy->getTodate();
+			
+		if(empty($candidacy_to_date))
+		{
+			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+					'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
+			));
+		}
+			
+		$candidacy_total_days = $admin_candidacy->getTotalDays();
+			
+		if(empty($candidacy_total_days))
+		{
+			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+					'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
+			));
+		}
+			
+		$now = new \Datetime('NOW');
+		
+		// Candidacy is finished, we can show the results
+		$candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
+		$vote_end_date = $candidaty_to_date_timestamp + $candidacy_total_days * 24 * 3600;
+		
+		if($now->getTimestamp() - $vote_end_date < 0)
+		{
+			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+					'error' => 'Error: El plazo de votación aún no ha finalizado. <br />Fecha de inicio: ' . date('d-m-Y' , $candidaty_to_date_timestamp) . '<br />' .
+								'Fecha de fin: ' . date('d-m-Y' , $vote_end_date),
+					
+			));
+		}
+		
+		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
+		
+		$voters = $voter_repository->findBy(array('admin_id' => $admin_id));
+		
+		$total_voters = 0;
+		$final_voters = array();
+		$results = array();
+		foreach($voters as $voter)
+		{
+			$vote_info = $voter->getVoteInfo();
+			
+			if(!empty($vote_info))
+			{
+				/*$total_voters += 1;
+				
+				$candidates = $vote_info['candidates'];
+				
+				foreach($candidates as $candidate)
+				{
+					$candidate_id = $candidate['id'];
+					$candidate_points = $candidate['points'];
+					if(isset($results[$candidate_id]))
+					{
+						$results[$candidate_id] += $candidate['points'];
+					}
+					else 
+					{
+						$results[$candidate_id] = $candidate['points'];
+					}
+				}
+				*/
+			}
+		}
+		
+		return $this->render('MunicipalesBundle:Town:download_csv.html.twig', array(
+				'address' => $address,
+				'town' => $town_name,
+		));	
+	}
 }
