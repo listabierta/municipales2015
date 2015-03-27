@@ -1797,6 +1797,7 @@ class CandidacyController extends Controller
     		{
     			$current_time = time();
     			$token = sha1($admin_candidacy->getId() + rand(0, 5000) + $current_time);
+    			$name = $admin_candidacy->getName();
     			
     			$recovery_admin = new RecoveryAdmin();
     			$recovery_admin->setAdminId($admin_candidacy->getId());
