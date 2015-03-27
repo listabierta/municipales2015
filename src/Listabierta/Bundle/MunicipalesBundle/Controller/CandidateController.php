@@ -1092,16 +1092,15 @@ class CandidateController extends Controller
 			
 			$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/' . $candidate_id . '/photo';
 			
-			$base_path = $this->getRequest()->getBasePath();
-			$document_root = $this->getRequest()->server->get('DOCUMENT_ROOT');
+			$document_root = $this->getRequest()->server->get('DOCUMENT_ROOT'); // Must be 777
 			
 			$fs = new Filesystem();
 			
-			if(!$fs->exists($documents_path))
+			if(!$fs->exists($document_root . '/' .$documents_path))
 			{
 				try 
 				{
-					$fs->mkdir($base_path . '/' . $documents_path, 0700);
+					$fs->mkdir($document_root . '/' . $documents_path, 0700);
 				} 
 				catch (IOExceptionInterface $e) 
 				{
