@@ -515,6 +515,15 @@ login:
     recover_password: ¿Olvidaste tu contraseña?
     
 mail:
+    recovery_password:
+        hello: Hola
+        request: Usted o alguien ha solicitado restablecer la contraseña de su cuenta porque parece haber olvidado la contraseña
+        no_request: Si no ha solicitado esto, por favor ignórelo. La recuperación expirará y se volverá inutilizable en 24 horas
+        restore: Para restablecer tu contraseña, por favor visite la siguiente página
+        data_recover: Recuperación datos
+        visit: Cuando visite la página, su contraseña será restablecida, y la nueva contraseña se le enviará a usted por correo
+        regards: Saludos
+        
     candidate_created:
         hello: Hola
         account: Este es un mensaje de confirmación de que tu registro de candidato ha sido creado
