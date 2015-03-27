@@ -312,3 +312,9 @@ recover_password:
     defaults: { _controller: MunicipalesBundle:Candidacy:recoverPassword }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
+        
+recovery_token:
+    path:     /recovery/{token}
+    defaults: { _controller: MunicipalesBundle:Candidacy:recoveryToken }
+    requirements:
+        _locale: es_es|es_eu|es_gl|es_gl
