@@ -1843,25 +1843,85 @@ class CandidacyController extends Controller
     	
     	if(empty($token))
     	{
-    		
+    		return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+    				'error' => 'Error: El token no puede ser vacío',
+    		));
     	}
-    	
-    	$message = \Swift_Message::newInstance()
-    	->setSubject('Nuevos datos de acceso')
-    	->setFrom('recovery@' . rtrim($host, '.'), 'Candidaturas')
-    	->setTo($admin_candidacy->getEmail())
-    	->setBody(
-    			$this->renderView(
-    					'MunicipalesBundle:Mail:recovery_password.html.twig',
-    					array(
-    							'name' => $name,
-    							'token' => $token,
-    					)
-    			), 'text/html'
-    	);
-    	 
-    	$this->get('mailer')->send($message);
-    	 
-    	$session->getFlashBag()->set('msg', "Se ha enviado un correo con los nuevos detalles de cuenta");
+    	else 
+    	{
+    		$recovery_admin_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\RecoveryAdmin');
+    		$recovery_admin = $recovery_admin_repository->findOneByToken($token);
+    		
+    		if(empty($recovery_admin))
+    		{
+    			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+    					'error' => 'Error: No existe ningún token que coincida para recuperar los datos',
+    			));
+    		}
+    		else 
+    		{
+    			$now = time();
+    			$timestamp = $recovery_admin->getTimestamp();
+    			
+    			if($now > $timestamp + 3600 * 24)
+    			{
+    				return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+    						'error' => 'Error: El token de recuperación ha expirado. Sólo es válido durante 24 horas. Procede de nuevo a recuperar tu contraseña.',
+    				));
+    			}
+    			else 
+    			{
+    				$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    				$admin_candidacy = $admin_candidacy_repository->findOneByAdminId($recovery_admin->getAdminId());
+    				
+    				if(empty($admin_candidacy))
+    				{
+    					return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
+    							'error' => 'Error: El usuario para recuperar datos no existe.',
+    					));
+    				}
+    				else 
+    				{
+    					$length = 10;
+    					$chars = '234567890abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    					$password = '';
+    					$i = 0;
+    					for($i = 0; $i < $length; $i++)
+    					{
+    						$password .= $chars[rand(0, strlen($chars) - 1)];
+    					}
+    					
+    					$factory = $this->get('security.encoder_factory');
+    					$encoder = $factory->getEncoder($admin_candidacy);
+    					$encodedPassword = $encoder->encodePassword($password, $admin_candidacy->getSalt());
+    					
+    					$admin_candidacy->setPassword($encodedPassword);
+    					
+    					// Send mail with login link for admin
+    					$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+    					 
+    					$message = \Swift_Message::newInstance()
+    					->setSubject('Nuevos datos de acceso')
+    					->setFrom('recovery@' . rtrim($host, '.'), 'Candidaturas')
+    					->setTo($admin_candidacy->getEmail())
+    					->setBody(
+    							$this->renderView(
+    									'MunicipalesBundle:Mail:new_recover_data.html.twig',
+    									array(
+    											'admin' => $admin_candidacy,
+    											'password' => $password,
+    									)
+    							), 'text/html'
+    					);
+    					
+    					$this->get('mailer')->send($message);
+    					
+    					$session->getFlashBag()->set('msg', "Se ha enviado un correo con los nuevos detalles de cuenta");
+    				
+    					$this->recoverPasswordAction($request);
+    				}
+    			}
+    		}
+    	}
     }
 }
