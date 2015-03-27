@@ -1092,13 +1092,16 @@ class CandidateController extends Controller
 			
 			$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/' . $candidate_id . '/photo';
 			
+			$base_path = $this->getRequest()->getBasePath();
+			$document_root = $this->getRequest()->server->get('DOCUMENT_ROOT');
+			
 			$fs = new Filesystem();
 			
 			if(!$fs->exists($documents_path))
 			{
 				try 
 				{
-					$fs->mkdir($documents_path, 0700);
+					$fs->mkdir($base_path . '/' . $documents_path, 0700);
 				} 
 				catch (IOExceptionInterface $e) 
 				{
@@ -1121,11 +1124,11 @@ class CandidateController extends Controller
 				{
 					try
 					{
-						$profile_image_data->move($documents_path, 'photo.jpg');
+						$profile_image_data->move($base_path . '/' . $documents_path, 'photo.jpg');
 					}
 					catch(FileException $e)
 					{
-						$form->addError(new FormError('Error uploading file in ' . $documents_path . ': ' . $e->getMessage()));
+						$form->addError(new FormError('Error uploading file in ' . $base_path . '/' . $documents_path . ': ' . $e->getMessage()));
 						$ok = FALSE;
 					}
 				}
