@@ -421,7 +421,7 @@ town:
         total_voters: Total votantes
         total_points: Total de puntos
         position: Posición
-        donwload_csv: Bajar csv con los sellados de tiempo de tractis
+        download_csv: Bajar csv con los sellados de tiempo de tractis
                
 candidate:
     html_title: Municipales 2015 - Alta de candidato
