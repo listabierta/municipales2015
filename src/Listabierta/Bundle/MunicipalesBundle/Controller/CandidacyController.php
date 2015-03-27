@@ -1872,7 +1872,7 @@ class CandidacyController extends Controller
     			else 
     			{
     				$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
-    				$admin_candidacy = $admin_candidacy_repository->findOneByAdminId($recovery_admin->getAdminId());
+    				$admin_candidacy = $admin_candidacy_repository->findOneById($recovery_admin->getAdminId());
     				
     				if(empty($admin_candidacy))
     				{
