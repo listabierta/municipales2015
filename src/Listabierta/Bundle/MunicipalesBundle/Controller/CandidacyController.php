@@ -1803,7 +1803,7 @@ class CandidacyController extends Controller
     			$recovery_admin->setToken($token);
     			$recovery_admin->setTimestamp($current_time);
     			
-    			$entity_manager->persist($recovery);
+    			$entity_manager->persist($recovery_admin);
     			$entity_manager->flush();
     			
     			// Send mail with login link for admin
