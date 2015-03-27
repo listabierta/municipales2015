@@ -1824,6 +1824,8 @@ class CandidacyController extends Controller
     					), 'text/html'
     			);
     			
+    			$this->get('mailer')->send($message);
+    			
     			$session->getFlashBag()->set('msg', "Se ha enviado un enlace de recuperación al correo en uso por la cuenta");
     		}
     		
@@ -1834,9 +1836,32 @@ class CandidacyController extends Controller
     	));
     }
     
-    public function recoveryTokenAction(Request $request)
+    public function recoveryTokenAction(Request $request, $token = NULL)
     {
     	$entity_manager = $this->getDoctrine()->getManager();
     	$session = $this->getRequest()->getSession();
+    	
+    	if(empty($token))
+    	{
+    		
+    	}
+    	
+    	$message = \Swift_Message::newInstance()
+    	->setSubject('Nuevos datos de acceso')
+    	->setFrom('recovery@' . rtrim($host, '.'), 'Candidaturas')
+    	->setTo($admin_candidacy->getEmail())
+    	->setBody(
+    			$this->renderView(
+    					'MunicipalesBundle:Mail:recovery_password.html.twig',
+    					array(
+    							'name' => $name,
+    							'token' => $token,
+    					)
+    			), 'text/html'
+    	);
+    	 
+    	$this->get('mailer')->send($message);
+    	 
+    	$session->getFlashBag()->set('msg', "Se ha enviado un correo con los nuevos detalles de cuenta");
     }
 }
