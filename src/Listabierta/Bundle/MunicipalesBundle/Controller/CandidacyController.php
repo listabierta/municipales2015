@@ -16,6 +16,7 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep7Type;
 
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStep3Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStep4Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\RecoverPasswordType;
 
 use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
 use Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy;
@@ -1762,7 +1763,7 @@ class CandidacyController extends Controller
 
     public function recoverPasswordAction(Request $request)
     {
-    	$form = $this->createForm(new ChangePasswordType(), $changePasswordModel, array(
+    	$form = $this->createForm(new RecoverPasswordType(), NULL, array(
     			'action' => $this->generateUrl('recover_password'),
     			'method' => 'POST',
     	));
@@ -1774,7 +1775,7 @@ class CandidacyController extends Controller
     	
     	}
     	
-    	return $this->render('MunicipalesBundle:Candidacy:changePasswd.html.twig', array(
+    	return $this->render('MunicipalesBundle:Candidacy:recover_password.html.twig', array(
     			'form' => $form->createView(),
     	));
     }
