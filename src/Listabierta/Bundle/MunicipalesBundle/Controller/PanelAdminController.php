@@ -372,6 +372,45 @@ class PanelAdminController extends Controller
     		}
     		else
     		{
+    			$candidacy_to_date = $admin_candidacy->getTodate();
+    				
+    			if(!empty($candidacy_to_date))
+    			{
+	    			$candidacy_total_days = $admin_candidacy->getTotalDays();
+	    				
+	    			if(!empty($candidacy_total_days))
+	    			{
+		    			$now = new \Datetime('NOW');
+		    			
+		    			// Candidacy is finished, we can show the results
+		    			$candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
+		    			$vote_end_date = $candidaty_to_date_timestamp + $candidacy_total_days * 24 * 3600;
+		    			
+		    			if($now->getTimestamp() - $vote_end_date > 0)
+		    			{
+		    				
+		    				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+		    						'error' => 'Error: El plazo de votación ha finalizado. No es posible modificar los puntos de votación. <br />
+		    						Fecha de fin: ' . date('d-m-Y' , $vote_end_date),
+		    				));
+		    			}
+		    			else
+		    			{
+		    				//echo 'Now: ' . date('d-m-Y h:i:s', $now->getTimestamp()) . '<br />';
+		    				//echo 'To DATE: ' . date('d-m-Y h:i:s', $candidaty_to_date_timestamp) . '<br />';
+		    					
+		    				if($now->getTimestamp() - $candidaty_to_date_timestamp > 0)
+		    				{
+		    					return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+		    							'error' => 'Error: La votación ya ha sido iniciada. No es posible modificar los puntos de votación. <br />
+										Fecha de inicio: ' . date('d-m-Y' , $candidaty_to_date_timestamp) . '<br />' .
+		    							'Fecha de fin: ' . date('d-m-Y' , $vote_end_date),
+		    					));
+		    				}
+		    			}
+	    			}
+    			}
+    			
     			$form = $this->createForm(new ModifyVotePointsSystemType(), NULL, array(
     					'action' => $this->generateUrl('panel_admin_modify_vote_points_system'),
     					'method' => 'POST',
@@ -469,6 +508,45 @@ class PanelAdminController extends Controller
     		}
     		else
     		{
+    			$candidacy_to_date = $admin_candidacy->getTodate();
+    				
+    			if(!empty($candidacy_to_date))
+    			{
+	    			$candidacy_total_days = $admin_candidacy->getTotalDays();
+	    				
+	    			if(!empty($candidacy_total_days))
+	    			{
+		    			$now = new \Datetime('NOW');
+		    			
+		    			// Candidacy is finished, we can show the results
+		    			$candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
+		    			$vote_end_date = $candidaty_to_date_timestamp + $candidacy_total_days * 24 * 3600;
+		    			
+		    			if($now->getTimestamp() - $vote_end_date > 0)
+		    			{
+		    				
+		    				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+		    						'error' => 'Error: El plazo de votación ha finalizado. No es posible modificar los puntos de votación. <br />
+		    						Fecha de fin: ' . date('d-m-Y' , $vote_end_date),
+		    				));
+		    			}
+		    			else
+		    			{
+		    				//echo 'Now: ' . date('d-m-Y h:i:s', $now->getTimestamp()) . '<br />';
+		    				//echo 'To DATE: ' . date('d-m-Y h:i:s', $candidaty_to_date_timestamp) . '<br />';
+		    					
+		    				if($now->getTimestamp() - $candidaty_to_date_timestamp > 0)
+		    				{
+		    					return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+		    							'error' => 'Error: La votación ya ha sido iniciada. No es posible modificar los puntos de votación. <br />
+										Fecha de inicio: ' . date('d-m-Y' , $candidaty_to_date_timestamp) . '<br />' .
+		    							'Fecha de fin: ' . date('d-m-Y' , $vote_end_date),
+		    					));
+		    				}
+		    			}
+	    			}
+    			}
+    			
     			for($i = 0; $i <= 10; $i++)
     			{
     				// Apply borda system defaults values
