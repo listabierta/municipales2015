@@ -211,6 +211,8 @@ candidacy:
         header: Cuenta administrador
         h1_subtitle: Recupera la contraseña de tu cuenta administrador       
         recover: Nombre de usuario o dirección de correo electrónico
+        continue: Recuperar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        explanation: Si has olvidado tu nombre de usuario o tu contraseña, puedes solicitar que el envío por correo electrónico de tu nombre de usuario y restablecer tu contraseña. Si introduces el correo electrónico que has registrado, se enviará las instrucciones para restablecer tu contraseña
 town:
     html_title: Municipales 2015 - Vota en la candidatura ciudadana
     h1_title: Registrate como votante
