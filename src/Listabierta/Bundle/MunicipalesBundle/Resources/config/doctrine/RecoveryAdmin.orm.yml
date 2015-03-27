@@ -1,0 +1,21 @@
+Listabierta\Bundle\MunicipalesBundle\Entity\RecoveryAdmin:
+    type: entity
+    table: recovery_admin
+    repositoryClass: Listabierta\Bundle\MunicipalesBundle\Entity\RecoveryAdminRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        adminId:
+            type: integer
+            column: admin_id
+        token:
+            type: string
+            length: '255'
+        timestamp:
+            type: integer
+            
+    lifecycleCallbacks: {  }
