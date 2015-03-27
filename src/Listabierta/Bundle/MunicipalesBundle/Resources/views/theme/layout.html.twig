@@ -161,9 +161,11 @@
 			$('.bfh-selectbox-options li a').each(function(key, value) {
 			    //console.log($(this).text().replace(' (Spain)',''))
 			    $(this).text($(this).text().replace(' (Spain)',''))
+			    $(this).text($(this).text().replace('Euskara','Euskera'))
 			});
 			
 			$('.bfh-selectbox-option').text($('.bfh-selectbox-option').text().replace(' (Spain)',''))
+			$('.bfh-selectbox-option').text($('.bfh-selectbox-option').text().replace('Euskara','Euskera'))
 		});
 		</script>
 		{% block appjsinline %}{% endblock %}							
