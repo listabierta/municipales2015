@@ -20,6 +20,7 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\RecoverPasswordType;
 
 use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
 use Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy;
+use Listabierta\Bundle\MunicipalesBundle\Entity\RecoveryAdmin;
 
 use Symfony\Component\Form\FormError;
 
@@ -1763,6 +1764,9 @@ class CandidacyController extends Controller
 
     public function recoverPasswordAction(Request $request)
     {
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	$session = $this->getRequest()->getSession();
+    	
     	$form = $this->createForm(new RecoverPasswordType(), NULL, array(
     			'action' => $this->generateUrl('recover_password'),
     			'method' => 'POST',
@@ -1772,11 +1776,66 @@ class CandidacyController extends Controller
     	
     	if ($form->isSubmitted() && $form->isValid())
     	{
-    	
+    		$recover = $form['recover']->getData();
+    		
+    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
+    		$admin_candidacy = $admin_candidacy_repository->findOneByUsername($recover);
+    		
+    		$ok = TRUE;
+    		if(empty($admin_candidacy))
+    		{
+    			$admin_candidacy = $admin_candidacy_repository->findOneByEmail($recover);
+    			
+    			if(empty($admin_candidacy))
+    			{
+    				$form->addError(new FormError('No se ha encontrado ningún nombre de usuario o correo para recuperar la contraseña'));
+    				$ok = FALSE;
+    			}
+    		}
+    		
+    		if($ok)
+    		{
+    			$current_time = time();
+    			$token = sha1($admin_candidacy->getId() + rand(0, 5000) + $current_time);
+    			
+    			$recovery_admin = new RecoveryAdmin();
+    			$recovery_admin->setAdminId($admin_candidacy->getId());
+    			$recovery_admin->setToken($token);
+    			$recovery_admin->setTimestamp($current_time);
+    			
+    			$entity_manager->persist($recovery);
+    			$entity_manager->flush();
+    			
+    			// Send mail with login link for admin
+    			$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+    			 
+    			$message = \Swift_Message::newInstance()
+    			->setSubject('Enlace de recuperacion de contraseña')
+    			->setFrom('recovery@' . rtrim($host, '.'), 'Candidaturas')
+    			->setTo($admin_candidacy->getEmail())
+    			->setBody(
+    					$this->renderView(
+    							'MunicipalesBundle:Mail:recovery_password.html.twig',
+    							array(
+    									'name' => $name,
+    									'token' => $token,
+    							)
+    					), 'text/html'
+    			);
+    			
+    			$session->getFlashBag()->set('msg', "Se ha enviado un enlace de recuperación al correo en uso por la cuenta");
+    		}
+    		
     	}
     	
     	return $this->render('MunicipalesBundle:Candidacy:recover_password.html.twig', array(
     			'form' => $form->createView(),
     	));
+    }
+    
+    public function recoveryTokenAction(Request $request)
+    {
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	$session = $this->getRequest()->getSession();
     }
 }
