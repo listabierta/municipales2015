@@ -1,0 +1,12 @@
+{{ 'mail.new_recover_data.hello'|trans }} <b>{{ admin.name }} {{ admin.lastname }}</b>,<br />
+<br />
+{{ 'mail.new_recover_data.details'|trans }}:<br />
+{{ 'mail.new_recover_data.user'|trans }}: {{ admin.username }}<br />
+{{ 'mail.new_recover_data.password'|trans }}: {{ password }}<br />
+{{ 'mail.new_recover_data.email'|trans }}: {{ admin.email }}<br />
+<br/>
+{{ 'mail.new_recover_data.you_can_access'|trans }}:<br/>
+<a href="{{ url('login') }}" target="_blank" title="{{ 'mail.new_recover_data.admin_zone'|trans }}">{{ url('login') }}</a>
+<br/>
+<br/>
+{{ 'mail.new_recover_data.regards'|trans }}<br/>
