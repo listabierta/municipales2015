@@ -156,7 +156,8 @@
 							  
 							  <h1 class="center" style="color:white">{{ 'panel_admin.index.candidates'|trans }}</h1>
 	
-								  <div class="span6 col-md-6">
+								{% if not admin.address is empty %}
+								<div class="span6 col-md-6">
 							  		<button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step6') }}'; return false;">
 						                 <i class="mine-icon fa fa-check-square"></i>
 						                 {{ 'panel_admin.index.validate_candidates'|trans }}
@@ -177,7 +178,17 @@
 					                  			<br />
 				                  		{% endif %}
 								 </div>
-							  
+								{% else %}
+								<div class="span6 col-md-12 center">
+							  		<button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step6') }}'; return false;">
+						                 <i class="mine-icon fa fa-check-square"></i>
+						                 {{ 'panel_admin.index.validate_candidates'|trans }}
+						            </button>
+			                  			
+			                  		<br />
+			                  		<br />
+							  	 </div>
+								{% endif %}
 							</div>
 							
 							<br />
@@ -188,25 +199,37 @@
 							  
 							  <h1 class="center" style="color:white">{{ 'panel_admin.index.vote_results'|trans }}</h1>
 							  
-							  <div class="span6 col-md-6">
-							  	<button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step8') }}#'; return false;">
-				                    <i class="mine-icon fa fa-key fa-fw"></i>
-				                    {{ 'panel_admin.index.see_internal_results'|trans|raw }}
-				                </button>
-	                  			
-	                  			<br />
-	                  			<br />
-							  </div>
-							  <div class="span6 col-md-6">
-							  	{% if not admin.address is empty %}
-	                  			<button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('town_results', {'address' : admin.address }) }}'; return false;">
-				                    <i class="mine-icon fa fa-eye"></i>
-				                    {{ 'panel_admin.index.see_public_results'|trans|raw }}
-				                </button>
-				                <br />
-	                  			<br />
-				                {% endif %}
-							  </div>
+							  {% if not admin.address is empty %}
+								  <div class="span6 col-md-6">
+								  	<button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step8') }}#'; return false;">
+					                    <i class="mine-icon fa fa-key fa-fw"></i>
+					                    {{ 'panel_admin.index.see_internal_results'|trans|raw }}
+					                </button>
+		                  			
+		                  			<br />
+		                  			<br />
+								  </div>
+								  <div class="span6 col-md-6">
+								  	{% if not admin.address is empty %}
+		                  			<button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('town_results', {'address' : admin.address }) }}'; return false;">
+					                    <i class="mine-icon fa fa-eye"></i>
+					                    {{ 'panel_admin.index.see_public_results'|trans|raw }}
+					                </button>
+					                <br />
+		                  			<br />
+					                {% endif %}
+								  </div>
+							  {% else %}
+							  	  <div class="span6 col-md-12 center">
+								  	<button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step8') }}#'; return false;">
+					                    <i class="mine-icon fa fa-key fa-fw"></i>
+					                    {{ 'panel_admin.index.see_internal_results'|trans|raw }}
+					                </button>
+		                  			
+		                  			<br />
+		                  			<br />
+								  </div>
+							  {% endif %}
 							</div> 
 							
 							<br />
