@@ -140,7 +140,7 @@
                       </div>
                       {% endif %}
                        
-                      <div class="col-xs-12 col-sm-offset-1">   
+                      <div class="col-xs-11 col-sm-offset-1">   
                       	  <div class="justify-block">
 		                      {{ 'town.step1.welcome'|trans({'%address%' : address, '%town%' : town|capitalize })|raw }}
 							  <br/><br/>
@@ -149,6 +149,8 @@
 						      </div>
 						  </div>
 					  </div>
+                      
+                      <br /><br />
                       
                       <div class="form-group{% if form.name.vars.errors|length > 0 %} has-error{% endif %}">
 						  {{ form_label(form.name, 'town.step1.name'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
