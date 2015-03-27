@@ -1897,6 +1897,9 @@ class CandidacyController extends Controller
     					
     					$admin_candidacy->setPassword($encodedPassword);
     					
+    					$entity_manager->persist($admin_candidacy);
+    					$entity_manager->flush();
+    					
     					// Send mail with login link for admin
     					$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
     					 
@@ -1916,9 +1919,13 @@ class CandidacyController extends Controller
     					
     					$this->get('mailer')->send($message);
     					
+    					$recovery_admin->setTimestamp(0); //Invalidate token by time
+    					$entity_manager->persist($recovery_admin);
+    					$entity_manager->flush();
+    					
     					$session->getFlashBag()->set('msg', "Se ha enviado un correo con los nuevos detalles de cuenta");
     				
-    					$this->recoverPasswordAction($request);
+    					return $this->recoverPasswordAction($request);
     				}
     			}
     		}
