@@ -22,7 +22,8 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\TownStepVerifyType;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\Vote\StepFilterType;
 
 use Symfony\Component\Form\FormError;
-use Symfony\Component\BrowserKit\Response;
+//use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\HttpFoundation\Response;
 
 use Listabierta\Bundle\MunicipalesBundle\Lib\tractis\SymfonyTractisApi;
 
@@ -1724,6 +1725,23 @@ class TownController extends Controller
 			));
 		}
 		
+		$borda_points = $admin_candidacy->getBordaPoints();
+		
+		// Use borda system defaults
+		if(empty($borda_points))
+		{
+			for($i = 0; $i <= 10; $i++)
+			{
+			// Apply borda system defaults values
+			$borda_points[$i] = $i != 0 ? 1 / $i : 0;
+			}
+		
+			$admin_candidacy->setBordaPoints($borda_points);
+		
+			$entity_manager->persist($admin_candidacy);
+			$entity_manager->flush();
+		}
+		
 		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
 		
 		$voters = $voter_repository->findBy(array('admin_id' => $admin_id));
@@ -1737,30 +1755,43 @@ class TownController extends Controller
 			
 			if(!empty($vote_info))
 			{
-				/*$total_voters += 1;
-				
-				$candidates = $vote_info['candidates'];
-				
-				foreach($candidates as $candidate)
+				$vote_info['response_string'] = $voter->getVoteResponseString();
+				$vote_info['response_time']   = $voter->getVoteResponseTime();
+
+				/*
+				$aux_candidate = array();
+				foreach($vote_info['candidates'] as $candidate)
 				{
-					$candidate_id = $candidate['id'];
-					$candidate_points = $candidate['points'];
-					if(isset($results[$candidate_id]))
-					{
-						$results[$candidate_id] += $candidate['points'];
-					}
-					else 
-					{
-						$results[$candidate_id] = $candidate['points'];
-					}
+					$aux_candidate[] = array(
+							'id' => $candidate['id'],
+							'points' => $candidate['points'],
+							'borda_points' => $borda_points[$candidate['points']],
+							//'total_points' => $borda_points[$candidate['points']],
+					)
 				}
 				*/
+				$results[] = $vote_info;
 			}
 		}
 		
-		return $this->render('MunicipalesBundle:Town:download_csv.html.twig', array(
-				'address' => $address,
-				'town' => $town_name,
-		));	
+		$filename = $address . '-votes-' . date('d_m_Y_H_i_s') . '.csv';
+
+		$response = $this->render('MunicipalesBundle:Town:download_csv.html.twig', array('data' => $results, 'borda_points' => $borda_points));
+		
+		$response->setStatusCode(Response::HTTP_OK);
+		
+		$response->prepare($request);
+		
+		$response->headers->set('Content-Type', 'application/force-download');
+		$response->headers->set('Content-Type', 'text/csv;charset=UTF-8');
+		//$response->headers->set('Content-Type', 'text/csv;charset=windows-1252');
+		$response->headers->set('Content-Description', 'Votes for ' . $town_name);
+		$response->headers->set('Content-Disposition', 'attachment;filename="' . $filename .'"');
+		$response->headers->set('Content-Transfer-Encoding', 'binary');
+		$response->headers->set('Pragma', 'no-cache');
+		$response->headers->set('Expires', '0');
+		
+		return $response;
+		//return $this->render('MunicipalesBundle:Town:download_csv.html.twig', array('data' => $results, 'borda_points' => $borda_points));
 	}
 }
