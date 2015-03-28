@@ -1,0 +1,6 @@
+admin_id,voter_id,candidate_id,points,borda_points,response_time,response_string
+{% for result in data %}
+{% for candidate in result['candidates'] %}
+{{ result['admin_id'] }},{{ result['voter_id'] }}, {{ candidate['id'] }},{{ candidate['points'] }},{{ borda_points[candidate['points']] }},{{ result['response_time'] }},{{ result['response_string'] }}
+{% endfor %}
+{% endfor %}
