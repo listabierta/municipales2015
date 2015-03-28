@@ -276,10 +276,12 @@
                                 </div>
                               </div>
                               {% if candidate.urlInfo is defined %}
+                              <br />
+                               <br />
                               <div class="label label-info label-xlg ">
                                 <div class="inline position-relative">
                                   <span>
-                                    <span class="white"><a href="{{ candidate.urlInfo }}" title="{{ 'town.step7.more_info'|trans }}">{{ 'town.step7.more_info'|trans }}</a></span>
+                                    <span class="white"><a style="color:white" href="{{ candidate.urlInfo }}" title="{{ 'town.step7.more_info'|trans }}">{{ 'town.step7.more_info'|trans }}</a></span>
                                   </span>
                                 </div>
                               </div>
@@ -300,7 +302,6 @@
 												<select class="form-control input-sm" aria-controls="dynamic-table" 
 														required="required" name="town_step_7[candidate_{{ candidate.id }}]" 
 														id="candidate_{{ candidate.id }}">
-														{{ index }}
 													{% set position_text = {   '0' : 'town.step7.position_text_0'|trans,
 													     				'1' : 'town.step7.position_text_1'|trans,
 													     				'2' : 'town.step7.position_text_2'|trans,
@@ -314,6 +315,7 @@
 													     				'10' : 'town.step7.position_text_10'|trans,
 																	}
 																	%}
+													<option value="0">{{ 'town.step7.position_text_0'|trans }}</option>
 													{% for index in 1..candidates|length  %}
 														<option value="{{ index }}">{{ position_text[index] }}</option>
 													{% endfor %}
