@@ -146,6 +146,7 @@ candidacy:
         accept_candidate: Aceptar candidato
         reject_candidate: Rechazar candidato
         delete_candidate: Borrar candidato
+        check_again: Volver a comprobar
         
     step7:
         html_title: Municipales 2015 - Alta de candidatura ciudadana

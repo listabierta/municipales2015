@@ -86,6 +86,13 @@
 		</table>
 	{% else %}
 		{{ 'candidacy.step6.no_candidates'|trans }}
+		
+		<br />
+		<br />
+		<button class="submit btn btn-success btn-next" 
+		onclick="location.href='{{ path('municipales_candidacy_step6') }}'; return false;">
+			     {{ 'candidacy.step6.check_again'|trans|raw }}
+		</button>
 	{% endif %}
 	
 	</p>
