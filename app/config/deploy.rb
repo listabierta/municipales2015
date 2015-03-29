@@ -21,7 +21,7 @@ set :git_enable_submodules, 1
 ssh_options[:forward_agent] = true
 
 set :shared_files,      ["app/config/parameters.yml"]
-set :shared_children,     [app_path + "/logs", web_path + "/docs", web_path + "/uploads", "vendor", app_path + "/sessions"]
+set :shared_children,     [app_path + "/logs", "web/docs", web_path + "/uploads", "vendor", app_path + "/sessions"]
 set :use_composer, true
 set :update_vendors, true
 
