@@ -1924,8 +1924,9 @@ class CandidacyController extends Controller
     					$entity_manager->flush();
     					
     					$session->getFlashBag()->set('msg', "Se ha enviado un correo con los nuevos detalles de cuenta");
-    				
-    					return $this->recoverPasswordAction($request);
+    					
+    					return $this->render('MunicipalesBundle:Candidacy:recover_password_success.html.twig', array(
+    					));
     				}
     			}
     		}
