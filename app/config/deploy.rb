@@ -26,7 +26,7 @@ set :use_composer, true
 set :update_vendors, true
 
 
-set :writable_dirs,       ["app/cache", "app/logs", app_path + "/docs"]
+set :writable_dirs,       ["app/cache", "app/logs", "web/docs"]
 set :webserver_user,      "www-data"
 set :user, "root" # #{deploy_user}
 set :permission_method,   :acl
