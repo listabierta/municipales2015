@@ -642,3 +642,8 @@ forms:
             
 footer:
     donate: ListAbierta.org es una iniciativa opensource y gratuita, contribuye a su sostenibilidad, gracias
+    
+
+'Bad credentials.': 'Credenciales erróneos.'
+'The presented password is invalid.': 'La contraseña es inválida'
+'The presented password cannot be empty.': 'La contraseña no puede ser vacía'
