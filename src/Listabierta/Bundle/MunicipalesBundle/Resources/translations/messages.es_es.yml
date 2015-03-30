@@ -317,14 +317,14 @@ town:
         academic_level_text_7: Estudios universitarios o equivalentes
         academic_level_text_8: Máster universitario o doctorado
         language: Idiomas
-        town.step7.languages_text_0: No considero necesario que hable idiomas
-        town.step7.languages_text_1: Inglés
-        town.step7.languages_text_2: Otro idioma europeo
-        town.step7.languages_text_3: Otro idioma no europeo
-        town.step7.languages_text_4: Catalá
-        town.step7.languages_text_5: Galego
-        town.step7.languages_text_6: Euskara
-        town.step7.languages_text_7: Valenciá
+        languages_text_0: No considero necesario que hable idiomas
+        languages_text_1: Inglés
+        languages_text_2: Otro idioma europeo
+        languages_text_3: Otro idioma no europeo
+        languages_text_4: Catalá
+        languages_text_5: Galego
+        languages_text_6: Euskara
+        languages_text_7: Valenciá
         public_values: Valores morales que prioriza
         public_values_text_1: HONESTIDAD
         public_values_text_2: TRANSPARENCIA
