@@ -390,16 +390,16 @@ town:
         additionalInfo: Biografía e información adicional
         more_info: Más información en la web
         position_text_0: Sin puntuar
-        position_text_1: Primero
-        position_text_2: Segundo
-        position_text_3: Tercero
-        position_text_4: Cuarto
-        position_text_5: Quinto
-        position_text_6: Sexto
-        position_text_7: Séptimo
-        position_text_8: Octavo
-        position_text_9: Noveno
-        position_text_10: Décimo
+        position_text_1: Primero/a
+        position_text_2: Segundo/a
+        position_text_3: Tercero/a
+        position_text_4: Cuarto/a
+        position_text_5: Quinto/a
+        position_text_6: Sexto/a
+        position_text_7: Séptimo/a
+        position_text_8: Octavo/a
+        position_text_9: Noveno/a
+        position_text_10: Décimo/a
 
     step8:
         header: Asigna puntuaciones
