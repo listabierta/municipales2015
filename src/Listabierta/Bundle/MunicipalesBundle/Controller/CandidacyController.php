@@ -1827,6 +1827,9 @@ class CandidacyController extends Controller
     			$this->get('mailer')->send($message);
     			
     			$session->getFlashBag()->set('msg', "Se ha enviado un enlace de recuperación al correo en uso por la cuenta");
+    			
+    			return $this->render('MunicipalesBundle:Candidacy:recover_password_success.html.twig', array(
+    			));
     		}
     		
     	}
