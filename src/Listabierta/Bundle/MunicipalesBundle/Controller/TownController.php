@@ -1346,7 +1346,16 @@ class TownController extends Controller
 				$symfony_tractis_api = new SymfonyTractisApi($tractis_api_identifier, $tractis_api_secret, $tsa_cert_chain_file);
 				
 				// Sign a valid vote
-				$response = $symfony_tractis_api::sign(serialize($vote_info));
+				try 
+				{
+					$response = $symfony_tractis_api::sign(serialize($vote_info));
+				}
+				catch(\Exception $e)
+				{
+					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+							'error' => 'Error grave en el firmado de voto TSA. Respuesta de tractis: ' . $e->getMessage(),
+					));
+				}
 				
 				// Check response data
 				if(empty($response))
