@@ -23,6 +23,8 @@ namespace Listabierta\Bundle\MunicipalesBundle\Lib\tractis;
 
 class TrustedTimestamps
 {
+	const DEBUG = FALSE;
+	
     /**
      * Creates a Timestamp Requestfile from a hash
      *
@@ -40,12 +42,21 @@ class TrustedTimestamps
         $retarray = array();
         exec($cmd." 2>&1", $retarray, $retcode);
         
+        if(self::DEBUG)
+        {
+        	var_dump($cmd);
+        }
+        
         if ($retcode !== 0)
+        {
             throw new \Exception("OpenSSL does not seem to be installed: ".implode(", ", $retarray));
+        }
         
         if (stripos($retarray[0], "openssl:Error") !== false)
+        {
             throw new \Exception("There was an error with OpenSSL. Is version >= 0.99 installed?: ".implode(", ", $retarray));
-
+        }
+        
         return $outfilepath;
     }
 
@@ -106,11 +117,25 @@ class TrustedTimestamps
         exec($cmd." 2>&1", $retarray, $retcode);
         
         if ($retcode !== 0)
+        {
             throw new \Exception("The reply failed: ".implode(", ", $retarray));
+        }
         
         $matches = array();
         $response_time = 0;
 
+        /*
+         This error could appear if tractis API is down
+         
+         Status info:
+		 Status: Rejected.
+		 Status description: Server could not process request due to an internal error
+		 Failure info: unspecified
+		
+		 TST info:
+		 Not included.
+         */
+        
         /*
          * Format of answer:
          * 
@@ -128,7 +153,9 @@ class TrustedTimestamps
         }
 
         if (!$response_time)
+        {
             throw new \Exception("The Timestamp was not found"); 
+        }
             
         return $response_time;
     }
@@ -144,18 +171,26 @@ class TrustedTimestamps
     public static function validate ($hash, $base64_response_string, $response_time, $tsa_cert_file)
     {
         if (strlen($hash) !== 40)
+        {
             throw new \Exception("Invalid Hash");
+        }
         
         $binary_response_string = base64_decode($base64_response_string);
         
         if (!strlen($binary_response_string))
+        {
             throw new \Exception("There was no response-string");    
-            
+        }
+        
         if (!intval($response_time))
+        {
             throw new \Exception("There is no valid response-time given");
+        }
         
         if (!file_exists($tsa_cert_file))
+        {
             throw new \Exception("The TSA-Certificate could not be found");
+        }
         
         $responsefile = self::createTempFile($binary_response_string);
 
@@ -201,10 +236,14 @@ class TrustedTimestamps
         $tempfilename = tempnam(sys_get_temp_dir(), rand());
 
         if (!file_exists($tempfilename))
+        {
             throw new \Exception("Tempfile could not be created");
+        }
             
         if (!empty($str) && !file_put_contents($tempfilename, $str))
+        {
             throw new \Exception("Could not write to tempfile");
+        }
 
         return $tempfilename;
     }
