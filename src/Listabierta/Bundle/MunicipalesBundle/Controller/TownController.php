@@ -1298,6 +1298,7 @@ class TownController extends Controller
 			$candidate_voters = array();
 			$candidate_points_values = array();
 			$candidate_points_values_aux = array();
+			$extra_data_counter = 0;
 			foreach($extra_data as $candidate_key => $candidate_points)
 			{
 				$candidate_id = intval(str_replace('candidate_', '', $candidate_key));
@@ -1309,10 +1310,11 @@ class TownController extends Controller
 				if(intval($candidate_points) > 0)
 				{
 					$candidate_points_values_aux = $candidate_points;
+					$extra_data_counter += 1;
 				}
 			}
 				
-			if(count($extra_data) != count(array_unique($candidate_points_values_aux)))
+			if($extra_data_counter != count(array_unique($candidate_points_values_aux)))
 			{
 				$form->addError(new FormError('Las posiciones asignadas no pueden repetirse salvo SIN PUNTUAR'));
 				$ok = FALSE;
