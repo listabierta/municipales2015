@@ -1309,7 +1309,7 @@ class TownController extends Controller
 				// Only count valid points that could not repeat (no points could repeat)
 				if(intval($candidate_points) > 0)
 				{
-					$candidate_points_values_aux = $candidate_points;
+					$candidate_points_values_aux[] = $candidate_points;
 					$extra_data_counter += 1;
 				}
 			}
