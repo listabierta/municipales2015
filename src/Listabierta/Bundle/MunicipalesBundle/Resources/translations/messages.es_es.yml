@@ -140,6 +140,7 @@ candidacy:
         action_header: Acción
         accept: Aceptar
         reject: Rechazar
+        reject_warning: <b>ATENCIÓN</b>: debes borrar las candidaturas que tengan la información incompleta (que les falta la foto por ejemplo), de esta forma les llegará un mensaje y podrán volver a inscribirse. Las candidaturas rechazadas, no podrán volver a inscribirse
         delete: Borrar
         accepted: Aceptado
         rejected: Rechazado
