@@ -42,6 +42,16 @@
                         <p class="lead2 text-center">
                         
     {% if candidates|length > 0 %}
+    	
+    	<div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline">
+    		<div class="alert alert-warning">
+    			{{ 'candidacy.step6.reject_warning'|trans|raw }}
+    		</div>
+    	</div>
+    	
+    	<br /> 
+    	<br />
+    	
     	<table class="table">
     		<tr>
     			<td>{{ 'candidacy.step6.name_header'|trans }}</td>
