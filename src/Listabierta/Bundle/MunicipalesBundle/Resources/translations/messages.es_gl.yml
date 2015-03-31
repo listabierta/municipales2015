@@ -386,7 +386,7 @@ mail:
     admin_email: Director de Correo electrónico
   candidate_deleted:
     hello: Ola
-    deleted: A súa candidatura foi eliminada polo administrador
+    deleted: A súa candidatura foi eliminada polo administrador. Pode ser que introduciras datos erróneos ou incompletos, podes voltar a enviala se o desexas
     admin_email: Director de Correo electrónico
   candidate_signup:
     new: Houbo un novo candidato nomeado
