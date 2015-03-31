@@ -386,7 +386,7 @@ mail:
     admin_email: Kudeatzailearen E-maila
   candidate_deleted:
     hello: Kaixo
-    deleted: Kudeatzaileak ezabatu egin du zure hautagaitza
+    deleted: Kudeatzaileak ezabatu egin du zure hautagaitza. Betebarik edo eta oker dauden datuak bete omen dituzu. Berriz bidal dezakezu nahi izanez gero .
     admin_email: Kudeatzailearen E-maila
   candidate_signup:
     new: Hautagai berria erregistratu egin da.
