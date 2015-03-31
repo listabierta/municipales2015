@@ -386,7 +386,7 @@ mail:
     admin_email: Adreça de correu de l'administrador
   candidate_deleted:
     hello: Hola
-    deleted: La teua candidatura ha estat esborrada per l'administrador
+    deleted: La teua candidatura ha estat esborrada per l'administrador, pot ser que hagis introduït dades errònies o incompletes, pots tornar a enviar-la si ho desitges.
     admin_email: Adreça de correu de l'administrador
   candidate_signup:
     new: S'ha registrat un nou candidat amb nom
