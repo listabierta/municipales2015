@@ -386,7 +386,7 @@ mail:
     admin_email: E-mail manager
   candidate_deleted:
     hello: Hello
-    deleted: Your application has been deleted by the administrator
+    deleted: Your application has been deleted by the administrator. It may be possible that it was not completed or wrong, you can submit it again.
     admin_email: E-mail admin
   candidate_signup:
     new: A new named candidate has been registered
