@@ -567,12 +567,12 @@ mail:
         
     candidate_rejected:
         hello: Hola
-        rejected: Tu candidatura ha sido rechazada por el administrador
+        rejected: Tu candidatura ha sido rechazada por el administrador.
         admin_email: Dirección de correo del administrador
 
     candidate_deleted:
         hello: Hola
-        deleted: Tu candidatura ha sido borrada por el administrador
+        deleted: Tu candidatura ha sido borrada por el administrador, puede que hayas introducido datos erróneos o incompletos, puedes volver a enviarla si lo deseas.
         admin_email: Dirección de correo del administrador
 
     candidate_signup:
