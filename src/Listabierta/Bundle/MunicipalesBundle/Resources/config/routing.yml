@@ -287,6 +287,11 @@ manager_purge_candidates:
 manager_spam_test:
     path:     /manager/spam-test
     defaults: { _controller: MunicipalesBundle:Manager:spamTest }
+    
+manager_launch_mail:
+    path:     /manager/launch-mail
+    defaults: { _controller: MunicipalesBundle:Manager:launchMail }
+   
    
 # http://municipales2015.listabierta.org./sms/inbound   
 municipales_sms_inbound_callback:
