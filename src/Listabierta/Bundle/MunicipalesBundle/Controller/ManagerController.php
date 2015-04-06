@@ -243,7 +243,8 @@ class ManagerController extends Controller
 			$subject = 'Miguel Prados de listAbierta.org, ¿Tenéis forma jurídica para presentaros a las elecciones municipales de mayo 2.015? Podéis contar con estas herramientas';
 			$render_view = $this->renderView('MunicipalesBundle:Mail:launch.html.twig', array());
 
-			$csv_file = 'suscribers.csv';
+			$document_root = $this->getRequest()->server->get('DOCUMENT_ROOT');
+			$csv_file = $document_root . '/suscribers.csv';
 
 			$parsed = file($csv_file, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
 			
@@ -263,27 +264,29 @@ class ManagerController extends Controller
 				{
 					// Each row contains a record.
 					$headers = array_slice($csv, 0, 1);
-					$content = array_slice($csv, 1); // Skip headers
+					$content = array_slice($csv, 1 + $min_counter, $max_counter); // Skip headers
 					if(!empty($content))
 					{
 						$counter = 0;
 						foreach($content as $line => $row)
 						{
-							if($counter >= $min_counter && $counter <= $max_counter)
-							{
 								$suscriber_mail    = $row[0];
 								//$suscriber_name    = $row[1];
+								try
+								{
+									$message = \Swift_Message::newInstance()
+									->setSubject($subject)
+									->setFrom('noreply@' . rtrim($host, '.'), 'No responder')
+									->setTo($suscriber_mail)
+									->setBody($render_view, 'text/html');
 								
-								$message = \Swift_Message::newInstance()
-								->setSubject($subject)
-								->setFrom('noreply@' . rtrim($host, '.'), 'No responder')
-								->setTo($suscriber_mail)
-								->setBody($render_view, 'text/html');
-								
-								$this->get('mailer')->send($message);
-								
-								$output .= $suscriber_mail . ' ✓<br/>';
-							}
+									$this->get('mailer')->send($message);
+									$output .= $suscriber_mail . ' ✓<br/>';
+								}
+								catch(\Exception $e)
+								{
+									$output .= $suscriber_mail . ' error: ' . $e->getMessage() . '<br/>';
+								}
 						}
 					}
 				}
