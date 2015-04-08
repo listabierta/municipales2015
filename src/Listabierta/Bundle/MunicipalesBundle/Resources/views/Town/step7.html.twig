@@ -316,7 +316,7 @@
 																	}
 																	%}
 													<option value="0">{{ 'town.step7.position_text_0'|trans }}</option>
-													{% for index in 1..candidates|length  %}
+													{% for index in 1..max_candidates_allowed|length  %}
 														<option value="{{ index }}">{{ position_text[index] }}</option>
 													{% endfor %}
 												</select>

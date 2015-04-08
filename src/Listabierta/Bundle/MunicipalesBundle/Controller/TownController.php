@@ -29,7 +29,7 @@ use Listabierta\Bundle\MunicipalesBundle\Lib\tractis\SymfonyTractisApi;
 
 class TownController extends Controller
 {
-	const MAX_AVAILABLE_CANDIDATES = 5;
+	const MAX_AVAILABLE_CANDIDATES = 10;
 	
 	public function indexAction(Request $request = NULL)
 	{
@@ -1416,12 +1416,20 @@ class TownController extends Controller
 			}
 		}
 	
+		$max_candidates_allowed = self::MAX_AVAILABLE_CANDIDATES;
+		
+		if($address == 'sevillaparticipa')
+		{
+			$max_candidates_allowed = 7; // Special condition for http://primarias.participa.info/sevillaparticipa/vota
+		}
+		
 		return $this->render('MunicipalesBundle:Town:step7.html.twig', array(
 				'address' => $address,
 				'form' => $form->createView(),
 				'errors' => $form->getErrors(),
 				'candidates' => $valid_candidates,
 				'documents_path' => $documents_path,
+				'max_candidates_allowed' => $max_candidates_allowed,
 		));
 	}
 	
