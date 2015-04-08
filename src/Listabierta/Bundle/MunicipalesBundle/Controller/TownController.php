@@ -263,7 +263,7 @@ class TownController extends Controller
 			}
 		}
 
-		$enable_geolocation = isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == 'primarias.ahorasevilla.org';
+		$enable_geolocation = isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == 'primarias.participa.info';
 		
 		if($enable_geolocation)
 		{
