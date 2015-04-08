@@ -1286,6 +1286,14 @@ class TownController extends Controller
 		$town_slug = $this->get('slugify')->slugify($town_name);
 			
 		$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
+		
+
+		$max_candidates_allowed = self::MAX_AVAILABLE_CANDIDATES;
+		
+		if($address == 'sevillaparticipa')
+		{
+			$max_candidates_allowed = 7; // Special condition for http://primarias.participa.info/sevillaparticipa/vota
+		}
 	
 		if ($form->isValid())
 		{
@@ -1334,6 +1342,16 @@ class TownController extends Controller
 				));
 			}
 				
+			if($address == 'sevillaparticipa')
+			{
+				// Special condition for http://primarias.participa.info/sevillaparticipa/vota
+				if($extra_data_counter != $max_candidates_allowed)
+				{
+					$form->addError(new FormError('Deben asignarse exactamente ' . $max_candidates_allowed . ' posiciones de candidatos para realizar el voto'));
+					$ok = FALSE;
+				}
+			}
+			
 			if($ok)
 			{
 				// Store the result in database
@@ -1415,14 +1433,7 @@ class TownController extends Controller
 				);
 			}
 		}
-	
-		$max_candidates_allowed = self::MAX_AVAILABLE_CANDIDATES;
-		
-		if($address == 'sevillaparticipa')
-		{
-			$max_candidates_allowed = 7; // Special condition for http://primarias.participa.info/sevillaparticipa/vota
-		}
-		
+
 		return $this->render('MunicipalesBundle:Town:step7.html.twig', array(
 				'address' => $address,
 				'form' => $form->createView(),
