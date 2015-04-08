@@ -10,16 +10,37 @@
 				$(".explanation_dni").colorbox({inline:true, width:"15%"});
 
 				{% if enable_geolocation %}
-					function geo_error() 
+					function geo_error(error) 
 					{
-						if (err.code == 1) 
+						var msg_error = '';
+						
+						// http://dev.w3.org/geo/api/spec-source.html#position_error_interface
+						// (0) unknown; (1) permission denied; (2) position unavailable; or (3) timeout
+						if(error.code == error.PERMISSION_DENIED) 
 						{
-							console.log("User said no!");
+							msg_error = 'User said no!';
+							console.log(msg_error);
+						}
+						else if(error.code == error.POSITION_UNAVAILABLE) 
+						{
+							msg_error = 'Error: position unavailable!';
+							console.log(msg_error);
+						}
+						else if(error.code == error.TIMEOUT) 
+						{
+							msg_error = 'Error: timeout getting geolocation';
+							console.log(msg_error);
 						}
 						else
 						{
-							console.log("Sorry, no position available.");
+							msg_error = 'Sorry, no position available. (error code: ' + error.code;
+							console.log(msg_error);
 						}
+
+						$('#geolocation_content').css('display', 'none');
+						$("#live-geolocation").parent().css('display', 'block');
+						$("#live-geolocation").removeClass('alert-success').addClass('alert-error');
+						$("#live-geolocation").html(msg_error);
 					}
 	
 					var geo_options = {
@@ -54,6 +75,35 @@
 
 								console.log(img.src)
 								$("#live-geolocation").append(img);
+
+								var geocode_ajax = $.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=true', 
+								function(data) 
+								{
+									console.log('success');
+
+									$('#geolocation_content').css('display', 'block');
+									
+									console.log(data);
+								})
+								.done(function(data) 
+								{
+									console.log('finished geolocation');
+								})
+								.fail(function() 
+								{
+									var msg_error = 'geolocation error: could not fetch JSON for coordinates';
+									
+									//alert(msg_error);
+									$('#geolocation_content').css('display', 'none');
+									$("#live-geolocation").parent().css('display', 'block');
+									$("#live-geolocation").removeClass('alert-success').addClass('alert-error');
+									$("#live-geolocation").html(msg_error);
+
+								})
+								.always(function() 
+								{
+									//alert("finished");
+								}, 'json');
 								    
 							},
 							geo_error,
@@ -139,77 +189,81 @@
                       		<div class="alert alert-success" id="live-geolocation"></div>
                       </div>
                       {% endif %}
-                       
-                      <div class="col-xs-11 col-sm-offset-1">   
-                      	  <div class="justify-block">
-		                      {{ 'town.step1.welcome'|trans({'%address%' : address, '%town%' : town|capitalize })|raw }}
-							  <br/><br/>
-							  <div class="embed-responsive embed-responsive-16by9">
-						           <iframe  class="embed-responsive-item" src="https://www.youtube.com/embed/7yOx3TfxlNM"></iframe>
-						      </div>
+                      
+                      <div id="geolocation_content" style="display:none">
+	                      <div class="col-xs-11 col-sm-offset-1">   
+	                      	  <div class="justify-block">
+			                      {{ 'town.step1.welcome'|trans({'%address%' : address, '%town%' : town|capitalize })|raw }}
+								  <br/><br/>
+								  <div class="embed-responsive embed-responsive-16by9">
+							           <iframe  class="embed-responsive-item" src="https://www.youtube.com/embed/7yOx3TfxlNM"></iframe>
+							      </div>
+							  </div>
+							  <br /><br />
 						  </div>
-						  <br /><br />
-					  </div>
-                      
-                      <br /><br />
-                      
-                      <div class="form-group{% if form.name.vars.errors|length > 0 %} has-error{% endif %}">
-						  {{ form_label(form.name, 'town.step1.name'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
-						  {{ form_widget(form.name) }}
-						  {% if form.name.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.name) }}</div>{% endif %}
-					  </div>
-
-					  <div class="form-group{% if form.lastname.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.lastname, 'town.step1.lastname'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    	      {{ form_widget(form.lastname) }}
-			    	      {% if form.lastname.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.lastname) }}</div>{% endif %}
-					  </div>
-			
-					  <div class="form-group{% if form.dni.vars.errors|length > 0 %} has-error{% endif %}">
-			    	  	  {{ form_label(form.dni, 'town.step1.dni'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.dni) }}
-			    	  	  {% if form.dni.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.dni) }}{% endif %}
-					  </div>
-					  {# No needed for now 
-					  <div class="form-group{% if form.username.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.username, 'town.step1.username'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.username) }}
-			    		  {% if form.username.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.username) }}</div>{% endif %}
-			    		  
-					  </div>
-			
-					  <div class="form-group{% if form.password.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.password, 'town.step1.password'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.password) }}
-			    		  {% if form.password.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.password) }}</div>{% endif %}
-					  </div>
-					  #}
-					  
-					  <div class="form-group{% if form.email.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.email, 'town.step1.email'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.email) }}
-			    		  {% if form.email.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.email) }}</div>{% endif %}
-					  </div>
-
-					  <div class="form-group{% if form.phone.vars.errors|length > 0 %} has-error{% endif %}">
-					      {{ form_label(form.phone, 'town.step1.phone'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-					      {{ form_widget(form.phone) }}
-					      {% if form.phone.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.phone) }}</div>{% endif %}
-					      <a class='explanation_dni' href="#explanation_dni_content"><img style="margin-left:15px;width:16px;height:16px" src="{{ asset('bundles/municipales/images/question.png') }}"
-					       alt="{{ 'town.step1.explanation'|trans }}"
-					       title="{{ 'town.step1.explanation'|trans }}"/></a>
-					    
-					      <!-- This contains the hidden content for inline calls -->
-						  <div style='display:none'>
-							  <div id='explanation_dni_content' style='width:200px;padding:10px; background:#fff;'>
-								  {{ 'town.step1.explanation_dni'|trans }}
+	                      
+	                      <br /><br />
+	                      
+	                      <div class="form-group{% if form.name.vars.errors|length > 0 %} has-error{% endif %}">
+							  {{ form_label(form.name, 'town.step1.name'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+							  {{ form_widget(form.name) }}
+							  {% if form.name.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.name) }}</div>{% endif %}
+						  </div>
+	
+						  <div class="form-group{% if form.lastname.vars.errors|length > 0 %} has-error{% endif %}">
+				    		  {{ form_label(form.lastname, 'town.step1.lastname'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+				    	      {{ form_widget(form.lastname) }}
+				    	      {% if form.lastname.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.lastname) }}</div>{% endif %}
+						  </div>
+				
+						  <div class="form-group{% if form.dni.vars.errors|length > 0 %} has-error{% endif %}">
+				    	  	  {{ form_label(form.dni, 'town.step1.dni'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+				    		  {{ form_widget(form.dni) }}
+				    	  	  {% if form.dni.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.dni) }}{% endif %}
+						  </div>
+						  {# No needed for now 
+						  <div class="form-group{% if form.username.vars.errors|length > 0 %} has-error{% endif %}">
+				    		  {{ form_label(form.username, 'town.step1.username'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+				    		  {{ form_widget(form.username) }}
+				    		  {% if form.username.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.username) }}</div>{% endif %}
+				    		  
+						  </div>
+				
+						  <div class="form-group{% if form.password.vars.errors|length > 0 %} has-error{% endif %}">
+				    		  {{ form_label(form.password, 'town.step1.password'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+				    		  {{ form_widget(form.password) }}
+				    		  {% if form.password.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.password) }}</div>{% endif %}
+						  </div>
+						  #}
+						  
+						  <div class="form-group{% if form.email.vars.errors|length > 0 %} has-error{% endif %}">
+				    		  {{ form_label(form.email, 'town.step1.email'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+				    		  {{ form_widget(form.email) }}
+				    		  {% if form.email.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.email) }}</div>{% endif %}
+						  </div>
+	
+						  <div class="form-group{% if form.phone.vars.errors|length > 0 %} has-error{% endif %}">
+						      {{ form_label(form.phone, 'town.step1.phone'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+						      {{ form_widget(form.phone) }}
+						      {% if form.phone.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.phone) }}</div>{% endif %}
+						      <a class='explanation_dni' href="#explanation_dni_content"><img style="margin-left:15px;width:16px;height:16px" src="{{ asset('bundles/municipales/images/question.png') }}"
+						       alt="{{ 'town.step1.explanation'|trans }}"
+						       title="{{ 'town.step1.explanation'|trans }}"/></a>
+						    
+						      <!-- This contains the hidden content for inline calls -->
+							  <div style='display:none'>
+								  <div id='explanation_dni_content' style='width:200px;padding:10px; background:#fff;'>
+									  {{ 'town.step1.explanation_dni'|trans }}
+								  </div>
 							  </div>
 						  </div>
-					  </div>
-					  
-					  <div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline"><div class="alert alert-warning">{{ 'town.step1.warning_text'|trans|raw }}</div></div>
-					  
-                      
+						  
+						  <div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline"><div class="alert alert-warning">{{ 'town.step1.warning_text'|trans|raw }}</div></div>
+						  
+	                      
+	                    </div>
+                    
+                    
                     </div>
                   </div>
                 </div>
