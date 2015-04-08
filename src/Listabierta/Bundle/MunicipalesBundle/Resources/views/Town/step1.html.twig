@@ -18,7 +18,14 @@
 						// (0) unknown; (1) permission denied; (2) position unavailable; or (3) timeout
 						if(error.code == error.PERMISSION_DENIED) 
 						{
-							msg_error = 'User said no!';
+							msg_error = 'Has rechazado permitir la detección geográfica de tu ubicación mediante el navegador, ' +
+								        'en consecuencia no podemos verificar que te encuentres en Sevilla y poder permitirte ' + 
+								        'realizar la votación. Si aún deseas proceder, debes cambiar la configuración a Permitir, ' +
+								        'por ejemplo en Google Chrome desde ' +
+								        'Configuración avanzada > Privacidad > Configuración de contenido > Excepciones de ubicación geográfica' +
+								        ' y pulsa "Permitir" para primarias.participa.info. Más información en: ' +
+								        'http://www.wikihow.com/Change-Your-Location-Sharing-Setting-in-Google-Chrome';
+								        
 							console.log(msg_error);
 						}
 						else if(error.code == error.POSITION_UNAVAILABLE) 
@@ -38,8 +45,9 @@
 						}
 
 						$('#geolocation_content').css('display', 'none');
+						$('#wizard-actions-box').css('display', 'none');
 						$("#live-geolocation").parent().css('display', 'block');
-						$("#live-geolocation").removeClass('alert-success').addClass('alert-error');
+						$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
 						$("#live-geolocation").html(msg_error);
 					}
 	
@@ -95,8 +103,9 @@
 									
 									//alert(msg_error);
 									$('#geolocation_content').css('display', 'none');
+									$('#wizard-actions-box').css('display', 'none');
 									$("#live-geolocation").parent().css('display', 'block');
-									$("#live-geolocation").removeClass('alert-success').addClass('alert-error');
+									$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
 									$("#live-geolocation").html(msg_error);
 
 								})
@@ -112,7 +121,14 @@
 					} 
 					else 
 					{
-						console.log('geolocation IS NOT available')
+						var msg_error = 'geolocation IS NOT available';
+						console.log(msg_error);
+
+						$('#geolocation_content').css('display', 'none');
+						$('#wizard-actions-box').css('display', 'none');
+						$("#live-geolocation").parent().css('display', 'block');
+						$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
+						$("#live-geolocation").html(msg_error);
 	
 						/*
 						 if(geoPosition.init()){  // Geolocation Initialisation
@@ -267,10 +283,12 @@
                     </div>
                   </div>
                 </div>
-
-                <hr>
-                <div class="wizard-actions">
-                  {{ form_widget(form.continue, { 'label': 'town.step1.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
+				
+				<div id="wizard-actions-box">
+	                <hr>
+	                <div  class="wizard-actions">
+	                  {{ form_widget(form.continue, { 'label': 'town.step1.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
+	                </div>
                 </div>
               </div>
               
