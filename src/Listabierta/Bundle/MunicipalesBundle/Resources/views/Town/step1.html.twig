@@ -97,9 +97,10 @@
 										var data_city;
 										for(var i = 0; i < len; i++ ) 
 										{
-										    if(data.results[0].address_components[i].short_name.length == 'Sevilla' ) 
+											console.log(data.results[0].address_components[i].short_name)
+										    if(data.results[0].address_components[i].short_name == 'Sevilla' ) 
 											{
-										    	data_city = data.results[0].address_components[i];
+										    	data_city = data.results[0].address_components[i].short_name;
 										        break;
 										    }
 										}
