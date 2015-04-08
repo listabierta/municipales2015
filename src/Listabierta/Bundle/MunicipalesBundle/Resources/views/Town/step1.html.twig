@@ -75,14 +75,14 @@
 										  	  ' <br/>Heading: ' +  position.coords.heading +
 										  	  ' <br/>Speed: ' +  position.coords.speed
 										  	  
-								   console.log(geo_msg);
-								  $("#live-geolocation").html(geo_msg);
+								 console.log(geo_msg);
+								  
 								  
 								var img = new Image();
 								img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + position.coords.latitude + "," + position.coords.longitude + "&zoom=13&size=300x300&sensor=false";
 
 								console.log(img.src)
-								$("#live-geolocation").append(img);
+								
 
 								var geocode_ajax = $.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=true&region=es', 
 								function(data) 
@@ -91,21 +91,24 @@
 
 									console.log(data);
 									
-									if(data && data.status && data.status == 'ok')
+									if(data && data.status && data.status == 'OK')
 									{
-										var len = results[0].address_components.length;
+										var len = data.results[0].address_components.length;
 										var data_city;
 										for(var i = 0; i < len; i++ ) 
 										{
-										    if(results[0].address_components[i].short_name.length == 'Sevilla' ) 
+										    if(data.results[0].address_components[i].short_name.length == 'Sevilla' ) 
 											{
-										    	data_city = results[0].address_components[i];
+										    	data_city = data.results[0].address_components[i];
 										        break;
 										    }
 										}
 
 										if(data_city == 'Sevilla')
 										{
+											$("#live-geolocation").html(geo_msg);
+											$("#live-geolocation").append(img);
+											
 											$('#geolocation_content').css('display', 'block');
 										}
 										else
@@ -118,6 +121,7 @@
 											$("#live-geolocation").parent().css('display', 'block');
 											$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
 											$("#live-geolocation").html(msg_error + '<br/><br/>' + geo_msg);
+											$("#live-geolocation").append(img);
 										}
 									}
 									else
@@ -130,6 +134,7 @@
 										$("#live-geolocation").parent().css('display', 'block');
 										$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
 										$("#live-geolocation").html(msg_error + '<br/><br/>' + geo_msg);
+										$("#live-geolocation").append(img);
 									}
 								})
 								.done(function(data) 
