@@ -84,14 +84,53 @@
 								console.log(img.src)
 								$("#live-geolocation").append(img);
 
-								var geocode_ajax = $.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=true', 
+								var geocode_ajax = $.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=true&region=es', 
 								function(data) 
 								{
 									console.log('success');
 
-									$('#geolocation_content').css('display', 'block');
-									
 									console.log(data);
+									
+									if(data && data.status && data.status == 'ok')
+									{
+										var len = results[0].address_components.length;
+										var data_city;
+										for(var i = 0; i < len; i++ ) 
+										{
+										    if(results[0].address_components[i].short_name.length == 'Sevilla' ) 
+											{
+										    	data_city = results[0].address_components[i];
+										        break;
+										    }
+										}
+
+										if(data_city == 'Sevilla')
+										{
+											$('#geolocation_content').css('display', 'block');
+										}
+										else
+										{
+											var msg_error = 'No se ha detectado una ubicación cercana a Sevilla. Voto no permitido';
+											
+											//alert(msg_error);
+											$('#geolocation_content').css('display', 'none');
+											$('#wizard-actions-box').css('display', 'none');
+											$("#live-geolocation").parent().css('display', 'block');
+											$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
+											$("#live-geolocation").html(msg_error + '<br/><br/>' + geo_msg);
+										}
+									}
+									else
+									{
+										var msg_error = 'geolocation error: could not fetch valid JSON status for coordinates';
+										
+										//alert(msg_error);
+										$('#geolocation_content').css('display', 'none');
+										$('#wizard-actions-box').css('display', 'none');
+										$("#live-geolocation").parent().css('display', 'block');
+										$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
+										$("#live-geolocation").html(msg_error + '<br/><br/>' + geo_msg);
+									}
 								})
 								.done(function(data) 
 								{
