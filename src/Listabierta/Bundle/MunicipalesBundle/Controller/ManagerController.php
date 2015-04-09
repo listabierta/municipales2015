@@ -195,7 +195,7 @@ class ManagerController extends Controller
 	 */
 	public function spamTestAction(Request $request = NULL)
 	{
-		if($this->container->getParameter('kernel.environment') == 'prod')
+		if($this->container->getParameter('kernel.environment') == 'prod' && FALSE)
 		{
 			$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
 			 
@@ -218,6 +218,145 @@ class ManagerController extends Controller
 			$this->get('mailer')->send($message);
 			
 			return new Response('OK', 200);
+		}
+		else
+		{
+			return new Response('Access only enabled in prod mode', 403);
+		}
+	}
+	
+	/**
+	 *
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function launchMailAction(Request $request = NULL)
+	{
+		$min_counter = isset($_REQUEST['min']) ? intval($_REQUEST['min']) : 0;
+		$max_counter = isset($_REQUEST['max']) ? intval($_REQUEST['max']) : 100;
+		$output = NULL;
+		
+		if($this->container->getParameter('kernel.environment') == 'prod' && FALSE)
+		{
+			$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+
+			$subject = 'Miguel Prados de listAbierta.org, ¿Tenéis forma jurídica para presentaros a las elecciones municipales de mayo 2.015? Podéis contar con estas herramientas';
+			$render_view = $this->renderView('MunicipalesBundle:Mail:launch.html.twig', array());
+
+			$document_root = $this->getRequest()->server->get('DOCUMENT_ROOT');
+			$csv_file = $document_root . '/suscribers.csv';
+
+			$parsed = file($csv_file, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
+			
+			if($parsed === FALSE)
+			{
+				echo 'Filename ' . $csv_file . ' could not be parsed from CSV format.<br />';
+			}
+			else
+			{
+				$csv = array_map('str_getcsv', $parsed);
+			
+				if(empty($csv))
+				{
+					echo 'Filename is empty.<br />';
+				}
+				else
+				{
+					// Each row contains a record.
+					$headers = array_slice($csv, 0, 1);
+					$content = array_slice($csv, 1 + $min_counter, $max_counter); // Skip headers
+					if(!empty($content))
+					{
+						$counter = 0;
+						foreach($content as $line => $row)
+						{
+								$suscriber_mail    = $row[0];
+								//$suscriber_name    = $row[1];
+								try
+								{
+									$message = \Swift_Message::newInstance()
+									->setSubject($subject)
+									->setFrom('noreply@' . rtrim($host, '.'), 'No responder')
+									->setTo($suscriber_mail)
+									->setBody($render_view, 'text/html');
+								
+									$this->get('mailer')->send($message);
+									$output .= $suscriber_mail . ' ✓<br/>';
+								}
+								catch(\Exception $e)
+								{
+									$output .= $suscriber_mail . ' error: ' . $e->getMessage() . '<br/>';
+								}
+						}
+					}
+				}
+			}
+
+			return new Response('OK<br/><br/>' . $output , 200);
+		}
+		else
+		{
+			return new Response('Access only enabled in prod mode', 403);
+		}
+	}
+	
+	/**
+	 *
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function deleteVotesNoSealedAction(Request $request = NULL)
+	{
+		if($this->container->getParameter('kernel.environment') == 'prod' && FALSE)
+		{
+			$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+		
+			$subject = 'Tu voto en ' . $host;
+
+			$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
+			
+			$voters = $voter_repository->findAll();
+			
+			// Process each vote
+			foreach($voters as $voter)
+			{
+				$vote_info = $voter->getVoteInfo();
+				$vote_response_string = $voter->getVoteResponseString();
+				$vote_response_time   = $voter->getVoteResponseTime();
+				
+				// Detect if we have some vote emitted but not signed by tractis to delete it
+				if(empty($vote_info) && empty($vote_response_string) && empty($vote_response_time))
+				{
+					try
+					{
+						$message = \Swift_Message::newInstance()
+						->setSubject($subject)
+						->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
+						->setTo($voter->getEmail())
+						->setBody(
+								$this->renderView(
+										'MunicipalesBundle:Mail:vote_deleted.html.twig',
+										array('voter' => $voter)
+								), 'text/html'
+						);
+						
+						$this->get('mailer')->send($message);
+						
+						$output .= 'Mail send to voter ID ' . $voter->getId() . '<br />';
+						
+						// Delete the voter
+						$entity_manager->remove($voter);
+					}
+					catch(\Exception $e)
+					{
+						$output .= $voter->getEmail() . ' error: ' . $e->getMessage() . '<br/>';
+					}
+				}
+			}
+			
+			$entity_manager->flush();
+			
+			return new Response('OK<br/><br/>' . $output , 200);
 		}
 		else
 		{
