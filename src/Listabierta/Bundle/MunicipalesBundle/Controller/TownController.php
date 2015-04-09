@@ -1608,21 +1608,28 @@ class TownController extends Controller
 			
 			if(!empty($vote_info))
 			{
-				$total_voters += 1;
+				// Avoid count votes emited but not signed with Tractis 
+				$vote_response_string = $voter->getVoteResponseString();
+				$vote_response_time   = $voter->getVoteResponseTime();
 				
-				$candidates = $vote_info['candidates'];
-				
-				foreach($candidates as $candidate)
+				if(!empty($vote_response_string) && !empty($vote_response_time))
 				{
-					$candidate_id = $candidate['id'];
-					$candidate_points = $candidate['points'];
-					if(isset($results[$candidate_id]))
+					$total_voters += 1;
+					
+					$candidates = $vote_info['candidates'];
+					
+					foreach($candidates as $candidate)
 					{
-						$results[$candidate_id] += $candidate['points'];
-					}
-					else 
-					{
-						$results[$candidate_id] = $candidate['points'];
+						$candidate_id = $candidate['id'];
+						$candidate_points = $candidate['points'];
+						if(isset($results[$candidate_id]))
+						{
+							$results[$candidate_id] += $candidate['points'];
+						}
+						else 
+						{
+							$results[$candidate_id] = $candidate['points'];
+						}
 					}
 				}
 			}
@@ -1788,7 +1795,12 @@ class TownController extends Controller
 					)
 				}
 				*/
-				$results[] = $vote_info;
+				
+				// Avoid count votes emited but not signed with Tractis
+				if(!empty($vote_info['response_string']) && !empty($vote_info['response_time']))
+				{
+					$results[] = $vote_info;
+				}
 			}
 		}
 		

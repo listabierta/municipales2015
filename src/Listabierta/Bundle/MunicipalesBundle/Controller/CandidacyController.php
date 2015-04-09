@@ -1324,22 +1324,29 @@ class CandidacyController extends Controller
     				
     			if(!empty($vote_info))
     			{
-    				$total_voters += 1;
-    		
-    				$candidates = $vote_info['candidates'];
-    		
-    				foreach($candidates as $candidate)
+    				// Avoid count votes emited but not signed with Tractis
+    				$vote_response_string = $voter->getVoteResponseString();
+    				$vote_response_time   = $voter->getVoteResponseTime();
+    				
+    				if(!empty($vote_response_string) && !empty($vote_response_time))
     				{
-    					$candidate_id = $candidate['id'];
-    					$candidate_points = $candidate['points'];
-    					if(isset($results[$candidate_id]))
-    					{
-    						$results[$candidate_id] += $candidate['points'];
-    					}
-    					else
-    					{
-    						$results[$candidate_id] = $candidate['points'];
-    					}
+	    				$total_voters += 1;
+	    		
+	    				$candidates = $vote_info['candidates'];
+	    		
+	    				foreach($candidates as $candidate)
+	    				{
+	    					$candidate_id = $candidate['id'];
+	    					$candidate_points = $candidate['points'];
+	    					if(isset($results[$candidate_id]))
+	    					{
+	    						$results[$candidate_id] += $candidate['points'];
+	    					}
+	    					else
+	    					{
+	    						$results[$candidate_id] = $candidate['points'];
+	    					}
+	    				}
     				}
     			}
     		}
