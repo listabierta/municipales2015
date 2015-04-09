@@ -589,7 +589,13 @@ mail:
         seal_timestamp: Momento de sellado
         string_seal: Cadena de sellado
         
-    
+    vote_deleted:
+        hello: Hola
+        we_sorry: Lamentamos informarte de que o bien no terminaste el proceso de voto completamente, o tu sesión caducó mientras lo hacías o no ha quedado registrado por alguna circunstancia técnica el sellado temporal de tu voto que asegura la trazabilidad del mismo, por lo que el sistema, de forma automática anula tu proceso de voto para permitirte que puedas volver a realizarlo con todas las garantías.
+        please_proceed: Por favor procede a completar tu proceso de voto desde el inicio en
+        thanks_you: te pedimos disculpas y te damos las gracias por participar en este proceso de construcción ciudadana.
+        greetings: Un saludo, el equipo de voto
+            
 # Panel admin
 panel_admin:
     index:

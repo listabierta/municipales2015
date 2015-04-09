@@ -299,4 +299,68 @@ class ManagerController extends Controller
 			return new Response('Access only enabled in prod mode', 403);
 		}
 	}
+	
+	/**
+	 *
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function deleteVotesNoSealedAction(Request $request = NULL)
+	{
+		if($this->container->getParameter('kernel.environment') == 'prod' && FALSE)
+		{
+			$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+		
+			$subject = 'Tu voto en ' . $host;
+
+			$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
+			
+			$voters = $voter_repository->findAll();
+			
+			// Process each vote
+			foreach($voters as $voter)
+			{
+				$vote_info = $voter->getVoteInfo();
+				$vote_response_string = $voter->getVoteResponseString();
+				$vote_response_time   = $voter->getVoteResponseTime();
+				
+				// Detect if we have some vote emitted but not signed by tractis to delete it
+				if(empty($vote_info) && empty($vote_response_string) && empty($vote_response_time))
+				{
+					try
+					{
+						$message = \Swift_Message::newInstance()
+						->setSubject($subject)
+						->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
+						->setTo($voter->getEmail())
+						->setBody(
+								$this->renderView(
+										'MunicipalesBundle:Mail:vote_deleted.html.twig',
+										array('voter' => $voter)
+								), 'text/html'
+						);
+						
+						$this->get('mailer')->send($message);
+						
+						$output .= 'Mail send to voter ID ' . $voter->getId() . '<br />';
+						
+						// Delete the voter
+						$entity_manager->remove($voter);
+					}
+					catch(\Exception $e)
+					{
+						$output .= $voter->getEmail() . ' error: ' . $e->getMessage() . '<br/>';
+					}
+				}
+			}
+			
+			$entity_manager->flush();
+			
+			return new Response('OK<br/><br/>' . $output , 200);
+		}
+		else
+		{
+			return new Response('Access only enabled in prod mode', 403);
+		}
+	}
 }
