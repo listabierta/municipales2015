@@ -313,6 +313,7 @@ class ManagerController extends Controller
 		
 			$subject = 'Tu voto en ' . $host;
 
+			$entity_manager = $this->getDoctrine()->getManager();
 			$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
 			
 			$voters = $voter_repository->findAll();
