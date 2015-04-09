@@ -1416,21 +1416,24 @@ class TownController extends Controller
 				
 				$entity_manager->persist($voter);
 				$entity_manager->flush();
-					
-	
-				$form2 = $this->createForm(new TownStep8Type(), NULL, array(
-						'action' => $this->generateUrl('town_candidacy_vote_step8', array('address' => $address)),
-						'method' => 'POST',
-				));
-					
-				$form2->handleRequest($request);
-	
-					
-				return $this->render('MunicipalesBundle:Town:step8.html.twig', array(
-						'address' => $address,
-						'form' => $form2->createView()
-					)
+				
+				// Send mail with vote info
+				$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+				 
+				$message = \Swift_Message::newInstance()
+				->setSubject('Tu voto ha sido emitido y sellado con éxito')
+				->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
+				->setTo($voter->getEmail())
+				->setBody(
+						$this->renderView(
+								'MunicipalesBundle:Mail:vote_finished.html.twig',
+								array('voter' => $voter)
+						), 'text/html'
 				);
+				
+				$this->get('mailer')->send($message);
+					
+				return $this->vote8Action($address, $request);
 			}
 		}
 

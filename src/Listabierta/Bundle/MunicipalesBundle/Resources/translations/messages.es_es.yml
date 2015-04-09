@@ -583,6 +583,13 @@ mail:
         your_phone: Tu teléfono
         verify: ha sido verificado correctamente
     
+    vote_finished:
+        hello: Hola
+        your_vote: Tu voto ha sido correctamente emitido y sellado
+        seal_timestamp: Momento de sellado
+        string_seal: Cadena de sellado
+        
+    
 # Panel admin
 panel_admin:
     index:
