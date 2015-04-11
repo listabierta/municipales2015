@@ -1708,6 +1708,13 @@ class TownController extends Controller
 		 
 		$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
 		
+		if($address == 'sevillaparticipa' && empty($session->get('admin_id')))
+		{
+			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+					'error' => 'Error: Los resultados sólo son visibles por el administrador y no estan disponibles de forma pública.</a>',
+			));
+		}
+		
 		return $this->render('MunicipalesBundle:Town:step_results.html.twig', array(
 				'address' => $address,
 				'town' => $town_name,
