@@ -1617,6 +1617,23 @@ class TownController extends Controller
 			));
 		}
 		
+		$borda_points = $admin_candidacy->getBordaPoints();
+		
+		// Use borda system defaults
+		if(empty($borda_points))
+		{
+			for($i = 0; $i <= 10; $i++)
+			{
+			// Apply borda system defaults values
+			$borda_points[$i] = $i != 0 ? 1 / $i : 0;
+			}
+		
+			$admin_candidacy->setBordaPoints($borda_points);
+		
+			$entity_manager->persist($admin_candidacy);
+			$entity_manager->flush();
+		}
+		
 		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
 		
 		$voters = $voter_repository->findBy(array('admin_id' => $admin_id));
@@ -1646,32 +1663,15 @@ class TownController extends Controller
 						$candidate_points = $candidate['points'];
 						if(isset($results[$candidate_id]))
 						{
-							$results[$candidate_id] += $candidate['points'];
+							$results[$candidate_id] += $borda_points[$candidate['points']];
 						}
 						else 
 						{
-							$results[$candidate_id] = $candidate['points'];
+							$results[$candidate_id] = $borda_points[$candidate['points']];
 						}
 					}
 				}
 			}
-		}
-		
-		$borda_points = $admin_candidacy->getBordaPoints();
-		
-		// Use borda system defaults
-		if(empty($borda_points))
-		{
-			for($i = 0; $i <= 10; $i++)
-			{
-			// Apply borda system defaults values
-				$borda_points[$i] = $i != 0 ? 1 / $i : 0;
-			}
-		
-			$admin_candidacy->setBordaPoints($borda_points);
-		
-			$entity_manager->persist($admin_candidacy);
-			$entity_manager->flush();
 		}
 		
 		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
@@ -1689,7 +1689,7 @@ class TownController extends Controller
 					$candidate_aux['id'] = $result_id;
 					$candidate_aux['name'] = $candidate_info->getName();
 					$candidate_aux['lastname'] = $candidate_info->getLastname();
-					$candidate_aux['points'] = $borda_points[$result_points];
+					$candidate_aux['points'] = $result_points;
 					
 					$candidates_result[] = $candidate_aux;
 				}
