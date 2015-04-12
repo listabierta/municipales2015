@@ -1708,7 +1708,20 @@ class TownController extends Controller
 		 
 		$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
 		
-		if($address == 'sevillaparticipa' && empty($session->get('admin_id')))
+		$securityContext = $this->container->get('security.context');
+		
+		$current_user_id = NULL;
+		if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+		{
+			$current_user = $securityContext->getToken()->getUser();
+			 
+			if(in_array('ROLE_ADMIN', $current_user->getRoles()))
+			{
+				$current_user_id = $current_user->getId();
+			}
+		}
+		
+		if($address == 'sevillaparticipa' && $current_user_id != $admin_id)
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: Los resultados sólo son visibles por el administrador y no estan disponibles de forma pública.</a>',
