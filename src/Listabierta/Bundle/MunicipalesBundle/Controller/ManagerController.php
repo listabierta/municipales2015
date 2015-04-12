@@ -307,7 +307,7 @@ class ManagerController extends Controller
 	 */
 	public function deleteVotesNoSealedAction(Request $request = NULL)
 	{
-		if($this->container->getParameter('kernel.environment') == 'prod' && FALSE)
+		if($this->container->getParameter('kernel.environment') == 'prod' && TRUE)
 		{
 			$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
 		
