@@ -1340,11 +1340,11 @@ class CandidacyController extends Controller
 	    					$candidate_points = $candidate['points'];
 	    					if(isset($results[$candidate_id]))
 	    					{
-	    						$results[$candidate_id] += $candidate['points'];
+	    						$results[$candidate_id] += $borda_points[$candidate['points']];
 	    					}
 	    					else
 	    					{
-	    						$results[$candidate_id] = $candidate['points'];
+	    						$results[$candidate_id] = $borda_points[$candidate['points']];
 	    					}
 	    				}
     				}
@@ -1368,7 +1368,7 @@ class CandidacyController extends Controller
     					$candidate_aux['lastname'] = $candidate_info->getLastname();
     					$candidate_aux['dni'] = $candidate_info->getDNI();
     					$candidate_aux['phone'] = $candidate_info->getPhone();
-    					$candidate_aux['points'] = $borda_points[$result_points];
+    					$candidate_aux['points'] = $result_points;
     						
     					$candidates_result[] = $candidate_aux;
     				}
