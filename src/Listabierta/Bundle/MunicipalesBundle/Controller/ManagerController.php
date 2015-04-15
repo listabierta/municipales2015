@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
+use Listabierta\Bundle\MunicipalesBundle\Lib\tractis\SymfonyTractisApi;
 
 class ManagerController extends Controller
 {
@@ -325,7 +326,7 @@ class ManagerController extends Controller
 				$vote_response_string = $voter->getVoteResponseString();
 				$vote_response_time   = $voter->getVoteResponseTime();
 				
-				// Detect if we have some vote emitted but not signed by tractis to delete it
+				// Detect if we have some vote NO emitted but not signed by tractis to delete it
 				if(empty($vote_info) && empty($vote_response_string) && empty($vote_response_time))
 				{
 					try
@@ -357,6 +358,133 @@ class ManagerController extends Controller
 			
 			$entity_manager->flush();
 			
+			return new Response('OK<br/><br/>' . $output , 200);
+		}
+		else
+		{
+			return new Response('Access only enabled in prod mode', 403);
+		}
+	}
+	
+	/**
+	 * Seal all pending votes (with vote_info information but not
+	 * vote_request_string or vote_request_timestamp) massively
+	 * 
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function sealVotesMassivelyAction(Request $request = NULL)
+	{
+		if($this->container->getParameter('kernel.environment') == 'prod' && TRUE)
+		{
+			$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+	
+			$subject = 'Tu voto ha sido sellado en ' . $host;
+	
+			$entity_manager = $this->getDoctrine()->getManager();
+			
+			// Tractis TSA sign
+				
+			// Create an API Key here: https://www.tractis.com/webservices/tsa/apikeys
+			$tractis_api_identifier = $this->container->getParameter('tractis_api_identifier');
+			$tractis_api_secret     = $this->container->getParameter('tractis_api_secret');
+				
+			// Fetch the chain sign TSA file
+			$tsa_cert_chain_file = $this->container->get('kernel')->locateResource('@MunicipalesBundle/Lib/tractis/chain.txt');
+				
+			// Init the Symfony Tractis TSA Api
+			$symfony_tractis_api = new SymfonyTractisApi($tractis_api_identifier, $tractis_api_secret, $tsa_cert_chain_file);
+			
+			// Fetch voters
+			$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
+				
+			$voters = $voter_repository->findAll();
+				
+			// Process each vote
+			foreach($voters as $voter)
+			{
+				$vote_info = $voter->getVoteInfo();
+				$vote_response_string = $voter->getVoteResponseString();
+				$vote_response_time   = $voter->getVoteResponseTime();
+	
+				$ok = TRUE;
+				// Detect if we have some vote emitted but not signed by tractis to delete it
+				if(!empty($vote_info) && empty($vote_response_string) && empty($vote_response_time))
+				{
+					// Seal the vote
+
+					// Sign a valid vote
+					try
+					{
+						$response = $symfony_tractis_api::sign(serialize($vote_info));
+					}
+					catch(\Exception $e)
+					{
+						echo 'Error grave en el firmado de voto TSA para Voter ID ' . $voter->getId() . '. Respuesta de tractis: ' . $e->getMessage() . '<br />';
+						$ok = FALSE;
+					}
+					
+					// Check response data
+					if(empty($response))
+					{
+						return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+								'error' => 'Error en el firmado de voto TSA para Voter ID ' . $voter->getId() . '. Respuesta vacía<br />',
+						));
+						$ok = FALSE;
+					}
+						
+					if(empty($response['response_string']))
+					{
+						echo 'Error en el firmado de voto TSA para Voter ID ' . $voter->getId() . '. Respuesta con cadena vacía<br />';
+						$ok = FALSE;
+					}
+						
+					if(empty($response['response_time']))
+					{
+						echo 'Error en el firmado de voto TSA para Voter ID ' . $voter->getId() . '. Respuesta con tiempo vacía<br />';
+						$ok = FALSE;
+					}
+
+					if($ok)
+					{
+						// Fetch the data response if valid
+						$response_string = $response['response_string'];
+						$response_time   = $response['response_time'];
+						
+						// Store the sign TSA result in database
+						$voter->setVoteResponseString($response_string);
+						$voter->setVoteResponseTime($response_time);
+						
+						$entity_manager->persist($voter);
+						$entity_manager->flush();
+						
+						try
+						{
+							$message = \Swift_Message::newInstance()
+							->setSubject($subject)
+							->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
+							->setTo($voter->getEmail())
+							->setBody(
+									$this->renderView(
+											'MunicipalesBundle:Mail:vote_sealed.html.twig',
+											array('voter' => $voter)
+									), 'text/html'
+							);
+		
+							$this->get('mailer')->send($message);
+		
+							$output .= 'Mail send to voter ID ' . $voter->getId() . '<br />';
+						}
+						catch(\Exception $e)
+						{
+							$output .= $voter->getEmail() . ' error: ' . $e->getMessage() . '<br/>';
+						}
+					}
+				}
+			}
+				
+			$entity_manager->flush();
+				
 			return new Response('OK<br/><br/>' . $output , 200);
 		}
 		else

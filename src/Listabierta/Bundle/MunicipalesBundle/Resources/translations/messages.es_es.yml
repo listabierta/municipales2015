@@ -595,6 +595,12 @@ mail:
         please_proceed: Por favor procede a completar tu proceso de voto desde el inicio en
         thanks_you: te pedimos disculpas y te damos las gracias por participar en este proceso de construcción ciudadana.
         greetings: Un saludo, el equipo de voto
+        
+    vote_sealed:
+        hello: Hola
+        vote_done: Tu voto fue correctamente emitido, pero estaba pendiente de ser sellado, ya que la plataforma de sellado en el momento que realizaste el voto no estaba disponible. Te informamos que tu voto ha sido sellado automáticamente y esta totalmente procesado y es válido para la votación.
+        thanks_you: Te pedimos disculpas y te damos las gracias por participar en este proceso de construcción ciudadana.
+        greetings: Un saludo, el equipo de voto
             
 # Panel admin
 panel_admin:

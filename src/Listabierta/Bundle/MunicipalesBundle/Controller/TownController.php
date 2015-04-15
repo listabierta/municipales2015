@@ -1379,9 +1379,18 @@ class TownController extends Controller
 				}
 				catch(\Exception $e)
 				{
-					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-							'error' => 'Error grave en el firmado de voto TSA. Respuesta de tractis: ' . $e->getMessage(),
-					));
+					if($e->getMessage() == 'The Timestamp was not found')
+					{
+						return $this->render('MunicipalesBundle:Town:town_warning.html.twig', array(
+								'warning' => 'Tu voto ha sido correctamente emitido, pero esta pendiente de ser sellado, ya que la plataforma de sellado Tractis en estos momentos no esta disponible, recibiras un correo cuando la plataforma de sellado este actíva de nuevo y tu voto será totalmente procesado y válido.',
+						));
+					}
+					else 
+					{
+						return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+								'error' => 'Error grave en el firmado de voto TSA. Respuesta de tractis: ' . $e->getMessage(),
+						));
+					}
 				}
 				
 				// Check response data
