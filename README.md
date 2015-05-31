@@ -1,7 +1,7 @@
-# municipales2015
-Lista abierta para las municipales 2015
+# Participa's Census
+Census app for Participa website based in Listabierta municipales 2015
 
-== Municipales 2015 ==
+== Participa's Census ==
 
 La lista abierta para municipales 2015.
 
