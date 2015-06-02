@@ -1,33 +1,3 @@
-home:
-    html_title: Municipales 2015 - Home
-    h1_title: Municipales 2015
-    steps_h2: Pasos
-    step_h2: Paso
-    steps: Para dar de alta una candidatura ciudadana debes
-    featured: Abre tu ayuntamiento a la ciudadanía en estas elecciones municipales de mayo 2015
-    
-    open_council: Abre tu ayuntamiento a la ciudadan&iacute;a en estas elecciones municipales de mayo 2015
-    who_we_are: "¿Quienes somos?"
-    who_h3: "Empieza por aquí"
-    intro_p1: cuyas siglas son PARTICIPA, es un partido político registrado en el ministerio de interior el 23 de Marzo de 2011 en Granada. PARTICIPA es una herramienta jurídica de participación ciudadana que permite a la ciudadanía participar en las elecciones y tomar decisiones dentro de las instituciones dónde PARTICIPA consiga representación, siempre que se cumplan los principios recogidos en sus Estatutos, en el Manifiesto por la Democracia Participativa, su código ético y mandatos revocatorio y participativo.La denominación de la candidatura, obligatoriamente tendrá la denominación TUMUNICIPIO PARTICIPA (por ejemplo: Albolote Participa, Teruel Participa, o similar).
-    intro_p2: La elección de candidatos y candidatas en listas abiertas para los comicios municipales permite que los electos se “deban” a los ciudadanos que los han elegido, y no a quien les hubiese incluido en una lista cerrada o negociada. <br /><br/> Porque otra forma de gobernar tu Ayuntamiento es posible. Solicita más información en candidaturas@participa.info
-    intro_p3: Si estás directamente implicado en la organización de una candidatura de listas abiertas en tu municipio para las próximas elecciones de mayo de 2.015, y no has conseguido una forma de representación legal aún, puedes organizar tu candidatura con esta herramienta online sin coste y con resultados auditables. 
-    intro_p4: Es muy importante que antes de empezar el proceso de registro de la candidatura, veas este tutorial del proceso completo.
-    intro_p5: ¿Cómo funciona la herramienta de listas abiertas municipales?
-    
-    step_1: Regístrate y registra el municipio de la candidatura
-    step_2: Establece las condiciones de la candidatura ciudadana
-    step_3: Establece los plazos de votación
-    step_4: Reserva una dirección de internet
-    step_5: Alta de candidatos y candidatas
-    step_6: Validación de candidatos y candidatas
-    step_7: Votaciones
-    step_8: Verificación del voto y resultados
-    step_9: Presentación de las listas electas
-    
-    start_here: Iniciar el registro
-    welcome: "&iexcl;Bienvenidos al sitio!"
-
 header:
     languages:
         es_eu: Euskera
