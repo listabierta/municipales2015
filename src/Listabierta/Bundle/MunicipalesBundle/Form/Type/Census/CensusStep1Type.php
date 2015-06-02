@@ -10,7 +10,7 @@ use Listabierta\Bundle\MunicipalesBundle\Validator\Constraints\DNI;
 use Listabierta\Bundle\MunicipalesBundle\Entity\ProvinceRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class CandidacyStep1Type extends AbstractType
+class CensusStep1Type extends AbstractType
 {
 	
 	private $provinces_data = array();
@@ -124,6 +124,6 @@ class CandidacyStep1Type extends AbstractType
 
     public function getName()
     {
-        return 'candidacy_step1';
+        return 'census_step1';
     }
 }
