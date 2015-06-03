@@ -82,7 +82,7 @@ class CensusController extends Controller
     			$session->clear();
     			$session->set('conditions', $conditions);
     	   
-    			return $this->step1Action($request);
+    			return $this->step2LocationAction($request);
     		}
     	}
     	 
@@ -116,11 +116,11 @@ class CensusController extends Controller
     	$municipalities = array();
     	$municipalities[0] = 'Elige municipio';
     	
-    	if(isset($_REQUEST['candidacy_step1']) && isset($_REQUEST['candidacy_step1']['province']))
+    	if(isset($_REQUEST['census_step1']) && isset($_REQUEST['census_step1']['province']))
     	{
-    		if(!empty($_REQUEST['candidacy_step1']['province']))
+    		if(!empty($_REQUEST['census_step1']['province']))
     		{
-    			$province_form = intval($_REQUEST['candidacy_step1']['province']);
+    			$province_form = intval($_REQUEST['census_step1']['province']);
     			 
     			$query = "SELECT id, name FROM municipalities_spain WHERE province_id='" . intval($province_form) . "'";
 
@@ -136,10 +136,10 @@ class CensusController extends Controller
     	
     	$translator = $this->get('translator');
     	$translations = array();
-    	$translations['forms.candidacy_step1.password.minMessage'] = $translator->trans('forms.candidacy_step1.password.minMessage');
-    	$translations['forms.candidacy_step1.password.maxMessage'] = $translator->trans('forms.candidacy_step1.password.maxMessage');
+    	$translations['forms.census_step1.password.minMessage'] = $translator->trans('forms.census_step1.password.minMessage');
+    	$translations['forms.census_step1.password.maxMessage'] = $translator->trans('forms.census_step1.password.maxMessage');
     	
-    	$form = $this->createForm(new CandidacyStep1Type($provinces_data, $municipalities, $translations), NULL, array(
+    	$form = $this->createForm(new CensusStep1Type($provinces_data, $municipalities, $translations), NULL, array(
     			'action' => $this->generateUrl('census_step1'),
 			    'method' => 'POST',
     			)
@@ -285,7 +285,7 @@ class CensusController extends Controller
     		}
     	}
     	
-    	return $this->render('MunicipalesBundle:Census:step1.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step3_register.html.twig', array(
     			'form' => $form->createView(),
     	));
     }
@@ -295,7 +295,7 @@ class CensusController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function stepVerifyAction(Request $request = NULL)
+    public function step4VerifyAction(Request $request = NULL)
     {
     	$session = $this->getRequest()->getSession();
     
@@ -341,21 +341,11 @@ class CensusController extends Controller
     			
     		if($ok)
     		{
-    			$form2 = $this->createForm(new CandidacyStep2Type(), NULL, array(
-	    			'action' => $this->generateUrl('census_step2'),
-	    			'method' => 'POST',
-    			));
-    
-    			$form2->handleRequest($request);
-    
-    			return $this->render('MunicipalesBundle:Census:step2.html.twig', array(
-    					'form' => $form2->createView()
-    				)
-    			);
+    			$this->step5FinishAction($request);
     		}
     	}
     
-    	return $this->render('MunicipalesBundle:Census:step_verify.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step4_verify.html.twig', array(
     			'form' => $form->createView(),
     			'errors' => $form->getErrors(),
     	));
@@ -366,53 +356,13 @@ class CensusController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function step2Action(Request $request = NULL)
+    public function step2LocationAction(Request $request = NULL)
     {
     	$session = $this->getRequest()->getSession();
     	$entity_manager = $this->getDoctrine()->getManager();
     	 
-    	$admin_id = NULL;
-    	
+
     	$entity_manager = $this->getDoctrine()->getManager();
-    	
-    	$securityContext = $this->container->get('security.context');
-    	 
-    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-    	{
-    		$current_user = $securityContext->getToken()->getUser();
-    		 
-    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
-    		{
-    			$admin_id = $current_user->getId();
-    		}
-    	}
-    	else
-    	{
-    		$admin_id = $session->get('admin_id');
-    	}
-    	
-    	if(!empty($admin_id))
-    	{
-    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
-    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
-    	
-    		if(!empty($admin_candidacy))
-    		{
-    			$town = $admin_candidacy->getTown();
-    		}
-    	}
-    	
-    	if(empty($town))
-    	{
-    		$town = $session->get('town', NULL);
-    	}
-    	 
-    	if(empty($town))
-    	{
-    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada para obtener la ciudad',
-    		));
-    	}
     	
     	$form = $this->createForm(new CandidacyStep2Type(), NULL, array(
     			'action' => $this->generateUrl('census_step2'),
@@ -426,181 +376,9 @@ class CensusController extends Controller
     	if ($form->isValid())
     	{
     		$program              = $form['program'];
-    		$legal_conditions     = $form['legal_conditions'];
-    		$recall_term          = $form['recall_term'];
-    		$participatory_term   = $form['participatory_term'];
-    		$voter_conditions     = $form['voter_conditions'];
-    		$technical_constrains = $form['technical_constrains'];
     		
-    		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
-    		$town_name = $province_repository->getMunicipalityName($town);
+    		
 
-    		$town_slug = $this->get('slugify')->slugify($town_name);
-    		
-    		$document_root = $this->getRequest()->server->get('DOCUMENT_ROOT'); // Must be 777
-    		
-    		$documents_path = 'docs/' . $town_slug . '/' . $admin_id;
-    		
-    		$fs = new Filesystem();
-    			
-    		if(!$fs->exists($document_root . '/' . $documents_path))
-    		{
-    			try
-    			{
-    				$fs->mkdir($document_root . '/' . $documents_path, 0700);
-    			}
-    			catch (IOExceptionInterface $e)
-    			{
-    				$form->addError(new FormError('An error occurred while creating your directory at: ' . $e->getPath()));
-    				$ok = FALSE;
-    			}
-    		}
-    		
-    		// getMaxFilesize()
-    		
-    		if($program->isValid())
-    		{
-    			$program_data = $program->getData();
-    		
-    			if(!empty($program_data))
-    			{
-	    			if($program_data->getClientMimeType() !== 'application/pdf')
-	    			{
-	    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $program_data->getClientMimeType()));
-	    				$ok = FALSE;
-	    			}
-	    		
-	    			if($ok)
-	    			{
-	    				$program_data->move($document_root . '/' . $documents_path, 'program.pdf');
-	    			}
-    			}
-    		}
-    		else
-    		{
-    			$form->addError(new FormError('program pdf is not valid: ' . $program_data->getErrorMessage()));
-    			$ok = FALSE;
-    		}
-    		
-    		if($legal_conditions->isValid())
-    		{
-    			$legal_conditions_data = $legal_conditions->getData();
-    		
-    			if(!empty($legal_conditions_data))
-    			{
-	    			if($legal_conditions_data->getClientMimeType() !== 'application/pdf')
-	    			{
-	    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $legal_conditions_data->getClientMimeType()));
-	    				$ok = FALSE;
-	    			}
-	    		
-	    			if($ok)
-	    			{
-	    				$legal_conditions_data->move($document_root . '/' . $documents_path, 'legal_conditions.pdf');
-	    			}
-    			}
-    		}
-    		else
-    		{
-    			$form->addError(new FormError('legal conditions pdf is not valid: ' . $legal_conditions_data->getErrorMessage()));
-    			$ok = FALSE;
-    		}
-    		
-    		if($recall_term->isValid())
-    		{
-    			$recall_term_data = $recall_term->getData();
-    		
-    			if(!empty($recall_term_data))
-    			{
-	    			if($recall_term_data->getClientMimeType() !== 'application/pdf')
-	    			{
-	    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $recall_term_data->getClientMimeType()));
-	    				$ok = FALSE;
-	    			}
-	    		
-	    			if($ok)
-	    			{
-	    				$recall_term_data->move($document_root . '/' . $documents_path, 'recall_term.pdf');
-	    			}
-    			}
-    		}
-    		else
-    		{
-    			$form->addError(new FormError('recall term pdf is not valid: ' . $recall_term_data->getErrorMessage()));
-    			$ok = FALSE;
-    		}
-
-    		if($participatory_term->isValid())
-    		{
-    			$participatory_term_data = $participatory_term->getData();
-    		
-    			if(!empty($participatory_term_data))
-    			{
-	    			if($participatory_term_data->getClientMimeType() !== 'application/pdf')
-	    			{
-	    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $participatory_term_data->getClientMimeType()));
-	    				$ok = FALSE;
-	    			}
-	    		
-	    			if($ok)
-	    			{
-	    				$participatory_term_data->move($document_root . '/' . $documents_path, 'participatory_term.pdf');
-	    			}
-    			}
-    		}
-    		else
-    		{
-    			$form->addError(new FormError('participatory term pdf is not valid: ' . $participatory_term_data->getErrorMessage()));
-    			$ok = FALSE;
-    		}
-
-    		if($voter_conditions->isValid())
-    		{
-    			$voter_conditions_data = $voter_conditions->getData();
-    		
-    			if(!empty($voter_conditions_data))
-    			{
-	    			if($voter_conditions_data->getClientMimeType() !== 'application/pdf')
-	    			{
-	    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $voter_conditions_data->getClientMimeType()));
-	    				$ok = FALSE;
-	    			}
-	    		
-	    			if($ok)
-	    			{
-	    				$voter_conditions_data->move($document_root . '/' . $documents_path, 'voter_conditions.pdf');
-	    			}
-    			}
-    		}
-    		else
-    		{
-    			$form->addError(new FormError('voter conditions pdf is not valid: ' . $voter_conditions_data->getErrorMessage()));
-    			$ok = FALSE;
-    		}
-
-    		if($technical_constrains->isValid())
-    		{
-    			$technical_constrains_data = $technical_constrains->getData();
-    		
-    			if(!empty($technical_constrains_data))
-    			{
-	    			if($technical_constrains_data->getClientMimeType() !== 'application/pdf')
-	    			{
-	    				$form->addError(new FormError('MIMEType is not  application/pdf, found: ' . $technical_constrains_data->getClientMimeType()));
-	    				$ok = FALSE;
-	    			}
-	    		
-	    			if($ok)
-	    			{
-	    				$technical_constrains_data->move($document_root . '/' . $documents_path, 'technical_constrains.pdf');
-	    			}
-    			}
-    		}
-    		else
-    		{
-    			$form->addError(new FormError('technical constrainss pdf is not valid: ' . $technical_constrains_data->getErrorMessage()));
-    			$ok = FALSE;
-    		}
     		
     		if($ok)
     		{
@@ -608,32 +386,7 @@ class CensusController extends Controller
     			{
     				$session->set('program', $program_data->getClientOriginalName());
     			}
-    			
-    			if(!empty($legal_conditions_data))
-    			{
-    				$session->set('legal_conditions', $legal_conditions_data->getClientOriginalName());
-    			}
-    			
-    			if(!empty($recall_term_data))
-    			{
-    				$session->set('recall_term', $recall_term_data->getClientOriginalName());
-    			}
-
-    			if(!empty($participatory_term_data))
-    			{
-    				$session->set('participatory_term', $participatory_term_data->getClientOriginalName());
-    			}
-
-    			if(!empty($voter_conditions_data))
-    			{
-    				$session->set('voter_conditions', $voter_conditions_data->getClientOriginalName());
-    			}
-
-    			if(!empty($technical_constrains_data))
-    			{
-    				$session->set('technical_constrains', $technical_constrains_data->getClientOriginalName());
-    			}
-
+  
     			$warnings = array();
 				
     			$form2 = $this->createForm(new CandidacyStep3Type(), NULL, array(
@@ -643,7 +396,7 @@ class CensusController extends Controller
     	   
     			$form2->handleRequest($request);
     	   
-    			return $this->render('MunicipalesBundle:Census:step3.html.twig', array(
+    			return $this->render('MunicipalesBundle:Census:step3_register.html.twig', array(
     					'warnings' => $warnings,
     					'errors' => $form->getErrors(),
     					'form' => $form2->createView()
@@ -652,7 +405,7 @@ class CensusController extends Controller
     		}
     	}
     	 
-    	return $this->render('MunicipalesBundle:Census:step2.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step2_location.html.twig', array(
     			'form' => $form->createView(),
     	));
     }
@@ -662,7 +415,7 @@ class CensusController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function step3Action(Request $request = NULL)
+    public function step3RegisterAction(Request $request = NULL)
     {
     	$session = $this->getRequest()->getSession();
     
@@ -673,90 +426,22 @@ class CensusController extends Controller
     	);
     
     	$form->handleRequest($request);
-    	
-    	$admin_id = NULL;
-    	
+
     	$entity_manager = $this->getDoctrine()->getManager();
-    	
-    	$securityContext = $this->container->get('security.context');
-    	 
-    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-    	{
-    		$current_user = $securityContext->getToken()->getUser();
-    		 
-    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
-    		{
-    			$admin_id = $current_user->getId();
-    		}
-    	}
-    	else
-    	{
-    		$admin_id = $session->get('admin_id');
-    	}
-    	
-    	if(!empty($admin_id))
-    	{
-    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
-    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
-    	
-    		if(!empty($admin_candidacy))
-    		{
-    			$town = $admin_candidacy->getTown();
-    			
-    			$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
-    			$town_name = $province_repository->getMunicipalityName($town);
-    		}
-    	}
 
     	$ok = TRUE;
     	if ($form->isValid())
     	{
     		$from_data    = $form['from']->getData();
-    		$to_data      = $form['to']->getData();
-    		
-    		$now = new \Datetime('NOW');
-    		
-    		$current_interval = $from_data->diff($now);
-    		$current_days = intval($current_interval->format('%a'));
-    		
-    		if($current_days > 0)
-    		{
-    			$form->addError(new FormError('No pueden usarse una fecha pasada como fecha inicial'));
-    			$ok = FALSE;
-    		}
-    		
-    		$interval = $from_data->diff($to_data);
-    		$total_days = intval($interval->format('%a'));
-    		
-    		if($total_days < self::MIN_CANDIDACY_DAYS)
-    		{
-    			$form->addError(new FormError('El número mínimo de dias entre la fecha inicial y final es ' . self::MIN_CANDIDACY_DAYS));
-    			$ok = FALSE;
-    		}
-
+ 
     		if($ok)
     		{
-    			$session->set('from', $from_data->getTimestamp());
-    			$session->set('to', $to_data->getTimestamp());
 
-    			if(empty($admin_candidacy) || empty($admin_id))
-    			{
-    				return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
-    						'error' => 'No existe la candidatura de administrador para el identificador de administrador',
-    				));
-    			}
-    			 
-    			$admin_candidacy->setFromdate($from_data);
-    			$admin_candidacy->setTodate($to_data);
-    			 
-    			$entity_manager->persist($admin_candidacy);
-    			$entity_manager->flush();
-
-    			return $this->step4Action($request);
+    			return $this->step4VerifyAction($request);
     		}
     	}
     
-    	return $this->render('MunicipalesBundle:Census:step3.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step3_register.html.twig', array(
     			'form' => $form->createView(),
     	));
     }
@@ -766,301 +451,9 @@ class CensusController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function step4Action(Request $request = NULL)
+    public function step5FinishAction(Request $request = NULL)
     {
-    	$session = $this->getRequest()->getSession();
-    
-    	$form = $this->createForm(new CandidacyStep4Type(), NULL, array(
-    			'action' => $this->generateUrl('census_step4'),
-    			'method' => 'POST',
-    		)
-    	);
-
-    	$admin_id = NULL;
-
-    	$entity_manager = $this->getDoctrine()->getManager();
-    	 
-    	$securityContext = $this->container->get('security.context');
-    	
-    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-    	{
-    		$current_user = $securityContext->getToken()->getUser();
-    	
-    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
-    		{
-    			$admin_id = $current_user->getId();
-    		}
-    	}
-    	else
-    	{
-    		$admin_id = $session->get('admin_id');
-    	}
-    	 
-    	if(!empty($admin_id))
-    	{
-    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
-    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
-    		
-    		if(!empty($admin_candidacy))
-    		{
-    			$town = $admin_candidacy->getTown();
-    		}
-    	}
-
-    	if(empty($town))
-    	{
-	    	$town = $session->get('town', NULL);
-    	}
-    	
-    	if(empty($town))
-    	{
-    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada para obtener la ciudad',
-    		));
-    	}
-    	
-    	$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
-    	$town_name = $province_repository->getMunicipalityName($town);
-
-    	$default_address_slug = $this->get('slugify')->slugify($town_name);
-    	
-    	$form->handleRequest($request);
-    
-    	$ok = TRUE;
-    	if ($form->isValid())
-    	{
-    		$address_data = $form['address']->getData();
-    		
-    		if(empty($address_data))
-    		{
-    			$form->addError(new FormError('La dirección no puede ser vacía'));
-    			$ok = FALSE;
-    		}
-
-    		$address_slug = $this->get('slugify')->slugify($address_data);
-    		
-    		if(empty($address_slug))
-    		{
-    			$form->addError(new FormError('El slug de dirección no puede ser vacío'));
-    			$ok = FALSE;
-    		}
-    		
-    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
-    		$admin_address = $admin_candidacy_repository->findOneByAddress($address_slug);
-    		
-    		if(!empty($admin_address))
-    		{
-    			$form->addError(new FormError('La dirección ' . $admin_address . ' ya esta siendo utilizada por otra candidatura.'));
-    			$ok = FALSE;
-    		}
-    		
-    		if($ok)
-    		{
-    			$session->set('address', $address_slug);
-
-    			$entity_manager = $this->getDoctrine()->getManager();
-
-    			if(empty($admin_candidacy) || empty($admin_id))
-    			{
-    				throw $this->createNotFoundException('No existe la candidatura de administrador para guardar la dirección ' . $address_slug);
-    			}
-    			
-    			$admin_candidacy->setAddress($address_slug);
-    			
-    			$entity_manager->persist($admin_candidacy);
-    			$entity_manager->flush();
-
-    			// Send email with register address to admin
-    			$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-    			$message = \Swift_Message::newInstance()
-	    			->setSubject('Enlace público de acceso para tu candidatura')
-	    			->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
-	    			->setTo($admin_candidacy->getEmail())
-	    			->setBody(
-	    					$this->renderView(
-	    							'MunicipalesBundle:Mail:candidacy_address.html.twig',
-	    							array('address_slug' => $address_slug, 
-	    								  'name' => $admin_candidacy->getName())
-	    					), 'text/html'
-    			);
-    			 
-    			$this->get('mailer')->send($message);
-    			
-    			return $this->step5Action($request, $address_slug);
-    		}
-    	}
-    	
-    	$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-    	
-    	return $this->render('MunicipalesBundle:Census:step4.html.twig', array(
-    			'form' => $form->createView(),
-    			'default_address_slug' => $default_address_slug,
-    			'address_slug' => $default_address_slug,
-    			'host' => $host,
-    	));
-    }
-    
-    /**
-     *
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function step5Action(Request $request = NULL)
-    {
-    	$session = $this->getRequest()->getSession();
-    	
-    	$admin_id = NULL;
-    	 
-    	$entity_manager = $this->getDoctrine()->getManager();
-    	 
-    	$securityContext = $this->container->get('security.context');
-    	
-    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-    	{
-    		$current_user = $securityContext->getToken()->getUser();
-    		 
-    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
-    		{
-    			$admin_id = $current_user->getId();
-    		}
-    	}
-    	else
-    	{
-    		$admin_id = $session->get('admin_id');
-    	}
-    	 
-    	if(!empty($admin_id))
-    	{
-    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
-    		$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
-    		 
-    		if(!empty($admin_candidacy))
-    		{
-    			$address_slug = $admin_candidacy->getAddress();
-    		}
-    	}
-    	else 
-    	{
-    		$address_slug = $session->get('address', NULL);
-    	}
-    	
-    	$form = $this->createForm(new CandidacyStep5Type(), NULL, array(
-    			'action' => $this->generateUrl('census_step5'),
-    			'method' => 'POST',
-    		)
-    	);
-
-    	$form->handleRequest($request);
-    
-    	$ok = TRUE;
-    	if ($form->isValid())
-    	{
-    		if($ok)
-    		{
-    			return $this->step6Action($request);
-    		}
-    	}
-    
-    	return $this->render('MunicipalesBundle:Census:step5.html.twig', array(
-    			'form' => $form->createView(),
-    			'address_slug' => $address_slug,
-    	));
-    }
-    
-    /**
-     *
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function step6Action(Request $request = NULL)
-    {
-    	$admin_id = NULL;
-    	$session = $this->getRequest()->getSession();
-    	$entity_manager = $this->getDoctrine()->getManager();
-    	
-    	$securityContext = $this->container->get('security.context');
-
-    	if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) 
-    	{
-    		$current_user = $securityContext->getToken()->getUser();
-    		
-    		if(in_array('ROLE_ADMIN', $current_user->getRoles()))
-    		{
-    			$admin_id = $current_user->getId();
-    		}
-    	}
-    	else
-    	{
-    		$admin_id = $session->get('admin_id');
-    	}
-    	
-    	// Fetch all Candidate for this town and admin_id
-    	$candidates = array();
-    	
-    	if(empty($admin_id))
-    	{
-    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
-    		));
-    	}
-    	
-    	$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
-    	$admin_candidacy = $admin_candidacy_repository->findOneById($admin_id);
-    	
-    	if(empty($admin_candidacy))
-    	{
-    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
-    		));
-    	}
-    	
-    	$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
-    	
-    	$candidates = $candidate_repository->findBy(array('admin_id' => $admin_id));
-    	
-    	$form_step7 = $this->createForm(new CandidacyStep7Type(), NULL, array(
-    			'action' => $this->generateUrl('census_step7'),
-    			'method' => 'POST',
-    	));
-    	 
-    	$form_step7->handleRequest($request);
-    	
-    	$form = $this->createForm(new CandidacyStep6Type(), NULL, array(
-    			'action' => $this->generateUrl('census_step6'),
-    			'method' => 'POST',
-    	));
-    	
-    	$form->handleRequest($request);
-    	
-    	$ok = TRUE;
-    	if ($form->isValid())
-    	{
-    		if($ok)
-    		{
-    			//$this->step6Action($request);
-    		}
-    	}
-    	
-    	$town = $admin_candidacy->getTown();
-
-    	$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
-    	$town_name = $province_repository->getMunicipalityName($town);
-    	
-    	$town_slug = $this->get('slugify')->slugify($town_name);
-    	
-    	$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
-    	
-    	
-    	$form_step3 = $this->createForm(new CandidateStep3Type(), NULL, array());
-    	$form_step4 = $this->createForm(new CandidateStep4Type(), NULL, array());
-    	
-    	return $this->render('MunicipalesBundle:Census:step6.html.twig', array(
-    			'form' => $form->createView(),
-    			'form_step7' => $form_step7->createView(),
-    			'candidates' => $candidates,
-    			'documents_path' => $documents_path,
-    		)
-    	);
+    	return $this->render('MunicipalesBundle:Census:step5_finish.html.twig', array());
     }
 
     public function changePasswdAction(Request $request)
