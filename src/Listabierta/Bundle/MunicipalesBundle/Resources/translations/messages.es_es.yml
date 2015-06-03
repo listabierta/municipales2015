@@ -20,8 +20,9 @@ census:
     step_conditions:
       html_title: Inscripción en el censo de votantes de Participa Sevilla
       h1_title: Acepta las condiciones de registro para el censo de votantes de Participa Sevilla
+      step_h2: "Paso 1: Inscripción en el censo de votantes de Participa Sevilla" 
     
-      p1_title: Al iniciar el registro aceptas las siguientes condiciones
+      p1_title: Condiciones de registro
       p1_content: Que has apoyado con tu voto la candidatura municipalista de Participa Sevilla, o que, una vez conocida la candidatura, apoyas sus principios programáticos cuyos ejes principales son: rescate ciudadano, solución a la emergencia habitacional, promoción del empleo local, auditoría de las cuentas y contratos municipales, democracia y presupuestos participativos, gestión transparente, economía social y sostenibilidad medioambiental, puedes ver el programa completo de la candidatura <a href="https://participasevilla.org/?page_id=17178" title="Programa completo de la candidatura">aquí</a>
       p2_content: Que aceptas de forma expresa que eventualmente pueda ser publicado tu nombre y apellidos en apoyo a dichos principios.
       p3_content: Que mediante el acto de registro estás dando tu consentimiento expreso al tratamiento de los datos personales que aportas, según lo dispuesto en el artículo 6 de la LOPD y que podrás ejercer tus derechos en los términos dispuestos por el artículo 5 de la LOPD.
