@@ -66,37 +66,12 @@
 					              </a>
 					            </h1>
           					</div>
-							{% if app.request.locale == 'es_es' %}
-								{% set js_locale = 'es_ES' %}
-							{% elseif app.request.locale == 'es_gl' %}	
-								{% set js_locale = 'gl_ES' %}
-							{% elseif app.request.locale == 'es_ca' %}	
-								{% set js_locale = 'ca_ES' %}
-							{% elseif app.request.locale == 'es_eu' %}	
-								{% set js_locale = 'eu_ES' %}
-							{% elseif app.request.locale == 'en' %}	
-								{% set js_locale = 'en' %}
-							{% else %}		
-								{% set js_locale = 'es_ES' %}
-							{% endif %}
 							
-          					<div class="bfh-selectbox bfh-languages pull-right" data-language="{{ js_locale }}" data-available="es_ES,gl_ES,ca_ES,eu_ES,en" data-flags="false" data-blank="false"></div>
-
           					<div class="col-sm-2 header-social pull-right">
 		                        <a href="https://www.facebook.com/democraciaparticipativa"><i class="fa fa-facebook-square"></i></a>
 		                        <a href="https://twitter.com/dparticipa"><i class="fa fa-twitter-square"></i></a>
 		                        <a href="https://www.linkedin.com/groups?home=&gid=3805926&trk=anet_ug_hm"><i class="fa fa-linkedin-square"></i></a>
 		                    </div>
-					          {#
-					          	<div id="menubar" class="language-switcher">
-						    		<ul id="menu" class="lang-menu">
-						    		  <li{% if app.request.locale == 'es_eu' %} class="selected"{% endif %}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params', [])|merge({'_locale': 'es_eu'})) }}"><img class="flag" src="{{ asset('bundles/municipales/images/es_eu.png') }}" title="{{ 'header.languages.es_eu'|trans }}" alt="{{ 'header.languages.es_eu'|trans }}" />{{ 'header.languages.es_eu'|trans }}</a></li>
-									  <li{% if app.request.locale == 'es_ca' %} class="selected"{% endif %}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params', [])|merge({'_locale': 'es_ca'})) }}"><img class="flag" src="{{ asset('bundles/municipales/images/es_ca.png') }}" title="{{ 'header.languages.es_ca'|trans }}" alt="{{ 'header.languages.es_ca'|trans }}" />{{ 'header.languages.es_ca'|trans }}</a></li>
-									  <li{% if app.request.locale == 'es_gl' %} class="selected"{% endif %}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params', [])|merge({'_locale': 'es_gl'})) }}"><img class="flag" src="{{ asset('bundles/municipales/images/es_gl.png') }}" title="{{ 'header.languages.es_gl'|trans }}" alt="{{ 'header.languages.es_gl'|trans }}" />{{ 'header.languages.es_gl'|trans }}</a></li>
-									  <li{% if app.request.locale == 'es_es' %} class="selected"{% endif %}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params', [])|merge({'_locale': 'es_es'})) }}"><img class="flag" src="{{ asset('bundles/municipales/images/es_es.png') }}" title="{{ 'header.languages.es_es'|trans }}" alt="{{ 'header.languages.es_es'|trans }}" />{{ 'header.languages.es_es'|trans }}</a></li>
-									</ul>
-					    	    </div>
-					    	   #} 
 
 			         </div>
 			      </nav>
@@ -156,27 +131,7 @@
 		<script src="{{ asset('bundles/municipales/js/bootstrap-formhelpers.min.js') }}"></script>
 		
 		<script src="{{ asset('bundles/municipales/js/jquery.colorbox-min.js') }}" /></script>
-		<script>
-		$( document ).ready(function() 
-		{
-			$('.bfh-selectbox-options li a').click(function() 
-			{
-				  //console.log($(this).data('option')); 
-				  var path = '{{ path(app.request.get('_route'), app.request.get('_route_params', [])) }}';
-				  //console.log(path)
-				  window.location.href=path + '?_locale=' + $(this).data('option')
-			});
-
-			$('.bfh-selectbox-options li a').each(function(key, value) {
-			    //console.log($(this).text().replace(' (Spain)',''))
-			    $(this).text($(this).text().replace(' (Spain)',''))
-			    $(this).text($(this).text().replace('Euskara','Euskera'))
-			});
-			
-			$('.bfh-selectbox-option').text($('.bfh-selectbox-option').text().replace(' (Spain)',''))
-			$('.bfh-selectbox-option').text($('.bfh-selectbox-option').text().replace('Euskara','Euskera'))
-		});
-		</script>
+		
 		{% block appjsinline %}{% endblock %}							
 	 </div> <!-- div final -->
     </body>
