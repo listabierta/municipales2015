@@ -6,6 +6,12 @@ header:
         es_es: Español
         
 census:
+    step_1: Acepta las condiciones
+    step_2: Acepta la localización
+    step_3: Aporta tus datos personales
+    step_4: Verifica tu número de móvil 
+    step_5: Fin
+    
     html_title: Inscripción en el censo de votantes de Participa Sevilla
     h1_title: Inscripción en el censo de votantes de Participa Sevilla
     verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
