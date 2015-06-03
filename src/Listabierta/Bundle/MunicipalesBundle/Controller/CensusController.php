@@ -37,12 +37,6 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
  */
 class CensusController extends Controller
 {
-	const CANDIDATE_UNASSIGNED = 0;
-	const CANDIDATE_ACCEPTED   = 1;
-	const CANDIDATE_REJECTED   = 2;
-	const MIN_CANDIDACY_DAYS   = 2;
-	const MIN_VOTE_CANDIDACY_DAYS = 2;
-	
 	/**
 	 * 
 	 * @param Request $request
@@ -92,7 +86,7 @@ class CensusController extends Controller
     		}
     	}
     	 
-    	return $this->render('MunicipalesBundle:Candidacy:step_conditions.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step_conditions.html.twig', array(
     			'form' => $form->createView(),
     	));
     }
@@ -291,7 +285,7 @@ class CensusController extends Controller
     		}
     	}
     	
-    	return $this->render('MunicipalesBundle:Candidacy:step1.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step1.html.twig', array(
     			'form' => $form->createView(),
     	));
     }
@@ -354,14 +348,14 @@ class CensusController extends Controller
     
     			$form2->handleRequest($request);
     
-    			return $this->render('MunicipalesBundle:Candidacy:step2.html.twig', array(
+    			return $this->render('MunicipalesBundle:Census:step2.html.twig', array(
     					'form' => $form2->createView()
     				)
     			);
     		}
     	}
     
-    	return $this->render('MunicipalesBundle:Candidacy:step_verify.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step_verify.html.twig', array(
     			'form' => $form->createView(),
     			'errors' => $form->getErrors(),
     	));
@@ -415,7 +409,7 @@ class CensusController extends Controller
     	 
     	if(empty($town))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada para obtener la ciudad',
     		));
     	}
@@ -649,7 +643,7 @@ class CensusController extends Controller
     	   
     			$form2->handleRequest($request);
     	   
-    			return $this->render('MunicipalesBundle:Candidacy:step3.html.twig', array(
+    			return $this->render('MunicipalesBundle:Census:step3.html.twig', array(
     					'warnings' => $warnings,
     					'errors' => $form->getErrors(),
     					'form' => $form2->createView()
@@ -658,7 +652,7 @@ class CensusController extends Controller
     		}
     	}
     	 
-    	return $this->render('MunicipalesBundle:Candidacy:step2.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step2.html.twig', array(
     			'form' => $form->createView(),
     	));
     }
@@ -747,7 +741,7 @@ class CensusController extends Controller
 
     			if(empty($admin_candidacy) || empty($admin_id))
     			{
-    				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    				return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     						'error' => 'No existe la candidatura de administrador para el identificador de administrador',
     				));
     			}
@@ -762,7 +756,7 @@ class CensusController extends Controller
     		}
     	}
     
-    	return $this->render('MunicipalesBundle:Candidacy:step3.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step3.html.twig', array(
     			'form' => $form->createView(),
     	));
     }
@@ -820,7 +814,7 @@ class CensusController extends Controller
     	
     	if(empty($town))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada para obtener la ciudad',
     		));
     	}
@@ -898,7 +892,7 @@ class CensusController extends Controller
     	
     	$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
     	
-    	return $this->render('MunicipalesBundle:Candidacy:step4.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step4.html.twig', array(
     			'form' => $form->createView(),
     			'default_address_slug' => $default_address_slug,
     			'address_slug' => $default_address_slug,
@@ -967,7 +961,7 @@ class CensusController extends Controller
     		}
     	}
     
-    	return $this->render('MunicipalesBundle:Candidacy:step5.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step5.html.twig', array(
     			'form' => $form->createView(),
     			'address_slug' => $address_slug,
     	));
@@ -1005,7 +999,7 @@ class CensusController extends Controller
     	
     	if(empty($admin_id))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
@@ -1015,7 +1009,7 @@ class CensusController extends Controller
     	
     	if(empty($admin_candidacy))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
@@ -1060,7 +1054,7 @@ class CensusController extends Controller
     	$form_step3 = $this->createForm(new CandidateStep3Type(), NULL, array());
     	$form_step4 = $this->createForm(new CandidateStep4Type(), NULL, array());
     	
-    	return $this->render('MunicipalesBundle:Candidacy:step6.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step6.html.twig', array(
     			'form' => $form->createView(),
     			'form_step7' => $form_step7->createView(),
     			'candidates' => $candidates,
@@ -1098,7 +1092,7 @@ class CensusController extends Controller
     	 
     	if(empty($admin_id))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
@@ -1108,7 +1102,7 @@ class CensusController extends Controller
     	 
     	if(empty($admin_candidacy))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
@@ -1118,7 +1112,7 @@ class CensusController extends Controller
     	// Redirect to step 4 if no address set
     	if(empty($address))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha configurado una dirección de internet para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step4') . '" title="Paso 4 Candidatura - Reserva una dirección de internet">establece una dirección en el paso 4 de la candidatura</a>',
     		));
     	}
@@ -1179,7 +1173,7 @@ class CensusController extends Controller
     	$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
     	$town_name = $province_repository->getMunicipalityName($town);
     	
-    	return $this->render('MunicipalesBundle:Candidacy:step7.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step7.html.twig', array(
     			'form' => $form->createView(),
     			'candidacy_finished' => $candidacy_finished,
     			'address' => $address,
@@ -1237,7 +1231,7 @@ class CensusController extends Controller
     	
     	if(empty($town))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada para obtener la ciudad',
     		));
     	}
@@ -1256,7 +1250,7 @@ class CensusController extends Controller
     			
     			if(empty($candidacy_to_date))
     			{
-    				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    				return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     						'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
     				));
     			}
@@ -1265,21 +1259,21 @@ class CensusController extends Controller
     			
     			if(empty($candidacy_total_days))
     			{
-    				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    				return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     						'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
     				));
     			}
     		}
     		else 
     		{
-    			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    			return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     					'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     			));
     		}
     	}
     	else
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
@@ -1406,7 +1400,7 @@ class CensusController extends Controller
     		$candidates_result = array();
     	}
     	
-    	return $this->render('MunicipalesBundle:Candidacy:step8.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:step8.html.twig', array(
     			'candidacy_finished' => $candidacy_finished,
     			'vote_start_date' => $candidacy_to_date,
     			'vote_end_date' => $vote_end_date,
@@ -1464,7 +1458,7 @@ class CensusController extends Controller
     		$address_slug = $session->get('address', NULL);
     	}
     	
-    	return $this->render('MunicipalesBundle:Candidacy:step9.html.twig', array('address_slug' => $address_slug));
+    	return $this->render('MunicipalesBundle:Census:step9.html.twig', array('address_slug' => $address_slug));
     }
     
     /**
@@ -1496,7 +1490,7 @@ class CensusController extends Controller
     	
     	if(empty($admin_id))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
@@ -1506,7 +1500,7 @@ class CensusController extends Controller
     	
     	if(empty($admin_candidacy))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
@@ -1581,7 +1575,7 @@ class CensusController extends Controller
     	
     	if(empty($admin_id))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
@@ -1591,7 +1585,7 @@ class CensusController extends Controller
     	
     	if(empty($admin_candidacy))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
@@ -1669,7 +1663,7 @@ class CensusController extends Controller
     	 
     	if(empty($admin_id))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
@@ -1679,7 +1673,7 @@ class CensusController extends Controller
     	 
     	if(empty($admin_candidacy))
     	{
-    		return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
+    		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
     				'error' => 'Error: no se ha encontrado la sesión de administrador iniciada. Accede desde el <a href="' . $this->generateUrl('login', array(), TRUE) . '" title="Login administrador">login</a>',
     		));
     	}
@@ -1764,7 +1758,7 @@ class CensusController extends Controller
     		return $this->redirect($this->generateUrl('change_passwd_success'));
     	}
     
-    	return $this->render('MunicipalesBundle:Candidacy:changePasswd.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:changePasswd.html.twig', array(
     			'form' => $form->createView(),
     	));
     }
@@ -1835,13 +1829,13 @@ class CensusController extends Controller
     			
     			$session->getFlashBag()->set('msg', "Se ha enviado un enlace de recuperación al correo en uso por la cuenta");
     			
-    			return $this->render('MunicipalesBundle:Candidacy:recover_password_success.html.twig', array(
+    			return $this->render('MunicipalesBundle:Census:recover_password_success.html.twig', array(
     			));
     		}
     		
     	}
     	
-    	return $this->render('MunicipalesBundle:Candidacy:recover_password.html.twig', array(
+    	return $this->render('MunicipalesBundle:Census:recover_password.html.twig', array(
     			'form' => $form->createView(),
     	));
     }
@@ -1935,7 +1929,7 @@ class CensusController extends Controller
     					
     					$session->getFlashBag()->set('msg', "Se ha enviado un correo con los nuevos detalles de cuenta");
     					
-    					return $this->render('MunicipalesBundle:Candidacy:recover_password_success.html.twig', array(
+    					return $this->render('MunicipalesBundle:Census:recover_password_success.html.twig', array(
     					));
     				}
     			}
