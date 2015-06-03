@@ -23,13 +23,13 @@ census_step_verify:
         _locale: es_es|es_eu|es_gl|es_gl
         
 census_step2:
-    path:     /alta-candidatura-paso-2
+    path:     /localizacion
     defaults: { _controller: MunicipalesBundle:Census:step2 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
 census_step3:
-    path:     /alta-candidatura-paso-3
+    path:     /registro
     defaults: { _controller: MunicipalesBundle:Census:step3 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
@@ -41,207 +41,11 @@ census_step4:
         _locale: es_es|es_eu|es_gl|es_gl
         
 census_step5:
-    path:     /alta-candidatura-paso-5
+    path:     /final
     defaults: { _controller: MunicipalesBundle:Census:step5 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
-        
-municipales_candidacy_step6:
-    path:     /alta-candidatura-paso-6
-    defaults: { _controller: MunicipalesBundle:Census:step6 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-        
-municipales_candidacy_step7:
-    path:     /alta-candidatura-paso-7
-    defaults: { _controller: MunicipalesBundle:Census:step7 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-
-municipales_candidacy_step8:
-    path:     /alta-candidatura-paso-8
-    defaults: { _controller: MunicipalesBundle:Census:step8 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl 
-
-municipales_candidacy_step9:
-    path:     /alta-candidatura-paso-9
-    defaults: { _controller: MunicipalesBundle:Census:step9 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl 
-        
-# Extra for accept/reject candidates
-municipales_candidacy_accept:
-    path:     /candidate/accept/{id}
-    defaults: { _controller: MunicipalesBundle:Census:accept }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl  
-
-municipales_candidacy_reject:
-    path:     /candidate/reject/{id}
-    defaults: { _controller: MunicipalesBundle:Census:reject }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl  
-
-municipales_candidacy_delete:
-    path:     /candidate/delete/{id}
-    defaults: { _controller: MunicipalesBundle:Census:delete }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-        
-# Panel Admin or Admin Candidacy users
-panel_admin:
-    path:     /panel-admin
-    defaults: { _controller: MunicipalesBundle:PanelAdmin:index }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl 
-
-panel_admin_modify_personal_data:
-    path:     /panel-admin/modify-personal-data
-    defaults: { _controller: MunicipalesBundle:PanelAdmin:modifyPersonalData }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl 
-
-panel_admin_modify_vote_points_system:
-    path:     /panel-admin/modify-vote-points-system
-    defaults: { _controller: MunicipalesBundle:PanelAdmin:modifyVotePointsSystem }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl 
-
-panel_admin_modify_vote_points_system_reset:
-    path:     /panel-admin/modify-vote-points-system/reset
-    defaults: { _controller: MunicipalesBundle:PanelAdmin:modifyVotePointsSystemReset }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl 
-
-panel_admin_recover_password:
-    path:     /panel-admin/recover_password
-    defaults: { _controller: MunicipalesBundle:Census:changePasswd }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl   
-                      
-# http://municipales2015.listabierta.org/elmunicipioregistrado/resultados
-town_results:
-    path:     /{address}/resultados
-    defaults: { _controller: MunicipalesBundle:Town:results }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-                                      
-town_candidacy_vote_step1:
-    path:     /{address}/vota
-    defaults: { _controller: MunicipalesBundle:Town:vote1 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
  
-town_candidacy_step_verify:
-    path:     /{address}/vota-verificacion
-    defaults: { _controller: MunicipalesBundle:Town:voteVerify }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-
-town_candidacy_vote_step2:
-    path:     /{address}/vota-paso-2
-    defaults: { _controller: MunicipalesBundle:Town:vote2 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-
-town_candidacy_vote_step3:
-    path:     /{address}/vota-paso-3
-    defaults: { _controller: MunicipalesBundle:Town:vote3 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-
-town_candidacy_vote_step4:
-    path:     /{address}/vota-paso-4
-    defaults: { _controller: MunicipalesBundle:Town:vote4 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-
-town_candidacy_vote_step5:
-    path:     /{address}/vota-paso-5
-    defaults: { _controller: MunicipalesBundle:Town:vote5 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-
-town_candidacy_vote_step6:
-    path:     /{address}/vota-paso-6
-    defaults: { _controller: MunicipalesBundle:Town:vote6 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-
-town_candidacy_vote_step7:
-    path:     /{address}/vota-paso-7
-    defaults: { _controller: MunicipalesBundle:Town:vote7 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-
-town_candidacy_vote_step7_confirmation:
-    path:     /{address}/vota-paso-7-confirmacion
-    defaults: { _controller: MunicipalesBundle:Town:vote7 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-
-town_candidacy_vote_step8:
-    path:     /{address}/vota-paso-8
-    defaults: { _controller: MunicipalesBundle:Town:vote8 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
- 
-town_candidacy_download_csv:
-    path:     /{address}/descargar-csv
-    defaults: { _controller: MunicipalesBundle:Town:downloadCsv }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-               
-# Candidate                                               
-candidate_step1:
-    path:     /{address}/altacandidaturas
-    defaults: { _controller: MunicipalesBundle:Candidate:step1 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-
-candidate_step_verify:
-    path:     /{address}/alta-candidaturas-verificacion
-    defaults: { _controller: MunicipalesBundle:Candidate:stepVerify }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
- 
-candidate_step2:
-    path:     /{address}/alta-candidaturas-paso-2
-    defaults: { _controller: MunicipalesBundle:Candidate:step2 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl          
-
-candidate_step3:
-    path:     /{address}/alta-candidaturas-paso-3
-    defaults: { _controller: MunicipalesBundle:Candidate:step3 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl 
-         
-candidate_step4:
-    path:     /{address}/alta-candidaturas-paso-4
-    defaults: { _controller: MunicipalesBundle:Candidate:step4 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl  
-
-candidate_step5:
-    path:     /{address}/alta-candidaturas-paso-5
-    defaults: { _controller: MunicipalesBundle:Candidate:step5 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl  
-
-candidate_step6:
-    path:     /{address}/alta-candidaturas-paso-6
-    defaults: { _controller: MunicipalesBundle:Candidate:step6 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl  
-        
-candidate_step7:
-    path:     /{address}/alta-candidaturas-paso-7
-    defaults: { _controller: MunicipalesBundle:Candidate:step7 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl  
-
 # Ajax requests
 
 ajax_get_municipalities_list:
@@ -249,56 +53,6 @@ ajax_get_municipalities_list:
     defaults: { _controller: MunicipalesBundle:Ajax:getMunicipalities }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
-
-# Tractis
-
-tractis_sign:
-    path:     /tractis/sign
-    defaults: { _controller: MunicipalesBundle:Tractis:sign }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-
-# Manager
-
-manager_index:
-    path:     /manager
-    defaults: { _controller: MunicipalesBundle:Manager:index }
-    
-manager_verify_phone:
-    path:     /manager/verify-phone/{phone}
-    defaults: { _controller: MunicipalesBundle:Manager:verifyPhone }
-
-manager_purge_phones:
-    path:     /manager/purge-phones
-    defaults: { _controller: MunicipalesBundle:Manager:purgePhones }
-    
-manager_purge_candidacies:
-    path:     /manager/purge-candidacies
-    defaults: { _controller: MunicipalesBundle:Manager:purgeCandidacies }
-
-manager_purge_voters:
-    path:     /manager/purge-voters
-    defaults: { _controller: MunicipalesBundle:Manager:purgeVoters }
-    
-manager_purge_candidates:
-    path:     /manager/purge-candidates
-    defaults: { _controller: MunicipalesBundle:Manager:purgeCandidates }
-
-manager_spam_test:
-    path:     /manager/spam-test
-    defaults: { _controller: MunicipalesBundle:Manager:spamTest }
-    
-manager_launch_mail:
-    path:     /manager/launch-mail
-    defaults: { _controller: MunicipalesBundle:Manager:launchMail }
-   
-manager_delete_votes_no_sealed:
-    path:     /manager/delete-votes-no-sealed
-    defaults: { _controller: MunicipalesBundle:Manager:deleteVotesNoSealed }
-
-manager_delete_votes_no_sealed:
-    path:     /manager/seal-votes-massively
-    defaults: { _controller: MunicipalesBundle:Manager:sealVotesMassively }
 
 # http://municipales2015.listabierta.org./sms/inbound   
 municipales_sms_inbound_callback:
