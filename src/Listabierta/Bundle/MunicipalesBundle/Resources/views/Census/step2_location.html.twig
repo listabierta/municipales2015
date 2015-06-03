@@ -2,6 +2,203 @@
 
 {% block title %}{{ 'census.step4.html_title'|trans }}{% endblock %}
 
+{% block appjsinline %}
+    <script src="{{ asset('bundles/municipales/js/geoPosition.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script>
+			$(document).ready(function()
+			{
+				$(".explanation_dni").colorbox({inline:true, width:"15%"});
+
+				{% if enable_geolocation %}
+					function geo_error(error) 
+					{
+						var msg_error = '';
+						
+						// http://dev.w3.org/geo/api/spec-source.html#position_error_interface
+						// (0) unknown; (1) permission denied; (2) position unavailable; or (3) timeout
+						if(error.code == error.PERMISSION_DENIED) 
+						{
+							msg_error = 'Has rechazado permitir la detección geográfica de tu ubicación mediante el navegador, ' +
+								        'en consecuencia no podemos verificar que te encuentres en Sevilla y poder permitirte ' + 
+								        'realizar la votación. Si aún deseas proceder, debes cambiar la configuración a Permitir, ' +
+								        'por ejemplo en Google Chrome desde ' +
+								        'Configuración avanzada > Privacidad > Configuración de contenido > Excepciones de ubicación geográfica' +
+								        ' y pulsa "Permitir" para primarias.participa.info. Más información en: ' +
+								        'http://www.wikihow.com/Change-Your-Location-Sharing-Setting-in-Google-Chrome';
+								        
+							console.log(msg_error);
+						}
+						else if(error.code == error.POSITION_UNAVAILABLE) 
+						{
+							msg_error = 'Error: position unavailable!';
+							console.log(msg_error);
+						}
+						else if(error.code == error.TIMEOUT) 
+						{
+							msg_error = 'Error: timeout getting geolocation';
+							console.log(msg_error);
+						}
+						else
+						{
+							msg_error = 'Sorry, no position available. (error code: ' + error.code;
+							console.log(msg_error);
+						}
+
+						$('#geolocation_content').css('display', 'none');
+						$('#wizard-actions-box').css('display', 'none');
+						$("#live-geolocation").parent().css('display', 'block');
+						$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
+						$("#live-geolocation").html(msg_error);
+					}
+	
+					var geo_options = {
+							  enableHighAccuracy: true, 
+							  maximumAge        : 30000, 
+							  timeout           : 27000
+							};
+	
+					// http://dev.w3.org/geo/api/spec-source.html#geolocation
+					if('geolocation' in navigator) 
+					{
+						$("#live-geolocation").parent().css('display', 'block');
+						
+						
+						  /* geolocation is available */
+	
+						navigator.geolocation.getCurrentPosition(
+							function(position) 
+							{
+								  var geo_msg = 'Tiempo: ' + position.timestamp + ' <br/>Latitud: ' + position.coords.latitude + ' <br/>Longitud: ' + position.coords.longitude + 
+										  	  ' <br/>Altitud: ' + position.coords.altitude +
+										  	  ' <br/>Precision: ' + position.coords.accuracy +
+										  	  ' <br/>Precision altitud: ' +  position.coords.altitudeAccuracy +
+										  	  ' <br/>Heading: ' +  position.coords.heading +
+										  	  ' <br/>Speed: ' +  position.coords.speed
+										  	  
+								 console.log(geo_msg);
+								  
+								  
+								var img = new Image();
+								img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + position.coords.latitude + "," + position.coords.longitude + "&zoom=13&size=300x300&sensor=false";
+
+								console.log(img.src)
+								
+
+								var geocode_ajax = $.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=true&region=es', 
+								function(data) 
+								{
+									console.log('success');
+
+									console.log(data);
+									
+									if(data && data.status && data.status == 'OK')
+									{
+										var len = data.results[0].address_components.length;
+										var data_city;
+										for(var i = 0; i < len; i++ ) 
+										{
+											console.log(data.results[0].address_components[i].short_name)
+										    if(data.results[0].address_components[i].short_name == 'Sevilla' ) 
+											{
+										    	data_city = data.results[0].address_components[i].short_name;
+										        break;
+										    }
+										}
+
+										if(data_city == 'Sevilla')
+										{
+											$("#live-geolocation").html(geo_msg);
+											$("#live-geolocation").append(img);
+											
+											$('#geolocation_content').css('display', 'block');
+										}
+										else
+										{
+											var msg_error = 'No se ha detectado una ubicación cercana a Sevilla. Voto no permitido';
+											
+											//alert(msg_error);
+											$('#geolocation_content').css('display', 'none');
+											$('#wizard-actions-box').css('display', 'none');
+											$("#live-geolocation").parent().css('display', 'block');
+											$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
+											$("#live-geolocation").html(msg_error + '<br/><br/>' + geo_msg);
+											$("#live-geolocation").append(img);
+										}
+									}
+									else
+									{
+										var msg_error = 'geolocation error: could not fetch valid JSON status for coordinates';
+										
+										//alert(msg_error);
+										$('#geolocation_content').css('display', 'none');
+										$('#wizard-actions-box').css('display', 'none');
+										$("#live-geolocation").parent().css('display', 'block');
+										$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
+										$("#live-geolocation").html(msg_error + '<br/><br/>' + geo_msg);
+										$("#live-geolocation").append(img);
+									}
+								})
+								.done(function(data) 
+								{
+									console.log('finished geolocation');
+								})
+								.fail(function() 
+								{
+									var msg_error = 'geolocation error: could not fetch JSON for coordinates';
+									
+									//alert(msg_error);
+									$('#geolocation_content').css('display', 'none');
+									$('#wizard-actions-box').css('display', 'none');
+									$("#live-geolocation").parent().css('display', 'block');
+									$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
+									$("#live-geolocation").html(msg_error);
+
+								})
+								.always(function() 
+								{
+									//alert("finished");
+								}, 'json');
+								    
+							},
+							geo_error,
+							geo_options
+						);
+					} 
+					else 
+					{
+						var msg_error = 'geolocation IS NOT available';
+						console.log(msg_error);
+
+						$('#geolocation_content').css('display', 'none');
+						$('#wizard-actions-box').css('display', 'none');
+						$("#live-geolocation").parent().css('display', 'block');
+						$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
+						$("#live-geolocation").html(msg_error);
+	
+						/*
+						 if(geoPosition.init()){  // Geolocation Initialisation
+						            geoPosition.getCurrentPosition(success_callback,error_callback,{enableHighAccuracy:true});
+						    }else{
+						            // You cannot use Geolocation in this device
+						    }
+						    geoPositionSimulator.init(); 
+				
+						    // p : geolocation object
+						    function success_callback(p){
+						        // p.latitude : latitude value
+						        // p.longitude : longitude value
+						    }
+				
+						    function error_callback(p){
+						        // p.message : error message
+						    }
+					    */
+					}
+				{% endif %}
+			});
+	</script>
+{% endblock %}
+
 {% form_theme form 'MunicipalesBundle:theme:forms.html.twig' %}
 
 {% from 'MunicipalesBundle:macros:steps.html.twig' import steps_widget %}
@@ -60,6 +257,12 @@
                   
               		<div class="">
 						Bla
+						
+						  {% if enable_geolocation %}
+	                      <div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline center" style="display:none">
+	                      		<div class="alert alert-success" id="live-geolocation"></div>
+	                      </div>
+	                      {% endif %}
 					</div>                  
 							
                 </div>
