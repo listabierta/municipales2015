@@ -9,6 +9,6 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        return $this->render('MunicipalesBundle:Census:index.html.twig');
+        return $this->render('MunicipalesBundle:Census:step_conditions.html.twig');
     }
 }
