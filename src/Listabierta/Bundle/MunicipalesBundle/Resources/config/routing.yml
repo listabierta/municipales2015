@@ -1,91 +1,91 @@
-municipales_homepage:
+census_index:
     path:     /
-    defaults: { _controller: MunicipalesBundle:Default:index }
+    defaults: { _controller: MunicipalesBundle:Census:stepConditions }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
 
-municipales_candidacy_step_conditions:
-    path:     /condiciones-alta-candidatura
-    defaults: { _controller: MunicipalesBundle:Candidacy:stepConditions }
+census_step_conditions:
+    path:     /condiciones
+    defaults: { _controller: MunicipalesBundle:Census:stepConditions }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
-municipales_candidacy_step1:
-    path:     /alta-candidatura
-    defaults: { _controller: MunicipalesBundle:Candidacy:step1 }
+census_step1:
+    path:     /paso1
+    defaults: { _controller: MunicipalesBundle:Census:step1 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
  
-municipales_candidacy_step_verify:
-    path:     /alta-candidatura-verificacion
-    defaults: { _controller: MunicipalesBundle:Candidacy:stepVerify }
+census_step_verify:
+    path:     /verificacion
+    defaults: { _controller: MunicipalesBundle:Census:stepVerify }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
-municipales_candidacy_step2:
+census_step2:
     path:     /alta-candidatura-paso-2
-    defaults: { _controller: MunicipalesBundle:Candidacy:step2 }
+    defaults: { _controller: MunicipalesBundle:Census:step2 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
-municipales_candidacy_step3:
+census_step3:
     path:     /alta-candidatura-paso-3
-    defaults: { _controller: MunicipalesBundle:Candidacy:step3 }
+    defaults: { _controller: MunicipalesBundle:Census:step3 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
-municipales_candidacy_step4:
+census_step4:
     path:     /alta-candidatura-paso-4
-    defaults: { _controller: MunicipalesBundle:Candidacy:step4 }
+    defaults: { _controller: MunicipalesBundle:Census:step4 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
-municipales_candidacy_step5:
+census_step5:
     path:     /alta-candidatura-paso-5
-    defaults: { _controller: MunicipalesBundle:Candidacy:step5 }
+    defaults: { _controller: MunicipalesBundle:Census:step5 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
 municipales_candidacy_step6:
     path:     /alta-candidatura-paso-6
-    defaults: { _controller: MunicipalesBundle:Candidacy:step6 }
+    defaults: { _controller: MunicipalesBundle:Census:step6 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
 municipales_candidacy_step7:
     path:     /alta-candidatura-paso-7
-    defaults: { _controller: MunicipalesBundle:Candidacy:step7 }
+    defaults: { _controller: MunicipalesBundle:Census:step7 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
 
 municipales_candidacy_step8:
     path:     /alta-candidatura-paso-8
-    defaults: { _controller: MunicipalesBundle:Candidacy:step8 }
+    defaults: { _controller: MunicipalesBundle:Census:step8 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl 
 
 municipales_candidacy_step9:
     path:     /alta-candidatura-paso-9
-    defaults: { _controller: MunicipalesBundle:Candidacy:step9 }
+    defaults: { _controller: MunicipalesBundle:Census:step9 }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl 
         
 # Extra for accept/reject candidates
 municipales_candidacy_accept:
     path:     /candidate/accept/{id}
-    defaults: { _controller: MunicipalesBundle:Candidacy:accept }
+    defaults: { _controller: MunicipalesBundle:Census:accept }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl  
 
 municipales_candidacy_reject:
     path:     /candidate/reject/{id}
-    defaults: { _controller: MunicipalesBundle:Candidacy:reject }
+    defaults: { _controller: MunicipalesBundle:Census:reject }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl  
 
 municipales_candidacy_delete:
     path:     /candidate/delete/{id}
-    defaults: { _controller: MunicipalesBundle:Candidacy:delete }
+    defaults: { _controller: MunicipalesBundle:Census:delete }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
@@ -116,7 +116,7 @@ panel_admin_modify_vote_points_system_reset:
 
 panel_admin_recover_password:
     path:     /panel-admin/recover_password
-    defaults: { _controller: MunicipalesBundle:Candidacy:changePasswd }
+    defaults: { _controller: MunicipalesBundle:Census:changePasswd }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl   
                       
@@ -321,12 +321,12 @@ admin_logout:
 
 recover_password:
     path:     /recover_password
-    defaults: { _controller: MunicipalesBundle:Candidacy:recoverPassword }
+    defaults: { _controller: MunicipalesBundle:Census:recoverPassword }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
 recovery_token:
     path:     /recovery/{token}
-    defaults: { _controller: MunicipalesBundle:Candidacy:recoveryToken }
+    defaults: { _controller: MunicipalesBundle:Census:recoveryToken }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
