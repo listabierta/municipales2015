@@ -18,19 +18,19 @@ census_step1:
  
 census_step_verify:
     path:     /verificacion
-    defaults: { _controller: MunicipalesBundle:Census:stepVerify }
+    defaults: { _controller: MunicipalesBundle:Census:step4Verify }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
 census_step2:
     path:     /localizacion
-    defaults: { _controller: MunicipalesBundle:Census:step2 }
+    defaults: { _controller: MunicipalesBundle:Census:step2Location }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
 census_step3:
     path:     /registro
-    defaults: { _controller: MunicipalesBundle:Census:step3 }
+    defaults: { _controller: MunicipalesBundle:Census:step3Register }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
@@ -42,7 +42,7 @@ census_step4:
         
 census_step5:
     path:     /final
-    defaults: { _controller: MunicipalesBundle:Census:step5 }
+    defaults: { _controller: MunicipalesBundle:Census:step5Finish }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
  
