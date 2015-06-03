@@ -30,7 +30,7 @@
               		<div class="widget-main">
                 		<div id="fuelux-wizard-container">
                   
-							{{ steps_widget(1) }}
+							{{ steps_widget(2) }}
 
 	        			</div>
              		</div> <!-- /.widget-main -->
@@ -59,17 +59,7 @@
                     <h3 class="header smaller lighter blue col-xs-10">{{ 'census.step_conditions.p1_title'|trans }}:</h3>
                   
               		<div class="">
-						<ul class="list-unstyled sans col-sm-10">
-							<li>- {{ 'census.step_conditions.p1_content'|trans|raw }}</li>
-						
-							<li>- {{ 'census.step_conditions.p2_content'|trans|raw }}</li>
-						
-							<li>- {{ 'census.step_conditions.p3_content'|trans|raw }}</li>
-						
-							<li>- {{ 'census.step_conditions.p4_content'|trans|raw }}</li>
-						
-							<li>- {{ 'census.step_conditions.p5_content'|trans|raw }}</li>
-						</ul>
+						Bla
 					</div>                  
 							
                 </div>
@@ -78,21 +68,7 @@
                 
 				<div class="col-xs-10">
 	                <div class="widget-box">
-	
-		                <div class="widget-body">
-		                    <div class="widget-main text-center">
-								<div>{{ 'census.step_conditions.accept'|trans }}</div>
-		                        <hr class="featurette-divider2">
-		                          
-							    <div class="control-group" style="clear:both;text-align:center;margin: 0 auto;margin-top:20px">
-									{{ form_widget(form.conditions) }}
-									{{ form_errors(form.conditions) }}
-								</div>	                          
-		
-					
-							</div>
-		             	</div>
-		                        
+    
 		                <div class="form-actions">
 				        	<div class="text-center">
 				            	{{ form_widget(form.continue, { 'label': 'census.step_conditions.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
