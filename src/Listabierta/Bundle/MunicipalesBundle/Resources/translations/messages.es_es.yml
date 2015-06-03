@@ -393,7 +393,7 @@ mail:
         regards: Saludos
         
 forms:
-    candidacy_step1:
+    census_step1:
         password:
             minMessage: Tu contraseña debe de ser de al menos {{ limit }} caracteres
             maxMessage: Tu contraseña debe de ser mayor de {{ limit }} caracteres
