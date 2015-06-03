@@ -1,6 +1,6 @@
 <?php
 
-namespace Listabierta\Bundle\MunicipalesBundle\Form\Type;
+namespace Listabierta\Bundle\MunicipalesBundle\Form\Type\Census;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -82,8 +82,8 @@ class CensusStep1Type extends AbstractType
         						new Assert\Length(array(
         								'min'        => 8,
         								'max'        => 255,
-        								'minMessage' => $this->translations['forms.candidacy_step1.password.minMessage'],
-        								'maxMessage' => $this->translations['forms.candidacy_step1.password.maxMessage'],
+        								'minMessage' => $this->translations['forms.census_step1.password.minMessage'],
+        								'maxMessage' => $this->translations['forms.census_step1.password.maxMessage'],
         						)),
         				)))
         	    ->add('email', 'email', array(
