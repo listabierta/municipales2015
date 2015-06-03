@@ -93,89 +93,11 @@ census:
         warning: Si en el espacio en blanco escribes por ejemplo: FuenteovejunaParticipa, las direcciones asociadas a tu candidatura serán del tipo: http://%host%/FuenteovejunaParticipa/...
         
     step5:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Alta de candidatos y candidatas
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        explanation_link: Proporciona este enlace público a los candidatos y candidatas para que se den de alta rellenando el formulario que les aparecerá
-        continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
-        register_link: Enlace de Alta
-        send_link: Te hemos enviado una copia de este enlace a tu email
-        next_step_explanation: En el siguiente paso podrás validar a los candidatos y candidatas que se den de alta utilizando el enlace anterior.
-
-    step6:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Validación de candidatos y candidatas  
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        no_candidates: En estos momentos no existe ningun candidato inscrito para validar
-        name_header: Nombre y Apellidos
-        motivational_text_header: Texto motivacional
-        town_activities_explanation_header: Explicación actividades municipales
-        additional_info_header: Biografía
-        photo_header: Foto
-        action_header: Acción
-        accept: Aceptar
-        reject: Rechazar
-        reject_warning: <b>ATENCIÓN</b>: debes borrar las candidaturas que tengan la información incompleta (que les falta la foto por ejemplo), de esta forma les llegará un mensaje y podrán volver a inscribirse. Las candidaturas rechazadas, no podrán volver a inscribirse
-        delete: Borrar
-        accepted: Aceptado
-        rejected: Rechazado
-        accept_candidate: Aceptar candidato
-        reject_candidate: Rechazar candidato
-        delete_candidate: Borrar candidato
-        check_again: Volver a comprobar
-        
-    step7:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Inicio y fin de las Votaciones
-        days: Días
-        explanation: Introduce el número de días naturales que permanecerá activa la votación de candidatos desde el inicio de la votación (mínimo dos días).
-        init_vote_explanation: Haz clic en el siguiente botón para iniciar la votación
-        warning_explanation: ATENCIÓN !! Una vez iniciada la votación ya NO SE PODRÁN AÑADIR más candidatos o candidatas. Se proporcionará un enlace que habilitará el registro a los votantes y emitir el voto.
-        start_candidacy: Iniciar votación
-        public_link: Este es el enlace a la votación que puedes hacer público
-        no_finished_candidacy: Aún no puede iniciarse la votación ya que la fecha de finalización de las candidaturas no ha terminado. 
-        sent_mail: Te hemos enviado una copia de este enlace a tu email
-                                
-    step8:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Verificación del voto y resultados
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        vote_finished: Votación finalizada
-        audit: Puedes auditar el resultado aquí
-        how_works_tsa: ¿Cómo funciona el sellado de tiempo?
-        photo: Foto
-        name_lastname: Nombre y Apellidos
-        dni: DNI
-        phone: Número de Móvil
-        total_points: Total de puntos
-        position: Posición
-        vote_not_finished_warning: La votación aún no ha finalizado y aún no estan disponibles los resultados finales
-        vote_start_date: Fecha de inicio de votaciones
-        vote_end_date: Fecha de cierre de votaciones
-        header_p1: Una vez finalizada la votación, aparecerán en esta pantalla los resultados de la suma de puntos en un listado, ordenados de mayor a menor puntuación
-        header_p1_h3: ¿Cómo funciona el sistema de puntuación?
-        header_p2: El sistema que listabierta.org ha escogido es el Borda Modificado, porque es sencillo de entender por el votante y permite una elección más diversa y consensuada. En este caso el votante asigna a los candidatos o candidatas preseleccionados una posición que va del primer al quinto lugar. Una vez establecido el orden, procede a votar. Internamente, el recuento de puntos funciona de la siguiente forma
-        header_li0: "El candidato o candidata elegido sin puntuar recibe %points% puntos"
-        header_li1: "El candidato o candidata elegido en primer lugar recibe %points% puntos"
-        header_li2: "El candidato o candidata elegido en segundo lugar recibe %points% puntos"
-        header_li3: "El candidato o candidata elegido en tercer lugar recibe %points% puntos"
-        header_li4: "El candidato o candidata elegido en cuarto lugar recibe %points% puntos"
-        header_li5: "El candidato o candidata elegido en quinto lugar recibe %points% puntos"
-        header_li6: "El candidato o candidata elegido en sexto lugar recibe %points% puntos"
-        header_li7: "El candidato o candidata elegido en séptimo lugar recibe %points% puntos"
-        header_li8: "El candidato o candidata elegido en octavo lugar recibe %points% puntos"
-        header_li9: "El candidato o candidata elegido en noveno lugar recibe %points% puntos"
-        header_li10: "El candidato o candidata elegido en decimo lugar recibe %points% puntos"
-        
-    step9:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Presentación de las listas electas       
-        continue: Iniciar votación
-        result: Resultados de la votación
-        link_result: Enlace a los resultados de la elección
-        public_link: Proporciona este enlace público para mostrar los resultados de la votación
+        step_h2: Paso 5 Inscripción en el censo de votantes de Participa Sevilla
+        html_title: Inscripción en el censo de votantes de Participa Sevilla
+        h1_title:  Registro finalizado con éxito
+        p1: Gracias por registrarte en el censo de votantes de Participa Sevilla!
+        p2: Vamos a construir colectivamente otra forma de gestionar tu ayuntamiento por el bien común de sus habitantes.
 
     change_password:
         h1_title: Cambiar contraseña 
@@ -233,15 +155,6 @@ town:
         languages: "¿Es bueno que hable alguno de estos idiomas?"
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
-        
-    step5:
-        header: Selecciona prioridades municipales
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 5
-        h1_title: Selecciona prioridades municipales
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ?
-        public_values_title: ¿Qué valores morales consideras de mayor importancia para el desempeño de la función pública?
         
     step6:
         header: Asigna importancia
