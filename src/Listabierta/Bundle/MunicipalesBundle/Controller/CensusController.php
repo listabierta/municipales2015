@@ -59,7 +59,7 @@ class CensusController extends Controller
     	$session = $this->getRequest()->getSession();
     	 
     	$form = $this->createForm(new CandidacyStepConditionsType(), NULL, array(
-    			'action' => $this->generateUrl('municipales_candidacy_step_conditions'),
+    			'action' => $this->generateUrl('census_step_conditions'),
     			'method' => 'POST',
     		)
     	);
@@ -107,7 +107,7 @@ class CensusController extends Controller
     	// Check conditions in step 1 for avoid bad usage
     	if(empty($conditions) || $conditions!= 'yes')
     	{
-    		return $this->redirect($this->generateUrl('municipales_candidacy_step_conditions'), 301);
+    		return $this->redirect($this->generateUrl('census_step_conditions'), 301);
     	}
     	
     	$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
@@ -140,7 +140,7 @@ class CensusController extends Controller
     	$translations['forms.candidacy_step1.password.maxMessage'] = $translator->trans('forms.candidacy_step1.password.maxMessage');
     	
     	$form = $this->createForm(new CandidacyStep1Type($provinces_data, $municipalities, $translations), NULL, array(
-    			'action' => $this->generateUrl('municipales_candidacy_step1'),
+    			'action' => $this->generateUrl('census_step1'),
 			    'method' => 'POST',
     			)
     	);
@@ -300,7 +300,7 @@ class CensusController extends Controller
     	$session = $this->getRequest()->getSession();
     
     	$form = $this->createForm(new CandidacyStepVerifyType(), NULL, array(
-    			'action' => $this->generateUrl('municipales_candidacy_step_verify'),
+    			'action' => $this->generateUrl('census_step_verify'),
     			'method' => 'POST',
     		)
     	);
@@ -342,7 +342,7 @@ class CensusController extends Controller
     		if($ok)
     		{
     			$form2 = $this->createForm(new CandidacyStep2Type(), NULL, array(
-	    			'action' => $this->generateUrl('municipales_candidacy_step2'),
+	    			'action' => $this->generateUrl('census_step2'),
 	    			'method' => 'POST',
     			));
     
@@ -415,7 +415,7 @@ class CensusController extends Controller
     	}
     	
     	$form = $this->createForm(new CandidacyStep2Type(), NULL, array(
-    			'action' => $this->generateUrl('municipales_candidacy_step2'),
+    			'action' => $this->generateUrl('census_step2'),
     			'method' => 'POST',
     		)
     	);
@@ -637,7 +637,7 @@ class CensusController extends Controller
     			$warnings = array();
 				
     			$form2 = $this->createForm(new CandidacyStep3Type(), NULL, array(
-	    			'action' => $this->generateUrl('municipales_candidacy_step3'),
+	    			'action' => $this->generateUrl('census_step3'),
 	    			'method' => 'POST',
     			));
     	   
@@ -667,7 +667,7 @@ class CensusController extends Controller
     	$session = $this->getRequest()->getSession();
     
     	$form = $this->createForm(new CandidacyStep3Type(), NULL, array(
-    			'action' => $this->generateUrl('municipales_candidacy_step3'),
+    			'action' => $this->generateUrl('census_step3'),
     			'method' => 'POST',
     		)
     	);
@@ -771,7 +771,7 @@ class CensusController extends Controller
     	$session = $this->getRequest()->getSession();
     
     	$form = $this->createForm(new CandidacyStep4Type(), NULL, array(
-    			'action' => $this->generateUrl('municipales_candidacy_step4'),
+    			'action' => $this->generateUrl('census_step4'),
     			'method' => 'POST',
     		)
     	);
@@ -945,7 +945,7 @@ class CensusController extends Controller
     	}
     	
     	$form = $this->createForm(new CandidacyStep5Type(), NULL, array(
-    			'action' => $this->generateUrl('municipales_candidacy_step5'),
+    			'action' => $this->generateUrl('census_step5'),
     			'method' => 'POST',
     		)
     	);
@@ -1019,14 +1019,14 @@ class CensusController extends Controller
     	$candidates = $candidate_repository->findBy(array('admin_id' => $admin_id));
     	
     	$form_step7 = $this->createForm(new CandidacyStep7Type(), NULL, array(
-    			'action' => $this->generateUrl('municipales_candidacy_step7'),
+    			'action' => $this->generateUrl('census_step7'),
     			'method' => 'POST',
     	));
     	 
     	$form_step7->handleRequest($request);
     	
     	$form = $this->createForm(new CandidacyStep6Type(), NULL, array(
-    			'action' => $this->generateUrl('municipales_candidacy_step6'),
+    			'action' => $this->generateUrl('census_step6'),
     			'method' => 'POST',
     	));
     	
@@ -1113,7 +1113,7 @@ class CensusController extends Controller
     	if(empty($address))
     	{
     		return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
-    				'error' => 'Error: no se ha configurado una dirección de internet para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step4') . '" title="Paso 4 Candidatura - Reserva una dirección de internet">establece una dirección en el paso 4 de la candidatura</a>',
+    				'error' => 'Error: no se ha configurado una dirección de internet para la candidatura. Por favor <a href="' . $this->generateUrl('census_step4') . '" title="Paso 4 Candidatura - Reserva una dirección de internet">establece una dirección en el paso 4 de la candidatura</a>',
     		));
     	}
     	
@@ -1124,7 +1124,7 @@ class CensusController extends Controller
     	$candidacy_finished = TRUE;
     	
     	$form = $this->createForm(new CandidacyStep7Type(), NULL, array(
-    			'action' => $this->generateUrl('municipales_candidacy_step7'),
+    			'action' => $this->generateUrl('census_step7'),
     			'method' => 'POST',
     	));
     	 
@@ -1165,7 +1165,7 @@ class CensusController extends Controller
     			
     			$this->get('mailer')->send($message);
     			
-    			return $this->redirect($this->generateUrl('municipales_candidacy_step8'), 301);
+    			return $this->redirect($this->generateUrl('census_step8'), 301);
     		}
     	}
     	
@@ -1251,7 +1251,7 @@ class CensusController extends Controller
     			if(empty($candidacy_to_date))
     			{
     				return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
-    						'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
+    						'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('census_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
     				));
     			}
     			
@@ -1260,7 +1260,7 @@ class CensusController extends Controller
     			if(empty($candidacy_total_days))
     			{
     				return $this->render('MunicipalesBundle:Census:missing_admin_id.html.twig', array(
-    						'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
+    						'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('census_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
     				));
     			}
     		}
@@ -1543,7 +1543,7 @@ class CensusController extends Controller
     			), 'text/html'
     	);
     	
-    	return $this->redirect($this->generateUrl('municipales_candidacy_step6'), 301);
+    	return $this->redirect($this->generateUrl('census_step6'), 301);
     }
       
     /**
@@ -1631,7 +1631,7 @@ class CensusController extends Controller
     	
     	$this->get('mailer')->send($message);
     	
-    	return $this->redirect($this->generateUrl('municipales_candidacy_step6'), 301);
+    	return $this->redirect($this->generateUrl('census_step6'), 301);
     }
     
     /**
@@ -1720,7 +1720,7 @@ class CensusController extends Controller
     	 
     	$this->get('mailer')->send($message);
     	 
-    	return $this->redirect($this->generateUrl('municipales_candidacy_step6'), 301);
+    	return $this->redirect($this->generateUrl('census_step6'), 301);
     }
     
     public function changePasswdAction(Request $request)
