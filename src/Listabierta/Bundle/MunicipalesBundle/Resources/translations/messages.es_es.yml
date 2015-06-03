@@ -5,23 +5,22 @@ header:
         es_gl: Galego
         es_es: Español
         
-candidacy:
-    html_title: Municipales 2015 - Alta de candidatura ciudadana
-    h1_title: Regístrate y registra el municipio de la candidatura
+census:
+    html_title: Inscripción en el censo de votantes de Participa Sevilla
+    h1_title: Inscripción en el censo de votantes de Participa Sevilla
     verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
     verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
     
     step_conditions:
-      html_title: Municipales 2015 - Condiciones de alta de candidatura ciudadana
-      h1_title: Regístrate y registra el municipio de la candidatura
+      html_title: Inscripción en el censo de votantes de Participa Sevilla
+      h1_title: Acepta las condiciones de registro para el censo de votantes de Participa Sevilla
     
       p1_title: Al iniciar el registro aceptas las siguientes condiciones
-      p1_content: Que formas parte un colectivo (partido político, coalición de partidos o agrupación de electores) que no ha conseguido una forma jurídica para presentarse a los comicios municipales que se celebrarán el 24 de mayo de 2.015 y que tiene la intención de registrarse en plazo y forma en la correspondiente junta electoral provincial bajo la denominación (Nombre del municipio) Participa.
-      p2_content: Que has sido designado por dicho colectivo para efectuar el alta del municipio en la presente herramienta de voto de listas abiertas, no existiendo conflicto interno en cuanto a su uso.
-      p3_content: Que dicho colectivo comprende y acepta las limitaciones del uso de la herramienta en cuanto al sistema de voto y su verificación.
-      p4_content: Que dicho colectivo comprende y acepta que el proceso de verificación y aceptación de las candidaturas lo efectúa el administrador o administradora de la votación.
-      p5_content: Que mediante el acto de registro estás dando tu consentimiento expreso al tratamiento de los datos personales que aportas, según lo dispuesto en el artículo 6 de la LOPD y que podrás ejercer tus derechos en los términos dispuestos por el artículo 5 de la LOPD.
-      p6_content: Que la información que aportas durante el registro es cierta, tanto los datos personales como las condiciones de la votación, de la candidatura y su programa. Ten en cuenta que no podrás modificarla más adelante, ya que los datos de registro se utilizan para identificarte como usuario único.
+      p1_content: Que has apoyado con tu voto la candidatura municipalista de Participa Sevilla, o que, una vez conocida la candidatura, apoyas sus principios programáticos cuyos ejes principales son: rescate ciudadano, solución a la emergencia habitacional, promoción del empleo local, auditoría de las cuentas y contratos municipales, democracia y presupuestos participativos, gestión transparente, economía social y sostenibilidad medioambiental, puedes ver el programa completo de la candidatura <a href="https://participasevilla.org/?page_id=17178" title="Programa completo de la candidatura">aquí</a>
+      p2_content: Que aceptas de forma expresa que eventualmente pueda ser publicado tu nombre y apellidos en apoyo a dichos principios.
+      p3_content: Que mediante el acto de registro estás dando tu consentimiento expreso al tratamiento de los datos personales que aportas, según lo dispuesto en el artículo 6 de la LOPD y que podrás ejercer tus derechos en los términos dispuestos por el artículo 5 de la LOPD.
+      p4_content: Que resides en el municipio de Sevilla (se verificará en el siguiente paso del registro).
+      p5_content: Que la información que aportas durante el registro es cierta.
       accept: ACEPTAS ESTAS CONDICIONES
       continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
       
@@ -185,6 +184,7 @@ candidacy:
         recover: Nombre de usuario o dirección de correo electrónico
         continue: Recuperar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         explanation: Si has olvidado tu nombre de usuario o tu contraseña, puedes solicitar que el envío por correo electrónico de tu nombre de usuario y restablecer tu contraseña. Si introduces el correo electrónico que has registrado, se enviará las instrucciones para restablecer tu contraseña
+
 town:
     html_title: Municipales 2015 - Vota en la candidatura ciudadana
     h1_title: Registrate como votante
@@ -227,22 +227,6 @@ town:
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
         
-    step3:
-        header: Seleciona experiencia laboral
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 3
-        h1_title: Seleciona experiencia laboral
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        job_experience_title: ¿Qué campo de experiencia laboral te gustaría que hubiese desarrollado?
-        
-    step4:
-        header: Selecciona actividades municipales
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 4
-        h1_title: Selecciona actividades municipales
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        town_activities_title: ¿Qué experiencia relacionada con el desempeño municipal te gustaría que hubiese desarrollado?
-     
     step5:
         header: Selecciona prioridades municipales
         html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 5
@@ -372,111 +356,6 @@ town:
         position_text_9: Noveno/a
         position_text_10: Décimo/a
 
-    step8:
-        header: Asigna puntuaciones
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 8
-        h1_title: Asigna puntuaciones
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior 
-        congratulations: <strong><i class="mine-icon fa fa-check"></i> ¡Enhorabuena!</strong> Tu voto ha sido procesado correctamente 
-        
-    step9:
-        header: Fin
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Fin
-        previous: Anterior
-        headline: Resultados públicos de la votación
-        headin1: Resultados de la elección del municipio
-        headin2: en    
-        candidates_voted: Puntuación final obtenida por los candidatos y candidatas (*) 
-        candidates_voted_explanation: (*) La posición final puede tener correcciones de género u otros criterios determinados previamente en las condiciones de la candidatura aceptadas en el momento del registro por los candidatos y candidatas y los votantes.
-        total_voters: Total votantes
-        total_points: Total de puntos
-        position: Posición
-        download_csv: Bajar csv con los sellados de tiempo de tractis
-               
-candidate:
-    html_title: Municipales 2015 - Alta de candidato
-    h1_title: Regístrate como candidato o candidata
-
-    step1:
-        header: Regístrate como candidato o candidata
-        p1: "Antes de registrarte como candidato o candidata en la candidatura ciudadana <b>%address%</b>, del municipio <b>%town%</b>debes ver este video explicativo del proceso de registro."
-        p2: El plazo de presentación de candidaturas establecido es desde %fromdate% hasta %todate%
-        name: Nombre 
-        lastname: Apellidos
-        dni: DNI
-        email: Email
-        phone: Número de móvil
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás dar de alta tu candidatura. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
-
-    verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
-    verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
-    
-    step_verify:
-        html_title: Municipales 2015 - Alta de candidato
-        h1_title: Verifica tu número de móvil
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        
-    step2:
-        header: Firma documentos
-        p1: Debes firmar tu conformidad con los condicionantes de la candidatura, para ello haz clic en “Descargar” y firma (digital o manualmente) el documento, y una vez firmado lo adjuntas haciendo clic en “Examinar”.  Cuando hayas hecho lo mismo con todos los documentos,  haz clic en continuar. Puede que el administrador de la candidatura no ha subido ninguna condición, entonces, simplemente haz clic en continuar
-    
-        program: Aceptación del programa de la candidatura
-        legal_conditions: Cumplimiento de las condiciones legales y veracidad de la información aportada
-        recall_term: Aceptación del mandato revocatorio del candidato   
-        participatory_term: Aceptación del mandato participativo del candidato
-        voter_conditions: Aceptación del censo disponible y del sistema de votación
-        technical_constrains: Aceptación de las limitaciones técnicas y legales del sistema de voto.
-    
-        download: Descargar
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        
-    step3:      
-        header: Proporciona tu nivel académico
-        academic_level_title: ¿Cuál es tu nivel académico?
-        languages_title: ¿Eres capáz de mantener una conversación telefónica en alguno de estos idiomas? (puedes seleccionar ninguno o varios)
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-    
-    step4:      
-        header: Proporciona tu experiencia laboral
-        job_experience_title: ¿Cuál es el campo de tu experiencia laboral? (Seleccione hasta tres opciones)
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-          
-    step5:      
-        header: Proporciona el desempeño municipal
-        header_title: ¿Has tenido alguna experiencia que pueda estar relacionada con las actividades que desarrolla un Ayuntamiento?
-        town_activities_title: ¿Has tenido alguna experiencia relacionada con el desempeño municipal?  (Seleccione hasta tres opciones siempre que tu actividad incluya la coordinación o gestión de un grupo superior a las 10 personas, posteriormente tendrás que explicarlo)
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        
-    step6:      
-        header: Establece prioridades de gobierno
-        subheader: Establece las prioridades en las que debería mejorarse la gestión municipal 
-        govern_priorities_title: ¿En qué actividades crees que debería centrarse con prioridad el gobierno municipal ? (seleccione hasta tres opciones)
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        
-    step7:  
-        header: Selecciona valores morales    
-        public_values_title: ¿Qué valores morales consideras de mayor importancia para el desempeño de la función pública? (elige hasta tres)
-        motivation_text_title: Describe tu motivación para presentarte
-        town_activities_explanation_title: Describe tu experiencia relacionada
-        additional_info_title: Biografía e información adicional que quieras aportar
-        url_info_title: Dirección web o URL (vídeo, blog, etc) (opcional)
-        profile_image_title: Adjunta foto
-        previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        
-    final_step:
-        header: Fin    
-        end: "¡Candidatura completada!"
-        
 login:
     html_title: Login
     username: Usuario
@@ -505,124 +384,6 @@ mail:
         data_recover: Recuperación datos
         visit: Cuando visite la página, su contraseña será restablecida, y la nueva contraseña se le enviará a usted por correo
         regards: Saludos
-        
-    candidate_created:
-        hello: Hola
-        account: Este es un mensaje de confirmación de que tu registro de candidato ha sido creado
-        contact: Puedes comentarle cualquier incidencia al administrador de la candidatura en el correo
-        
-    admin_created:
-        hello: Hola
-        account: Tu cuenta de administrador de candidatura ha sido creada
-        can_create: Puedes acceder a tu cuenta desde el enlace
-        login: Login
-
-    admin_updated:
-        hello: Hola
-        account: Tu cuenta de administrador de candidatura ha sido actualizada
-        can_create: Puedes acceder a tu cuenta desde el enlace
-        login: Login
-        
-    candidacy_address:
-        hello: Hola
-        supply_link: Puedes proporcionar este enlace público a los candidatos y candidatas para que se den de alta rellenando el formulario que les aparecerá 
-      
-    candidacy_vote_address:
-        hello: Hola
-        can_public: Puedes proporcionar este enlace público de votacion a los votantes para que procedan rellenando el formulario que les aparecerá
-        
-    candidate_accepted:
-        hello: Hola
-        accepted: Tu candidatura ha sido aceptada por el administrador
-        admin_email: Dirección de correo del administrador
-        
-    candidate_rejected:
-        hello: Hola
-        rejected: Tu candidatura ha sido rechazada por el administrador.
-        admin_email: Dirección de correo del administrador
-
-    candidate_deleted:
-        hello: Hola
-        deleted: Tu candidatura ha sido borrada por el administrador, puede que hayas introducido datos erróneos o incompletos, puedes volver a enviarla si lo deseas.
-        admin_email: Dirección de correo del administrador
-
-    candidate_signup:
-        new: Se ha registrado un nuevo candidato con nombre
-    
-    sms_inbound_verification:
-        your_phone: Tu teléfono
-        verify: ha sido verificado correctamente
-    
-    vote_finished:
-        hello: Hola
-        your_vote: Tu voto ha sido correctamente emitido y sellado
-        seal_timestamp: Momento de sellado
-        string_seal: Cadena de sellado
-        
-    vote_deleted:
-        hello: Hola
-        we_sorry: Lamentamos informarte de que o bien no terminaste el proceso de voto completamente, o tu sesión caducó mientras lo hacías o no ha quedado registrado por alguna circunstancia técnica el sellado temporal de tu voto que asegura la trazabilidad del mismo, por lo que el sistema, de forma automática anula tu proceso de voto para permitirte que puedas volver a realizarlo con todas las garantías.
-        please_proceed: Por favor procede a completar tu proceso de voto desde el inicio en
-        thanks_you: te pedimos disculpas y te damos las gracias por participar en este proceso de construcción ciudadana.
-        greetings: Un saludo, el equipo de voto
-        
-    vote_sealed:
-        hello: Hola
-        vote_done: Tu voto fue correctamente emitido, pero estaba pendiente de ser sellado, ya que la plataforma de sellado en el momento que realizaste el voto no estaba disponible. Te informamos que tu voto ha sido sellado automáticamente y esta totalmente procesado y es válido para la votación.
-        thanks_you: Te pedimos disculpas y te damos las gracias por participar en este proceso de construcción ciudadana.
-        greetings: Un saludo, el equipo de voto
-            
-# Panel admin
-panel_admin:
-    index:
-        header: Panel Admin
-        hello: Hola
-        logout: Salir
-        manage: En este panel puedes gestionar la candidatura ciudadana
-        not_yet_validated: Aun no has validado tu número de móvil
-        needed_continue: Es necesario validar tu móvil para continuar con cualquier acción
-        your_phone_number: Tu número de móvil
-        is_verified: esta verificado correctamente.
-        modify_personal_data: Modificar datos personales
-        upload_documents: Subir documentos
-        set_candidacy_date: Cambiar/establecer los plazos <br />presentación de candidaturas
-        change_address: Cambiar/establecer <br />dirección de internet
-        candidacy_register: Ver enlace <br />de alta de candidatos/as
-        validate_candidates: Validar candidatos/as
-        set_vote_days: Establecer número de días <br />de la votación (plazo de votación)
-        see_internal_results: Ver resultados internos <br />de la votación
-        see_public_results: Ver enlace de resultados públicos<br /> de la votación
-        verify_msg: Confirma tu cuenta administrador enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después <a href="#" onclick="javascript:window.location.reload()">actualiza/recarga</a> esta página
-        modify_vote_points_system: Modificar puntuación en la votación de candidatos
-        borda_system: Sistema Borda
-        vote_results: Resultados Votaciones
-        candidates: Candidatos
-        candidacy: Candidatura ciudadana
-        admin_account: Cuenta administrador
-        
-    modify_personal_data:
-        title: Modificar datos personales
-        back: Volver
-        save: Guardar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        
-    modify_vote_points_system:
-        title: Modificar puntuación en la votación de candidatos
-        assign_points: Asignación de puntuación en la votación de candidatos
-        borda_explanation: En este apartado puedes asignar el valor que puntuará la posición de cada candidato o candidata. <br />Por defecto se usan los valores del <a href="http://en.wikipedia.org/wiki/Borda_count" title="Sistema de recuento Borda">sistema de recuento Borda</a> para máximo de hasta 10 candidatos o candidatas puntuables.
-        back: Volver
-        reset: Reiniciar valores por defecto
-        save: Guardar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        first: Primero/a
-        second: Segundo/a
-        third: Tercero/a
-        forth: Cuarto/a
-        fifth: Quinto/a
-        sixth: Sexto/a
-        seventh: Séptimo/a
-        eighth: Octavo/a
-        ninth: Noveno/a
-        tenth: Décimo/a
-        no_points: Sin puntuar
         
 forms:
     candidacy_step1:
