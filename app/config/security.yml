@@ -6,12 +6,6 @@ security:
         Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy:
             algorithm: bcrypt
             cost: 12
-        Listabierta\Bundle\MunicipalesBundle\Entity\Candidate:
-            algorithm: bcrypt
-            cost: 12
-        Listabierta\Bundle\MunicipalesBundle\Entity\Voter:
-            algorithm: bcrypt
-            cost: 12
         Symfony\Component\Security\Core\User\User:
             algorithm: bcrypt
             cost: 12
@@ -27,9 +21,7 @@ security:
             entity: { class: MunicipalesBundle:AdminCandidacy }
         users:
             entity: { class: MunicipalesBundle:AdminCandidacy }
-        voters:
-            entity: { class: MunicipalesBundle:Voter } 
-                  
+  
         main:
             entity:
                 class: MunicipalesBundle:AdminCandidacy
