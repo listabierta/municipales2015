@@ -12,9 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PhoneVerified
 {
-	const MODE_ADMIN = 1;
-	const MODE_CANDIDATE = 2;
-	const MODE_VOTER = 3;
+	const MODE_CENSUS_USER = 1;
 	
     /**
      * @var integer
