@@ -1,6 +1,6 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
-{% block title %}{{ 'census.step_verify.html_title'|trans }}{% endblock %}
+{% block title %}{{ 'census.step4.html_title'|trans }}{% endblock %}
 {% from 'MunicipalesBundle:macros:steps.html.twig' import steps_widget %}
 {% form_theme form 'MunicipalesBundle:theme:forms.html.twig' %}
 
@@ -11,8 +11,8 @@
       <div class="container marketing">
 
         <div class="headline">
-          <h2>{{ 'home.step_h2'|trans }} 1</h2>
-        </div><h3 class="featurette-headin"> <i>{{ 'census.step_conditions.h1_title'|trans }}</i>
+          <h2>{{ 'census.step4.step_h2'|trans }}</h2>
+        </div><h3 class="featurette-headin"> <i>{{ 'census.step4.h1_title'|trans }}</i>
         </h3>
         
         <!-- START THE FEATURETTES -->
@@ -48,7 +48,7 @@
                   {% endif %}
                           
                     <div data-step="1" class="step-pane active row">
-                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'census.step_verify.h1_title'|trans }}</h2><div class="col-sm-offset-3 col-md-6 well">
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'census.step4.h1_title'|trans }}</h2><div class="col-sm-offset-3 col-md-6 well">
 
 					  <p class="lead2 phone_verify">
 	
@@ -67,12 +67,12 @@
                 <hr>
                 <div class="wizard-actions">
 
-				  <button class="btn btn-prev" onclick="location.href='{{ path('municipales_census_step1') }}'; return false;">
+				  <button class="btn btn-prev" onclick="location.href='{{ path('census_step3') }}'; return false;">
                     <i class="mine-icon fa fa-arrow-left"></i>
-                    {{ 'census.step_verify.previous'|trans }}
+                    {{ 'census.step4.previous'|trans }}
                   </button>
                   
-                  {{ form_widget(form.continue, { 'label': 'census.step_verify.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
+                  {{ form_widget(form.continue, { 'label': 'census.step4.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
 
                 </div>
               </div>
@@ -84,7 +84,7 @@
 
         {{ form_rest(form) }}
 			
-			  {{ form_end(form) }}
+		{{ form_end(form) }}
 			  
         <!--    division -->
 
