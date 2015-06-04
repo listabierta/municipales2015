@@ -18,13 +18,13 @@ security:
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         administrators:
-            entity: { class: MunicipalesBundle:AdminCandidacy }
+            entity: { class: MunicipalesBundle:CensusUser }
         users:
-            entity: { class: MunicipalesBundle:AdminCandidacy }
+            entity: { class: MunicipalesBundle:CensusUser }
   
         main:
             entity:
-                class: MunicipalesBundle:AdminCandidacy
+                class: MunicipalesBundle:CensusUser
                 property: username
                 
         in_memory:
