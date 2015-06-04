@@ -66,7 +66,7 @@ class SMSInboundController extends Controller
 					$this->get('mailer')->send($message);
 					
 					// Check if mode is admin for sent a welcome email confirmation
-					if($phone_verified->getMode() == PhoneVerified::MODE_ADMIN)
+					if($phone_verified->getMode() == PhoneVerified::MODE_CENSUS_USER)
 					{
 						// Search admin record from email and phone
 						
