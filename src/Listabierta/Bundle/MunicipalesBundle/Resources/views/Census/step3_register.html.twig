@@ -210,8 +210,8 @@
       <div class="container marketing">
         
         <div class="headline">
-          <h2>{{ 'home.step_h2'|trans }} 1</h2>
-        </div><h3 class="featurette-headin"> <i>{{ 'home.step_1'|trans }}</i>
+          <h2>{{ 'census.step3.step_h2'|trans }}</h2>
+        </div><h3 class="featurette-headin"> <i>{{ 'census.step3.h1_title'|trans }}</i>
         </h3>
 
         <!-- START THE FEATURETTES -->
@@ -252,68 +252,73 @@
 	                      		<div class="alert alert-success" id="live-geolocation"></div>
 	                      </div>
 	                  {% endif %}
-	                      
-                      <div class="form-group{% if form.name.vars.errors|length > 0 %} has-error{% endif %}">
-						  {{ form_label(form.name, 'census.step3.name'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
-						  {{ form_widget(form.name) }}
-						  {% if form.name.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.name) }}</div>{% endif %}
-					  </div>
-
-					  <div class="form-group{% if form.lastname.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.lastname, 'census.step3.lastname'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    	      {{ form_widget(form.lastname) }}
-			    	      {% if form.lastname.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.lastname) }}</div>{% endif %}
-					  </div>
-			
-					  <div class="form-group{% if form.dni.vars.errors|length > 0 %} has-error{% endif %}">
-			    	  	  {{ form_label(form.dni, 'census.step3.dni'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.dni) }}
-			    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'census.step3.dni_info'|trans }}</div>
-			    	  	  {% if form.dni.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.dni) }}{% endif %}
-					  </div>
-
-					  <div class="form-group{% if form.email.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.email, 'census.step3.email'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.email) }}
-			    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'census.step3.email_info'|trans }}</div>
-			    		  {% if form.email.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.email) }}</div>{% endif %}
-					  </div>
-			
-					  <div class="form-group{% if form.phone.vars.errors|length > 0 %} has-error{% endif %}">
-					      {{ form_label(form.phone, 'census.step3.phone'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-					      {{ form_widget(form.phone) }}
-					      
-					      <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'census.step3.phone_info'|trans }}</div>
-					      {% if form.phone.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.phone) }}</div>{% endif %}
-					      <a class='explanation_dni' href="#explanation_dni_content"><img style="margin-left:15px;width:16px;height:16px" src="{{ asset('bundles/municipales/images/question.png') }}"
-					       alt="{{ 'census.step3.explanation'|trans }}"
-					       title="{{ 'census.step3.explanation'|trans }}"/></a>
-					    
-					      <!-- This contains the hidden content for inline calls -->
-						  <div style='display:none'>
-							  <div id='explanation_dni_content' style='width:200px;padding:10px; background:#fff;'>
-								  {{ 'census.step3.explanation_dni'|trans }}
+	                  
+	                  <div class="clearfix"></div>
+	                  
+	                  <div id="geolocation_content">    
+	                      <div class="form-group{% if form.name.vars.errors|length > 0 %} has-error{% endif %}">
+							  {{ form_label(form.name, 'census.step3.name'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+							  {{ form_widget(form.name) }}
+							  {% if form.name.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.name) }}</div>{% endif %}
+						  </div>
+	
+						  <div class="form-group{% if form.lastname.vars.errors|length > 0 %} has-error{% endif %}">
+				    		  {{ form_label(form.lastname, 'census.step3.lastname'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+				    	      {{ form_widget(form.lastname) }}
+				    	      {% if form.lastname.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.lastname) }}</div>{% endif %}
+						  </div>
+				
+						  <div class="form-group{% if form.dni.vars.errors|length > 0 %} has-error{% endif %}">
+				    	  	  {{ form_label(form.dni, 'census.step3.dni'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+				    		  {{ form_widget(form.dni) }}
+				    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'census.step3.dni_info'|trans }}</div>
+				    	  	  {% if form.dni.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.dni) }}{% endif %}
+						  </div>
+	
+						  <div class="form-group{% if form.email.vars.errors|length > 0 %} has-error{% endif %}">
+				    		  {{ form_label(form.email, 'census.step3.email'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+				    		  {{ form_widget(form.email) }}
+				    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'census.step3.email_info'|trans }}</div>
+				    		  {% if form.email.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.email) }}</div>{% endif %}
+						  </div>
+				
+						  <div class="form-group{% if form.phone.vars.errors|length > 0 %} has-error{% endif %}">
+						      {{ form_label(form.phone, 'census.step3.phone'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+						      {{ form_widget(form.phone) }}
+						      
+						      <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'census.step3.phone_info'|trans }}</div>
+						      {% if form.phone.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.phone) }}</div>{% endif %}
+						      <a class='explanation_dni' href="#explanation_dni_content"><img style="margin-left:15px;width:16px;height:16px" src="{{ asset('bundles/municipales/images/question.png') }}"
+						       alt="{{ 'census.step3.explanation'|trans }}"
+						       title="{{ 'census.step3.explanation'|trans }}"/></a>
+						    
+						      <!-- This contains the hidden content for inline calls -->
+							  <div style='display:none'>
+								  <div id='explanation_dni_content' style='width:200px;padding:10px; background:#fff;'>
+									  {{ 'census.step3.explanation_dni'|trans }}
+								  </div>
 							  </div>
 						  </div>
+				
+						  <div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline"><div class="alert alert-warning">{{ 'census.step3.warning_text'|trans|raw }}</div></div>
 					  </div>
-			
-					  <div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline"><div class="alert alert-warning">{{ 'census.step3.warning_text'|trans|raw }}</div></div>
-			
 					  
                       
                     </div>
                   </div>
                 </div>
 
-                <hr>
-                <div class="wizard-actions">
-                  <button class="btn btn-prev" onclick="location.href='{{ path('census_step2') }}'; return false;">
-                    <i class="mine-icon fa fa-arrow-left"></i>
-                    {{ 'census.step3.previous'|trans }}
-                  </button>
-                  
-                  {{ form_widget(form.continue, { 'label': 'census.step3.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
-                  
+                <div id="wizard-actions-box">
+	                <hr>
+	                <div class="wizard-actions">
+	                  <button class="btn btn-prev" onclick="location.href='{{ path('census_step2') }}'; return false;">
+	                    <i class="mine-icon fa fa-arrow-left"></i>
+	                    {{ 'census.step3.previous'|trans }}
+	                  </button>
+	                  
+	                  {{ form_widget(form.continue, { 'label': 'census.step3.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
+	                  
+	                </div>
                 </div>
               </div>
               
