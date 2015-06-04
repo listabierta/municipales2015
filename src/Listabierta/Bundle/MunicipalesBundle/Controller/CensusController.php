@@ -5,7 +5,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\Census\CensusStepConditionsType;
-use Listabierta\Bundle\MunicipalesBundle\Form\Type\Census\CensusStep1Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\Census\CensusStep2Type;
+use Listabierta\Bundle\MunicipalesBundle\Form\Type\Census\CensusStep3Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\Census\CensusStepVerifyType;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep2Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep3Type;
@@ -59,7 +60,7 @@ class CensusController extends Controller
     	$session = $this->getRequest()->getSession();
     	 
     	$form = $this->createForm(new CensusStepConditionsType(), NULL, array(
-    			'action' => $this->generateUrl('census_step_conditions'),
+    			'action' => $this->generateUrl('census_step1'),
     			'method' => 'POST',
     		)
     	);
@@ -90,57 +91,60 @@ class CensusController extends Controller
     			'form' => $form->createView(),
     	));
     }
+ 
+
+    /**
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function step2LocationAction(Request $request = NULL)
+    {
+    	$session = $this->getRequest()->getSession();
+    	$entity_manager = $this->getDoctrine()->getManager();
     
+    	$conditions = $session->get('conditions');
+    
+    	// Check conditions in step 1 for avoid bad usage
+    	if(empty($conditions) || $conditions!= 'yes')
+    	{
+    		return $this->redirect($this->generateUrl('census_step1'), 301);
+    	}
+    
+    	$form = $this->createForm(new CensusStep2Type(), NULL, array(
+    			'action' => $this->generateUrl('census_step2'),
+    			'method' => 'POST',
+    	)
+    	);
+    
+    	$form->handleRequest($request);
+    
+    	$ok = TRUE;
+    	if ($form->isValid())
+    	{
+    		if($ok)
+    		{
+    			return $this->step3RegisterAction($request);
+    		}
+    	}
+    
+    	return $this->render('MunicipalesBundle:Census:step2_location.html.twig', array(
+    			'form' => $form->createView(),
+    	));
+    }
     
     /**
      * 
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function step1Action(Request $request = NULL)
+    public function step3RegisterAction(Request $request = NULL)
     {
     	$session = $this->getRequest()->getSession();
     	$entity_manager = $this->getDoctrine()->getManager();
-    	
-    	$conditions = $session->get('conditions');
-    	
-    	// Check conditions in step 1 for avoid bad usage
-    	if(empty($conditions) || $conditions!= 'yes')
-    	{
-    		return $this->redirect($this->generateUrl('census_step_conditions'), 301);
-    	}
-    	
-    	$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
-    	$provinces_data = $province_repository->fetchProvinces();
-    	
-    	$municipalities = array();
-    	$municipalities[0] = 'Elige municipio';
-    	
-    	if(isset($_REQUEST['census_step1']) && isset($_REQUEST['census_step1']['province']))
-    	{
-    		if(!empty($_REQUEST['census_step1']['province']))
-    		{
-    			$province_form = intval($_REQUEST['census_step1']['province']);
-    			 
-    			$query = "SELECT id, name FROM municipalities_spain WHERE province_id='" . intval($province_form) . "'";
 
-    			$statement = $entity_manager->getConnection()->executeQuery($query);
-    			$municipalities_data = $statement->fetchAll();
-    			 
-    			foreach($municipalities_data as $result)
-    			{
-    				$municipalities[$result['id']] = $result['name'];
-    			}
-    		}
-    	}
-    	
-    	$translator = $this->get('translator');
-    	$translations = array();
-    	$translations['forms.census_step1.password.minMessage'] = $translator->trans('forms.census_step1.password.minMessage');
-    	$translations['forms.census_step1.password.maxMessage'] = $translator->trans('forms.census_step1.password.maxMessage');
-    	
-    	$form = $this->createForm(new CensusStep1Type($provinces_data, $municipalities, $translations), NULL, array(
-    			'action' => $this->generateUrl('census_step1'),
+    	$form = $this->createForm(new CensusStep3Type(), NULL, array(
+    			'action' => $this->generateUrl('census_step3'),
 			    'method' => 'POST',
     			)
     	);
@@ -154,96 +158,63 @@ class CensusController extends Controller
     		$name     = $form['name']->getData();
     		$lastname = $form['lastname']->getData();
     		$dni      = $form['dni']->getData();
-    		$username = $form['username']->getData();
-    		$password = $form['password']->getData();
     		$email    = $form['email']->getData();
-    		$province = $form['province']->getData();
-    		$town     = $form['town']->getData();
     		$phone    = $form['phone']->getData();
 
     		
-    		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
-
-    		$admin_username = $admin_candidacy_repository->findOneBy(array('username' => $username));
-    		 
-    		if(!empty($admin_username))
-    		{
-    			$form->addError(new FormError('Ya existe un usuario administrador registrado con el nombre de usuario ' . $username));
-    			$ok = FALSE;
-    			$already_registered = TRUE;
-    		}
+    		$census_user_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\CensusUser');
     		
-    		$admin_dni = $admin_candidacy_repository->findOneBy(array('dni' => $dni));
+    		$census_user_dni = $census_user_repository->findOneBy(array('dni' => $dni));
     			
-    		if(!empty($admin_dni))
+    		if(!empty($census_user_dni))
     		{
-    			$form->addError(new FormError('Ya existe un usuario administrador registrado con el dni ' . $dni));
+    			$form->addError(new FormError('Ya existe un usuario de censo registrado con el dni ' . $dni));
     			$ok = FALSE;
     			$already_registered = TRUE;
     		}
     		
-    		$admin_email = $admin_candidacy_repository->findOneBy(array('email' => $email));
+    		$census_user_email = $census_user_repository->findOneBy(array('email' => $email));
     		 
-    		if(!empty($admin_email))
+    		if(!empty($census_user_email))
     		{
-    			$form->addError(new FormError('Ya existe un usuario administrador registrado con el email ' . $email));
+    			$form->addError(new FormError('Ya existe un usuario de censo registrado con el email ' . $email));
     			$ok = FALSE;
     			$already_registered = TRUE;
     		}
     		
-    		$admin_phone = $admin_candidacy_repository->findOneBy(array('phone' => $phone));
-    		 
-    		if(empty($town) || $town == 0)
+    		$census_user_phone = $census_user_repository->findOneBy(array('phone' => $phone));
+
+    		if(!empty($census_user_phone))
     		{
-    			$form->addError(new FormError('El campo municipio es obligatorio'));
-    			$ok = FALSE;
-    		}
-    		
-    		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
-    		$town_name = $province_repository->getMunicipalityName($town);
-    		
-    		if(empty($town_name))
-    		{
-    			$form->addError(new FormError('El campo municipio es obligatorio. No se ha encontrado un nombre de identificador valido para el ID de municipio ' . $town));
-    			$ok = FALSE;
-    		}
-    		
-    		if(!empty($admin_phone))
-    		{
-    			$form->addError(new FormError('Ya existe un usuario administrador registrado con el teléfono ' . $phone));
+    			$form->addError(new FormError('Ya existe un usuario de censo registrado con el teléfono ' . $phone));
     			$ok = FALSE;
     			$already_registered = TRUE;
     		}
     		
+    		/*
     		if($already_registered)
     		{
     			$login_url = $this->generateUrl('login', array(), TRUE);
     			$form->addError(new FormError('Si te registraste con anterioridad, puedes acceder a tu registro en: <a href="' . $login_url . '" 
     					title="Login">' . $login_url . '</a> y continuar por el paso dónde lo dejaste.'));
     		}
+    		*/
     		
     		if($ok)
     		{
+    			$session->set('geolocation_allowed', TRUE);
+
     			$entity_manager = $this->getDoctrine()->getManager();
     			
     			// Store info in database AdminCandidacy
-    			$admin_candidacy = new AdminCandidacy();
-    			$admin_candidacy->setName($name);
-    			$admin_candidacy->setLastname($lastname);
-    			$admin_candidacy->setDni($dni);
-    			$admin_candidacy->setUsername($username);
+    			$census_user = new CensusUser();
+    			$census_user->setName($name);
+    			$census_user->setLastname($lastname);
+    			$census_user->setDni($dni);
+    			$census_user->setEmail($email);
+    			$census_user->setPhone($phone);
     			
-    			$factory = $this->get('security.encoder_factory');
-    			$encoder = $factory->getEncoder($admin_candidacy);
-    			$encodedPassword = $encoder->encodePassword($password, $admin_candidacy->getSalt());
-
-    			$admin_candidacy->setPassword($encodedPassword);
-    			$admin_candidacy->setEmail($email);
-    			$admin_candidacy->setProvince($province);
-    			$admin_candidacy->setTown($town);
-    			$admin_candidacy->setPhone($phone);
-    			
-    			$entity_manager->persist($admin_candidacy);
+    			$entity_manager->persist($census_user);
     			$entity_manager->flush();
     			
     			// Store email and phone in database as pending PhoneVerified without timestamp
@@ -251,42 +222,25 @@ class CensusController extends Controller
     			$phone_verified->setPhone($phone);
     			$phone_verified->setEmail($email);
     			$phone_verified->setTimestamp(0);
-    			$phone_verified->setMode(PhoneVerified::MODE_ADMIN);
+    			$phone_verified->setMode(PhoneVerified::MODE_CENSUS_USER);
 
     			$entity_manager->persist($phone_verified);
     			$entity_manager->flush();
 
-    			$session->set('admin_id', $admin_candidacy->getId());
+    			$session->set('census_user_id', $admin_candidacy->getId());
 	    		$session->set('name', $name);
 	    		$session->set('lastname', $lastname);
 	    		$session->set('dni', $dni);
 	    		$session->set('email', $email);
-	    		$session->set('province', $province);
-	    		$session->set('town', $town);
 	    		$session->set('phone', $phone);
 	    		
-	    		// Send mail with login link for admin
-	    		$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-	    		
-	    		$message = \Swift_Message::newInstance()
-	    		->setSubject('Tu cuenta de administrador ha sido creada')
-	    		->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
-	    		->setTo($email)
-	    		->setBody(
-	    				$this->renderView(
-	    						'MunicipalesBundle:Mail:admin_created.html.twig',
-	    						array('name' => $name)
-	    				), 'text/html'
-	    		);
-	    		 
-	    		$this->get('mailer')->send($message);
-	    		
-				return $this->stepVerifyAction($request);
+				return $this->step4VerifyAction($request);
     		}
     	}
     	
     	return $this->render('MunicipalesBundle:Census:step3_register.html.twig', array(
     			'form' => $form->createView(),
+    			'enable_geolocation' => TRUE,
     	));
     }
     
@@ -299,8 +253,8 @@ class CensusController extends Controller
     {
     	$session = $this->getRequest()->getSession();
     
-    	$form = $this->createForm(new CandidacyStepVerifyType(), NULL, array(
-    			'action' => $this->generateUrl('census_step_verify'),
+    	$form = $this->createForm(new CensusStepVerifyType(), NULL, array(
+    			'action' => $this->generateUrl('census_step4'),
     			'method' => 'POST',
     		)
     	);
@@ -341,108 +295,13 @@ class CensusController extends Controller
     			
     		if($ok)
     		{
-    			$this->step5FinishAction($request);
+    			return $this->step5FinishAction($request);
     		}
     	}
     
     	return $this->render('MunicipalesBundle:Census:step4_verify.html.twig', array(
     			'form' => $form->createView(),
     			'errors' => $form->getErrors(),
-    	));
-    }
-    
-    /**
-     * 
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function step2LocationAction(Request $request = NULL)
-    {
-    	$session = $this->getRequest()->getSession();
-    	$entity_manager = $this->getDoctrine()->getManager();
-    	 
-
-    	$entity_manager = $this->getDoctrine()->getManager();
-    	
-    	$form = $this->createForm(new CandidacyStep2Type(), NULL, array(
-    			'action' => $this->generateUrl('census_step2'),
-    			'method' => 'POST',
-    		)
-    	);
-    	 
-    	$form->handleRequest($request);
-    
-    	$ok = TRUE;
-    	if ($form->isValid())
-    	{
-    		$program              = $form['program'];
-    		
-    		
-
-    		
-    		if($ok)
-    		{
-    			if(!empty($program_data))
-    			{
-    				$session->set('program', $program_data->getClientOriginalName());
-    			}
-  
-    			$warnings = array();
-				
-    			$form2 = $this->createForm(new CandidacyStep3Type(), NULL, array(
-	    			'action' => $this->generateUrl('census_step3'),
-	    			'method' => 'POST',
-    			));
-    	   
-    			$form2->handleRequest($request);
-    	   
-    			return $this->render('MunicipalesBundle:Census:step3_register.html.twig', array(
-    					'warnings' => $warnings,
-    					'errors' => $form->getErrors(),
-    					'form' => $form2->createView()
-    				)
-    			);
-    		}
-    	}
-    	 
-    	return $this->render('MunicipalesBundle:Census:step2_location.html.twig', array(
-    			'form' => $form->createView(),
-    	));
-    }
-    
-    /**
-     *
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function step3RegisterAction(Request $request = NULL)
-    {
-    	$session = $this->getRequest()->getSession();
-    
-    	$form = $this->createForm(new CandidacyStep3Type(), NULL, array(
-    			'action' => $this->generateUrl('census_step3'),
-    			'method' => 'POST',
-    		)
-    	);
-    
-    	$form->handleRequest($request);
-
-    	$entity_manager = $this->getDoctrine()->getManager();
-
-    	$ok = TRUE;
-    	if ($form->isValid())
-    	{
-    		$from_data    = $form['from']->getData();
- 
-    		if($ok)
-    		{
-
-    			return $this->step4VerifyAction($request);
-    		}
-    	}
-    
-    	return $this->render('MunicipalesBundle:Census:step3_register.html.twig', array(
-    			'form' => $form->createView(),
     	));
     }
     
