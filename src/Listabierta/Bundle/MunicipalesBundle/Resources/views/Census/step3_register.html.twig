@@ -1,43 +1,200 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
-{% block title %}{{ 'candidacy.html_title'|trans }}{% endblock %}
+{% block title %}{{ 'census.step3.html_title'|trans }}{% endblock %}
 
 {% block appjsinline %}
+    <script src="{{ asset('bundles/municipales/js/geoPosition.js') }}" type="text/javascript" charset="utf-8"></script>
     <script>
 			$(document).ready(function()
 			{
-				$('.explanation_dni').colorbox({inline:true, width:'15%'});
+				$(".explanation_dni").colorbox({inline:true, width:"15%"});
 
-				$('#candidacy_step1_province').change(function() 
-				{
-					var province_id = $(this).val()
-					
-					var municipalities = $.get('/ajax/get-municipalities-list/' + province_id, function(data) 
+				{% if enable_geolocation %}
+					function geo_error(error) 
 					{
-						console.log("success");
-
-						$('#candidacy_step1_town').find('option').remove();
-						$.each(data, function(key, value) 
+						var msg_error = '';
+						
+						// http://dev.w3.org/geo/api/spec-source.html#position_error_interface
+						// (0) unknown; (1) permission denied; (2) position unavailable; or (3) timeout
+						if(error.code == error.PERMISSION_DENIED) 
 						{
-							$('<option>').val(key).text(value).appendTo($('#candidacy_step1_town'));
-						});
-					})
-					.done(function() 
+							msg_error = 'Has rechazado permitir la detección geográfica de tu ubicación mediante el navegador, ' +
+								        'en consecuencia no podemos verificar que te encuentres en Sevilla y poder permitirte ' + 
+								        'realizar la votación. Si aún deseas proceder, debes cambiar la configuración a Permitir, ' +
+								        'por ejemplo en Google Chrome desde ' +
+								        'Configuración avanzada > Privacidad > Configuración de contenido > Excepciones de ubicación geográfica' +
+								        ' y pulsa "Permitir" para primarias.participa.info. Más información en: ' +
+								        'http://www.wikihow.com/Change-Your-Location-Sharing-Setting-in-Google-Chrome';
+								        
+							console.log(msg_error);
+						}
+						else if(error.code == error.POSITION_UNAVAILABLE) 
+						{
+							msg_error = 'Error: position unavailable!';
+							console.log(msg_error);
+						}
+						else if(error.code == error.TIMEOUT) 
+						{
+							msg_error = 'Error: timeout getting geolocation';
+							console.log(msg_error);
+						}
+						else
+						{
+							msg_error = 'Sorry, no position available. (error code: ' + error.code;
+							console.log(msg_error);
+						}
+
+						$('#geolocation_content').css('display', 'none');
+						$('#wizard-actions-box').css('display', 'none');
+						$("#live-geolocation").parent().css('display', 'block');
+						$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
+						$("#live-geolocation").html(msg_error);
+					}
+	
+					var geo_options = {
+							  enableHighAccuracy: true, 
+							  maximumAge        : 30000, 
+							  timeout           : 27000
+							};
+	
+					// http://dev.w3.org/geo/api/spec-source.html#geolocation
+					if('geolocation' in navigator) 
 					{
-						console.log("second success");
-					})
-					.fail(function() 
+						$("#live-geolocation").parent().css('display', 'block');
+						
+						
+						  /* geolocation is available */
+	
+						navigator.geolocation.getCurrentPosition(
+							function(position) 
+							{
+								  var geo_msg = 'Tiempo: ' + position.timestamp + ' <br/>Latitud: ' + position.coords.latitude + ' <br/>Longitud: ' + position.coords.longitude + 
+										  	  ' <br/>Altitud: ' + position.coords.altitude +
+										  	  ' <br/>Precision: ' + position.coords.accuracy +
+										  	  ' <br/>Precision altitud: ' +  position.coords.altitudeAccuracy +
+										  	  ' <br/>Heading: ' +  position.coords.heading +
+										  	  ' <br/>Speed: ' +  position.coords.speed
+										  	  
+								 console.log(geo_msg);
+								  
+								  
+								var img = new Image();
+								img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + position.coords.latitude + "," + position.coords.longitude + "&zoom=13&size=300x300&sensor=false";
+
+								console.log(img.src)
+								
+
+								var geocode_ajax = $.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=true&region=es', 
+								function(data) 
+								{
+									console.log('success');
+
+									console.log(data);
+									
+									if(data && data.status && data.status == 'OK')
+									{
+										var len = data.results[0].address_components.length;
+										var data_city;
+										for(var i = 0; i < len; i++ ) 
+										{
+											console.log(data.results[0].address_components[i].short_name)
+										    if(data.results[0].address_components[i].short_name == 'Sevilla' ) 
+											{
+										    	data_city = data.results[0].address_components[i].short_name;
+										        break;
+										    }
+										}
+
+										if(data_city == 'Sevilla')
+										{
+											$("#live-geolocation").html(geo_msg);
+											$("#live-geolocation").append(img);
+											
+											$('#geolocation_content').css('display', 'block');
+										}
+										else
+										{
+											var msg_error = 'No se ha detectado una ubicación cercana a Sevilla. Registro de censo no permitido';
+											
+											//alert(msg_error);
+											$('#geolocation_content').css('display', 'none');
+											$('#wizard-actions-box').css('display', 'none');
+											$("#live-geolocation").parent().css('display', 'block');
+											$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
+											$("#live-geolocation").html(msg_error + '<br/><br/>' + geo_msg);
+											$("#live-geolocation").append(img);
+										}
+									}
+									else
+									{
+										var msg_error = 'geolocation error: could not fetch valid JSON status for coordinates';
+										
+										//alert(msg_error);
+										$('#geolocation_content').css('display', 'none');
+										$('#wizard-actions-box').css('display', 'none');
+										$("#live-geolocation").parent().css('display', 'block');
+										$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
+										$("#live-geolocation").html(msg_error + '<br/><br/>' + geo_msg);
+										$("#live-geolocation").append(img);
+									}
+								})
+								.done(function(data) 
+								{
+									console.log('finished geolocation');
+								})
+								.fail(function() 
+								{
+									var msg_error = 'geolocation error: could not fetch JSON for coordinates';
+									
+									//alert(msg_error);
+									$('#geolocation_content').css('display', 'none');
+									$('#wizard-actions-box').css('display', 'none');
+									$("#live-geolocation").parent().css('display', 'block');
+									$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
+									$("#live-geolocation").html(msg_error);
+
+								})
+								.always(function() 
+								{
+									//alert("finished");
+								}, 'json');
+								    
+							},
+							geo_error,
+							geo_options
+						);
+					} 
+					else 
 					{
-						alert("error getting municipalities");
-					})
-					.always(function() 
-					{
-						console.log("finished");
-					});
-					  
-					$('#town_select').show();
-				});
+						var msg_error = 'geolocation IS NOT available';
+						console.log(msg_error);
+
+						$('#geolocation_content').css('display', 'none');
+						$('#wizard-actions-box').css('display', 'none');
+						$("#live-geolocation").parent().css('display', 'block');
+						$("#live-geolocation").removeClass('alert-success').addClass('alert-danger');
+						$("#live-geolocation").html(msg_error);
+	
+						/*
+						 if(geoPosition.init()){  // Geolocation Initialisation
+						            geoPosition.getCurrentPosition(success_callback,error_callback,{enableHighAccuracy:true});
+						    }else{
+						            // You cannot use Geolocation in this device
+						    }
+						    geoPositionSimulator.init(); 
 				
+						    // p : geolocation object
+						    function success_callback(p){
+						        // p.latitude : latitude value
+						        // p.longitude : longitude value
+						    }
+				
+						    function error_callback(p){
+						        // p.message : error message
+						    }
+					    */
+					}
+				{% endif %}
 			});
 	</script>
 {% endblock %}
@@ -86,139 +243,62 @@
                   {% endif %}
                       
                   <div data-step="1" class="step-pane active row">
-                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'candidacy.h1_title'|trans }}</h2>
+                      <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'census.step3.h1_title'|trans }}</h2>
                       
                       <div class="col-xs-12 col-sm-offset-0"><div class="hr hr-dotted"></div></div>
                       
+                      {% if enable_geolocation %}
+	                      <div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline center" style="display:none">
+	                      		<div class="alert alert-success" id="live-geolocation"></div>
+	                      </div>
+	                  {% endif %}
+	                      
                       <div class="form-group{% if form.name.vars.errors|length > 0 %} has-error{% endif %}">
-						  {{ form_label(form.name, 'candidacy.step1.name'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
+						  {{ form_label(form.name, 'census.step3.name'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
 						  {{ form_widget(form.name) }}
 						  {% if form.name.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.name) }}</div>{% endif %}
 					  </div>
 
 					  <div class="form-group{% if form.lastname.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.lastname, 'candidacy.step1.lastname'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+			    		  {{ form_label(form.lastname, 'census.step3.lastname'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 			    	      {{ form_widget(form.lastname) }}
 			    	      {% if form.lastname.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.lastname) }}</div>{% endif %}
 					  </div>
 			
 					  <div class="form-group{% if form.dni.vars.errors|length > 0 %} has-error{% endif %}">
-			    	  	  {{ form_label(form.dni, 'candidacy.step1.dni'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+			    	  	  {{ form_label(form.dni, 'census.step3.dni'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 			    		  {{ form_widget(form.dni) }}
-			    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'candidacy.step1.dni_info'|trans }}</div>
+			    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'census.step3.dni_info'|trans }}</div>
 			    	  	  {% if form.dni.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.dni) }}{% endif %}
 					  </div>
-			
-					  <div class="form-group{% if form.username.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.username, 'candidacy.step1.username'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.username) }}
-			    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'candidacy.step1.username_info'|trans }}</div>
-			    		  {% if form.username.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.username) }}</div>{% endif %}
-			    		  
-					  </div>
-			
-					  <div class="form-group{% if form.password.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.password, 'candidacy.step1.password'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  {{ form_widget(form.password) }}
-			    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'candidacy.step1.password_info'|trans }}</div>
-			    		  {% if form.password.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.password) }}</div>{% endif %}
-					  </div>
-			
+
 					  <div class="form-group{% if form.email.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.email, 'candidacy.step1.email'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+			    		  {{ form_label(form.email, 'census.step3.email'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 			    		  {{ form_widget(form.email) }}
-			    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'candidacy.step1.email_info'|trans }}</div>
+			    		  <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'census.step3.email_info'|trans }}</div>
 			    		  {% if form.email.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.email) }}</div>{% endif %}
 					  </div>
 			
-					  <div class="form-group{% if form.province.vars.errors|length > 0 %} has-error{% endif %}">
-			    		  {{ form_label(form.province, 'candidacy.step1.province'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-			    		  <div class="col-xs-12 col-sm-2">
-	    					  <span class="block input-icon input-icon-right">
-	    					      {{ form_widget(form.province) }}
-	    					  </span>
-    					  </div> 
-			    		  {% if form.province.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.province) }}</div>{% endif %}
-					  </div>
-			
-					  <div id="town_select" class="form-group{% if form.town.vars.errors|length > 0 %} has-error{% endif %}"{% if form.town.vars.value == 0 %} style="display:none"{% endif %}>
-					      {{ form_label(form.town, 'candidacy.step1.town'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
-					      <div class="col-xs-12 col-sm-2">
-	    					  <span class="block input-icon input-icon-right">
-	    					  	{{ form_widget(form.town, {'value' : form.town.vars.value}) }}
-	    					  </span>
-    					  </div>
-					      {% if form.town.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.town) }}</div>{% endif %}
-					  </div>
-			
 					  <div class="form-group{% if form.phone.vars.errors|length > 0 %} has-error{% endif %}">
-					      {{ form_label(form.phone, 'candidacy.step1.phone'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
+					      {{ form_label(form.phone, 'census.step3.phone'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } }) }}
 					      {{ form_widget(form.phone) }}
 					      
-					      <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'candidacy.step1.phone_info'|trans }}</div>
+					      <div class="help-block col-xs-12 col-sm-4 inline col-sm-offset-1">{{ 'census.step3.phone_info'|trans }}</div>
 					      {% if form.phone.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.phone) }}</div>{% endif %}
 					      <a class='explanation_dni' href="#explanation_dni_content"><img style="margin-left:15px;width:16px;height:16px" src="{{ asset('bundles/municipales/images/question.png') }}"
-					       alt="{{ 'candidacy.step1.explanation'|trans }}"
-					       title="{{ 'candidacy.step1.explanation'|trans }}"/></a>
+					       alt="{{ 'census.step3.explanation'|trans }}"
+					       title="{{ 'census.step3.explanation'|trans }}"/></a>
 					    
 					      <!-- This contains the hidden content for inline calls -->
 						  <div style='display:none'>
 							  <div id='explanation_dni_content' style='width:200px;padding:10px; background:#fff;'>
-								  {{ 'candidacy.step1.explanation_dni'|trans }}
+								  {{ 'census.step3.explanation_dni'|trans }}
 							  </div>
 						  </div>
 					  </div>
 			
-					  <div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline"><div class="alert alert-warning">{{ 'candidacy.step1.warning_text'|trans|raw }}</div></div>
-					  
-					{# 
-                      <div class="form-group has-warning">
-                          <label class=" col-sm-3 control-label no-padding-right" for="inputWarning">Input with alerta</label>
-
-                          <div class="col-xs-12 col-sm-5">
-                            <span class="block input-icon input-icon-right">
-                              <input type="text" class="width-100" id="inputWarning"> <i class="mine-icon fa fa-leaf"></i>
-                            </span>
-                          </div>
-                          <div class="help-block col-xs-12 col-sm-reset inline">Alerta tooltip Ayuda</div>
-                        </div>
-
-                        <div class="form-group has-error">
-                          <label class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right" for="inputError">Input with error</label>
-
-                          <div class="col-xs-12 col-sm-5">
-                            <span class="block input-icon input-icon-right">
-                              <input type="text" class="width-100" id="inputError"> <i class="mine-icon fa fa-times-circle"></i>
-                            </span>
-                          </div>
-                          <div class="help-block col-xs-12 col-sm-reset inline">Error tooltip Ayuda</div>
-                        </div>
-
-                        <div class="form-group has-success">
-                          <label class="col-xs-12 col-sm-3 control-label no-padding-right" for="inputSuccess">Input con ok</label>
-
-                          <div class="col-xs-12 col-sm-5">
-                            <span class="block input-icon input-icon-right">
-                              <input type="text" class="width-100" id="inputSuccess">
-                              <i class="mine-icon fa fa-check-circle"></i>
-                            </span>
-                          </div>
-                          <div class="help-block col-xs-12 col-sm-reset inline">OK tooltip Ayuda</div>
-                        </div>
-
-                        <div class="form-group has-info">
-                          <label class="col-xs-12 col-sm-3 control-label no-padding-right" for="inputInfo">Input with info</label>
-
-                          <div class="col-xs-12 col-sm-5">
-                            <span class="block input-icon input-icon-right">
-                              <input type="text" class="width-100" id="inputInfo">
-                              <i class="mine-icon fa fa-info-circle"></i>
-                            </span>
-                          </div>
-                          <div class="help-block col-xs-12 col-sm-reset inline">Info tooltip Ayuda</div>
-                        </div>
-					  #}
-                     
+					  <div class="help-block col-xs-12 col-sm-6 col-sm-offset-3 inline"><div class="alert alert-warning">{{ 'census.step3.warning_text'|trans|raw }}</div></div>
+			
 					  
                       
                     </div>
@@ -227,12 +307,12 @@
 
                 <hr>
                 <div class="wizard-actions">
-                  <button class="btn btn-prev" onclick="location.href='{{ path('municipales_candidacy_step_conditions') }}'; return false;">
+                  <button class="btn btn-prev" onclick="location.href='{{ path('census_step2') }}'; return false;">
                     <i class="mine-icon fa fa-arrow-left"></i>
-                    {{ 'candidacy.step1.previous'|trans }}
+                    {{ 'census.step3.previous'|trans }}
                   </button>
                   
-                  {{ form_widget(form.continue, { 'label': 'candidacy.step1.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
+                  {{ form_widget(form.continue, { 'label': 'census.step3.continue'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
                   
                 </div>
               </div>
