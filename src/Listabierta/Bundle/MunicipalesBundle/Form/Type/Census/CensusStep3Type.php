@@ -12,26 +12,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class CensusStep3Type extends AbstractType
 {
-	
-	private $provinces_data = array();
-	private $municipalities_data = array();
-	private $translations = array();
-	
-	public function __construct($provinces_data = NULL, $municipalities_data = NULL, $translations = array())
+	public function __construct()
 	{
-		$this->translations = $translations;
-		
-		// Flatten the results array
-		$result = array();
-		$result[0] = 'Elige una provincia';
-		foreach($provinces_data as $province)
-		{
-			$result[$province['id']] = $province['name'];
-		}
-		
-		$this->provinces_data = $result;
-		
-		$this->municipalities_data = $municipalities_data;
 	}
 
 	public function buildForm(FormBuilderInterface $builder, array $options)
@@ -64,45 +46,11 @@ class CensusStep3Type extends AbstractType
         					new Assert\NotBlank(),
         					new DNI(),
         				)))
-        		->add('username', 'text', array(
-        				'required' => true,
-        				'constraints' => array(
-        						new Assert\NotBlank(),
-        						new Assert\Length(array(
-        								'min'        => 2,
-        								'max'        => 255,
-        								'minMessage' => 'Your username must be at least {{ limit }} characters long',
-        								'maxMessage' => 'Your username cannot be longer than {{ limit }} characters long',
-        						)),
-        				)))
-        		->add('password', 'password', array(
-        				'required' => true,
-        				'constraints' => array(
-        						new Assert\NotBlank(),
-        						new Assert\Length(array(
-        								'min'        => 8,
-        								'max'        => 255,
-        								'minMessage' => $this->translations['forms.census_step1.password.minMessage'],
-        								'maxMessage' => $this->translations['forms.census_step1.password.maxMessage'],
-        						)),
-        				)))
         	    ->add('email', 'email', array(
         	    		'required' => true, 
         				'constraints' => array(
         					new Assert\NotBlank(),
         					new Assert\Email(),
-        				)))
-        	    ->add('province', 'choice', array(
-        	    		'choices' => $this->provinces_data,
-        	    		'required' => true, 
-        				'constraints' => array(
-        					new Assert\NotBlank(),
-        				)))
-        	    ->add('town', 'choice', array(
-        	    		'choices' => empty($this->municipalities_data) ? array(0 => 'Elige un municipio') : $this->municipalities_data,
-        	    		'required' => false, 
-        				'constraints' => array(
-        					new Assert\NotBlank(),
         				)))
         	    ->add('phone', 'text', array(
         	    		'required' => true, 
