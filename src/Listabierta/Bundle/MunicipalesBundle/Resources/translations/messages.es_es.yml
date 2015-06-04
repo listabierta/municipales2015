@@ -31,51 +31,40 @@ census:
       accept: ACEPTAS ESTAS CONDICIONES
       continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
       
-    step1:
+    step3:
+        step_h2: Paso 3 Inscripción en el censo de votantes de Participa Sevilla
+        html_title: Inscripción en el censo de votantes de Participa Sevilla
+        h1_title: Aporta tus datos personales
         name: Nombre 
         lastname: Apellidos
         dni: DNI
-        username: Usuario
-        password: Contraseña
         email: Email
-        province: Provincia del municipio
-        town: Nombre del municipio
         phone: Número de móvil
         previous: Anterior
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
         explanation: Explicación
         dni_info: Sin introducir guión entre número y letra
-        username_info: Anota tu nombre de usuario
-        password_info: Anota tu contraseña
         email_info: Recibirás un email de confirmación
         phone_info: Deberás confirmarlo con un mensaje en el siguiente paso, si introduces un número incorrecto, no podrás continuar
         warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que otra persona tendrá que dar de alta esta candidatura ciudadana. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
 
     step_verify:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        html_title: Inscripción en el censo de votantes de Participa Sevilla
         h1_title: Verifica tu número de móvil
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
         
     step2:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Establece las condiciones de la candidatura ciudadana
-        
-        p1: "Sube en formato PDF aquellas condiciones que deban aceptar los candidatos o candidatas (una, algunas, todas o ninguna) para presentarse en la candidatura ciudadana. Por ejemplo: El programa de la candidatura, las condiciones legales y la veracidad de la información aportada, el mandato revocatorio y participativo, el código ético, la aceptación del censo y el sistema de voto, etc.  Si no subes ninguna condición, te recomendamos que busques algún método alternativo para verificar que el candidato o candidata va a cumplirlas antes de su inclusión en las listas."
-  
-        program: El programa de la candidatura
-        legal_conditions: Condiciones legales y veracidad de la información aportada de candidatos y candidatas
-        recall_term: El mandato revocatorio del candidato
-        participatory_term: El código ético de la candidatura
-        voter_conditions: Las condiciones para poder participar como votante (censo y aceptación del sistema de votación)
-        technical_constrains: Las limitaciones técnicas y legales del sistema de voto.
+        step_h2: Paso 2 Inscripción en el censo de votantes de Participa Sevilla
+        html_title: Inscripción en el censo de votantes de Participa Sevilla
+        h1_title: Acepta la localización
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
-        example: Ejemplo
                       
     step3:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        step_h2: Paso 3 Inscripción en el censo de votantes de Participa Sevilla
+        html_title: Inscripción en el censo de votantes de Participa Sevilla
         h1_title: Establece los plazos de presentación de candidaturas
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         explanation_date: Plazo de presentación de candidaturas <br/>(mínimo 2 días) 
@@ -84,14 +73,12 @@ census:
         previous: Anterior
               
     step4:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
-        h1_title: Reserva una dirección de internet
+        step_h2: Paso 4 Inscripción en el censo de votantes de Participa Sevilla
+        html_title: Inscripción en el censo de votantes de Participa Sevilla
+        h1_title: Verifica tu número de móvil
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
-        continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
-        choose_address: Elige tu dirección de internet
-        warning: Si en el espacio en blanco escribes por ejemplo: FuenteovejunaParticipa, las direcciones asociadas a tu candidatura serán del tipo: http://%host%/FuenteovejunaParticipa/...
-        
+
     step5:
         step_h2: Paso 5 Inscripción en el censo de votantes de Participa Sevilla
         html_title: Inscripción en el censo de votantes de Participa Sevilla
@@ -114,167 +101,6 @@ census:
         continue: Recuperar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         explanation: Si has olvidado tu nombre de usuario o tu contraseña, puedes solicitar que el envío por correo electrónico de tu nombre de usuario y restablecer tu contraseña. Si introduces el correo electrónico que has registrado, se enviará las instrucciones para restablecer tu contraseña
 
-town:
-    html_title: Municipales 2015 - Vota en la candidatura ciudadana
-    h1_title: Registrate como votante
-    verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
-    verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
-       
-    step1:
-        welcome: Gracias por participar con tu voto en este proceso de listas abiertas. Antes de darte de alta como votante en la candidatura ciudadana <b>%address%</b>, del municipio <b>%town%</b>  debes ver este video explicativo del proceso de voto, gracias 
-        header: Registrate como votante
-        name: Nombre 
-        lastname: Apellidos
-        dni: DNI
-        email: Email
-        username: Usuario
-        password: Contraseña
-        phone: Número de móvil
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
-        explanation: Explicación
-        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás votar
-    
-    step_verify:
-        html_title: Municipales 2015 - Registrate como votante
-        h1_title: Verifica tu número de móvil
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        verify_conditions_header: Requisitos para el voto
-        verify_conditions_op1: Apoyas esta candidatura ciudadana de listas abiertas y estás conforme con este proceso de registro.
-        verify_conditions_op2: Estás dando tu consentimiento expreso al tratamiento tus los datos personales según lo dispuesto en el artículo 5 y 6 de la LOPD y podremos contactarte en tu email con información estrictamente relacionada con el proceso de votación, nunca cederemos tus datos de registro a terceros.
-        verify_conditions_op3: La información que aportas durante este registro es cierta y  tu residencia habitual se encuentra en el municipio objeto de la votación
-    
-    step2:
-        header: Filtra candidatos
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 2
-        filter_title: ¿Qué criterios deseas utilizar para seleccionar a los candidatos y candidatas?
-        filter_p1: Ten en cuenta que si no aplicas ningún filtro, te aparecerá la totalidad de candidatos y candidatas que se han presentado y puede resultar tedioso ver todos los perfiles y después puntuarlos, así que si tienes alguna preferencia clara márcala, posteriormente podrás revisar tus filtros.
-        h1_title: Filtra candidatos por nivel academico
-        academic_level: ¿Quieres elegir el nivel académico que prefieres que tenga el candidato o candidata?
-        languages: "¿Es bueno que hable alguno de estos idiomas?"
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        
-    step6:
-        header: Asigna importancia
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 6
-        h1_title: Asigna importancia
-        continue: Ver candidatos seleccionados <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior          
-
-    step7_confirmation:
-        header: Elige candidatos
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 7
-        h1_title: Seleccion previa de candidatos
-        continue: Ver candidatos seleccionados <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Revisar criterios
-        filter_selection: Con tu selección actual de filtros se te mostrarán
-        advice: Te aconsejamos un máximo de 10
-        candidates_of: candidatos/as de
-             
-    step7:
-        header: Elige candidatos
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 7
-        h1_title: Elige candidatos
-        continue: VOTA <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        previous: Anterior
-        candidates_selected: Candidatos seleccionados
-        which_position: ¿Qué posición le asignas?
-        academic_level: Nivel académico
-        academic_level_text_0: Me resulta indiferente su nivel académico
-        academic_level_text_1: Sin estudios
-        academic_level_text_2: Estudios primarios o equivalentes
-        academic_level_text_3: Enseñanza general secundaria, 1er ciclo
-        academic_level_text_4: Enseñanza Profesional de 2º grado, 2º ciclo
-        academic_level_text_5: Enseñanza general secundaria, 2º ciclo
-        academic_level_text_6: Enseñanzas profesionales superiores
-        academic_level_text_7: Estudios universitarios o equivalentes
-        academic_level_text_8: Máster universitario o doctorado
-        language: Idiomas
-        languages_text_0: No considero necesario que hable idiomas
-        languages_text_1: Inglés
-        languages_text_2: Otro idioma europeo
-        languages_text_3: Otro idioma no europeo
-        languages_text_4: Catalá
-        languages_text_5: Galego
-        languages_text_6: Euskara
-        languages_text_7: Valenciá
-        public_values: Valores morales que prioriza
-        public_values_text_1: HONESTIDAD
-        public_values_text_2: TRANSPARENCIA
-        public_values_text_3: RESPETO
-        public_values_text_4: RESPONSABILIDAD
-        public_values_text_5: COMPROMISO
-        public_values_text_6: INTEGRIDAD
-        public_values_text_7: IGUALDAD
-        public_values_text_8: TOLERANCIA
-        public_values_text_9: COOPERACIÓN
-        public_values_text_10: SOLIDARIDAD
-        public_values_text_11: JUSTICIA
-        job_experience: Experiencia laboral
-        job_experience_text_1: Actividades físicas o deportivas
-        job_experience_text_2: Administración o gestión
-        job_experience_text_3: Agraria o pesquera
-        job_experience_text_4: Arte o artesanía
-        job_experience_text_5: Comercio y marketing
-        job_experience_text_6: Edificación, obra civil
-        job_experience_text_7: Energía o agua
-        job_experience_text_8: Mecánica, electricidad o electrónica
-        job_experience_text_9: Hostelería y turismo
-        job_experience_text_10: Informática o comunicaciones
-        job_experience_text_11: Industria
-        job_experience_text_12: Sanidad
-        job_experience_text_13: Medio Ambiente
-        job_experience_text_14: Educación o servicios a la comunidad
-        job_experience_text_15: Transporte
-        job_experience_text_16: Finanzas
-        townActivities: Experiencias relacionadas
-        town_activities_text_1: He tenido experiencia en la mejora del funcionamiento organizativo de entidades
-        town_activities_text_2: He participado en la elaboración de planes de protección civil o seguridad ciudadana
-        town_activities_text_3: He contribuido a la lucha contra la pobreza o la exclusión social
-        town_activities_text_4: He gestionado actividades de atención sanitaria
-        town_activities_text_5: He gestionado actividades educativas o culturales
-        town_activities_text_6: He gestionado planes de infraestructura, vivienda o urbanismo
-        town_activities_text_7: He gestionado actividades de fomento de la sostenibilidad o protección medioambiental
-        town_activities_text_8: He gestionado actividades de fomento del empleo
-        town_activities_text_9: He gestionado actividades de fomento de la transparencia, la participación ciudadana o la igualdad de género
-        town_activities_text_10: He gestionado actividades colectivas en el campo industrial o agrícola
-        town_activities_text_11: He gestionado actividades colectivas en el campo de las tecnologías de la información o la comunicación
-        town_activities_text_12: He gestionado actividades colectivas de investigación o desarrollo
-        town_activities_text_13: He gestionado actividades colectivas en el campo del cooperativismo
-        town_activities_text_14: He gestionado eficazmente presupuestos superiores al millón de euros
-        town_activities_text_15: He tenido experiencia de trabajo internacional
-        town_activities_text_16: He realizado funciones de representación o portavocía de colectivos
-        townActivitiesExplanation: Descripción experiencia
-        governPriorities: Considera prioritario que el Ayuntamiento se centre en
-        govern_priorities_text_1: Mejorar las funciones de gobierno del municipio
-        govern_priorities_text_2: Mejorar la seguridad ciudadana
-        govern_priorities_text_3: Luchar contra la pobreza y la exclusión social
-        govern_priorities_text_4: Mejorar la atención sanitaria
-        govern_priorities_text_5: Mejorar la gestión educativa y cultural
-        govern_priorities_text_6: Atender a los problemas de vivienda, urbanismo e infraestructuras
-        govern_priorities_text_7: Mejorar la sostenibilidad del municipio
-        govern_priorities_text_8: Invertir en fomento del empleo
-        govern_priorities_text_9: Aumentar la participación ciudadana en la gestión municipal
-        govern_priorities_text_10: Mejorar los servicios de transporte
-        govern_priorities_text_11: Invertir en actividades industriales, agrícolas o comerciales
-        govern_priorities_text_12: Invertir en Investigación
-        govern_priorities_text_13: Gestionar mejor la deuda y las operaciones financieras
-        motivationText: Motivación para presentarse
-        additionalInfo: Biografía e información adicional
-        more_info: Más información en la web
-        position_text_0: Sin puntuar
-        position_text_1: Primero/a
-        position_text_2: Segundo/a
-        position_text_3: Tercero/a
-        position_text_4: Cuarto/a
-        position_text_5: Quinto/a
-        position_text_6: Sexto/a
-        position_text_7: Séptimo/a
-        position_text_8: Octavo/a
-        position_text_9: Noveno/a
-        position_text_10: Décimo/a
 
 login:
     html_title: Login
