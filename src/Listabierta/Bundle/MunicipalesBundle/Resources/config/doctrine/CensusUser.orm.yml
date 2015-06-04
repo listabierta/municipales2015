@@ -1,0 +1,33 @@
+Listabierta\Bundle\MunicipalesBundle\Entity\CensusUser:
+    type: entity
+    table: census_user
+    repositoryClass: Listabierta\Bundle\MunicipalesBundle\Entity\CensusUserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        lastname:
+            type: string
+            length: 255
+        dni:
+            type: string
+            length: '15'
+        email:
+            type: string
+            length: 255
+            unique: TRUE
+        isActive:
+            type: boolean
+            nullable: TRUE
+        
+        phone:
+            type: string
+            length: '20'
+        
+    lifecycleCallbacks: {  }
