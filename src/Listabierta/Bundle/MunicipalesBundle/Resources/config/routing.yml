@@ -4,21 +4,9 @@ census_index:
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
 
-census_step_conditions:
+census_step1:
     path:     /condiciones
     defaults: { _controller: MunicipalesBundle:Census:stepConditions }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
-        
-census_step1:
-    path:     /paso1
-    defaults: { _controller: MunicipalesBundle:Census:step1 }
-    requirements:
-        _locale: es_es|es_eu|es_gl|es_gl
- 
-census_step_verify:
-    path:     /verificacion
-    defaults: { _controller: MunicipalesBundle:Census:step4Verify }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
@@ -35,8 +23,8 @@ census_step3:
         _locale: es_es|es_eu|es_gl|es_gl
         
 census_step4:
-    path:     /alta-candidatura-paso-4
-    defaults: { _controller: MunicipalesBundle:Census:step4 }
+    path:     /verificacion
+    defaults: { _controller: MunicipalesBundle:Census:step4Verify }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
         
