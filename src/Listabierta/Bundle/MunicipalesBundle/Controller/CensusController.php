@@ -8,28 +8,18 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\Census\CensusStepConditionsTy
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\Census\CensusStep2Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\Census\CensusStep3Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\Census\CensusStepVerifyType;
-use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep2Type;
-use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep3Type;
-use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep4Type;
-use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep5Type;
-use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep6Type;
-use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidacyStep7Type;
+use Listabierta\Bundle\MunicipalesBundle\Entity\CensusUser;
 
-use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStep3Type;
-use Listabierta\Bundle\MunicipalesBundle\Form\Type\CandidateStep4Type;
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\RecoverPasswordType;
 
 use Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified;
-use Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy;
+
 use Listabierta\Bundle\MunicipalesBundle\Entity\RecoveryAdmin;
 
 use Symfony\Component\Form\FormError;
 
 use Listabierta\Bundle\MunicipalesBundle\Form\ChangePasswordType;
 use Listabierta\Bundle\MunicipalesBundle\Form\Model\ChangePassword;
-
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 /**
  * CensusController
@@ -227,7 +217,7 @@ class CensusController extends Controller
     			$entity_manager->persist($phone_verified);
     			$entity_manager->flush();
 
-    			$session->set('census_user_id', $admin_candidacy->getId());
+    			$session->set('census_user_id', $census_user->getId());
 	    		$session->set('name', $name);
 	    		$session->set('lastname', $lastname);
 	    		$session->set('dni', $dni);
