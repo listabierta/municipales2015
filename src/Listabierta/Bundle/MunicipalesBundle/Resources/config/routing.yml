@@ -72,3 +72,11 @@ recovery_token:
     defaults: { _controller: MunicipalesBundle:Census:recoveryToken }
     requirements:
         _locale: es_es|es_eu|es_gl|es_gl
+        
+# Consultation
+
+consultation_step1:
+    path:     /consulta-ciudadana/{token}
+    defaults: { _controller: MunicipalesBundle:Consultation:step1 }
+    requirements:
+        _locale: es_es
