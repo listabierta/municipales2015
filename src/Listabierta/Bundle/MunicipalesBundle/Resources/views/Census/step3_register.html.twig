@@ -255,7 +255,7 @@
 	                  
 	                  <div class="clearfix"></div>
 	                  
-	                  <div id="geolocation_content" style="diplay:none">    
+	                  <div id="geolocation_content" style="display:none">    
 	                      <div class="form-group{% if form.name.vars.errors|length > 0 %} has-error{% endif %}">
 							  {{ form_label(form.name, 'census.step3.name'|trans, {'label_attr' : { 'class' : 'col-sm-3 control-label no-padding-right' } } ) }}
 							  {{ form_widget(form.name) }}
@@ -308,7 +308,7 @@
                   </div>
                 </div>
 
-                <div id="wizard-actions-box" style="diplay:none">
+                <div id="wizard-actions-box" style="display:none">
 	                <hr>
 	                <div class="wizard-actions">
 	                  <button class="btn btn-prev" onclick="location.href='{{ path('census_step2') }}'; return false;">
