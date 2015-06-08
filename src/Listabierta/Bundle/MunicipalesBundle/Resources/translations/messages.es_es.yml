@@ -6,6 +6,10 @@ header:
         es_es: Español
 
 consultation:
+    step_1: Preguntas
+    step_2: Confirmar respuestas
+    step_3: Fin
+    
     step1:
         step_h2: Paso 1 Asamblea Ciudadana de Participa Sevilla, Consulta sobre la investidura del nuevo alcalde de Sevilla
         html_title: Preguntas
@@ -24,21 +28,23 @@ consultation:
         second_question_option_B: Opción B
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         
-    confirm:
+    step2:
         step_h2: Paso 2 Asamblea Ciudadana de Participa Sevilla, Consulta sobre la investidura del nuevo alcalde de Sevilla
         html_title: Confirmar respuestas
         h1_title: Confirmar respuestas
         p1: ¿Estás seguro? Esto has elegido
-        # Elegiste opción A (texto) entonces opción B (texto) 
         previous: Anterior
-        continue: <i class="ace-icon fa fa-check bigger-110"></i> Enviar
+        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     
-    finish:
+    step3:
         step_h2: Paso 3 Asamblea Ciudadana de Participa Sevilla, Consulta sobre la investidura del nuevo alcalde de Sevilla
         html_title: Fin
         h1_title: Fin
         p1: Gracias por participar, Participa Sevilla es una herramienta de construcción colectiva.
         p2: Te enviaremos un correo con los resultados de la votación y el sistema de verificación de los resultados
+        
+    error:
+        html_title: Error
         
 census:
     step_1: Acepta las condiciones
