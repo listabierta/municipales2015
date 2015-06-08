@@ -1,0 +1,75 @@
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}{{ 'consultation.step3.html_title'|trans }}{% endblock %}
+
+{% from 'MunicipalesBundle:macros:steps.html.twig' import steps_consultation %}
+
+{% block content %}
+
+<section class="section-2">
+	<div class="container marketing">
+        
+        <div class="headline">
+          <h2>{{ 'consultation.step3.step_h2'|trans }}</h2>
+        </div>
+        
+        <h3 class="featurette-headin"> <i>{{ 'consultation.step3.h1_title'|trans }}</i></h3>
+        
+        <!-- START THE FEATURETTES -->
+
+        <!--    division -->
+        <div class="row featurette2">
+        	<div class="widget-box">
+            
+
+            	<div class="widget-body">
+              		<div class="widget-main">
+                		<div id="fuelux-wizard-container">
+                  
+							{{ steps_consultation(1, token) }}
+
+	        			</div>
+             		</div> <!-- /.widget-main -->
+            
+                   
+                </div><!-- /.widget-body -->
+              </div>
+        </div> <!--    division -->           
+
+        <!-- /END THE FEATURETTES -->
+        
+        {{ form_start(form, { 'attr': {'class': 'form_settings form-horizontal col-xs-12'}}) }}
+        
+        <div class="row">
+
+  			<div class="col-xs-10 col-xs-offset-1">                  
+
+  				<div class="clearfix"></div>
+  				<br />
+  				<br />
+  				
+				<div class="center-block">
+
+              		<div class="well justify-block">
+						<p class="lead2">{{ 'consultation.step3.p1'|trans }}</p> 
+
+						<p class="lead2">{{ 'consultation.step3.p2'|trans }}</p> 
+
+					</div>                  
+							
+                </div>
+                    
+                <div class="clearfix"></div>
+
+         	</div>
+         	
+		</div>  
+		
+		{{ form_rest(form) }}
+					
+		{{ form_end(form) }}  
+
+	</div>
+</section>
+	
+{% endblock %}
