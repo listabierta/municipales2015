@@ -49,8 +49,10 @@
 	        {% endif %}
 	        
 	        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}{% if required %}
-	        <span class="required" title="This field is required"> *</span>
+	        {# <span class="required" title="This field is required"> *</span> #}
+	        
 	   {% endif %}</label>
+	   <br />
 	    {% endif %}
 	    
 
