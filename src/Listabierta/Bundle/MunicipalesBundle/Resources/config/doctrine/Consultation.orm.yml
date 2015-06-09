@@ -13,7 +13,7 @@ Listabierta\Bundle\MunicipalesBundle\Entity\Consultation:
             type: array
             
         census_user_id:
-            type: integery
+            type: integer
 
         token:
             type: string
