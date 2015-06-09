@@ -36,8 +36,8 @@ class MailTokenCommand extends ContainerAwareCommand
     			$census_user_token = $census_user->getToken();
     			if(!empty($census_user_token))
     			{
-					if($census_user->getId() == 1)
-					{
+					//if($census_user->getId() == 1)
+					//{
 						try
 						{
 							// Send mail with login link for admin
@@ -64,7 +64,7 @@ class MailTokenCommand extends ContainerAwareCommand
     					{
     						$output->writeln($census_user->getEmail() . ' error: ' . $e->getMessage());
     					}
-					}
+					//}
     			}
     		}
     	}
