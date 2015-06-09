@@ -171,6 +171,9 @@ mail:
         visit: Cuando visite la página, su contraseña será restablecida, y la nueva contraseña se le enviará a usted por correo
         regards: Saludos
         
+    sms_inbound_verification:
+        your_phone: Tu teléfono
+        verify: ha sido verificado correctamente       
 forms:
     census_step1:
         password:
