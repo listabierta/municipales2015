@@ -29,5 +29,9 @@ Listabierta\Bundle\MunicipalesBundle\Entity\CensusUser:
         phone:
             type: string
             length: '20'
+            
+        token:
+            type: string
+            length: 255
         
     lifecycleCallbacks: {  }
