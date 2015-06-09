@@ -58,7 +58,7 @@ class TokenCommand extends ContainerAwareCommand
     				
     				$census_user->setToken($token);
     				$entity_manager->persist($census_user);
-    				$output->writeln('Created token [' . .  ' ] for user .');
+    				$output->writeln('Created token [' . $token .  ' ] for user ID ' . $census_user->getId() . ' .');
     			}
     		}
     		
