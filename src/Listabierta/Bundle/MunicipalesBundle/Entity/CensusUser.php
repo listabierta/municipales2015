@@ -192,4 +192,32 @@ class CensusUser
     {
         return $this->phone;
     }
+    /**
+     * @var string
+     */
+    private $token;
+
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     * @return CensusUser
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string 
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
 }
