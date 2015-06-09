@@ -15,17 +15,18 @@ consultation:
         html_title: Preguntas
         h1_title: Preguntas
         
-        first_question_intro_text: Texto de introducción
-        first_question_header: "Primera Pregunta:"
-        first_question: ¿Qué opción deben votar en el pleno municipal de investidura los tres concejales de Participa Sevilla?
-        first_question_option_A: Opción A
-        first_question_option_B: Opción B
+        first_question_intro_text: "El 13 de Junio de elige el alcalde de Sevilla. Las elecciones municipales celebradas el pasado 24 de Mayo posibilitan que los candidatos de las dos listas, más votadas, Juan Ignacio Zoido y Juan Espadas, puedan acceder a la alcaldía.
+        <br />Participa Sevilla ha mantenido un dialogo con todos los partidos con represeantes en el ayuntamiento de resultas de estas conversaciones se ha obtenido el compromiso por parte del PSOE de desarrollar 79 medidas de nuestro Decálogo Ciudadano."
+        first_question_header: "Con esta información, responde a las siguientes preguntas::"
+        first_question: ¿Que consideras que deben votar nuestros concejales?
+        first_question_option_A: A - Votarnos u abstenernos, con la probable consecuencia de que Juan Ignacio Zoido? (PP) sea alcalde
+        first_question_option_B: B - Apoyar la investidura de Juan Espadas (PSOE) y exigirle el cumplimiento de estos compromisos
         
-        second_question_intro_text: Texto de introducción
-        second_question_header: "Segunda Pregunta:"
-        second_question: ¿Aquí va el texto de la segunda pregunta ?
-        second_question_option_A: Opción A
-        second_question_option_B: Opción B
+        second_question_intro_text: ""
+        second_question_header: "Elige una de las opciones:"
+        second_question: ""
+        second_question_option_A: A - Votar la investidura de Juan Espadas y pasar a la oposición
+        second_question_option_B: B - Votar la investidura de Juan Espadas y formar parte del gobierno
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         
     step2:
