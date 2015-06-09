@@ -1,0 +1,22 @@
+Listabierta\Bundle\MunicipalesBundle\Entity\Consultation:
+    type: entity
+    table: consultation
+    repositoryClass: Listabierta\Bundle\MunicipalesBundle\Entity\ConsultationRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        data:
+            type: array
+            
+        census_user_id:
+            type: integery
+
+        token:
+            type: string
+            length: 255
+
+    lifecycleCallbacks: {  }
