@@ -9,11 +9,16 @@ use Listabierta\Bundle\MunicipalesBundle\Form\Type\Consultation\ConsultationStep
 use Listabierta\Bundle\MunicipalesBundle\Form\Type\Consultation\ConsultationStep2Type;
 
 use Symfony\Component\Form\FormError;
+use Listabierta\Bundle\MunicipalesBundle\Entity\CensusUserRepository;
+use Listabierta\Bundle\MunicipalesBundle\Entity\Consultation;
+
+use Listabierta\Bundle\MunicipalesBundle\Lib\tractis\SymfonyTractisApi;
 
 class ConsultationController extends Controller
 {
     public function step1Action(Request $request, $token = NULL)
     {
+    	$entity_manager = $this->getDoctrine()->getManager();
     	$session = $this->getRequest()->getSession();
     	 
     	if(empty($token))
@@ -22,15 +27,21 @@ class ConsultationController extends Controller
     				'error' => 'Error: El token no puede ser vacío en paso 1',
     		));
     		
-    		// @todo pregenerate tokens in census
     		// @todo send email with tokens
-    		// @todo search token in census and validate
-    				// If already send
-    				// Check vote date
-    				
+   			// @todo Check vote date
     	}
     	else
     	{
+    		$census_user_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\CensusUser');
+    		$census_user = $census_user_repository->findOneByToken($token);
+    		
+    		if(empty($census_user))
+    		{
+    			return $this->render('MunicipalesBundle:Consultation:unknown.html.twig', array(
+    					'error' => 'Error: El token ya ha sido consumido o no es válido',
+    			));
+    		}
+    		
     		$translator = $this->get('translator');
     		$translations = array();
     		
@@ -95,6 +106,8 @@ class ConsultationController extends Controller
     
     public function step2Action(Request $request, $token = NULL)
     {
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	
     	$session = $this->getRequest()->getSession();
     	
     	if(empty($token))
@@ -105,6 +118,16 @@ class ConsultationController extends Controller
     	}
     	else
     	{
+    		$census_user_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\CensusUser');
+    		$census_user = $census_user_repository->findOneByToken($token);
+    		
+    		if(empty($census_user))
+    		{
+    			return $this->render('MunicipalesBundle:Consultation:unknown.html.twig', array(
+    					'error' => 'Error: El token ya ha sido consumido o no es válido',
+    			));
+    		}
+    		
     		$first_question = $session->get('first_question');
 
     		if(empty($first_question))
@@ -166,6 +189,16 @@ class ConsultationController extends Controller
     	}
     	else
     	{
+    		$census_user_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\CensusUser');
+    		$census_user = $census_user_repository->findOneByToken($token);
+    		
+    		if(empty($census_user))
+    		{
+    			return $this->render('MunicipalesBundle:Consultation:unknown.html.twig', array(
+    					'error' => 'Error: El token ya ha sido consumido o no es válido',
+    			));
+    		}
+    		
     		$data = array();
     		
     		$first_question = $session->get('first_question');
@@ -194,15 +227,96 @@ class ConsultationController extends Controller
     				$data['second'] = $second_question;
     			}
     		}
+ 
+    		$census_user_id = $census_user->getId();
+    		$data_info = array();
     		
-    		//$consultation = new Consultation();
-    		//$consultation->setId();
-    		//$consultation->setData($data);
+    		$data_info['census_user_id'] = $census_user_id;
+    		$data_info['data'] = $data;
+    		$data_info['token'] = $token;
+
+    		$consultation = new Consultation();
+    		$consultation->setCensusUserId($census_user_id);
+    		$consultation->setData($data);
+    		$consultation->setToken($token);
     		
-    		//$consultation->setTimestamp($data);
+    		$entity_manager->persist($consultation);
+    		$entity_manager->flush();
     		
-    		// Tractis here
+    		// Release the token in census user
+    		$census_user->setToken(NULL);
+    		$entity_manager->persist($census_user);
+    		$entity_manager->flush();
     		
+    		// Tractis TSA sign
+				
+    		// Create an API Key here: https://www.tractis.com/webservices/tsa/apikeys
+    		$tractis_api_identifier = $this->container->getParameter('tractis_api_identifier');
+    		$tractis_api_secret     = $this->container->getParameter('tractis_api_secret');
+    			
+    		// Fetch the chain sign TSA file
+    		$tsa_cert_chain_file = $this->container->get('kernel')->locateResource('@MunicipalesBundle/Lib/tractis/chain.txt');
+    			
+    		// Init the Symfony Tractis TSA Api
+    		$symfony_tractis_api = new SymfonyTractisApi($tractis_api_identifier, $tractis_api_secret, $tsa_cert_chain_file);
+    			
+    		// Sign a valid vote
+    		try
+    		{
+    			$response = $symfony_tractis_api::sign(serialize($data_info));
+    		}
+    		catch(\Exception $e)
+    		{
+    			if($e->getMessage() == 'The Timestamp was not found')
+    			{
+    				return $this->render('MunicipalesBundle:Consultation:unknown.html.twig', array(
+    						'warning' => 'Tu voto ha sido correctamente emitido, pero esta pendiente de ser sellado,
+							ya que la plataforma de sellado Tractis en estos momentos no esta disponible,
+							recibiras un correo cuando la plataforma de sellado este actíva de nuevo y
+							tu voto será totalmente procesado y válido.',
+    				));
+    			}
+    			else
+    			{
+    				return $this->render('MunicipalesBundle:Consultation:unknown.html.twig', array(
+    						'error' => 'Error grave en el firmado de voto TSA. Respuesta de tractis: ' . $e->getMessage(),
+    				));
+    			}
+    		}
+    			
+    		// Check response data
+    		if(empty($response))
+    		{
+    			return $this->render('MunicipalesBundle:Consultation:unknown.html.twig', array(
+    					'error' => 'Error en el firmado de voto TSA. Respuesta vacía',
+    			));
+    		}
+    		
+    		if(empty($response['response_string']))
+    		{
+    			return $this->render('MunicipalesBundle:Consultation:unknown.html.twig', array(
+    					'error' => 'Error en el firmado de voto TSA. Respuesta con cadena vacía',
+    			));
+    		}
+    		
+    		if(empty($response['response_time']))
+    		{
+    			return $this->render('MunicipalesBundle:Consultation:unknown.html.twig', array(
+    					'error' => 'Error en el firmado de voto TSA. Respuesta con tiempo vacía',
+    			));
+    		}
+    		
+    		// Fetch the data response if valid
+    		$response_string = $response['response_string'];
+    		$response_time   = $response['response_time'];
+    			
+    		// Store the sign TSA result in database
+    		$consultation->setResponseString($response_string);
+    		$consultation->setResponseTime($response_time);
+    			
+    		$entity_manager->persist($consultation);
+    		$entity_manager->flush();
+
 	    	return $this->render('MunicipalesBundle:Consultation:step3.html.twig', array(
 	    			'token' => $token,
 	    		)
