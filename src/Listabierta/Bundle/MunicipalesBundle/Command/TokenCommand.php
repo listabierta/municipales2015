@@ -30,6 +30,10 @@ class TokenCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+    	$translator = $this->getContainer()->get('translator');
+    	$logger = $this->getContainer()->get('logger');
+    	
+    	$logger->info('Executing command census:token');
         /*
          $name = $input->getArgument('name');
         if ($name) {
@@ -42,9 +46,9 @@ class TokenCommand extends ContainerAwareCommand
             $text = strtoupper($text);
         }*/
 
-    	$entity_manager = $this->getDoctrine()->getManager();
+    	$entity_manager = $this->getContainer()->get('doctrine')->getManager();
     	
-    	$census_user_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\CensusUserRepository');
+    	$census_user_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\CensusUser');
     	$census_users = $census_user_repository->findAll();
     	
     	if(!empty($census_users))
@@ -58,7 +62,7 @@ class TokenCommand extends ContainerAwareCommand
     				
     				$census_user->setToken($token);
     				$entity_manager->persist($census_user);
-    				$output->writeln('Created token [' . $token .  ' ] for user ID ' . $census_user->getId() . ' .');
+    				$output->writeln('Created token [' . $token .  '] for user ID ' . $census_user->getId() . '.');
     			}
     		}
     		
