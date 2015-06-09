@@ -191,6 +191,14 @@ class CensusController extends Controller
     			$census_user->setDni($dni);
     			$census_user->setEmail($email);
     			$census_user->setPhone($phone);
+
+    			$entity_manager->persist($census_user);
+    			$entity_manager->flush();
+    			
+    			$current_time = time();
+    			$token = sha1($census_user->getId() + rand(0, 5000) + $current_time);
+    			 
+    			$census_user->setToken($token);
     			
     			$entity_manager->persist($census_user);
     			$entity_manager->flush();
