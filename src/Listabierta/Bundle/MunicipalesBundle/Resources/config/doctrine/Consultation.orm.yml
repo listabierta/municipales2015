@@ -18,5 +18,14 @@ Listabierta\Bundle\MunicipalesBundle\Entity\Consultation:
         token:
             type: string
             length: 255
+            nullable: TRUE
+       
+        response_string:
+            type: string
+            nullable: TRUE
+            
+        response_time:
+            type: integer
+            nullable: TRUE
 
     lifecycleCallbacks: {  }
