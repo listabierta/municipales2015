@@ -20,7 +20,7 @@ class Consultation
     private $data;
 
     /**
-     * @var integery
+     * @var integer
      */
     private $census_user_id;
 
@@ -66,10 +66,10 @@ class Consultation
     /**
      * Set census_user_id
      *
-     * @param \integery $censusUserId
+     * @param integer $censusUserId
      * @return Consultation
      */
-    public function setCensusUserId(\integery $censusUserId)
+    public function setCensusUserId($censusUserId)
     {
         $this->census_user_id = $censusUserId;
 
@@ -79,7 +79,7 @@ class Consultation
     /**
      * Get census_user_id
      *
-     * @return \integery 
+     * @return integer 
      */
     public function getCensusUserId()
     {
