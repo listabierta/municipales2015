@@ -80,3 +80,15 @@ consultation_step1:
     defaults: { _controller: MunicipalesBundle:Consultation:step1 }
     requirements:
         _locale: es_es
+        
+consultation_step2:
+    path:     /consulta-ciudadana-paso-2/{token}
+    defaults: { _controller: MunicipalesBundle:Consultation:step2 }
+    requirements:
+        _locale: es_es
+        
+consultation_step3:
+    path:     /consulta-ciudadana-paso-3/{token}
+    defaults: { _controller: MunicipalesBundle:Consultation:step3 }
+    requirements:
+        _locale: es_es
