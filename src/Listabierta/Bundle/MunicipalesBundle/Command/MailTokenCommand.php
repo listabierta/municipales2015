@@ -53,7 +53,7 @@ class MailTokenCommand extends ContainerAwareCommand
 									), 'text/html'
 							);
 							 
-							$this->get('mailer')->send($message);
+							$this->getContainer()->get('mailer')->send($message);
 							
 	    					$output->writeln('Sent mail with token [' . $census_user_token .  '] for user ID ' . $census_user->getId() . '.');
     					}
