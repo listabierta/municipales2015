@@ -88,8 +88,7 @@ census:
         dni_info: Sin introducir guión entre número y letra
         email_info: Recibirás un email de confirmación
         phone_info: Deberás confirmarlo con un mensaje en el siguiente paso, si introduces un número incorrecto, no podrás continuar
-        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que otra persona tendrá que dar de alta esta candidatura ciudadana. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
-
+        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil.
     step_verify:
         html_title: Inscripción en el censo de votantes de Participa Sevilla
         h1_title: Verifica tu número de móvil
