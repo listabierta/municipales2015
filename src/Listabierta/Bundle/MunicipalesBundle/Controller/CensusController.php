@@ -219,6 +219,7 @@ class CensusController extends Controller
 	    		$session->set('dni', $dni);
 	    		$session->set('email', $email);
 	    		$session->set('phone', $phone);
+	    		$session->set('token', $token);
 	    		
 				return $this->step4VerifyAction($request);
     		}
@@ -304,7 +305,7 @@ class CensusController extends Controller
     	
     	if(!empty($census_mail))
     	{
-	    	// Send mail with login link for admin
+	    	// Send mail with census confirmation
 	    	$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
 	    	
 	    	$message = \Swift_Message::newInstance()
@@ -320,6 +321,27 @@ class CensusController extends Controller
 	    	);
 	    		
 	    	$this->get('mailer')->send($message);
+	    	
+	    	$census_token = $session->get('token', NULL);
+	    	
+	    	if(!empty($census_token))
+	    	{
+		    	// Send token mail
+		    	$message = \Swift_Message::newInstance()
+		    	->setSubject('Enlace para comenzar la votación')
+		    	->setFrom('info@' . rtrim($host, '.'), 'Info Censo')
+		    	->setTo($census_mail)
+		    	->setBody(
+		    			$this->renderView(
+		    					'MunicipalesBundle:Mail:token_link.html.twig',
+		    					array(
+		    							'token' => $census_token,
+		    					)
+		    			), 'text/html'
+		    	);
+		    	
+		    	$this->get('mailer')->send($message);
+	    	}
     	}
     	
     	return $this->render('MunicipalesBundle:Census:step5_finish.html.twig', array());
