@@ -33,5 +33,6 @@ Listabierta\Bundle\MunicipalesBundle\Entity\CensusUser:
         token:
             type: string
             length: 255
+            nullable: TRUE
         
     lifecycleCallbacks: {  }
