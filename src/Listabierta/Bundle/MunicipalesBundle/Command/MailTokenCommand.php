@@ -45,7 +45,7 @@ class MailTokenCommand extends ContainerAwareCommand
 							->setFrom('info@' . rtrim($host, '.'), 'Info Censo')
 							->setTo($census_user->getEmail())
 							->setBody(
-									$this->renderView(
+									$this->getContainer()->get('templating')->render(
 											'MunicipalesBundle:Mail:token_link.html.twig',
 											array(
 												'token' => $census_user_token,
