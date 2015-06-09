@@ -17,6 +17,9 @@ class MailTokenCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+    	// Force to set host in command console
+    	$this->getContainer()->get('router')->getContext()->setHost('censo.participasevilla.org');
+    	
     	$logger = $this->getContainer()->get('logger');
     	
     	$logger->info('Executing command census:mailtoken');
