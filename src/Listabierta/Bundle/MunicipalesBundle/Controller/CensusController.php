@@ -142,7 +142,7 @@ class CensusController extends Controller
     	$form->handleRequest($request);
 
     	$ok = TRUE;
-    	$already_registered = FALSE;
+
     	if ($form->isValid())
     	{
     		$name     = $form['name']->getData();
@@ -160,7 +160,6 @@ class CensusController extends Controller
     		{
     			$form->addError(new FormError('Ya existe un usuario de censo registrado con el dni ' . $dni));
     			$ok = FALSE;
-    			$already_registered = TRUE;
     		}
     		
     		$census_user_email = $census_user_repository->findOneBy(array('email' => $email));
@@ -169,7 +168,6 @@ class CensusController extends Controller
     		{
     			$form->addError(new FormError('Ya existe un usuario de censo registrado con el email ' . $email));
     			$ok = FALSE;
-    			$already_registered = TRUE;
     		}
     		
     		$census_user_phone = $census_user_repository->findOneBy(array('phone' => $phone));
@@ -178,18 +176,8 @@ class CensusController extends Controller
     		{
     			$form->addError(new FormError('Ya existe un usuario de censo registrado con el teléfono ' . $phone));
     			$ok = FALSE;
-    			$already_registered = TRUE;
     		}
-    		
-    		/*
-    		if($already_registered)
-    		{
-    			$login_url = $this->generateUrl('login', array(), TRUE);
-    			$form->addError(new FormError('Si te registraste con anterioridad, puedes acceder a tu registro en: <a href="' . $login_url . '" 
-    					title="Login">' . $login_url . '</a> y continuar por el paso dónde lo dejaste.'));
-    		}
-    		*/
-    		
+
     		if($ok)
     		{
     			$session->set('geolocation_allowed', TRUE);
@@ -302,6 +290,30 @@ class CensusController extends Controller
      */
     public function step5FinishAction(Request $request = NULL)
     {
+    	$session = $this->getRequest()->getSession();
+    	
+    	$census_mail = $session->get('email', NULL);
+    	
+    	if(!empty($census_mail))
+    	{
+	    	// Send mail with login link for admin
+	    	$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+	    	
+	    	$message = \Swift_Message::newInstance()
+	    	->setSubject('Confirmación de inscripción en el censo')
+	    	->setFrom('confirmacion@' . rtrim($host, '.'), 'Confirmacion Censo')
+	    	->setTo($census_mail)
+	    	->setBody(
+	    			$this->renderView(
+	    					'MunicipalesBundle:Mail:census_confirmation.html.twig',
+	    					array(
+	    					)
+	    			), 'text/html'
+	    	);
+	    		
+	    	$this->get('mailer')->send($message);
+    	}
+    	
     	return $this->render('MunicipalesBundle:Census:step5_finish.html.twig', array());
     }
 
