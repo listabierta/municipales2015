@@ -108,4 +108,60 @@ class Consultation
     {
         return $this->token;
     }
+    /**
+     * @var string
+     */
+    private $response_string;
+
+    /**
+     * @var integer
+     */
+    private $response_time;
+
+
+    /**
+     * Set response_string
+     *
+     * @param string $responseString
+     * @return Consultation
+     */
+    public function setResponseString($responseString)
+    {
+        $this->response_string = $responseString;
+
+        return $this;
+    }
+
+    /**
+     * Get response_string
+     *
+     * @return string 
+     */
+    public function getResponseString()
+    {
+        return $this->response_string;
+    }
+
+    /**
+     * Set response_time
+     *
+     * @param integer $responseTime
+     * @return Consultation
+     */
+    public function setResponseTime($responseTime)
+    {
+        $this->response_time = $responseTime;
+
+        return $this;
+    }
+
+    /**
+     * Get response_time
+     *
+     * @return integer 
+     */
+    public function getResponseTime()
+    {
+        return $this->response_time;
+    }
 }
