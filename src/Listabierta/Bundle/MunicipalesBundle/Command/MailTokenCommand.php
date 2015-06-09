@@ -41,7 +41,7 @@ class MailTokenCommand extends ContainerAwareCommand
 						try
 						{
 							// Send mail with login link for admin
-							$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+							$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'censo.participasevilla.org';
 							
 							$message = \Swift_Message::newInstance()
 							->setSubject('Enlace para comenzar la votación')
