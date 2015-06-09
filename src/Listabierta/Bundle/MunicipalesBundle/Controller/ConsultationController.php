@@ -19,7 +19,7 @@ class ConsultationController extends Controller
     	if(empty($token))
     	{
     		return $this->render('MunicipalesBundle:Consultation:unknown.html.twig', array(
-    				'error' => 'Error: El token no puede ser vacío',
+    				'error' => 'Error: El token no puede ser vacío en paso 1',
     		));
     		
     		// @todo pregenerate tokens in census
@@ -81,7 +81,7 @@ class ConsultationController extends Controller
     		
     			if($ok)
     			{
-    				return $this->step2Action($request);
+    				return $this->step2Action($request, $token);
     			}
     		}
     		
@@ -100,7 +100,7 @@ class ConsultationController extends Controller
     	if(empty($token))
     	{
     		return $this->render('MunicipalesBundle:Consultation:unknown.html.twig', array(
-    				'error' => 'Error: El token no puede ser vacío',
+    				'error' => 'Error: El token no puede ser vacío en paso 2.',
     		));
     	}
     	else
@@ -161,7 +161,7 @@ class ConsultationController extends Controller
     	if(empty($token))
     	{
     		return $this->render('MunicipalesBundle:Consultation:unknown.html.twig', array(
-    				'error' => 'Error: El token no puede ser vacío',
+    				'error' => 'Error: El token no puede ser vacío en paso 3',
     		));
     	}
     	else
