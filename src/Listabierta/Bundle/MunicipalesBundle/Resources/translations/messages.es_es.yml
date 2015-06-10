@@ -34,7 +34,7 @@ consultation:
         h1_title: Confirmar respuestas
         p1: ¿Estás seguro? Esto has elegido
         previous: Anterior
-        continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
+        continue: Votar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     
     step3:
         step_h2: Paso 3 Asamblea Ciudadana de Participa Sevilla, Consulta sobre la investidura del nuevo alcalde de Sevilla
