@@ -228,7 +228,10 @@ class ConsultationController extends Controller
     			}
     		}
  
-    		$census_user_id = $census_user->getId();
+    		$census_user_id    = $census_user->getId();
+    		$census_user_email = $census_user->getEmail();
+    		$census_user_name  = $census_user->getName();
+    		
     		$data_info = array();
     		
     		$data_info['census_user_id'] = $census_user_id;
@@ -317,6 +320,29 @@ class ConsultationController extends Controller
     		$entity_manager->persist($consultation);
     		$entity_manager->flush();
 
+    		
+    		// Send mail with vote confirmation
+    		$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+    		
+    		$message = \Swift_Message::newInstance()
+    		->setSubject('Tu voto ha sido emitido correctamente')
+    		->setFrom('info@' . rtrim($host, '.'), 'Informacion Censo')
+    		->setTo($census_user_email)
+    		->setBody(
+    				$this->renderView(
+    						'MunicipalesBundle:Mail:vote_finished.html.twig',
+    						array(
+    								'name' => $census_user_name,
+    								'response_string' => $response_string,
+    								'response_time' => $response_time,
+    						)
+    				), 'text/html'
+    		);
+    		 
+    		$this->get('mailer')->send($message);
+    		
+    		
+    		
 	    	return $this->render('MunicipalesBundle:Consultation:step3.html.twig', array(
 	    			'token' => $token,
 	    		)
