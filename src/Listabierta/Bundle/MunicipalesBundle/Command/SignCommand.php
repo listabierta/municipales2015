@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Listabierta\Bundle\MunicipalesBundle\Lib\tractis\SymfonyTractisApi;
 
-class MailTokenCommand extends ContainerAwareCommand
+class SignCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
