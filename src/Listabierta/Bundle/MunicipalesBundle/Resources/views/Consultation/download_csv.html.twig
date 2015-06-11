@@ -1,4 +1,4 @@
 consultation_id,census_user_id,first_option,second_option,response_time,response_string
 {% for consultation in valid_consultations %}
-{{ consultation.getId() }},{{ consultation.getCensusUserId()) }},{% if consultation.data.first == 'a' %}A{% else %}B{%endif %},{% if consultation.data.first == 'b' %}{% if consultation.data.second == 'a' %}A{% else %}B{%endif %}{% else %}-{%endif %},{{ consultation.getResponseTime() }},{{ consultation.getResponseString() }}
+{{ consultation.getId() }},{{ consultation.getCensusUserId() }},{% if consultation.data.first == 'a' %}A{% else %}B{%endif %},{% if consultation.data.first == 'b' %}{% if consultation.data.second == 'a' %}A{% else %}B{%endif %}{% else %}-{%endif %},{{ consultation.getResponseTime() }},{{ consultation.getResponseString() }}
 {% endfor %}
