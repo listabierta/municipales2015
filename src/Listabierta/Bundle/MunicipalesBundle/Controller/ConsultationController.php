@@ -470,4 +470,67 @@ class ConsultationController extends Controller
     		)
     	);
     }
+    
+    public function downloadCSVAction(Request $request)
+    {
+    	$is_closed = $this->checkAdminOpenTime();
+    	 
+    	if(!empty($is_closed))
+    	{
+    		return $is_closed;
+    	}
+    
+    	$entity_manager = $this->getDoctrine()->getManager();
+    
+    	$session = $this->getRequest()->getSession();
+    	 
+    	$consultation_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Consultation');
+    	$consultations = $consultation_repository->findAll();
+    	 
+    	$votes_emitted = 0;
+    	$counter = array();
+    	$counter['first']['a'] = 0;
+    	$counter['first']['b'] = 0;
+    	$counter['second']['a'] = 0;
+    	$counter['second']['b'] = 0;
+    
+    	$valid_consultations = array();
+    	foreach($consultations as $consultation)
+    	{
+    		if(!empty($consultation->getResponseTime()) && !empty($consultation->getResponseString()))
+    		{
+    			$data = $consultation->getData();
+    			 
+    			if(isset($data['first']) && $data['first'] == 'a')
+    			{
+    				$counter['first']['a'] += 1;
+    			}
+    			 
+    			if(isset($data['first']) && $data['first'] == 'b')
+    			{
+    				$counter['first']['b'] += 1;
+    
+    				if(isset($data['second']) && $data['second'] == 'a')
+    				{
+    					$counter['second']['a'] += 1;
+    				}
+    
+    				if(isset($data['second']) && $data['second'] == 'b')
+    				{
+    					$counter['second']['b'] += 1;
+    				}
+    			}
+    			 
+    			$votes_emitted += 1;
+    			$valid_consultations[] = $consultation;
+    		}
+    	}
+    	 
+    	return $this->render('MunicipalesBundle:Consultation:download_csv.html.twig', array(
+    			'votes_emitted' => $votes_emitted,
+    			'counter' => $counter,
+    			'valid_consultations' => $valid_consultations,
+    	)
+    	);
+    }
 }
