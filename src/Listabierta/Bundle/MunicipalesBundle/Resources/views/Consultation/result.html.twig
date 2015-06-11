@@ -1,22 +1,6 @@
 {% extends 'MunicipalesBundle:theme:layout.html.twig' %}
 
-{% block title %}{{ 'consultation.step3.html_title'|trans }}{% endblock %}
-
-{% from 'MunicipalesBundle:macros:steps.html.twig' import steps_consultation %}
-
-{% block appjsinline %}
-<style type="text/css">
- 
-#share-buttons img {
-width: 35px;
-padding: 5px;
-border: 0;
-box-shadow: 0;
-display: inline;
-}
- 
-</style>
-{% endblock %}
+{% block title %}Resultados de la consulta online{% endblock %}
 
 {% block content %}
 
@@ -24,12 +8,9 @@ display: inline;
 	<div class="container marketing">
         
         <div class="headline">
-          <h2>Resultados de la consulta online:</h2>
+          <h2>Resultados de la consulta online</h2>
         </div>
-        
-        <h3 class="featurette-headin"> <i>{{ 'consultation.step3.h1_title'|trans }}</i></h3>
-        
-    
+
         <div class="row">
 
   			<div class="col-xs-10 col-xs-offset-1">                  
@@ -50,7 +31,7 @@ display: inline;
 						
 							<table class="table">
 								<tr>
-									<td>¿Qué consideras que deben votar nuestros concejales?</td>
+									<td><h3>¿Qué consideras que deben votar nuestros concejales?</h3></td>
 									<td>Votos</td>
 								</tr>
 								<tr>
@@ -65,7 +46,7 @@ display: inline;
 						</p>
 						
 						<p class="lead2">
-							Opción ganadora: A o B
+							Opción ganadora: {% if counter.first.a >= counter.first.b %}A{% else %}B{% end %}
 						</p>
 						 
 						 <p class="lead2">
@@ -89,10 +70,11 @@ display: inline;
 						</p>
 						 
 						 <p class="lead2">
-							Opción ganadora: A o B
+							Opción ganadora: {% if counter.second.a >= counter.second.b %}A{% else %}B{% end %}
 						</p>
-						 
-						 
+						 <p class="lead2">
+						 <a href="{{ path('consultation_download_csv') }}" title="Descargar CSV">Descargar CSV</a>
+						</p> 
 						 
 						</div>
 
