@@ -526,11 +526,27 @@ class ConsultationController extends Controller
     		}
     	}
     	 
-    	return $this->render('MunicipalesBundle:Consultation:download_csv.html.twig', array(
+    	$filename = 'consultation-votes-' . date('d_m_Y_H_i_s') . '.csv';
+    	
+    	$response = $this->render('MunicipalesBundle:Consultation:download_csv.html.twig', array(
     			'votes_emitted' => $votes_emitted,
     			'counter' => $counter,
-    			'valid_consultations' => $valid_consultations,
-    	)
-    	);
+    			'valid_consultations' => $valid_consultations
+    	));
+    	
+    	$response->setStatusCode(200); //Response::HTTP_OK
+    	
+    	$response->prepare($request);
+    	
+    	$response->headers->set('Content-Type', 'application/force-download');
+    	$response->headers->set('Content-Type', 'text/csv;charset=UTF-8');
+    	//$response->headers->set('Content-Type', 'text/csv;charset=windows-1252');
+    	$response->headers->set('Content-Description', 'Consulation votes');
+    	$response->headers->set('Content-Disposition', 'attachment;filename="' . $filename .'"');
+    	$response->headers->set('Content-Transfer-Encoding', 'binary');
+    	$response->headers->set('Pragma', 'no-cache');
+    	$response->headers->set('Expires', '0');
+    	
+    	return $response;
     }
 }
