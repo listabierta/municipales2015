@@ -35,6 +35,25 @@ class ConsultationController extends Controller
 		return NULL;
 	}
 	
+	private function checkAdminOpenTime()
+	{
+		$close_time = new \Datetime('2015-06-11', new \DateTimeZone('Europe/Madrid'));
+		$close_time->setTime(22, 30, 0); // 08:00 AM
+			
+		$now = new \Datetime('NOW', new \DateTimeZone('Europe/Madrid'));
+	
+		if($now->getTimestamp() - $close_time->getTimestamp() < 0)
+		{
+			return $this->render('MunicipalesBundle:Consultation:unknown.html.twig', array(
+					'error' => 'Aun no pueden ser consultados los resultados de la votación. <br /> <br />
+    							Hora actual: ' . date('H:i:s d-m-Y' , $now->getTimestamp()) . '<br />
+    							Fecha de apertura: ' . date('H:i:s d-m-Y' , $close_time->getTimestamp()) . '<br />',
+			));
+		}
+	
+		return NULL;
+	}
+	
     public function step1Action(Request $request, $token = NULL)
     {
     	$is_closed = $this->checkCloseTime();
@@ -132,6 +151,13 @@ class ConsultationController extends Controller
     
     public function step2Action(Request $request, $token = NULL)
     {
+    	$is_closed = $this->checkCloseTime();
+    	 
+    	if(!empty($is_closed))
+    	{
+    		return $is_closed;
+    	}
+    	
     	$entity_manager = $this->getDoctrine()->getManager();
     	
     	$session = $this->getRequest()->getSession();
@@ -203,6 +229,13 @@ class ConsultationController extends Controller
     
     public function step3Action(Request $request, $token = NULL)
     {
+    	$is_closed = $this->checkCloseTime();
+    	 
+    	if(!empty($is_closed))
+    	{
+    		return $is_closed;
+    	}
+    	
     	$entity_manager = $this->getDoctrine()->getManager();
     	
     	$session = $this->getRequest()->getSession();
@@ -374,5 +407,65 @@ class ConsultationController extends Controller
 	    		)
 	    	);
     	}
+    }
+    
+    public function resultAction(Request $request)
+    {
+    	$is_closed = $this->checkAdminOpenTime();
+    	
+    	if(!empty($is_closed))
+    	{
+    		return $is_closed;
+    	}
+
+    	$entity_manager = $this->getDoctrine()->getManager();
+    	 
+    	$session = $this->getRequest()->getSession();
+    	
+    	$consultation_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Consultation');
+    	$consultations = $consultation_repository->findAll();
+    	
+    	$votes_emitted = 0;
+    	$counter = array();
+    	$counter['first']['a'] = 0;
+    	$counter['first']['b'] = 0;
+    	$counter['second']['a'] = 0;
+    	$counter['second']['b'] = 0;
+  
+    	foreach($consultations as $consultation)
+    	{
+    		if(!empty($consultation->getResponseTime()) && !empty($consultation->getResponseString()))
+    		{
+    			$data = $consultation->getData();
+    			
+    			if(isset($data['first']) && $data['first'] == 'a')
+    			{
+    				$counter['first']['a'] += 1;
+    			} 
+    			
+    			if(isset($data['first']) && $data['first'] == 'b')
+    			{
+    				$counter['first']['b'] += 1;
+    				
+    				if(isset($data['second']) && $data['second'] == 'a')
+    				{
+    					$counter['second']['a'] += 1;
+    				}
+    				
+    				if(isset($data['second']) && $data['second'] == 'b')
+    				{
+    					$counter['second']['b'] += 1;
+    				}
+    			}
+    			
+    			$votes_emitted += 1;
+    		}
+    	}
+    	
+    	return $this->render('MunicipalesBundle:Consultation:result.html.twig', array(
+    			'votes_emitted' => $votes_emitted,
+    			'counter' => $counter,
+    		)
+    	);
     }
 }
