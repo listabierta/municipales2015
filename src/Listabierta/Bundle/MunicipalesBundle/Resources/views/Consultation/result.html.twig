@@ -1,0 +1,112 @@
+{% extends 'MunicipalesBundle:theme:layout.html.twig' %}
+
+{% block title %}{{ 'consultation.step3.html_title'|trans }}{% endblock %}
+
+{% from 'MunicipalesBundle:macros:steps.html.twig' import steps_consultation %}
+
+{% block appjsinline %}
+<style type="text/css">
+ 
+#share-buttons img {
+width: 35px;
+padding: 5px;
+border: 0;
+box-shadow: 0;
+display: inline;
+}
+ 
+</style>
+{% endblock %}
+
+{% block content %}
+
+<section class="section-2">
+	<div class="container marketing">
+        
+        <div class="headline">
+          <h2>Resultados de la consulta online:</h2>
+        </div>
+        
+        <h3 class="featurette-headin"> <i>{{ 'consultation.step3.h1_title'|trans }}</i></h3>
+        
+    
+        <div class="row">
+
+  			<div class="col-xs-10 col-xs-offset-1">                  
+
+  				<div class="clearfix"></div>
+  				<br />
+  				<br />
+  				
+				<div class="center-block">
+
+              		<div class="well justify-block">
+              		
+              			<p class="lead2">
+							Total votos emitidos: {{ votes_emitted }}
+						</p>
+						
+						<p class="lead2">
+						
+							<table class="table">
+								<tr>
+									<td>¿Qué consideras que deben votar nuestros concejales?</td>
+									<td>Votos</td>
+								</tr>
+								<tr>
+									<td>A - Votarnos a nosotros mismos o abstenernos, con la probable consecuencia de que Juan Ignacio Zoido (PP) sea alcalde</td>
+									<td>{{ counter.first.a }}</td>
+								</tr>
+								<tr>
+									<td>B - Apoyar la investidura de Juan Espadas (PSOE) y exigirle el cumplimiento de estos compromiso</td>
+									<td>{{ counter.first.b }}</td>
+								</tr>
+							</table>
+						</p>
+						
+						<p class="lead2">
+							Opción ganadora: A o B
+						</p>
+						 
+						 <p class="lead2">
+						
+							<table class="table">
+								<tr>
+									<td>Si la opción ganadora es B, las opciones son (*):<br/>
+										(*) (Si la opción ganadora es A, estos resultados no deben tenerse en cuenta)
+									</td>
+									<td>Votos</td>
+								</tr>
+								<tr>
+									<td>A - Votar la investidura de Juan Espadas y pasar a la oposición</td>
+									<td>{{ counter.second.a }}</td>
+								</tr>
+								<tr>
+									<td>B - Votar la investidura de Juan Espadas y formar parte del gobierno</td>
+									<td>{{ counter.second.b }}</td>
+								</tr>
+							</table>
+						</p>
+						 
+						 <p class="lead2">
+							Opción ganadora: A o B
+						</p>
+						 
+						 
+						 
+						</div>
+
+					</div>                  
+							
+                </div>
+                    
+                <div class="clearfix"></div>
+
+         	</div>
+         	
+		</div>  
+
+	</div>
+</section>
+	
+{% endblock %}
