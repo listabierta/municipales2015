@@ -18,6 +18,8 @@ class ConsultationController extends Controller
 {
 	private function checkCloseTime()
 	{
+		return NULL; //Disable for now
+		
 		$close_time = new \Datetime('2015-06-11', new \DateTimeZone('Europe/Madrid'));
 		$close_time->setTime(8, 0, 0); // 08:00 AM
 		 
@@ -409,7 +411,7 @@ class ConsultationController extends Controller
     	}
     }
     
-    public function resultAction(Request $request)
+    public function resultsAction(Request $request)
     {
     	$is_closed = $this->checkAdminOpenTime();
     	
