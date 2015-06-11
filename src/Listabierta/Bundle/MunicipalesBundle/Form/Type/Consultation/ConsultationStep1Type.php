@@ -39,7 +39,7 @@ class ConsultationStep1Type extends AbstractType
 				    		'data' => 'no',
 				    		'multiple' => false,
 				    		'expanded' => true,
-				    		'required' => true,
+				    		'required' => false,
 				    ))
         		->add('continue', 'submit', array('attr' => array('class' => 'submit','style' => 'margin-left:0px')));
     }
