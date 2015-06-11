@@ -44,7 +44,7 @@ class RememberVoteCommand extends ContainerAwareCommand
 							$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'censo.participasevilla.org';
 							
 							$message = \Swift_Message::newInstance()
-							->setSubject('Recordatorio: Decide que votarán nuestros concejales en la votación de investidura de la alcaldía de Sevilla')
+							->setSubject('Ultimo Recordatorio: Decide que votarán nuestros concejales en la votación de investidura de la alcaldía de Sevilla')
 							->setFrom('info@' . rtrim($host, '.'), 'Participa Sevilla')
 							->setTo($census_user->getEmail())
 							->setBody(
