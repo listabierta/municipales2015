@@ -92,3 +92,15 @@ consultation_step3:
     defaults: { _controller: MunicipalesBundle:Consultation:step3 }
     requirements:
         _locale: es_es
+
+consultation_results:
+    path:     /consulta-ciudadana-resultados
+    defaults: { _controller: MunicipalesBundle:Consultation:results }
+    requirements:
+        _locale: es_es
+                
+consultation_download_csv:
+    path:     /consulta-ciudadana-descarga-csv
+    defaults: { _controller: MunicipalesBundle:Consultation:downloadCSV }
+    requirements:
+        _locale: es_es
