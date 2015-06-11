@@ -1,4 +1,4 @@
 consultation_id,census_user_id,first_option,second_option,response_time,response_string
-{% for valid_consultations in consultation %}
+{% for consultation in valid_consultations %}
 {{ consultation['consultation_id'] }},{{ consultation['census_user_id'] }},{% if consultation.data.first == 'a' %}A{% else %}B{%endif %},{% if consultation.data.first == 'b' %}{% if consultation.data.second == 'a' %}A{% else %}B{%endif %}{% else %}-{%endif %},{{ consultation['response_time'] }},{{ consultation['response_string'] }}
 {% endfor %}
