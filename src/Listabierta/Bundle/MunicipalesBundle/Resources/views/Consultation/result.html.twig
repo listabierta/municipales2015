@@ -46,7 +46,7 @@
 						</p>
 						
 						<p class="lead2">
-							Opción ganadora: {% if counter.first.a >= counter.first.b %}A{% else %}B{% end %}
+							Opción ganadora: {% if counter.first.a >= counter.first.b %}A{% else %}B{% endif %}
 						</p>
 						 
 						 <p class="lead2">
@@ -70,7 +70,7 @@
 						</p>
 						 
 						 <p class="lead2">
-							Opción ganadora: {% if counter.second.a >= counter.second.b %}A{% else %}B{% end %}
+							Opción ganadora: {% if counter.second.a >= counter.second.b %}A{% else %}B{% endif %}
 						</p>
 						 <p class="lead2">
 						 <a href="{{ path('consultation_download_csv') }}" title="Descargar CSV">Descargar CSV</a>
