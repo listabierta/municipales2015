@@ -16,8 +16,34 @@ use Listabierta\Bundle\MunicipalesBundle\Lib\tractis\SymfonyTractisApi;
 
 class ConsultationController extends Controller
 {
+	private function checkCloseTime()
+	{
+		$close_time = new \Datetime('2015-06-11', new \DateTimeZone('Europe/Madrid'));
+		$close_time->setTime(8, 0, 0); // 08:00 AM
+		 
+		$now = new \Datetime('NOW', new \DateTimeZone('Europe/Madrid'));
+		
+		if($now->getTimestamp() - $close_time->getTimestamp() > 0)
+		{
+			return $this->render('MunicipalesBundle:Consultation:unknown.html.twig', array(
+					'error' => 'Lo sentimos, el plazo de votación ha finalizado. <br /> <br />
+    							Hora actual: ' . date('H:i:s d-m-Y' , $now->getTimestamp()) . '<br />
+    							Fecha de cierre: ' . date('H:i:s d-m-Y' , $close_time->getTimestamp()) . '<br />',
+			));
+		}
+		
+		return NULL;
+	}
+	
     public function step1Action(Request $request, $token = NULL)
     {
+    	$is_closed = $this->checkCloseTime();
+    	
+    	if(!empty($is_closed)) 
+    	{
+    		return $is_closed;
+    	}
+    	
     	$entity_manager = $this->getDoctrine()->getManager();
     	$session = $this->getRequest()->getSession();
     	 
