@@ -21,7 +21,7 @@ class ConsultationController extends Controller
 		return NULL; //Disable for now
 		
 		$close_time = new \Datetime('2015-06-11', new \DateTimeZone('Europe/Madrid'));
-		$close_time->setTime(8, 0, 0); // 08:00 AM
+		$close_time->setTime(22, 30, 0); // 22:30 AM
 		 
 		$now = new \Datetime('NOW', new \DateTimeZone('Europe/Madrid'));
 		
