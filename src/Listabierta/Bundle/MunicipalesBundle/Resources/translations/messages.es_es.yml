@@ -1,15 +1,15 @@
 home:
-    html_title: Municipales 2015 - Home
-    h1_title: Municipales 2015
+    html_title: Municipales 2019 - Home
+    h1_title: Municipales 2019
     steps_h2: Pasos
     step_h2: Paso
     steps: Para dar de alta una candidatura ciudadana debes
-    featured: Abre tu ayuntamiento a la ciudadanía en estas elecciones municipales de mayo 2015
+    featured: Abre tu ayuntamiento a la ciudadanía en estas elecciones municipales de mayo 2019
     
-    open_council: Abre tu ayuntamiento a la ciudadan&iacute;a en estas elecciones municipales de mayo 2015
+    open_council: Abre tu ayuntamiento a la ciudadan&iacute;a en estas elecciones municipales de mayo 2019
     who_we_are: "¿Quienes somos?"
     who_h3: "Empieza por aquí"
-    intro_p1: es el fruto de un esfuerzo de financiación colectiva y de un equipo de trabajo que pretende abrir las organizaciones a la ciudadanía. Entre estas organizaciones ocupan un lugar destacado los Ayuntamientos.
+    intro_p1: es el fruto de un esfuerzo de financiación colectiva y de un equipo de trabajo que pretende abrir las organizaciones a la ciudadanía. Entre estas organizaciones ocupan un lugar destacado los Ayuntamientos. Puedes utilizar esta herramienta para hacer una candidatura de listas abiertas en tu municipio, es gratuita pero tiene limitaciones. Si quieres utilizar una solución más avanzada te sugerimos que utilices <a href="http://www.nvotes.com">NVotes.com</a> que tiene costes asociados. Puedes contactar con la cooperativa <a href="http://enreda.coop/">Enreda</a> para implementar tanto listAbierta.org como Nvotes u otras soluciones de Participación Ciudadana."
     intro_p2: La elección de candidatos y candidatas en listas abiertas para los comicios municipales permite que los electos se “deban” a los ciudadanos que los han elegido, y no a quien les hubiese incluido en una lista cerrada o negociada. 
     intro_p3: Si estás <b>directamente implicado en la organización</b> de una candidatura de listas abiertas en tu municipio para las próximas elecciones de mayo de 2.015, puedes organizarla con esta herramienta online sin coste y con resultados auditables. Si no habéis encontrado una forma jurídica adecuada aún, podéis utilizar <a href="http://primarias.participa.info">esta</a>
     intro_p4: Es muy importante que antes de empezar el proceso de registro de la candidatura, veas este tutorial del proceso completo.
@@ -36,13 +36,13 @@ header:
         es_es: Español
         
 candidacy:
-    html_title: Municipales 2015 - Alta de candidatura ciudadana
+    html_title: Municipales 2019 - Alta de candidatura ciudadana
     h1_title: Regístrate y registra el municipio de la candidatura
     verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
     verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
     
     step_conditions:
-      html_title: Municipales 2015 - Condiciones de alta de candidatura ciudadana
+      html_title: Municipales 2019 - Condiciones de alta de candidatura ciudadana
       h1_title: Regístrate y registra el municipio de la candidatura
     
       p1_title: Al iniciar el registro aceptas las siguientes condiciones
@@ -77,13 +77,13 @@ candidacy:
         warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que otra persona tendrá que dar de alta esta candidatura ciudadana. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
 
     step_verify:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        html_title: Municipales 2019 - Alta de candidatura ciudadana
         h1_title: Verifica tu número de móvil
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
         
     step2:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        html_title: Municipales 2019 - Alta de candidatura ciudadana
         h1_title: Establece las condiciones de la candidatura ciudadana
         
         p1: "Sube en formato PDF aquellas condiciones que deban aceptar los candidatos o candidatas (una, algunas, todas o ninguna) para presentarse en la candidatura ciudadana. Por ejemplo: El programa de la candidatura, las condiciones legales y la veracidad de la información aportada, el mandato revocatorio y participativo, el código ético, la aceptación del censo y el sistema de voto, etc.  Si no subes ninguna condición, te recomendamos que busques algún método alternativo para verificar que el candidato o candidata va a cumplirlas antes de su inclusión en las listas."
@@ -99,7 +99,7 @@ candidacy:
         example: Ejemplo
                       
     step3:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        html_title: Municipales 2019 - Alta de candidatura ciudadana
         h1_title: Establece los plazos de presentación de candidaturas
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         explanation_date: Plazo de presentación de candidaturas <br/>(mínimo 2 días) 
@@ -108,7 +108,7 @@ candidacy:
         previous: Anterior
               
     step4:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        html_title: Municipales 2019 - Alta de candidatura ciudadana
         h1_title: Reserva una dirección de internet
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
@@ -117,7 +117,7 @@ candidacy:
         warning: Si en el espacio en blanco escribes por ejemplo: FuenteovejunaParticipa, las direcciones asociadas a tu candidatura serán del tipo: http://%host%/FuenteovejunaParticipa/...
         
     step5:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        html_title: Municipales 2019 - Alta de candidatura ciudadana
         h1_title: Alta de candidatos y candidatas
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
@@ -128,7 +128,7 @@ candidacy:
         next_step_explanation: En el siguiente paso podrás validar a los candidatos y candidatas que se den de alta utilizando el enlace anterior.
 
     step6:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        html_title: Municipales 2019 - Alta de candidatura ciudadana
         h1_title: Validación de candidatos y candidatas  
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         no_candidates: En estos momentos no existe ningun candidato inscrito para validar
@@ -150,7 +150,7 @@ candidacy:
         check_again: Volver a comprobar
         
     step7:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        html_title: Municipales 2019 - Alta de candidatura ciudadana
         h1_title: Inicio y fin de las Votaciones
         days: Días
         explanation: Introduce el número de días naturales que permanecerá activa la votación de candidatos desde el inicio de la votación (mínimo dos días).
@@ -162,7 +162,7 @@ candidacy:
         sent_mail: Te hemos enviado una copia de este enlace a tu email
                                 
     step8:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        html_title: Municipales 2019 - Alta de candidatura ciudadana
         h1_title: Verificación del voto y resultados
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
@@ -194,7 +194,7 @@ candidacy:
         header_li10: "El candidato o candidata elegido en decimo lugar recibe %points% puntos"
         
     step9:
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        html_title: Municipales 2019 - Alta de candidatura ciudadana
         h1_title: Presentación de las listas electas       
         continue: Iniciar votación
         result: Resultados de la votación
@@ -216,7 +216,7 @@ candidacy:
         continue: Recuperar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         explanation: Si has olvidado tu nombre de usuario o tu contraseña, puedes solicitar que el envío por correo electrónico de tu nombre de usuario y restablecer tu contraseña. Si introduces el correo electrónico que has registrado, se enviará las instrucciones para restablecer tu contraseña
 town:
-    html_title: Municipales 2015 - Vota en la candidatura ciudadana
+    html_title: Municipales 2019 - Vota en la candidatura ciudadana
     h1_title: Registrate como votante
     verify_msg: Confirma el registro y las condiciones enviando desde tu móvil un SMS con la palabra ACEPTO al número %sms_inbound_number%, después haz clic en CONTINUAR
     verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
@@ -237,7 +237,7 @@ town:
         warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás votar
     
     step_verify:
-        html_title: Municipales 2015 - Registrate como votante
+        html_title: Municipales 2019 - Registrate como votante
         h1_title: Verifica tu número de móvil
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
@@ -248,7 +248,7 @@ town:
     
     step2:
         header: Filtra candidatos
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 2
+        html_title: Municipales 2019 - Vota en la candidatura ciudadana - Paso 2
         filter_title: ¿Qué criterios deseas utilizar para seleccionar a los candidatos y candidatas?
         filter_p1: Ten en cuenta que si no aplicas ningún filtro, te aparecerá la totalidad de candidatos y candidatas que se han presentado y puede resultar tedioso ver todos los perfiles y después puntuarlos, así que si tienes alguna preferencia clara márcala, posteriormente podrás revisar tus filtros.
         h1_title: Filtra candidatos por nivel academico
@@ -259,7 +259,7 @@ town:
         
     step3:
         header: Seleciona experiencia laboral
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 3
+        html_title: Municipales 2019 - Vota en la candidatura ciudadana - Paso 3
         h1_title: Seleciona experiencia laboral
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
@@ -267,7 +267,7 @@ town:
         
     step4:
         header: Selecciona actividades municipales
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 4
+        html_title: Municipales 2019 - Vota en la candidatura ciudadana - Paso 4
         h1_title: Selecciona actividades municipales
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
@@ -275,7 +275,7 @@ town:
      
     step5:
         header: Selecciona prioridades municipales
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 5
+        html_title: Municipales 2019 - Vota en la candidatura ciudadana - Paso 5
         h1_title: Selecciona prioridades municipales
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
@@ -284,14 +284,14 @@ town:
         
     step6:
         header: Asigna importancia
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 6
+        html_title: Municipales 2019 - Vota en la candidatura ciudadana - Paso 6
         h1_title: Asigna importancia
         continue: Ver candidatos seleccionados <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior          
 
     step7_confirmation:
         header: Elige candidatos
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 7
+        html_title: Municipales 2019 - Vota en la candidatura ciudadana - Paso 7
         h1_title: Seleccion previa de candidatos
         continue: Ver candidatos seleccionados <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Revisar criterios
@@ -301,7 +301,7 @@ town:
              
     step7:
         header: Elige candidatos
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 7
+        html_title: Municipales 2019 - Vota en la candidatura ciudadana - Paso 7
         h1_title: Elige candidatos
         continue: VOTA <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
@@ -404,7 +404,7 @@ town:
 
     step8:
         header: Asigna puntuaciones
-        html_title: Municipales 2015 - Vota en la candidatura ciudadana - Paso 8
+        html_title: Municipales 2019 - Vota en la candidatura ciudadana - Paso 8
         h1_title: Asigna puntuaciones
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior 
@@ -412,7 +412,7 @@ town:
         
     step9:
         header: Fin
-        html_title: Municipales 2015 - Alta de candidatura ciudadana
+        html_title: Municipales 2019 - Alta de candidatura ciudadana
         h1_title: Fin
         previous: Anterior
         headline: Resultados públicos de la votación
@@ -426,7 +426,7 @@ town:
         download_csv: Bajar csv con los sellados de tiempo de tractis
                
 candidate:
-    html_title: Municipales 2015 - Alta de candidato
+    html_title: Municipales 2019 - Alta de candidato
     h1_title: Regístrate como candidato o candidata
 
     step1:
@@ -445,7 +445,7 @@ candidate:
     verify_extra: El coste del mensaje es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un sms premium y listabierta.org no cobra por este servicio.
     
     step_verify:
-        html_title: Municipales 2015 - Alta de candidato
+        html_title: Municipales 2019 - Alta de candidato
         h1_title: Verifica tu número de móvil
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior
