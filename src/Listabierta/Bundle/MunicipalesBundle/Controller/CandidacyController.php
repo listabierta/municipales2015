@@ -273,8 +273,9 @@ class CandidacyController extends Controller
 	    		
 	    		// Send mail with login link for admin
 	    		$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-	    		
-	    		$message = \Swift_Message::newInstance()
+                $host= "listabierta.org";
+
+                $message = \Swift_Message::newInstance()
 	    		->setSubject('Tu cuenta de administrador ha sido creada')
 	    		->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
 	    		->setTo($email)

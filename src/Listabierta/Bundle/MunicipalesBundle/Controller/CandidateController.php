@@ -166,7 +166,7 @@ class CandidateController extends Controller
 				
 				// Send mail with login link for admin
 				$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-				 
+				$host= "listabierta.org";
 				// pueda comentarle las incidencias (el administrador 
 				$message = \Swift_Message::newInstance()
 					->setSubject('Te has dado de alta como candidato')
@@ -1158,8 +1158,9 @@ class CandidateController extends Controller
 				$entity_manager->flush();
 				
 				$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-				
-				$message = \Swift_Message::newInstance()
+                $host= "listabierta.org";
+
+                $message = \Swift_Message::newInstance()
 				->setSubject('Nuevo candidato registrado')
 				->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
 				->setTo($admin_candidacy->getEmail())
