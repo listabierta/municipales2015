@@ -15,7 +15,6 @@ class SMSInboundController extends Controller
 	{
 		$logger = $this->get('logger');
 		$query = $request->query;
-		
 		$msisdn = $query->get('msisdn', NULL); // Customer mobile number
 		$to = $query->get('to', NULL); // SMS inbound number
 		$message_id = $query->get('messageId', NULL);
@@ -48,7 +47,9 @@ class SMSInboundController extends Controller
 					$phone_verified->setTimestamp(time());
 					
 					$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-					$entity_manager->persist($phone_verified);
+                    $host= "listabierta.org";
+
+                    $entity_manager->persist($phone_verified);
 					$entity_manager->flush();
 					
 					// . implode(',', $query->all())
