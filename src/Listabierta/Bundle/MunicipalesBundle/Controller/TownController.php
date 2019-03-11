@@ -1344,36 +1344,38 @@ class TownController extends Controller
 				
 				// Tractis TSA sign
 				
-				// Create an API Key here: https://www.tractis.com/webservices/tsa/apikeys
-				$tractis_api_identifier = $this->container->getParameter('tractis_api_identifier');
-				$tractis_api_secret     = $this->container->getParameter('tractis_api_secret');
-				
-				// Fetch the chain sign TSA file
-				$tsa_cert_chain_file = $this->container->get('kernel')->locateResource('@MunicipalesBundle/Lib/tractis/chain.txt');
-				
-				// Init the Symfony Tractis TSA Api
-				$symfony_tractis_api = new SymfonyTractisApi($tractis_api_identifier, $tractis_api_secret, $tsa_cert_chain_file);
-				
-				// Sign a valid vote
-				try 
-				{
-					$response = $symfony_tractis_api::sign(serialize($vote_info));
-				}
-				catch(\Exception $e)
-				{
-					if($e->getMessage() == 'The Timestamp was not found')
-					{
-						return $this->render('MunicipalesBundle:Town:town_warning.html.twig', array(
-								'warning' => 'Tu voto ha sido correctamente emitido, pero esta pendiente de ser sellado, ya que la plataforma de sellado Tractis en estos momentos no esta disponible, recibiras un correo cuando la plataforma de sellado este actíva de nuevo y tu voto será totalmente procesado y válido.',
-						));
-					}
-					else 
-					{
-						return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-								'error' => 'Error grave en el firmado de voto TSA. Respuesta de tractis: ' . $e->getMessage(),
-						));
-					}
-				}
+
+                // Todo submit the votes to the blockchain
+                // Create an API Key here: https://www.tractis.com/webservices/tsa/apikeys
+//				$tractis_api_identifier = $this->container->getParameter('tractis_api_identifier');
+//				$tractis_api_secret     = $this->container->getParameter('tractis_api_secret');
+//
+//				// Fetch the chain sign TSA file
+//				$tsa_cert_chain_file = $this->container->get('kernel')->locateResource('@MunicipalesBundle/Lib/tractis/chain.txt');
+//
+//				// Init the Symfony Tractis TSA Api
+//				$symfony_tractis_api = new SymfonyTractisApi($tractis_api_identifier, $tractis_api_secret, $tsa_cert_chain_file);
+//
+//				// Sign a valid vote
+//				try
+//				{
+//					$response = $symfony_tractis_api::sign(serialize($vote_info));
+//				}
+//				catch(\Exception $e)
+//				{
+//					if($e->getMessage() == 'The Timestamp was not found')
+//					{
+//						return $this->render('MunicipalesBundle:Town:town_warning.html.twig', array(
+//								'warning' => 'Tu voto ha sido correctamente emitido, pero esta pendiente de ser sellado, ya que la plataforma de sellado Tractis en estos momentos no esta disponible, recibiras un correo cuando la plataforma de sellado este actíva de nuevo y tu voto será totalmente procesado y válido.',
+//						));
+//					}
+//					else
+//					{
+//						return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+//								'error' => 'Error grave en el firmado de voto TSA. Respuesta de tractis: ' . $e->getMessage(),
+//						));
+//					}
+//				}
 				
 				// Check response data
 				if(empty($response))

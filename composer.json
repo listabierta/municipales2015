@@ -24,7 +24,8 @@
 	"ircmaxell/password-compat": "~1.0",
         "kartik-v/bootstrap-fileinput": "dev-master",
         "doctrine/data-fixtures": "~1.0",
-        "doctrine/doctrine-fixtures-bundle": "~2.2"
+        "doctrine/doctrine-fixtures-bundle": "~2.2",
+        "twilio/sdk": "^5.29"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
