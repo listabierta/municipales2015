@@ -309,6 +309,11 @@ municipales_sms_inbound_callback:
 municipales_sms_callback:
     path:     /sms/callback
     defaults: { _controller: MunicipalesBundle:SMSInbound:callback }
+
+# http://municipales2015.listabierta.org./sms/inbound
+municipales_voice_inbound_callback:
+    path:     /voice/inbound
+    defaults: { _controller: MunicipalesBundle:SMSInbound:phoneNumberRegistrationVoiceCallCallback }
     
 login:
     pattern:   /login
