@@ -1378,34 +1378,34 @@ class TownController extends Controller
 //				}
 				
 				// Check response data
-				if(empty($response))
-				{
-					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-							'error' => 'Error en el firmado de voto TSA. Respuesta vacía',
-					));
-				}
-				 
-				if(empty($response['response_string']))
-				{
-					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-							'error' => 'Error en el firmado de voto TSA. Respuesta con cadena vacía',
-					));
-				}
-				 
-				if(empty($response['response_time']))
-				{
-					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-							'error' => 'Error en el firmado de voto TSA. Respuesta con tiempo vacía',
-					));
-				}
-				 
-				// Fetch the data response if valid
-				$response_string = $response['response_string'];
-				$response_time   = $response['response_time'];
-				
-				// Store the sign TSA result in database
-				$voter->setVoteResponseString($response_string);
-				$voter->setVoteResponseTime($response_time);
+//				if(empty($response))
+//				{
+//					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+//							'error' => 'Error en el firmado de voto TSA. Respuesta vacía',
+//					));
+//				}
+//
+//				if(empty($response['response_string']))
+//				{
+//					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+//							'error' => 'Error en el firmado de voto TSA. Respuesta con cadena vacía',
+//					));
+//				}
+//
+//				if(empty($response['response_time']))
+//				{
+//					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+//							'error' => 'Error en el firmado de voto TSA. Respuesta con tiempo vacía',
+//					));
+//				}
+//
+//				// Fetch the data response if valid
+//				$response_string = $response['response_string'];
+//				$response_time   = $response['response_time'];
+//
+//				// Store the sign TSA result in database
+//				$voter->setVoteResponseString($response_string);
+//				$voter->setVoteResponseTime($response_time);
 				
 				$entity_manager->persist($voter);
 				$entity_manager->flush();
@@ -1414,7 +1414,7 @@ class TownController extends Controller
 				$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
 				 
 				$message = \Swift_Message::newInstance()
-				->setSubject('Tu voto ha sido emitido y sellado con éxito')
+				->setSubject('Tu voto ha sido emitido con éxito')
 				->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
 				->setTo($voter->getEmail())
 				->setBody(
@@ -1540,6 +1540,7 @@ class TownController extends Controller
 		{
 			if($ok)
 			{
+
 				return $this->render('MunicipalesBundle:Town:step_results.html.twig', array(
 						'address' => $address,
 					)
@@ -1640,10 +1641,10 @@ class TownController extends Controller
 			if(!empty($vote_info))
 			{
 				// Avoid count votes emited but not signed with Tractis 
-				$vote_response_string = $voter->getVoteResponseString();
-				$vote_response_time   = $voter->getVoteResponseTime();
+				//$vote_response_string = $voter->getVoteResponseString();
+				//$vote_response_time   = $voter->getVoteResponseTime();
 				
-				if(!empty($vote_response_string) && !empty($vote_response_time))
+				if(true) // we do not use Tractis anymore
 				{
 					$total_voters += 1;
 					
@@ -1706,6 +1707,7 @@ class TownController extends Controller
 				'total_voters' => $total_voters,
 				'documents_path' => $documents_path,
 				'candidates' => $candidates_result,
+                'ethereum_transaction_address' => $admin_candidacy->getEthereumResultsAddress()
 		));
 	}	
 	

@@ -38,9 +38,9 @@ header:
 candidacy:
     html_title: Municipales 2019 - Alta de candidatura ciudadana
     h1_title: Regístrate y registra el municipio de la candidatura
-    verify_msg: Confirma el registro y las condiciones llamando al numero %sms_inbound_number% desde tu móvil, después, después haz clic en CONTINUAR
-    verify_extra: El coste de la llamada es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un numero premium y listabierta.org no cobra por este servicio.
-    
+    verify_msg: Para verificar tu número de móvil solo tienes que hacer una llamada perdida desde tu móvil al número %sms_inbound_number%. Marca y se colgará solo. Después haz clic en CONTINUAR
+    verify_extra: Esta llamada de verificación NO TIENE NINGÚN COSTE
+
     step_conditions:
       html_title: Municipales 2019 - Condiciones de alta de candidatura ciudadana
       h1_title: Regístrate y registra el municipio de la candidatura
@@ -218,8 +218,8 @@ candidacy:
 town:
     html_title: Municipales 2019 - Vota en la candidatura ciudadana
     h1_title: Registrate como votante
-    verify_msg: Confirma el registro y las condiciones llamando al numero %sms_inbound_number% desde tu móvil, después haz clic en CONTINUAR
-    verify_extra: El coste de la llamada  es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un numero premium y listabierta.org no cobra por este servicio.
+    verify_msg: Para verificar tu número de móvil solo tienes que hacer una llamada perdida desde tu móvil al número %sms_inbound_number%. Marca y se colgará solo. Después haz clic en CONTINUAR
+    verify_extra: Esta llamada de verificación NO TIENE NINGÚN COSTE
        
     step1:
         welcome: Gracias por participar con tu voto en este proceso de listas abiertas. Antes de darte de alta como votante en la candidatura ciudadana <b>%address%</b>, del municipio <b>%town%</b>  debes ver este video explicativo del proceso de voto, gracias 
@@ -424,6 +424,7 @@ town:
         total_points: Total de puntos
         position: Posición
         download_csv: Bajar csv con los sellados de tiempo de tractis
+        see_results_on_ethereum: Comprobar resultados en la blockchain de Ethereum
                
 candidate:
     html_title: Municipales 2019 - Alta de candidato
@@ -441,8 +442,8 @@ candidate:
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás dar de alta tu candidatura. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
 
-    verify_msg: Confirma el registro y las condiciones llamando al numero %sms_inbound_number% desde tu móvil, después después haz clic en CONTINUAR
-    verify_extra: El coste de la llamada es de unos 10 céntimos de euro (o gratis, depende del coste de tu operadora) no es un numero premium y listabierta.org no cobra por este servicio.
+    verify_msg: Para verificar tu número de móvil solo tienes que hacer una llamada perdida desde tu móvil al número %sms_inbound_number%. Marca y se colgará solo. Después haz clic en CONTINUAR
+    verify_extra: Esta llamada de verificación NO TIENE NINGÚN COSTE.
     
     step_verify:
         html_title: Municipales 2019 - Alta de candidato
@@ -622,7 +623,8 @@ panel_admin:
         set_vote_days: Establecer número de días <br />de la votación (plazo de votación)
         see_internal_results: Ver resultados internos <br />de la votación
         see_public_results: Ver enlace de resultados públicos<br /> de la votación
-        verify_msg: Confirma tu cuenta administrador llamando al numero %sms_inbound_number% desde tu móvil, después <a href="#" onclick="javascript:window.location.reload()">actualiza/recarga</a> esta página
+
+        verify_msg: Para verificar tu número de móvil solo tienes que hacer una llamada perdida desde tu móvil al número %sms_inbound_number%. Marca y se colgará solo. Esta llamada de verificación NO TIENE NINGÚN COSTE. Después <a href="#" onclick="javascript:window.location.reload()">actualiza/recarga</a> esta página
         modify_vote_points_system: Modificar puntuación en la votación de candidatos
         borda_system: Sistema Borda
         vote_results: Resultados Votaciones

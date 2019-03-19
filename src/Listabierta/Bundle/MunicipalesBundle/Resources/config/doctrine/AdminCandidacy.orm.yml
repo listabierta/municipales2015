@@ -48,6 +48,14 @@ Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy:
             type: string
             length: '255'   
             nullable: TRUE
+        ethereum_results_address:
+            type: string
+            length: '255'
+            nullable: TRUE
+        ethereum_network_name:
+            type: string
+            length: '255'
+            nullable: TRUE
         todate:
             type: datetime
             nullable: TRUE

@@ -2,7 +2,8 @@
 <br />
 {{ 'mail.vote_finished.your_vote'|trans }}.<br />
 <br />
+{#
 {{ 'mail.vote_finished.seal_timestamp'|trans }}: {{ voter.getVoteResponseTime()|date('H:i:s d-m-Y') }} ({{ voter.getVoteResponseTime() }})
 <br />
 {{ 'mail.vote_finished.string_seal'|trans }}: {{ voter.getVoteResponseString() }}
-<br />
+<br /> #}

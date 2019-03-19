@@ -89,11 +89,12 @@
 		                        <p class="lead2 text-center">
 		                        
 			                        <div class="entry">
+									  {#
 										{{ 'candidacy.step8.audit'|trans }}: <a href="{{ path('town_candidacy_download_csv', {'address' : address })  }}" title="{{ 'town.step9.download_csv'|trans }}">{{ 'town.step9.download_csv'|trans }}</a>
 										<br />
 										<a href="https://www.tractis.com/home/webservices/tsa" 
 										title="{{ 'candidacy.step8.how_works_tsa'|trans }}">{{ 'candidacy.step8.how_works_tsa'|trans }}</a>
-										
+										#}
 										<table class="table">
 										
 											<thead>

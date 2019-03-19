@@ -1056,9 +1056,15 @@ class CandidacyController extends Controller
     	$town_slug = $this->get('slugify')->slugify($town_name);
     	
     	$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
-    	
-    	
-    	$form_step3 = $this->createForm(new CandidateStep3Type(), NULL, array());
+
+    	$valid_candidates_count = 0;
+    	foreach ($candidates as $candidate){
+    	    if($candidate->getStatus() == 1){
+    	        $valid_candidates_count = $valid_candidates_count +1;
+            }
+        }
+        $has_at_least_two_valid_candidates = $valid_candidates_count >= 2;
+        $form_step3 = $this->createForm(new CandidateStep3Type(), NULL, array());
     	$form_step4 = $this->createForm(new CandidateStep4Type(), NULL, array());
     	
     	return $this->render('MunicipalesBundle:Candidacy:step6.html.twig', array(
@@ -1066,6 +1072,7 @@ class CandidacyController extends Controller
     			'form_step7' => $form_step7->createView(),
     			'candidates' => $candidates,
     			'documents_path' => $documents_path,
+                'has_at_least_two_valid_candidates' => $has_at_least_two_valid_candidates
     		)
     	);
     }
@@ -1322,19 +1329,19 @@ class CandidacyController extends Controller
     		foreach($voters as $voter)
     		{
     			$vote_info = $voter->getVoteInfo();
-    				
+
     			if(!empty($vote_info))
     			{
     				// Avoid count votes emited but not signed with Tractis
-    				$vote_response_string = $voter->getVoteResponseString();
-    				$vote_response_time   = $voter->getVoteResponseTime();
-    				
-    				if(!empty($vote_response_string) && !empty($vote_response_time))
+    				//$vote_response_string = $voter->getVoteResponseString();
+    				//$vote_response_time   = $voter->getVoteResponseTime();
+
+    				if(true) // we removed tractis so we do not have the response time string and time anymore
     				{
 	    				$total_voters += 1;
-	    		
+
 	    				$candidates = $vote_info['candidates'];
-	    		
+
 	    				foreach($candidates as $candidate)
 	    				{
 	    					$candidate_id = $candidate['id'];
@@ -1459,13 +1466,188 @@ class CandidacyController extends Controller
     		{
     			$address_slug = $admin_candidacy->getAddress();
     		}
+            // now we get the votes and submit the votes to Ethereum
+            $username_for_api_request = $this->container->getParameter(
+                'blockchain_save_results_endpoint_username');
+            $password_for_api_request = $this->container->getParameter(
+                'blockchain_save_results_endpoint_password');
+            if($admin_candidacy->getEthereumResultsAddress() == '') {
+                $borda_points = $admin_candidacy->getBordaPoints();
+
+
+                $now = new \Datetime('NOW');
+                $candidacy_to_date = $admin_candidacy->getTodate();
+                $candidacy_total_days = $admin_candidacy->getTotalDays();
+                $candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
+                $vote_end_date = $candidaty_to_date_timestamp + $candidacy_total_days * 24 * 3600;
+
+                // Candidacy is finished, we can show the results
+                if ($now->getTimestamp() - $vote_end_date > 0) {
+                    $candidacy_finished = TRUE;
+
+                    $voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
+
+                    $voters = $voter_repository->findBy(array('admin_id' => $admin_id));
+
+                    $total_voters = 0;
+                    $final_voters = array();
+                    $results = array();
+                    foreach ($voters as $voter) {
+                        $vote_info = $voter->getVoteInfo();
+
+                        if (!empty($vote_info)) {
+                            // Avoid count votes emited but not signed with Tractis
+                            //$vote_response_string = $voter->getVoteResponseString();
+                            //$vote_response_time   = $voter->getVoteResponseTime();
+
+                            if (true) // we removed tractis so we do not have the response time string and time anymore
+                            {
+                                $total_voters += 1;
+
+                                $candidates = $vote_info['candidates'];
+
+                                foreach ($candidates as $candidate) {
+                                    $candidate_id = $candidate['id'];
+                                    $candidate_points = $candidate['points'];
+                                    if (isset($results[$candidate_id])) {
+                                        $results[$candidate_id] += $borda_points[$candidate['points']];
+                                    } else {
+                                        $results[$candidate_id] = $borda_points[$candidate['points']];
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    $candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
+
+                    $candidates_result = array();
+                    if (!empty($results)) {
+                        foreach ($results as $result_id => $result_points) {
+                            $candidate_info = $candidate_repository->findOneById($result_id);
+
+                            if (!empty($candidate_info)) {
+                                $candidate_aux = array();
+                                $candidate_aux['id'] = $result_id;
+                                $candidate_aux['name'] = $candidate_info->getName();
+                                $candidate_aux['lastname'] = $candidate_info->getLastname();
+                                $candidate_aux['dni'] = $candidate_info->getDNI();
+                                $candidate_aux['phone'] = $candidate_info->getPhone();
+                                $candidate_aux['points'] = $result_points;
+
+                                $candidates_result[] = $candidate_aux;
+                            }
+                        }
+                    }
+
+                    $points = array();
+                    foreach ($candidates_result as $key => $row) {
+                        $points[$key] = $row['points'];
+                    }
+
+                    array_multisort($points, SORT_DESC, $candidates_result);
+
+                    // we are creating this strange array structure that could be an associative array as well here
+                    // because solidity does not support associative arrays. Therefore we create multiple arrays
+                    // and connect the different arrays through their indices.
+
+                    $unique_user_ids = array();
+                    $unique_user_hashes = array();
+                    $user_ids_used_for_vote = array();
+                    $user_ids_used_for_vote_voted_candidate_id = array();
+                    $user_ids_used_for_vote_voted_points = array();
+                    $unique_candidate_ids = array();
+                    $unique_candidate_names = array();
+
+                    $phone_verified_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified');
+                    foreach($voters as $voter){
+                        // first we generate the uniqueUserIds array:
+                        array_push($unique_user_ids, $voter->getId());
+                        // now we generate the (for now fake) uniqueUserHashes with the user email addresses
+                        // now we generate the hash of the voter email + the timestamp when his phone number was
+                        // validated
+
+                        $phones_verified = $phone_verified_repository->findBy(array('phone' => $voter->getPhone()));
+                        $date_with_hour_and_minute_of_phone_verification = date('m/d/Y/h:i', $phones_verified[0]->getTimestamp());
+                        $full_string_to_hash = "";
+                        $full_string_to_hash .=$voter->getEmail();
+                        $full_string_to_hash .= $date_with_hour_and_minute_of_phone_verification;
+                        $hashed_voter_name = hash('sha256',$full_string_to_hash);
+                        // we only keep the first 20 characters (to be ethereum bytes32 compatible)
+                        $hashed_voter_name = substr($hashed_voter_name, 0, 20);
+                        array_push($unique_user_hashes, $hashed_voter_name);
+                        $vote_info = $voter->getVoteInfo();
+                        if(!empty($vote_info)){
+                            $voted_candidates_by_voter =$vote_info['candidates'];
+                            foreach($voted_candidates_by_voter as $votedCandidate){
+                                // now we create an array with all user ids for ever vote that a user made
+                                array_push($user_ids_used_for_vote, $voter->getId());
+                                // now we push the voted candidate id to an array to match it with the user id at a
+                                // given index
+                                array_push($user_ids_used_for_vote_voted_candidate_id, $votedCandidate['id']);
+                                // now push the voted points for the voted candidate to match it with the user id at a
+                                // given index
+                                array_push($user_ids_used_for_vote_voted_points, $votedCandidate['points']);
+                            }
+                        }
+                        }
+
+                    foreach($candidates_result as $candidate){
+                        array_push($unique_candidate_ids, $candidate['id']);
+                        array_push($unique_candidate_names, $candidate['name']);
+                    }
+
+                    $url = "localhost:5500/save_listabierta_voting_result";
+                    $post_data = array();
+                    $post_data['unique_user_ids'] = $unique_user_ids;
+                    $post_data['unique_user_hashes'] = $unique_user_hashes;
+                    $post_data['user_ids_used_for_votes'] = $user_ids_used_for_vote;
+                    $post_data['user_ids_used_for_votes_voted_candidate'] = $user_ids_used_for_vote_voted_candidate_id;
+                    $post_data['user_ids_used_for_votes_points'] = $user_ids_used_for_vote_voted_points;
+                    $post_data['unique_candidate_ids'] = $unique_candidate_ids;
+                    $post_data['unique_candidate_names'] = $unique_candidate_names;
+                    $post_data['voting_name'] = $admin_candidacy->getAddress();;
+
+
+                    $content = json_encode($post_data);
+
+                    $curl = curl_init($url);
+                    curl_setopt($curl, CURLOPT_HEADER, false);
+                    curl_setopt($curl, CURLOPT_USERPWD, $username_for_api_request . ":" . $password_for_api_request);
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_HTTPHEADER,
+                        array("Content-type: application/json"));
+                    curl_setopt($curl, CURLOPT_POST, true);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+
+                    $json_response = curl_exec($curl);
+
+                    $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    if($status == 200){
+                        $admin_candidacy->setEthereumResultsAddress($json_response);
+                        $entity_manager->persist($admin_candidacy);
+                        $entity_manager->flush();
+
+                    }
+                }
+
+
+
+            }
+            else{
+                // we already have an ethereum contract address
+            }
     	}
     	else
     	{
     		$address_slug = $session->get('address', NULL);
     	}
-    	
-    	return $this->render('MunicipalesBundle:Candidacy:step9.html.twig', array('address_slug' => $address_slug));
+
+
+
+
+
+            return $this->render('MunicipalesBundle:Candidacy:step9.html.twig', array('address_slug' => $address_slug, 'ethereum_transaction_address' => $admin_candidacy->getEthereumResultsAddress()));
     }
     
     /**

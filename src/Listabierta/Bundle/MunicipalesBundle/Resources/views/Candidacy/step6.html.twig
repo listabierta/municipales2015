@@ -108,7 +108,7 @@
 	</p>
 	
 		{# Only show the continue button if at least there are 2 candidates #}
-		{% if candidates|length >= 2 %}
+		{% if has_at_least_two_valid_candidates %}
 		<hr>
 	
 		<div class="wizard-actions">
