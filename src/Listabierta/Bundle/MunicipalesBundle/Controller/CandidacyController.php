@@ -1597,7 +1597,7 @@ class CandidacyController extends Controller
                         array_push($unique_candidate_names, $candidate['name']);
                     }
 
-                    $url = "localhost:5500/save_listabierta_voting_result";
+                    $url = "35.195.7.157:5500/save_listabierta_voting_result";
                     $post_data = array();
                     $post_data['unique_user_ids'] = $unique_user_ids;
                     $post_data['unique_user_hashes'] = $unique_user_hashes;
