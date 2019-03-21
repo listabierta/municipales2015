@@ -40,7 +40,7 @@ class CandidacyController extends Controller
 	const CANDIDATE_UNASSIGNED = 0;
 	const CANDIDATE_ACCEPTED   = 1;
 	const CANDIDATE_REJECTED   = 2;
-	const MIN_CANDIDACY_DAYS   = 2;
+	const MIN_CANDIDACY_DAYS   = 1;
 	const MIN_VOTE_CANDIDACY_DAYS = 2;
 	
 	/**

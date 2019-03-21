@@ -1,6 +1,7 @@
 home:
     html_title: Municipales 2019 - Home
-    h1_title: Municipales 2019
+    h1_title: ELLECIONES MUNICIPALES 2019.
+    extended_h1_title: Aplicación online para elaboración de un sistema de elleción por listas abiertas
     steps_h2: Pasos
     step_h2: Paso
     steps: Para dar de alta una candidatura ciudadana debes
@@ -9,9 +10,9 @@ home:
     open_council: Abre tu ayuntamiento a la ciudadan&iacute;a en estas elecciones municipales de mayo 2019
     who_we_are: "¿Quienes somos?"
     who_h3: "Empieza por aquí"
-    intro_p1: es el fruto de un esfuerzo de financiación colectiva y de un equipo de trabajo que pretende abrir las organizaciones a la ciudadanía. Entre estas organizaciones ocupan un lugar destacado los Ayuntamientos. Puedes utilizar esta herramienta para hacer una candidatura de listas abiertas en tu municipio, es gratuita pero tiene limitaciones. Si quieres utilizar una solución más avanzada te sugerimos que utilices <a href="http://www.nvotes.com">NVotes.com</a> que tiene costes asociados. Puedes contactar con la cooperativa <a href="http://enreda.coop/">Enreda</a> para implementar tanto listAbierta.org como Nvotes u otras soluciones de Participación Ciudadana."
+    intro_p1: es el fruto de un esfuerzo de financiación colectiva y de un equipo de trabajo que pretende abrir las organizaciones a la ciudadanía. Entre estas organizaciones ocupan un lugar destacado los Ayuntamientos. Puedes utilizar esta herramienta para hacer una candidatura de listas abiertas en tu municipio, es gratuita. Si quieres utilizar una solución más avanzada te sugerimos que utilices <a href="http://www.nvotes.com">NVotes.com</a> que tiene costes asociados. Puedes contactar con la cooperativa <a href="http://enreda.coop/">Enreda</a> para implementar tanto listAbierta.org como Nvotes u otras soluciones de Participación Ciudadana."
     intro_p2: La elección de candidatos y candidatas en listas abiertas para los comicios municipales permite que los electos se “deban” a los ciudadanos que los han elegido, y no a quien les hubiese incluido en una lista cerrada o negociada. 
-    intro_p3: Si estás <b>directamente implicado en la organización</b> de una candidatura de listas abiertas en tu municipio para las próximas elecciones de mayo de 2.015, puedes organizarla con esta herramienta online sin coste y con resultados auditables. Si no habéis encontrado una forma jurídica adecuada aún, podéis utilizar <a href="http://primarias.participa.info">esta</a>
+    intro_p3: Si estás <b>directamente implicado en la organización</b> de una candidatura de listas abiertas en tu municipio para las próximas elecciones de mayo de 2019, puedes organizarla con esta herramienta online sin coste y con resultados auditables.
     intro_p4: Es muy importante que antes de empezar el proceso de registro de la candidatura, veas este tutorial del proceso completo.
     intro_p5: ¿Cómo funciona la herramienta de listas abiertas municipales?
     
@@ -46,12 +47,13 @@ candidacy:
       h1_title: Regístrate y registra el municipio de la candidatura
     
       p1_title: Al iniciar el registro aceptas las siguientes condiciones
-      p1_content: Que formas parte un colectivo (partido político, coalición de partidos o agrupación de electores) que desea presentarse a los comicios municipales que se celebrarán el 24 de mayo de 2.015 y que para ello tienen la intención de registrarse en plazo y forma en la correspondiente junta electoral provincial.
-      p2_content: Que has sido designado por dicho colectivo para efectuar el alta del municipio en la presente herramienta de voto de listas abiertas, no existiendo conflicto interno en cuanto a su uso.
-      p3_content: Que dicho colectivo comprende y acepta las limitaciones del uso de la herramienta en cuanto al sistema de voto y su verificación.
-      p4_content: Que dicho colectivo comprende y acepta que el proceso de verificación y aceptación de las candidaturas lo efectúa el administrador o administradora de la votación.
-      p5_content: Que mediante el acto de registro estás dando tu consentimiento expreso al tratamiento de los datos personales que aportas, según lo dispuesto en el artículo 6 de la LOPD y que podrás ejercer tus derechos en los términos dispuestos por el artículo 5 de la LOPD.
-      p6_content: Que la información que aportas durante el registro es cierta, tanto los datos personales como las condiciones de la votación, de la candidatura y su programa. <b>Ten en cuenta que no podrás modificarla más adelante, ya que los datos de registro se utilizan para identificarte como usuario único</b>.
+      p1_content: En Cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, e instrucciones (A.E.P.D.), SE INFORMA
+      p2_content: Los datos de carácter personal solicitados y facilitados por usted, son incorporados un fichero de titularidad privada cuyo responsable y único destinatario es <a href="http://www.listabierta.org">listabierta.org</a>.
+      p3_content:  Solo serán solicitados aquellos datos estrictamente necesarios para prestar adecuadamente el servicio de elección en listabierta.org.
+      p4_content: Todos los datos recogidos cuentan con el compromiso de confidencialidad, con las medidas de seguridad establecidas legalmente, y bajo ningún concepto son cedidos o tratados por terceras personas.
+      p5_content: Una vez finalizadas las elecciones municipales de mayo de 2019 TODOS LOS DATOS SERÁN BORRADOS.
+      p6_content: Tiene la posibilidad de ejercitar los derechos de acceso, rectificación, cancelación y oposición, por correo electrónico a hola (at) listabierta.org
+      p7_content: Que la información que aportas durante el registro es cierta, tanto los datos personales como las condiciones de la votación, de la candidatura y su programa. <b>Ten en cuenta que no podrás modificarla más adelante, ya que los datos de registro se utilizan para identificarte como usuario único</b>.
       accept: ACEPTAS ESTAS CONDICIONES
       continue: <i class="ace-icon fa fa-check bigger-110"></i> Continuar
       
@@ -102,7 +104,7 @@ candidacy:
         html_title: Municipales 2019 - Alta de candidatura ciudadana
         h1_title: Establece los plazos de presentación de candidaturas
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        explanation_date: Plazo de presentación de candidaturas <br/>(mínimo 2 días) 
+        explanation_date: Plazo de presentación de candidaturas <br/>(mínimo 1 día)
         from_label: DE
         to_label: HASTA  
         previous: Anterior
