@@ -128,6 +128,8 @@ candidacy:
     accept_candidate: Candidato OK
     reject_candidate: Rexeitar candidato
     delete_candidate: Limpar candidato
+    access_admin_panel: ?
+    remember_access_admin: ?
   step7:
     html_title: Municipal 2015 - Top de cidadán candidatura
     h1_title: Inicio e fin de votación

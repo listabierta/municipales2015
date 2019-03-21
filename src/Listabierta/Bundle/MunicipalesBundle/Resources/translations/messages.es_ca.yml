@@ -128,6 +128,8 @@ candidacy:
     accept_candidate: Acceptar candidat
     reject_candidate: Rebutjar candidat
     delete_candidate: Esborrar candidat
+    access_admin_panel: ?
+    remember_access_admin: ?
   step7:
     html_title: Municipals 2015 - Alta de candidatura ciutadana
     h1_title: Inici i fi de les votacions

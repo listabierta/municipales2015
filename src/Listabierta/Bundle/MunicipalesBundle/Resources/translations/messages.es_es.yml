@@ -148,6 +148,8 @@ candidacy:
         reject_candidate: Rechazar candidato
         delete_candidate: Borrar candidato
         check_again: Volver a comprobar
+        access_admin_panel: Acceder al panel de administración
+        remember_access_admin: Recuerda que puedes acceder más tarde al panel de administración de la candidatura en el enlace
         
     step7:
         html_title: Municipales 2019 - Alta de candidatura ciudadana

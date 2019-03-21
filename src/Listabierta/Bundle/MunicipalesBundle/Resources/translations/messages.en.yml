@@ -128,6 +128,8 @@ candidacy:
     accept_candidate: Acept candidate
     reject_candidate: Reject candidate
     delete_candidate: Delete candidate
+    access_admin_panel: ?
+    remember_access_admin: ?
   step7:
     html_title: Municipal election 2015 - Registry of citizen candidacy
     h1_title: Start and end of voting
