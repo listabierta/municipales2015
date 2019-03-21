@@ -43,9 +43,13 @@ h2/*, h3, h4*/
     /*font-weight: 300;*/
     color: #525252;
 }
+.headline-no-uppercase{}
 .featurette-heading-small {
     font-size: 20px;
     line-height: 28px;
+}
+.no-text-transform{
+    text-transform: none;
 }
 /*nav*/
 .navbar-inverse2 .container {
