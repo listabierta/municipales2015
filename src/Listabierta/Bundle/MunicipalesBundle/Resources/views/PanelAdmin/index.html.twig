@@ -5,11 +5,11 @@
 {% block appjsinline %}
     <script>
 
-    $(document).ready(function() 
+    $(document).ready(function()
     {
 
     });
-    
+
 	</script>
 {% endblock %}
 
@@ -20,35 +20,35 @@
         <div class="headline">
           <h2>{{ 'panel_admin.index.header'|trans }}</h2>
         </div>
-        
+
         <h3 class="featurette-headin"> <i>{{ 'panel_admin.index.hello'|trans }} {{ admin.name }} {{ admin.lastname }}</i>, <a title="{{ 'panel_admin.index.logout'|trans }}" href="{{ path('admin_logout') }}">{{ 'panel_admin.index.logout'|trans }}</a></h3>
-        
+
         <!-- START THE FEATURETTES -->
         <!--    division -->
 
         <div class="row featurette2">
           <div class="widget-box">
-            
+
 
             <div class="widget-body">
               <div class="widget-main">
-              
+
                 <div id="fuelux-wizard-container">
 
                   <div class="step-content pos-rel">
 
-                          
+
                     <div data-step="1" class="step-pane active row">
                       <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'panel_admin.index.header'|trans }}</h2>
-                      
+
                       <div class="col-sm-offset-1 col-md-10 well">
 							{{ 'panel_admin.index.manage'|trans }}
                       </div>
-                      
+
                       <div class="row">
-                      
+
                       	<div class="col-sm-offset-1 col-md-10">
-                      	
+
                       		{% for flashMessage in app.session.flashbag.get('msg') %}
 							    <div class="alert alert-success">
 	                  				<button data-dismiss="alert" class="close" type="button">
@@ -58,13 +58,13 @@
 								</div>
 							{% endfor %}
 
-                      	    {% if needs_phone_verification %}              			
+                      	    {% if needs_phone_verification %}
 	                  			<div class="help-block col-xs-12 col-sm-10 col-sm-offset-1 inline">
 	                  				<div class="alert alert-warning">
 	                  				<button data-dismiss="alert" class="close" type="button">
 			                            	<i class="mine-icon fa fa-times"></i>
 			                        </button>
-                      	    		{{ 'panel_admin.index.not_yet_validated'|trans }} <b>{{ admin.phone }}</b>. 
+                      	    		{{ 'panel_admin.index.not_yet_validated'|trans }} <b>{{ admin.phone }}</b>.
 	                  				{{ 'panel_admin.index.needed_continue'|trans }}.
 	                  				<br /><br />
 	                  				{{ 'panel_admin.index.verify_msg'|trans({'%sms_inbound_number%': sms_inbound_number})|raw }}
@@ -74,7 +74,7 @@
 	                  			<br />
 	                  		{% else %}
 	                  			<div class="help-block col-xs-12 col-sm-10 col-sm-offset-1 inline">
-	                  				
+
 	                  				<div class="alert alert-success">
 		                  				<button data-dismiss="alert" class="close" type="button">
 			                            	<i class="mine-icon fa fa-times"></i>
@@ -85,95 +85,95 @@
 	                  			<br />
 	                  			<br />
                   			{% endif %}
-                  			
+
                   			<br />
 	                  		<br />
-	                  		
+
 							<div class="row" style="background-color:#3d3d3e">
-							  
+
 							  <h1 class="center" style="color:white">{{ 'panel_admin.index.admin_account'|trans }}</h1>
-	
+
 								  <div class="span6 col-md-12 center">
 								  		<button class="btn btn-default btn-lg" style="width:450px;height:40px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('panel_admin_modify_personal_data') }}'; return false;">
 					                    <i class="mine-icon fa fa-pencil fa-fw"></i>
 					                    {{ 'panel_admin.index.modify_personal_data'|trans }}
 					                </button>
-		                  			
+
 		                  			<br />
 		                  			<br />
 		                  		  </div>
 		                  	</div>
-		                  	
+
 							<br />
-	  
+
 	  						{% if not needs_phone_verification %}
                   			<div class="row" style="background-color:#3d3d3e">
-                  			
+
                   				<h1 class="center" style="color:white">{{ 'panel_admin.index.candidacy'|trans }}</h1>
-                  				
+
 							  	<div class="span6 col-md-6">
 			                  			<button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step2') }}'; return false;">
 						                    <i class="mine-icon fa fa-upload"></i>
 						                    {{ 'panel_admin.index.upload_documents'|trans }}
 						                </button>
-						                
+
 						                <br />
 			                  			<br />
-			                  			
+
 						                <button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step3') }}'; return false;">
 						                    <i class="mine-icon fa fa-calendar"></i>
 						                    {{ 'panel_admin.index.set_candidacy_date'|trans|raw }}
 						                </button>
-			                  			
+
 			                  			<br />
 			                  			<br />
 							  	</div>
 							  	<div class="span6 col-md-6">
-							  		
+
 							  			<button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step4') }}'; return false;">
 						                    <i class="mine-icon fa fa-calendar-o"></i>
 						                    {{ 'panel_admin.index.change_address'|trans|raw }}
 						                </button>
-			                  			
+
 			                  			<br />
 			                  			<br />
-			                  			
+
 			                  			<button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step7') }}'; return false;">
 						                    <i class="mine-icon fa fa-pencil fa-fw"></i>
 						                    {{ 'panel_admin.index.set_vote_days'|trans|raw }}
 						                </button>
-			                  			
+
 			                  			<br />
 			                  			<br />
 							  	</div>
 							</div>
-							
+
 							<br />
 							{% endif %}
-							
+
 							{% if not needs_phone_verification %}
 							<div class="row" style="background-color:#3d3d3e">
-							  
+
 							  <h1 class="center" style="color:white">{{ 'panel_admin.index.candidates'|trans }}</h1>
-	
+
 								{% if not admin.address is empty %}
 								<div class="span6 col-md-6">
 							  		<button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step6') }}'; return false;">
 						                 <i class="mine-icon fa fa-check-square"></i>
 						                 {{ 'panel_admin.index.validate_candidates'|trans }}
 						            </button>
-			                  			
+
 			                  		<br />
 			                  		<br />
 							  	 </div>
-							  						  
+
 								 <div class="span6 col-md-6">
 				                  		{% if not admin.address is empty %}
 					                  			<button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('candidate_step1', {'address' : admin.address }) }}'; return false;">
 								                    <i class="mine-icon fa-book fa"></i>
 								                    {{ 'panel_admin.index.candidacy_register'|trans|raw }}
 								                </button>
-					                  			
+
 					                  			<br />
 					                  			<br />
 				                  		{% endif %}
@@ -184,28 +184,38 @@
 						                 <i class="mine-icon fa fa-check-square"></i>
 						                 {{ 'panel_admin.index.validate_candidates'|trans }}
 						            </button>
-			                  			
+
 			                  		<br />
 			                  		<br />
 							  	 </div>
 								{% endif %}
 							</div>
-							
+
 							<br />
 							{% endif %}
-							
+
 							{% if not needs_phone_verification %}
 							<div class="row" style="background-color:#3d3d3e">
-							  
+
 							  <h1 class="center" style="color:white">{{ 'panel_admin.index.vote_results'|trans }}</h1>
-							  
+
 							  {% if not admin.address is empty %}
+							      <div class="span12 col-md-12">
+							        {# @todo put link in this button #}
+                                    <button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step8') }}#'; return false;">
+                                        <i class="mine-icon fa fa-key fa-fw"></i>
+                                        {{ 'panel_admin.index.see_link_to_vote'|trans|raw }}
+                                    </button>
+
+                                    <br />
+                                    <br />
+                                  </div>
 								  <div class="span6 col-md-6">
 								  	<button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step8') }}#'; return false;">
 					                    <i class="mine-icon fa fa-key fa-fw"></i>
 					                    {{ 'panel_admin.index.see_internal_results'|trans|raw }}
 					                </button>
-		                  			
+
 		                  			<br />
 		                  			<br />
 								  </div>
@@ -225,54 +235,54 @@
 					                    <i class="mine-icon fa fa-key fa-fw"></i>
 					                    {{ 'panel_admin.index.see_internal_results'|trans|raw }}
 					                </button>
-		                  			
+
 		                  			<br />
 		                  			<br />
 								  </div>
 							  {% endif %}
-							</div> 
-							
+							</div>
+
 							<br />
                   			{% endif %}
-                  			
+
 							{% if not needs_phone_verification %}
 							<div class="row" style="background-color:#3d3d3e">
-							  
+
 							  	<h1 class="center" style="color:white">{{ 'panel_admin.index.borda_system'|trans }}</h1>
-							  
+
 							  	<div class="span6 col-md-12 center">
 					                <button class="btn btn-prev" style="height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('panel_admin_modify_vote_points_system') }}#'; return false;">
 					                    <i class="mine-icon fa fa-tachometer"></i>
 					                    {{ 'panel_admin.index.modify_vote_points_system'|trans|raw }}
 					                </button>
-		                  			
+
 		                  			<br />
 		                  			<br />
 	                  			</div>
 	                  		</div>
 			                {% endif %}
 						</div>
-			          
+
 			          </div>
 
-                      
+
                     </div>
 
 
-                    
+
                   </div>
                 </div>
 
               </div>
-              
-              
+
+
               <!-- /.widget-main --> </div>
             <!-- /.widget-body --> </div>
         </div>
-			  
+
         <!--    division -->
 
         <!-- /END THE FEATURETTES --> </div>
-        
+
 </section>
 {% endblock %}

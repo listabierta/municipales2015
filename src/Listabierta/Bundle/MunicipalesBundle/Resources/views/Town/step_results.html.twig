@@ -11,9 +11,9 @@
         <div class="headline">
           <h2>{{ 'town.step9.headline'|trans }}</h2>
         </div>
-        
+
         <h3 class="featurette-headin"> <i>{{ 'town.step9.headin1'|trans }} {{ town|capitalize }} {{ 'town.step9.headin2'|trans }} listAbierta.org</i></h3>
-        
+
         <!-- START THE FEATURETTES -->
 
         <hr class="featurette-divider2">
@@ -21,20 +21,20 @@
 
         <div class="row featurette2">
           <div class="widget-box">
-            
+
 
             <div class="widget-body">
               <div class="widget-main">
-              
-              	
-              	
+
+
+
                 <div id="fuelux-wizard-container">
 
                   <div class="step-content pos-rel">
-  
+
                     <div data-step="1" class="step-pane active row">
                       <h2 class="lighter block greenl col-xs-10 col-sm-offset-1">{{ 'town.step9.candidates_voted'|trans }}</h2>
-                      
+
                       <div class="col-sm-offset-1 col-md-10 well">
 
 						<p class="lead2">
@@ -42,22 +42,25 @@
 							<div class="col-sm-offset-0 col-md-12">
 		                      	{{ 'town.step9.candidates_voted_explanation'|trans }}
 		                    </div>
-		                    
+
 						    <div class="col-sm-offset-0 col-md-12">
 		                      	{{ 'town.step9.total_voters'|trans }}: {{ total_voters }}
 		                    </div>
-                      
+
 							<br /><br />
-							
+
 							<div class="col-sm-offset-0 col-md-12">
 
-								<a target="_blank" href="https://rinkeby.etherscan.io/tx/{{ ethereum_transaction_address }}" title"{{ 'town.step9.see_results_on_ethereum'|trans }}">{{ 'town.step9.see_results_on_ethereum'|trans }}</a>
+								<a target="_blank" href="https://rinkeby.etherscan.io/tx/{{ ethereum_transaction_address }}"
+								title"{{ 'town.step9.see_results_on_ethereum'|trans }}">{{ 'town.step9.see_results_on_ethereum'|trans }}</a> <a
+								target="_blank" href="https://rinkeby.etherscan.io/tx/{{ ethereum_transaction_address }}"><img
+								style="height:45px" src="{{ asset('bundles/municipales/img/ethereum-logo.png') }}" /></a>
 							</div>
-                      
+
 							<br /><br />
-							
+
 							<table class="table" style="font-size: 18px">
-							
+
 								<thead>
 									<tr>
 										<td></td>
@@ -66,10 +69,10 @@
 										<td class="center">{{ 'town.step9.position'|trans }}</td>
 									</tr>
 								</thead>
-								
+
 								<tbody>
 									{% if candidates|length > 0 %}
-									
+
 										{% for candidate in candidates %}
 										<tr>
 											<td><img style="width:45px;height:45px" src="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" /></td>
@@ -80,14 +83,14 @@
 										{% endfor %}
 									{% endif %}
 								</tbody>
-							
+
 							</table>
-						
+
 						</p>
-			          
+
 			        </div>
 
-                      
+
                     </div>
                   </div>
                 </div>
@@ -102,8 +105,8 @@
 
                 </div>
               </div>
-              
-              
+
+
               <!-- /.widget-main --> </div>
             <!-- /.widget-body --> </div>
         </div>
@@ -111,6 +114,6 @@
         <!--    division -->
 
         <!-- /END THE FEATURETTES --> </div>
-        
+
 </section>
 {% endblock %}

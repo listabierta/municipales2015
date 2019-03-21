@@ -411,6 +411,7 @@ panel_admin:
     validate_candidates: 'Validate candidates '
     set_vote_days: Set the deadline for voting (voting period)
     see_internal_results: See internal results <br /> voting
+    see_link_to_vote: See link for voting
     see_public_results: 'See the public results <br /> voting link '
     verify_msg: Confirm your administrative accont, by sending an SMS from your mobile telephone with the word ACEPTO to the number %sms_inbound_number%, and then <a href="#" onclick="javascript:window.location.reload()">update / reload</a> this page
   modify_personal_data:

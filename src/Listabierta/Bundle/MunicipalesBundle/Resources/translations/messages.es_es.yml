@@ -622,6 +622,7 @@ panel_admin:
         validate_candidates: Validar candidatos/as
         set_vote_days: Establecer número de días <br />de la votación (plazo de votación)
         see_internal_results: Ver resultados internos <br />de la votación
+        see_link_to_vote: Ver el enlace para efectuar las votaciones
         see_public_results: Ver enlace de resultados públicos<br /> de la votación
 
         verify_msg: Para verificar tu número de móvil solo tienes que hacer una llamada perdida desde tu móvil al número %sms_inbound_number%. Marca y se colgará solo. Esta llamada de verificación NO TIENE NINGÚN COSTE. Después <a href="#" onclick="javascript:window.location.reload()">actualiza/recarga</a> esta página
