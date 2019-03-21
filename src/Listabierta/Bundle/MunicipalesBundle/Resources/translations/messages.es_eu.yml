@@ -411,6 +411,7 @@ panel_admin:
     validate_candidates: Balioztatu hautagaiak
     set_vote_days: Jarri bozketaren <br /> egun-kopurua (bozketaren epea)
     see_internal_results: Ikusi bozketaren <br /> barruko emaitzak
+    see_link_to_vote: ?
     see_public_results: Ikusi bozketaren <br /> ageriko emaitzen lotura
     verify_msg: Berretsi zure kudeatzailearen kontua zure mugikorretik SMS bidaliz ACEPTO hitzarekin % sms_inbound_number% zenbakira, gero <a href="#" onclick="javascript:window.location.reload()">actualiza/recarga</a> orri hau
   modify_personal_data:

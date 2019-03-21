@@ -411,6 +411,7 @@ panel_admin:
     validate_candidates: Validar candidatos / as
     set_vote_days: Define o número de días <br /> votación (período de votación)
     see_internal_results: Olle a saída da internos <br /> votación
+    see_link_to_vote: ?
     see_public_results: Vexa a ligazón resultados públicos <br /> votación
     verify_msg: Confirme a súa conta de administrador no seu teléfono, enviando un SMS coa palabra ADMITE sms_inbound_number% número% despois <a href="#" onclick="javascript:window.location.reload()">actualización / recargar</a> esta páxina
   modify_personal_data:
