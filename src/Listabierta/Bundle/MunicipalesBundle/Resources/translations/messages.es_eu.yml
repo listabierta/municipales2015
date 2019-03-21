@@ -1,11 +1,11 @@
 home:
-  html_title: 2015eko udal hauteskundeak
-  h1_title: '2015eko udal hauteskundeak '
+  html_title: 2019eko udal hauteskundeak
+  h1_title: '2019eko udal hauteskundeak '
   steps_h2: Urratsak
   step_h2: Urratsa
   steps: Hiri-hautagaitza alta hartzeko egin behar duzu
-  featured: Zabal ezazu zure Udala hiritarrentzat 2015 urteko maiatzaren udal-hauteskunde hauetan
-  open_council: Zabal ezazu zure Udala hiritarrentzat 2015 urteko maiatzaren udal-hauteskunde hauetan
+  featured: Zabal ezazu zure Udala hiritarrentzat 2019 urteko maiatzaren udal-hauteskunde hauetan
+  open_council: Zabal ezazu zure Udala hiritarrentzat 2019 urteko maiatzaren udal-hauteskunde hauetan
   who_we_are: Nor gara?
   who_h3: Has zaitez hemendik
   intro_p1: talde-finantzazioaren eta lan-taldearen ahaleginaren emaitza da erakundeak hiritarrentzat zabal daitezela. Erakunde hauen artean Udalak dira nabarienak
@@ -31,12 +31,12 @@ header:
     es_gl: Galego
     es_es: Español
 candidacy:
-  html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta
+  html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzaren alta
   h1_title: Izena eman zaitez eta izena eman ezazu hautagaitzaren herria
   verify_msg: Baiezta itzazu erregistroa eta baldintzak SMS bidaliz zure mugikorretik ACEPTO hitzarekin telefono zenbakira %sms_inbound_number%, gero klikatu CONTINUAR hitza
   verify_extra: Mezuaren kostua 10 zentimokoa da (edo doan, zure operadorearen arabera), ez da SMS premium bat eta listabierta.org erakundeak ez du etekinik lortzen zerbitzu honen truke.
   step_conditions:
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta-baldintzak
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzaren alta-baldintzak
     h1_title: Izena eman zaitez eta izena eman ezazu hautagaitzaren herria
     p1_title: Erregistroa hastean hurrengo baldintza hauek onartu behar dituzu
     p1_content: Talde baten kidea izatea (alderdi politikoa, alderdien koalizioa edo hautesle-elkartea) eta 2.015.eko maiatzaren 24an gertatuko diren udal-hauteskundeetara aurkeztu nahian, eta dagokion probintziako hauteskunde-batzordean erregistratu nahian garaiz eta egoki.
@@ -68,12 +68,12 @@ candidacy:
     phone_info: Hurrengo urratsean mezu baten bidez baieztatu behar izango duzu, zenbaki okerra sartuz gero, ezin duzu jarraituko.
     warning_text: '<b>Erne!</b>: erregistro-datuak zuzen sartzea guztiz beharrezkoa da, zure mugikorraren zenbakia barne, erregistro-datuen akatsak ekarriko du beste pertsona batek hiri-hautagaitza alta hartu behar izango duela. Zalatzaren bat badago, ikus ezazu bideoa berriro <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. Sistemak ez du "proba moduko" hautagaitzarik onartzen.'
   step_verify:
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzaren alta
     h1_title: Egiazta ezazu zure mugikorraren zenbakia
     continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Aurrekoa
   step2:
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzaren alta
     h1_title: Jar itzazu hiri-hautagaitzaren baldintzak
     p1: 'Igo itzazu PDF formatuan hautagaiek onartu behar dituzten baldintzak (bat, batzuk, guztiak edo ezer ez) hiri-hautagaitzan aurkeztu ahal izateko. Adibidez: hautagaitzaren programa, baldintza legalak eta emandako informazioaren egiazkotasuna, agindu ezeztatua eta parte-hartzailea, kode etikoa, erroldaren onarpena eta boto-sistema, etab. Baldintzarik igo ezean, hautagaiak baldintzak beteko dituela egiaztatzeko ordezko metodo bat bilatzea gomendatzen zaituztegu zerrendetan sartu baino lehen.'
     program: Hautagaitzaren programa
@@ -86,7 +86,7 @@ candidacy:
     previous: Aurrekoa
     example: Adibidea
   step3:
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzaren alta
     h1_title: Hautagaitzen aurkezpena-epeak ezarri
     continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     explanation_date: Hautagaitzen aurkezteko epea <br/> (Gutxienez 2 egun)
@@ -94,14 +94,14 @@ candidacy:
     to_label: -RA
     previous: Aurrekoa
   step4:
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzaren alta
     h1_title: Erreserba ezazu Internet helbide bat
     continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Aurrekoa
     choose_address: Aukera ezazu zure Internet helbide
     warning: 'Hutsik dagoen lekuan adibidez hau idazten baduzu: FuenteovejunaParticipa, zure hautagaitzari lotutako helbideak mota honetakoak izango dira:  http://% host% / FuenteovejunaParticipa / ...'
   step5:
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzaren alta
     h1_title: Hautagaien alta
     continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Aurrekoa
@@ -110,7 +110,7 @@ candidacy:
     send_link: Lotura honen kopia bat bidali dizugu zure e-postara
     next_step_explanation: Hurrengo urratsean, altan emandako hautagaien onespena emateko gai izango duzu, aurreko esteka erabiliz.
   step6:
-    html_title: "Udal eta Batzar Nagusietarako 2015eko hauteskundeak\n - Hiri-hautagaitzaren alta"
+    html_title: "Udal eta Batzar Nagusietarako 2019eko hauteskundeak\n - Hiri-hautagaitzaren alta"
     h1_title: Hautagaien onespena
     continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     no_candidates: Gaur egun ez dago edozein hautagai erregistraturik baliokidetu ahal izateko
@@ -131,18 +131,18 @@ candidacy:
     access_admin_panel: ?
     remember_access_admin: ?
   step7:
-    html_title: Udal-hauteskundeak 2015 - hiri-hautagaitzaren alta
+    html_title: Udal-hauteskundeak 2019 - hiri-hautagaitzaren alta
     h1_title: Bozketa-prozesuaren hasiera eta amaiera
     days: Egunak
     explanation: Idatz itzazu hautagaien bozketa-prozesua zabalik mantenduko den egun-naturalen zenbakia bozketa hasieratik (gutxienez bi egun).
     init_vote_explanation: Egin klik beheko botoia bozketa hasteko
-    warning_explanation: ERNE !! Behin bozketa hasita EZIN DIRA hautagai gehiagorik gehitu izango. Emandako esteka batek ahalbidetuko du hauteslentzako erregistroa eta boto ematea..
+    warning_explanation: '<span style="font-size:36px">ERNE!!</span>Behin bozketa hasita EZIN DIRA hautagai gehiagorik gehitu izango. Emandako esteka batek ahalbidetuko du hauteslentzako erregistroa eta boto ematea..'
     start_candidacy: Hasi bozketa
     public_link: Lotura honen bitartez zure bozketa agerian agertuko da.
     no_finished_candidacy: Ezin da bozketaren prozesua hasi hautagaitzak aurkezteko amaitze-epea bizirik dagoelako.
     sent_mail: Link honen kopia bat bidali dizugu zure e-postara
   step8:
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzaren alta
     h1_title: Boto eta emaitzen egiaztatzea
     continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Aurrekoa
@@ -167,7 +167,7 @@ candidacy:
     header_li4: Laugarren lekuan aukeratutako hautagaiak puntu-laurden (¼) = 0, 25 puntu jasoko du
     header_li5: Bostgarren lekuan aukeratutako hautagaiak puntu baten bosten bat (⅕) = 0,20 puntu jasoko du.
   step9:
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzaren alta
     h1_title: Zerrenda hautatuen aurkezpena
     continue: Hasi bozketa
     result: Bozketaren emaitzak
@@ -180,7 +180,7 @@ candidacy:
     oldPassword: Pasahitz zaharra
     newPassword: Pasahitz berria
 town:
-  html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzetarako boto ematea
+  html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzetarako boto ematea
   h1_title: Izena eman bozkatzeko
   verify_msg: Berretsi izen-ematea eta baldintzak zure mugikorretik SMS bat bidaliz ACEPTO hitzarekin % sms_inbound_number% zenbakira, eta gero klikatu CONTINUAR hitza.
   verify_extra: Mezuaren kostua 10 zentimokoa da (edo doan, zure operadorearen arabera), ez da SMS premium bat eta listabierta.org erakundeak ez du etekinik lortzen zerbitzu honen truke.
@@ -200,7 +200,7 @@ town:
     explanation: Azalpena
     warning_text: '<b>Erne!</b> erregistro-datuak zuzen sartzea guztiz beharrezkoa da, zure mugikorraren zenbakia barne, erregistro-datuen akatsak ekarriko du botoa emateko ezintasuna'
   step_verify:
-    html_title: Udal-hauteskundeak 2015 - Hautesle izateko izena eman
+    html_title: Udal-hauteskundeak 2019 - Hautesle izateko izena eman
     h1_title: Egiaztatu zure mugikorraren zenbakia
     continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Aurrekoa
@@ -210,7 +210,7 @@ town:
     verify_conditions_op3: Erregistro honetan ematen duzun informazioa egiazkoa da eta zure ohiko bizilekua da bozketarekin zerikusia duen herriak.
   step2:
     header: iragazi hautagaiak
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzan botoa eman 2. Pausua
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzan botoa eman 2. Pausua
     filter_title: Zein irizpide hautagaiak hautatzeko erabili nahi duzu?
     filter_p1: Kontuan hartu iragazkirik aplikatu ezean, aurekeztutako hautagai guztiak agertuko zaizkizula eta profil guztiak ikustea eta gero puntuatzea aspergarri izango dela, beraz aukeratu lehentasun argia eta gero iragazkiak birpasatu ahal izango dituzu.
     h1_title: Iragazi hautagaiak maila akademikoaren arabera
@@ -220,21 +220,21 @@ town:
     previous: Aurrekoa
   step3:
     header: Hautatu lan-esperientzia
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzan botoa eman 3. Pausua
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzan botoa eman 3. Pausua
     h1_title: Aukeratu lan-esperientzia
     continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Aurrekoa
     job_experience_title: Zein lan-esperientziaren eremua garatu izana gustatuko litzaizuke?
   step4:
     header: Aukeratu Udal-jarduerak
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzan botoa eman - 4. Pausua
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzan botoa eman - 4. Pausua
     h1_title: Aukeratu Udal-jarduerak
     continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Aurrekoa
     town_activities_title: Zein esperientzia udal-jarduekin erlazionatuta garatu izana gustatuko litzaizuke?
   step5:
     header: Aukeratu Udal-lehentasunak
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzan botoa eman - 5. Pausua
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzan botoa eman - 5. Pausua
     h1_title: Aukeratu Udal-lehentasunak
     continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Aurrekoa
@@ -242,13 +242,13 @@ town:
     public_values_title: Zeintzuk dira, zure ustez, balore moral inportanteenak Funtzio Publikoan?
   step6:
     header: Esleitu garrantzia
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzan botoa eman - 6. Pausua
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzan botoa eman - 6. Pausua
     h1_title: Esleitu garrantzia
     continue: Ikusi aukeratutako hautagaiak <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Aurrekoa
   step7_confirmation:
     header: Aukeratu hautagaiak
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzan botoa eman - 7. Pausua
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzan botoa eman - 7. Pausua
     h1_title: Hautagaien Aurrehautaketa
     continue: Ikusi aukeratutako hautagaiak <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Berrikusi irizpideak
@@ -257,20 +257,21 @@ town:
     candidates_of: gehienez
   step7:
     header: Aukeratu hautagaiak
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzan botoa eman - 7. Pausua
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzan botoa eman - 7. Pausua
     h1_title: Aukeratu hautagaiak
     continue: BOTOA EMAN <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Aurrekoa
   step8:
     header: Esleitu puntuazioak
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzan botoa eman - 8. Pausua
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzan botoa eman - 8. Pausua
     h1_title: Esleitu puntuazioak
     continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Aurrekoa
     congratulations: <strong><i class="mine-icon fa fa-check"></i> Zorionak!</strong> Zure botoa zuzen prozesatu da
+    once_is_over: ?
   step9:
     header: Amaiera
-    html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta
+    html_title: Udal-hauteskundeak 2019 - Hiri-hautagaitzaren alta
     h1_title: Amaiera
     previous: Aurrekoa
     headline: Bozketaren ageriko emaitzak
@@ -281,7 +282,7 @@ town:
     total_points: Puntuak guztira
     position: Posizioa
 candidate:
-  html_title: Udal-hauteskundeak 2015 - Hautagairen alta
+  html_title: Udal-hauteskundeak 2019 - Hautagairen alta
   h1_title: Izena eman hautagai gisa
   step1:
     header: Izena eman hautagai gisa
@@ -297,7 +298,7 @@ candidate:
   verify_msg: Baiezta itzazu erregistroa eta baldintzak SMS bidaliz zure mugikorretik ACEPTO hitzarekin telefono zenbakira %sms_inbound_number%, gero klikatu CONTINUAR hitza
   verify_extra: Mezuaren kostua 10 zentimokoa da (edo doan, zure operadorearen arabera), ez da SMS premium bat eta listabierta.org erakundeak ez du etekinik lortzen zerbitzu honen truke.
   step_verify:
-    html_title: Udal-hauteskundeak 2015 - Hautagaiaren alta
+    html_title: Udal-hauteskundeak 2019 - Hautagaiaren alta
     h1_title: Egiaztatu zure mugikorra
     continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Aurrekoa

@@ -1,16 +1,16 @@
 home:
-  html_title: Municipal Elections 2015 - Home
-  h1_title: Municipal Elections 2015
+  html_title: Municipal Elections 2019 - Home
+  h1_title: Municipal Elections 2019
   steps_h2: Steps
   step_h2: Step
   steps: To register a candidacy you must
-  featured: Open your city hall to all citizens in the municipal elections of May 2015
-  open_council: Open your city hall to all citizens in the municipal elections of May 2015
+  featured: Open your city hall to all citizens in the municipal elections of May 2019
+  open_council: Open your city hall to all citizens in the municipal elections of May 2019
   who_we_are: About us
   who_h3: Start here
   intro_p1: Is the result of a collective funding effort and of a work-team that intends to open organizations for the citizens. Among these organizations City Halls occupy a very important place.
   intro_p2: The election of candidates in  open lists for municipal elections allows that those who has been elected "must" be there for the citizens who elected them, and not for whom had included them in a closed or negotiated list.
-  intro_p3: If you are <b>directly involved in the organization</b> of any candidacy open lists in your town for the upcoming elections in May 2015, you can organize them with this online tool at no cost and auditable results. If you couldn't find an appropriate legal form, you may use <a href="http://primarias.participa.info">this one</a>
+  intro_p3: If you are <b>directly involved in the organization</b> of any candidacy open lists in your town for the upcoming elections in May 2019, you can organize them with this online tool at no cost and auditable results. If you couldn't find an appropriate legal form, you may use <a href="http://primarias.participa.info">this one</a>
   intro_p4: It is very important that before you start the candidacy registration process, you see this entire process tutorial.
   intro_p5: How does  the municipal open lists tool work?
   step_1: Sign up and register the municipal candidature
@@ -31,12 +31,12 @@ header:
     es_gl: Galician
     es_es: Spanish
 candidacy:
-  html_title: Municipal election 2015 - Registry of citizen candidature
+  html_title: Municipal election 2019 - Registry of citizen candidature
   h1_title: 'Sign up and register the candidature of municipality  '
   verify_msg: Confirm the registration and conditions, by sending an SMS from your mobile telephone with the word ACEPTO to the number %sms_inbound_number%, and then click CONTINUE
   verify_extra: The message cost is about EUR 10 cents (or free, depending on the cost of your operator). It is not a premium SMS and listabierta.org does no charge any amount for this service.
   step_conditions:
-    html_title: Municipal election 2015 - Registry terms of citizen candidacy
+    html_title: Municipal election 2019 - Registry terms of citizen candidacy
     h1_title: Sign up and register the candidature of the municipality
     p1_title: When you start the registration you must accept the following conditions
     p1_content: That you are part of a collective (political party, party coalition or group of voters) willing to attend at the municipal elections which will take place on May 24, 2.015; and therefore have the intention to register in due time and form in the corresponding provincial electoral board.
@@ -68,12 +68,12 @@ candidacy:
     phone_info: You must confirm it with a message (SMS) in the next step. If you enter a wrong number, you can not continue.
     warning_text: '<b>Attention</b> it is essential to enter all registration data correctly, including your mobile telephone number. An error in the registration data imply that someone else will have to enlist this citizen candidacy. If you are unsure of the process, see again the video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Opens organizations citizenship (Short Version)">here</a> . The system does not support "test" applications.'
   step_verify:
-    html_title: Municipal elections 2015 - Registry of citizen candidacy
+    html_title: Municipal elections 2019 - Registry of citizen candidacy
     h1_title: Check your mobile telephone number
     continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Previous
   step2:
-    html_title: Municipal elections 2015 - Registry of citizen candidacy
+    html_title: Municipal elections 2019 - Registry of citizen candidacy
     h1_title: Establish the conditions of your citizen candidacy
     p1: 'Upload in PDF format all the conditions which must be accepted by the candidates (one, some, all, or none) which want to participate in the citizen candidacy . For example: the application program; the legal and the accuracy of the information provided; the recall and participatory mandate; the ethical code; the acceptance of the census and of the voting system; etc. If you do not upload any conditions, we recommend that you seek an alternative method to verify that the candidate will fulfill the conditions before her/his inclusion in the lists.'
     program: The candidacy program
@@ -86,7 +86,7 @@ candidacy:
     previous: Previous
     example: Example
   step3:
-    html_title: Municipal elections 2015 - Registry of citizen candidacy
+    html_title: Municipal elections 2019 - Registry of citizen candidacy
     h1_title: Set the timetable for candidate presentation
     continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     explanation_date: Time limit for candidate applications <br/> (Minimum 2 days)
@@ -94,14 +94,14 @@ candidacy:
     to_label: TO
     previous: Previous
   step4:
-    html_title: Municipal election 2015 - Registry of citizen candidacy
+    html_title: Municipal election 2019 - Registry of citizen candidacy
     h1_title: Reserve an internet address
     continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Previous
     choose_address: Choose your internet address
     warning: 'If in the blank space, for example, you write: FuenteovejunaParticipa, the associated address to your candidacy will be like: http://% host%/FuenteovejunaParticipa/ ...'
   step5:
-    html_title: Municipal elections 2015 - Registry of citizen candidacy
+    html_title: Municipal elections 2019 - Registry of citizen candidacy
     h1_title: Registry of candidates
     continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Previous
@@ -110,7 +110,7 @@ candidacy:
     send_link: We sent to your email a copy of this link
     next_step_explanation: In the next step, you will be able to validate the candidates, which registered using the previous link.
   step6:
-    html_title: Municipal elections 2015 - Registry of citizen candidacy
+    html_title: Municipal elections 2019 - Registry of citizen candidacy
     h1_title: Validation of candidates
     continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     no_candidates: At present time there is no registered candidate to validate
@@ -131,18 +131,18 @@ candidacy:
     access_admin_panel: ?
     remember_access_admin: ?
   step7:
-    html_title: Municipal election 2015 - Registry of citizen candidacy
+    html_title: Municipal election 2019 - Registry of citizen candidacy
     h1_title: Start and end of voting
     days: Days
     explanation: Enter the number of calendar days that the voting of candidates remain active from the start of the voting date (minimum two days).
     init_vote_explanation: Click the following button to begin voting
-    warning_explanation: ATTENTION !! You CAN NOT ADD more candidates once the poll is initiated. A link will be provided to enable the voters registery, and cast their vote.
+    warning_explanation: '<span style="font-size:36px">ATTENTION !!</span> You CAN NOT ADD more candidates once the poll is initiated. A link will be provided to enable the voters registery, and cast their vote.'
     start_candidacy: Start voting
     public_link: This is the link to the voting that you may do public
     no_finished_candidacy: You can not begin voting as the end time for the candidate registration is not over.
     sent_mail: We sent to your email a copy of this link
   step8:
-    html_title: Municipal election 2015 - Registry of citizen candidacy
+    html_title: Municipal election 2019 - Registry of citizen candidacy
     h1_title: Verification of voting and results
     continue: Continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Previous
@@ -167,7 +167,7 @@ candidacy:
     header_li4: The candidate chosen in fourth place receives a quarter point (¼) = 0,25 point
     header_li5: The candidate chosen  in fifth place will receive one fifth point (⅕) = 0,20 point
   step9:
-    html_title: Municipal elections 2015 - Registry of citizen candidacy
+    html_title: Municipal elections 2019 - Registry of citizen candidacy
     h1_title: Presentation of elected lists
     continue: Start voting
     result: Voting results
@@ -180,7 +180,7 @@ candidacy:
     oldPassword: Old password
     newPassword: New password
 town:
-  html_title: Municipal election 2015 - Vote in the citizen candidacy
+  html_title: Municipal election 2019 - Vote in the citizen candidacy
   h1_title: Register as voter
   verify_msg: Confirm the registration and conditions, by sending an SMS from your mobile telephone with the word ACEPTO to the number %sms_inbound_number%, and then click CONTINUE
   verify_extra: The message cost is about EUR 10 cents (or free, depending on the cost of your operator). While it is not a premium SMS, listabierta.org does not charge any amount for this service.
@@ -200,7 +200,7 @@ town:
     explanation: Explanation
     warning_text: '<b>Please note</b> it is essential to enter the registration data correctly, including your phone number, an error log data implies that you can not vote'
   step_verify:
-    html_title: Municipal elections 2015 -  Register as a voter
+    html_title: Municipal elections 2019 -  Register as a voter
     h1_title: Check your mobile number
     continue: continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: back
@@ -210,7 +210,7 @@ town:
     verify_conditions_op3: The information you contribute during this registration is real  and your main residence is located in the town under vote
   step2:
     header: Filter candidates
-    html_title: Municipal elections of 2015 - citizens candidacy vote - Step 2
+    html_title: Municipal elections of 2019 - citizens candidacy vote - Step 2
     filter_title: What criteria would you like to use for selecting candidates?
     filter_p1: Note that if you do not apply any filter, all candidates  will appear and it could be tedious to  see all the profiles and rate them, so if you have any clear preference, please select it. Afterwards you can check your filters.
     h1_title: Filter candidates by academic level
@@ -220,21 +220,21 @@ town:
     previous: back
   step3:
     header: please Select work experience
-    html_title: Municipal elections of 2015 - citizens candidacy vote  - Step 3
+    html_title: Municipal elections of 2019 - citizens candidacy vote  - Step 3
     h1_title: please Select professional experience
     continue: continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: back
     job_experience_title: What area of  professional experience would you like the candidate have worked previously?
   step4:
     header: Choose municipal activities
-    html_title: Municipal 2015 - cutizens candidacy vote - Step 4
+    html_title: Municipal 2019 - cutizens candidacy vote - Step 4
     h1_title: Choose municipal activities
     continue: continue <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: back
     town_activities_title: What experience related to municipal performance you wish there were developed?
   step5:
     header: Choose municipal priorities
-    html_title: Municipal 2015 - Vote in the public bid - Step 5
+    html_title: Municipal 2019 - Vote in the public bid - Step 5
     h1_title: Choose municipal priorities
     continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Previous
@@ -242,13 +242,13 @@ town:
     public_values_title: What moral values ​​most important to consider the performance of public functions?
   step6:
     header: Attaches importance
-    html_title: Municipal 2015 - Vote in the public bid - Step 6
+    html_title: Municipal 2019 - Vote in the public bid - Step 6
     h1_title: Attaches importance
     continue: View candidates <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Previous
   step7_confirmation:
     header: Choose candidates
-    html_title: Municipal 2015 - Vote in the public bid - Step 7
+    html_title: Municipal 2019 - Vote in the public bid - Step 7
     h1_title: Pre-selection of candidates
     continue: View candidates <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Review criteria
@@ -257,20 +257,22 @@ town:
     candidates_of: candidates / ace
   step7:
     header: Choose candidates
-    html_title: Municipal 2015 - Vote in the public bid - Step 7
+    html_title: Municipal 2019 - Vote in the public bid - Step 7
     h1_title: Choose candidates
     continue: VOTE <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Previous
   step8:
     header: Assigns Rating
-    html_title: Municipal 2015 - Vote in the public bid - Step 8
+    html_title: Municipal 2019 - Vote in the public bid - Step 8
     h1_title: Assigns Rating
     continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Previous
     congratulations: <strong><i class="mine-icon fa fa-check"></i> Congratulations!</strong> Your vote has been successfully processed
+    once_is_over: Once the voting is over, you will receive in your email; the seal that verifies that your vote has been issued and quantified, and a link to the verifiable result of the vote externally.
+        
   step9:
     header: End
-    html_title: Municipal 2015 - Top of citizen candidacy
+    html_title: Municipal 2019 - Top of citizen candidacy
     h1_title: End
     previous: Previous
     headline: Public voting results
@@ -281,7 +283,7 @@ town:
     total_points: Total points
     position: Order number
 candidate:
-  html_title: Municipal 2015 - Top of candidate
+  html_title: Municipal 2019 - Top of candidate
   h1_title: Sign up as a candidate
   step1:
     header: Sign up as a candidate
@@ -297,7 +299,7 @@ candidate:
   verify_msg: Confirm the registration and conditions, by sending an SMS from your mobile telephone with the word ACEPTO to the number %sms_inbound_number%, and then click CONTINUE
   verify_extra: The message cost is about EUR 10 cents (or free, depending on the cost of your operator). It is not a premium SMS and listabierta.org does no charge any amount for this service.
   step_verify:
-    html_title: Municipal 2015 - Top of candidate
+    html_title: Municipal 2019 - Top of candidate
     h1_title: Check your mobile
     continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Previous

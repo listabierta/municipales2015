@@ -157,7 +157,7 @@ candidacy:
         days: Días
         explanation: Introduce el número de días naturales que permanecerá activa la votación de candidatos desde el inicio de la votación (mínimo dos días).
         init_vote_explanation: Haz clic en el siguiente botón para iniciar la votación
-        warning_explanation: ATENCIÓN !! Una vez iniciada la votación ya NO SE PODRÁN AÑADIR más candidatos o candidatas. Se proporcionará un enlace que habilitará el registro a los votantes y emitir el voto.
+        warning_explanation: '<span style="font-size:36px">ATENCIÓN !!</span> Una vez iniciada la votación ya NO SE PODRÁN AÑADIR más candidatos o candidatas. Se proporcionará un enlace que habilitará el registro a los votantes y emitir el voto.'
         start_candidacy: Iniciar votación
         public_link: Este es el enlace a la votación que puedes hacer público
         no_finished_candidacy: Aún no puede iniciarse la votación ya que la fecha de finalización de las candidaturas no ha terminado. 
@@ -411,6 +411,7 @@ town:
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior 
         congratulations: <strong><i class="mine-icon fa fa-check"></i> ¡Enhorabuena!</strong> Tu voto ha sido procesado correctamente 
+        once_is_over: Una vez terminada la votación recibirás en tu correo electrónico; el sello que verifica que tu voto ha sido emitido y cuantificado, y un enlace al resultado de la votación verificable de forma externa.
         
     step9:
         header: Fin
