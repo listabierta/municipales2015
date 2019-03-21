@@ -110,13 +110,18 @@
         </div>
 	{% else %}
 		{{ 'candidacy.step6.no_candidates'|trans }}
-
 		<br />
 		<br />
 		<button class="submit btn btn-success btn-next"
 		onclick="location.href='{{ path('municipales_candidacy_step6') }}'; return false;">
 			     {{ 'candidacy.step6.check_again'|trans|raw }}
 		</button>
+
+		<div class="col-md-12 col-sm-offset-0 text-center">
+            {{ 'candidacy.step6.remember_access_admin'|trans|raw }}:<br />
+            <a href="{{ path('login') }}">{{ app.request.server.get('HTTP_ORIGIN') }}/{{ path('login') }}</a>
+            <br/>
+        </div>
 	{% endif %}
 
 	</p>
