@@ -395,6 +395,12 @@ mail:
   sms_inbound_verification:
     your_phone: Zure telefono
     verify: ongi egiaztatu da
+  vote_finished:
+    hello: ?
+    your_vote: ?
+    seal_timestamp: ?
+    string_seal: ?
+    once_the_voting_over: ?
 panel_admin:
   index:
     header: Admin Panel

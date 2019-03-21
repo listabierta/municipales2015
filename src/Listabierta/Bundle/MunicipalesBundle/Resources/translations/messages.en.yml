@@ -395,6 +395,13 @@ mail:
   sms_inbound_verification:
     your_phone: Your phone number
     verify: has been successfully verified
+  vote_finished:
+    hello: Hello
+    your_vote: Your vote has been correctly cast and sealed
+    seal_timestamp: Sealing moment
+    string_seal: Sealing chain
+    once_the_voting_over: Once the voting is over, you will receive the stamp that verifies that your vote has been cast and quantified and a link to the result of the vote verifiable externally.
+        
 panel_admin:
   index:
     header: Admin Panel

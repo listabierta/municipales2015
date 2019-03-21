@@ -395,6 +395,12 @@ mail:
   sms_inbound_verification:
     your_phone: O teléfono
     verify: foi verificada con éxito
+  vote_finished:
+    hello: ?
+    your_vote: ?
+    seal_timestamp: ?
+    string_seal: ?
+    once_the_voting_over: ?
 panel_admin:
   index:
     header: Panel de Administración
