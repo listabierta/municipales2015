@@ -2,6 +2,6 @@
 <br />
 {{ 'mail.vote_deleted.we_sorry'|trans }}.<br />
 <br />
-{{ 'mail.vote_deleted.please_proceed'|trans }} <a href="{{ url('municipales_homepage') }}">{{ url('municipales_homepage') }}</a>, {{ 'mail.vote_deleted.thanks_you'|trans }} 
+{{ 'mail.vote_deleted.please_proceed'|trans }} <a href="{{ url('town_candidacy_vote_step1', {'address': address }) }}">{{ url('town_candidacy_vote_step1', {'address': address }) }}</a>, {{ 'mail.vote_deleted.thanks_you'|trans }}
 <br />
 {{ 'mail.vote_deleted.greetings'|trans }}
