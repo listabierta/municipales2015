@@ -128,6 +128,8 @@ candidacy:
     accept_candidate: OK hautagaia
     reject_candidate: Ukatu hautagaia
     delete_candidate: Garbitu hautagaia
+    access_admin_panel: ?
+    remember_access_admin: ?
   step7:
     html_title: Udal-hauteskundeak 2015 - hiri-hautagaitzaren alta
     h1_title: Bozketa-prozesuaren hasiera eta amaiera
