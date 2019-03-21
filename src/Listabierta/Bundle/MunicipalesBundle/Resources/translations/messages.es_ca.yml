@@ -395,6 +395,13 @@ mail:
   sms_inbound_verification:
     your_phone: El teu telèfon
     verify: ha estat verificat correctament
+  vote_finished:
+    hello: ?
+    your_vote: ?
+    seal_timestamp: ?
+    string_seal: ?
+    once_the_voting_over: ?
+       
 panel_admin:
   index:
     header: Panell Admin

@@ -591,6 +591,7 @@ mail:
         your_vote: Tu voto ha sido correctamente emitido y sellado
         seal_timestamp: Momento de sellado
         string_seal: Cadena de sellado
+        once_the_voting_over: Una vez terminada la votación recibirás el sello que verifica que tu voto ha sido emitido y cuantificado y un enlace al resultado de la votación verificable de forma externa.
         
     vote_deleted:
         hello: Hola
