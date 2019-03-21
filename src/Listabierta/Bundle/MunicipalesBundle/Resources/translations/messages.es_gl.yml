@@ -1,11 +1,11 @@
 home:
-  html_title: Municipais 2015 - Inicio
-  h1_title: Municipais 2015
+  html_title: Municipais 2019 - Inicio
+  h1_title: Municipais 2019
   steps_h2: Pasos
   step_h2: Paso
   steps: Para rexistrar unha candidatura debes
-  featured: Abre o teu concello á cidadanía nestas eleccións municipais de maio 2015
-  open_council: Abre o teu concello á cidadanía nestas eleccións municipais de maio 2015
+  featured: Abre o teu concello á cidadanía nestas eleccións municipais de maio 2019
+  open_council: Abre o teu concello á cidadanía nestas eleccións municipais de maio 2019
   who_we_are: Quen somos?
   who_h3: Empeza por aquí
   intro_p1: é o froito dun esforzo de financiamento colectivo e dun equipo de traballo que pretende abrir as organizacións á cidadanía. Entre estas organizacións ocupan un lugar destacado os Concellos.
@@ -31,12 +31,12 @@ header:
     es_gl: Galego
     es_es: Español
 candidacy:
-  html_title: Municipáis 2015 - Alta de candidatura cidadá
+  html_title: Municipáis 2019 - Alta de candidatura cidadá
   h1_title: Rexístrate e rexistra o municipio da candidatura
   verify_msg: Confirma o rexistro e as condicións enviando un SMS dende o teu teléfono móbil coa palabra ACEPTO ao número %sms_inbound_number%, despóis prema en CONTINUAR
   verify_extra: O custo da mensaxe é duns 10 céntimos de euro (ou gratis, dependendo do custo da túa operadora) non é un SMS premium e listabierta.org non cobra por este servizo.
   step_conditions:
-    html_title: Municipáis 2015 - Condicións de alta de candidatura cidadá
+    html_title: Municipáis 2019 - Condicións de alta de candidatura cidadá
     h1_title: Rexístrate e rexistra o concello da candidatura
     p1_title: Ao iniciar o rexistro aceptas as seguintes condicións
     p1_content: Que formas parte dun colectivo (partido político, coalición partidos ou agrupación de electores) que desexa presentarse aos comicios municipáis que se celebrarán o 24 de maio de 2.015 e que para elo teñen a intención de se rexistrar en prazo e forma na correspondente xunta electoral provincial.
@@ -68,12 +68,12 @@ candidacy:
     phone_info: Deberás confirmalo cunha mensaxe no seguinte paso, se introduces un número incorrecto non poderás continuar
     warning_text: '<b>Atención</b>: é imprescindible que introduzas os datos de rexistro de forma correcta, incluíndo o teu número de teléfono móbil, un error nos datos de rexistro implica que outra persoa terá que dar de alta esta candidatura cidadá. Se tes dudas do proceso, volve a ver o vídeo <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre organizacións cidadanía (Short Version)">aquí</a> . O sistema non admite candidaturas "de proba".'
   step_verify:
-    html_title: Municipáis 2015 - Alta de candidatura cidadá
+    html_title: Municipáis 2019 - Alta de candidatura cidadá
     h1_title: Verifica o teu número de teléfono móbil
     continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
   step2:
-    html_title: Municipáis 2015 - Alta de candidatura cidadá
+    html_title: Municipáis 2019 - Alta de candidatura cidadá
     h1_title: Establece as condicións da candidatura cidadá
     p1: 'Sobe en formato PDF as condicións que deban aceptar os candidatos ou candidatas (unha, algunhas, todas ou ningunha) para presentarse nunha candidatura cidadá. Por exemplo: O programa da candidatura, as condicións legais e a veracidade da información proporcionada, o mandato revogatorio e participativo, o código ético, a aceptación do censo e do sistema de votación, etc. Se non subires ningunha condición, recomendámosche procurar un método alternativo para comprobar se o candidato ou a candidata vai cumpri-las antes da súa inclusión nas listas.'
     program: A candidatura do programa
@@ -86,7 +86,7 @@ candidacy:
     previous: Anterior
     example: Exemplo
   step3:
-    html_title: Municipal 2015 - Top de cidadán candidatura
+    html_title: Municipal 2019 - Top de cidadán candidatura
     h1_title: Estableza prazos para nomeamentos
     continue: Descargar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     explanation_date: Prazo para as inscricións <br/> (Mínimo 2 días)
@@ -94,14 +94,14 @@ candidacy:
     to_label: TO
     previous: Anterior
   step4:
-    html_title: Municipal 2015 - Top de cidadán candidatura
+    html_title: Municipal 2019 - Top de cidadán candidatura
     h1_title: Reserva un enderezo de internet
     continue: Descargar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
     choose_address: Escolla o seu enderezo de Internet
     warning: 'Se o deixa en branco escrita por exemplo FuenteovejunaParticipa, enderezos asociados á súa aplicación será como: http: //% host% / FuenteovejunaParticipa / ...'
   step5:
-    html_title: Municipal 2015 - Top de cidadán candidatura
+    html_title: Municipal 2019 - Top de cidadán candidatura
     h1_title: Alta de candidatos
     continue: Descargar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
@@ -110,7 +110,7 @@ candidacy:
     send_link: Enviamos unha copia deste enlace para o seu correo electrónico
     next_step_explanation: O próximo paso, vai ser capaz de validar os candidatos que son descargados usando o enlace anterior.
   step6:
-    html_title: Municipal 2015 - Top de cidadán candidatura
+    html_title: Municipal 2019 - Top de cidadán candidatura
     h1_title: Validación de candidatos
     continue: Descargar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     no_candidates: Polo momento non hai ningún candidato rexistrado para validar
@@ -131,7 +131,7 @@ candidacy:
     access_admin_panel: ?
     remember_access_admin: ?
   step7:
-    html_title: Municipal 2015 - Top de cidadán candidatura
+    html_title: Municipal 2019 - Top de cidadán candidatura
     h1_title: Inicio e fin de votación
     days: Días
     explanation: Escriba o número de días de calendario que permanecen votación activo para os candidatos do inicio da votación (como mínimo dous días).
@@ -142,7 +142,7 @@ candidacy:
     no_finished_candidacy: Non pode sequera comezar a votación como a data final dos candidatos aínda non acabou.
     sent_mail: Enviamos unha copia deste enlace para o seu correo electrónico
   step8:
-    html_title: Municipal 2015 - Top de cidadán candidatura
+    html_title: Municipal 2019 - Top de cidadán candidatura
     h1_title: Corrección de votación e os resultados
     continue: Descargar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
@@ -167,7 +167,7 @@ candidacy:
     header_li4: O candidato escollido recibe cuarto punto trimestre (¼) = 0, 25 puntos
     header_li5: O candidato elixido en quinto lugar recibe un quinto punto (⅕) = 0,20 puntos
   step9:
-    html_title: Municipal 2015 - Top de cidadán candidatura
+    html_title: Municipal 2019 - Top de cidadán candidatura
     h1_title: Presentación de listas de elixidos
     continue: Comezar a votar
     result: Os resultados da votación
@@ -180,7 +180,7 @@ candidacy:
     oldPassword: Contrasinal Antiga
     newPassword: Nova contrasinal
 town:
-  html_title: Municipal 2015 - Vote na oferta pública de adquisición
+  html_title: Municipal 2019 - Vote na oferta pública de adquisición
   h1_title: Registre-se para votar
   verify_msg: Confirmar a matrícula e as condicións a través do envío dun SMS do seu teléfono móbil coa palabra ADMITE sms_inbound_number% número%, a continuación, prema en CONTINUAR
   verify_extra: A mensaxe custará é preto de 10 centavos (ou libre, dependendo do custo do seu fornecedor) non é un SMS Premium e listabierta.org sen ningún custo para este servizo.
@@ -200,7 +200,7 @@ town:
     explanation: Explicación
     warning_text: '<b>Por favor, teña en conta</b> que é esencial para introducir os datos de rexistro correctamente, incluíndo o seu número de teléfono, un de datos de rexistro de erro significa que non pode votar'
   step_verify:
-    html_title: Municipal 2015 - Elector Register
+    html_title: Municipal 2019 - Elector Register
     h1_title: Asegúrese de que o seu teléfono móbil
     continue: Descargar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
@@ -210,7 +210,7 @@ town:
     verify_conditions_op3: A información que participa, durante ese rexistro é certo e súa residencia habitual é na cidade para ser votado
   step2:
     header: Filtro de candidatos
-    html_title: Municipal 2015 - Vote na oferta pública de adquisición - Etapa 2
+    html_title: Municipal 2019 - Vote na oferta pública de adquisición - Etapa 2
     filter_title: Cales son os criterios que quere empregar para a selección dos candidatos?
     filter_p1: Teña en conta que se non aplicar calquera filtro, todos os candidatos que xurdan aparecer e se pode entediante ver todos os perfís e, a continuación, puntuarlos, por iso, se ten unha marca clara preferencia, entón podes consultar os seus filtros.
     h1_title: Filtro de candidatos a nivel académico
@@ -220,21 +220,21 @@ town:
     previous: Anterior
   step3:
     header: Selecciona experiencia de traballo
-    html_title: Municipal 2015 - Vote na oferta pública de adquisición - Paso 3
+    html_title: Municipal 2019 - Vote na oferta pública de adquisición - Paso 3
     h1_title: Selecciona experiencia de traballo
     continue: Descargar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
     job_experience_title: O campo de experiencia de traballo que lle gustaría ter desenvolvido?
   step4:
     header: Escolla actividades municipais
-    html_title: Municipal 2015 - Vote na oferta pública de adquisición - Paso 4
+    html_title: Municipal 2019 - Vote na oferta pública de adquisición - Paso 4
     h1_title: Escolla actividades municipais
     continue: Descargar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
     town_activities_title: Que experiencia relacionada co desempeño municipal que desexa que foron desenvolvidos?
   step5:
     header: Escolla prioridades municipais
-    html_title: Municipal 2015 - Vote na oferta pública de adquisición - Paso 5
+    html_title: Municipal 2019 - Vote na oferta pública de adquisición - Paso 5
     h1_title: Escolla prioridades municipais
     continue: Descargar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
@@ -242,13 +242,13 @@ town:
     public_values_title: Cales son os valores morais máis importantes a considerar o desempeño de funcións públicas?
   step6:
     header: Atribúe importancia
-    html_title: Municipal 2015 - Vote na oferta pública de adquisición - Paso 6
+    html_title: Municipal 2019 - Vote na oferta pública de adquisición - Paso 6
     h1_title: Atribúe importancia
     continue: Vexa os candidatos <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
   step7_confirmation:
     header: Escolla candidatos
-    html_title: Municipal 2015 - Vote na oferta pública de adquisición - Paso 7
+    html_title: Municipal 2019 - Vote na oferta pública de adquisición - Paso 7
     h1_title: Cribaxe de candidatos
     continue: Vexa os candidatos <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Criterios de avaliación
@@ -257,13 +257,13 @@ town:
     candidates_of: candidatos / ace
   step7:
     header: Escolla candidatos
-    html_title: Municipal 2015 - Vote na oferta pública de adquisición - Paso 7
+    html_title: Municipal 2019 - Vote na oferta pública de adquisición - Paso 7
     h1_title: Escolla candidatos
     continue: VOTE <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
   step8:
     header: Atribúe Avaliación
-    html_title: Municipal 2015 - Vote na oferta pública de adquisición - Paso 8
+    html_title: Municipal 2019 - Vote na oferta pública de adquisición - Paso 8
     h1_title: Atribúe Avaliación
     continue: Descargar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
@@ -271,7 +271,7 @@ town:
     once_is_over: ?
   step9:
     header: Fin
-    html_title: Municipal 2015 - Top de cidadán candidatura
+    html_title: Municipal 2019 - Top de cidadán candidatura
     h1_title: Fin
     previous: Anterior
     headline: Resultados da votación do público
@@ -282,7 +282,7 @@ town:
     total_points: Total de puntos
     position: Posición
 candidate:
-  html_title: Municipal 2015 - Top de candidato
+  html_title: Municipal 2019 - Top de candidato
   h1_title: Date de alta como un candidato
   step1:
     header: Date de alta como un candidato
@@ -298,7 +298,7 @@ candidate:
   verify_msg: Confirmar a matrícula e as condicións a través do envío dun SMS do seu teléfono móbil coa palabra ADMITE sms_inbound_number% número%, a continuación, prema en CONTINUAR
   verify_extra: A mensaxe custará é preto de 10 centavos (ou libre, dependendo do custo do seu fornecedor) non é un SMS Premium e listabierta.org sen ningún custo para este servizo.
   step_verify:
-    html_title: Municipal 2015 - Top de candidato
+    html_title: Municipal 2019 - Top de candidato
     h1_title: Asegúrese de que o seu teléfono móbil
     continue: Descargar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
