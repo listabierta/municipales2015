@@ -136,7 +136,7 @@ candidacy:
     days: Days
     explanation: Enter the number of calendar days that the voting of candidates remain active from the start of the voting date (minimum two days).
     init_vote_explanation: Click the following button to begin voting
-    warning_explanation: ATTENTION !! You CAN NOT ADD more candidates once the poll is initiated. A link will be provided to enable the voters registery, and cast their vote.
+    warning_explanation: '<span style="font-size:36px">ATTENTION !!</span> You CAN NOT ADD more candidates once the poll is initiated. A link will be provided to enable the voters registery, and cast their vote.'
     start_candidacy: Start voting
     public_link: This is the link to the voting that you may do public
     no_finished_candidacy: You can not begin voting as the end time for the candidate registration is not over.

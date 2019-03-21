@@ -136,7 +136,7 @@ candidacy:
     days: Dies
     explanation: Introdueix el nombre de dies naturals que romandrà activa la votació de candidats des de l'inici de la votació (mínim dos dies).
     init_vote_explanation: Fes clic en el botó següent per a iniciar la votació
-    warning_explanation: ATENCIÓ!! Un cop iniciada la votació ja NO ES PODRAN AFEGIR més candidats o candidates. Es proporcionarà un enllaç que habilitarà el registre als votants i l'emissio del vot.
+    warning_explanation: '<span style="font-size:36px">ATENCIÓ!!</span> Un cop iniciada la votació ja NO ES PODRAN AFEGIR més candidats o candidates. Es proporcionarà un enllaç que habilitarà el registre als votants i l'emissio del vot.'
     start_candidacy: Iniciar la votació
     public_link: Aquest és l'enllaç a la votació que pots fer pública
     no_finished_candidacy: Encara no es pot  iniciar la votació ja que la data de finalització de les candidatures no ha acabat.

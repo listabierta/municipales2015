@@ -136,7 +136,7 @@ candidacy:
     days: Egunak
     explanation: Idatz itzazu hautagaien bozketa-prozesua zabalik mantenduko den egun-naturalen zenbakia bozketa hasieratik (gutxienez bi egun).
     init_vote_explanation: Egin klik beheko botoia bozketa hasteko
-    warning_explanation: ERNE !! Behin bozketa hasita EZIN DIRA hautagai gehiagorik gehitu izango. Emandako esteka batek ahalbidetuko du hauteslentzako erregistroa eta boto ematea..
+    warning_explanation: '<span style="font-size:36px">ERNE!!</span>Behin bozketa hasita EZIN DIRA hautagai gehiagorik gehitu izango. Emandako esteka batek ahalbidetuko du hauteslentzako erregistroa eta boto ematea..'
     start_candidacy: Hasi bozketa
     public_link: Lotura honen bitartez zure bozketa agerian agertuko da.
     no_finished_candidacy: Ezin da bozketaren prozesua hasi hautagaitzak aurkezteko amaitze-epea bizirik dagoelako.
