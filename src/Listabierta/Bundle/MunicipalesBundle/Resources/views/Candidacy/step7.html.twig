@@ -12,7 +12,7 @@
         <!-- START THE FEATURETTES -->
 
         <!--    division -->
-        
+
         <div class="headline">
           <h2>{{ 'home.step_h2'|trans }} 7</h2>
         </div>
@@ -40,15 +40,15 @@
                       <div class="col-md-offset-2 col-md-8 well">
 
                         <p class="lead2 text-center">
-                        
+
 
 						    {% if candidacy_finished %}
 						    	{{ form_start(form, { 'attr': {'class': 'form_settings'}}) }}
-						    	
+
 								<p>
 									{{ 'candidacy.step7.explanation'|trans }}
 								</p>
-								
+
 								{% if not form.vars.valid and form.vars.errors|length > 0 %}
 				                  <div class="alert alert-danger">
 				                          <button data-dismiss="alert" class="close" type="button">
@@ -63,57 +63,71 @@
 						    	      {{ form_widget(form.total_days, { 'value' : 2 }) }}
 						    	      {% if form.total_days.vars.errors|length > 0 %}<div class="help-block col-xs-12 col-sm-reset inline">{{ form_errors(form.total_days) }}</div>{% endif %}
 								</div>
-								
+
 								<br /><br /> <br />
 								<div class="row">
 							              <div class="col-md-offset-0 col-md-12">
-							
+
 												<div class="help-block col-xs-12 col-sm-10 col-sm-offset-1 inline">
-													<div class="alert alert-warning">
+													<div class="alert alert-danger">
 										                <p class="text-center">
-															{{ 'candidacy.step7.warning_explanation'|trans }}
+															{{ 'candidacy.step7.warning_explanation'|trans|raw }}
 														</p>
 													</div>
 												</div>
 										  </div>
 						        </div>
-						        
+
 								<div class="row">
 						              <div class="col-md-offset-2 col-md-8">
-						
+
 						                <p class="text-center">
 											{{ 'candidacy.step7.init_vote_explanation'|trans }}
 										</p>
 						              </div>
 						        </div>
-						
-								
+
+
 									<div style="text-align:center">
 										<p>
 											{{ form_widget(form.start_candidacy, { 'label': 'candidacy.step7.start_candidacy'|trans|raw, 'attr' : { 'class' : 'submit btn btn-success btn-next'} }) }}
 										</p>
 									</div>
-										
+
 									{{ form_rest(form) }}
-										
+
 								{{ form_end(form) }}
-						
+
 								<div class="row">
 						              <div class="col-md-offset-0 col-md-12">
-						
+
 						                <p class="text-center">
 											{{ 'candidacy.step7.public_link'|trans }}
-											
+
 											<div style="text-align:center">
 												<h3><a href="http://{{ app.request.server.get('HTTP_HOST') }}/{{ address }}/vota" title="Votar en {{ town }}">http://{{ app.request.server.get('HTTP_HOST') }}/{{ address }}/vota</a></h3>
 											</div>
 										</p>
-										
+
 										<p class="text-center">
 											{{ 'candidacy.step7.sent_mail'|trans }}
 										</p>
 						              </div>
 						        </div>
+
+						        <div class="row">
+                                    <div class="col-md-12 col-sm-offset-0 text-center">
+                                        <button class="submit btn btn-success btn-next"
+                                            onclick="location.href='{{ path('login') }}'; return false;">
+                                                     {{ 'candidacy.step6.access_admin_panel'|trans|raw }}
+                                        </button>
+                                    </div>
+                                    <div class="col-md-12 col-sm-offset-0 text-center">
+                                        {{ 'candidacy.step6.remember_access_admin'|trans|raw }}:<br />
+                                        <a href="{{ path('login') }}">{{ app.request.server.get('HTTP_ORIGIN') }}/{{ path('login') }}</a>
+                                        <br/>
+                                    </div>
+                                </div>
 							{% else %}
 								<p>{{ 'candidacy.step7.no_finished_candidacy'|trans }}</p>
 							{% endif %}
@@ -123,10 +137,10 @@
               <!-- /.widget-main --> </div>
             <!-- /.widget-body --> </div>
         </div>
-			  
+
         <!--    division -->
 
-        <!-- /END THE FEATURETTES --> 
+        <!-- /END THE FEATURETTES -->
         </div>
 </section>
 

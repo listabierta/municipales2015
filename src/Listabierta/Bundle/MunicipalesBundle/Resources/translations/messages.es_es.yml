@@ -150,6 +150,8 @@ candidacy:
         reject_candidate: Rechazar candidato
         delete_candidate: Borrar candidato
         check_again: Volver a comprobar
+        access_admin_panel: Acceder al panel de administración
+        remember_access_admin: Recuerda que puedes acceder más tarde al panel de administración de la candidatura en el enlace
         
     step7:
         html_title: Municipales 2019 - Alta de candidatura ciudadana
@@ -157,7 +159,7 @@ candidacy:
         days: Días
         explanation: Introduce el número de días naturales que permanecerá activa la votación de candidatos desde el inicio de la votación (mínimo dos días).
         init_vote_explanation: Haz clic en el siguiente botón para iniciar la votación
-        warning_explanation: ATENCIÓN !! Una vez iniciada la votación ya NO SE PODRÁN AÑADIR más candidatos o candidatas. Se proporcionará un enlace que habilitará el registro a los votantes y emitir el voto.
+        warning_explanation: '<span style="font-size:36px">ATENCIÓN !!</span> Una vez iniciada la votación ya NO SE PODRÁN AÑADIR más candidatos o candidatas. Se proporcionará un enlace que habilitará el registro a los votantes y emitir el voto.'
         start_candidacy: Iniciar votación
         public_link: Este es el enlace a la votación que puedes hacer público
         no_finished_candidacy: Aún no puede iniciarse la votación ya que la fecha de finalización de las candidaturas no ha terminado. 
@@ -411,6 +413,7 @@ town:
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior 
         congratulations: <strong><i class="mine-icon fa fa-check"></i> ¡Enhorabuena!</strong> Tu voto ha sido procesado correctamente 
+        once_is_over: Una vez terminada la votación recibirás en tu correo electrónico; el sello que verifica que tu voto ha sido emitido y cuantificado, y un enlace al resultado de la votación verificable de forma externa.
         
     step9:
         header: Fin
@@ -591,6 +594,7 @@ mail:
         your_vote: Tu voto ha sido correctamente emitido y sellado
         seal_timestamp: Momento de sellado
         string_seal: Cadena de sellado
+        once_the_voting_over: Una vez terminada la votación recibirás el sello que verifica que tu voto ha sido emitido y cuantificado y un enlace al resultado de la votación verificable de forma externa.
         
     vote_deleted:
         hello: Hola
@@ -624,6 +628,7 @@ panel_admin:
         validate_candidates: Validar candidatos/as
         set_vote_days: Establecer número de días <br />de la votación (plazo de votación)
         see_internal_results: Ver resultados internos <br />de la votación
+        see_link_to_vote: Ver el enlace para efectuar las votaciones
         see_public_results: Ver enlace de resultados públicos<br /> de la votación
 
         verify_msg: Para verificar tu número de móvil solo tienes que hacer una llamada perdida desde tu móvil al número %sms_inbound_number%. Marca y se colgará solo. Esta llamada de verificación NO TIENE NINGÚN COSTE. Después <a href="#" onclick="javascript:window.location.reload()">actualiza/recarga</a> esta página

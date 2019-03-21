@@ -1,11 +1,11 @@
 home:
-  html_title: Municipals 2015 - Home
-  h1_title: Municipals 2015
+  html_title: Municipals 2019 - Home
+  h1_title: Municipals 2019
   steps_h2: Passos
   step_h2: Pas
   steps: Per donar d'alta una candidatura ciutadana cal
-  featured: Obri el teu ajuntament a la ciutadania en aquestes eleccions municipals de maig 2015
-  open_council: Obri el teu ajuntament a la ciutadania i acudeix en aquestes eleccions municipals de maig 2015
+  featured: Obri el teu ajuntament a la ciutadania en aquestes eleccions municipals de maig 2019
+  open_council: Obri el teu ajuntament a la ciutadania i acudeix en aquestes eleccions municipals de maig 2019
   who_we_are: Qui som?
   who_h3: Comença per aquí
   intro_p1: és el fruit d'un esforç de finançament col·lectiu i d'un equip de treball que pretén obrir les organitzacions a la ciutadania. Entre aquestes organitzacions els ajuntaments hi ocupen un lloc destacat .
@@ -31,12 +31,12 @@ header:
     es_gl: Gallec
     es_es: Espanyol
 candidacy:
-  html_title: Municipals 2015 - Alta de candidatura ciutadana
+  html_title: Municipals 2019 - Alta de candidatura ciutadana
   h1_title: Registra't i registra el municipi de la candidatura
   verify_msg: Confirma el registre i les condicions enviant des del teu mòbil un SMS amb la paraula ACCEPTE al número %sms_inbound_number%, després fes clic a CONTINUAR
   verify_extra: El cost del missatge és d'uns 10 cèntims d'euro (o gratuït, depén del cost de la teua operadora) no és un sms premium i listabierta.org no cobra per aquest servei.
   step_conditions:
-    html_title: Municipals 2015 - Condicions d'alta de candidatura ciutadana
+    html_title: Municipals 2019 - Condicions d'alta de candidatura ciutadana
     h1_title: Registra't i registra el municipi de la candidatura
     p1_title: 'En iniciar el registre acceptes les condicions següents '
     p1_content: Que formes part un col·lectiu (partit polític, coalició de partits o agrupació d'electors) que desitja presentar-se als comicis municipals que se celebraran el 24 de maig de 2.015 i que per això tenen la intenció de registrar-se en termini i forma en la junta electoral provincial corresponent.
@@ -68,12 +68,12 @@ candidacy:
     phone_info: Caldra que confirmes amb un missatge en el següent pas. Si introdueixes un número incorrecte, no podràs continuar
     warning_text: '<b>Atenció:</b> és imprescindible que introdueixis les dades de registre de forma correcta, incloent el teu número de mòbil, un error en les dades de registre implica que una altra persona haurà de donar d''alta aquesta candidatura ciutadana. Si tens dubtes del procés, torna a veure el vídeo <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Obri les organitzacions a la ciutadania (Versió Curta)">aquí</a> . El sistema no admet candidatures "de prova".'
   step_verify:
-    html_title: Municipals 2015 - Alta de candidatura ciutadana
+    html_title: Municipals 2019 - Alta de candidatura ciutadana
     h1_title: Verifica el teu número de mòbil
     continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
   step2:
-    html_title: Municipals 2015 - Alta de candidatura ciutadana
+    html_title: Municipals 2019 - Alta de candidatura ciutadana
     h1_title: Estableix les condicions de la candidatura ciutadana
     p1: 'Puja en format PDF aquelles condicions que hagen d''acceptar els candidats o candidates (una, algunes, totes o cap) per a presentar-se a la candidatura ciutadana. Per exemple: El programa de la candidatura, les condicions legals i la veracitat de la informació aportada, el mandat revocatori i participatiu, el codi ètic, l''acceptació del cens i el sistema de vot, etc. Si no puges cap condició, et recomanem que busques algun mètode alternatiu per verificar que el candidat o candidata les complirà abans que siguen inclosos o incloses en les llistes. '
     program: El programa de la candidatura
@@ -86,7 +86,7 @@ candidacy:
     previous: Anterior
     example: Exemple
   step3:
-    html_title: Municipals 2015 - Alta de candidatura ciutadana
+    html_title: Municipals 2019 - Alta de candidatura ciutadana
     h1_title: Estableix els terminis de presentació de candidatures
     continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     explanation_date: Termini de presentació de candidatures <br/> (mínim 2 dies)
@@ -94,14 +94,14 @@ candidacy:
     to_label: FINS
     previous: Anterior
   step4:
-    html_title: Municipals 2015 - Alta de candidatura ciutadana
+    html_title: Municipals 2019 - Alta de candidatura ciutadana
     h1_title: Reserva una adreça d'internet
     continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
     choose_address: Tria la teua adreça d'internet
     warning: 'Si a l''espai en blanc escrius, per exemple: FuenteovejunaParticipa, les adreces associades a la teua candidatura seran del tipus: http://%host%/FuenteovejunaParticipa/...'
   step5:
-    html_title: Municipals 2015 - Alta de candidatura ciutadana
+    html_title: Municipals 2019 - Alta de candidatura ciutadana
     h1_title: Alta de candidats i candidates
     continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
@@ -110,7 +110,7 @@ candidacy:
     send_link: 'Hem enviat una còpia d''aquest enllaç al teu correu '
     next_step_explanation: En el pas següent podràs validar els candidats i candidates que es donen d'alta utilitzant l'enllaç anterior.
   step6:
-    html_title: Municipals 2015 - Alta de candidatura ciutadana
+    html_title: Municipals 2019 - Alta de candidatura ciutadana
     h1_title: Validació de candidats i candidates
     continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     no_candidates: En aquests moments no hi ha cap candidat inscrit per validar
@@ -128,19 +128,21 @@ candidacy:
     accept_candidate: Acceptar candidat
     reject_candidate: Rebutjar candidat
     delete_candidate: Esborrar candidat
+    access_admin_panel: ?
+    remember_access_admin: ?
   step7:
-    html_title: Municipals 2015 - Alta de candidatura ciutadana
+    html_title: Municipals 2019 - Alta de candidatura ciutadana
     h1_title: Inici i fi de les votacions
     days: Dies
     explanation: Introdueix el nombre de dies naturals que romandrà activa la votació de candidats des de l'inici de la votació (mínim dos dies).
     init_vote_explanation: Fes clic en el botó següent per a iniciar la votació
-    warning_explanation: ATENCIÓ!! Un cop iniciada la votació ja NO ES PODRAN AFEGIR més candidats o candidates. Es proporcionarà un enllaç que habilitarà el registre als votants i l'emissio del vot.
+    warning_explanation: '<span style="font-size:36px">ATENCIÓ!!</span> Un cop iniciada la votació ja NO ES PODRAN AFEGIR més candidats o candidates. Es proporcionarà un enllaç que habilitarà el registre als votants i l'emissio del vot.'
     start_candidacy: Iniciar la votació
     public_link: Aquest és l'enllaç a la votació que pots fer pública
     no_finished_candidacy: Encara no es pot  iniciar la votació ja que la data de finalització de les candidatures no ha acabat.
     sent_mail: Hem enviat una còpia d'aquest enllaç al teu correu
   step8:
-    html_title: Municipals 2015 - Alta de candidatura ciutadana
+    html_title: Municipals 2019 - Alta de candidatura ciutadana
     h1_title: Verificació del vot i resultats
     continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
@@ -165,7 +167,7 @@ candidacy:
     header_li4: El candidat o candidata elegit en quart lloc rep un quart de punt (¼) = 0,25 punts
     header_li5: El candidat o candidata elegit en cinquè lloc rep una cinquena part de punt (⅕) = 0,20 punts
   step9:
-    html_title: Municipals 2015 - Alta de candidatura ciutadana
+    html_title: Municipals 2019 - Alta de candidatura ciutadana
     h1_title: Presentació de les llistes electes
     continue: Inicia votació
     result: Resultats de la votació
@@ -178,7 +180,7 @@ candidacy:
     oldPassword: Contrasenya antiga
     newPassword: Contrasenya nova
 town:
-  html_title: Municipals 2015 - Vota en la candidatura ciutadana
+  html_title: Municipals 2019 - Vota en la candidatura ciutadana
   h1_title: Registra't com a votant
   verify_msg: Confirma el registre i les condicions enviant des del teu mòbil un SMS amb la paraula ACCEPTO al número %sms_inbound_number%, després fes clic a CONTINUAR
   verify_extra: El cost del missatge és d'uns 10 cèntims d'euro (o gratis, depèn del cost de la teva operadora) no és un sms premium i listabierta.org no cobra per aquest servei.
@@ -198,7 +200,7 @@ town:
     explanation: Explicació
     warning_text: '<b>Atenció:</b> és imprescindible que introdueixques les dades de registre de forma correcta, incloent-hi el teu número de mòbil, un error en les dades de registre implica que no podràs votar'
   step_verify:
-    html_title: Municipals 2015 - Registra't com a votant
+    html_title: Municipals 2019 - Registra't com a votant
     h1_title: Verifica el teu número de mòbil
     continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
@@ -208,7 +210,7 @@ town:
     verify_conditions_op3: La informació que aportes durant aquest registre és certa i la teva residència habitual es troba en el municipi objecte de la votació
   step2:
     header: Filtra candidats
-    html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 2
+    html_title: Municipals 2019 - Vota en la candidatura ciutadana - Pas 2
     filter_title: Quins criteris desitges utilitzar per seleccionar els candidats i candidates?
     filter_p1: Tin en compte que si no apliques cap filtre, t'apareixerà la totalitat de candidats i candidates que s'han presentat i pot resultar tediós veure tots els perfils i després puntuar-los, així que si tens alguna preferència clara marca-la, posteriorment podràs revisar les filtres.
     h1_title: Filtra candidats per nivell acadèmic
@@ -218,21 +220,21 @@ town:
     previous: Anterior
   step3:
     header: Seleciona experiència laboral
-    html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 3
+    html_title: Municipals 2019 - Vota en la candidatura ciutadana - Pas 3
     h1_title: Seleciona experiència laboral
     continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
     job_experience_title: Quin camp d'experiència laboral t'agradaria que hagués desenvolupat?
   step4:
     header: Selecciona activitats municipals
-    html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 4
+    html_title: Municipals 2019 - Vota en la candidatura ciutadana - Pas 4
     h1_title: Selecciona activitats municipals
     continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
     town_activities_title: Quina experiència relacionada amb l'exercici municipal t'agradaria que hagués desenvolupat?
   step5:
     header: Selecciona prioritats municipals
-    html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 5
+    html_title: Municipals 2019 - Vota en la candidatura ciutadana - Pas 5
     h1_title: Selecciona prioritats municipals
     continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
@@ -240,13 +242,13 @@ town:
     public_values_title: Quins valors morals consideres de major importància per a l'exercici de la funció pública?
   step6:
     header: Assigna importància
-    html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 6
+    html_title: Municipals 2019 - Vota en la candidatura ciutadana - Pas 6
     h1_title: Assigna importància
     continue: Veure candidats seleccionats <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
   step7_confirmation:
     header: Tria candidats
-    html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 7
+    html_title: Municipals 2019 - Vota en la candidatura ciutadana - Pas 7
     h1_title: Selecció prèvia de candidats
     continue: Veure candidats seleccionats <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Revisar criteris
@@ -255,20 +257,22 @@ town:
     candidates_of: candidats/es de
   step7:
     header: Tria candidats/es
-    html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 7
+    html_title: Municipals 2019 - Vota en la candidatura ciutadana - Pas 7
     h1_title: Tria candidats
     continue: VOTA <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
   step8:
     header: Assigna puntuacions
-    html_title: Municipals 2015 - Vota en la candidatura ciutadana - Pas 8
+    html_title: Municipals 2019 - Vota en la candidatura ciutadana - Pas 8
     h1_title: Assigna puntuacions
     continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
     congratulations: <strong><i class="mine-icon fa fa-check"></i> Enhorabona!</strong> El teu vot ha estat processat correctament
+    once_is_over: ?
+    
   step9:
     header: Fi
-    html_title: Municipals 2015 - Alta de candidatura ciutadana
+    html_title: Municipals 2019 - Alta de candidatura ciutadana
     h1_title: Fi
     previous: Anterior
     headline: Resultats públics de la votació
@@ -279,7 +283,7 @@ town:
     total_points: Total de punts
     position: Posició
 candidate:
-  html_title: Municipals 2015 - Alta de candidat
+  html_title: Municipals 2019 - Alta de candidat
   h1_title: Registra't com a candidat o candidata
   step1:
     header: Registra't com a candidat o candidata
@@ -295,7 +299,7 @@ candidate:
   verify_msg: Confirma el registre i les condicions enviant des del teu mòbil un SMS amb la paraula ACCEPTE al número %sms_inbound_number%, després clica en CONTINUAR
   verify_extra: El cost del missatge és d'uns 10 cèntims d'euro (o gratuït, depén del cost de la teua operadora) no és un SMS premium i listabierta.org no cobra per aquest servei.
   step_verify:
-    html_title: Municipals 2015 - Alta de candidat
+    html_title: Municipals 2019 - Alta de candidat
     h1_title: Verifica el teu número de mòbil
     continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Anterior
@@ -393,6 +397,13 @@ mail:
   sms_inbound_verification:
     your_phone: El teu telèfon
     verify: ha estat verificat correctament
+  vote_finished:
+    hello: ?
+    your_vote: ?
+    seal_timestamp: ?
+    string_seal: ?
+    once_the_voting_over: ?
+       
 panel_admin:
   index:
     header: Panell Admin
@@ -411,6 +422,7 @@ panel_admin:
     validate_candidates: Validar candidats/es
     set_vote_days: Establir nombre de dies <br /> de la votació (termini de votació)
     see_internal_results: Veure resultats interns <br /> de la votació
+    see_link_to_vote: ?
     see_public_results: Veure enllaç de resultats públics <br /> de la votació
     verify_msg: Confirma el teu compte d'administrador enviant des del teu mòbil un SMS amb la paraula ACCEPTO al número %sms_inbound_number%, després <a href="#" onclick="javascript:window.location.reload()">actualitza/recàrrega</a> aquesta pàgina
   modify_personal_data:

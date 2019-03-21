@@ -11,7 +11,7 @@
         <!-- START THE FEATURETTES -->
 
         <!--    division -->
-        
+
         <div class="headline">
           <h2>{{ 'home.step_h2'|trans }} 8</h2>
         </div>
@@ -35,24 +35,24 @@
                   		{{ 'candidacy.step8.h1_title'|trans }}
                       </h2>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-md-offset-1 col-md-10 well">
 
 	                        <p class="lead2 text-center">
-	 
+
 		                        <div class="entry">
-		                        
+
 									<p>
 										{{ 'candidacy.step8.header_p1'|trans }}.
 									</p>
-								
+
 									<h3>{{ 'candidacy.step8.header_p1_h3'|trans }}</h3>
-										
+
 									<p>
 										{{ 'candidacy.step8.header_p2'|trans }}:
 									</p>
-										
+
 									<p>
 										<ul>
 											<li>{{ 'candidacy.step8.header_li0'|trans({ '%points%' : '%.2f'|format(borda_points[0]) }) }}</li>
@@ -68,35 +68,35 @@
 											<li>{{ 'candidacy.step8.header_li10'|trans({ '%points%' : '%.2f'|format(borda_points[10]) }) }}</li>
 										</ul>
 									</p>
-		
+
 								</div>
-	
+
 	                        </p>
                         </div>
                     </div>
-                        
+
                         {% if candidacy_finished %}
-                        
+
                         	<div class="row">
 		                      <h2 class="col-md-8 col-sm-offset-2 text-center">
 		                  		{{ 'candidacy.step8.vote_finished'|trans }}
 		                      </h2>
 		                    </div>
-                    
+
 	                        <div class="row">
 		                      <div class="col-md-offset-1 col-md-10 well">
-		
+
 		                        <p class="lead2 text-center">
-		                        
+
 			                        <div class="entry">
 									  {#
 										{{ 'candidacy.step8.audit'|trans }}: <a href="{{ path('town_candidacy_download_csv', {'address' : address })  }}" title="{{ 'town.step9.download_csv'|trans }}">{{ 'town.step9.download_csv'|trans }}</a>
 										<br />
-										<a href="https://www.tractis.com/home/webservices/tsa" 
+										<a href="https://www.tractis.com/home/webservices/tsa"
 										title="{{ 'candidacy.step8.how_works_tsa'|trans }}">{{ 'candidacy.step8.how_works_tsa'|trans }}</a>
 										#}
 										<table class="table">
-										
+
 											<thead>
 												<tr>
 													<td class="center">{{ 'candidacy.step8.photo'|trans }}</td>
@@ -107,11 +107,11 @@
 													<td class="center">{{ 'candidacy.step8.position'|trans }}</td>
 												</tr>
 											</thead>
-											
+
 											<tbody>
 												<tr>
 													{% if candidates|length > 0 %}
-									
+
 														{% for candidate in candidates %}
 														<tr>
 															<td><img style="width:45px;height:45px" src="{{ app.request.server.get('HTTP_ORIGIN') }}/{{ documents_path }}{{ candidate.id }}/photo/photo.jpg" /></td>
@@ -125,50 +125,64 @@
 													{% endif %}
 												</tr>
 											</tbody>
-										
+
 										</table>
-										
-										
-			
+
+
+
 									</div>
-		
+
 		                        </p>
 		                      </div>
 		                    </div>
                         {% else %}
                         	<div class="row alert alert-warning col-sm-offset-1 col-md-10">
-                        		
+
 	                        		<h2 class="col-md-8 col-sm-offset-2 text-center">
-				                  		{{ 'candidacy.step8.vote_not_finished_warning'|trans }}. 
+				                  		{{ 'candidacy.step8.vote_not_finished_warning'|trans }}.
 				                    </h2>
-				                     
+
 				                    <p class="col-md-8 col-sm-offset-2 text-center">
 				                    	{{ 'candidacy.step8.vote_start_date'|trans }}: {{ vote_start_date|date('d-m-Y') }}<br/>
 				                    	{{ 'candidacy.step8.vote_end_date'|trans }}: {{ vote_end_date|date('d-m-Y') }}
 				                    </p>
-		                      
+
 		                    </div>
+
+		                    <div class="row">
+                                <div class="col-md-12 col-sm-offset-0 text-center">
+                                    <button class="submit btn btn-success btn-next"
+                                        onclick="location.href='{{ path('login') }}'; return false;">
+                                                 {{ 'candidacy.step6.access_admin_panel'|trans|raw }}
+                                    </button>
+                                </div>
+                                <div class="col-md-12 col-sm-offset-0 text-center">
+                                    {{ 'candidacy.step6.remember_access_admin'|trans|raw }}:<br />
+                                    <a href="{{ path('login') }}">{{ app.request.server.get('HTTP_ORIGIN') }}/{{ path('login') }}</a>
+                                    <br/>
+                                </div>
+                            </div>
                         {% endif %}
 
-	                
+
 	                    <hr>
 		                <div class="wizard-actions">
-		
+
 						  <button class="submit btn btn-success btn-next" onclick="location.href='{{ path('municipales_candidacy_step7') }}'; return false;">
 							     {{ 'candidacy.step8.previous'|trans|raw }}
 						  </button>
-						  
-						  {% if candidacy_finished %} 
+
+						  {% if candidacy_finished %}
 						 	 <button class="submit btn btn-success btn-next" onclick="location.href='{{ path('municipales_candidacy_step9') }}'; return false;">
 								     {{ 'candidacy.step8.continue'|trans|raw }}
 							 </button>
 		           		  {% endif %}
 
 		                </div>
-                    
+
                   </div>
                 </div>
-	            
+
               </div>
               <!-- /.widget-main --> </div>
             <!-- /.widget-body --> </div>
