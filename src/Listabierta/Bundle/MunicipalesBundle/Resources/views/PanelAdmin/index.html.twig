@@ -202,7 +202,7 @@
 							  {% if not admin.address is empty %}
 							      <div class="span12 col-md-12">
 							        {# @todo put link in this button #}
-                                    <button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('municipales_candidacy_step8') }}#'; return false;">
+                                    <button class="btn btn-prev" style="width:450px;height:70px;padding: 0 15px;font-size:18px" onclick="location.href='{{ path('town_candidacy_vote_step1', {'address' : admin.address }) }}#'; return false;">
                                         <i class="mine-icon fa fa-key fa-fw"></i>
                                         {{ 'panel_admin.index.see_link_to_vote'|trans|raw }}
                                     </button>
