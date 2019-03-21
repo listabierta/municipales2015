@@ -268,6 +268,7 @@ town:
     continue: Jarraitu <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Aurrekoa
     congratulations: <strong><i class="mine-icon fa fa-check"></i> Zorionak!</strong> Zure botoa zuzen prozesatu da
+    once_is_over: ?
   step9:
     header: Amaiera
     html_title: Udal-hauteskundeak 2015 - Hiri-hautagaitzaren alta

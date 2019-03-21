@@ -411,6 +411,7 @@ town:
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         previous: Anterior 
         congratulations: <strong><i class="mine-icon fa fa-check"></i> ¡Enhorabuena!</strong> Tu voto ha sido procesado correctamente 
+        once_is_over: Una vez terminada la votación recibirás en tu correo electrónico; el sello que verifica que tu voto ha sido emitido y cuantificado, y un enlace al resultado de la votación verificable de forma externa.
         
     step9:
         header: Fin

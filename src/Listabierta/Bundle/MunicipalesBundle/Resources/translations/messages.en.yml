@@ -268,6 +268,8 @@ town:
     continue: Carry Over <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
     previous: Previous
     congratulations: <strong><i class="mine-icon fa fa-check"></i> Congratulations!</strong> Your vote has been successfully processed
+    once_is_over: Once the voting is over, you will receive in your email; the seal that verifies that your vote has been issued and quantified, and a link to the verifiable result of the vote externally.
+        
   step9:
     header: End
     html_title: Municipal 2015 - Top of citizen candidacy
