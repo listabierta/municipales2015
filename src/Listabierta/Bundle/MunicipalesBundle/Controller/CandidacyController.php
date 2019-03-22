@@ -1650,6 +1650,7 @@ class CandidacyController extends Controller
                                         'MunicipalesBundle:Mail:voting_results_published.html.twig',
                                         array(
                                             'name' => $voter->getName(),
+                                            'voting_name' => $admin_candidacy->getAddress(),
                                             'ethereum_voting_smart_contract_address' =>$admin_candidacy->getEthereumResultsAddress(),
                                             'twenty_first_characters_of_hash_of_voter' => $hashed_voter_name,
                                             'voter_phone_number' => $voter->getPhone(),
