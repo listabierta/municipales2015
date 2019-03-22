@@ -37,8 +37,15 @@ You can load the base fixtures with:
 
 If you need the raw SQL queries you can load with the following commands:
 
+``cli
+    $ mysql listabierta -e "drop table autonomous_communities_spain"
+    $ mysql listabierta -e "drop table provinces_spain"
+    $ mysql listabierta -e "drop table municipalities_spain"
+
+    $ cat src/Listabierta/Bundle/MunicipalesBundle/Resources/fixtures/autonomous_communities_spain.sql | mysql listabierta
     $ cat src/Listabierta/Bundle/MunicipalesBundle/Resources/fixtures/provinces_spain.sql | mysql listabierta
     $ cat src/Listabierta/Bundle/MunicipalesBundle/Resources/fixtures/municipalities_spain.sql | mysql listabierta
+``
 
 == Third parties ==
 
