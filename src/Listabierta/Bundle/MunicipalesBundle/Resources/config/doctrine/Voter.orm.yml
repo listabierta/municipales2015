@@ -62,7 +62,7 @@ Listabierta\Bundle\MunicipalesBundle\Entity\Voter:
             nullable: TRUE   
             
         vote_ip:
-            type: long
+            type: integer
             nullable: TRUE   
         
         vote_info:
