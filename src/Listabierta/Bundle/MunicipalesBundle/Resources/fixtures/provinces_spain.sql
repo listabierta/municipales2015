@@ -3,7 +3,7 @@
  * 14-03-2015
  * Source: http://www.ine.es/daco/daco42/codmun/cod_provincia.htm
  */
-
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 CREATE TABLE IF NOT EXISTS `provinces_spain` (
   `id` int(11) NOT NULL,
   `community_id` tinyint(4) default NULL,
@@ -66,5 +66,6 @@ INSERT INTO `provinces_spain` (`id`, `community_id`, `name`) VALUES
 (51, 18, 'Ceuta'),
 (52, 19, 'Melilla');
 
-ALTER TABLE `provinces_spain` ADD CONSTRAINT `provinces_spain_ibfk_1` FOREIGN KEY (`community_id`) 
+ALTER TABLE `provinces_spain` ADD CONSTRAINT `provinces_spain_ibfk_1` FOREIGN KEY (`community_id`)
 REFERENCES `autonomous_communities_spain` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
