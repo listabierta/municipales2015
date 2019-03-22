@@ -1,0 +1,7 @@
+{{ 'mail.voting_results_published.hello'|trans }} <b>{{ name }}</b>,<br />
+<br />
+{{ 'mail.voting_results_published.vote_finished_p1'|trans|raw }}. <b> <a href="https://rinkeby.etherscan.io/address/0x9324cfe70a0d49441c874d3020ce775286634f34#readContract">aqui</a> </b><br />
+<br />
+{{ 'mail.voting_results_published.vote_finished_p2'|trans }}: <b>{{twenty_first_characters_of_hash_of_voter}}</b><br />
+{{ 'mail.voting_results_published.vote_finished_p3'|trans }}: <b>{{voter_phone_number}} {{ voter_phone_confirmation_date }}</b><br />
+{{ 'mail.voting_results_published.vote_finished_p4'|trans|raw }}: <b>{{voter_email_and_phone_verification_time_string_to_hash}}</b><br />

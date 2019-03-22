@@ -584,7 +584,14 @@ mail:
 
     candidate_signup:
         new: Se ha registrado un nuevo candidato con nombre
-    
+
+    voting_results_published:
+        hello: Hola
+        vote_finished_p1: Tu las resultados de la votacion han sido publicados. Puedes verificar tu voto en la base de datos publica y immutable de Ethereum. El contrato con las resultados se encuantra aqui
+        vote_finished_p2: Tu identificacion como votante en las resultados publicos es esta combinacion de 20 letras unicos
+        vote_finished_p3: Estos 20 letras son los primeros 20 characteres del  hash (el sello digital) de tu correo electronico + el tiempo de confirmacion de tu numero movil
+        vote_finished_p4: puedes reproducir este sello de tus credenciales con cualquier generador de hashes, por ejemplo  <a href="https://www.xorbin.com/tools/sha256-hash-calculator">este</a> calculando el hash del texto
+
     sms_inbound_verification:
         your_phone: Tu teléfono
         verify: ha sido verificado correctamente
