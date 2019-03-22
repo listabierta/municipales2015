@@ -1606,7 +1606,7 @@ class CandidacyController extends Controller
                     $post_data['user_ids_used_for_votes_points'] = $user_ids_used_for_vote_voted_points;
                     $post_data['unique_candidate_ids'] = $unique_candidate_ids;
                     $post_data['unique_candidate_names'] = $unique_candidate_names;
-                    $post_data['voting_name'] = $admin_candidacy->getAddress();;
+                    $post_data['voting_name'] = $admin_candidacy->getAddress();
 
 
                     $content = json_encode($post_data);
@@ -1628,10 +1628,41 @@ class CandidacyController extends Controller
                         $entity_manager->persist($admin_candidacy);
                         $entity_manager->flush();
 
+                        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+                        $message_subject = 'El resultado de la votacion' . $admin_candidacy->getAddress();
+                        $message_subject = $message_subject . 'ha sido publicado';
+                        foreach($voters as $voter) {
+
+                            $phones_verified = $phone_verified_repository->findBy(array('phone' => $voter->getPhone()));
+                            $date_with_hour_and_minute_of_phone_verification = date('m/d/Y/h:i', $phones_verified[0]->getTimestamp());
+                            $full_string_to_hash = "";
+                            $full_string_to_hash .= $voter->getEmail();
+                            $full_string_to_hash .= $date_with_hour_and_minute_of_phone_verification;
+                            $hashed_voter_name = hash('sha256', $full_string_to_hash);
+                            // we only keep the first 20 characters (to be ethereum bytes32 compatible)
+                            $hashed_voter_name = substr($hashed_voter_name, 0, 20);
+                            $message = \Swift_Message::newInstance()
+                                ->setSubject($message_subject)
+                                ->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
+                                ->setTo($voter->getEmail())
+                                ->setBody(
+                                    $this->renderView(
+                                        'MunicipalesBundle:Mail:voting_results_published.html.twig',
+                                        array(
+                                            'name' => $voter->getName(),
+                                            'ethereum_voting_smart_contract_address' =>$admin_candidacy->getEthereumResultsAddress(),
+                                            'twenty_first_characters_of_hash_of_voter' => $hashed_voter_name,
+                                            'voter_phone_number' => $voter->getPhone(),
+                                            'voter_phone_confirmation_date' => $date_with_hour_and_minute_of_phone_verification,
+                                            'voter_email_and_phone_verification_time_string_to_hash' => $full_string_to_hash
+                                        )
+                                    ), 'text/html'
+                                );
+                            $this->get('mailer')->send($message);
+                        }
+
                     }
                 }
-
-
 
             }
             else{
