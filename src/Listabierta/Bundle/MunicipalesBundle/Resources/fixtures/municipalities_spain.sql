@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `municipalities_spain` (
   `province_id` int(11) NOT NULL,
   `code` int(11) NOT NULL,
   `dc` int(11) NOT NULL,
-  `name` varchar(45) default NULL,
+  `name` varchar(85) default NULL,
   PRIMARY KEY  (`id`),
   KEY `fk_municipalities_spain1` (`province_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8119 ;
