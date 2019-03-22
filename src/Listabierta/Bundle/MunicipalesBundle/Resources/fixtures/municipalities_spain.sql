@@ -1,11 +1,11 @@
 /**
  * Municipalities Spain
  * 15-03-2015
- * Source: 
+ * Source:
  *  http://www.ine.es/daco/daco42/codmun/codmun15/15codmun.xls
  *	http://www.ine.es/daco/daco42/codmun/codmunmapa.htm
  */
- 
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 CREATE TABLE IF NOT EXISTS `municipalities_spain` (
   `id` int(11) NOT NULL auto_increment,
   `province_id` int(11) NOT NULL,
@@ -8138,3 +8138,4 @@ INSERT INTO `municipalities_spain` VALUES(8118,52,1,8,'Melilla');
 
 -- ALTER TABLE `municipalities_spain`
 --  ADD CONSTRAINT `municipalities_spain_ibfk_1` FOREIGN KEY (`province_id`) REFERENCES `provinces_spain` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

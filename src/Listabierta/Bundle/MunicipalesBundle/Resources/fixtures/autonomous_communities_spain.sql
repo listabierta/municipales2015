@@ -3,7 +3,7 @@
  * 14-03-2015
  * Source: http://www.ine.es/daco/daco42/codmun/cod_ccaa.htm
  */
-
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 CREATE TABLE IF NOT EXISTS `autonomous_communities_spain` (
   `id` tinyint(4) NOT NULL,
   `name` varchar(100) NOT NULL,
@@ -30,3 +30,4 @@ INSERT INTO `autonomous_communities_spain` (`id`, `name`) VALUES
 (17, 'Rioja, La'),
 (18, 'Ceuta'),
 (19, 'Melilla');
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
