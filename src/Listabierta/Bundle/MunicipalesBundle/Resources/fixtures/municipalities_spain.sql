@@ -8135,7 +8135,6 @@ INSERT INTO `municipalities_spain` VALUES(8115,50,297,3,'Zaragoza');
 INSERT INTO `municipalities_spain` VALUES(8116,50,298,9,'Zuera');
 INSERT INTO `municipalities_spain` VALUES(8117,51,1,3,'Ceuta');
 INSERT INTO `municipalities_spain` VALUES(8118,52,1,8,'Melilla');
-
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 -- ALTER TABLE `municipalities_spain`
 --  ADD CONSTRAINT `municipalities_spain_ibfk_1` FOREIGN KEY (`province_id`) REFERENCES `provinces_spain` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
