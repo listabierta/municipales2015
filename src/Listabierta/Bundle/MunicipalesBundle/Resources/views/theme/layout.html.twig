@@ -6,26 +6,26 @@
 		    <meta content="IE=edge" http-equiv="X-UA-Compatible">
 		    <meta content="width=device-width, initial-scale=1" name="viewport">
 		    <link href="{{ asset('favicon.png') }}" rel="icon">
-		    
+
 		    <!-- Bootstrap core CSS -->
 			<link rel="stylesheet" href="{{ asset('bundles/municipales/css/bootstrap.min.css') }}">
-			
+
 			<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 			<!--[if lt IE 9]>
 			<script src="{{ asset('bundles/municipales/js/ie8-responsive-file-warning.js') }}"></script>
 			<![endif]-->
 			<script src="{{ asset('bundles/municipales/js/ie-emulation-modes-warning.js') }}"></script>
-			
+
 			<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 			<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 			<![endif]-->
-			
+
 			<!-- Custom styles for this template -->
-			<link href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400" rel="stylesheet">
-			<link href="http://fonts.googleapis.com/css?family=Oswald:700,300,400" rel="stylesheet">
-			 
+			<link href="https://fonts.googleapis.com/css?family=Open+Sans:700,300,400" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Oswald:700,300,400" rel="stylesheet">
+
 			<link href="{{ asset('bundles/municipales/css/font-awesome.min.css') }}" rel="stylesheet">
 			<link href="{{ asset('bundles/municipales/css/animate.css') }}" rel="stylesheet">
 			<link href="{{ asset('bundles/municipales/css/form-elements.css') }}" rel="stylesheet">
@@ -33,23 +33,23 @@
 			<link href="{{ asset('bundles/municipales/css/media-queries.css') }}" rel="stylesheet">
 			<link rel="stylesheet" href="{{ asset('bundles/municipales/css/carousel.css') }}">
 			<link rel="stylesheet" href="{{ asset('bundles/municipales/css/base.css') }}">
-			
+
 			<!-- Bootstrap Form Helpers -->
 			<link href="{{ asset('bundles/municipales/css/bootstrap-formhelpers.min.css') }}" rel="stylesheet">
-		    
-		    
+
+
             <link rel="stylesheet" href="{{ asset('bundles/municipales/css/styles.css') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/municipales/css/colorbox.css') }}" />
-            
+
             <title>{% block title %}{% endblock %}</title>
         {% endblock %}
     </head>
     <body class="{% block bodyclass %}{% endblock %}">
-    
+
     	<div class="wrapper">
   			<div class="navbar-wrapper2">
     			<div class="container-fluid">
-    			
+
       				<nav class="navbar navbar-inverse2 navbar-fixed-top">
        			 		<div class="container">
           					<div class="navbar-header">
@@ -68,18 +68,18 @@
           					</div>
 							{% if app.request.locale == 'es_es' %}
 								{% set js_locale = 'es_ES' %}
-							{% elseif app.request.locale == 'es_gl' %}	
+							{% elseif app.request.locale == 'es_gl' %}
 								{% set js_locale = 'gl_ES' %}
-							{% elseif app.request.locale == 'es_ca' %}	
+							{% elseif app.request.locale == 'es_ca' %}
 								{% set js_locale = 'ca_ES' %}
-							{% elseif app.request.locale == 'es_eu' %}	
+							{% elseif app.request.locale == 'es_eu' %}
 								{% set js_locale = 'eu_ES' %}
-							{% elseif app.request.locale == 'en' %}	
+							{% elseif app.request.locale == 'en' %}
 								{% set js_locale = 'en' %}
-							{% else %}		
+							{% else %}
 								{% set js_locale = 'es_ES' %}
 							{% endif %}
-							
+
           					<div class="bfh-selectbox bfh-languages pull-right" data-language="{{ js_locale }}" data-available="es_ES,gl_ES,ca_ES,eu_ES,en" data-flags="false" data-blank="false"></div>
 
           					<div class="col-sm-2 header-social pull-right">
@@ -96,14 +96,14 @@
 									  <li{% if app.request.locale == 'es_es' %} class="selected"{% endif %}><a href="{{ path(app.request.get('_route'), app.request.get('_route_params', [])|merge({'_locale': 'es_es'})) }}"><img class="flag" src="{{ asset('bundles/municipales/images/es_es.png') }}" title="{{ 'header.languages.es_es'|trans }}" alt="{{ 'header.languages.es_es'|trans }}" />{{ 'header.languages.es_es'|trans }}</a></li>
 									</ul>
 					    	    </div>
-					    	   #} 
+					    	   #}
 
 			         </div>
 			      </nav>
-		
+
 		    	</div>
 		  </div>
-		 
+
           {% block content %}{% endblock %}
 
         <div class="footer-wrapper">
@@ -111,11 +111,11 @@
 		          <div class="container">
 		              <div class="row">
 		                  <div class="col-sm-4 footer-copyright">
-		                        &copy; {{ 'now'|date('Y') }} ListaAbierta is licensed under a Creative Commons Reconocimiento 3.0 Espa&ntilde;a License. 
+		                        &copy; {{ 'now'|date('Y') }} ListaAbierta is licensed under a Creative Commons Reconocimiento 3.0 Espa&ntilde;a License.
 								{# Creado a partir de la obra en  <a href="#">www.participa.info</a><div class=""></div> #}
 								<br />
 		                  </div>
-		                  
+
 		                  <div class="col-sm-2 footer-social pull-right">
 							  <a href="https://github.com/listabierta/municipales2015"><i class="fa fa-github"></i></a>
 							  <a href="https://www.facebook.com/listAbierta"><i class="fa fa-facebook"></i></a>
@@ -126,7 +126,7 @@
 
 
 						  </div>
-						  
+
 						  <div class="col-sm-4 pull-right center">
 							  	{{ 'footer.donate'|trans }}
 						  </div>
@@ -135,7 +135,7 @@
 		    </div>
 		</div>
 		<!-- /.container -->
-  
+
         <!-- Bootstrap core JavaScript
 	    ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
@@ -143,14 +143,14 @@
 		<script src="{{ asset('bundles/municipales/js/bootstrap.min.js') }}"></script>
 		<!-- Bootstrap Form Helpers -->
 		<script src="{{ asset('bundles/municipales/js/bootstrap-formhelpers.min.js') }}"></script>
-		
+
 		<script src="{{ asset('bundles/municipales/js/jquery.colorbox-min.js') }}" /></script>
 		<script>
-		$( document ).ready(function() 
+		$( document ).ready(function()
 		{
-			$('.bfh-selectbox-options li a').click(function() 
+			$('.bfh-selectbox-options li a').click(function()
 			{
-				  //console.log($(this).data('option')); 
+				  //console.log($(this).data('option'));
 				  var path = '{{ path(app.request.get('_route'), app.request.get('_route_params', [])) }}';
 				  //console.log(path)
 				  window.location.href=path + '?_locale=' + $(this).data('option')
@@ -161,12 +161,12 @@
 			    $(this).text($(this).text().replace(' (Spain)',''))
 			    $(this).text($(this).text().replace('Euskara','Euskera'))
 			});
-			
+
 			$('.bfh-selectbox-option').text($('.bfh-selectbox-option').text().replace(' (Spain)',''))
 			$('.bfh-selectbox-option').text($('.bfh-selectbox-option').text().replace('Euskara','Euskera'))
 		});
 		</script>
-		{% block appjsinline %}{% endblock %}							
+		{% block appjsinline %}{% endblock %}
 	 </div> <!-- div final -->
     </body>
 </html>
