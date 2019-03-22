@@ -59,7 +59,11 @@ Listabierta\Bundle\MunicipalesBundle\Entity\Voter:
         
         public_values:
             type: array
-            nullable: TRUE     
+            nullable: TRUE   
+            
+        vote_ip:
+            type: integer
+            nullable: TRUE   
         
         vote_info:
             type: array

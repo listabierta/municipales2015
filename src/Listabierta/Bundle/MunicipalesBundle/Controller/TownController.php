@@ -30,20 +30,20 @@ use Listabierta\Bundle\MunicipalesBundle\Lib\tractis\SymfonyTractisApi;
 class TownController extends Controller
 {
 	const MAX_AVAILABLE_CANDIDATES = 5;
-	
+
 	public function indexAction(Request $request = NULL)
 	{
 		$this->step1Action($request);
 	}
-	
+
 	private function verifyAdminAddress($address)
 	{
 		$entity_manager = $this->getDoctrine()->getManager();
-		
+
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
-		
+
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
-		
+
 		if(empty($admin_candidacy) || $admin_candidacy == NULL || empty($address))
 		{
 			return $this->render('MunicipalesBundle:Candidate:step1_unknown.html.twig', array(
@@ -51,12 +51,12 @@ class TownController extends Controller
 			));
 		}
 	}
-	
+
 	public function vote1Action($address = NULL, Request $request = NULL)
 	{
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
-		
+
 		$result = $this->verifyAdminAddress($address);
 
 		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
@@ -66,25 +66,25 @@ class TownController extends Controller
 
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
-		
+
 		$town = $admin_candidacy->getTown();
-		
+
 		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
 		$town_name = $province_repository->getMunicipalityName($town);
-		
+
 		$admin_id = $admin_candidacy->getId();
-		
+
 		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
-			
+
 		$candidates = $candidate_repository->findBy(array('admin_id' => $admin_id));
-		
+
 		if(empty($candidates))
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'No se puede iniciar la votación ya que aún no existen candidatos en esta candidatura',
 			));
 		}
-		
+
 		// Filter only candidates accepted
 		$valid_candidates = array();
 		foreach($candidates as $candidate)
@@ -94,38 +94,38 @@ class TownController extends Controller
 				$valid_candidates[] = $candidate;
 			}
 		}
-		
+
 		if(count($valid_candidates) < 1)
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'Error: No se puede iniciar la votación si no existe al menos un candidato habilitado para ser votado',
 			));
 		}
-		
+
 		$candidacy_to_date = $admin_candidacy->getTodate();
-		 
+
 		if(empty($candidacy_to_date))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
 			));
 		}
-		 
+
 		$candidacy_total_days = $admin_candidacy->getTotalDays();
-		 
+
 		if(empty($candidacy_total_days))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
 			));
 		}
-		 
+
 		$now = new \Datetime('NOW');
-		
+
 		// Candidacy is finished, we can show the results
 		$candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
 		$vote_end_date = $candidaty_to_date_timestamp + $candidacy_total_days * 24 * 3600;
-		
+
 		if($now->getTimestamp() - $vote_end_date > 0)
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
@@ -136,7 +136,7 @@ class TownController extends Controller
 		{
 			//echo 'Now: ' . date('d-m-Y h:i:s', $now->getTimestamp()) . '<br />';
 			//echo 'To DATE: ' . date('d-m-Y h:i:s', $candidaty_to_date_timestamp) . '<br />';
-			
+
 			if($now->getTimestamp() - $candidaty_to_date_timestamp < 0)
 			{
 				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
@@ -146,15 +146,15 @@ class TownController extends Controller
 				));
 			}
 		}
-		
+
 		$form = $this->createForm(new TownStep1Type(), NULL, array(
 				'action' => $this->generateUrl('town_candidacy_vote_step1', array('address' => $address)),
 				'method' => 'POST',
 			)
 		);
-		 
+
 		$form->handleRequest($request);
-		
+
 		$ok = TRUE;
 		if ($form->isValid())
 		{
@@ -167,80 +167,80 @@ class TownController extends Controller
 			*/
 			$email    = $form['email']->getData();
 			$phone    = $form['phone']->getData();
-			
+
 			$entity_manager = $this->getDoctrine()->getManager();
 			$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
-			
+
 			/*
 			$voter_username = $voter_repository->findOneBy(array('username' => $username));
-			 
+
 			if(!empty($voter_username))
 			{
 				$form->addError(new FormError('Ya existe un usuario votante registrado con el nombre de usuario ' . $username));
 				$ok = FALSE;
 			}
 			*/
-			
+
 			$voter_dni = $voter_repository->findOneBy(array('dni' => $dni));
-			
+
 			if(!empty($voter_dni))
 			{
 				$form->addError(new FormError('Ya existe un usuario votante registrado con el dni ' . $dni));
 				$ok = FALSE;
 			}
-			
+
 			$voter_email = $voter_repository->findOneBy(array('email' => $email));
-			 
+
 			if(!empty($voter_email))
 			{
 				$form->addError(new FormError('Ya existe un usuario votante registrado con el email ' . $email));
 				$ok = FALSE;
 			}
-			
+
 			$voter_phone = $voter_repository->findOneBy(array('phone' => $phone));
-			 
+
 			if(!empty($voter_phone))
 			{
 				$form->addError(new FormError('Ya existe un usuario registrado con el teléfono ' . $phone));
 				$ok = FALSE;
 			}
-			
+
 			if($ok)
 			{
 				$entity_manager = $this->getDoctrine()->getManager();
-				 
+
 				// Store info in database AdminCandidacy
 				$voter = new Voter();
 				$voter->setName($name);
 				$voter->setLastname($lastname);
 				$voter->setDni($dni);
-				
+
 				/*
 				$voter->setUsername($username);
-				 
+
 				$factory = $this->get('security.encoder_factory');
 				$encoder = $factory->getEncoder($voter);
 				$encodedPassword = $encoder->encodePassword($password, $voter->getSalt());
-			
+
 				$voter->setPassword($encodedPassword);
 				*/
 				$voter->setEmail($email);
 				$voter->setPhone($phone);
 				$voter->setAdminId($admin_id);
-				 
+
 				$entity_manager->persist($voter);
 				$entity_manager->flush();
-				 
+
 				// Store email and phone in database as pending PhoneVerified without timestamp
 				$phone_verified = new PhoneVerified();
 				$phone_verified->setPhone($phone);
 				$phone_verified->setEmail($email);
 				$phone_verified->setTimestamp(0);
 				$phone_verified->setMode(PhoneVerified::MODE_VOTER);
-			
+
 				$entity_manager->persist($phone_verified);
 				$entity_manager->flush();
-			
+
 				$session->set('voter_id', $voter->getId());
 				$session->set('voter_name', $name);
 				$session->set('voter_lastname', $lastname);
@@ -252,9 +252,9 @@ class TownController extends Controller
 						'action' => $this->generateUrl('town_candidacy_step_verify', array('address' => $address)),
 						'method' => 'POST',
 				));
-				 
+
 				$form2->handleRequest($request);
-				 
+
 				return $this->render('MunicipalesBundle:Town:step_verify.html.twig', array(
 						'form' => $form2->createView(),
 						'address' => $address,
@@ -264,14 +264,14 @@ class TownController extends Controller
 		}
 
 		$enable_geolocation = isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == 'primarias.ahorasevilla.org';
-		
+
 		if($enable_geolocation)
 		{
 			//http://maps.googleapis.com/maps/api/geocode/json?latlng=37.3753708,-5.9550583&sensor=true
 		}
-		
+
 		return $this->render('MunicipalesBundle:Town:step1.html.twig', array(
-				'town' => $town_name, 
+				'town' => $town_name,
 				'form' => $form->createView(),
 				'errors' => $form->getErrors(),
 				'address' => $address,
@@ -292,27 +292,27 @@ class TownController extends Controller
 		{
 			return $result;
 		}
-		
+
 		$session = $this->getRequest()->getSession();
-	
+
 		$entity_manager = $this->getDoctrine()->getManager();
 
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
-		
+
 		$admin_id = $admin_candidacy->getId();
-		
+
 		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
-			
+
 		$candidates = $candidate_repository->findBy(array('admin_id' => $admin_id));
-		
+
 		if(empty($candidates))
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'No se puede iniciar la votación ya que aún no existen candidatos en esta candidatura',
 			));
 		}
-		
+
 		// Filter only candidates accepted
 		$valid_candidates = array();
 		foreach($candidates as $candidate)
@@ -322,7 +322,7 @@ class TownController extends Controller
 				$valid_candidates[] = $candidate;
 			}
 		}
-		
+
 		if(count($valid_candidates) < 1)
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
@@ -331,29 +331,29 @@ class TownController extends Controller
 		}
 
 		$candidacy_to_date = $admin_candidacy->getTodate();
-			
+
 		if(empty($candidacy_to_date))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
 			));
 		}
-			
+
 		$candidacy_total_days = $admin_candidacy->getTotalDays();
-			
+
 		if(empty($candidacy_total_days))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
 			));
 		}
-			
+
 		$now = new \Datetime('NOW');
-		
+
 		// Candidacy is finished, we can show the results
 		$candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
 		$vote_end_date = $candidaty_to_date_timestamp + $candidacy_total_days * 24 * 3600;
-		
+
 		if($now->getTimestamp() - $vote_end_date > 0)
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
@@ -364,7 +364,7 @@ class TownController extends Controller
 		{
 			//echo 'Now: ' . date('d-m-Y h:i:s', $now->getTimestamp()) . '<br />';
 			//echo 'To DATE: ' . date('d-m-Y h:i:s', $candidaty_to_date_timestamp) . '<br />';
-				
+
 			if($now->getTimestamp() - $candidaty_to_date_timestamp < 0)
 			{
 				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
@@ -374,56 +374,56 @@ class TownController extends Controller
 				));
 			}
 		}
-		
+
 		$form = $this->createForm(new TownStepVerifyType(), NULL, array(
 				'action' => $this->generateUrl('town_candidacy_step_verify', array('address' => $address)),
 				'method' => 'POST',
 		)
 		);
-		
+
 		$form->handleRequest($request);
-		
+
 		$ok = TRUE;
 		if ($form->isValid())
 		{
 			$phone = $session->get('voter_phone', NULL);
-		
+
 			if(empty($phone))
 			{
 				$form->addError(new FormError('El número de móvil no esta presente. ¿Sesión caducada?'));
 				$ok = FALSE;
 			}
-		
+
 			$email = $session->get('voter_email', NULL);
 			if(empty($email))
 			{
 				$form->addError(new FormError('El email no esta presente. ¿Sesión caducada?'));
 				$ok = FALSE;
 			}
-		
+
 			if($ok)
 			{
 				$entity_manager = $this->getDoctrine()->getManager();
 				$phone_verified_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\PhoneVerified');
-					
+
 				$phone_status = $phone_verified_repository->findOneBy(array('phone' => $phone, 'email' => $email));
-					
+
 				if(empty($phone_status) || $phone_status->getTimestamp() == 0)
 				{
 					$form->addError(new FormError('El número de móvil <b>' . $phone . '</b> aún no ha sido verificado'));
 					$ok = FALSE;
 				}
 			}
-		
+
 			if($ok)
 			{
 				$form2 = $this->createForm(new StepFilterType(), NULL, array(
 						'action' => $this->generateUrl('town_candidacy_vote_step2', array('address' => $address)),
 						'method' => 'POST',
 				));
-		
+
 				$form2->handleRequest($request);
-		
+
 				return $this->render('MunicipalesBundle:Town:step_filter.html.twig', array(
 						'form' => $form2->createView(),
 						'address' => $address,
@@ -431,15 +431,15 @@ class TownController extends Controller
 				);
 			}
 		}
-		
+
 		return $this->render('MunicipalesBundle:Town:step_verify.html.twig', array(
 				'form' => $form->createView(),
 				'errors' => $form->getErrors(),
 				'address' => $address,
 		));
 	}
-	
-		
+
+
 	public function vote2Action($address = NULL, Request $request = NULL)
 	{
 		$result = $this->verifyAdminAddress($address);
@@ -448,27 +448,27 @@ class TownController extends Controller
 		{
 			return $result;
 		}
-		
+
 		$session = $this->getRequest()->getSession();
-		
+
 		$entity_manager = $this->getDoctrine()->getManager();
-		
+
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
-		
+
 		$admin_id = $admin_candidacy->getId();
-		
+
 		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
-			
+
 		$candidates = $candidate_repository->findBy(array('admin_id' => $admin_id));
-		
+
 		if(empty($candidates))
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'No se puede iniciar la votación ya que aún no existen candidatos en esta candidatura',
 			));
 		}
-		
+
 		// Filter only candidates accepted
 		$valid_candidates = array();
 		foreach($candidates as $candidate)
@@ -478,27 +478,27 @@ class TownController extends Controller
 				$valid_candidates[] = $candidate;
 			}
 		}
-		
+
 		if(count($valid_candidates) < 1)
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'Error: No se puede iniciar la votación si no existe al menos un candidato habilitado para ser votado',
 			));
 		}
-		
+
 		$voter_id = $session->get('voter_id', NULL);
-		
+
 		if(empty($voter_id))
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'Sesión expirada. No existe el identificador de votante para cargar la dirección ' . $address,
 			));
 		}
-		
+
 		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
-		
+
 		$voter = $voter_repository->findOneById($voter_id);
-		
+
 		if(empty($voter))
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
@@ -507,29 +507,29 @@ class TownController extends Controller
 		}
 
 		$candidacy_to_date = $admin_candidacy->getTodate();
-			
+
 		if(empty($candidacy_to_date))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
 			));
 		}
-			
+
 		$candidacy_total_days = $admin_candidacy->getTotalDays();
-			
+
 		if(empty($candidacy_total_days))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
 			));
 		}
-			
+
 		$now = new \Datetime('NOW');
-		
+
 		// Candidacy is finished, we can show the results
 		$candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
 		$vote_end_date = $candidaty_to_date_timestamp + $candidacy_total_days * 24 * 3600;
-		
+
 		if($now->getTimestamp() - $vote_end_date > 0)
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
@@ -540,7 +540,7 @@ class TownController extends Controller
 		{
 			//echo 'Now: ' . date('d-m-Y h:i:s', $now->getTimestamp()) . '<br />';
 			//echo 'To DATE: ' . date('d-m-Y h:i:s', $candidaty_to_date_timestamp) . '<br />';
-				
+
 			if($now->getTimestamp() - $candidaty_to_date_timestamp < 0)
 			{
 				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
@@ -550,15 +550,15 @@ class TownController extends Controller
 				));
 			}
 		}
-		
+
 		$form = $this->createForm(new StepFilterType(), NULL, array(
 				'action' => $this->generateUrl('town_candidacy_vote_step2', array('address' => $address)),
 				'method' => 'POST',
 			)
 		);
-			
+
 		$form->handleRequest($request);
-	
+
 		$ok = TRUE;
 		if ($form->isValid())
 		{
@@ -568,7 +568,7 @@ class TownController extends Controller
 			$town_activities_option = $form['town_activities_option']->getData();
 			$govern_priorities_option = $form['govern_priorities_option']->getData();
 			$public_values_option = $form['public_values_option']->getData();
-			
+
 			if($academic_level_option == 'yes')
 			{
 				$academic_level = $form['academic_level']->getData();
@@ -577,7 +577,7 @@ class TownController extends Controller
 			{
 				$academic_level = 0;
 			}
-			
+
 			if($languages_option == 'yes')
 			{
 				$languages      = $form['languages']->getData();
@@ -586,11 +586,11 @@ class TownController extends Controller
 			{
 				$languages = 0;
 			}
-			
+
 			if($job_experience_option == 'yes')
 			{
 				$job_experience = $form['job_experience']->getData();
-				
+
 				if(count($job_experience) > 3)
 				{
 					$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
@@ -605,7 +605,7 @@ class TownController extends Controller
 			if($town_activities_option == 'yes')
 			{
 				$town_activities = $form['town_activities']->getData();
-				
+
 				if(count($town_activities) > 3)
 				{
 					$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
@@ -620,7 +620,7 @@ class TownController extends Controller
 			if($govern_priorities_option == 'yes')
 			{
 				$govern_priorities = $form['govern_priorities']->getData();
-					
+
 				if(count($govern_priorities) > 3)
 				{
 					$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
@@ -631,11 +631,11 @@ class TownController extends Controller
 			{
 				$govern_priorities = array();
 			}
-			
+
 			if($public_values_option == 'yes')
 			{
 				$public_values = $form['public_values']->getData();
-	
+
 				if(count($public_values) > 3)
 				{
 					$form->addError(new FormError('Sólo se permiten un máximo de tres opciones seleccionadas'));
@@ -646,31 +646,31 @@ class TownController extends Controller
 			{
 				$public_values = array();
 			}
-			
+
 			if($ok)
-			{			
+			{
 				$session->set('voter_academic_level', $academic_level);
 				$session->set('voter_languages', $languages);
-			
+
 				$session->set('voter_job_experience', $job_experience);
 				$session->set('voter_town_activities', $town_activities);
 				$session->set('voter_govern_priorities', $govern_priorities);
 				$session->set('voter_public_values', $public_values);
-				
+
 				$voter->setAcademicLevel($academic_level);
 				$voter->setLanguages($languages);
 				$voter->setJobExperience($job_experience);
 				$voter->setTownActivities($town_activities);
 				$voter->setGovernPriorities($govern_priorities);
 				$voter->setPublicValues($public_values);
-					
+
 				$entity_manager->persist($voter);
 				$entity_manager->flush();
-			
+
 				return $this->vote7confirmationAction($address, $request);
 			}
 		}
-	
+
 		return $this->render('MunicipalesBundle:Town:step_filter.html.twig', array(
 				'address' => $address,
 				'form' => $form->createView(),
@@ -686,35 +686,35 @@ class TownController extends Controller
 		{
 			return $result;
 		}
-	
+
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
-	
+
 		$result = $this->verifyAdminAddress($address);
-		
+
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
-		
+
 		$town = $admin_candidacy->getTown();
-		
+
 		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
 		$town_name = $province_repository->getMunicipalityName($town);
-		
+
 		$admin_id = $admin_candidacy->getId();
-		
+
 		$voter_id = $session->get('voter_id', NULL);
-	
+
 		if(empty($voter_id))
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'Sesión expirada. No existe el identificador de votante para cargar la dirección ' . $address,
 			));
 		}
-	
+
 		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
-	
+
 		$voter = $voter_repository->findOneById($voter_id);
-	
+
 		if(empty($voter))
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
@@ -723,29 +723,29 @@ class TownController extends Controller
 		}
 
 		$candidacy_to_date = $admin_candidacy->getTodate();
-			
+
 		if(empty($candidacy_to_date))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
 			));
 		}
-			
+
 		$candidacy_total_days = $admin_candidacy->getTotalDays();
-			
+
 		if(empty($candidacy_total_days))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
 			));
 		}
-			
+
 		$now = new \Datetime('NOW');
-		
+
 		// Candidacy is finished, we can show the results
 		$candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
 		$vote_end_date = $candidaty_to_date_timestamp + $candidacy_total_days * 24 * 3600;
-		
+
 		if($now->getTimestamp() - $vote_end_date > 0)
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
@@ -756,7 +756,7 @@ class TownController extends Controller
 		{
 			//echo 'Now: ' . date('d-m-Y h:i:s', $now->getTimestamp()) . '<br />';
 			//echo 'To DATE: ' . date('d-m-Y h:i:s', $candidaty_to_date_timestamp) . '<br />';
-				
+
 			if($now->getTimestamp() - $candidaty_to_date_timestamp < 0)
 			{
 				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
@@ -766,28 +766,28 @@ class TownController extends Controller
 				));
 			}
 		}
-		
+
 		$form = $this->createForm(new TownStep7ConfirmationType(), NULL, array(
 				'action' => $this->generateUrl('town_candidacy_vote_step7_confirmation', array('address' => $address)),
 				'method' => 'POST',
 			)
 		);
-			
+
 		$form->handleRequest($request);
-	
+
 		$ok = TRUE;
 
 		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
-		 
+
 		$candidates = $candidate_repository->findBy(array('admin_id' => $admin_id));
-		
+
 		if(empty($candidates))
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'No existen candidatos en esta candidatura',
 			));
 		}
-		
+
 		// Filter only candidates accepted
 		$valid_candidates = array();
 		foreach($candidates as $candidate)
@@ -805,7 +805,7 @@ class TownController extends Controller
 					'error' => 'Error: No existen candidatos habilitados para votar.',
 			));
 		}
-		
+
 		// Filter candidates with voter filters
 		$academic_level = $voter->getAcademicLevel();
 		$languages = $voter->getLanguages();
@@ -813,7 +813,7 @@ class TownController extends Controller
 		$town_activities = $voter->getTownActivities();
 		$govern_priorities = $voter->getGovernPriorities();
 		$public_values = $voter->getPublicValues();
-		
+
 		// Filter by academic level voter option
 		$result_candidates = array();
 		if(!empty($academic_level) && $academic_level > 0)
@@ -830,9 +830,9 @@ class TownController extends Controller
 		{
 			$result_candidates = $valid_candidates;
 		}
-		
+
 		$valid_candidates = $result_candidates;
-		
+
 		// Filter by language voter option
 		$result_candidates = array();
 		if(!empty($languages) && count($languages) > 0)
@@ -854,9 +854,9 @@ class TownController extends Controller
 		{
 			$result_candidates = $valid_candidates;
 		}
-		
+
 		$valid_candidates = $result_candidates;
-		
+
 		// Filter by job experience voter option
 		$result_candidates = array();
 		if(!empty($job_experience) && count($job_experience) > 0)
@@ -878,7 +878,7 @@ class TownController extends Controller
 		{
 			$result_candidates = $valid_candidates;
 		}
-		
+
 		$valid_candidates = $result_candidates;
 
 		// Filter by town activities voter option
@@ -902,9 +902,9 @@ class TownController extends Controller
 		{
 			$result_candidates = $valid_candidates;
 		}
-		
+
 		$valid_candidates = $result_candidates;
-		
+
 		// Filter by govern priorities voter option
 		$result_candidates = array();
 		if(!empty($govern_priorities) && count($govern_priorities) > 0)
@@ -926,9 +926,9 @@ class TownController extends Controller
 		{
 			$result_candidates = $valid_candidates;
 		}
-		
+
 		$valid_candidates = $result_candidates;
-	
+
 		// Filter by public values voter option
 		$result_candidates = array();
 		if(!empty($public_values) && count($public_values) > 0)
@@ -950,29 +950,29 @@ class TownController extends Controller
 		{
 			$result_candidates = $valid_candidates;
 		}
-		
+
 		$valid_candidates = $result_candidates;
-		
+
 		// Filter candidates with voter levels here until MAX_AVAILABLE_CANDIDATES
 		//$valid_candidates = array_slice($valid_candidates, 0, self::MAX_AVAILABLE_CANDIDATES);
-		
+
 		if(count($valid_candidates) < 1)
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'No existen candidatos para votar. El filtro de candidatos debe ser mas flexible. Volver al <a href="' . $this->generateUrl('town_candidacy_vote_step2', array('address' => $address)) . '">paso 2</a>',
 			));
 		}
-		
+
 		// Random position
 		shuffle($valid_candidates);
-		
+
 		$town = $admin_candidacy->getTown();
-		
+
 		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
 		$town_name = $province_repository->getMunicipalityName($town);
-		
+
 		$town_slug = $this->get('slugify')->slugify($town_name);
-		 
+
 		$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
 
 		if ($form->isValid())
@@ -982,7 +982,7 @@ class TownController extends Controller
 				return $this->vote7Action($address, $request);
 			}
 		}
-	
+
 		return $this->render('MunicipalesBundle:Town:step7_confirmation.html.twig', array(
 				'address' => $address,
 				'form' => $form->createView(),
@@ -996,69 +996,69 @@ class TownController extends Controller
 	public function vote7Action($address = NULL, Request $request = NULL)
 	{
 		$result = $this->verifyAdminAddress($address);
-	
+
 		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
 		{
 			return $result;
 		}
-	
+
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
-	
+
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
-		
+
 		$town = $admin_candidacy->getTown();
-		
+
 		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
 		$town_name = $province_repository->getMunicipalityName($town);
-		
+
 		$admin_id = $admin_candidacy->getId();
-		
+
 		$voter_id = $session->get('voter_id', NULL);
-	
+
 		if(empty($voter_id))
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'Sesión expirada. No existe el identificador de votante para cargar la dirección ' . $address,
 			));
 		}
-	
+
 		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
-	
+
 		$voter = $voter_repository->findOneById($voter_id);
-	
+
 		if(empty($voter))
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'No existe el identificador de votante para cargar la dirección ' . $address_slug,
 			));
 		}
-	
+
 		$candidacy_to_date = $admin_candidacy->getTodate();
-			
+
 		if(empty($candidacy_to_date))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
 			));
 		}
-			
+
 		$candidacy_total_days = $admin_candidacy->getTotalDays();
-			
+
 		if(empty($candidacy_total_days))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
 			));
 		}
-			
+
 		$now = new \Datetime('NOW');
-		
+
 		// Candidacy is finished, we can show the results
 		$candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
 		$vote_end_date = $candidaty_to_date_timestamp + $candidacy_total_days * 24 * 3600;
-		
+
 		if($now->getTimestamp() - $vote_end_date > 0)
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
@@ -1069,7 +1069,7 @@ class TownController extends Controller
 		{
 			//echo 'Now: ' . date('d-m-Y h:i:s', $now->getTimestamp()) . '<br />';
 			//echo 'To DATE: ' . date('d-m-Y h:i:s', $candidaty_to_date_timestamp) . '<br />';
-				
+
 			if($now->getTimestamp() - $candidaty_to_date_timestamp < 0)
 			{
 				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
@@ -1079,28 +1079,28 @@ class TownController extends Controller
 				));
 			}
 		}
-		
+
 		$form = $this->createForm(new TownStep7Type(), NULL, array(
 				'action' => $this->generateUrl('town_candidacy_vote_step7', array('address' => $address)),
 				'method' => 'POST',
 			)
 		);
-			
+
 		$form->handleRequest($request);
-	
+
 		$ok = TRUE;
-	
+
 		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
-			
+
 		$candidates = $candidate_repository->findBy(array('admin_id' => $admin_id));
-	
+
 		if(empty($candidates))
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'No existen candidatos en esta candidatura',
 			));
 		}
-	
+
 		// Filter only candidates accepted
 		$valid_candidates = array();
 		foreach($candidates as $candidate)
@@ -1110,14 +1110,14 @@ class TownController extends Controller
 				$valid_candidates[] = $candidate;
 			}
 		}
-	
+
 		if(count($valid_candidates) < 1)
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'Error: No existen candidatos habilitados para votar.',
 			));
 		}
-	
+
 		// Filter candidates with voter filters
 		$academic_level = $voter->getAcademicLevel();
 		$languages = $voter->getLanguages();
@@ -1125,7 +1125,7 @@ class TownController extends Controller
 		$town_activities = $voter->getTownActivities();
 		$govern_priorities = $voter->getGovernPriorities();
 		$public_values = $voter->getPublicValues();
-	
+
 		// Filter by academic level voter option
 		$result_candidates = array();
 		if(!empty($academic_level) && $academic_level > 0)
@@ -1142,9 +1142,9 @@ class TownController extends Controller
 		{
 			$result_candidates = $valid_candidates;
 		}
-	
+
 		$valid_candidates = $result_candidates;
-	
+
 		// Filter by language voter option
 		$result_candidates = array();
 		if(!empty($languages) && count($languages) > 0)
@@ -1166,9 +1166,9 @@ class TownController extends Controller
 		{
 			$result_candidates = $valid_candidates;
 		}
-	
+
 		$valid_candidates = $result_candidates;
-	
+
 		// Filter by job experience voter option
 		$result_candidates = array();
 		if(!empty($job_experience) && count($job_experience) > 0)
@@ -1190,9 +1190,9 @@ class TownController extends Controller
 		{
 			$result_candidates = $valid_candidates;
 		}
-	
+
 		$valid_candidates = $result_candidates;
-	
+
 		// Filter by town activities voter option
 		$result_candidates = array();
 		if(!empty($town_activities) && count($town_activities) > 0)
@@ -1214,9 +1214,9 @@ class TownController extends Controller
 		{
 			$result_candidates = $valid_candidates;
 		}
-	
+
 		$valid_candidates = $result_candidates;
-	
+
 		// Filter by govern priorities voter option
 		$result_candidates = array();
 		if(!empty($govern_priorities) && count($govern_priorities) > 0)
@@ -1238,9 +1238,9 @@ class TownController extends Controller
 		{
 			$result_candidates = $valid_candidates;
 		}
-	
+
 		$valid_candidates = $result_candidates;
-	
+
 		// Filter by public values voter option
 		$result_candidates = array();
 		if(!empty($public_values) && count($public_values) > 0)
@@ -1262,39 +1262,39 @@ class TownController extends Controller
 		{
 			$result_candidates = $valid_candidates;
 		}
-	
+
 		$valid_candidates = $result_candidates;
-	
+
 		// Filter candidates with voter levels here until MAX_AVAILABLE_CANDIDATES
 		//$valid_candidates = array_slice($valid_candidates, 0, self::MAX_AVAILABLE_CANDIDATES);
-	
+
 		if(count($valid_candidates) < 1)
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'No existen candidatos para votar. El filtro de candidatos debe ser mas flexible. Volver al <a href="' . $this->generateUrl('town_candidacy_vote_step2', array('address' => $address)) . '">paso 2</a>',
 			));
 		}
-	
+
 		// Random position
 		shuffle($valid_candidates);
-	
+
 		$town = $admin_candidacy->getTown();
-		
+
 		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
 		$town_name = $province_repository->getMunicipalityName($town);
 
 		$town_slug = $this->get('slugify')->slugify($town_name);
-			
+
 		$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
-	
+
 		if ($form->isValid())
 		{
 			$extra_data = $form->getExtraData();
-				
+
 			$vote_info = array();
 			$vote_info['admin_id'] = $admin_id;
 			$vote_info['voter_id'] = $voter_id;
-				
+
 			$candidate_voters = array();
 			$candidate_points_values = array();
 			$candidate_points_values_aux = array();
@@ -1302,10 +1302,10 @@ class TownController extends Controller
 			foreach($extra_data as $candidate_key => $candidate_points)
 			{
 				$candidate_id = intval(str_replace('candidate_', '', $candidate_key));
-					
+
 				$candidate_voters[] = array('id' => $candidate_id, 'points' => intval($candidate_points));
 				$candidate_points_values[] = $candidate_points;
-				
+
 				// Only count valid points that could not repeat (no points could repeat)
 				if(intval($candidate_points) > 0)
 				{
@@ -1313,37 +1313,52 @@ class TownController extends Controller
 					$extra_data_counter += 1;
 				}
 			}
-				
+
 			if($extra_data_counter != count(array_unique($candidate_points_values_aux)))
 			{
 				$form->addError(new FormError('Las posiciones asignadas no pueden repetirse salvo SIN PUNTUAR'));
 				$ok = FALSE;
 			}
-				
+
 			$vote_info['candidates'] = $candidate_voters;
-				
+
 			//var_dump($vote_info);
-			
+
 			// Check already voted (seek in database if result was already sent)
 			$aux_vote_info = $voter->getVoteInfo();
-			
+
 			if(!empty($aux_vote_info))
 			{
 				return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 						'error' => 'Error: este usuario ya ha llevado a cabo una votación. No esta permitido cambiar el voto.',
 				));
 			}
-				
+
+			$userIp = $this->container->get('request')->getClientIp();
+
+			$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
+			$voters = $admin_candidacy_repository->findByVoterIp(ip2long($userIp));
+
+			if(count($voters) > 3)
+			{
+			    return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+			        'error' => 'Error: este usuario ya ha llevado a cabo una votación con esta misma IP 3 o mas veces. No esta permitido votar de nuevo con esta IP.',
+			    ));
+			}
+
 			if($ok)
 			{
+
+
 				// Store the result in database
 				$voter->setVoteInfo($vote_info);
-				
+				$voter->setVoteIp(ip2long($userIp)); // Store Ip for avoid next votes
+
 				$entity_manager->persist($voter);
 				$entity_manager->flush();
-				
+
 				// Tractis TSA sign
-				
+
 
                 // Todo submit the votes to the blockchain
                 // Create an API Key here: https://www.tractis.com/webservices/tsa/apikeys
@@ -1376,7 +1391,7 @@ class TownController extends Controller
 //						));
 //					}
 //				}
-				
+
 				// Check response data
 //				if(empty($response))
 //				{
@@ -1406,13 +1421,13 @@ class TownController extends Controller
 //				// Store the sign TSA result in database
 //				$voter->setVoteResponseString($response_string);
 //				$voter->setVoteResponseTime($response_time);
-				
+
 				$entity_manager->persist($voter);
 				$entity_manager->flush();
-				
+
 				// Send mail with vote info
 				$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-				 
+
 				$message = \Swift_Message::newInstance()
 				->setSubject('Tu voto ha sido emitido con éxito')
 				->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
@@ -1423,13 +1438,13 @@ class TownController extends Controller
 								array('voter' => $voter)
 						), 'text/html'
 				);
-				
+
 				$this->get('mailer')->send($message);
-					
+
 				return $this->vote8Action($address, $request);
 			}
 		}
-	
+
 		return $this->render('MunicipalesBundle:Town:step7.html.twig', array(
 				'address' => $address,
 				'form' => $form->createView(),
@@ -1438,7 +1453,7 @@ class TownController extends Controller
 				'documents_path' => $documents_path,
 		));
 	}
-	
+
 	public function vote8Action($address = NULL, Request $request = NULL)
 	{
 		$result = $this->verifyAdminAddress($address);
@@ -1447,33 +1462,33 @@ class TownController extends Controller
 		{
 			return $result;
 		}
-	
+
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
-	
+
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
-		
+
 		$town = $admin_candidacy->getTown();
-		
+
 		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
 		$town_name = $province_repository->getMunicipalityName($town);
-		
+
 		$admin_id = $admin_candidacy->getId();
-		
+
 		$voter_id = $session->get('voter_id', NULL);
-	
+
 		if(empty($voter_id))
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
 					'error' => 'Sesión expirada. No existe el identificador de votante para cargar la dirección ' . $address,
 			));
 		}
-	
+
 		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
-	
+
 		$voter = $voter_repository->findOneById($voter_id);
-	
+
 		if(empty($voter))
 		{
 			return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
@@ -1482,29 +1497,29 @@ class TownController extends Controller
 		}
 
 		$candidacy_to_date = $admin_candidacy->getTodate();
-			
+
 		if(empty($candidacy_to_date))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
 			));
 		}
-			
+
 		$candidacy_total_days = $admin_candidacy->getTotalDays();
-			
+
 		if(empty($candidacy_total_days))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
 			));
 		}
-			
+
 		$now = new \Datetime('NOW');
-		
+
 		// Candidacy is finished, we can show the results
 		$candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
 		$vote_end_date = $candidaty_to_date_timestamp + $candidacy_total_days * 24 * 3600;
-		
+
 		if($now->getTimestamp() - $vote_end_date > 0)
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
@@ -1515,7 +1530,7 @@ class TownController extends Controller
 		{
 			//echo 'Now: ' . date('d-m-Y h:i:s', $now->getTimestamp()) . '<br />';
 			//echo 'To DATE: ' . date('d-m-Y h:i:s', $candidaty_to_date_timestamp) . '<br />';
-		
+
 			if($now->getTimestamp() - $candidaty_to_date_timestamp < 0)
 			{
 				return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
@@ -1525,17 +1540,17 @@ class TownController extends Controller
 								));
 			}
 		}
-			
+
 		$form = $this->createForm(new TownStep8Type(), NULL, array(
 				'action' => $this->generateUrl('town_candidacy_vote_step8', array('address' => $address)),
 				'method' => 'POST',
 		)
 		);
-			
+
 		$form->handleRequest($request);
-	
+
 		$ok = TRUE;
-	
+
 		if ($form->isValid())
 		{
 			if($ok)
@@ -1547,71 +1562,71 @@ class TownController extends Controller
 				);
 			}
 		}
-	
+
 		return $this->render('MunicipalesBundle:Town:step8.html.twig', array(
 				'address' => $address,
 				'form' => $form->createView(),
 				'errors' => $form->getErrors()
 		));
 	}
-	
+
 	public function resultsAction($address = NULL, Request $request = NULL)
 	{
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
-		
+
 		$result = $this->verifyAdminAddress($address);
-		
+
 		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
 		{
 			return $result;
 		}
-		
+
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
-		
+
 		$town = $admin_candidacy->getTown();
-		
+
 		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
 		$town_name = $province_repository->getMunicipalityName($town);
-		
+
 		$admin_id = $admin_candidacy->getId();
-		
+
 		$candidacy_to_date = $admin_candidacy->getTodate();
-			
+
 		if(empty($candidacy_to_date))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
 			));
 		}
-			
+
 		$candidacy_total_days = $admin_candidacy->getTotalDays();
-			
+
 		if(empty($candidacy_total_days))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
 			));
 		}
-			
+
 		$now = new \Datetime('NOW');
-		
+
 		// Candidacy is finished, we can show the results
 		$candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
 		$vote_end_date = $candidaty_to_date_timestamp + $candidacy_total_days * 24 * 3600;
-		
+
 		if($now->getTimestamp() - $vote_end_date < 0)
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: El plazo de votación aún no ha finalizado. <br />Fecha de inicio: ' . date('d-m-Y' , $candidaty_to_date_timestamp) . '<br />' .
 								'Fecha de fin: ' . date('d-m-Y' , $vote_end_date),
-					
+
 			));
 		}
-		
+
 		$borda_points = $admin_candidacy->getBordaPoints();
-		
+
 		// Use borda system defaults
 		if(empty($borda_points))
 		{
@@ -1620,36 +1635,36 @@ class TownController extends Controller
 			// Apply borda system defaults values
 			$borda_points[$i] = $i != 0 ? 1 / $i : 0;
 			}
-		
+
 			$admin_candidacy->setBordaPoints($borda_points);
-		
+
 			$entity_manager->persist($admin_candidacy);
 			$entity_manager->flush();
 		}
-		
+
 		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
-		
+
 		$voters = $voter_repository->findBy(array('admin_id' => $admin_id));
-		
+
 		$total_voters = 0;
 		$final_voters = array();
 		$results = array();
 		foreach($voters as $voter)
 		{
 			$vote_info = $voter->getVoteInfo();
-			
+
 			if(!empty($vote_info))
 			{
-				// Avoid count votes emited but not signed with Tractis 
+				// Avoid count votes emited but not signed with Tractis
 				//$vote_response_string = $voter->getVoteResponseString();
 				//$vote_response_time   = $voter->getVoteResponseTime();
-				
+
 				if(true) // we do not use Tractis anymore
 				{
 					$total_voters += 1;
-					
+
 					$candidates = $vote_info['candidates'];
-					
+
 					foreach($candidates as $candidate)
 					{
 						$candidate_id = $candidate['id'];
@@ -1658,7 +1673,7 @@ class TownController extends Controller
 						{
 							$results[$candidate_id] += $borda_points[$candidate['points']];
 						}
-						else 
+						else
 						{
 							$results[$candidate_id] = $borda_points[$candidate['points']];
 						}
@@ -1666,16 +1681,16 @@ class TownController extends Controller
 				}
 			}
 		}
-		
+
 		$candidate_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Candidate');
-		
+
 		$candidates_result = array();
 		if(!empty($results))
 		{
 			foreach($results as $result_id => $result_points)
 			{
 				$candidate_info = $candidate_repository->findOneById($result_id);
-				
+
 				if(!empty($candidate_info))
 				{
 					$candidate_aux = array();
@@ -1683,24 +1698,24 @@ class TownController extends Controller
 					$candidate_aux['name'] = $candidate_info->getName();
 					$candidate_aux['lastname'] = $candidate_info->getLastname();
 					$candidate_aux['points'] = $result_points;
-					
+
 					$candidates_result[] = $candidate_aux;
 				}
 			}
 		}
-		
+
 		$points = array();
 		foreach ($candidates_result as $key => $row)
 		{
 			$points[$key] = $row['points'];
 		}
-		
+
 		array_multisort($points, SORT_DESC, $candidates_result);
-		
+
 		$town_slug = $this->get('slugify')->slugify($town_name);
-		 
+
 		$documents_path = 'docs/' . $town_slug . '/' . $admin_id . '/candidate/';
-		
+
 		return $this->render('MunicipalesBundle:Town:step_results.html.twig', array(
 				'address' => $address,
 				'town' => $town_name,
@@ -1709,65 +1724,65 @@ class TownController extends Controller
 				'candidates' => $candidates_result,
                 'ethereum_transaction_address' => $admin_candidacy->getEthereumResultsAddress()
 		));
-	}	
-	
+	}
+
 	public function downloadCsvAction($address = NULL, Request $request = NULL)
 	{
 		$session = $this->getRequest()->getSession();
 		$entity_manager = $this->getDoctrine()->getManager();
-		
+
 		$result = $this->verifyAdminAddress($address);
-		
+
 		if(!empty($result) && get_class($result) == 'Symfony\Component\HttpFoundation\Response')
 		{
 			return $result;
 		}
-		
+
 		$admin_candidacy_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\AdminCandidacy');
 		$admin_candidacy = $admin_candidacy_repository->findOneByAddress($address);
-		
+
 		$town = $admin_candidacy->getTown();
-		
+
 		$province_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Province');
 		$town_name = $province_repository->getMunicipalityName($town);
-		
+
 		$admin_id = $admin_candidacy->getId();
-		
+
 		$candidacy_to_date = $admin_candidacy->getTodate();
-			
+
 		if(empty($candidacy_to_date))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de candidatura final para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step3') . '" title="Paso 3 Candidatura - Establece los plazos de presentación de candidaturas">establece los plazos de votación en el paso 3 de la candidatura</a>',
 			));
 		}
-			
+
 		$candidacy_total_days = $admin_candidacy->getTotalDays();
-			
+
 		if(empty($candidacy_total_days))
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: no se ha configurado una fecha de plazo de votación para la candidatura. Por favor <a href="' . $this->generateUrl('municipales_candidacy_step7') . '" title="Paso 7 Admin Candidatura - Establece los plazos votación de candidaturas">establece los plazos de votación en el paso 7 de la candidatura</a>',
 			));
 		}
-			
+
 		$now = new \Datetime('NOW');
-		
+
 		// Candidacy is finished, we can show the results
 		$candidaty_to_date_timestamp = $candidacy_to_date->getTimestamp();
 		$vote_end_date = $candidaty_to_date_timestamp + $candidacy_total_days * 24 * 3600;
-		
+
 		if($now->getTimestamp() - $vote_end_date < 0)
 		{
 			return $this->render('MunicipalesBundle:Candidacy:missing_admin_id.html.twig', array(
 					'error' => 'Error: El plazo de votación aún no ha finalizado. <br />Fecha de inicio: ' . date('d-m-Y' , $candidaty_to_date_timestamp) . '<br />' .
 								'Fecha de fin: ' . date('d-m-Y' , $vote_end_date),
-					
+
 			));
 		}
-		
+
 		$borda_points = $admin_candidacy->getBordaPoints();
-		
+
 		// Use borda system defaults
 		if(empty($borda_points))
 		{
@@ -1776,24 +1791,24 @@ class TownController extends Controller
 			// Apply borda system defaults values
 			$borda_points[$i] = $i != 0 ? 1 / $i : 0;
 			}
-		
+
 			$admin_candidacy->setBordaPoints($borda_points);
-		
+
 			$entity_manager->persist($admin_candidacy);
 			$entity_manager->flush();
 		}
-		
+
 		$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
-		
+
 		$voters = $voter_repository->findBy(array('admin_id' => $admin_id));
-		
+
 		$total_voters = 0;
 		$final_voters = array();
 		$results = array();
 		foreach($voters as $voter)
 		{
 			$vote_info = $voter->getVoteInfo();
-			
+
 			if(!empty($vote_info))
 			{
 				$vote_info['response_string'] = $voter->getVoteResponseString();
@@ -1811,7 +1826,7 @@ class TownController extends Controller
 					)
 				}
 				*/
-				
+
 				// Avoid count votes emited but not signed with Tractis
 				if(!empty($vote_info['response_string']) && !empty($vote_info['response_time']))
 				{
@@ -1819,15 +1834,15 @@ class TownController extends Controller
 				}
 			}
 		}
-		
+
 		$filename = $address . '-votes-' . date('d_m_Y_H_i_s') . '.csv';
 
 		$response = $this->render('MunicipalesBundle:Town:download_csv.html.twig', array('data' => $results, 'borda_points' => $borda_points));
-		
+
 		$response->setStatusCode(Response::HTTP_OK);
-		
+
 		$response->prepare($request);
-		
+
 		$response->headers->set('Content-Type', 'application/force-download');
 		$response->headers->set('Content-Type', 'text/csv;charset=UTF-8');
 		//$response->headers->set('Content-Type', 'text/csv;charset=windows-1252');
@@ -1836,7 +1851,7 @@ class TownController extends Controller
 		$response->headers->set('Content-Transfer-Encoding', 'binary');
 		$response->headers->set('Pragma', 'no-cache');
 		$response->headers->set('Expires', '0');
-		
+
 		return $response;
 		//return $this->render('MunicipalesBundle:Town:download_csv.html.twig', array('data' => $results, 'borda_points' => $borda_points));
 	}

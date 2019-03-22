@@ -57,20 +57,49 @@ class Voter implements AdvancedUserInterface, \Serializable
      */
     private $phone;
 
+
+    /**
+     * @var integer
+     */
+    private $vote_ip;
+
     public function __construct()
     {
     	$this->isActive = TRUE;
     	$this->roles = new ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set vote_ip
+     *
+     * @param integer $vote_ip
+     * @return Voter
+     */
+    public function setVoteIp($vote_ip)
+    {
+        $this->vote_ip = $vote_ip;
+
+        return $this;
+    }
+
+    /**
+     * Get vote_ip
+     *
+     * @return integer
+     */
+    public function getVoteIp()
+    {
+        return $this->vote_ip;
     }
 
     /**
@@ -89,7 +118,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -112,7 +141,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -135,7 +164,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get dni
      *
-     * @return string 
+     * @return string
      */
     public function getDni()
     {
@@ -158,7 +187,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -181,7 +210,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
@@ -200,7 +229,7 @@ class Voter implements AdvancedUserInterface, \Serializable
 
         return $this;
     }
-    
+
     /**
      * @inheritDoc
      */
@@ -208,11 +237,11 @@ class Voter implements AdvancedUserInterface, \Serializable
     {
     	return null;
     }
-    
+
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -235,7 +264,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get isActive
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsActive()
     {
@@ -250,14 +279,14 @@ class Voter implements AdvancedUserInterface, \Serializable
     {
     	return array('ROLE_USER', 'ROLE_ADMIN');
     }
-    
+
     /**
      * @inheritDoc
      */
     public function eraseCredentials()
     {
     }
-    
+
     /**
      * @see \Serializable::serialize()
      */
@@ -269,7 +298,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     			$this->password,
     	));
     }
-    
+
     /**
      * @see \Serializable::unserialize()
      */
@@ -281,7 +310,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     			$this->password,
     	) = unserialize($serialized);
     }
-    
+
     /**
      * Set phone
      *
@@ -298,39 +327,39 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
         return $this->phone;
     }
-    
+
     public function isAccountNonExpired()
     {
     	return true;
     }
-    
+
     public function isAccountNonLocked()
     {
     	return true;
     }
-    
+
     public function isCredentialsNonExpired()
     {
     	return true;
     }
-    
+
     public function isEnabled()
     {
     	return $this->isActive;
     }
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      *
      */
     private $roles;
-    
+
     /**
      * Add roles
      *
@@ -340,10 +369,10 @@ class Voter implements AdvancedUserInterface, \Serializable
     public function addRole( $roles)
     {
     	$this->roles[] = $roles;
-    
+
     	return $this;
     }
-    
+
     /**
      * Check if a user is normal/regular user (has role user)
      *
@@ -353,7 +382,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     {
     	return $this->hasRole('ROLE_USER');
     }
-    
+
     /**
      * Check if a user is admin (has role admin)
      *
@@ -363,7 +392,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     {
     	return $this->hasRole('ROLE_ADMIN');
     }
-    
+
     /**
      * Check if a user is super admin (has role super admin)
      *
@@ -373,7 +402,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     {
     	return $this->hasRole('ROLE_SUPER_ADMIN');
     }
-    
+
     /**
      * Check if a user has a role
      *
@@ -383,7 +412,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     public function hasRole($role_name = NULL)
     {
     	$roles = $this->getRoles();
-    
+
     	foreach($roles as $rol)
     	{
     		if($rol->getName() === $role_name)
@@ -391,10 +420,10 @@ class Voter implements AdvancedUserInterface, \Serializable
     			return TRUE;
     		}
     	}
-    
+
     	return FALSE;
     }
-    
+
     /**
      * Get all roles names as array
      *
@@ -403,16 +432,16 @@ class Voter implements AdvancedUserInterface, \Serializable
     public function getRolesNames()
     {
     	$roles = $this->getRoles();
-    
+
     	$names = array();
     	foreach($roles as $rol)
     	{
     		$names[] = $rol->getName();
     	}
-    
+
     	return $names;
     }
-    
+
     /**
      * Remove roles
      *
@@ -449,7 +478,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get academic_level
      *
-     * @return integer 
+     * @return integer
      */
     public function getAcademicLevel()
     {
@@ -472,7 +501,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get languages
      *
-     * @return array 
+     * @return array
      */
     public function getLanguages()
     {
@@ -515,7 +544,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get job_experience
      *
-     * @return array 
+     * @return array
      */
     public function getJobExperience()
     {
@@ -538,7 +567,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get town_activities
      *
-     * @return array 
+     * @return array
      */
     public function getTownActivities()
     {
@@ -561,7 +590,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get govern_priorities
      *
-     * @return array 
+     * @return array
      */
     public function getGovernPriorities()
     {
@@ -584,7 +613,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get public_values
      *
-     * @return array 
+     * @return array
      */
     public function getPublicValues()
     {
@@ -612,7 +641,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get admin_id
      *
-     * @return integer 
+     * @return integer
      */
     public function getAdminId()
     {
@@ -640,7 +669,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get vote_info
      *
-     * @return array 
+     * @return array
      */
     public function getVoteInfo()
     {
@@ -673,7 +702,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get vote_response_string
      *
-     * @return string 
+     * @return string
      */
     public function getVoteResponseString()
     {
@@ -696,7 +725,7 @@ class Voter implements AdvancedUserInterface, \Serializable
     /**
      * Get vote_response_time
      *
-     * @return integer 
+     * @return integer
      */
     public function getVoteResponseTime()
     {
