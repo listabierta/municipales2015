@@ -1337,7 +1337,7 @@ class TownController extends Controller
 			$userIp = $this->container->get('request')->getClientIp();
 
 			$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
-			$voters = $admin_candidacy_repository->findByVoterIp(ip2long($userIp));
+			$voters = $admin_candidacy_repository->findBy(['voter_ip' => ip2long($userIp)]);
 
 			if(count($voters) > 3)
 			{
