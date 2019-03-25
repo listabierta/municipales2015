@@ -1,8 +1,14 @@
 {{ 'mail.voting_results_published.hello'|trans }} <b>{{ name }}</b>,<br />
 <br />
-{{ 'mail.voting_results_published.vote_finished_p1'|trans|raw }}. <b> <a href="https://rinkeby.etherscan.io/address/0x9324cfe70a0d49441c874d3020ce775286634f34#readContract">aqui</a> </b><br />
+{{ 'mail.voting_results_published.vote_finished_p1'|trans|raw }}. <b> <a href="https://rinkeby.etherscan.io/address/0x22A323dcFB724160a20A408d579D00e9b285cf9E#readContract">aqui</a> </b><br />
 <br />
 {{ 'mail.voting_results_published.vote_finished_p2'|trans }}: <b>{{voting_name}}</b><br />
-{{ 'mail.voting_results_published.vote_finished_p3'|trans }}: <b>{{twenty_first_characters_of_hash_of_voter}}</b><br />
-{{ 'mail.voting_results_published.vote_finished_p4'|trans }}: <b>{{voter_phone_number}} {{ voter_phone_confirmation_date }}</b><br />
-{{ 'mail.voting_results_published.vote_finished_p5'|trans|raw }}: <b>{{voter_email_and_phone_verification_time_string_to_hash}}</b><br />
+{{ 'mail.voting_results_published.vote_finished_p3'|trans }}: <b>[{{ voting_name_as_byte_array|join(',') }}]</b><br />
+{{ 'mail.voting_results_published.vote_finished_p4'|trans }}: <b>{{twenty_first_characters_of_hash_of_voter}}</b><br />
+{{ 'mail.voting_results_published.vote_finished_p5'|trans }}: <b>{{voter_phone_number}}{{ voter_phone_confirmation_date }}</b><br />
+{{ 'mail.voting_results_published.vote_finished_p6'|trans|raw }}: <b>{{voter_email_and_phone_verification_time_string_to_hash}}</b><br />
+{{ 'mail.voting_results_published.vote_finished_p7'|trans|raw }}: <b>[{{ twenty_first_characters_of_hash_of_voter_as_byte_array|join(',') }}]</b><br />
+
+puedes ver el video de explicacion como comprobar tu voto y las resultados de la votacion <a href="https://www.youtube.com/watch?v=vl918TODr9M&feature=youtu.be">aqui.</a>
+
+

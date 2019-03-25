@@ -1337,14 +1337,14 @@ class TownController extends Controller
 			$userIp = $this->container->get('request')->getClientIp();
 
 			$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
-			$voters = $admin_candidacy_repository->findByVoterIp(ip2long($userIp));
+			//$voters = $admin_candidacy_repository->findByVoterIp(ip2long($userIp));
 
-			if(count($voters) > 3)
-			{
-			    return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-			        'error' => 'Error: este usuario ya ha llevado a cabo una votación con esta misma IP 3 o mas veces. No esta permitido votar de nuevo con esta IP.',
-			    ));
-			}
+//			if(count($voters) > 3)
+//			{
+//			    return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+//			        'error' => 'Error: este usuario ya ha llevado a cabo una votación con esta misma IP 3 o mas veces. No esta permitido votar de nuevo con esta IP.',
+//			    ));
+//			}
 
 			if($ok)
 			{
@@ -1352,78 +1352,13 @@ class TownController extends Controller
 
 				// Store the result in database
 				$voter->setVoteInfo($vote_info);
-				$voter->setVoteIp(ip2long($userIp)); // Store Ip for avoid next votes
+				//$voter->setVoteIp(ip2long($userIp)); // Store Ip for avoid next votes
 
 				$entity_manager->persist($voter);
 				$entity_manager->flush();
 
-				// Tractis TSA sign
 
 
-                // Todo submit the votes to the blockchain
-                // Create an API Key here: https://www.tractis.com/webservices/tsa/apikeys
-//				$tractis_api_identifier = $this->container->getParameter('tractis_api_identifier');
-//				$tractis_api_secret     = $this->container->getParameter('tractis_api_secret');
-//
-//				// Fetch the chain sign TSA file
-//				$tsa_cert_chain_file = $this->container->get('kernel')->locateResource('@MunicipalesBundle/Lib/tractis/chain.txt');
-//
-//				// Init the Symfony Tractis TSA Api
-//				$symfony_tractis_api = new SymfonyTractisApi($tractis_api_identifier, $tractis_api_secret, $tsa_cert_chain_file);
-//
-//				// Sign a valid vote
-//				try
-//				{
-//					$response = $symfony_tractis_api::sign(serialize($vote_info));
-//				}
-//				catch(\Exception $e)
-//				{
-//					if($e->getMessage() == 'The Timestamp was not found')
-//					{
-//						return $this->render('MunicipalesBundle:Town:town_warning.html.twig', array(
-//								'warning' => 'Tu voto ha sido correctamente emitido, pero esta pendiente de ser sellado, ya que la plataforma de sellado Tractis en estos momentos no esta disponible, recibiras un correo cuando la plataforma de sellado este actíva de nuevo y tu voto será totalmente procesado y válido.',
-//						));
-//					}
-//					else
-//					{
-//						return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-//								'error' => 'Error grave en el firmado de voto TSA. Respuesta de tractis: ' . $e->getMessage(),
-//						));
-//					}
-//				}
-
-				// Check response data
-//				if(empty($response))
-//				{
-//					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-//							'error' => 'Error en el firmado de voto TSA. Respuesta vacía',
-//					));
-//				}
-//
-//				if(empty($response['response_string']))
-//				{
-//					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-//							'error' => 'Error en el firmado de voto TSA. Respuesta con cadena vacía',
-//					));
-//				}
-//
-//				if(empty($response['response_time']))
-//				{
-//					return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-//							'error' => 'Error en el firmado de voto TSA. Respuesta con tiempo vacía',
-//					));
-//				}
-//
-//				// Fetch the data response if valid
-//				$response_string = $response['response_string'];
-//				$response_time   = $response['response_time'];
-//
-//				// Store the sign TSA result in database
-//				$voter->setVoteResponseString($response_string);
-//				$voter->setVoteResponseTime($response_time);
-
-				$entity_manager->persist($voter);
-				$entity_manager->flush();
 
 				// Send mail with vote info
 				$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';

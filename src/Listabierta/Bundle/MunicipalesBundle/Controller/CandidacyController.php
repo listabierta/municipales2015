@@ -1641,6 +1641,29 @@ class CandidacyController extends Controller
                             $hashed_voter_name = hash('sha256', $full_string_to_hash);
                             // we only keep the first 20 characters (to be ethereum bytes32 compatible)
                             $hashed_voter_name = substr($hashed_voter_name, 0, 20);
+
+                            // we also generate the byte string array for the voting name here in order to make it
+                            // copy-pasteable.
+                            $voting_name = $admin_candidacy->getAddress();
+                            $name_in_hex = bin2hex($voting_name);
+                            $name_in_hex_array_by_two_characters = str_split($name_in_hex, 2);
+                            $hex_string_as_byte_array = array();
+                            foreach($name_in_hex_array_by_two_characters as $character_group){
+                                $character_to_push = "\"0x";
+                                $character_to_push .= $character_group;
+                                $character_to_push .= "\"";
+                                array_push($hex_string_as_byte_array, $character_to_push);
+                            }
+                            $hashed_voter_name_in_hex = bin2hex($hashed_voter_name);
+                            $hashed_voter_name_in_hex_array_by_two_characters = str_split($hashed_voter_name_in_hex, 2);
+                            $hashed_voter_name_as_byte_array = array();
+                            foreach($hashed_voter_name_in_hex_array_by_two_characters as $character_group){
+                                $character_to_push = "\"0x";
+                                $character_to_push .= $character_group;
+                                $character_to_push .= "\"";
+                                array_push($hashed_voter_name_as_byte_array, $character_to_push);
+                            }
+
                             $message = \Swift_Message::newInstance()
                                 ->setSubject($message_subject)
                                 ->setFrom('candidaturas@' . rtrim($host, '.'), 'Candidaturas')
@@ -1650,9 +1673,11 @@ class CandidacyController extends Controller
                                         'MunicipalesBundle:Mail:voting_results_published.html.twig',
                                         array(
                                             'name' => $voter->getName(),
+                                            'voting_name_as_byte_array' => $hex_string_as_byte_array,
                                             'voting_name' => $admin_candidacy->getAddress(),
                                             'ethereum_voting_smart_contract_address' =>$admin_candidacy->getEthereumResultsAddress(),
                                             'twenty_first_characters_of_hash_of_voter' => $hashed_voter_name,
+                                            'twenty_first_characters_of_hash_of_voter_as_byte_array' => $hashed_voter_name_as_byte_array,
                                             'voter_phone_number' => $voter->getPhone(),
                                             'voter_phone_confirmation_date' => $date_with_hour_and_minute_of_phone_verification,
                                             'voter_email_and_phone_verification_time_string_to_hash' => $full_string_to_hash

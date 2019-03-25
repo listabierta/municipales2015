@@ -589,9 +589,12 @@ mail:
         hello: Hola
         vote_finished_p1: las resultados de la votacion han sido publicados. Puedes verificar tu voto en la base de datos publica y immutable de Ethereum. El contrato con las resultados se encuantra aqui
         vote_finished_p2: El nombre de la votacion en la que has participado es
-        vote_finished_p3: Tu identificacion como votante en las resultados publicos es esta combinacion de 20 letras unicos
-        vote_finished_p4: Estos 20 letras son los primeros 20 characteres del  hash (el sello digital) de tu correo electronico + el tiempo de confirmacion de tu numero movil
-        vote_finished_p5: puedes reproducir este sello de tus credenciales con cualquier generador de hashes, por ejemplo  <a href="https://www.xorbin.com/tools/sha256-hash-calculator">este</a> calculando el hash del texto
+        vote_finished_p3: Para comprobar tus resultados en el smart contract de Ethereum usa el byte array siguente en las funciones que requieren el nombre de la votacion como parametro
+        vote_finished_p4: Tu identificacion como votante en las resultados publicos es esta combinacion de 20 letras unicos
+        vote_finished_p5: Estos 20 letras son los primeros 20 characteres del  hash (el sello digital) de tu correo electronico + el tiempo de confirmacion de tu numero movil
+        vote_finished_p6: puedes reproducir este sello de tus credenciales con cualquier generador de hashes, por ejemplo  <a href="https://www.xorbin.com/tools/sha256-hash-calculator">este</a> calculando el hash del texto
+        vote_finished_p7: Para comprobar tus resultados en el smart contract de Ethereum usa el byte array siguente en las funciones que requieren el hash del votante como parametro
+
 
     sms_inbound_verification:
         your_phone: Tu teléfono
