@@ -1337,14 +1337,14 @@ class TownController extends Controller
 			$userIp = $this->container->get('request')->getClientIp();
 
 			$voter_repository = $entity_manager->getRepository('Listabierta\Bundle\MunicipalesBundle\Entity\Voter');
-			//$voters = $admin_candidacy_repository->findByVoterIp(ip2long($userIp));
+			$voters = $admin_candidacy_repository->findBy(['voter_ip' => ip2long($userIp)]);
 
-//			if(count($voters) > 3)
-//			{
-//			    return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
-//			        'error' => 'Error: este usuario ya ha llevado a cabo una votación con esta misma IP 3 o mas veces. No esta permitido votar de nuevo con esta IP.',
-//			    ));
-//			}
+			if(count($voters) > 3)
+			{
+			    return $this->render('MunicipalesBundle:Town:step1_unknown.html.twig', array(
+			        'error' => 'Error: este usuario ya ha llevado a cabo una votación con esta misma IP 3 o mas veces. No esta permitido votar de nuevo con esta IP.',
+			    ));
+			}
 
 			if($ok)
 			{
@@ -1352,7 +1352,7 @@ class TownController extends Controller
 
 				// Store the result in database
 				$voter->setVoteInfo($vote_info);
-				//$voter->setVoteIp(ip2long($userIp)); // Store Ip for avoid next votes
+				$voter->setVoteIp(ip2long($userIp)); // Store Ip for avoid next votes
 
 				$entity_manager->persist($voter);
 				$entity_manager->flush();
