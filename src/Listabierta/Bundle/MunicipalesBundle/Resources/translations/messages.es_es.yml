@@ -238,7 +238,7 @@ town:
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
         explanation_dni: ¿Por que necesitamos tu DNI y tu número de móvil? Para evitar el spam y el registro múltiple de candidaturas. Para poder continuar con el registro necesitamos que proporciones ambos datos de forma correcta.
         explanation: Explicación
-        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás votar
+        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás votar. Al hacer clic en "Continuar ->" aceptes la <a id="privacy-policy-popup-link" href="#">política de privacidad.</a>
     
     step_verify:
         html_title: Municipales 2019 - Registrate como votante
@@ -445,7 +445,8 @@ candidate:
         email: Email
         phone: Número de móvil
         continue: Continuar <i class="mine-icon fa fa-arrow-right icon-on-right"></i>
-        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás dar de alta tu candidatura. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”.
+        ok: Ok
+        warning_text: <b>Atención</b>: es imprescindible que introduzcas los datos de registro de forma correcta, incluyendo tu número de móvil, un error en los datos de registro implica que no podrás dar de alta tu candidatura. Si tienes dudas del proceso, vuelve a ver el video <a href="https://www.youtube.com/watch?v=v-ysTeRE9lc" title="listAbierta.org - Abre las organizaciones a la ciudadanía (Versión Corta)">aquí</a>. El sistema no admite candidaturas “de prueba”. Al hacer clic en "Continuar ->" aceptes la <a id="privacy-policy-popup-link" href="#">política de privacidad.</a>
 
     verify_msg: Para verificar tu número de móvil solo tienes que hacer una llamada perdida desde tu móvil al número %sms_inbound_number%. Marca y se colgará solo. Después haz clic en CONTINUAR
     verify_extra: Esta llamada de verificación NO TIENE NINGÚN COSTE.
