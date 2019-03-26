@@ -7,6 +7,12 @@
     <script>
 			$(document).ready(function()
 			{
+
+				$("#privacy-policy-popup-link").click(function (event) {
+					event.preventDefault();
+					$('#myModal').modal('toggle')
+
+				})
 				$(".explanation_dni").colorbox({inline:true, width:"15%"});
 
 				{% if enable_geolocation %}
@@ -97,6 +103,36 @@
 
 <section class="section-2">
       <div class="container marketing">
+		  <!-- Modal -->
+		  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+				  <div class="modal-content">
+					  <div class="modal-header">
+						  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					  </div>
+					  <div class="modal-body">
+
+						  <p>{{ 'candidacy.step_conditions.p1_content'|trans }}:</p>
+
+						  <p>- {{ 'candidacy.step_conditions.p2_content'|trans|raw }}</p>
+
+						  <p>- {{ 'candidacy.step_conditions.p3_content'|trans }}</p>
+
+						  <p>- {{ 'candidacy.step_conditions.p4_content'|trans }}</p>
+
+						  <p>- {{ 'candidacy.step_conditions.p5_content'|trans }}</p>
+
+						  <p>- {{ 'candidacy.step_conditions.p6_content'|trans|raw }}</p>
+
+						  <p>- {{ 'candidacy.step_conditions.p7_content'|trans|raw }}</p>
+
+					  </div>
+					  <div class="modal-footer">
+						  <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'candidate.step1.ok'|trans }}</button>
+					  </div>
+				  </div>
+			  </div>
+		  </div>
  
          <div class="headline">
           <h2>{{ 'home.step_h2'|trans }} 1</h2>
